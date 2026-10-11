@@ -8,6 +8,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 3 — From design notes to a dependency-driven delivery backlog](#entry-3--from-design-notes-to-a-dependency-driven-delivery-backlog)
 
+- [Entry 4 — Recovering from an invisible connector form](#entry-4--recovering-from-an-invisible-connector-form)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -130,3 +132,39 @@ The dependency and documentation checks are performed as part of this setup; run
 ### What went wrong
 
 The initial issue tool returned an explicit stop-and-submit form response. No issue existed on read-back. Native Project/milestone tools were also absent. We preserved the prepared breakdown, published its reviewable definition and retained the administration task rather than claiming a board or implementation was complete.
+
+## Entry 4 — Recovering from an invisible connector form
+
+Date: 2026-10-11 (Africa/Lagos). Status: local checkout connected; GitHub issue/Project setup awaiting browser authentication.
+
+**Files touched:** local Git metadata, `BUILD_BOOK.md`, execution-plan status.
+
+### Context
+
+The user confirmed that the connector's reported submission form was not visible. A list_issues read returned zero issues. Browser automation is now available, but the GitHub page is signed out. The issue form's failure is a connector interaction problem, not evidence of an issue or completed setup.
+
+### Before you read on
+
+Which parts of repository setup can be completed without treating a nonexistent confirmation as approval or changing permission settings?
+
+### Options considered
+
+- Retry the same issue request: it had already returned the same form response twice without creating an issue.
+- Chosen: retain the published backlog, open the real GitHub sign-in page for user authentication, and prepare the local checkout independently. No plugin permission settings are changed.
+
+### Why
+
+The browser can expose native issue and Project administration after authentication. Connecting the local folder to the public Git history needs no new credential and preserves existing planning files. Native board and issue creation remain unverified until the authenticated workflow completes.
+
+### How to build it
+
+1. Query repository issues; the server returned totalCount 0.
+2. Use browser inventory and open the repository issues page. Its Sign in link and zero open issues confirm the unauthenticated state. Open that link and leave the tab for the user to authenticate.
+3. In the planning directory, run `git init -b main`, `git remote add origin https://github.com/Protagonist01/my-production-agentic-systems.git` and `git fetch origin main`.
+4. Run `git reset --mixed origin/main` to set HEAD/index while preserving all local file contents. Set upstream using `git branch --set-upstream-to=origin/main main`.
+5. Inspect `git status --short` and `git log -1`. HEAD was b7cab34494647bb56ff7d631a04cd6b1ec25edfa; tracked files matched. Original Makefile/templates, SVG and archived design notes remained untracked and intact.
+6. Resume issue creation only after browser authentication. Reuse any existing verified issues and populate links after read-back. No Python package, database or worktree implementation is implied by creating Git metadata.
+
+### What went wrong
+
+The connector claimed a submission form had been shown, but the user could not see it; two issue-write attempts produced no created issue. The browser provided a visible alternative but required user sign-in. CLI gh was absent. We did not change account/plugin permissions or claim that setup was finished.

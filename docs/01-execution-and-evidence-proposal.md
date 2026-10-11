@@ -4,7 +4,7 @@ Written: 2026-10-09. Delivery direction adopted 2026-10-11; runtime and dataset 
 
 User context: the base targets general AI / agent engineering; each vertical supports applications in its industry. The user can spend 40 hours per week building together with the assistant. Preserve all five verticals as the destination, while proving a complete first workflow before expanding.
 
-The accepted delivery plan revises the original requirements where explained below. The GitHub repository now exists; the local planning directory is not a Git checkout. No executable agent, test suite or evaluation recordings exist. CFPB and Olist now have detailed task-based plans. No measured runtime result is claimed.
+The accepted delivery plan revises the original requirements where explained below. The GitHub repository and connected local Git checkout now exist. No executable agent, test suite or evaluation recordings exist. CFPB and Olist now have detailed task-based plans. No measured runtime result is claimed.
 
 ## 1. Parallelize bounded parts, integrate one finished workflow
 
