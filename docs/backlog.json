@@ -1,0 +1,1147 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
+  "updated": "2026-10-11",
+  "capacity_hours_per_week": 40,
+  "issue_creation_status": "pending",
+  "epics": [
+    {
+      "id": "F",
+      "title": "Foundation: repository, contracts and development workflow",
+      "outcome": "A locked Python monorepo with agreed runtime/evaluation contracts, isolated development services and honest offline CI.",
+      "gate": "Fresh checkout installs successfully; one fake case traverses agent → gateway → scorer → report; labels stay outside agent input; CI does not claim unimplemented evaluation passed.",
+      "deps": [],
+      "issue_number": null
+    },
+    {
+      "id": "H",
+      "title": "Shared harness: gateway, evaluation and observability",
+      "outcome": "A real provider-backed gateway plus strict replay, state-based evaluation, fault injection, tracing and candidate release evidence.",
+      "gate": "Request mismatches fail offline; fresh trials bypass response reuse; missing cases fail completeness; recovery, review and unsafe outcomes are distinct; reports carry reproducible manifests.",
+      "deps": [
+        "F"
+      ],
+      "issue_number": null
+    },
+    {
+      "id": "O",
+      "title": "Olist: complete source-grounded support workflow",
+      "outcome": "A usable e-commerce application with authentic order context, policy-enforced refunds, durable review, restart recovery and independently verified results.",
+      "gate": "Valid refund once; excessive/unauthorized action blocked; correct review with evidence; timeout after commit and restart cannot duplicate effects; real-source provenance and fresh held-out results.",
+      "deps": [
+        "F",
+        "H"
+      ],
+      "issue_number": null
+    },
+    {
+      "id": "C",
+      "title": "CFPB: complaint classification and calibrated routing",
+      "outcome": "A second framework and classification vertical on published complaints, with calibrated routing and risk review.",
+      "gate": "No target-category leakage; temporal/grouped holdout; macro-F1 and high-risk recall at declared review load; routing compared with rules and always-strong baselines.",
+      "deps": [
+        "F",
+        "H"
+      ],
+      "issue_number": null
+    },
+    {
+      "id": "R",
+      "title": "Revenue integrity: authentic extraction and controlled reconciliation",
+      "outcome": "Real-contract extraction plus a separately reported billing simulation with deterministic calculations, approval-bound changes and conflict-safe compensation.",
+      "gate": "Real extraction and synthetic reconciliation results separated; independent gold-terms tests; benign exceptions handled; unauthorized changes blocked; ledger totals and safe compensation verified.",
+      "deps": [
+        "F",
+        "H",
+        "O"
+      ],
+      "issue_number": null
+    },
+    {
+      "id": "P",
+      "title": "Prior auth: cited criterion assessment and review",
+      "outcome": "An educational evidence-assessment application for selected policies, with verified criteria, isolated labels and durable document waits.",
+      "gate": "No denial or real authorization tool; incorrect approval recommendation measured; supported evidence checked; missing information handled; illustrative and counterfactual inputs reported separately.",
+      "deps": [
+        "F",
+        "H"
+      ],
+      "issue_number": null
+    },
+    {
+      "id": "S",
+      "title": "Supply chain: disruption assessment and budgeted actions",
+      "outcome": "A source-grounded logistics simulation with bounded interventions, budget allocation, approval waits and resilient execution.",
+      "gate": "No unapproved/over-cap spend or duplicate effect; costs compared with do-nothing/rules/solver baselines on separate held-out simulator scenarios; aviation proxy claims clearly separated.",
+      "deps": [
+        "F",
+        "H",
+        "O"
+      ],
+      "issue_number": null
+    },
+    {
+      "id": "L",
+      "title": "Release engineering and cross-vertical operations",
+      "outcome": "A repeatable deployment and release process with health checks, operating guides, evidence reports and tracked limitations.",
+      "gate": "Critical invariants and required cases pass; candidate evidence complete; migrations/restore/rollback verified; each completed vertical has an honest model card and runbook.",
+      "deps": [
+        "O",
+        "C",
+        "R",
+        "P",
+        "S"
+      ],
+      "issue_number": null
+    }
+  ],
+  "tasks": [
+    {
+      "id": "F1",
+      "title": "Create locked Python monorepo and package boundaries",
+      "area": "F",
+      "deps": [],
+      "size": "M",
+      "scope": "Create pyproject/lockfile, harness and vertical package skeletons, tests layout, environment example and ignore rules. No raw data or credentials enter Git.",
+      "checks": [
+        "A clean environment can install the locked dependencies and import the shared package.",
+        "Harness never imports a vertical and verticals never import each other; a deliberately bad import fails the boundary check.",
+        "README distinguishes working commands from planned commands."
+      ],
+      "priority": "P0",
+      "status": "Ready",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "F2",
+      "title": "Define runtime, model, case and score contracts with fake implementations",
+      "area": "F",
+      "deps": [
+        "F1"
+      ],
+      "size": "M",
+      "scope": "Define RunContext, agent input/result, complete model request/response, EvalCase, ScoreResult and FaultScenario. Keep expected labels in evaluator-only objects.",
+      "checks": [
+        "One fake case runs end to end without a network or database service.",
+        "Agent-visible input cannot contain expected labels or hidden simulator state.",
+        "Outcome, review reference, evidence, usage and typed failures survive serialization."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "F3",
+      "title": "Provide matching Windows and CI command entrypoints",
+      "area": "F",
+      "deps": [
+        "F1"
+      ],
+      "size": "S",
+      "scope": "Choose one portable Python command interface; Make may wrap it on Linux. Document setup, lint/types/imports/test and planned eval modes.",
+      "checks": [
+        "Documented Windows PowerShell commands and CI use the same underlying checks.",
+        "A command referencing an unimplemented feature fails clearly rather than succeeding silently.",
+        "One fresh-checkout setup walkthrough is reproducible."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "F4",
+      "title": "Isolate Postgres state and services per worktree and trial",
+      "area": "F",
+      "deps": [
+        "F1"
+      ],
+      "size": "M",
+      "scope": "Define Postgres migrations, test reset/fixtures and per-worktree service identifiers, ports and volumes. Record checkpoint, review and ledger ownership.",
+      "checks": [
+        "Two development workspaces can run without sharing writable state.",
+        "Each trial starts from a known snapshot and cannot see another trial's writes.",
+        "Migration up/down or restore instructions are verified against a disposable database."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "F5",
+      "title": "Add offline CI and repository contribution checks",
+      "area": "F",
+      "deps": [
+        "F2",
+        "F3"
+      ],
+      "size": "M",
+      "scope": "CI runs lint, types, imports and meaningful tests; later replay is added when fixtures exist. Include dependency/secret checks and PR-linked issue conventions.",
+      "checks": [
+        "A deliberately failing contract test or forbidden import fails CI.",
+        "CI has no provider-network dependency and does not silently skip required evaluation.",
+        "Contributors can identify the issue, acceptance evidence and shared-contract owner for a PR."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H1",
+      "title": "Select and pin the first provider/framework/trace integration",
+      "area": "H",
+      "deps": [
+        "F1"
+      ],
+      "size": "S",
+      "scope": "Inspect current primary documentation and local constraints; document primary model identity, SDK pins, structured output/tool support, LangGraph/Pydantic AI interoperability and one tracing backend.",
+      "checks": [
+        "An ADR records the tested integration and why alternatives are deferred.",
+        "A smoke request verifies structured output/tool behavior on the selected provider without committing secrets.",
+        "Provider limits and timestamp are recorded; model aliases and their drift limits are explicit."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H2",
+      "title": "Implement provider adapter and canonical model request matching",
+      "area": "H",
+      "deps": [
+        "F2",
+        "H1"
+      ],
+      "size": "M",
+      "scope": "Build actual model transport with typed responses, usage and errors. Match complete ordered messages, provider/model, params, tool/output schemas and serializer version.",
+      "checks": [
+        "Valid, malformed and transport-error responses are handled through the contract.",
+        "Prompt content and schema changes produce distinct request identities.",
+        "Trial/call occurrence preserves different responses to identical requests."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H3",
+      "title": "Implement immutable recordings and strict network-free replay",
+      "area": "H",
+      "deps": [
+        "H2"
+      ],
+      "size": "M",
+      "scope": "Persist sanitized request/response/error sequences and provenance in SQLite or an exportable fixture format. Strict replay executes current code and fails on mismatch.",
+      "checks": [
+        "Replay can run with provider credentials absent and outbound calls blocked.",
+        "Missing or changed request fails with case/trial/call evidence; no live fallback.",
+        "Repeated call order and typed recorded failures are reproduced; fixtures are not overwritten."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H4",
+      "title": "Enforce deadlines, retries, circuit state and reserved budgets",
+      "area": "H",
+      "deps": [
+        "H2"
+      ],
+      "size": "M",
+      "scope": "Bound calls, tokens, retries and elapsed time; reserve budget before dispatch and account for failed attempts. Inject transport through an interface.",
+      "checks": [
+        "429/5xx/timeout tests terminate within configured limits.",
+        "Concurrent calls cannot exceed the shared run budget by checking it at the same time.",
+        "Exhaustion yields typed safe-stop/review outcome and usage; retry loops are bounded."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H5",
+      "title": "Implement versioned case manifests and independent scorer registration",
+      "area": "H",
+      "deps": [
+        "F2"
+      ],
+      "size": "M",
+      "scope": "Load cases and domain scorer plugins with snapshot references, source category, eligibility, grouped split IDs and fixed evaluator versions.",
+      "checks": [
+        "Duplicate/missing case IDs and incompatible snapshots fail validation.",
+        "Labels, eligibility and hidden outcome data stay out of agent-visible views.",
+        "A known correct/incorrect mock result is scored independently from the agent's own claimed success."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H6",
+      "title": "Run isolated trials with complete outcome accounting",
+      "area": "H",
+      "deps": [
+        "H5",
+        "F4"
+      ],
+      "size": "M",
+      "scope": "Execute cases with reset state, clock/seed and bounded concurrency. Record completion, appropriate review, safe unresolved and unsafe outcomes plus scorer failures.",
+      "checks": [
+        "Every scheduled case/trial has a terminal accounting row, including timeouts and exceptions.",
+        "An escalate-everything agent earns no autonomous-completion credit on eligible cases.",
+        "Missing results/scorer errors mark evidence incomplete and cannot pass a release gate."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H7",
+      "title": "Add seeded failure scenarios and state invariants",
+      "area": "H",
+      "deps": [
+        "H6",
+        "H4"
+      ],
+      "size": "M",
+      "scope": "Inject bad model output, outage, stale reads, tool timeout before/after commit, duplicates and injection content. Declare recoverability before execution.",
+      "checks": [
+        "Scenario seed/timing can be reproduced without production writes.",
+        "Recovery and appropriate handoff are scored separately; unresolved outage is not automatic recovery.",
+        "Invariant checks inspect state/ledger and identify duplicate or unauthorized effects."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H8",
+      "title": "Export correlated traces with redaction and health diagnostics",
+      "area": "H",
+      "deps": [
+        "H2",
+        "H6",
+        "H1"
+      ],
+      "size": "M",
+      "scope": "Instrument run/model/node/tool/policy spans with versions and source evidence; export to one chosen backend. Handle exporter failure without hiding runtime outcomes.",
+      "checks": [
+        "A run can be followed from model request through tool result and scorer.",
+        "Identifier/secret canaries do not appear in exported traces or reports.",
+        "Exporter flush/cleanup is verified and observability failure is visible."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H9",
+      "title": "Generate honest scorecards and case-level baseline comparisons",
+      "area": "H",
+      "deps": [
+        "H6",
+        "H7"
+      ],
+      "size": "M",
+      "scope": "Produce JSON/Markdown reports with completion, review burden, violations, fault outcomes, usage, split/source slices and uncertainty.",
+      "checks": [
+        "Numerators/denominators and fresh/replay modes are explicit; missing outcomes are included.",
+        "Paired baseline comparison surfaces newly failing required cases even when averages improve.",
+        "Zero-event safety reports use 0/N and a suitable rare-event interval; no zero-width bootstrap safety claim."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H10",
+      "title": "Implement cache-bypassed candidate recording and release evidence gates",
+      "area": "H",
+      "deps": [
+        "H3",
+        "H9"
+      ],
+      "size": "M",
+      "scope": "Implement eval-record, eval-compare and eval-release semantics with immutable candidate manifests and a separately reviewed baseline.",
+      "checks": [
+        "Three fresh trials cannot reuse earlier candidate responses.",
+        "Behavior fingerprints tie evidence to the candidate; model-visible changes require fresh affected-slice evidence.",
+        "Missing/expired/incompatible evidence or critical violations block release; candidate cannot automatically bless its own baseline."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "H11",
+      "title": "Add second provider fallback and separately evaluated routing",
+      "area": "H",
+      "deps": [
+        "H10",
+        "O8"
+      ],
+      "size": "M",
+      "scope": "After the first complete release, add one fallback provider and provider-specific circuit breakers. Evaluate fallback quality instead of assuming equivalence.",
+      "checks": [
+        "Controlled provider outage routes or safely stops with traceable provider choice.",
+        "Fallback quality/cost and cross-provider schema support are reported separately.",
+        "Fallback never bypasses replay matching, run limits or policy enforcement."
+      ],
+      "priority": "P2",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "O1",
+      "title": "Acquire Olist snapshot and validate source provenance/use conditions",
+      "area": "O",
+      "deps": [],
+      "size": "S",
+      "scope": "Obtain original Olist source via documented access; record checksum, version, dates, language, currency, attribution/use conditions and required files.",
+      "checks": [
+        "Manifest and repeatable local acquisition instructions exist; raw files are excluded from Git.",
+        "Source publisher/version and missing fields are recorded rather than inferred.",
+        "The permitted handling/export path and credential-free CI fixture strategy are explicit."
+      ],
+      "priority": "P0",
+      "status": "Ready",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "O2",
+      "title": "Build orders_360 with correct joins and historical as-of views",
+      "area": "O",
+      "deps": [
+        "O1",
+        "F2"
+      ],
+      "size": "M",
+      "scope": "Import/aggregate orders, items, payments, delivery and reviews at declared grain; produce scoped snapshots that expose only facts known at case time.",
+      "checks": [
+        "Key/cardinality/totals checks detect duplicate join inflation.",
+        "Future delivery/review facts cannot leak into an earlier request view.",
+        "Currency, missingness, provenance and Portuguese/translation handling are preserved."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "O3",
+      "title": "Write refund/reship rules and independently reviewed case sets",
+      "area": "O",
+      "deps": [
+        "O2"
+      ],
+      "size": "M",
+      "scope": "Version policy, eligibility/review rules and source-grounded support messages. Create development/regression/holdout splits grouped by order.",
+      "checks": [
+        "Expected actions come from reviewed policy examples independent of runtime implementation.",
+        "Original records, hybrid messages and adversarial edits have separate source labels.",
+        "Case evidence includes valid refund, over-limit, missing-data and genuinely ambiguous outcomes."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "O4",
+      "title": "Implement scoped order tools and transactional refund ledger",
+      "area": "O",
+      "deps": [
+        "O2",
+        "O3",
+        "F4"
+      ],
+      "size": "M",
+      "scope": "Build typed reads/writes on the controlled business backend; enforce scopes, per-order/run limits and stable tenant/business-operation idempotency.",
+      "checks": [
+        "Authorized refund changes state once; duplicate event in a new run returns the original result.",
+        "Over-limit, unauthorized and payload-mismatched repeated-key requests cannot write.",
+        "State transition and audit/ledger are consistent after transaction failure or timeout-after-commit."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "O5",
+      "title": "Build the LangGraph workflow with bounded reasoning and validation",
+      "area": "O",
+      "deps": [
+        "O4",
+        "H2",
+        "H4"
+      ],
+      "size": "M",
+      "scope": "Implement intent/context/policy/proposed-action/tool/result flow, checkpointing and step limits. Responses reflect actual committed state.",
+      "checks": [
+        "Refund/status/review paths execute against source-grounded context.",
+        "Model/tool input injection cannot relax code-enforced write rules.",
+        "Claiming a successful refund without committed state fails output verification."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "O6",
+      "title": "Implement durable review and exact-action approval/resume",
+      "area": "O",
+      "deps": [
+        "O5"
+      ],
+      "size": "M",
+      "scope": "Persist review evidence and reviewer decisions. Bind approval to action payload, tenant/actor and record version; resume without restarting side effects.",
+      "checks": [
+        "Human can inspect evidence, approve/reject and see the audited decision.",
+        "Stale approval or changed record requires re-evaluation rather than writing.",
+        "Restart preserves review state; repeated approval/resume cannot refund twice."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "O7",
+      "title": "Provide authenticated API and usable support/review interface",
+      "area": "O",
+      "deps": [
+        "O6",
+        "H8"
+      ],
+      "size": "M",
+      "scope": "Expose request/status/review routes, tenant/role checks and a usable operator interface. Include error/loading/empty states and health diagnostics.",
+      "checks": [
+        "Complete request-to-review-to-outcome flow works through the application.",
+        "A different tenant/role cannot read a case, approve or invoke writes.",
+        "UI accurately shows pending, failed and committed actions and evidence."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "O8",
+      "title": "Verify crash recovery and publish the first complete release evidence",
+      "area": "O",
+      "deps": [
+        "O7",
+        "H10",
+        "H7",
+        "F5"
+      ],
+      "size": "M",
+      "scope": "Run state-based Olist scorers, commit-timeout/crash/restart scenarios, fresh held-out evaluation and a three-trial reliability subset; publish model card/runbook.",
+      "checks": [
+        "State checks show no duplicate/over-limit/unauthorized effects across fault tests.",
+        "Report separates source-grounded and synthetic/adversarial cases, review burden and incomplete results.",
+        "Release artifact contains source/split/code/scorer manifests and a reproducible operational walkthrough."
+      ],
+      "priority": "P0",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "C1",
+      "title": "Import CFPB complaints and build a label-isolated temporal split",
+      "area": "C",
+      "deps": [
+        "F2",
+        "H5"
+      ],
+      "size": "M",
+      "scope": "Snapshot published narratives/metadata with source taxonomy versions. Store consumer-selected product/issue labels only in evaluation tables.",
+      "checks": [
+        "Agent input excludes targets and other answer-revealing metadata.",
+        "Temporal/grouped holdout and category changes are documented.",
+        "Manifest records missing narratives, masking patterns and consumer-label limitations."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "C2",
+      "title": "Review risk/ambiguity labels and establish deterministic baselines",
+      "area": "C",
+      "deps": [
+        "C1"
+      ],
+      "size": "M",
+      "scope": "Write labeling rules, blind-label risk/ambiguous examples in batches and implement majority/rules baselines.",
+      "checks": [
+        "Labels include reviewer/guideline/version evidence and disagreements.",
+        "Risk labels are not derived from candidate predictions.",
+        "Baseline results and slice denominators are published before tuning."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "C3",
+      "title": "Implement Pydantic AI classifier and calibrated routing",
+      "area": "C",
+      "deps": [
+        "C2",
+        "H10"
+      ],
+      "size": "M",
+      "scope": "Return typed product/issue/priority and evidence; calibrate routing/abstention on a development-only set and compare cheap-first with always-strong.",
+      "checks": [
+        "Invalid taxonomy or budget failure routes safely with audit evidence.",
+        "Coverage/error and high-risk recall are reported at a declared review fraction.",
+        "Router thresholds never fit the final holdout."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "C4",
+      "title": "Integrate scoped review, API, traces and drift monitoring",
+      "area": "C",
+      "deps": [
+        "C3",
+        "H8"
+      ],
+      "size": "M",
+      "scope": "Expose classification/review workflow with enqueue-only tools; monitor input/output taxonomy mix, masked text and model/provider changes.",
+      "checks": [
+        "Tenant boundaries and no-write scopes are enforced in tools.",
+        "Category/length/language shifts trigger documented diagnostic outputs.",
+        "API surfaces decision, uncertainty and review evidence accurately."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "C5",
+      "title": "Evaluate routing tradeoffs and release the CFPB vertical",
+      "area": "C",
+      "deps": [
+        "C4",
+        "O8"
+      ],
+      "size": "M",
+      "scope": "Run held-out classification/risk results, provider/injection faults and repeated-trial subset; publish model card, runbook and resource comparison.",
+      "checks": [
+        "Macro-F1, minority slices and risk recall/review-load tradeoff are explicit.",
+        "No label leakage or unsupported population/harm claim appears in the report.",
+        "Fresh evidence and required-case gates pass; observed failures remain documented."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "R1",
+      "title": "Build original-contract extraction corpus and family-level holdout",
+      "area": "R",
+      "deps": [
+        "H5"
+      ],
+      "size": "M",
+      "scope": "Acquire CUAD plus suitable EDGAR agreements if needed; preserve original context and reviewed field/span labels. Keep constructed clauses in separate sets.",
+      "checks": [
+        "Manifest records provenance, permissions and real-field coverage gaps.",
+        "Contracts/templates do not cross development/holdout family boundaries.",
+        "Numeric/citation gold labels are reviewed independently from extractor output."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "R2",
+      "title": "Generate billing worlds with leakage and benign exceptions",
+      "area": "R",
+      "deps": [
+        "R1"
+      ],
+      "size": "M",
+      "scope": "Seed accounts/subscriptions/invoices and construct seat/price/uplift/ramp/amendment cases. Maven, if used, is labeled a fictional hardware CRM fixture.",
+      "checks": [
+        "Injected labels match independently hand-checked money/date examples.",
+        "Benign ramps/credits/amendments are first-class negative cases.",
+        "Hidden should-be schedules and leakage labels cannot be read by the agent."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "R3",
+      "title": "Extract reusable access mechanisms from two demonstrated consumers",
+      "area": "R",
+      "deps": [
+        "O4",
+        "R2",
+        "F2"
+      ],
+      "size": "M",
+      "scope": "Compare Olist and Revenue tool/catalog needs; move only common scope/registry/write mechanism into harness/access with migration contracts.",
+      "checks": [
+        "Shared code names no domain-specific refund/invoice rules.",
+        "Olist still passes its contracts after migration and Revenue has its own rules.",
+        "In-process tools remain testable; MCP adapter exposes the same contracts when added."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "R4",
+      "title": "Implement cited term extraction and independent reconciliation engine",
+      "area": "R",
+      "deps": [
+        "R1",
+        "R2",
+        "H10"
+      ],
+      "size": "L",
+      "scope": "Build extractor/verifier and exact money/date/amendment reconciliation. Evaluate gold-terms and extracted-terms paths independently.",
+      "checks": [
+        "Gold-terms tests catch logic bugs without invoking a model.",
+        "A citation's existence alone does not validate the commercial meaning.",
+        "Original extraction and hybrid end-to-end errors are separated in reports."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "R5",
+      "title": "Implement approval-bound changes, ledger and conflict-safe compensation",
+      "area": "R",
+      "deps": [
+        "R3",
+        "R4",
+        "F4"
+      ],
+      "size": "M",
+      "scope": "Allow limited CRM hygiene, require approval for billing/merges, bind exact payload/version, enforce stable operation keys and compensating rollback.",
+      "checks": [
+        "Stale/reused approval and unauthorized writes are blocked.",
+        "Retry, duplicate webhook and partial batch failure cannot create duplicate effects.",
+        "Compensation appends a ledger entry and refuses to overwrite an intervening legitimate change."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "R6",
+      "title": "Deliver approval UI, digest and event-driven orchestration",
+      "area": "R",
+      "deps": [
+        "R5",
+        "H8"
+      ],
+      "size": "L",
+      "scope": "Build usable findings/review interface and ledger-reconciled digest; add thin Inngest event/sweep/approval wrappers after confirming current SDK support.",
+      "checks": [
+        "Found/proposed/approved/applied/rejected simulated dollars are distinct and reconcile.",
+        "One owner per wait/checkpoint; wrapper retry is idempotent.",
+        "API/UI handles review rejection, stale data and long waits visibly."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "R7",
+      "title": "Publish real extraction and simulated reconciliation release results",
+      "area": "R",
+      "deps": [
+        "R6",
+        "O8"
+      ],
+      "size": "M",
+      "scope": "Evaluate precision, case/dollar-weighted recall, benign false alarms, unsafe effects, independent compensation and engine/catalog ablations.",
+      "checks": [
+        "Real-source and synthetic results are separate; no real recovered revenue claim.",
+        "Per-category results and completed/incomplete cases are visible.",
+        "Release manifests, threat model, failure log, runbook and fresh evidence satisfy gates."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "P1",
+      "title": "Select suitable policies and verify source/use and reviewer constraints",
+      "area": "P",
+      "deps": [],
+      "size": "M",
+      "scope": "Choose checkable coverage policies and transcription examples; record effective dates, code-content restrictions, illustrative status and domain review availability.",
+      "checks": [
+        "Chosen scope and source references are documented; no blanket redistributability assumption.",
+        "Criteria wording is reviewed by a qualified reviewer if available, with limitations stated if not.",
+        "Diagnosis versus procedure-code validation requirements are explicit."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "P2",
+      "title": "Build redacted spans and independent note-policy labels",
+      "area": "P",
+      "deps": [
+        "P1",
+        "H5"
+      ],
+      "size": "L",
+      "scope": "Segment illustrative notes with stable offsets; label met/not_met/insufficient and supporting spans, plus marked counterfactual pairs.",
+      "checks": [
+        "Original samples and edits have separate provenance/splits.",
+        "Overall expected decisions are independently checked, not solely generated by the production aggregator.",
+        "Redaction/citation mapping and label isolation are verified."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "P3",
+      "title": "Implement retrieval, criterion assessment and supporting-evidence checks",
+      "area": "P",
+      "deps": [
+        "P2",
+        "H10"
+      ],
+      "size": "M",
+      "scope": "Evaluate selected policy criteria with structured evidence; validate both span integrity and criterion support, code types and policy version.",
+      "checks": [
+        "Unsupported/no-evidence met assessments become insufficient/review.",
+        "Conflicting/missing policy input cannot yield an automatic approval recommendation.",
+        "Retrieval and criterion-assessment errors can be diagnosed separately."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "P4",
+      "title": "Implement recommendation-only policy flow and durable document waits",
+      "area": "P",
+      "deps": [
+        "P3",
+        "F4"
+      ],
+      "size": "M",
+      "scope": "Aggregate criteria, request information or route to qualified review; persist exact policy/version/document state and re-evaluate affected criteria.",
+      "checks": [
+        "There is no deny_request or real authorization tool/API route.",
+        "Document arrivals/timeouts and restarts resume without duplicate queue effects.",
+        "Policy version change invalidates obsolete candidate decisions."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "P5",
+      "title": "Build reviewer interface and protected evidence access",
+      "area": "P",
+      "deps": [
+        "P4",
+        "H8"
+      ],
+      "size": "M",
+      "scope": "Show criterion/evidence/rationale table, missing information, review events and policy provenance under tenant/role access.",
+      "checks": [
+        "Only redacted views are model-visible; identifier canaries do not leak to traces.",
+        "Unauthorized reviewer cannot inspect/change another case.",
+        "Reviewer can identify uncertainty, conflicts and pending document waits."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "P6",
+      "title": "Release criterion, recommendation-risk and abstention evidence",
+      "area": "P",
+      "deps": [
+        "P5",
+        "O8"
+      ],
+      "size": "M",
+      "scope": "Evaluate incorrect approval recommendations with both denominators, criterion support, appropriate routing and required-information behavior.",
+      "checks": [
+        "Incorrect recommendations/all recommendations and /non-approvable cases are both reported.",
+        "Illustrative versus edited examples and clinical-label limitations remain explicit.",
+        "Fresh results, policy manifests, privacy/injection faults and runbook meet gates."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "S1",
+      "title": "Import shipping records and capture versioned weather snapshots",
+      "area": "S",
+      "deps": [
+        "H5"
+      ],
+      "size": "M",
+      "scope": "Prepare DataCo shipping observations and NWS alert snapshots with coverage/timezones. Keep BTS passenger-airline proxy optional and separately labeled.",
+      "checks": [
+        "No unverified historical weather-shipment causal join is claimed.",
+        "Manifest records alert freshness, expiry and independent source lineage.",
+        "Agent-visible facts respect the scenario clock and available source coverage."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "S2",
+      "title": "Build an independent holdout simulator and baseline policies",
+      "area": "S",
+      "deps": [
+        "S1"
+      ],
+      "size": "L",
+      "scope": "Specify intervention outcomes/costs, held-out scenarios, do-nothing/rules/solver policies and sensitivity parameters.",
+      "checks": [
+        "Hidden realized outcomes are not available to the agent.",
+        "Different seeds/template/scenario families and a holdout outcome model test simulator overfit.",
+        "Total realized simulated cost and absolute/normalized baseline differences are defined."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "S3",
+      "title": "Implement options, portfolio allocation and transactional spend tools",
+      "area": "S",
+      "deps": [
+        "S2",
+        "R3",
+        "F4"
+      ],
+      "size": "M",
+      "scope": "Generate bounded options; allocate budget and enforce per-action/run limits with stable event identity and fresh record checks.",
+      "checks": [
+        "Concurrent executions cannot overspend or double execute.",
+        "Over-threshold actions require exact approval; stale budget state blocks commit.",
+        "Failure after commit returns the original effect on retry."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "S4",
+      "title": "Implement assessment, approvals, confirmations and bounded replanning",
+      "area": "S",
+      "deps": [
+        "S3",
+        "H10"
+      ],
+      "size": "L",
+      "scope": "Build LangGraph assessment and thin Inngest event/fan-out/wait orchestration, with one state owner per concern.",
+      "checks": [
+        "Approval/confirmation timeouts have explicit safe terminal outcomes.",
+        "Replanning terminates and preserves already committed effects.",
+        "Region bursts and duplicate/out-of-order events have deterministic tests."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "S5",
+      "title": "Build operations interface and truthful shipment notifications",
+      "area": "S",
+      "deps": [
+        "S4",
+        "H8"
+      ],
+      "size": "M",
+      "scope": "Show affected shipments, proposals, budget, approvals, confirmations and failures; messages use verified shipment/alert facts.",
+      "checks": [
+        "Operators can see pending/unresolved/committed actions distinctly.",
+        "Budget/approval access is tenant/role scoped.",
+        "Notifications cannot state unconfirmed execution or invented delivery outcomes."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "S6",
+      "title": "Release held-out cost, budget and recovery evaluation",
+      "area": "S",
+      "deps": [
+        "S5",
+        "O8"
+      ],
+      "size": "M",
+      "scope": "Compare simulated realized cost with all baselines, fault recovery and scenario sensitivity; record proxy and causal limits.",
+      "checks": [
+        "Completed, unresolved and unsafe outcomes are all counted.",
+        "No actual freight savings claim is made from the simulation.",
+        "Spend/duplicate invariants, fresh candidate evidence, model card and runbook meet gates."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "L1",
+      "title": "Package deployment, health checks and operator configuration",
+      "area": "L",
+      "deps": [
+        "O8",
+        "F4"
+      ],
+      "size": "M",
+      "scope": "Ship an actual runnable API/operator application with validated environment, migrations, liveness/readiness and resource limits; document initial host choice.",
+      "checks": [
+        "Fresh deployment serves a source-grounded Olist request and review flow.",
+        "Missing secret/database/schema produces actionable startup failure.",
+        "Shutdown flushes telemetry and preserves durable work."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "L2",
+      "title": "Verify backup, restore and safe release rollback",
+      "area": "L",
+      "deps": [
+        "L1"
+      ],
+      "size": "M",
+      "scope": "Define recovery objectives, state backup/restore, migration compatibility, pinned application/config rollback and ledger compensation distinctions.",
+      "checks": [
+        "Restore recreates checkpoint/review/ledger state in an isolated environment.",
+        "Application rollback does not silently undo business actions or overwrite newer state.",
+        "A documented operator exercise verifies recovery, not merely a written checklist."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "L3",
+      "title": "Calibrate optional judges and monitoring against reviewed cases",
+      "area": "L",
+      "deps": [
+        "C5",
+        "R7",
+        "P6",
+        "S6"
+      ],
+      "size": "M",
+      "scope": "After real error analysis, add narrow judge checks only for subjective outputs and monitor deployed traces; keep deterministic business checks primary.",
+      "checks": [
+        "Calibration and held-out judge validation are distinct.",
+        "Judge failure cannot override a failed write/state invariant.",
+        "Observed failures enter new versioned cases with provenance and review."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "L4",
+      "title": "Publish cross-vertical release evidence and finished-project documentation",
+      "area": "L",
+      "deps": [
+        "C5",
+        "R7",
+        "P6",
+        "S6",
+        "L2"
+      ],
+      "size": "M",
+      "scope": "Prepare versioned reports/model cards/threat models/runbooks and practical demonstrations for all completed verticals.",
+      "checks": [
+        "Each vertical has its own source limitations, denominators, baseline and known failures.",
+        "No blended cross-industry accuracy or invented business savings appear.",
+        "Complete release manifests and fresh behavior-change evidence support every shipped claim."
+      ],
+      "priority": "P1",
+      "status": "Backlog",
+      "blocker": null,
+      "issue_number": null
+    },
+    {
+      "id": "L5",
+      "title": "Enable native GitHub Project views, milestones and workflow automation",
+      "area": "L",
+      "deps": [],
+      "size": "S",
+      "scope": "Complete native board administration when a Project-capable connection is available: link repository, add existing issues, configure status/area/priority/size/iteration and archive rules.",
+      "checks": [
+        "Existing issues are reused rather than duplicated.",
+        "Board has Backlog/Ready/In progress/Review/Done plus a blocker field; milestones match delivery epics.",
+        "Native creation/access is verified; this issue remains open if capability is unavailable."
+      ],
+      "priority": "P2",
+      "status": "Blocked",
+      "blocker": "Native Projects/milestones administration is not available in the connected MCP.",
+      "issue_number": null
+    }
+  ]
+}
