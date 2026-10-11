@@ -2,6 +2,8 @@
 
 Updated 2026-10-11. [Architecture](README.md) and [delivery plan](project-management.md) are the current execution references. [backlog.json](backlog.json) contains the complete versioned scope and acceptance checks.
 
+[GitHub delivery project](https://github.com/users/Protagonist01/projects/2) · [Root tracker #1](https://github.com/Protagonist01/my-production-agentic-systems/issues/1) · [Seven milestones](https://github.com/Protagonist01/my-production-agentic-systems/milestones). All eight epics and 53 tasks have verified GitHub issue links.
+
 1. [Execution and evidence rationale](01-execution-and-evidence-proposal.md)
 2. [Source data and architecture comparison](02-data-and-architecture-comparison.md)
 3. [Olist support](olist-support.md)

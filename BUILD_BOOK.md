@@ -9,6 +9,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 3 — From design notes to a dependency-driven delivery backlog](#entry-3--from-design-notes-to-a-dependency-driven-delivery-backlog)
 
 - [Entry 4 — Recovering from an invisible connector form](#entry-4--recovering-from-an-invisible-connector-form)
+- [Entry 5 — Creating the native delivery project](#entry-5--creating-the-native-delivery-project)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -168,3 +169,40 @@ The browser can expose native issue and Project administration after authenticat
 ### What went wrong
 
 The connector claimed a submission form had been shown, but the user could not see it; two issue-write attempts produced no created issue. The browser provided a visible alternative but required user sign-in. CLI gh was absent. We did not change account/plugin permissions or claim that setup was finished.
+
+## Entry 5 — Creating the native delivery project
+
+Date: 2026-10-11 (Africa/Lagos). Status: native issue hierarchy, milestones and Project created; field population and workflow verification underway.
+
+**Files touched:** delivery plan, backlog manifest, README and Build Book. **Remote artifacts:** [Project 2](https://github.com/users/Protagonist01/projects/2), [root issue 1](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), issues 2–62 and milestones 1–7.
+
+### Context and decision
+
+After the user signed in, the browser exposed GitHub's native administration controls. Use one root tracker, eight epic children and 53 task children, preserving the manifest IDs. This gives each implementation PR a bounded task while keeping dependencies separate from the parent hierarchy. Keep the Project private as created and leave due dates empty until measured throughput supports dates.
+
+### How to build it
+
+1. Read the existing issue list before creation to avoid duplicates. Create the delivery tracker, then the eight epics; attach each epic as a native sub-issue of the tracker.
+2. Create each task with scope, prerequisite issue links, provisional priority/size, acceptance checkboxes and completion evidence. Attach it beneath its epic. Read the hierarchy back: F 5, H 11, O 8, C 5, R 7, P 6, S 6 and L 5 tasks; total 62 issues including root and epics.
+3. Create seven milestones: foundation, Olist, CFPB, Revenue, Prior auth, Supply chain and operations. Assign the core harness to Olist; assign H11's later fallback enhancement to operations.
+4. Create a user-owned Project using the Team planning template and import the repository's existing 62 issues. Rename Todo to Backlog; add Ready and Review plus Area and Blocker fields. Retain Priority, Size and Iteration.
+5. For the Backlog table, turn hierarchy off and grouping off so all tasks are visible. Show milestone and parent issue alongside delivery fields. Save the view through GitHub's explicit Save display options dialog.
+6. Populate fields from the versioned manifest. Set F1 Ready and prepare O1 Ready; later prerequisites remain explicit. Verify milestone assignments with server reads as well as the table.
+
+### Diagnosis while working
+
+The connector's update operation also rendered a submission form rather than performing the edit; issue 25's connector edit remains pending. Independent Project administration continued through the already authorized browser. Some table snapshots briefly showed blank fields after successful saves; server issue reads confirmed milestones for H1, H9, O1 and C1. Longer browser batches timed out and reset bindings. Reconnect to the existing tab, inspect the current filter, and resume from the first unfinished task rather than creating duplicates. Use bounded batches and read saved state before claiming completion.
+
+Runtime implementation and implementation worktrees have not started. Final verification and the completed administration evidence will be appended below when available.
+
+### Verification and completion
+
+The table used asynchronous filtering and saves. A complete server read found the Revenue epic (#6) and reuse task R3 (#41) on the CFPB milestone. Corrected both through the visible milestone picker and read them back: both now belong to M4. Do not treat a click or an immediate table snapshot as confirmation; wait for the selected state and compare the saved value with the manifest.
+
+All 53 task rows were read in eight Area-filtered batches and compared with the manifest: Area, Priority, Size and milestone matched. The local validator checked 53 unique tasks, all 61 epic/task issue mappings and an acyclic dependency graph. Missing Size/Area/Priority filters initially returned only the nine aggregate root/epic rows; epics subsequently received Area/Priority/milestones and intentionally retain no Size. The root tracker spans the project and intentionally has no Area/milestone.
+
+Configured Board stages Backlog → Ready → In progress → Review → Done; removed the template's five-item Backlog limit and set In progress to three. Saved By workstream with Area grouping and hierarchy off; saved Blocked with `has:Blocker`, hierarchy off, Area and Blocker columns. Seven views exist. Dates and iteration assignments remain empty pending capacity planning.
+
+Five workflows are enabled: repository open-issue intake, sub-issue intake, initial Backlog, explicitly closed issues → Done, and reopened items → Backlog. Disabled merge → Done, Done → automatic closure, and PR-link status changes; left archive/review automations off. Explicit closure still requires the human/integrator to inspect acceptance evidence. Updated and pinned tracker #1 with the actual Project URL and epic links. H11's O8 dependency is #33, clarified in the tracker and manifest while its connector edit remains pending.
+
+L5 is an administrative task. Its completion evidence is this verified configuration and the published documentation commit, rather than an application implementation PR. F1 #10 and O1 #26 remain Ready. No application work is marked complete.

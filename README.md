@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-Repository planning and delivery setup are underway. Agent runtime, source importers, database migrations, CI checks and deployment are not implemented. Documentation commands and proposed paths are specifications until verified by their implementation tasks.
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) contains a [root tracker](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), eight epics and 53 task sub-issues, organized into seven milestones. Agent runtime, source importers, database migrations, CI checks and deployment are not implemented. Documentation commands and proposed paths are specifications until verified by their implementation tasks.
 
 ## Applications
 
@@ -26,4 +26,4 @@ Start repository foundation and Olist source acquisition. Verify minimal shared 
 
 [Delivery plan](docs/project-management.md) · [Backlog](docs/backlog.json) · [Architecture and data plans](docs/README.md) · [Build Book](BUILD_BOOK.md)
 
-No implementation workers/worktrees have been launched. GitHub issue numbers and native board links are populated only after verified creation.
+Start with [F1: repository foundation](https://github.com/Protagonist01/my-production-agentic-systems/issues/10) and [O1: Olist source acquisition](https://github.com/Protagonist01/my-production-agentic-systems/issues/26), both Ready. No implementation workers/worktrees have been launched.

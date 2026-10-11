@@ -1,9 +1,9 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
   "updated": "2026-10-11",
   "capacity_hours_per_week": 40,
-  "issue_creation_status": "pending",
+  "issue_creation_status": "verified",
   "epics": [
     {
       "id": "F",
@@ -11,7 +11,9 @@
       "outcome": "A locked Python monorepo with agreed runtime/evaluation contracts, isolated development services and honest offline CI.",
       "gate": "Fresh checkout installs successfully; one fake case traverses agent → gateway → scorer → report; labels stay outside agent input; CI does not claim unimplemented evaluation passed.",
       "deps": [],
-      "issue_number": null
+      "issue_number": 2,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/2",
+      "milestone_number": 1
     },
     {
       "id": "H",
@@ -21,7 +23,9 @@
       "deps": [
         "F"
       ],
-      "issue_number": null
+      "issue_number": 3,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/3",
+      "milestone_number": 2
     },
     {
       "id": "O",
@@ -32,7 +36,9 @@
         "F",
         "H"
       ],
-      "issue_number": null
+      "issue_number": 4,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/4",
+      "milestone_number": 2
     },
     {
       "id": "C",
@@ -43,7 +49,9 @@
         "F",
         "H"
       ],
-      "issue_number": null
+      "issue_number": 5,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/5",
+      "milestone_number": 3
     },
     {
       "id": "R",
@@ -55,7 +63,9 @@
         "H",
         "O"
       ],
-      "issue_number": null
+      "issue_number": 6,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/6",
+      "milestone_number": 4
     },
     {
       "id": "P",
@@ -66,7 +76,9 @@
         "F",
         "H"
       ],
-      "issue_number": null
+      "issue_number": 7,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/7",
+      "milestone_number": 5
     },
     {
       "id": "S",
@@ -78,7 +90,9 @@
         "H",
         "O"
       ],
-      "issue_number": null
+      "issue_number": 8,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/8",
+      "milestone_number": 6
     },
     {
       "id": "L",
@@ -92,7 +106,9 @@
         "P",
         "S"
       ],
-      "issue_number": null
+      "issue_number": 9,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/9",
+      "milestone_number": 7
     }
   ],
   "tasks": [
@@ -111,7 +127,11 @@
       "priority": "P0",
       "status": "Ready",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 10,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/10",
+      "parent_issue_number": 2,
+      "dependency_issue_numbers": [],
+      "milestone_number": 1
     },
     {
       "id": "F2",
@@ -130,7 +150,13 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 11,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/11",
+      "parent_issue_number": 2,
+      "dependency_issue_numbers": [
+        10
+      ],
+      "milestone_number": 1
     },
     {
       "id": "F3",
@@ -149,7 +175,13 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 12,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/12",
+      "parent_issue_number": 2,
+      "dependency_issue_numbers": [
+        10
+      ],
+      "milestone_number": 1
     },
     {
       "id": "F4",
@@ -168,7 +200,13 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 13,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/13",
+      "parent_issue_number": 2,
+      "dependency_issue_numbers": [
+        10
+      ],
+      "milestone_number": 1
     },
     {
       "id": "F5",
@@ -188,7 +226,14 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 14,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/14",
+      "parent_issue_number": 2,
+      "dependency_issue_numbers": [
+        11,
+        12
+      ],
+      "milestone_number": 1
     },
     {
       "id": "H1",
@@ -207,7 +252,13 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 15,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/15",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        10
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H2",
@@ -227,7 +278,14 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 16,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/16",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        11,
+        15
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H3",
@@ -246,7 +304,13 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 17,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/17",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        16
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H4",
@@ -265,7 +329,13 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 18,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/18",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        16
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H5",
@@ -284,7 +354,13 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 19,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/19",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        11
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H6",
@@ -304,7 +380,14 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 20,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/20",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        19,
+        13
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H7",
@@ -324,7 +407,14 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 21,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/21",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        20,
+        18
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H8",
@@ -345,7 +435,15 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 22,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/22",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        16,
+        20,
+        15
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H9",
@@ -365,7 +463,14 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 23,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/23",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        20,
+        21
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H10",
@@ -385,7 +490,14 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 24,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/24",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        17,
+        23
+      ],
+      "milestone_number": 2
     },
     {
       "id": "H11",
@@ -405,7 +517,14 @@
       "priority": "P2",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 25,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/25",
+      "parent_issue_number": 3,
+      "dependency_issue_numbers": [
+        24,
+        33
+      ],
+      "milestone_number": 7
     },
     {
       "id": "O1",
@@ -422,7 +541,11 @@
       "priority": "P0",
       "status": "Ready",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 26,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/26",
+      "parent_issue_number": 4,
+      "dependency_issue_numbers": [],
+      "milestone_number": 2
     },
     {
       "id": "O2",
@@ -442,7 +565,14 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 27,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/27",
+      "parent_issue_number": 4,
+      "dependency_issue_numbers": [
+        26,
+        11
+      ],
+      "milestone_number": 2
     },
     {
       "id": "O3",
@@ -461,7 +591,13 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 28,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/28",
+      "parent_issue_number": 4,
+      "dependency_issue_numbers": [
+        27
+      ],
+      "milestone_number": 2
     },
     {
       "id": "O4",
@@ -482,7 +618,15 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 29,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/29",
+      "parent_issue_number": 4,
+      "dependency_issue_numbers": [
+        27,
+        28,
+        13
+      ],
+      "milestone_number": 2
     },
     {
       "id": "O5",
@@ -503,7 +647,15 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 30,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/30",
+      "parent_issue_number": 4,
+      "dependency_issue_numbers": [
+        29,
+        16,
+        18
+      ],
+      "milestone_number": 2
     },
     {
       "id": "O6",
@@ -522,7 +674,13 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 31,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/31",
+      "parent_issue_number": 4,
+      "dependency_issue_numbers": [
+        30
+      ],
+      "milestone_number": 2
     },
     {
       "id": "O7",
@@ -542,7 +700,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 32,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/32",
+      "parent_issue_number": 4,
+      "dependency_issue_numbers": [
+        31,
+        22
+      ],
+      "milestone_number": 2
     },
     {
       "id": "O8",
@@ -564,7 +729,16 @@
       "priority": "P0",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 33,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/33",
+      "parent_issue_number": 4,
+      "dependency_issue_numbers": [
+        32,
+        24,
+        21,
+        14
+      ],
+      "milestone_number": 2
     },
     {
       "id": "C1",
@@ -584,7 +758,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 34,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/34",
+      "parent_issue_number": 5,
+      "dependency_issue_numbers": [
+        11,
+        19
+      ],
+      "milestone_number": 3
     },
     {
       "id": "C2",
@@ -603,7 +784,13 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 35,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/35",
+      "parent_issue_number": 5,
+      "dependency_issue_numbers": [
+        34
+      ],
+      "milestone_number": 3
     },
     {
       "id": "C3",
@@ -623,7 +810,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 36,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/36",
+      "parent_issue_number": 5,
+      "dependency_issue_numbers": [
+        35,
+        24
+      ],
+      "milestone_number": 3
     },
     {
       "id": "C4",
@@ -643,7 +837,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 37,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/37",
+      "parent_issue_number": 5,
+      "dependency_issue_numbers": [
+        36,
+        22
+      ],
+      "milestone_number": 3
     },
     {
       "id": "C5",
@@ -663,7 +864,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 38,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/38",
+      "parent_issue_number": 5,
+      "dependency_issue_numbers": [
+        37,
+        33
+      ],
+      "milestone_number": 3
     },
     {
       "id": "R1",
@@ -682,7 +890,13 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 39,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/39",
+      "parent_issue_number": 6,
+      "dependency_issue_numbers": [
+        19
+      ],
+      "milestone_number": 4
     },
     {
       "id": "R2",
@@ -701,7 +915,13 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 40,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/40",
+      "parent_issue_number": 6,
+      "dependency_issue_numbers": [
+        39
+      ],
+      "milestone_number": 4
     },
     {
       "id": "R3",
@@ -722,7 +942,15 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 41,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/41",
+      "parent_issue_number": 6,
+      "dependency_issue_numbers": [
+        29,
+        40,
+        11
+      ],
+      "milestone_number": 4
     },
     {
       "id": "R4",
@@ -743,7 +971,15 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 42,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/42",
+      "parent_issue_number": 6,
+      "dependency_issue_numbers": [
+        39,
+        40,
+        24
+      ],
+      "milestone_number": 4
     },
     {
       "id": "R5",
@@ -764,7 +1000,15 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 43,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/43",
+      "parent_issue_number": 6,
+      "dependency_issue_numbers": [
+        41,
+        42,
+        13
+      ],
+      "milestone_number": 4
     },
     {
       "id": "R6",
@@ -784,7 +1028,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 44,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/44",
+      "parent_issue_number": 6,
+      "dependency_issue_numbers": [
+        43,
+        22
+      ],
+      "milestone_number": 4
     },
     {
       "id": "R7",
@@ -804,7 +1055,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 45,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/45",
+      "parent_issue_number": 6,
+      "dependency_issue_numbers": [
+        44,
+        33
+      ],
+      "milestone_number": 4
     },
     {
       "id": "P1",
@@ -821,7 +1079,11 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 46,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/46",
+      "parent_issue_number": 7,
+      "dependency_issue_numbers": [],
+      "milestone_number": 5
     },
     {
       "id": "P2",
@@ -841,7 +1103,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 47,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/47",
+      "parent_issue_number": 7,
+      "dependency_issue_numbers": [
+        46,
+        19
+      ],
+      "milestone_number": 5
     },
     {
       "id": "P3",
@@ -861,7 +1130,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 48,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/48",
+      "parent_issue_number": 7,
+      "dependency_issue_numbers": [
+        47,
+        24
+      ],
+      "milestone_number": 5
     },
     {
       "id": "P4",
@@ -881,7 +1157,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 49,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/49",
+      "parent_issue_number": 7,
+      "dependency_issue_numbers": [
+        48,
+        13
+      ],
+      "milestone_number": 5
     },
     {
       "id": "P5",
@@ -901,7 +1184,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 50,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/50",
+      "parent_issue_number": 7,
+      "dependency_issue_numbers": [
+        49,
+        22
+      ],
+      "milestone_number": 5
     },
     {
       "id": "P6",
@@ -921,7 +1211,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 51,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/51",
+      "parent_issue_number": 7,
+      "dependency_issue_numbers": [
+        50,
+        33
+      ],
+      "milestone_number": 5
     },
     {
       "id": "S1",
@@ -940,7 +1237,13 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 52,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/52",
+      "parent_issue_number": 8,
+      "dependency_issue_numbers": [
+        19
+      ],
+      "milestone_number": 6
     },
     {
       "id": "S2",
@@ -959,7 +1262,13 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 53,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/53",
+      "parent_issue_number": 8,
+      "dependency_issue_numbers": [
+        52
+      ],
+      "milestone_number": 6
     },
     {
       "id": "S3",
@@ -980,7 +1289,15 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 54,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/54",
+      "parent_issue_number": 8,
+      "dependency_issue_numbers": [
+        53,
+        41,
+        13
+      ],
+      "milestone_number": 6
     },
     {
       "id": "S4",
@@ -1000,7 +1317,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 55,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/55",
+      "parent_issue_number": 8,
+      "dependency_issue_numbers": [
+        54,
+        24
+      ],
+      "milestone_number": 6
     },
     {
       "id": "S5",
@@ -1020,7 +1344,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 56,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/56",
+      "parent_issue_number": 8,
+      "dependency_issue_numbers": [
+        55,
+        22
+      ],
+      "milestone_number": 6
     },
     {
       "id": "S6",
@@ -1040,7 +1371,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 57,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/57",
+      "parent_issue_number": 8,
+      "dependency_issue_numbers": [
+        56,
+        33
+      ],
+      "milestone_number": 6
     },
     {
       "id": "L1",
@@ -1060,7 +1398,14 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 58,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/58",
+      "parent_issue_number": 9,
+      "dependency_issue_numbers": [
+        33,
+        13
+      ],
+      "milestone_number": 7
     },
     {
       "id": "L2",
@@ -1079,7 +1424,13 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 59,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/59",
+      "parent_issue_number": 9,
+      "dependency_issue_numbers": [
+        58
+      ],
+      "milestone_number": 7
     },
     {
       "id": "L3",
@@ -1101,7 +1452,16 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 60,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/60",
+      "parent_issue_number": 9,
+      "dependency_issue_numbers": [
+        38,
+        45,
+        51,
+        57
+      ],
+      "milestone_number": 7
     },
     {
       "id": "L4",
@@ -1124,7 +1484,17 @@
       "priority": "P1",
       "status": "Backlog",
       "blocker": null,
-      "issue_number": null
+      "issue_number": 61,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/61",
+      "parent_issue_number": 9,
+      "dependency_issue_numbers": [
+        38,
+        45,
+        51,
+        57,
+        59
+      ],
+      "milestone_number": 7
     },
     {
       "id": "L5",
@@ -1139,9 +1509,79 @@
         "Native creation/access is verified; this issue remains open if capability is unavailable."
       ],
       "priority": "P2",
-      "status": "Blocked",
-      "blocker": "Native Projects/milestones administration is not available in the connected MCP.",
-      "issue_number": null
+      "status": "Done",
+      "blocker": null,
+      "issue_number": 62,
+      "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/62",
+      "parent_issue_number": 9,
+      "dependency_issue_numbers": [],
+      "milestone_number": 7,
+      "completion_evidence": {
+        "kind": "administrative_configuration",
+        "project_url": "https://github.com/users/Protagonist01/projects/2",
+        "verification": "Native saved configuration, all 53 task fields checked against manifest, 61 milestone assignments read from server, eight epic task counts verified."
+      }
+    }
+  ],
+  "project": {
+    "url": "https://github.com/users/Protagonist01/projects/2",
+    "number": 2,
+    "visibility": "private",
+    "administration_status": "verified",
+    "views": [
+      "Backlog",
+      "Board",
+      "Current iteration",
+      "Roadmap",
+      "My items",
+      "By workstream",
+      "Blocked"
+    ],
+    "in_progress_limit": 3,
+    "enabled_workflows": [
+      "Auto-add to project",
+      "Auto-add sub-issues to project",
+      "Item added to project",
+      "Item closed (issues only)",
+      "Item reopened"
+    ]
+  },
+  "root_issue_number": 1,
+  "milestones": [
+    {
+      "number": 1,
+      "title": "M1 — Verified foundation",
+      "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/1"
+    },
+    {
+      "number": 2,
+      "title": "M2 — Complete Olist release",
+      "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/2"
+    },
+    {
+      "number": 3,
+      "title": "M3 — CFPB release",
+      "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/3"
+    },
+    {
+      "number": 4,
+      "title": "M4 — Revenue integrity release",
+      "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/4"
+    },
+    {
+      "number": 5,
+      "title": "M5 — Prior auth release",
+      "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/5"
+    },
+    {
+      "number": 6,
+      "title": "M6 — Supply chain release",
+      "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/6"
+    },
+    {
+      "number": 7,
+      "title": "M7 — Operations and portfolio release",
+      "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/7"
     }
   ]
 }

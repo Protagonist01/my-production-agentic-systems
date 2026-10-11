@@ -6,7 +6,7 @@ Updated: 2026-10-11. This is the delivery plan for the real application. Runtime
 
 Build one shared evaluation/resilience platform and five usable industry applications. Finish a source-grounded Olist release first; retain CFPB, Revenue integrity, Prior auth and Supply chain as subsequent releases. This is a complete project backlog, not a set of disposable demonstrations.
 
-[Backlog manifest](backlog.json) records all 53 implementation tasks and 8 epics, including dependencies and acceptance evidence. GitHub issues will become the execution record once created; the manifest is the versioned planning snapshot. Until verified issue numbers exist, null links mean pending creation. Native Projects and milestones are tracked by L5; they have not been created.
+[Backlog manifest](backlog.json) records all 53 tasks and 8 epics, including dependencies, acceptance evidence and verified issue links. [GitHub Project 2](https://github.com/users/Protagonist01/projects/2) is the execution board; the manifest is the versioned planning snapshot. The [root tracker #1](https://github.com/Protagonist01/my-production-agentic-systems/issues/1) contains eight epic sub-issues, each containing its tasks. Seven native milestones are created and assigned.
 
 ## Delivery sequence
 
@@ -30,7 +30,7 @@ Backlog → Ready → In progress → Review → Done. Use a separate blocker fi
 - **Done:** merged PR and verified acceptance evidence. A written plan, open PR or issue creation is not implementation completion.
 - **Blocked:** record cause, responsible follow-up and what unblocks it. No silent dependency skip.
 
-Start F1 and O1. P1 source preparation is independently possible but stays Backlog until capacity is assigned. Nothing is In progress or Done yet. L5 is Blocked on native board administration capability.
+Start [F1 #10](https://github.com/Protagonist01/my-production-agentic-systems/issues/10) and [O1 #26](https://github.com/Protagonist01/my-production-agentic-systems/issues/26), both Ready. P1 source preparation is independently possible but stays Backlog until capacity is assigned. L5 #62 completes the native administration work; its capability blocker is resolved. Application implementation has not started. For this administrative task, completion evidence is the verified native configuration and its published documentation commit; application tasks still require merged implementation PRs and acceptance evidence.
 
 ## Capacity and planning
 
@@ -85,6 +85,18 @@ Report denominator, source category, slice and mode for every result. Quality fl
 
 Use a root delivery tracker → eight epic sub-issues → 53 task sub-issues. Task bodies contain ID, priority, size, scope, dependency links, acceptance checks and completion evidence. Native hierarchy is distinct from dependency edges; record prerequisites explicitly.
 
-L5 specifies a native Project with Status, Area, Priority, Size, Iteration and Blocker fields; views for current iteration, workstream, blocked work and roadmap. Add existing issues rather than duplicate them. Proposed milestones: foundation, first Olist release, CFPB, Revenue, Prior auth, Supply chain and operations. Do not add due dates until throughput is measured. Automate closed issues to Done and merged-PR completion only when acceptance evidence is present.
+The native Project has Status, Area, Priority, Size, Iteration and Blocker fields; Backlog, Board, Current iteration, Roadmap, My items, By workstream and Blocked views. All 53 tasks have Area, Priority and Size. Epics have Area and Priority but no aggregate size. Board stages are Backlog → Ready → In progress → Review → Done, with an In progress limit of three. The Blocked view uses `has:Blocker`; ordinary dependency waits stay Backlog. Iterations and dates remain unassigned until capacity is planned from observed throughput.
 
-The connected GitHub MCP currently exposes issues/sub-issues and repository files but no native Project/milestone creation. A connector submission form is not a created issue: verify the server result and read back the actual hierarchy before claiming setup complete.
+| Milestone | Scope |
+|---|---|
+| [M1 — Verified foundation](https://github.com/Protagonist01/my-production-agentic-systems/milestone/1) | Foundation epic and F1–F5 |
+| [M2 — Complete Olist release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/2) | Harness/Olist epics, H1–H10 and O1–O8 |
+| [M3 — CFPB release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/3) | CFPB epic and C1–C5 |
+| [M4 — Revenue integrity release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/4) | Revenue epic and R1–R7 |
+| [M5 — Prior auth release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/5) | Prior auth epic and P1–P6 |
+| [M6 — Supply chain release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/6) | Supply chain epic and S1–S6 |
+| [M7 — Operations and portfolio release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/7) | Operations epic, L1–L5 and H11 |
+
+Five workflows are enabled: add matching open repository issues, add sub-issues, initialize new items in Backlog, set explicitly closed issues to Done, and return reopened items to Backlog. Auto-close from a board move, automatic Done on PR merge, and automatic status changes on PR linkage are disabled. Review and acceptance remain explicit. Close implementation issues only after checking their evidence; avoid PR closing keywords when acceptance must be checked after merge. Archive and review automations stay off.
+
+The Project is private and linked to this public repository. Creation and updates used the signed-in browser because the connector rendered submission forms rather than applying writes. A form is not proof of success: verify server results and native saved state. Issue #25's connector edit remains pending; its actual milestone assignment is verified independently.
