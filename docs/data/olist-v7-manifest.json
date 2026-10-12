@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "dataset_handle": "olistbr/brazilian-ecommerce/versions/7",
+  "source_url": "https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce",
+  "publisher": "Olist",
+  "source_version": 7,
+  "checked_at_utc": "2026-10-12T22:46:08.210949+00:00",
+  "download_library": "kagglehub==1.0.2",
+  "license": {
+    "identifier": "CC-BY-NC-SA-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "handling": "Local noncommercial development; no raw rows exported to Git or telemetry."
+  },
+  "currency": {
+    "source_declared_unit": null,
+    "status": "Unverified; do not infer from country."
+  },
+  "timestamp_timezone": null,
+  "language": "Portuguese fields/text retained; category translation is source supplied.",
+  "source_kind": "Original anonymized historical commerce records",
+  "evaluation_status": "Not an evaluation case set; no support policy or gold actions exist.",
+  "files": [
+    {
+      "name": "olist_customers_dataset.csv",
+      "sha256": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
+      "bytes": 9033957,
+      "row_count": 99441,
+      "columns": [
+        "customer_id",
+        "customer_unique_id",
+        "customer_zip_code_prefix",
+        "customer_city",
+        "customer_state"
+      ],
+      "empty_value_counts": {
+        "customer_id": 0,
+        "customer_unique_id": 0,
+        "customer_zip_code_prefix": 0,
+        "customer_city": 0,
+        "customer_state": 0
+      }
+    },
+    {
+      "name": "olist_geolocation_dataset.csv",
+      "sha256": "b514f6fc991b9566aeba02aa5d67e2c3630f034b60a0e05aa0d082a3b66d88d6",
+      "bytes": 61273883,
+      "row_count": 1000163,
+      "columns": [
+        "geolocation_zip_code_prefix",
+        "geolocation_lat",
+        "geolocation_lng",
+        "geolocation_city",
+        "geolocation_state"
+      ],
+      "empty_value_counts": {
+        "geolocation_zip_code_prefix": 0,
+        "geolocation_lat": 0,
+        "geolocation_lng": 0,
+        "geolocation_city": 0,
+        "geolocation_state": 0
+      }
+    },
+    {
+      "name": "olist_order_items_dataset.csv",
+      "sha256": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+      "bytes": 15438671,
+      "row_count": 112650,
+      "columns": [
+        "order_id",
+        "order_item_id",
+        "product_id",
+        "seller_id",
+        "shipping_limit_date",
+        "price",
+        "freight_value"
+      ],
+      "empty_value_counts": {
+        "order_id": 0,
+        "order_item_id": 0,
+        "product_id": 0,
+        "seller_id": 0,
+        "shipping_limit_date": 0,
+        "price": 0,
+        "freight_value": 0
+      }
+    },
+    {
+      "name": "olist_order_payments_dataset.csv",
+      "sha256": "4f713964f2815dbbaa40b9488268c55aac3627bfce5aa96cf58d1f3616de3cc0",
+      "bytes": 5777138,
+      "row_count": 103886,
+      "columns": [
+        "order_id",
+        "payment_sequential",
+        "payment_type",
+        "payment_installments",
+        "payment_value"
+      ],
+      "empty_value_counts": {
+        "order_id": 0,
+        "payment_sequential": 0,
+        "payment_type": 0,
+        "payment_installments": 0,
+        "payment_value": 0
+      }
+    },
+    {
+      "name": "olist_order_reviews_dataset.csv",
+      "sha256": "0dff69f6fed33a13648020198ea94d7ae12afbdd4904186c6cd904e27a3e1ccd",
+      "bytes": 14409007,
+      "row_count": 100000,
+      "columns": [
+        "review_id",
+        "order_id",
+        "review_score",
+        "review_comment_title",
+        "review_comment_message",
+        "review_creation_date",
+        "review_answer_timestamp"
+      ],
+      "empty_value_counts": {
+        "review_id": 0,
+        "order_id": 0,
+        "review_score": 0,
+        "review_comment_title": 88285,
+        "review_comment_message": 58245,
+        "review_creation_date": 0,
+        "review_answer_timestamp": 0
+      }
+    },
+    {
+      "name": "olist_orders_dataset.csv",
+      "sha256": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+      "bytes": 17654914,
+      "row_count": 99441,
+      "columns": [
+        "order_id",
+        "customer_id",
+        "order_status",
+        "order_purchase_timestamp",
+        "order_approved_at",
+        "order_delivered_carrier_date",
+        "order_delivered_customer_date",
+        "order_estimated_delivery_date"
+      ],
+      "empty_value_counts": {
+        "order_id": 0,
+        "customer_id": 0,
+        "order_status": 0,
+        "order_purchase_timestamp": 0,
+        "order_approved_at": 160,
+        "order_delivered_carrier_date": 1783,
+        "order_delivered_customer_date": 2965,
+        "order_estimated_delivery_date": 0
+      },
+      "purchase_timestamp_range": {
+        "min": "2016-09-04 21:15:19",
+        "max": "2018-10-17 17:30:18",
+        "timezone": null
+      }
+    },
+    {
+      "name": "olist_products_dataset.csv",
+      "sha256": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc",
+      "bytes": 2379446,
+      "row_count": 32951,
+      "columns": [
+        "product_id",
+        "product_category_name",
+        "product_name_lenght",
+        "product_description_lenght",
+        "product_photos_qty",
+        "product_weight_g",
+        "product_length_cm",
+        "product_height_cm",
+        "product_width_cm"
+      ],
+      "empty_value_counts": {
+        "product_id": 0,
+        "product_category_name": 610,
+        "product_name_lenght": 610,
+        "product_description_lenght": 610,
+        "product_photos_qty": 610,
+        "product_weight_g": 2,
+        "product_length_cm": 2,
+        "product_height_cm": 2,
+        "product_width_cm": 2
+      }
+    },
+    {
+      "name": "olist_sellers_dataset.csv",
+      "sha256": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
+      "bytes": 174703,
+      "row_count": 3095,
+      "columns": [
+        "seller_id",
+        "seller_zip_code_prefix",
+        "seller_city",
+        "seller_state"
+      ],
+      "empty_value_counts": {
+        "seller_id": 0,
+        "seller_zip_code_prefix": 0,
+        "seller_city": 0,
+        "seller_state": 0
+      }
+    },
+    {
+      "name": "product_category_name_translation.csv",
+      "sha256": "a81f0d1f27b27e7293f761bc79e3ce8f348ee39c4b3ed3e49bde38f478586278",
+      "bytes": 2613,
+      "row_count": 71,
+      "columns": [
+        "product_category_name",
+        "product_category_name_english"
+      ],
+      "empty_value_counts": {
+        "product_category_name": 0,
+        "product_category_name_english": 0
+      }
+    }
+  ]
+}
