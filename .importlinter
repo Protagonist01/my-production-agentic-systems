@@ -1,0 +1,30 @@
+[importlinter]
+root_packages =
+    agent_harness
+    olist_support
+    cfpb_triage
+    revenue_integrity
+    prior_auth
+    supply_chain
+
+[importlinter:contract:harness-domain-independent]
+name = Harness cannot import industry packages
+type = forbidden
+source_modules =
+    agent_harness
+forbidden_modules =
+    olist_support
+    cfpb_triage
+    revenue_integrity
+    prior_auth
+    supply_chain
+
+[importlinter:contract:verticals-independent]
+name = Industry packages cannot import one another
+type = independence
+modules =
+    olist_support
+    cfpb_triage
+    revenue_integrity
+    prior_auth
+    supply_chain

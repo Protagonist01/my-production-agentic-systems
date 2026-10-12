@@ -10,4 +10,4 @@ Select a Ready implementation issue from the [delivery plan](docs/project-manage
 
 Never commit credentials, raw datasets, sensitive traces or unreviewed recordings. Keep source manifests and independently reviewed evaluation labels reproducible. Append material design/debugging decisions to BUILD_BOOK.md while working.
 
-No supported install/test command exists until F1/F3/F5 implement and verify it.
+F1 provides the direct install/test/boundary/build commands in README. Portable command wrappers remain F3 and automated CI remains F5. From the root, run `uv sync --locked --all-packages --link-mode copy` before the checks. Keep dynamic imports out of package boundaries unless reviewed explicitly; static import contracts cannot police reflective module loading.
