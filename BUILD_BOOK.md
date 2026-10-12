@@ -10,6 +10,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 4 — Recovering from an invisible connector form](#entry-4--recovering-from-an-invisible-connector-form)
 - [Entry 5 — Creating the native delivery project](#entry-5--creating-the-native-delivery-project)
+- [Entry 6 — Establishing installable package boundaries](#entry-6--establishing-installable-package-boundaries)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -210,3 +211,45 @@ L5 is an administrative task. Its completion evidence is this verified configura
 Published the planning snapshot in [commit 311e807](https://github.com/Protagonist01/my-production-agentic-systems/commit/311e80733e76bd6b9ce857073294000d43be8878). Updated #62 with checked acceptance evidence and the commit link, then closed it. A server read confirmed `state: closed`, `state_reason: completed`; the native closure workflow moved it to Done. Final Board counts: Backlog 59, Ready 2, In progress 0/3, Review 0, Done 1. Restored the unfiltered Backlog after the audit so temporary filters do not hide tasks. The saved board screenshot shows the two Ready tasks and the WIP limit.
 
 Refetched main and used a mixed reset to align local HEAD/index with the documentation commit while preserving the original untracked plans. `git diff --check` passed and no tracked differences remained. Verification covers project administration and planning consistency; no runtime test was run because runtime code does not yet exist.
+
+## Entry 6 — Establishing installable package boundaries
+
+Date: 2026-10-12 (Africa/Lagos). Task: F1 #10. Branch: `feat/f1-python-foundation`. Status: implementation and verification underway.
+
+**Files touched:** root/member `pyproject.toml`, `uv.lock`, `.python-version`, `.importlinter`, `.gitignore`, `.env.example`, six source packages, tests and README.
+
+### Context
+
+The user authorized the first build. The checkout contained only plans, and uv 0.11.1/Python 3.13.4 were already installed. F1 must establish reproducible installation and enforce architecture before parallel implementation branches begin. The existing untracked templates/archive remain intact.
+
+### Before you read on
+
+How can six packages share dependency versions without allowing the generic harness to depend on domain code, or allowing one domain to depend on another?
+
+### Options considered and why
+
+A single distribution could include every domain, but then installing the harness would also install all domain packages. Separate environments would lose the shared dependency baseline. Chosen: a virtual uv workspace root, six independently installable members and one lockfile. uv documents that a workspace alone cannot enforce import isolation, so use Import Linter contracts as a separate executable check.
+
+### How to build it
+
+1. Create a virtual root `pyproject.toml` with workspace members `harness` and `projects/*`. Define the shared distribution as a workspace source so vertical dependencies resolve locally. Use `>=3.12,<3.14` as the allowed interpreter range and `.python-version` 3.13 for the interpreter exercised here; compatibility with future SDKs remains H1 work.
+2. Each member has its own build metadata and `src/<import_name>/__init__.py`. The distributions import as `agent_harness`, `olist_support`, `cfpb_triage`, `revenue_integrity`, `prior_auth` and `supply_chain`. Verticals declare only `production-agent-harness`; the harness declares no runtime dependencies yet.
+3. Use the uv build backend, constrained to its 0.13 series. Add pytest, Ruff and Import Linter to the development group and resolve `uv.lock`. Sync all members for development; later verify a clean environment separately.
+4. Configure two import contracts: the harness is forbidden from importing any domain; the five domains are independent. Keep type-checking imports in the graph. Test both legitimate domain-to-harness imports and prohibited direct, relative/indirect and cross-domain paths using isolated temporary package copies.
+5. Ignore environments, credentials, raw CSV/Parquet/archive data and generated experiment outputs. `.env.example` holds empty future configuration names, not working integrations. README lists only commands verified at this stage.
+
+### Verification in progress
+
+The initial dependency resolution succeeded. Next: install all members, run the real boundary checker and deliberately failing cases, check distribution builds and repeat installation in a clean environment. No provider, database, workflow or evaluation result is implemented by the scaffold.
+
+### What went wrong during verification
+
+The first negative tests exposed a test-runner bug: `python -m importlinter.cli` exits successfully without invoking the CLI. Every bad import falsely returned success, while the positive test caught the missing contract output. Inspected the installed CLI and console entry point; changed the subprocess to explicitly call `importlinter.cli.lint_imports()`. Keep both a permitted import and deliberately prohibited imports in these tests so an inert checker cannot be mistaken for passing architecture. The production `lint-imports` command itself already reported two kept contracts.
+
+Calling `lint_imports()` next printed the violations but returned without setting a failure process status. The installed console entry-point metadata identifies `lint-imports` as `importlinter.cli:lint_imports_command`; use that exact command wrapper so broken contracts produce a nonzero process status. The negative assertions remain unchanged.
+
+The initial uv_build 0.13 series could produce wheels, but uv 0.11.1 failed while unpacking its source archive with `malformed pax extension`. Rather than changing the user's installed tool, pinned each member's backend to `uv_build==0.11.1`, matching the exercised runner. All six source archive → wheel builds then passed. This replaces step 3's initial 0.13-series selection. Source/binary distribution artifacts remain ignored.
+
+### Verified results
+
+On Windows/Python 3.13.4/uv 0.11.1: 12 pytest checks passed; both import contracts kept; Ruff lint and formatting passed; six source archives and six wheels built. A new temporary virtual environment installed the locked workspace and imported all six members. A clean harness-only installation is checked separately before publication. Static imports are covered; reflective imports are an explicit limitation, not a security claim. No model evaluation, database isolation or CI pass is implied by these foundation checks.

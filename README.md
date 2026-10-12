@@ -6,7 +6,35 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) contains a [root tracker](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), eight epics and 53 task sub-issues, organized into seven milestones. Agent runtime, source importers, database migrations, CI checks and deployment are not implemented. Documentation commands and proposed paths are specifications until verified by their implementation tasks.
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) contains a [root tracker](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), eight epics and 53 task sub-issues, organized into seven milestones. F1 provides a locked Python workspace with six installable package scaffolds and verified import boundaries. Agent runtime, domain importers, database migrations, CI checks and deployment are not implemented.
+
+## Working foundation commands
+
+From the repository root, with Python 3.13 and uv 0.11.1 (the versions exercised here):
+
+```powershell
+uv sync --locked --all-packages --link-mode copy
+uv run --locked pytest -q
+uv run --locked lint-imports --no-cache
+uv run --locked ruff check harness projects tests
+uv run --locked ruff format --check harness projects tests
+uv build --all-packages
+```
+
+The lockfile pins development dependencies; each package pins its build backend. The allowed Python range is 3.12–3.13; verification so far is Windows/Python 3.13.4. `--link-mode copy` avoids cross-drive hardlink warnings. `uv sync` without `--all-packages` does not install the six workspace members because the root is virtual.
+
+| Package directory | Python import | Runtime dependencies |
+|---|---|---|
+| `harness` | `agent_harness` | None yet |
+| `projects/olist-support` | `olist_support` | Harness |
+| `projects/cfpb-triage` | `cfpb_triage` | Harness |
+| `projects/revenue-integrity` | `revenue_integrity` | Harness |
+| `projects/prior-auth` | `prior_auth` | Harness |
+| `projects/supply-chain-disruption` | `supply_chain` | Harness |
+
+The import checker rejects direct and indirect harness-to-domain and cross-domain imports. It checks static Python imports, including relative and type-checking imports; reflective imports/plugin loading are not a security boundary and need explicit review if introduced. Tests use temporary source copies to prove bad import paths fail without modifying the working packages.
+
+Copy `.env.example` to an ignored `.env` only when an implementation needs configuration. Its empty values are reserved names, not working integrations. Raw datasets belong outside this checkout. No install/run scripts, agent CLI, service startup, end-to-end case, model evaluation or CI job exist yet; those remain F2/F3/F4/F5 and harness/domain tasks.
 
 ## Applications
 
@@ -26,4 +54,4 @@ Start repository foundation and Olist source acquisition. Verify minimal shared 
 
 [Delivery plan](docs/project-management.md) · [Backlog](docs/backlog.json) · [Architecture and data plans](docs/README.md) · [Build Book](BUILD_BOOK.md)
 
-Start with [F1: repository foundation](https://github.com/Protagonist01/my-production-agentic-systems/issues/10) and [O1: Olist source acquisition](https://github.com/Protagonist01/my-production-agentic-systems/issues/26), both Ready. No implementation workers/worktrees have been launched.
+[F1: repository foundation](https://github.com/Protagonist01/my-production-agentic-systems/issues/10) is ready for review; [O1: Olist source acquisition](https://github.com/Protagonist01/my-production-agentic-systems/issues/26) records authentic source preparation. After F1 is merged, implement F2's typed contracts and fake end-to-end case. No parallel implementation worktrees have been launched.

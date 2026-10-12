@@ -1,0 +1,13 @@
+[project]
+name = "production-agent-olist-support"
+version = "0.1.0"
+description = "Package boundary for olist_support; runtime implementation follows its delivery issues."
+requires-python = ">=3.12,<3.14"
+dependencies = ["production-agent-harness"]
+
+[build-system]
+requires = ["uv_build==0.11.1"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "olist_support"
