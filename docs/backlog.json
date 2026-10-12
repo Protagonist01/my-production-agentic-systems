@@ -132,7 +132,8 @@
       "parent_issue_number": 2,
       "dependency_issue_numbers": [],
       "milestone_number": 1,
-      "branch": "feat/f1-python-foundation"
+      "branch": "feat/f1-python-foundation",
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/63"
     },
     {
       "id": "F2",
@@ -540,13 +541,15 @@
         "The permitted handling/export path and credential-free CI fixture strategy are explicit."
       ],
       "priority": "P0",
-      "status": "Ready",
+      "status": "Review",
       "blocker": null,
       "issue_number": 26,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/26",
       "parent_issue_number": 4,
       "dependency_issue_numbers": [],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "branch": "feat/o1-olist-provenance",
+      "source_manifest": "docs/data/olist-v7-manifest.json"
     },
     {
       "id": "O2",

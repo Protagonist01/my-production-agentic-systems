@@ -11,6 +11,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 4 — Recovering from an invisible connector form](#entry-4--recovering-from-an-invisible-connector-form)
 - [Entry 5 — Creating the native delivery project](#entry-5--creating-the-native-delivery-project)
 - [Entry 6 — Establishing installable package boundaries](#entry-6--establishing-installable-package-boundaries)
+- [Entry 7 — Pinning authentic Olist source evidence](#entry-7--pinning-authentic-olist-source-evidence)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -253,3 +254,39 @@ The initial uv_build 0.13 series could produce wheels, but uv 0.11.1 failed whil
 ### Verified results
 
 On Windows/Python 3.13.4/uv 0.11.1: 12 pytest checks passed; both import contracts kept; Ruff lint and formatting passed; six source archives and six wheels built. A new temporary virtual environment installed the locked workspace and imported all six members. A clean harness-only installation is checked separately before publication. Static imports are covered; reflective imports are an explicit limitation, not a security claim. No model evaluation, database isolation or CI pass is implied by these foundation checks.
+
+The separate harness-only sync installed exactly the shared member and confirmed `find_spec('olist_support') is None`. F1 was pushed in commit c91df0f and [PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63) was created through the signed-in browser after the user confirmed the connector form was invisible. It remains open for review; no merge or implementation completion is claimed.
+
+## Entry 7 — Pinning authentic Olist source evidence
+
+Date: 2026-10-12 (Africa/Lagos). Task: O1 #26. Branch: `feat/o1-olist-provenance`, stacked on F1 so shared root documentation and test tooling have one baseline. Status: acquisition succeeded; provenance verification underway.
+
+**Files touched:** Olist snapshot script, offline integrity tests, source manifest and source handling notes.
+
+### Context and question
+
+The original source is the Olist Kaggle publication, not an arbitrary mirror. How do we prove exactly which bytes were acquired without placing source records or credentials into this repository?
+
+### Decision and why
+
+Use Kaggle's official `kagglehub==1.0.2` library with the explicit `olistbr/brazilian-ecommerce/versions/7` handle. Public access succeeded without a login or new token; raw CSVs reside in the library's cache outside the checkout. A mirror would weaken publisher/version attribution. Do not ask Kaggle for an unversioned latest download: the legacy metadata endpoint returned currentVersionNumber 2 while its history also listed 7 and duplicate version-2 entries. Record this inconsistency and select the explicit version whose actual file schemas/checksums can be inspected.
+
+### How to build it
+
+1. Verify the publisher's data card and listed CC BY-NC-SA 4.0 license. Read the official library's versioned download syntax. Pin the library in a PEP 723 script declaration, separate from application dependencies.
+2. Download the explicit version to the default external cache. Inventory its nine CSV filenames and headers, including original misspellings such as `product_name_lenght`; do not silently normalize the source.
+3. Profile with Python's csv parser: SHA-256 over original bytes, size, parsed row count, ordered schema, empty values per column and purchase-timestamp range. Reject missing/extra CSVs, changed schema and malformed records. Do not emit source text or customer IDs.
+4. Publish only the aggregate manifest and handling notes. Verify repeated acquisition against this pinned manifest; never overwrite it when bytes change. Raw sources must resolve outside the checkout. Keep raw records, review text, geolocation and derived source rows out of Git and telemetry.
+5. Use hand-invented CSVs in temporary test directories for offline integrity checks. These fixtures test acquisition mechanics, not model accuracy or Olist business outcomes. No live Langfuse dataset or expected-action labels are created.
+
+Currency and timestamp timezone are not declared in the inspected source metadata/CSV schema. Preserve source values, record unverified units explicitly and resolve them under O2 before monetary actions. Portuguese source fields and supplied category translations stay distinct. Support requests, policy and gold actions remain O3 work.
+
+### Verification
+
+Acquisition and two independent local profile/verify runs passed on nine CSVs totaling 1,551,698 table records, including 99,441 orders. The parsed purchase range is 2016-09-04 21:15:19 to 2018-10-17 17:30:18. Source order delivery fields have real missing values; the manifest records every column's empty count and file checksum. A repeated `acquire` command uses the pinned handle and verifies the existing manifest rather than overwriting it. The local-only verify command uses no credentials or network.
+
+The combined suite passed 16 tests: F1's 12 plus four source-integrity tests using invented rows. Tests demonstrate changed bytes, wrong source version, missing files, changed headers, malformed row width and inside-checkout source paths fail. Ruff lint/format and both architecture contracts are checked before publishing O1. No raw CSV, review text or identifier appears in the staged changes. The global cache is left intact for O2; do not delete or move unrelated cached data.
+
+O1 is stacked on the F1 branch to avoid competing edits to shared manifest/Build Book files. Review and merge F1 first, then retarget O1 to main; O1's diff contains only provenance tooling, source notes/aggregate manifest, tests and status documentation. F2 waits for the merged F1 contract baseline prerequisites; this task does not create runtime contracts prematurely.
+
+The original `data/` ignore pattern also hid `docs/data` aggregate reports. Caught this in the staged-file inventory and added a directory exception for `/docs/data/`; the global CSV/archive exclusions remain active. Verify both the allowed JSON/Markdown documentation and a raw CSV probe before publishing. No generated output is force-added.

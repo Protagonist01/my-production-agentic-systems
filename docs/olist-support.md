@@ -1,6 +1,6 @@
 # Olist support
 
-Accepted scope, updated 2026-10-11. Planned implementation; no application or evaluation result exists yet.
+Accepted scope, updated 2026-10-12. O1's authentic version-7 source snapshot is acquired and profiled; no application or model evaluation result exists yet. See [source handling and commands](data/olist-source.md) and [checksums/schema/missingness manifest](data/olist-v7-manifest.json).
 
 ## Delivered application
 
@@ -22,15 +22,15 @@ Each importer produces provenance/checksum/use notes and validated agent-visible
 
 ### O1: Acquire Olist snapshot and validate source provenance/use conditions
 
-Priority: P0; provisional size S; prerequisites: none. Status: Ready.
+Priority: P0; provisional size S; prerequisites: none. Status: Review (implementation prepared; PR merge still required).
 
 Obtain original Olist source via documented access; record checksum, version, dates, language, currency, attribution/use conditions and required files.
 
 Acceptance evidence:
 
-- [ ] Manifest and repeatable local acquisition instructions exist; raw files are excluded from Git.
-- [ ] Source publisher/version and missing fields are recorded rather than inferred.
-- [ ] The permitted handling/export path and credential-free CI fixture strategy are explicit.
+- [x] Manifest and repeatable local acquisition instructions exist; raw files are outside Git.
+- [x] Source publisher/version, schemas and missing values are recorded. Currency/timezone remain explicitly unverified.
+- [x] Local noncommercial handling/export limits and credential-free invented test-fixture strategy are explicit; CI implementation remains F5.
 
 ### O2: Build orders_360 with correct joins and historical as-of views
 

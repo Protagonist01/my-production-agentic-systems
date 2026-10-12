@@ -54,4 +54,4 @@ Start repository foundation and Olist source acquisition. Verify minimal shared 
 
 [Delivery plan](docs/project-management.md) · [Backlog](docs/backlog.json) · [Architecture and data plans](docs/README.md) · [Build Book](BUILD_BOOK.md)
 
-[F1: repository foundation](https://github.com/Protagonist01/my-production-agentic-systems/issues/10) is ready for review; [O1: Olist source acquisition](https://github.com/Protagonist01/my-production-agentic-systems/issues/26) records authentic source preparation. After F1 is merged, implement F2's typed contracts and fake end-to-end case. No parallel implementation worktrees have been launched.
+[F1 PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63) is open for review. [O1: Olist source acquisition](https://github.com/Protagonist01/my-production-agentic-systems/issues/26) has acquired and profiled the original version-7 source outside Git: [source handling and verified acquisition](docs/data/olist-source.md), [aggregate manifest](docs/data/olist-v7-manifest.json). After F1 is merged, implement F2's typed contracts and fake end-to-end case. No parallel implementation worktrees have been launched.
