@@ -549,7 +549,8 @@
       "dependency_issue_numbers": [],
       "milestone_number": 2,
       "branch": "feat/o1-olist-provenance",
-      "source_manifest": "docs/data/olist-v7-manifest.json"
+      "source_manifest": "docs/data/olist-v7-manifest.json",
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/64"
     },
     {
       "id": "O2",
