@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-11. This is the delivery plan for the real application. Runtime implementation has not started.
+Updated: 2026-10-12. This is the delivery plan for the real application. F1 package infrastructure and O1 source acquisition are implemented on review branches; application runtime remains unimplemented.
 
 ## Scope and source of truth
 
@@ -30,7 +30,7 @@ Backlog → Ready → In progress → Review → Done. Use a separate blocker fi
 - **Done:** merged PR and verified acceptance evidence. A written plan, open PR or issue creation is not implementation completion.
 - **Blocked:** record cause, responsible follow-up and what unblocks it. No silent dependency skip.
 
-Start [F1 #10](https://github.com/Protagonist01/my-production-agentic-systems/issues/10) and [O1 #26](https://github.com/Protagonist01/my-production-agentic-systems/issues/26), both Ready. P1 source preparation is independently possible but stays Backlog until capacity is assigned. L5 #62 completes the native administration work; its capability blocker is resolved. Application implementation has not started. For this administrative task, completion evidence is the verified native configuration and its published documentation commit; application tasks still require merged implementation PRs and acceptance evidence.
+[F1 #10](https://github.com/Protagonist01/my-production-agentic-systems/issues/10) has [PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63) open for review. [O1 #26](https://github.com/Protagonist01/my-production-agentic-systems/issues/26) has acquired the authentic version-7 source and prepared provenance/integrity checks for review. Both issues remain open until their PRs are reviewed and merged. F2 follows the merged F1 baseline. P1 source preparation stays Backlog until capacity is assigned. L5 #62 completed native administration. Runtime behavior and model evaluation remain unimplemented.
 
 ## Capacity and planning
 

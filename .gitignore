@@ -35,6 +35,9 @@ logs/
 *.arrow
 *.zip
 
+# Aggregate provenance reports are documentation; raw CSV/archive rules still apply.
+!/docs/data/
+
 # Editor/OS state
 .idea/
 .vscode/
