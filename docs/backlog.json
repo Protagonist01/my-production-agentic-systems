@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
-  "updated": "2026-10-12",
+  "updated": "2026-10-13",
   "capacity_hours_per_week": 40,
   "issue_creation_status": "verified",
   "epics": [
@@ -125,7 +125,7 @@
         "README distinguishes working commands from planned commands."
       ],
       "priority": "P0",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 10,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/10",
@@ -133,7 +133,8 @@
       "dependency_issue_numbers": [],
       "milestone_number": 1,
       "branch": "feat/f1-python-foundation",
-      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/63"
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/63",
+      "verified_main_commit": "a665d3dd20b7c8295005b66318e93df97eada781"
     },
     {
       "id": "F2",
@@ -150,7 +151,7 @@
         "Outcome, review reference, evidence, usage and typed failures survive serialization."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 11,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/11",
@@ -158,7 +159,9 @@
       "dependency_issue_numbers": [
         10
       ],
-      "milestone_number": 1
+      "milestone_number": 1,
+      "branch": "codex/f2-shared-contracts",
+      "contract_document": "docs/shared-contracts.md"
     },
     {
       "id": "F3",
@@ -541,7 +544,7 @@
         "The permitted handling/export path and credential-free CI fixture strategy are explicit."
       ],
       "priority": "P0",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 26,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/26",
@@ -550,7 +553,9 @@
       "milestone_number": 2,
       "branch": "feat/o1-olist-provenance",
       "source_manifest": "docs/data/olist-v7-manifest.json",
-      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/64"
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/64",
+      "verified_main_commit": "a665d3dd20b7c8295005b66318e93df97eada781",
+      "integration_pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/65"
     },
     {
       "id": "O2",

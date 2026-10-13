@@ -12,6 +12,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 5 — Creating the native delivery project](#entry-5--creating-the-native-delivery-project)
 - [Entry 6 — Establishing installable package boundaries](#entry-6--establishing-installable-package-boundaries)
 - [Entry 7 — Pinning authentic Olist source evidence](#entry-7--pinning-authentic-olist-source-evidence)
+- [Entry 8 — Integrating the first wave and defining shared contracts](#entry-8--integrating-the-first-wave-and-defining-shared-contracts)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -292,3 +293,41 @@ O1 is stacked on the F1 branch to avoid competing edits to shared manifest/Build
 The original `data/` ignore pattern also hid `docs/data` aggregate reports. Caught this in the staged-file inventory and added a directory exception for `/docs/data/`; the global CSV/archive exclusions remain active. Verify both the allowed JSON/Markdown documentation and a raw CSV probe before publishing. No generated output is force-added.
 
 Published O1 in commit 7ce824e and [PR #64](https://github.com/Protagonist01/my-production-agentic-systems/pull/64), based on the F1 branch. Both implementation issues remain open in Review until merged and verified; F2 stays Backlog while F1 is unmerged. The PRs intentionally use reference links without automatic closing keywords. Raw-source acquisition is complete, but source ingestion, operational state and evaluation contracts are still planned work.
+
+## Entry 8 — Integrating the first wave and defining shared contracts
+
+Date: 2026-10-13 (Africa/Lagos). Task: F2 #11. Branch: `codex/f2-shared-contracts`. Implementation underway.
+
+**Files touched:** shared contract modules, offline example/tests, lockfile, current status documents and backlog.
+
+### Context
+
+F1 merged into main through #63, but O1 #64 merged into the old foundation branch afterward. The user authorized completing integration and verification, closing F1/O1, and starting F2. Reused the user's existing #65 rather than creating a duplicate. Its ten-file diff matched the previously tested O1 tree. Merged its exact head 699d1f6 through the connector; main is now a665d3d. Fast-forwarded the local main without touching the user's untracked historical documents. Reinstalled locked members, then ran pytest (16 passed), both import contracts (kept), Ruff lint/format (passed), and local verification of all nine original Olist files (passed).
+
+### Before you read on
+
+How do we run an agent and independently score its output without giving it the expected answer? Sketch the objects each side receives, and the boundary where serialized data is validated.
+
+### Options considered and why
+
+Plain dataclasses avoid a runtime dependency, but require hand-written nested validation and JSON round-trip handling. Chosen: Pydantic v2 models with forbidden extra fields, validated defaults and explicit JSON methods. This is a contract dependency, not a workflow/framework selection; H1 still owns provider/framework/telemetry compatibility. Closed public-input models and an explicit projection keep evaluator-only state out of the agent call. Free text still needs a reviewed domain adapter: schema validation cannot detect an answer deliberately pasted into a legitimate text field.
+
+### How to build it
+
+1. Add validated run identity, fixed clock/deadline, budget, versions and result/failure models. Keep business-event identity distinct from run identity; budgets here are declarations, not enforced reservations.
+2. Define complete ordered model messages, provider/model/endpoint, generation parameters, tools, output schema and serializer version. Preserve whitespace and list order; canonical JSON sorts object keys only. Tool calls and tool results need IDs, names and arguments in addition to text.
+3. Put expected outcomes, labels, hidden simulator state and fault expectations in evaluator-only models. The agent takes only a revalidated RunContext and AgentInput; never pass EvalCase or its metadata. Run the agent, then the scorer, then serialize a typed report.
+4. Use a deterministic invented text case, fake gateway and scorer as an executable wiring check. Exercise review and typed model-failure paths separately. A correct fake output proves wiring, not model quality or domain safety. H2/H3/H5/H6 implement real budgets, replay, trial accounting and state scorers later.
+5. Test JSON round trips and invalid payloads at real boundaries, capture the arguments delivered to the agent/gateway, and reject mismatched case IDs. Run the same foundation checks before publishing the F2 PR. Results will be appended after execution, not guessed here.
+
+### What went wrong so far
+
+The browser stopped responding during #65 body editing. The title saved, but the body remained a template. The connector successfully performed the authorized merge with an exact-head check. Issue updates still render a form without applying the write; no closure is claimed until a server read confirms it. Preserve earlier entries as history and update current status documents separately.
+
+The existing Git Credential Manager authorizes the same Protagonist01 repository. Used its credential in memory with the GitHub API to update #65's description, attach completion evidence and close #10/#26 as completed, then record #11's branch. No token is printed or saved, no new credential/access is created, and task-local helper scripts live only under ignored `.git`. Server reads confirmed the closures. This avoids depending on the previously invisible connector form. The browser later displayed F1 as Closed/Done.
+
+Pinned Pydantic 2.14.1 from current PyPI metadata; uv locked its transitive dependencies. The first 27 contract tests passed; the combined suite passed 43 tests, both import contracts and formatting. The example emitted a synthetic/offline_fake report with preserved context/versions, exact-text score and zero fake cost. ScoreResult values remain finite but are not limited to 0–1: latency/cost metrics need other ranges. Static type checking is underway using an ephemeral, exactly pinned mypy 2.4.0; it does not add a new permanent root command before F3.
+
+Moved the Agent/ModelGateway protocols into the public contracts module so domain agents do not need to import evaluator-only objects just to implement the interface. The fake agent revalidates the gateway response. Re-ran the combined suite after these changes: 43 passed; strict mypy found no issues in four source files; both import contracts kept; Ruff lint/format passed. All six source archives/wheels built. A separate clean environment installation/example is being checked before publication. Only Windows/Python 3.13.4 is exercised; Linux/Python 3.12 checks remain F5.
+
+The separate clean locked environment installed all six workspace members plus Pydantic, then ran the example successfully: completed, fake_case_correct=1, mode=offline_fake. Rebuilt all six archives/wheels after the final protocol changes. `uv lock --check` and `git diff --check` passed. Preparing a review PR, with only F2's planned scope and current-status corrections; the original untracked templates/archive stay outside the commit. No new worktree, provider request, database or live evaluation was needed.

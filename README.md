@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) contains a [root tracker](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), eight epics and 53 task sub-issues, organized into seven milestones. F1 provides a locked Python workspace with six installable package scaffolds and verified import boundaries. Agent runtime, domain importers, database migrations, CI checks and deployment are not implemented.
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) contains a [root tracker](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), eight epics and 53 task sub-issues, organized into seven milestones. F1 and O1 are merged into main and verified. F2 provides validated shared contracts and an executable offline fake case on its review branch. Real provider-backed agents, domain importers, database migrations, CI and deployment remain subsequent work.
 
 ## Working foundation commands
 
@@ -19,13 +19,15 @@ uv run --locked lint-imports --no-cache
 uv run --locked ruff check harness projects tests
 uv run --locked ruff format --check harness projects tests
 uv build --all-packages
+$revision = git rev-parse HEAD
+uv run --locked python -m agent_harness.offline_example --code-revision $revision --lockfile uv.lock
 ```
 
 The lockfile pins development dependencies; each package pins its build backend. The allowed Python range is 3.12–3.13; verification so far is Windows/Python 3.13.4. `--link-mode copy` avoids cross-drive hardlink warnings. `uv sync` without `--all-packages` does not install the six workspace members because the root is virtual.
 
 | Package directory | Python import | Runtime dependencies |
 |---|---|---|
-| `harness` | `agent_harness` | None yet |
+| `harness` | `agent_harness` | Pydantic 2.14.1 |
 | `projects/olist-support` | `olist_support` | Harness |
 | `projects/cfpb-triage` | `cfpb_triage` | Harness |
 | `projects/revenue-integrity` | `revenue_integrity` | Harness |
@@ -34,7 +36,7 @@ The lockfile pins development dependencies; each package pins its build backend.
 
 The import checker rejects direct and indirect harness-to-domain and cross-domain imports. It checks static Python imports, including relative and type-checking imports; reflective imports/plugin loading are not a security boundary and need explicit review if introduced. Tests use temporary source copies to prove bad import paths fail without modifying the working packages.
 
-Copy `.env.example` to an ignored `.env` only when an implementation needs configuration. Its empty values are reserved names, not working integrations. Raw datasets belong outside this checkout. No install/run scripts, agent CLI, service startup, end-to-end case, model evaluation or CI job exist yet; those remain F2/F3/F4/F5 and harness/domain tasks.
+Copy `.env.example` to an ignored `.env` only when an implementation needs configuration. Its empty values are reserved names, not working integrations. Raw datasets belong outside this checkout. The [F2 fake case](docs/shared-contracts.md) needs no services or credentials and proves contract wiring, not model quality. Its result is explicitly synthetic/offline_fake; scheduled faults and live/replay modes fail clearly. Portable command wrappers, services, real model evaluation and CI remain F3/F4/F5 and harness/domain tasks. Use a clean committed checkout for the revision command above; identify uncommitted changes explicitly when experimenting.
 
 ## Applications
 
@@ -54,4 +56,4 @@ Start repository foundation and Olist source acquisition. Verify minimal shared 
 
 [Delivery plan](docs/project-management.md) · [Backlog](docs/backlog.json) · [Architecture and data plans](docs/README.md) · [Build Book](BUILD_BOOK.md)
 
-[F1 PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63) is open for review. [O1: Olist source acquisition](https://github.com/Protagonist01/my-production-agentic-systems/issues/26) has acquired and profiled the original version-7 source outside Git: [source handling and verified acquisition](docs/data/olist-source.md), [aggregate manifest](docs/data/olist-v7-manifest.json). After F1 is merged, implement F2's typed contracts and fake end-to-end case. No parallel implementation worktrees have been launched.
+[F1 PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63) and [O1 integration PR #65](https://github.com/Protagonist01/my-production-agentic-systems/pull/65) are merged and their tasks closed after verification. O1 acquired and profiled the original version-7 source outside Git: [handling and acquisition](docs/data/olist-source.md), [aggregate manifest](docs/data/olist-v7-manifest.json). [F2 #11](https://github.com/Protagonist01/my-production-agentic-systems/issues/11) defines [shared contracts](docs/shared-contracts.md) and the fake end-to-end case. Parallel implementation worktrees await the reviewed, merged F2 baseline.

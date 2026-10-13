@@ -22,7 +22,7 @@ Each importer produces provenance/checksum/use notes and validated agent-visible
 
 ### O1: Acquire Olist snapshot and validate source provenance/use conditions
 
-Priority: P0; provisional size S; prerequisites: none. Status: Review (implementation prepared; PR merge still required).
+Priority: P0; provisional size S; prerequisites: none. Status: Done. Original PR #64 and integration PR #65 are merged; main a665d3d passed post-merge source verification and the combined 16-test suite. Issue #26 is closed as completed.
 
 Obtain original Olist source via documented access; record checksum, version, dates, language, currency, attribution/use conditions and required files.
 
