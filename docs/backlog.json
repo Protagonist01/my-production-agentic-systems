@@ -161,7 +161,8 @@
       ],
       "milestone_number": 1,
       "branch": "codex/f2-shared-contracts",
-      "contract_document": "docs/shared-contracts.md"
+      "contract_document": "docs/shared-contracts.md",
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/66"
     },
     {
       "id": "F3",
