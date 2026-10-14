@@ -1,5 +1,6 @@
 # Local environments, caches and generated packages
 .venv/
+.agent-local/
 .mypy_cache/
 .venv-*/
 __pycache__/

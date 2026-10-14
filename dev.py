@@ -14,6 +14,15 @@ PLANNED = {
     "eval-record": "H10 #24: fresh candidate recording and release evidence",
     "eval-compare": "H9 #23: scorecards and case-level baseline comparison",
 }
+SERVICE_COMMANDS = {
+    "db-up": "up",
+    "db-status": "status",
+    "db-down": "down",
+    "db-destroy": "destroy",
+    "trial-create": "trial-create",
+    "trial-reset": "trial-reset",
+    "trial-drop": "trial-drop",
+}
 
 
 def uv_command(command: str, executable: str) -> list[str]:
@@ -29,6 +38,16 @@ def uv_command(command: str, executable: str) -> list[str]:
         "imports": [*run, "lint-imports", "--no-cache"],
         "test": [*run, "python", "-m", "pytest", "-q"],
         "build": [executable, "build", "--all-packages"],
+        "db-check": [
+            *run,
+            "python",
+            "-m",
+            "pytest",
+            "-q",
+            "tests/integration",
+            "-o",
+            "addopts=--strict-config --strict-markers",
+        ],
     }
     return commands[command]
 
@@ -70,15 +89,30 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "command",
-        choices=["setup", *CHECKS, "check", "build", "example", *PLANNED],
+        choices=[
+            "setup",
+            *CHECKS,
+            "check",
+            "build",
+            "example",
+            *PLANNED,
+            *SERVICE_COMMANDS,
+            "db-check",
+        ],
     )
     parser.add_argument(
         "--code-revision",
         help="Explicit source identifier for example when Git is unavailable",
     )
+    parser.add_argument("--trial", help="Trial identity for trial-create/reset/drop")
+    parser.add_argument("--confirm-workspace", help="Exact workspace identity for db-destroy")
     args = parser.parse_args(argv)
     if args.code_revision is not None and args.command != "example":
         parser.error("--code-revision is only supported by example")
+    if args.command.startswith("trial-") != (args.trial is not None):
+        parser.error("--trial is required only for trial commands")
+    if args.confirm_workspace is not None and args.command != "db-destroy":
+        parser.error("--confirm-workspace is only supported by db-destroy")
     if args.command in PLANNED:
         print(
             f"{args.command} is not implemented. Prerequisite: {PLANNED[args.command]}",
@@ -89,6 +123,26 @@ def main(argv: Sequence[str] | None = None) -> int:
     if uv is None:
         print("uv is unavailable on PATH. See README setup prerequisites.", file=sys.stderr)
         return 1
+    if args.command in SERVICE_COMMANDS:
+        arguments = [
+            uv,
+            "run",
+            "--locked",
+            "--all-packages",
+            "--link-mode",
+            "copy",
+            "python",
+            "-m",
+            "agent_harness.local_services",
+            SERVICE_COMMANDS[args.command],
+            "--root",
+            str(ROOT),
+        ]
+        if args.trial is not None:
+            arguments.extend(["--trial", args.trial])
+        if args.confirm_workspace is not None:
+            arguments.extend(["--confirm-workspace", args.confirm_workspace])
+        return execute(arguments)
     if args.command == "example":
         try:
             revision = args.code_revision if args.code_revision is not None else source_revision()

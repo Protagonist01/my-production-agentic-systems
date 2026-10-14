@@ -15,6 +15,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 8 — Integrating the first wave and defining shared contracts](#entry-8--integrating-the-first-wave-and-defining-shared-contracts)
 - [Entry 9 — Adding a current-code study guide](#entry-9--adding-a-current-code-study-guide)
 - [Entry 10 — Giving Windows and CI one command path](#entry-10--giving-windows-and-ci-one-command-path)
+- [Entry 11 — Isolating local Postgres services and trial state](#entry-11--isolating-local-postgres-services-and-trial-state)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -415,3 +416,51 @@ Audited 47 immutable source ranges against their exact commits and checked guide
 Imported the completed study-guide history from PR #67 (commit 79fd64f) into the F3 branch. The guide content/maintenance links are retained and refreshed for F3; Entry 9's final verification/publication notes precede this new entry. This preserves both branches' history and allows #68 to carry the guide and commands together without requiring a separate documentation merge.
 
 On 2026-10-14 the user confirmed that #12 was moved to Review in Project 2. Recorded that confirmation in the delivery plan and PR; native UI read-back remains unavailable because reconnect/reset did not resolve the helper startup error. F3 remains open for review and merge. This final update changes documentation only; the verified command implementation is unchanged.
+
+## Entry 11 — Isolating local Postgres services and trial state
+
+Date: 2026-10-14 (Africa/Lagos). Task F4 #13. Branch `codex/f4-postgres-isolation`, based on merged main ce8334c. Work underway.
+
+**Files touched:** shared Postgres bootstrap/migrations, local-service commands, database checks, delivery docs and current-code guide.
+
+### Context
+
+User reviewed/merged #68. The clean merged baseline passed locked setup/check (55 tests, types, Ruff, both import contracts), the example with actual revision ce8334c, and six archive/wheel builds. Closed #12 as completed and assigned #13. Reused the attached clean worktree with a new branch; the original checkout's unrelated files remain intact. Started installed Docker Desktop in the background and verified its Linux engine. The existing native Postgres service is untouched.
+
+### Before you read on
+
+How can one trial mutate a checkpoint while another starts from the original fixture, even when the first supplies a different database name?
+
+### Options considered and why
+
+A shared table with trial IDs relies on every query remembering its filter. Separate schemas plus search_path still require permissions on every table. Chosen: one Compose project/server/volume per resolved checkout, and a database plus restricted login per trial. Revoke PUBLIC CONNECT before granting the trial access. Trusted local administrators are outside this isolation boundary. Let Docker assign loopback ports rather than selecting a free port before binding it.
+
+Rebuild from template0, transactional checksummed migrations and an invented versioned SQL fixture. This avoids copying a writable template. Reset must refuse active connections and changed fixture/migration content. Production backup/restore and domain authorization remain later work.
+
+### How to build it
+
+1. Hash the resolved checkout path for the workspace key, store generated credentials only in ignored local state and reject copied configuration. Pass Compose an explicit project name without global container/volume names.
+2. Bind only to loopback; discover the actual port after startup. Stop services without removing volumes; volume removal requires the exact generated workspace identity.
+3. Create a restricted login and database from template0, revoke PUBLIC access, then apply generic checkpoint/review/ledger tables and the invented fixture. Record migration and fixture hashes.
+4. Grant checkpoint/review read/write access but only SELECT/INSERT on the ledger. These are persistence slots, not completed approval/idempotency/business tools.
+5. Test two simultaneous services, denied cross-trial database access, independent writes, reset, migration drift and failed transactions. Explicit db-check must fail when Docker is absent; ordinary offline checks need no database.
+
+### Work underway
+
+Docker startup succeeded. SQL/command construction and disposable integration evidence follow. No database acceptance result is claimed yet.
+
+The first Postgres 18.3 image download was slow. An existing official Postgres 17 image has repository digest `sha256:67f41722b7a8cbdb868a44a4995c846eddfdc2973bccb291ce937dce88ad5675`, created 2026-08-25. Pin that immutable digest for this local foundation and use its correct `/var/lib/postgresql/data` volume mount. This is a specific reproducible development image, not a floating latest-version claim; report the actual server version after launch. Image upgrades require a separate migration/restore exercise rather than replacing a tag over existing volume data.
+
+### Implementation and verification
+
+Added Psycopg binary 3.3.6 after checking current PyPI release metadata; the shared lock now has 33 distributions. Packaged migration 001 creates generic JSON checkpoint/review/ledger slots; a separate invented foundation-v1 fixture records its normalized UTF-8 text hash. Trial lifecycle obtains an advisory lock on its generated identity, checks ownership markers before reset/drop and uses template0 rebuilds. Migration DDL/history run in one transaction and reject edited or missing applied files. Grant CONNECT last; grant the runtime role no schema/metadata ownership and ledger SELECT/INSERT only. Local service commands inherit the one locked dev.py path; db-check explicitly overrides pytest's ordinary offline exclusion.
+
+The first offline check passed 64 tests (55 baseline plus nine local-state boundary cases), strict mypy on seven source files, Ruff and both import contracts. Nine initial real-Postgres checks passed. Added actual Docker mount-name checks, nondestructive restart persistence and failed-migration DDL/history rollback; the expanded required db-check passed **11 tests in 169.24 seconds**, with no skips. Two simultaneous temporary workspace services had different ports, system identifiers and actual named volumes. Trial logins could not connect to another trial database; invented writes remained independent; exact reset restored the recorded baseline. Changed fixture/hash, wrong ownership, active sessions and changed/missing migrations failed as expected. Trial roles could append ledger entries but not edit/delete/truncate existing ledger or modify snapshot metadata. An invalid review update rolled back the earlier checkpoint write.
+
+The actual checkout's CLI db-up/status reported its generated project and Postgres **17.11** on loopback port 49365. CLI trial-create/reset/drop all succeeded using an invented identity; no credential was printed. Browser control recovered in this turn: native F3 Done was visible after issue closure, and F4 was moved to In progress and read back. Saves were asynchronous, so the first post-click snapshot was not proof; later saved state showed the card and count 1/3.
+
+### What went wrong and remaining limits
+
+An automatic command review rejected a combined shell invocation containing the long journal text. Split documentation editing into the file patch tool and the independent official-image pull; both were permitted. The download was slow and was cancelled after choosing the existing official pinned image. Ruff caught unsorted imports during construction; formatting/import fixes passed. Database checks themselves passed. The native project move took time to appear; did not repeat the mutation or claim the first click succeeded.
+
+Administrative CREATE/DROP ROLE/DATABASE cannot be made one transaction. Save local credentials first and fail visibly on incomplete bootstrap; role-only crash recovery remains a trusted administrator runbook, not an automatic success/retry. Reset is explicitly destructive disposable-state reconstruction, not production rollback. No workflow engine, real dataset import, domain policy/action authorization, production tenant security or model-quality result is implied. Final built-resource/source-anchor and PR read-back evidence follows before publication.
