@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5 and O1 are merged and verified on main 6e48011; F5 #14, the foundation epic #2 and milestone M1 are completed. H1 #15 adds pinned free-tier Gemini/framework/local-tracing probes on codex/h1-integration-selection. Live schema/function behavior and local trace read-back passed on invented input; provider-backed domain agents, the shared transport/replay and deployment remain subsequent work. [Integration decision](docs/adr/0001-first-integration.md).
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5 and O1 are merged and verified on main 6e48011; F5 #14, the foundation epic #2 and milestone M1 are completed. H1 #15 is in Review in [PR #71](https://github.com/Protagonist01/my-production-agentic-systems/pull/71), with pinned free-tier Gemini/framework/local-tracing probes on codex/h1-integration-selection. All ten hosted jobs passed on documentation head 2ac2f4a; the final handoff commit is checked separately in the PR. Live schema/function behavior and local trace read-back passed on invented input; provider-backed domain agents, the shared transport/replay and deployment remain subsequent work. [Integration decision](docs/adr/0001-first-integration.md).
 
 ## Setup and working commands
 

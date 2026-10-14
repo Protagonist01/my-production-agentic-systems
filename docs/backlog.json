@@ -274,7 +274,7 @@
         "Provider limits and timestamp are recorded; model aliases and their drift limits are explicit."
       ],
       "priority": "P0",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 15,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/15",
@@ -288,7 +288,11 @@
       "command_document": "docs/integration-smoke.md",
       "provider": "google-gemini-developer-api",
       "model": "gemini-3.5-flash-lite",
-      "tracing": "existing-local-langfuse-v4.50.0"
+      "tracing": "existing-local-langfuse-v4.50.0",
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/71",
+      "implementation_commit": "ccc036efc843155818d4c591915deb13d46e2069",
+      "verified_ci_commit": "2ac2f4a083602619f5babaebf775623aadf93bfa",
+      "verified_ci_run_url": "https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38655659165"
     },
     {
       "id": "H2",
