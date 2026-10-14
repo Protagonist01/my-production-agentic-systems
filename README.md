@@ -6,24 +6,33 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) contains a [root tracker](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), eight epics and 53 task sub-issues, organized into seven milestones. F1 and O1 are merged into main and verified. F2 provides validated shared contracts and an executable offline fake case on its review branch. Real provider-backed agents, domain importers, database migrations, CI and deployment remain subsequent work.
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) contains a [root tracker](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), eight epics and 53 task sub-issues, organized into seven milestones. F1, O1 and F2 are merged and verified. F3 adds portable development commands and the current-code study guide on its review branch. Provider-backed agents, domain importers, databases, CI jobs and deployment remain subsequent work.
 
-## Working foundation commands
+## Setup and working commands
 
-From the repository root, with Python 3.13 and uv 0.11.1 (the versions exercised here):
+Install Python 3.13 and uv on PATH; verification uses Python 3.13.4 and uv 0.11.1 on Windows. The supported Python range is 3.12–3.13. The runner itself uses only Python's standard library, so setup works before dependencies are installed. From a fresh checkout:
 
 ```powershell
-uv sync --locked --all-packages --link-mode copy
-uv run --locked pytest -q
-uv run --locked lint-imports --no-cache
-uv run --locked ruff check harness projects tests
-uv run --locked ruff format --check harness projects tests
-uv build --all-packages
-$revision = git rev-parse HEAD
-uv run --locked python -m agent_harness.offline_example --code-revision $revision --lockfile uv.lock
+git clone https://github.com/Protagonist01/my-production-agentic-systems.git
+cd my-production-agentic-systems
+python dev.py setup
+python dev.py check
+python dev.py example
+python dev.py build
 ```
 
-The lockfile pins development dependencies; each package pins its build backend. The allowed Python range is 3.12–3.13; verification so far is Windows/Python 3.13.4. `--link-mode copy` avoids cross-drive hardlink warnings. `uv sync` without `--all-packages` does not install the six workspace members because the root is virtual.
+Until F3 is merged, check out its PR branch to use these new commands. PowerShell and the planned CI job use the same `python dev.py check`: lock, lint, format-check, types, imports and tests in that order. The runner stops at the first failure and returns its exit code. It runs from its own checkout root, even when called by absolute path from another directory. No activation or Make/Bash wrapper is required.
+
+| Command | Behavior |
+|---|---|
+| `setup` | Locked installation of all six workspace members and dev dependencies |
+| `check` | All six checks below; never autoformats or hides a failure |
+| `lock`, `lint`, `format-check`, `types`, `imports`, `test` | Run the corresponding individual check |
+| `example` | F2's invented offline case; actual Git HEAD plus `+dirty` when tracked/untracked changes exist |
+| `build` | Build all six source archives and wheels |
+| `eval-replay`, `eval-record`, `eval-compare` | Explicitly unavailable: exit 2 with the prerequisite issue |
+
+The lockfile pins development dependencies, including mypy 2.4.0; each member pins its build backend. Setup/tool commands use `--locked --all-packages --link-mode copy`. The virtual root otherwise does not install all members. Type checking currently covers `dev.py` and the shared harness; lint/tests cover all implemented packages/tools. Full commands and the future CI contract are in [development commands](docs/development-commands.md). Linux/Python 3.12 and actual CI jobs remain F5 verification.
 
 | Package directory | Python import | Runtime dependencies |
 |---|---|---|
@@ -36,7 +45,7 @@ The lockfile pins development dependencies; each package pins its build backend.
 
 The import checker rejects direct and indirect harness-to-domain and cross-domain imports. It checks static Python imports, including relative and type-checking imports; reflective imports/plugin loading are not a security boundary and need explicit review if introduced. Tests use temporary source copies to prove bad import paths fail without modifying the working packages.
 
-Copy `.env.example` to an ignored `.env` only when an implementation needs configuration. Its empty values are reserved names, not working integrations. Raw datasets belong outside this checkout. The [F2 fake case](docs/shared-contracts.md) needs no services or credentials and proves contract wiring, not model quality. Its result is explicitly synthetic/offline_fake; scheduled faults and live/replay modes fail clearly. Portable command wrappers, services, real model evaluation and CI remain F3/F4/F5 and harness/domain tasks. Use a clean committed checkout for the revision command above; identify uncommitted changes explicitly when experimenting.
+Copy `.env.example` to an ignored `.env` only when an implementation needs configuration. Its empty values are reserved names, not working integrations. Raw datasets belong outside this checkout. The [F2 fake case](docs/shared-contracts.md) needs no services or credentials and proves contract wiring, not model quality. Its result is explicitly synthetic/offline_fake; scheduled faults and live/replay modes fail clearly. The example wrapper hashes the lockfile and marks a dirty tree rather than claiming HEAD describes uncommitted code. For a source export without Git, provide `python dev.py example --code-revision <actual-source-identifier>`. Services, real model evaluation and CI jobs remain F4/F5 and harness/domain tasks.
 
 ## Applications
 
@@ -54,6 +63,6 @@ The software/API/UI is real; business write backends are controlled environments
 
 Start repository foundation and Olist source acquisition. Verify minimal shared contracts, then implement gateway, evaluation and Olist in bounded worktrees. Each release needs independent scoring, required-case/fault checks and fresh candidate evidence. Replay checks current software against captured dependencies; fresh evaluation measures candidate quality; monitoring observes served traffic.
 
-[Delivery plan](docs/project-management.md) · [Backlog](docs/backlog.json) · [Architecture and data plans](docs/README.md) · [Build Book](BUILD_BOOK.md)
+[Delivery plan](docs/project-management.md) · [Backlog](docs/backlog.json) · [Architecture and data plans](docs/README.md) · [Build Book](BUILD_BOOK.md) · [Code study guide and interview preparation](CODE_STUDY_GUIDE.md)
 
-[F1 PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63) and [O1 integration PR #65](https://github.com/Protagonist01/my-production-agentic-systems/pull/65) are merged and their tasks closed after verification. O1 acquired and profiled the original version-7 source outside Git: [handling and acquisition](docs/data/olist-source.md), [aggregate manifest](docs/data/olist-v7-manifest.json). [F2 PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66) defines [shared contracts](docs/shared-contracts.md) and the fake end-to-end case, and is open for review. Parallel implementation worktrees await the reviewed, merged F2 baseline.
+[F1 PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63), [O1 integration PR #65](https://github.com/Protagonist01/my-production-agentic-systems/pull/65) and [F2 PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66) are merged and verified. O1 source remains outside Git: [handling/acquisition](docs/data/olist-source.md), [aggregate manifest](docs/data/olist-v7-manifest.json). F2 defines [shared contracts](docs/shared-contracts.md) and the offline fake case. F3 #12 is implemented in an isolated worktree based on reviewed main b46cf25, awaiting review.

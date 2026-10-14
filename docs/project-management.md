@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-13. This is the delivery plan for the real application. F1/O1 are merged and verified on main; F2 contracts and the offline fake case are prepared on a review branch. Provider-backed and domain runtime remain unimplemented.
+Updated: 2026-10-14. This is the delivery plan for the real application. F1/O1/F2 are merged and verified on main b46cf25. F3 portable commands and the updated study guide are prepared for review. Provider-backed/domain runtime and actual CI jobs remain unimplemented.
 
 ## Scope and source of truth
 
@@ -30,7 +30,7 @@ Backlog → Ready → In progress → Review → Done. Use a separate blocker fi
 - **Done:** merged PR and verified acceptance evidence. A written plan, open PR or issue creation is not implementation completion.
 - **Blocked:** record cause, responsible follow-up and what unblocks it. No silent dependency skip.
 
-[F1 #10](https://github.com/Protagonist01/my-production-agentic-systems/issues/10) and [O1 #26](https://github.com/Protagonist01/my-production-agentic-systems/issues/26) are closed as completed. F1 merged through #63; O1 #64 merged into the former foundation branch, then [integration PR #65](https://github.com/Protagonist01/my-production-agentic-systems/pull/65) carried it into main a665d3d. Post-merge locked installation, 16 tests, both import contracts, Ruff and authentic-source verification passed. [F2 #11](https://github.com/Protagonist01/my-production-agentic-systems/issues/11) owns `codex/f2-shared-contracts`: [validated contracts and offline fake case](shared-contracts.md) in [PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66), awaiting review/merge. Its 43 tests, strict types, lint/imports, builds and clean installation/example passed. P1 source preparation stays Backlog until capacity is assigned. L5 #62 completed native administration. Live model evaluation and domain application behavior remain unimplemented.
+[F1 #10](https://github.com/Protagonist01/my-production-agentic-systems/issues/10) and [O1 #26](https://github.com/Protagonist01/my-production-agentic-systems/issues/26) are closed as completed. F1 merged through #63; O1 #64 merged into the former foundation branch, then [integration PR #65](https://github.com/Protagonist01/my-production-agentic-systems/pull/65) carried it into main a665d3d. Post-merge locked installation, 16 tests, both import contracts, Ruff and authentic-source verification passed. [F2 #11](https://github.com/Protagonist01/my-production-agentic-systems/issues/11) is closed as completed after the user reviewed/merged [PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66) and a clean merged-baseline installation/check passed 43 tests, strict types, lint/format and imports. [F3 #12](https://github.com/Protagonist01/my-production-agentic-systems/issues/12) owns codex/f3-command-entrypoints: one [portable command path](development-commands.md), locked mypy and the refreshed [study guide](../CODE_STUDY_GUIDE.md). The command runner passed 55 tests and the remaining checks; final fresh-checkout verification and PR linkage follow. P1 source preparation stays Backlog until capacity is assigned. L5 #62 completed native administration. Live model evaluation and domain application behavior remain unimplemented.
 
 ## Capacity and planning
 
@@ -54,7 +54,7 @@ The integrator owns shared interfaces, dependency lockfiles, root commands, CI, 
 
 Each worktree/trial needs distinct database state, service names, ports, volumes, caches and temporary paths. A Git worktree alone isolates files, not services. Share immutable sanitized fixtures where useful; never share writable trial state. Keep a common live-provider budget/queue.
 
-No implementation worktrees or runtime workers have been started by this planning setup.
+F3 uses one attached managed worktree based on reviewed main b46cf25, with its own virtual environment/check caches. No runtime service or worker is running; database/trial/service isolation remains F4. The original checkout and its uncommitted study-guide changes were preserved; the user authorized including copies of those documents in F3.
 
 ## Architecture and evaluation boundaries
 

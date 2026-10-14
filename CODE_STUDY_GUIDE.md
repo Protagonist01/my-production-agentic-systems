@@ -1,0 +1,326 @@
+# Code Study Guide — Production Agentic Systems
+
+Updated: 2026-10-14 (Africa/Lagos). Merged baseline: **b46cf254cc02f68673f7468eb25e9291c8001dfc** (F2 PR #66). F3 additions are on `codex/f3-command-entrypoints`, initially inspected in a dirty worktree. Existing runtime permalinks pin unchanged F2 code; F3 command/config links are finalized against the implementation commit below.
+
+F1/O1/F2 are merged and verified; #11 is closed after a fresh merged-baseline check. F3's portable commands and this updated guide are prepared for review. Provider-backed applications and actual CI jobs remain planned. The user authorized including the previously uncommitted study guide in this implementation PR.
+
+This guide covers all meaningful implementation blocks in the five nontrivial application/tool Python files (including dev.py), their five test files, and package/configuration boundaries. Package marker files are grouped. Historical untracked plans, generated distributions, dependency internals, raw Olist rows and future applications are outside this inspection. This is a source-grounded engineering study, not an exhaustive security audit.
+
+## Reading route
+
+1. Read the implemented architecture and follow the offline execution.
+2. Open the linked code while reading its anatomy; explain each validator and boundary aloud.
+3. Follow the independent Olist acquisition path and its source-integrity checks.
+4. Study the design tradeoffs, test evidence and reproduced concerns.
+5. Practice the interview questions and offline exercises.
+
+[BUILD_BOOK.md](BUILD_BOOK.md) explains construction history and documented decisions, particularly Entries 6–10. [Shared contracts](docs/shared-contracts.md) is the API reference. [Delivery plan](docs/project-management.md) defines later work. This guide explains how the current pieces fit together.
+
+## 1. What exists and what the architecture means
+
+The destination is a shared agent/evaluation platform serving Olist support, CFPB triage, revenue integrity, prior authorization and supply-chain disruption. The current executable work is much smaller: installable packages, import checks, original Olist snapshot profiling/verification, and a deterministic fake agent/evaluation flow. No operational refund system, live model adapter, database, web service, deployment or production traffic exists at this snapshot.
+
+```mermaid
+flowchart LR
+    DEV[dev.py example] --> CLI[Offline example CLI]
+    DEV --> ID[Git revision + dirty marker]
+    CLI --> R[run_case]
+    EC[Evaluator-only EvalCase] --> R
+    R --> PI[Closed AgentInput + RunContext]
+    PI --> A[FakeAgent]
+    A --> G[FakeGateway]
+    G --> MR[ModelResponse]
+    MR --> AR[AgentResult]
+    AR --> S[FakeScorer]
+    EC --> S
+    S --> CR[CaseReport JSON]
+    OS[External Olist CSV snapshot] --> SP[Snapshot profiling and verification]
+    SP --> AM[Aggregate provenance manifest]
+```
+
+The two paths are independent. Olist records do not feed the fake text example. Expected answers and hidden state are available to the runner/scorer, but the runner projects only public input into the agent call. A dictionary typed as an evaluation case would be too easy to forward accidentally; a separate input type makes that mistake fail validation.
+
+Dependency direction is `vertical → agent_harness → Pydantic`. The harness must never import a vertical; verticals must never import each other. [Import contracts][import-contracts] enforce this for static imports. Python protocols describe replaceable agent/gateway/scorer interfaces without choosing a workflow framework. Planned LangGraph/Pydantic AI integrations are not installed.
+
+All example runtime objects live in one Python process. FakeGateway retains a list of requests in memory; reports print to stdout. There is no persistent review queue or action ledger. Olist CSVs live in an external local cache, while only aggregate provenance enters Git. Worktrees isolate checkouts, not processes, ports or databases; service/trial isolation is still F4 work.
+
+Useful vocabulary: a **case** is one evaluation input plus evaluator-only expectations; a **trial** is one attempt at a case; a **run ID** identifies execution; a **business-event ID** identifies the underlying operation across retries/new runs; a **fingerprint** identifies request content; a **reference** names evidence but does not prove that evidence exists; **strict replay** would match recorded dependencies without network fallback; **fresh candidate** would obtain new model output. Only `offline_fake` currently executes in the supplied gateway.
+
+## 2. Walk one case through the actual code
+
+Input: `hello, shared contracts`. Expected output: `HELLO, SHARED CONTRACTS`. Both are invented fixture values; this is not an Olist support decision.
+
+1. [dev.py](dev.py) resolves its own checkout root. `example` discovers actual Git HEAD and porcelain status, marks tracked/untracked changes with `+dirty`, then passes revision/lockfile arguments to [CLI `main`][example-main]. The module parses those required arguments, hashes the lockfile, and calls `example_context`/`example_case`. Direct module calls or explicit revision overrides still depend on caller honesty; the wrapper does not hash a dirty tree.
+2. [Context construction][example-context] fixes the test clock at 2026-01-01 UTC, uses a 30-second declared deadline, and records run/case/trial/business-event identities, seed and code/candidate/data/policy/environment versions. A zero-cost fake budget is a declaration; it does not reserve or enforce resources.
+3. [Case construction][example-case] puts request text into `AgentInput`, and keeps expected output, autonomy/review decisions, allowed decisions and a private marker in evaluator-only fields. Source kind is `synthetic`.
+4. [`run_case`][run-case] serializes/revalidates context and case, checks case/snapshot/policy agreement, rejects scheduled faults, and passes only `case.agent_input()` to the agent. This makes the public view a fresh closed model, rather than sharing the full case object.
+5. [`FakeAgent.run`][fake-agent] creates one user message with the public request, explicit fake provider/model/endpoint and `temperature=0`. It does not use public observations in this toy behavior. `FakeGateway.generate` receives the typed request.
+6. [The gateway][fake-gateway] rejects other run modes/routes, tools, output schemas and unsupported message/parameter shapes. It appends the validated request, applies Python's `str.upper`, and returns a typed assistant response with one fake call and zero tokens/cost. No model tokenization or provider pricing occurs.
+7. The agent revalidates the response and creates `AgentResult`: decision `return_text`, outcome `completed`, uppercase output, usage, and fabricated `model:`/`offline:` references. These references are explicitly example identifiers, not exported traces.
+8. The runner revalidates the result and checks run/case/trial identity. It gives a separate result copy to [FakeScorer][fake-scorer], which compares outcome, exact output, allowed decision and presence of required review. It does not inspect committed state.
+9. [CaseReport][case-report] binds context/result IDs and scorer/policy versions, requires a nonempty score list, and retains the result/scores. The CLI validates a JSON round trip, prints the report, and exits nonzero unless `fake_case_correct` equals 1. Expected answers and hidden state are not report fields.
+
+With an injected typed fake timeout, the gateway returns a failure instead of output. The agent chooses `stop`/`failed`; usage and failure survive the report; the ordinary success case scores 0. A Python exception from a broken scorer propagates, while an explicitly typed scorer error carries no score. Both behaviors keep errors visible; complete batch/release accounting remains future work.
+
+## 3. Code anatomy: public contracts
+
+File: [contracts.py](harness/src/agent_harness/contracts.py). The following source links pin the explained revision.
+
+| Symbol and lines | Design mapped into the code | Consequence if changed incorrectly |
+|---|---|---|
+| [Aliases, L10–13][aliases] | `NonEmpty` rejects empty strings; `Count` rejects negative integers; decimal `Money` rejects negative/nonfinite amounts; `Outcome` is a closed vocabulary. | An arbitrary outcome would make report interpretation ambiguous. A nonempty string still allows whitespace-only values: this is shape validation, not identifier/business validation. |
+| [Contract, L16–37][contract] | Every nested model forbids extra fields, freezes attribute assignment, validates strictly/defaults, revalidates instances, and disallows nonfinite numbers. Schema version is literal 1. JSON mode converts wire types before object keys are sorted. | Removing `extra="forbid"` can silently accept unintended fields. Sorting message lists or stripping text would lose request meaning. Frozen attributes do not freeze nested dictionaries. |
+| [Budget and CandidateVersions, L40–52][budget-versions] | Budget fields express positive call/token caps and nonnegative cost with a currency label. Versions record code, candidate, snapshot, policy and environment identity. | DTO fields alone do not enforce caps, authenticate versions or validate a currency standard. The future gateway/runner must turn them into behavior. |
+| [RunContext, L55–73][run-context] | IDs remain separate; `mode` distinguishes four meanings. Aware timestamps require an offset. An after-validator rejects deadlines at or before the fixed clock. | Using run ID as the sole business-operation key breaks cross-run deduplication. A valid declared deadline still needs an execution-time check. |
+| [PublicObservation / AgentInput, L76–85][public-input] | Public context is restricted to source reference/text, alongside request text. No arbitrary metadata bag exists. | This blocks extra structural label fields, but not an answer embedded in a legitimate text/reference. Domain adapters must construct approved as-of views. |
+| [EvidenceReference, L88–90][evidence-ref] | Evidence has an identifier and a closed kind such as source/state/review/trace/model/score. | A supplied reference is not authorization or evidence lookup. Later scorers must resolve it independently. |
+| [Usage, L93–104][usage] | Token/cost observations may be null. Cost and currency must either both be known or both be unknown. Call count is required. | Turning unknown values into zero would understate costs. Decimal serialization preserves textual precision, but currency/rounding policy belongs to a domain/provider adapter. |
+| [Failure, L107–121][failure] | Stage/code distinguish agent, model, tool and scorer failures; retryability and evidence survive serialization. | `retryable=True` is descriptive; retries still need permission, attempts and budget. Adding retry loops here would mix transport data with execution policy. |
+| [AgentResult, L124–144][agent-result] | Outcome/text/decision are separate from state/review/trace references and usage. Two validators bind review/failure fields to outcomes. | A completion claim remains untrusted until scored against actual evidence; this class validates consistency, not business success. |
+| [ToolCall and ModelMessage, L147–171][model-message] | A call carries ID/name/JSON arguments. Only assistant messages can contain calls. Tool-result messages require corresponding ID/name/content; other roles cannot carry those result identifiers. A message needs content or calls. | Message shape is checked; uniqueness of call IDs, cross-message correspondence and provider semantics are not yet checked. Empty content is allowed where a provider may support it. |
+| [ToolSchema and ModelRequest, L174–194][model-request] | Preserve tools and output schema, endpoint/provider/model/revision, ordered messages, supplied generation parameters and serializer version. The hash covers canonical UTF-8 JSON. | Hashing only prompt text misses model/schema/sampling changes. An identical request can still have different responses: occurrence/trial identity belongs to replay storage. JSON schemas are stored, not validated against a provider dialect. |
+| [ModelResponse, L197–215][model-response] | Exactly one of output/failure is required; output must be assistant-shaped; a response failure must be at model stage. Provider/model/request/revision and finish reason remain explicit. | These validators do not check that returned provider/model matches the original request; the integration boundary must do that. |
+| [ModelGateway and Agent protocols, L218–228][protocols] | Define typed replaceable interfaces; no harness-to-domain import or framework inheritance is needed. | A type checker checks signatures, not behavioral compliance. The runner and adapters still need runtime validation and tests. |
+
+### Read the two unusual boolean expressions
+
+In `AgentResult.consistent_outcome`, `(outcome == "review_required") != (review_ref is not None)` detects disagreement. Both true is valid review; both false is valid non-review; either mismatch is rejected. The failure condition uses the same truth table. This current contract also forbids attaching a review reference to a completed result, which may need a versioned extension when approved/resumed reviews exist.
+
+In `ModelResponse.output_or_failure`, `(output is None) == (failure is None)` detects both absent or both present. Those are invalid; exactly one present is valid. Writing these conditions as simpler-looking `or` expressions can accidentally accept two contradictory paths.
+
+### Shape, semantics and authorization are different
+
+A Pydantic model can validate that `tenant_id` is a string. It cannot prove the caller belongs to that tenant. A reference can have the right type while naming another user's state. The current program has no service/authorization layer; it should not be presented as enforcing tenant isolation or approved actions merely because the fields exist.
+
+## 4. Code anatomy: evaluator-only objects and runner
+
+File: [evaluation.py](harness/src/agent_harness/evaluation.py).
+
+| Symbol and lines | What to understand | Evidence / limit |
+|---|---|---|
+| [ExpectedResult / FaultScenario, L21–38][expected-fault] | Expectations describe allowed behavior and expected state changes. Fault definitions name target/timing/recoverability/invariants before execution. | They are data contracts, not a reviewed gold dataset or an injection engine. Cross-field business consistency still belongs to case preparation. |
+| [EvalCase and agent_input, L41–57][eval-case] | Public input, source/snapshot/policy/scorer provenance, hidden state, risk/slices/faults are separate fields. `agent_input()` reconstructs only the public model. | Structural leakage tests mutate private labels and capture agent/gateway arguments. The case remains in the same process, so this is not isolation from malicious Python code. |
+| [ScoreResult, L60–81][score-result] | One finite number or one category is required unless a typed scorer failure exists. Failures cannot coexist with values/categories and must be scorer-stage. Eligibility remains explicit for later denominators. | Numeric range is not fixed at 0–1 because latency/cost use other units. Units and whether a score means pass belong to the metric definition. Evidence can currently be empty. |
+| [CaseReport, L84–102][case-report] | Requires scores and checks result IDs, scorer versions and policy version against context. It deliberately excludes expected/hidden case fields. | It cannot prove source versions, code revisions or references are authentic, and is not a complete release manifest. |
+| [Scorer protocol, L105–106][scorer-interface] | The scorer can inspect the entire case and the agent's result; the agent cannot receive the case through this interface. | Implementations must independently inspect actual state when business writes are introduced. |
+| [run_case, L109–146][run-case] | Revalidate inputs → reject identity/snapshot/policy mismatch → reject unimplemented faults → dispatch closed public input → revalidate/check result IDs → copy result for scorer → revalidate scores → report. | Exceptions propagate and empty scores fail. Batch accounting, deadline/budget enforcement, state reset and persistence are absent. |
+
+Copying/revalidation costs CPU and JSON conversions but makes the boundary explicit and prevents an ordinary mutable model copy from bypassing validators. The scorer gets a distinct result, so normal scoring code cannot mutate the retained result. This is a maintainability/control measure; trusted code can still misuse internals or shared memory.
+
+## 5. Code anatomy: fake implementations and entrypoint
+
+File: [offline_example.py](harness/src/agent_harness/offline_example.py).
+
+| Symbol and lines | Why the implementation is this small | Important details |
+|---|---|---|
+| [FakeGateway.__init__/generate, L32–75][fake-gateway] | A deterministic dependency double permits testing without services/keys, and rejects unsupported modes instead of impersonating fresh/replay behavior. | Request history is in memory. Failure injection is an explicit constructor argument, not the scheduled FaultScenario engine. `str.upper` is Unicode behavior; this is not a general text model. |
+| [FakeAgent.run, L78–104][fake-agent] | Demonstrates the public interface, request construction, response revalidation and typed failure conversion. | It ignores observations, forwards only request text, checks response shape but not route identity, and fabricates evidence references. |
+| [FakeScorer.score, L107–125][fake-scorer] | A transparent exact check catches changed expected output and obvious incorrect decisions without an LLM judge. | It ignores expected state changes, hidden state and autonomy eligibility; it sets score eligibility true for this wiring case. Do not reuse it as a business-action scorer. |
+| [example_case, L128–148][example-case] | Explicitly invented input, expected output, private marker, policy/scorer/source versions and slices let tests demonstrate separation. | These labels are authored test expectations, not independently reviewed industry ground truth. |
+| [example_context, L151–174][example-context] | A fixed clock and identities make the wiring repeatable; code revision and lock hash are caller-supplied actual/proposed evidence. | IDs are static for one example. Multiple real trials need unique run/trial identities plus a stable business-event identity. |
+| [main, L177–202][example-main] | CLI parses evidence inputs, hashes the lock, runs one case, checks the report's wire representation, prints it and checks its score. | It does not write a database or upload telemetry. Missing arguments/files and validation errors are normal failures; output can contain legitimate result text, so a future real-data exporter needs a separate privacy policy. |
+
+### F3: portable commands down to the failure paths
+
+File: [dev.py](dev.py), tested by [test_dev_commands.py](tests/test_dev_commands.py). The bootstrap imports only standard-library modules; installing the project is not necessary to parse a command or reject unavailable evaluation features.
+
+| Symbol / block | Execution and reason | Evidence / limit |
+|---|---|---|
+| `ROOT`, `CHECKS`, `PLANNED` | Resolve the runner's directory, define check order once, and name unimplemented evaluation prerequisites. | Changing caller directory does not change the project. Missing implementation is an exit-2 error before tool discovery. |
+| `uv_command` | Construct argument arrays for locked setup/tools and package builds. `check` reuses the same map as individual commands. | All-members installation matters for a virtual root; no shell quoting or duplicate CI map. |
+| `execute` | Run a child with `cwd=ROOT` and no shell, return its exact exit status, convert process-start failure to a visible nonzero result. | A real child test uses a directory/argument with spaces and exits 7. This is local tooling, not a sandbox for hostile programs. |
+| `source_revision` | Read HEAD and tracked/untracked status; any dirty source adds `+dirty`. Failed/missing Git discovery requires an explicit identifier. | Dirty is a provenance flag, not a saved content snapshot. Ignored source modifications and concurrent mutation remain outside this simple check. |
+| `main` | Parse command/options → reject planned/wrong commands → locate uv → run example with revision/lockfile or run check steps sequentially → return first failure. | The type-check failure test returns 13 and proves imports/tests are skipped afterward. Setup may download packages; the fake example has no provider call. |
+
+Mypy uses root configuration with strict checking for dev.py and the harness. Dataset scripts and untyped test helpers are covered by lint/behavioral tests, not declared fully type-checked. Formatting is check-only; `check` does not modify source. Actual CI orchestration and additional platform checks remain F5. [Development commands](docs/development-commands.md) specifies the future CI call path.
+
+## 6. Olist source path: acquisition is not evaluation
+
+File: [snapshot.py](projects/olist-support/scripts/snapshot.py). The top [script declaration and schema inventory][snapshot-schema] pins `kagglehub==1.0.2` and the explicit version-7 handle, defines the checkout boundary, and preserves ordered original column names, including source misspellings. Source currency/timezone remain unverified; country alone is not evidence of units.
+
+| Function and lines | How it works | Why / failure boundary |
+|---|---|---|
+| [outside_repository, L90–94][outside-repo] | Expand/resolve the path, then reject anything under the script's checkout root, including resolved symlinks pointing inside it. | Prevents this tool reading raw snapshots stored in the checkout; it is not an OS sandbox or a universal Git secret/data guard. |
+| [profile_file, L97–128][profile-file] | Hash original bytes, initialize per-column empty counts, parse UTF-8-with-optional-BOM CSV strictly, require ordered headers, reject short/extra-width rows, count records/empty strings and validate purchase timestamps. Return filename/hash/size/schema/aggregates and optional naive timestamp range. | CSV quoting/newlines mean parsed records must be counted rather than newline bytes. Empty string is the chosen missingness definition; string `NULL` or whitespace is not automatically missing. Hashing and parsing use separate file opens: see the reproduced race below. |
+| [profile_snapshot, L131–141][profile-snapshot] | Require exactly the known lowercase `.csv` names at the snapshot root, validate every source file's location, then profile in sorted filename order. | Stable order makes manifest equality meaningful. It is not a recursive directory integrity check; non-CSV artifacts/subdirectories are outside the checked inventory. |
+| [verify_snapshot, L144–152][verify-snapshot] | Require the pinned handle/version; reprofile and compare the full file records with `manifest["files"]`; mismatches raise and never replace the baseline. | The baseline must itself be trusted/reviewed. This checks the known snapshot, not a signature from its publisher or all top-level manifest metadata. |
+| [main, L155–209][snapshot-main] | `acquire` imports/downloads through the pinned library; profile/verify require local `--source`. Existing acquisition manifests are verified. A new profile refuses an existing output. New manifests record publisher/license/use notes, versions, aggregates and unresolved units. Print only aggregate counts plus a local source path. | `profile` does not independently authenticate arbitrary local bytes as publisher version 7. Publisher provenance comes from the acquisition workflow/review, not the metadata label alone. Existence checks before writing are not atomic. |
+
+The known publication includes nine files and 99,441 orders, with 1,551,698 total records across tables. Summing table rows does not produce unique orders. Checksums and aggregate notes are in [the manifest](docs/data/olist-v7-manifest.json); handling/use boundaries are in [the source notes](docs/data/olist-source.md). No source records were needed for this guide's reproductions.
+
+## 7. Packaging and architectural enforcement
+
+| File / group | Role and non-obvious detail |
+|---|---|
+| [Root pyproject][root-config] | Virtual root (`package=false`), workspace members `harness` and `projects/*`, workspace dependency source, pytest paths, Ruff rules, locked dev requirements (including mypy 2.4.0), and strict type targets for dev.py/harness. Use `--all-packages`; root-only sync does not install every member. Allowed Python range is 3.12–3.13; actual verification is Windows/3.13.4. |
+| [Harness metadata][harness-config] and five vertical `pyproject.toml` files | Six separately installable distributions share one uv lock. The harness pins Pydantic 2.14.1; each vertical depends only on the harness. Each build backend is `uv_build==0.11.1`. Distribution names differ from import names, for example `production-agent-olist-support` → `olist_support`. |
+| [Import Linter configuration][import-contracts] | Forbid harness → domain imports and enforce pairwise domain independence. Static relative/indirect violations are tested. Reflective imports are not policed; this is architectural enforcement, not a malware sandbox. |
+| [Ignore rules][ignore-rules] / [.env.example](.env.example) | Exclude credentials, raw data and generated runtime artifacts; allow aggregate `docs/data` documentation. Examples contain empty reserved names. Git ignore rules do not stop force-adds, previously tracked secrets or arbitrary external uploads. |
+| `uv.lock`, `.python-version`, package `__init__.py` files | Lock dependency resolution, identify the exercised interpreter, and establish importable package markers. The five domain markers contain no business implementation. Lockfiles support reproducibility, not automatic dependency-vulnerability clearance. |
+| README / CONTRIBUTING / project docs | Define supported commands, delivery boundaries and workflow. They are not executable checks; compare their claims with source and actual results. F3 supplies the portable dev.py wrapper; actual CI jobs remain F5. Strict mypy 2.4.0 is now in the shared lock and checks the runner plus harness. |
+
+## 8. Tradeoffs to explain in an interview
+
+| Decision | Documented reason / inferred cost | Alternative and revisit trigger |
+|---|---|---|
+| Six members in one uv workspace | Build Book Entry 6 documents separate installation with one dependency baseline. Shared root files still require one integrator; independent deployment can eventually need stronger separation. | One distribution is simpler but installs all domains; separate repositories/environments reduce shared coupling but increase integration/version coordination. Revisit after deployment needs diverge. |
+| Pydantic contracts over plain dataclasses | Entry 8 documents avoiding handwritten nested validation/JSON handling. Cost: a runtime dependency and repeated serialization at boundaries. | Dataclasses with an explicit codec can work if validation ownership is clear. Do not claim the present choice was benchmarked faster. |
+| Closed public input versus one case dictionary | Entry 8 documents preventing structural expected-label leakage. Cost: domain adapters must project public facts; a text view does not preserve every original structured type. | A broad dictionary is flexible but easier to leak labels through. A reviewed typed structured observation could be a versioned extension. |
+| Exact request fingerprint | Accepted design requires model/schema/parameter changes to change identity. Cost: semantically similar prompts are distinct, and fingerprints alone cannot model repeated sampled calls. | Fuzzy matching would be convenient but weakens replay evidence. Add occurrence storage rather than weakening request identity. |
+| Fake exact scorer first | Makes contract mechanics transparent/offline. Cost: no real model quality, committed-state verification or review-burden measurement. | Domain state scorers and reviewed cases are necessary for releases; a judge requires separate calibration and cannot compensate for a wrong state change. |
+| Standard-library portable runner | Entry 10 records one bootstrap/check map and locked mypy instead of shell-specific scripts. Cost: tool/interpreter prerequisites remain and the wrapper must propagate failure/provenance honestly. | Separate Bash/PowerShell/Make recipes duplicate behavior; actual CI should call the runner after installing prerequisites. |
+| Version-pinned external Olist snapshot | Entry 7 documents publisher/version ambiguity and keeping raw content outside Git. Cost: local acquisition and an explicit integrity baseline must be maintained. | A mirror/unversioned latest download is easier but weakens provenance. A signed/immutable artifact store would strengthen trust if warranted. |
+| Fail explicitly on unimplemented modes/faults | Source rejects unsupported fake modes and scheduled faults. Cost: less apparent feature coverage today. | Quietly accepting them produces misleading evidence; implement and test the real behavior before enabling those paths. |
+
+## 9. Findings, weaknesses and boundaries
+
+These observations are scoped to the inspected code. There is no assessed remote service attack surface and no claim of an exhaustive vulnerability scan.
+
+### R1 — Verified correctness bug: snapshot hash/parse race
+
+Location: [profile_file][profile-file] hashes through one file handle, closes it, then opens the path again for CSV parsing; size is inspected afterward. [verify_snapshot][verify-snapshot] compares those mixed-time observations with the trusted manifest.
+
+Trigger: an independent writer changes same-width CSV values after hashing and before parsing, without changing schema, row count, empty counts or purchase bounds. Verification can return successfully while the final bytes have a different hash from the manifest. An isolated invented nine-file fixture reproduced this; the full 43-test suite still passed because existing integrity tests change bytes before verification starts.
+
+Impact: the tool's successful verification is weaker than an immutable snapshot guarantee under concurrent mutation. If a local attacker can write the source directory while a trusted process verifies it, they may exploit this race to bypass the integrity check. That access/precondition is essential; no remote exploit was demonstrated.
+
+Mitigation direction: stage verified bytes into a private immutable snapshot and parse the same captured bytes. A single descriptor narrows path substitution but does not stop another process rewriting the inode. Metadata checks/double hashes can detect common races but are not a complete immutability proof. Add a controlled concurrent-mutation regression test before changing the integrity claim. This documentation task leaves runtime code unchanged.
+
+### R2 — Verified missing check, potential integration bug: response route identity
+
+Location: [FakeAgent.run][fake-agent] revalidates `ModelResponse` shape but does not compare returned provider/model/revision with its request. A supplied gateway returning `other-provider`/`other-model` and the expected text produced score 1 in an isolated probe.
+
+The bundled FakeGateway always returns its fixed fake route, so this is not a wrong-provider incident or an exploitable live gateway. It becomes an integration concern if the example pattern is reused with a buggy/misrouted adapter. H2 should define and test request/response provenance agreement, including legitimate aliases/fallback routes, rather than assuming shape validation proves route identity.
+
+### R3 — Verified design limitation: fake scoring ignores state expectations
+
+Location: [FakeScorer.score][fake-scorer]. Setting `expected_state_changes={"ledger_count": 1}` on the invented case still yielded score 1 with no state-change references. This is deliberately a text/wiring scorer, not a state scorer; the probe demonstrates why its result cannot support a refund/ledger success claim. Domain scorers must inspect committed state and independently verify review/evidence records.
+
+### Additional concerns, explicitly classified
+
+| Status | Trigger/location | Control / next step |
+|---|---|---|
+| Design limitation: structural label separation only | [PublicInput][public-input] permits legitimate text and references; answers can be embedded inside them. Same-process code can reach shared memory. | Closed fields/projection stop ordinary structural leakage. Review as-of adapters/content; use stronger isolation only if the threat model includes untrusted code. No prompt-injection resistance is demonstrated by uppercase text. |
+| Design limitation: frozen is shallow | [Contract][contract] freezes attributes but JSON arguments/parameters/hidden state remain mutable dictionaries. | Runner/fake adapters copy and revalidate at boundaries. Future concurrent recording code should capture immutable request bytes before dispatch. |
+| Potential bug: manifest creation race | [snapshot main][snapshot-main] checks `exists()` then uses ordinary `write_text`. Two writers choosing one new path could race/overwrite. Not reproduced here. | An existing baseline is normally rejected/verified. Use exclusive creation or atomic no-replace publication if concurrent acquisition is supported. |
+| Conditional data-trust weakness | [verify_snapshot][verify-snapshot] trusts the checked-in baseline; `profile` can label arbitrary local files with the fixed handle. | Publisher/library acquisition plus reviewed checksums establish provenance. Add signed manifests/explicit source provenance if the trust model requires more. A SHA-256 string alone does not authenticate a publisher. |
+| Deliberate implementation gap | Budget/deadline IDs in [RunContext][run-context] are declared but never reserved/enforced by the fake example. | Do not expose this runner as a cost-bounded/tenant-authorized service. H2/H4/F4 implement the missing execution and isolation controls. |
+| Contract evolution question | [AgentResult][agent-result] prohibits a review reference on completed results. | Decide how durable approved/resumed workflows retain review history before adding them; introduce a compatible/versioned contract rather than bypass validation. |
+| Not assessed | Dependency advisories, production auth/storage/networking, real model redaction and operational concurrency. | No clean bill of health is implied. Evaluate the real surfaces and exact deployed versions when introduced. |
+
+### Reproduce the central race offline
+
+Use the synthetic snapshot helper in [test_olist_snapshot.py][snapshot-tests]; do not modify the original Olist cache. Profile a baseline first. Then wrap `hashlib.file_digest` so its original call finishes, but before returning, replace `b"invented"` with same-length `b"changedx"` only in the temporary customers CSV. Call `verify_snapshot` and compare a new independent `sha256(path.read_bytes())` with the baseline hash. The observed result was: verification returned, hashes differed. Restore the function in `finally` and delete only the owned temporary directory. This controlled scheduling hook simulates the concurrent writer; it does not prove exploit reliability in deployment.
+
+## 10. Tests, evidence and their limits
+
+Original guide evidence: 43 tests and three separate invented-data probes on the unchanged F2 runtime. Those probes were not permanent tests or fixes; their findings remain unresolved. Current F3 verification on Windows/Python 3.13.4/uv 0.11.1: `python dev.py check` passed all **55 tests**, strict types (five source files), Ruff lint/format, both import contracts and lock check. The wrapper example/build also passed. A fresh copied checkout walkthrough is being checked before publication; no Linux or actual CI pass is implied.
+
+| Test file and source | Behavior demonstrated | Limit to explain |
+|---|---|---|
+| [test_dev_commands.py](tests/test_dev_commands.py) | Three planned eval modes fail without uv/dependencies; missing tools fail; aggregate types failure returns 13 and skips later checks; a real child/path/argument with spaces returns 7; clean/dirty revision discovery and invalid options are checked (12 tests). | Fresh installation/example/build are additionally exercised manually; Linux CI remains F5. |
+| [test_workspace.py, L20–32][workspace-tests] | Six parametrized imports resolve to the expected source; declared dependencies match intended direction (7 tests). | Does not prove every supported OS/interpreter or supply-chain security. |
+| [test_import_boundaries.py, L13–74][boundary-tests] | Isolated source copies, tmp PYTHONPATH and the actual CLI wrapper prove one allowed import and four rejected direct/indirect/cross-domain cases (5 tests). | Reflective imports are outside the check. The subprocess wrapper matters: an inert command can falsely pass negative cases. |
+| [test_olist_snapshot.py, L15–68][snapshot-tests] | Invented CSVs test repeatable profiling, changed bytes/version, missing files/schema, malformed rows and checkout-location rejection (4 tests). | No concurrent mutation test yet; no domain joins, policy labels or authenticity proof from test fixtures. |
+| [test_shared_contracts.py, L37–140][shared-tests-a] | Socket-blocked run; changed private labels are absent from captured agent/gateway inputs; extra root/observation fields fail; review/evidence/decimal/unknown usage and failures survive round trips. | Demonstrates the runner's structured boundary, not adversarial content/process isolation or durable review. |
+| [test_shared_contracts.py, L143–234][shared-tests-b] | Complete tool/message wire shapes, canonical key-order equivalence, request-change fingerprints and invalid context rejection. | Request content identity is not a recording store or provider schema validation. |
+| [test_shared_contracts.py, L237–331][shared-tests-c] | Invalid result/score/usage/model shapes, wrong IDs before scoring, scorer exception/empty list failure and unsupported fake modes/scheduled faults. F2 parametrization totals 27 tests. | The test name mentioning empty evidence actually checks an empty score list; nonempty evidence references are not mandatory today. |
+
+Shared commands (PowerShell and future CI):
+
+```powershell
+python dev.py setup
+python dev.py check
+python dev.py example
+python dev.py build
+```
+
+Use a clean committed checkout for the final revision claim. A dirty checkout is marked automatically by the wrapper; an explicit source-export identifier remains caller-supplied. The example's zero cost and score 1 do not establish model quality, real-world safety, production latency or recovered business value. A passing suite can coexist with the reproduced race and deliberately limited scorer.
+
+## 11. Change the code safely
+
+To add a field: determine whether it is public runtime information or evaluator-only data. Update the correct model and round-trip/extra-field tests, decide schema compatibility, and check callers. A field added to `EvalCase` must not appear in `AgentInput` automatically. Revalidate JSON at dispatch and update this guide/API reference.
+
+To implement a provider: retain explicit request parameters/message order/tool schemas, validate route/response identity, and reserve/enforce budgets before dispatch. Test typed error/unknown usage paths. Do not give a live adapter the fake mode label or claim request fingerprints alone implement replay. H1/H2/H3/H4 define those responsibilities.
+
+To implement Olist operations: first validate joins, currency/timezone and historical views. Separate constructed support policy/cases from original records. Add code-enforced permissions and atomic action/ledger state; stable business-event keys deduplicate across run IDs. Approval must bind the exact payload/record version. A scorer must inspect actual resulting state, not the agent's declared completion. These are future tasks, not guarantees of the present classes.
+
+## 12. Interview preparation
+
+### An honest project pitch
+
+“I'm building a Python monorepo for a shared agent/evaluation harness and five industry applications. The implemented foundation separates installable packages and enforces static import boundaries. I acquired a pinned original Olist snapshot outside Git and recorded aggregate integrity/provenance. The current F2 implementation defines validated runtime/model/evaluator contracts and runs an invented case offline. Expected labels stay outside the agent call. Provider transport, state-based scoring and the usable Olist workflow are subsequent work. I can explain the working boundaries and reproduced limitations without treating a fake score as production evidence.”
+
+Adjust personal contribution wording to what you actually implemented/reviewed; shared assistant work is not evidence of unaided authorship.
+
+| Question | Strong answer grounded in code | Follow-up / claim to avoid |
+|---|---|---|
+| How do Windows and CI checks stay identical? | Trace dev.py through one argument map, locked dependencies, fixed root and fail-fast statuses. Planned eval commands fail before tool setup. | What happens if types fails? Explain skipped later checks; do not claim a CI job ran when F5 is still planned. |
+| Why one monorepo with six packages? | Explain shared lock/contracts, independent installation, static forbidden imports and root ownership; cite Entry 6 and [configuration][root-config]. | How would independent releases change it? Do not claim separate packages isolate runtime resources. |
+| How are labels kept away from the agent? | Trace `EvalCase.agent_input` and the restricted protocol; describe captured-input/changed-label tests and free-text/same-process limits. | What if a label appears in an observation's text? Do not call it a security sandbox. |
+| What does Pydantic actually prove? | Shapes/constraints/cross-field consistency at constructors and explicit JSON boundaries, not tenant authorization, source truth or business success. | Explain shallow frozen dictionaries and bypass APIs. Avoid “typed means secure.” |
+| Explain the review/failure expressions. | Use the boolean agreement truth table in `AgentResult`, then the exclusive-output condition in `ModelResponse`. | How would approved reviews be retained on completion? Do not bypass validators to make a new workflow fit. |
+| Why hash the entire model request? | Describe canonical JSON, preserved text/list ordering and provider/model/schema/parameter inputs. | Same request twice can produce different responses; explain trial/occurrence storage. Avoid claiming replay is implemented. |
+| Why not use a judge for this example? | Exact fake output has a deterministic oracle; adding a judge would hide simple wiring errors and introduce uncertainty/cost. | What requires independent state scoring or calibrated judging later? Do not claim exact text is the right domain success metric. |
+| What happens when a scorer fails? | Exceptions propagate; typed errors cannot carry values; empty score lists fail. Explain future accounting of incomplete batches. | What must a release gate do with partial results? Do not drop failed cases from denominators. |
+| How do you establish real-source provenance? | Explain pinned publisher handle/library, external raw files, ordered schemas/checksums/aggregates, baseline review and unresolved units. | Distinguish table records from unique orders; checksums from signatures. Avoid claiming source support decisions exist. |
+| Describe a bug the tests missed. | Explain hash/parse separate reads, controlled same-width mutation, unchanged aggregates, passing verification and the required immutable-byte strategy. | Is it remotely exploitable? State the local writable-source precondition and unassessed deployment context. |
+| What would break at scale? | Repeated JSON copies, in-memory request history, synchronous one-case execution and missing reservations/reset/persistence become design pressures. | Propose measurements/queueing/isolation; do not invent a bottleneck benchmark or deployed traffic. |
+
+### Practice exercises
+
+1. Sketch the flow without looking. Place `ExpectedResult` and `hidden_state` on the evaluator side and show where result IDs are checked. Compare with [run_case][run-case].
+2. Change only dictionary key order in generation parameters; predict the same fingerprint. Change prompt whitespace or message order; predict a different fingerprint. Use the existing request test helper and do not contact a provider.
+3. Make the deadline equal the fixed clock; predict a validation error before execution. Then explain why a valid deadline still does not enforce a timeout.
+4. Change the expected uppercase answer; predict unchanged agent output but score 0. Then set an unmet state expectation; predict the fake scorer still returns 1, and explain why.
+5. Return another provider/model through an invented gateway; trace why shape validation accepts it and where a route-agreement check belongs.
+6. Run `python dev.py eval-replay`; predict exit 2 without a provider/tool install. Explain why `example` score 1 is not a substitute.
+7. Reproduce the source race with temporary invented CSVs. Propose a test and a source-capture strategy before editing runtime code.
+
+## 13. Keep this guide current
+
+For meaningful code changes, refresh affected architecture, execution steps, block links, tradeoffs, findings, tests and interview answers. Record a new inspected revision and use immutable permalinks. Retain unresolved findings until their fixes are verified; move resolved findings into a brief explanation of the fix/evidence. Append historical reasoning to the Build Book rather than rewriting it here.
+
+The reusable personal skill is `$code-study-guide`; its default output is this file and it contains an adaptable outline. Other contributors can follow this guide's maintenance requirements without installing the skill. The pending questions are the source-capture race, real response provenance, durable review contract shape, provider/framework compatibility and independently reviewed domain scoring/data views.
+
+[aliases]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L10-L13
+[contract]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L16-L37
+[budget-versions]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L40-L52
+[run-context]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L55-L73
+[public-input]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L76-L85
+[evidence-ref]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L88-L90
+[usage]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L93-L104
+[failure]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L107-L121
+[agent-result]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L124-L144
+[model-message]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L147-L171
+[model-request]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L174-L194
+[model-response]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L197-L215
+[protocols]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L218-L228
+[expected-fault]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/evaluation.py#L21-L38
+[eval-case]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/evaluation.py#L41-L57
+[score-result]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/evaluation.py#L60-L81
+[case-report]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/evaluation.py#L84-L102
+[scorer-interface]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/evaluation.py#L105-L106
+[run-case]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/evaluation.py#L109-L146
+[fake-gateway]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/offline_example.py#L32-L75
+[fake-agent]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/offline_example.py#L78-L104
+[fake-scorer]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/offline_example.py#L107-L125
+[example-case]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/offline_example.py#L128-L148
+[example-context]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/offline_example.py#L151-L174
+[example-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/offline_example.py#L177-L202
+[snapshot-schema]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L1-L87
+[outside-repo]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L90-L94
+[profile-file]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L97-L128
+[profile-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L131-L141
+[verify-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L144-L152
+[snapshot-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L155-L209
+[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/pyproject.toml#L1-L34
+[harness-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/pyproject.toml#L1-L13
+[import-contracts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.importlinter#L1-L30
+[ignore-rules]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.gitignore#L1-L46
+[workspace-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_workspace.py#L20-L32
+[boundary-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_import_boundaries.py#L13-L74
+[snapshot-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_olist_snapshot.py#L15-L68
+[shared-tests-a]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L37-L140
+[shared-tests-b]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L143-L234
+[shared-tests-c]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L237-L331

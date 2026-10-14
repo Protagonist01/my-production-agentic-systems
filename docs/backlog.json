@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
-  "updated": "2026-10-13",
+  "updated": "2026-10-14",
   "capacity_hours_per_week": 40,
   "issue_creation_status": "verified",
   "epics": [
@@ -151,7 +151,7 @@
         "Outcome, review reference, evidence, usage and typed failures survive serialization."
       ],
       "priority": "P0",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 11,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/11",
@@ -162,7 +162,8 @@
       "milestone_number": 1,
       "branch": "codex/f2-shared-contracts",
       "contract_document": "docs/shared-contracts.md",
-      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/66"
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/66",
+      "verified_main_commit": "b46cf254cc02f68673f7468eb25e9291c8001dfc"
     },
     {
       "id": "F3",
@@ -179,7 +180,7 @@
         "One fresh-checkout setup walkthrough is reproducible."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 12,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/12",
@@ -187,7 +188,9 @@
       "dependency_issue_numbers": [
         10
       ],
-      "milestone_number": 1
+      "milestone_number": 1,
+      "branch": "codex/f3-command-entrypoints",
+      "command_document": "docs/development-commands.md"
     },
     {
       "id": "F4",

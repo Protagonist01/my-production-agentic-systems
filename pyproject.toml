@@ -29,6 +29,12 @@ select = ["E", "F", "I", "UP", "B"]
 [dependency-groups]
 dev = [
     "import-linter>=2.15",
+    "mypy==2.4.0",
     "pytest>=9.1.1",
     "ruff>=0.17.0",
 ]
+
+[tool.mypy]
+files = ["dev.py", "harness/src/agent_harness"]
+python_version = "3.12"
+strict = true

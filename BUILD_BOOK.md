@@ -13,6 +13,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 6 — Establishing installable package boundaries](#entry-6--establishing-installable-package-boundaries)
 - [Entry 7 — Pinning authentic Olist source evidence](#entry-7--pinning-authentic-olist-source-evidence)
 - [Entry 8 — Integrating the first wave and defining shared contracts](#entry-8--integrating-the-first-wave-and-defining-shared-contracts)
+- [Entry 9 — Adding a current-code study guide](#entry-9--adding-a-current-code-study-guide)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -335,3 +336,67 @@ The separate clean locked environment installed all six workspace members plus P
 Published F2 code in commit 65ff503 and [PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66), based on the integrated main. The committed CLI run also passed and reports revision 65ff503 with the actual lock hash. Updated #11's acceptance/evidence, assigned the repository owner and left it open in Review; the merged-PR checkbox remains unchecked. This shared baseline must be reviewed/merged before dependent worktrees use it. Existing Git credentials lack Projects scopes, so board changes use the signed-in browser rather than broadening access.
 
 The issue sidebar status interactions did not retain the intended value; the refreshed board showed F2 under No Status. Used the card's More actions → Move to column → Review instead, then verified the native board: Backlog 58, Ready 0, In progress 0/3, Review 1 (F2), Done 3 (F1, O1, L5). Saved a screenshot showing the Review/Done cards. PR #66's server-side diff matches all 17 intended local files; tracked changes are clean and original untracked documents are preserved. F2 remains unmerged for shared-interface review.
+
+## Entry 9 — Adding a current-code study guide
+
+Date: 2026-10-13 (Africa/Lagos). Branch: `codex/code-study-guide`, based on F2 snapshot 0e85f9a. Work underway.
+
+**Files touched:** `CODE_STUDY_GUIDE.md`, reading/maintenance links, this journal. Reusable skill installed separately under the user's Codex skills directory.
+
+### Context and question
+
+The user wants developers to understand the design all the way down to meaningful lines, including tradeoffs, possible bugs/security concerns and interview preparation. The Build Book already explains construction history. How do we offer a coherent explanation of today's code without rewriting that history or presenting planned agents as completed applications?
+
+### Decision and why
+
+Keep a current-state `CODE_STUDY_GUIDE.md` beside the chronological book. The reusable `code-study-guide` skill uses a concise entrypoint and an adaptable writing reference, and stays discoverable under the default personal Codex skills directory. It directs future substantive changes to refresh relevant guide sections and source anchors. A second chronological log would duplicate the book and make developers assemble current behavior from outdated entries. A prose-only architecture summary would miss the actual validators, dispatch boundaries and failure paths.
+
+### How to build it
+
+1. Read current source, tests, configuration and the latest journal entries. Pin the explained snapshot to 0e85f9a; verify that F2 #66 remains open and main remains a665d3d. Separate what is merged, what is under review and what is still planned.
+2. Define the skill's output, evidence labels, line-link rules, risk triage, interview practice and refresh behavior. Initialize its UI metadata with the bundled skill creator and validate it. Avoid requiring unrelated plugins or granting permission for fixes/publication.
+3. Generate a local AST index of class/function line ranges. Use it to check the actual implementation blocks and produce immutable source links; do not guess line numbers. Explain flow and important expressions rather than copying every source file.
+4. Probe concerns with invented data. A temporary snapshot fixture reproduces a hash/parse race: changing same-width values after the hash read can leave all reported aggregates unchanged, allowing verification to pass with changed final bytes. Record this as a verified correctness defect with conditional security impact, not a claimed remote exploit. Separate it from deliberately limited fake state scoring and a fake agent's missing response-route comparison.
+5. Run the existing suite to establish the inspected baseline (43 passed). Add safe interview/debugging exercises, explain controls and gaps, and update reading/maintenance links. No production source rows, secrets, runtime fixes or new access are needed for this guide.
+
+### Verification underway
+
+The installed skill passes its structural validator. Three isolated probes executed: fake scoring does not inspect expected state changes; a supplied alternate gateway can return a different provider/model without rejection by FakeAgent; concurrent source mutation can pass snapshot verification. The first is a deliberate fake-scorer limitation; the second is a missing integration check, not a live-provider exploit. Guide source links, coverage and reproduction steps are being checked next.
+
+## Entry 10 — Giving Windows and CI one command path
+
+Date: 2026-10-14 (Africa/Lagos). Task: F3 #12. Branch: `codex/f3-command-entrypoints`, based on main b46cf25. Implementation underway.
+
+**Files touched:** root command runner/tests, development dependencies/lock, command documentation, Code Study Guide and current status.
+
+### Context
+
+The user reviewed/merged F2 #66 and authorized proceeding. The original checkout held uncommitted study-guide changes on another branch. Created an attached managed worktree on reviewed main; its independent environment passed 43 tests, strict mypy, Ruff and both import contracts. Closed #11 as completed after this verification. The user explicitly requested including/updating the study-guide changes, so copied the four documentation files into this worktree while preserving the originals.
+
+### Before you read on
+
+How can a command work before project dependencies are installed, run the same checks in PowerShell and CI, and never turn a missing evaluation implementation into success?
+
+### Options considered and why
+
+Separate PowerShell/Bash scripts would duplicate behavior. A Make-only entrypoint would add a Windows prerequisite and repeat the original templates' shell assumptions. Chosen: a standard-library `dev.py` at the root, callable as `python dev.py <command>` before setup. It locates its own root, resolves uv from PATH, and invokes argument lists without a shell. Keep setup's all-workspace/locked/copy flags and reuse them for every tool invocation. Pin mypy 2.4.0 in the shared dev lock rather than installing an ephemeral type checker differently in each environment.
+
+### How to build it
+
+1. Define one command map for setup, lock, lint, format-check, types, imports, test and build. `check` calls the same named checks in sequence and returns the first child's failure code; it is the future F5 job's entrypoint.
+2. Keep replay/record/compare registered as explicit planned commands that print their prerequisite issue and return nonzero before locating/installing tools. `example` runs only F2's invented offline case and is separate from model-quality evaluation.
+3. Capture actual Git HEAD and tracked/untracked dirty state for the example's revision. Pass the root lockfile path as a distinct argument. Allow an explicit revision for source exports without Git; never invent a clean revision when discovery fails.
+4. Test CLI failure propagation with invented child processes, verify a failing check stops later ones, and run a copied fresh checkout containing spaces through setup/check/example. Add type checking for the runner; preserve the original narrower harness scope for application types until later packages gain implementations.
+5. Update README/CI command guidance and the current-code guide, checking source anchors and preserving unresolved findings. No provider, database, CI workflow or bug fix is introduced by this issue. Actual workflow jobs remain F5.
+
+### Verification in progress
+
+The clean merged baseline passed. Implementation checks and a fresh-checkout walkthrough will be recorded after execution.
+
+### Implemented checks
+
+The runner's first aggregate execution passed lock/lint/format-check, strict mypy (five source files), both import contracts, and 55 tests (43 existing plus 12 command-boundary cases). Tests verify planned evaluation commands fail without uv/dependencies, a types failure returns 13 and stops later checks, missing executables fail clearly, a real child preserves a space-containing argument/cwd and exits 7, and clean/dirty revision discovery remains explicit. The wrapper example returned completed/score 1 with b46cf25+dirty; all six source archives/wheels built.
+
+Included the user-authorized guide/maintenance links, updated its merge-state boundary and added dev.py's code/failure walkthrough, test mapping, tradeoffs and interview prompts. Existing source-capture/response-route/fake-scorer findings remain visible and are not claimed fixed. Preparing an implementation commit, then checking a fresh clone with spaces and immutable guide anchors before opening the PR.
+
+Continued 2026-10-14: wrote the 5,700-word guide and checked all 41 immutable line-range links against `git show 0e85f9a:<path>`, including source equality with the working implementation. Local document links/reference definitions resolve and every core top-level class/function appears in the walkthrough. The existing suite passed 43 tests on Windows/Python 3.13.4. Added README discovery and CONTRIBUTING maintenance guidance. The personal skill's validator passes; applying it to this repository produced the intended architectural/code-level guide and honest evidence distinctions. No runtime code was changed. The guide includes the verified hash/parse race, but fixing/tracking it is a separate action.
