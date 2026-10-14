@@ -27,4 +27,6 @@ def test_distribution_dependencies_follow_architecture() -> None:
     for member in MEMBERS:
         config = tomllib.loads((ROOT / member / "pyproject.toml").read_text(encoding="utf-8"))
         dependencies = config["project"]["dependencies"]
-        assert dependencies == ([] if member == "harness" else ["production-agent-harness"])
+        assert dependencies == (
+            ["pydantic==2.14.1"] if member == "harness" else ["production-agent-harness"]
+        )

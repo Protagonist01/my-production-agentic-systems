@@ -1,6 +1,6 @@
 # Architecture and implementation plan
 
-Accepted delivery direction, updated 2026-10-11. This document replaces the older design overview; historical design notes are preserved locally under `docs/archive`. Detailed contracts, SDK pins, thresholds and commands become final through their implementation issues.
+Accepted delivery direction, updated 2026-10-13. This document replaces the older design overview; historical design notes are preserved locally under `docs/archive`. [F2 shared contracts](shared-contracts.md) are implemented for review. Provider/framework SDK pins, thresholds and remaining commands become final through their implementation issues.
 
 ## Shared platform and vertical boundary
 
@@ -40,7 +40,7 @@ Each domain produces a source manifest, importer, validated views, independently
 | Prior auth | Selected policies and illustrative transcription examples; independently labeled note-policy pairs | [Prior auth](prior-auth.md) |
 | Supply chain | DataCo shipping + captured NWS alerts; no assumed causal historical join; BTS only optional passenger-airline proxy | [Supply chain](supply-chain-disruption.md) |
 
-Source/use permissions, selected content and downloaded schema remain acquisition-task checks. No datasets have been downloaded or validated by this setup.
+O1's authentic version-7 Olist snapshot is acquired outside Git and verified against its aggregate manifest. Currency/timezone, joins and as-of views remain O2; policy/cases remain O3. Other sources await their acquisition tasks. No source is yet a reviewed domain evaluation set.
 
 ## Measurement and release
 
@@ -50,8 +50,8 @@ Calibrate numeric quality floors from reviewed baselines, declare before candida
 
 ## Execution
 
-[Project management](project-management.md) defines the 8 epics and 53 tasks, acceptance gates, ownership and worktree operation. First Ready: F1 and O1. After a verified contract baseline, gateway/evaluation/Olist streams integrate small increments. Complete O8 first; prepare later data in parallel and integrate at most two verticals concurrently.
+[Project management](project-management.md) defines the 8 epics and 53 tasks, acceptance gates, ownership and worktree operation. F1/O1 are Done after merge and verification; F2's contracts/offline case are prepared for review. After its merged baseline, gateway/evaluation/Olist streams integrate small increments according to task prerequisites. Complete O8 first; prepare later data in parallel and integrate at most two verticals concurrently.
 
-40 hours/week includes implementation, integration, labeling and review. Task sizes are provisional; fixed dates follow observed throughput. No runtime commands, provider smoke tests or release scores are claimed to pass yet.
+40 hours/week includes implementation, integration, labeling and review. Task sizes are provisional; fixed dates follow observed throughput. Working foundation/offline-example commands appear in the root README. No provider smoke test or model release score is claimed to pass yet.
 
 [Planning index](00-planning-index.md) · [Execution rationale](01-execution-and-evidence-proposal.md) · [Data/architecture rationale](02-data-and-architecture-comparison.md)

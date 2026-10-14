@@ -1,1 +1,1 @@
-"""agent_harness: package scaffold; runtime behavior is not implemented yet."""
+"""Shared runtime/model contracts and evaluator-only interfaces for industry agents."""
