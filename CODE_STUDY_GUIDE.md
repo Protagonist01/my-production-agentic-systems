@@ -1,10 +1,10 @@
 # Code Study Guide — Production Agentic Systems
 
-Updated: 2026-10-14 (Africa/Lagos). Explained source: **71e4abd9ae023abec16ebefdc3b45507d9c75636**, branch `codex/f3-command-entrypoints`, based on merged main b46cf25 (F2 PR #66). Implementation code is committed; subsequent guide/evidence edits do not change that source snapshot. Existing runtime links pin unchanged F2 code; new command/config links pin this F3 commit.
+Updated: 2026-10-14 (Africa/Lagos). Explained source: **65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8**, branch `codex/f4-postgres-isolation`, based on merged main ce8334c (F3 PR #68). Implementation code is committed; subsequent guide/evidence edits do not change that source snapshot. Unchanged F2/F3 runtime/test links retain their verified revisions; changed command/config and new Postgres links pin this F4 implementation commit. Subsequent documentation edits are separate from that source snapshot.
 
-F1/O1/F2 are merged and verified; #11 is closed after a fresh merged-baseline check. F3's portable commands and this updated guide are prepared for review. Provider-backed applications and actual CI jobs remain planned. The user authorized including the previously uncommitted study guide in this implementation PR.
+F1/O1/F2/F3 are merged and verified; #12 is closed after post-merge setup/check/example/build. F4's local services and isolated trial databases are prepared for review. Provider-backed applications and actual CI jobs remain planned. The user authorized including the previously uncommitted study guide in this implementation PR.
 
-This guide covers all meaningful implementation blocks in the five nontrivial application/tool Python files (including dev.py), their five test files, and package/configuration boundaries. Package marker files are grouped. Historical untracked plans, generated distributions, dependency internals, raw Olist rows and future applications are outside this inspection. This is a source-grounded engineering study, not an exhaustive security audit.
+This guide covers all meaningful implementation blocks in the seven nontrivial application/tool Python files (including dev.py and two Postgres modules), their seven test files, and package/configuration boundaries. Package marker files are grouped. Historical untracked plans, generated distributions, dependency internals, raw Olist rows and future applications are outside this inspection. This is a source-grounded engineering study, not an exhaustive security audit.
 
 ## Reading route
 
@@ -14,11 +14,11 @@ This guide covers all meaningful implementation blocks in the five nontrivial ap
 4. Study the design tradeoffs, test evidence and reproduced concerns.
 5. Practice the interview questions and offline exercises.
 
-[BUILD_BOOK.md](BUILD_BOOK.md) explains construction history and documented decisions, particularly Entries 6–10. [Shared contracts](docs/shared-contracts.md) is the API reference. [Delivery plan](docs/project-management.md) defines later work. This guide explains how the current pieces fit together.
+[BUILD_BOOK.md](BUILD_BOOK.md) explains construction history and documented decisions, particularly Entries 6–11. [Postgres code chapter](docs/code-study-postgres.md) explains every new persistence/service block and its boundaries. [Shared contracts](docs/shared-contracts.md) is the API reference. [Delivery plan](docs/project-management.md) defines later work. This guide explains how the current pieces fit together.
 
 ## 1. What exists and what the architecture means
 
-The destination is a shared agent/evaluation platform serving Olist support, CFPB triage, revenue integrity, prior authorization and supply-chain disruption. The current executable work is much smaller: installable packages, import checks, original Olist snapshot profiling/verification, and a deterministic fake agent/evaluation flow. No operational refund system, live model adapter, database, web service, deployment or production traffic exists at this snapshot.
+The destination is a shared agent/evaluation platform serving Olist support, CFPB triage, revenue integrity, prior authorization and supply-chain disruption. The current executable work is much smaller: installable packages, import checks, original Olist snapshot profiling/verification, a deterministic fake agent/evaluation flow, and checkout/trial-isolated local Postgres persistence. No operational refund system, live model adapter, workflow/review adapter, web service, deployment or production traffic exists at this snapshot.
 
 ```mermaid
 flowchart LR
@@ -40,9 +40,9 @@ flowchart LR
 
 The two paths are independent. Olist records do not feed the fake text example. Expected answers and hidden state are available to the runner/scorer, but the runner projects only public input into the agent call. A dictionary typed as an evaluation case would be too easy to forward accidentally; a separate input type makes that mistake fail validation.
 
-Dependency direction is `vertical → agent_harness → Pydantic`. The harness must never import a vertical; verticals must never import each other. [Import contracts][import-contracts] enforce this for static imports. Python protocols describe replaceable agent/gateway/scorer interfaces without choosing a workflow framework. Planned LangGraph/Pydantic AI integrations are not installed.
+Dependency direction is `vertical → agent_harness → Pydantic / Psycopg`. The harness must never import a vertical; verticals must never import each other. [Import contracts][import-contracts] enforce this for static imports. Python protocols describe replaceable agent/gateway/scorer interfaces without choosing a workflow framework. Planned LangGraph/Pydantic AI integrations are not installed.
 
-All example runtime objects live in one Python process. FakeGateway retains a list of requests in memory; reports print to stdout. There is no persistent review queue or action ledger. Olist CSVs live in an external local cache, while only aggregate provenance enters Git. Worktrees isolate checkouts, not processes, ports or databases; service/trial isolation is still F4 work.
+All example runtime objects live in one Python process. FakeGateway retains a list of requests in memory; reports print to stdout. F4 creates generic review/ledger persistence slots; no runtime workflow queue or domain action tool uses them yet. Olist CSVs live in an external local cache, while only aggregate provenance enters Git. Worktrees alone isolate checkouts. F4 adds explicit Compose project/port/volume isolation and restricted trial databases; see [the current code walkthrough](docs/code-study-postgres.md).
 
 Useful vocabulary: a **case** is one evaluation input plus evaluator-only expectations; a **trial** is one attempt at a case; a **run ID** identifies execution; a **business-event ID** identifies the underlying operation across retries/new runs; a **fingerprint** identifies request content; a **reference** names evidence but does not prove that evidence exists; **strict replay** would match recorded dependencies without network fallback; **fresh candidate** would obtain new model output. Only `offline_fake` currently executes in the supplied gateway.
 
@@ -126,11 +126,11 @@ File: [dev.py][dev-main], tested by [test_dev_commands.py][dev-tests]. The boots
 
 | Symbol / block | Execution and reason | Evidence / limit |
 |---|---|---|
-| [ROOT, CHECKS, PLANNED, L10–16][dev-constants] | Resolve the runner's directory, define check order once, and name unimplemented evaluation prerequisites. | Changing caller directory does not change the project. Missing implementation is an exit-2 error before tool discovery. |
-| [uv_command, L19–33][dev-map] | Construct argument arrays for locked setup/tools and package builds. `check` reuses the same map as individual commands. | All-members installation matters for a virtual root; no shell quoting or duplicate CI map. |
-| [execute, L36–42][dev-execute] | Run a child with `cwd=ROOT` and no shell, return its exact exit status, convert process-start failure to a visible nonzero result. | A real child test uses a directory/argument with spaces and exits 7. This is local tooling, not a sandbox for hostile programs. |
-| [source_revision, L45–66][dev-revision] | Read HEAD and tracked/untracked status; any dirty source adds `+dirty`. Failed/missing Git discovery requires an explicit identifier. | Dirty is a provenance flag, not a saved content snapshot. Ignored source modifications and concurrent mutation remain outside this simple check. |
-| [main, L69–123][dev-main] | Parse command/options → reject planned/wrong commands → locate uv → run example with revision/lockfile or run check steps sequentially → return first failure. | The type-check failure test returns 13 and proves imports/tests are skipped afterward. Setup may download packages; the fake example has no provider call. |
+| [ROOT, CHECKS, PLANNED, SERVICE_COMMANDS, L10–25][dev-constants] | Resolve the runner's directory, define check order once, and name unimplemented evaluation prerequisites. | Changing caller directory does not change the project. Missing implementation is an exit-2 error before tool discovery. |
+| [uv_command, L28–52][dev-map] | Construct argument arrays for locked setup/tools and package builds. `check` reuses the same map as individual commands. | All-members installation matters for a virtual root; no shell quoting or duplicate CI map. |
+| [execute, L55–61][dev-execute] | Run a child with `cwd=ROOT` and no shell, return its exact exit status, convert process-start failure to a visible nonzero result. | A real child test uses a directory/argument with spaces and exits 7. This is local tooling, not a sandbox for hostile programs. |
+| [source_revision, L64–85][dev-revision] | Read HEAD and tracked/untracked status; any dirty source adds `+dirty`. Failed/missing Git discovery requires an explicit identifier. | Dirty is a provenance flag, not a saved content snapshot. Ignored source modifications and concurrent mutation remain outside this simple check. |
+| [main, L88–177][dev-main] | Parse command/options → reject planned/wrong commands → locate uv → dispatch locked service commands with absolute root or run the example/check steps → return first failure. Trial-only and destroy-only options are validated before dispatch; db-check explicitly overrides offline database-test exclusion. | The type-check failure test returns 13 and proves imports/tests are skipped afterward. Setup may download packages; the fake example has no provider call. |
 
 Mypy uses root configuration with strict checking for dev.py and the harness. Dataset scripts and untyped test helpers are covered by lint/behavioral tests, not declared fully type-checked. Formatting is check-only; `check` does not modify source. Actual CI orchestration and additional platform checks remain F5. [Development commands](docs/development-commands.md) specifies the future CI call path.
 
@@ -153,7 +153,7 @@ The known publication includes nine files and 99,441 orders, with 1,551,698 tota
 | File / group | Role and non-obvious detail |
 |---|---|
 | [Root pyproject][root-config] | Virtual root (`package=false`), workspace members `harness` and `projects/*`, workspace dependency source, pytest paths, Ruff rules, locked dev requirements (including mypy 2.4.0), and strict type targets for dev.py/harness. Use `--all-packages`; root-only sync does not install every member. Allowed Python range is 3.12–3.13; actual verification is Windows/3.13.4. |
-| [Harness metadata][harness-config] and five vertical `pyproject.toml` files | Six separately installable distributions share one uv lock. The harness pins Pydantic 2.14.1; each vertical depends only on the harness. Each build backend is `uv_build==0.11.1`. Distribution names differ from import names, for example `production-agent-olist-support` → `olist_support`. |
+| [Harness metadata][harness-config] and five vertical `pyproject.toml` files | Six separately installable distributions share one uv lock. The harness pins Pydantic 2.14.1 and Psycopg binary 3.3.6; each vertical depends only on the harness. Each build backend is `uv_build==0.11.1`. Distribution names differ from import names, for example `production-agent-olist-support` → `olist_support`. |
 | [Import Linter configuration][import-contracts] | Forbid harness → domain imports and enforce pairwise domain independence. Static relative/indirect violations are tested. Reflective imports are not policed; this is architectural enforcement, not a malware sandbox. |
 | [Ignore rules][ignore-rules] / [.env.example](.env.example) | Exclude credentials, raw data and generated runtime artifacts; allow aggregate `docs/data` documentation. Examples contain empty reserved names. Git ignore rules do not stop force-adds, previously tracked secrets or arbitrary external uploads. |
 | `uv.lock`, `.python-version`, package `__init__.py` files | Lock dependency resolution, identify the exercised interpreter, and establish importable package markers. The five domain markers contain no business implementation. Lockfiles support reproducibility, not automatic dependency-vulnerability clearance. |
@@ -214,12 +214,12 @@ Use the synthetic snapshot helper in [test_olist_snapshot.py][snapshot-tests]; d
 
 ## 10. Tests, evidence and their limits
 
-Original guide evidence: 43 tests and three separate invented-data probes on the unchanged F2 runtime. Those probes were not permanent tests or fixes; their findings remain unresolved. Current F3 verification on Windows/Python 3.13.4/uv 0.11.1: `python dev.py check` passed all **55 tests**, strict types (five source files), Ruff lint/format, both import contracts and lock check. The wrapper example/build also passed. A fresh local clone in a directory containing spaces passed setup/check/example/build from a different caller directory, including a clean revision equal to 71e4abd; no Linux or actual CI pass is implied.
+Original guide evidence: 43 tests and three separate invented-data probes on the unchanged F2 runtime. Those probes were not permanent tests or fixes; their findings remain unresolved. Prior F3 verification on Windows/Python 3.13.4/uv 0.11.1: `python dev.py check` passed all **55 tests**, strict types (five source files), Ruff lint/format, both import contracts and lock check. The wrapper example/build also passed. A fresh local clone in a directory containing spaces passed setup/check/example/build from a different caller directory, including a clean revision equal to 71e4abd; no Linux or actual CI pass is implied.
 
 | Test file and source | Behavior demonstrated | Limit to explain |
 |---|---|---|
 | [test_dev_commands.py][dev-tests] | Three planned eval modes fail without uv/dependencies; missing tools fail; aggregate types failure returns 13 and skips later checks; a real child/path/argument with spaces returns 7; clean/dirty revision discovery and invalid options are checked (12 tests). | Fresh installation/example/build are additionally exercised manually; Linux CI remains F5. |
-| [test_workspace.py, L20–32][workspace-tests] | Six parametrized imports resolve to the expected source; declared dependencies match intended direction (7 tests). | Does not prove every supported OS/interpreter or supply-chain security. |
+| [test_workspace.py][workspace-tests] | Six parametrized imports resolve to the expected source; declared dependencies match intended direction (7 tests). | Does not prove every supported OS/interpreter or supply-chain security. |
 | [test_import_boundaries.py, L13–74][boundary-tests] | Isolated source copies, tmp PYTHONPATH and the actual CLI wrapper prove one allowed import and four rejected direct/indirect/cross-domain cases (5 tests). | Reflective imports are outside the check. The subprocess wrapper matters: an inert command can falsely pass negative cases. |
 | [test_olist_snapshot.py, L15–68][snapshot-tests] | Invented CSVs test repeatable profiling, changed bytes/version, missing files/schema, malformed rows and checkout-location rejection (4 tests). | No concurrent mutation test yet; no domain joins, policy labels or authenticity proof from test fixtures. |
 | [test_shared_contracts.py, L37–140][shared-tests-a] | Socket-blocked run; changed private labels are absent from captured agent/gateway inputs; extra root/observation fields fail; review/evidence/decimal/unknown usage and failures survive round trips. | Demonstrates the runner's structured boundary, not adversarial content/process isolation or durable review. |
@@ -236,6 +236,8 @@ python dev.py build
 ```
 
 Use a clean committed checkout for the final revision claim. A dirty checkout is marked automatically by the wrapper; an explicit source-export identifier remains caller-supplied. The example's zero cost and score 1 do not establish model quality, real-world safety, production latency or recovered business value. A passing suite can coexist with the reproduced race and deliberately limited scorer.
+
+Current F4 evidence on Windows/Python 3.13.4/uv 0.11.1: offline check passed **64 tests**, strict mypy (seven source files), Ruff, both import contracts and lock check. The separate required database suite passed **11 tests**, without skips, against two temporary Linux Postgres 17.11 services. Actual port/system-ID/volume separation, denied cross-trial access, restart persistence, exact reset and rollback/refusal paths are described in [the Postgres chapter](docs/code-study-postgres.md). CLI db-up/status and invented trial-create/reset/drop passed. This is local database foundation evidence, not model quality, production tenancy, CI or workflow-adapter evidence.
 
 ## 11. Change the code safely
 
@@ -258,6 +260,7 @@ Adjust personal contribution wording to what you actually implemented/reviewed; 
 | How do Windows and CI checks stay identical? | Trace dev.py through one argument map, locked dependencies, fixed root and fail-fast statuses. Planned eval commands fail before tool setup. | What happens if types fails? Explain skipped later checks; do not claim a CI job ran when F5 is still planned. |
 | Why one monorepo with six packages? | Explain shared lock/contracts, independent installation, static forbidden imports and root ownership; cite Entry 6 and [configuration][root-config]. | How would independent releases change it? Do not claim separate packages isolate runtime resources. |
 | How are labels kept away from the agent? | Trace `EvalCase.agent_input` and the restricted protocol; describe captured-input/changed-label tests and free-text/same-process limits. | What if a label appears in an observation's text? Do not call it a security sandbox. |
+| How do trial databases stay isolated? | Trace the checkout project/volume/port and database-specific restricted login; PUBLIC CONNECT is revoked and cross-trial connections were denied. | Why is admin/host access trusted? Contrast tested disposable reset with production recovery. |
 | What does Pydantic actually prove? | Shapes/constraints/cross-field consistency at constructors and explicit JSON boundaries, not tenant authorization, source truth or business success. | Explain shallow frozen dictionaries and bypass APIs. Avoid “typed means secure.” |
 | Explain the review/failure expressions. | Use the boolean agreement truth table in `AgentResult`, then the exclusive-output condition in `ModelResponse`. | How would approved reviews be retained on completion? Do not bypass validators to make a new workflow fit. |
 | Why hash the entire model request? | Describe canonical JSON, preserved text/list ordering and provider/model/schema/parameter inputs. | Same request twice can produce different responses; explain trial/occurrence storage. Avoid claiming replay is implemented. |
@@ -265,7 +268,7 @@ Adjust personal contribution wording to what you actually implemented/reviewed; 
 | What happens when a scorer fails? | Exceptions propagate; typed errors cannot carry values; empty score lists fail. Explain future accounting of incomplete batches. | What must a release gate do with partial results? Do not drop failed cases from denominators. |
 | How do you establish real-source provenance? | Explain pinned publisher handle/library, external raw files, ordered schemas/checksums/aggregates, baseline review and unresolved units. | Distinguish table records from unique orders; checksums from signatures. Avoid claiming source support decisions exist. |
 | Describe a bug the tests missed. | Explain hash/parse separate reads, controlled same-width mutation, unchanged aggregates, passing verification and the required immutable-byte strategy. | Is it remotely exploitable? State the local writable-source precondition and unassessed deployment context. |
-| What would break at scale? | Repeated JSON copies, in-memory request history, synchronous one-case execution and missing reservations/reset/persistence become design pressures. | Propose measurements/queueing/isolation; do not invent a bottleneck benchmark or deployed traffic. |
+| What would break at scale? | Repeated JSON copies, in-memory request history, synchronous one-case execution and missing reservations and runtime persistence adapters become design pressures. F4 supplies tested reset/persistence infrastructure, with per-trial setup cost still unbenchmarked. | Propose measurements/queueing/isolation; do not invent a bottleneck benchmark or deployed traffic. |
 
 ### Practice exercises
 
@@ -314,20 +317,20 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [profile-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L131-L141
 [verify-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L144-L152
 [snapshot-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L155-L209
-[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/pyproject.toml#L1-L40
-[harness-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/pyproject.toml#L1-L13
+[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/pyproject.toml#L1-L40
+[harness-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/harness/pyproject.toml#L1-L13
 [import-contracts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.importlinter#L1-L30
-[ignore-rules]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.gitignore#L1-L46
-[workspace-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_workspace.py#L20-L32
+[ignore-rules]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/.gitignore#L1-L47
+[workspace-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/tests/test_workspace.py#L20-L34
 [boundary-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_import_boundaries.py#L13-L74
 [snapshot-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_olist_snapshot.py#L15-L68
 [shared-tests-a]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L37-L140
 [shared-tests-b]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L143-L234
 [shared-tests-c]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L237-L331
 
-[dev-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L10-L16
-[dev-map]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L19-L33
-[dev-execute]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L36-L42
-[dev-revision]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L45-L66
-[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L69-L123
+[dev-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/dev.py#L10-L25
+[dev-map]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/dev.py#L28-L52
+[dev-execute]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/dev.py#L55-L61
+[dev-revision]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/dev.py#L64-L85
+[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/dev.py#L88-L177
 [dev-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/tests/test_dev_commands.py#L19-L110
