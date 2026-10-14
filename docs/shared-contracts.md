@@ -34,14 +34,13 @@ Closed public schemas reject evaluator fields both at the root and inside observ
 
 ## Executable offline example
 
-After locked workspace sync, from PowerShell at the root:
+After setup, use the portable wrapper from PowerShell or CI:
 
 ```powershell
-$revision = git rev-parse HEAD
-uv run --locked python -m agent_harness.offline_example --code-revision $revision --lockfile uv.lock
+python dev.py example
 ```
 
-Use a clean committed checkout for a reproducible revision. During development, identify a dirty working tree explicitly in `--code-revision`. The program hashes the supplied lockfile, runs one invented case through `FakeAgent` → `FakeGateway` → `FakeScorer` → `CaseReport`, validates the JSON round trip, prints the report and exits nonzero if its text check fails. It uses no credentials, provider, database or telemetry.
+The wrapper discovers actual Git HEAD and marks a dirty working tree with `+dirty`. Source exports need an explicit `--code-revision`; see [development commands](development-commands.md). The underlying module still accepts required revision/lockfile arguments directly. It hashes the lockfile, runs one invented case through `FakeAgent` → `FakeGateway` → `FakeScorer` → `CaseReport`, validates the JSON round trip, prints the report and exits nonzero if its text check fails. It uses no credentials, provider, database or telemetry.
 
 The source is synthetic, mode is `offline_fake`, and metric is `fake_case_correct`. Zero tokens/cost describe an in-process text transformation, not model pricing. The gateway rejects fresh/replay/monitoring modes, unsupported routes, tools and output schemas. Fault definitions serialize, but scheduled faults fail explicitly until H7 implements them. Budgets/deadlines are declarations; enforcement remains H2. Durable reviews, state scorers, recordings, fresh quality and release gates remain later tasks.
 
