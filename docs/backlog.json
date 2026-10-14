@@ -209,7 +209,7 @@
         "Migration up/down or restore instructions are verified against a disposable database."
       ],
       "priority": "P0",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 13,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/13",
@@ -219,7 +219,9 @@
       ],
       "milestone_number": 1,
       "branch": "codex/f4-postgres-isolation",
-      "command_document": "docs/local-postgres.md"
+      "command_document": "docs/local-postgres.md",
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/69",
+      "implementation_commit": "65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8"
     },
     {
       "id": "F5",
