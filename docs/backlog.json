@@ -190,7 +190,8 @@
       ],
       "milestone_number": 1,
       "branch": "codex/f3-command-entrypoints",
-      "command_document": "docs/development-commands.md"
+      "command_document": "docs/development-commands.md",
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/68"
     },
     {
       "id": "F4",
