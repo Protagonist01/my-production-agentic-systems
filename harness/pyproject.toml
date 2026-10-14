@@ -3,7 +3,7 @@ name = "production-agent-harness"
 version = "0.1.0"
 description = "Validated shared runtime, model and evaluation contracts for industry agents."
 requires-python = ">=3.12,<3.14"
-dependencies = ["pydantic==2.14.1"]
+dependencies = ["pydantic==2.14.1", "psycopg[binary]==3.3.6"]
 
 [build-system]
 requires = ["uv_build==0.11.1"]

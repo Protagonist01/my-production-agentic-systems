@@ -4,7 +4,7 @@
 
 ## Fresh checkout
 
-Clone the repository into a new directory, check out the reviewed commit or the F3 PR branch until it merges, then run:
+Clone the repository into a new directory, check out the reviewed main commit, then run:
 
 ```powershell
 python dev.py setup
@@ -15,7 +15,7 @@ python dev.py build
 
 Setup executes `uv sync --locked --all-packages --link-mode copy`. uv resolves the interpreter from the project, validates the existing lockfile and installs all workspace members plus development dependencies. It does not regenerate the lockfile. The shared root is virtual; omitting all-packages would leave member imports uninstalled. Package installation may contact the configured package index. The example itself contacts no provider, database or telemetry.
 
-Every tool runs with the same locked/all-packages/copy flags, rooted at `Path(__file__).resolve().parent`; caller working directory does not select a different project. Each worktree has its own environment and project check caches. F4 will isolate operational services and trial state.
+Every tool runs with the same locked/all-packages/copy flags, rooted at `Path(__file__).resolve().parent`; caller working directory does not select a different project. Each worktree has its own environment and project check caches. F4 adds the [local Postgres command path](local-postgres.md) for service/trial state; its required `db-check` is separate from offline `check`.
 
 ## Check map
 
@@ -46,3 +46,7 @@ The stdout report is JSON, marked `synthetic`/`offline_fake`; lockfile SHA-256 a
 After F5 installs Python/uv, its job should call the same four commands in the fresh-checkout block above. There is no independent CI check list or a shell command chain that can ignore an earlier failure. F5 must still choose/install supported tools, test OS/interpreter combinations, control offline/provider boundaries and report job results. No CI pass is claimed by this document.
 
 Design references: [uv command environments](https://docs.astral.sh/uv/concepts/projects/run/) and [locked syncing](https://docs.astral.sh/uv/concepts/projects/sync/). The exact tested commands are in dev.py, rather than inferred from current docs.
+
+## Local services — F4
+
+`db-up/status/down/destroy` and `trial-create/reset/drop` dispatch through the same locked uv prefix to `agent_harness.local_services`, with this runner’s absolute root. Trial commands require `--trial`; destroy requires `--confirm-workspace`. Wrong options fail before dispatch. `db-check` runs `tests/integration` with the offline pytest exclusion explicitly overridden; missing Docker is a failure, not a skip. Ordinary `test/check` exclude database execution while Ruff still inspects its code. See [local Postgres](local-postgres.md) for setup, ownership, reset and limits.
