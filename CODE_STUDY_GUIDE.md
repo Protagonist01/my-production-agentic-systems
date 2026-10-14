@@ -2,7 +2,7 @@
 
 Prepared: 2026-10-14 (Africa/Lagos). Explained source: commit **0e85f9a662651a2e6cd3694b5869a7c533c7646f**, branch `codex/f2-shared-contracts`. The guide is written on `codex/code-study-guide`; it changes documentation, not this source snapshot.
 
-At inspection, main was a665d3d: F1's package foundation and O1's source acquisition were merged. F2's contracts/example were open in [PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66). The walkthrough includes that unmerged implementation. Recheck merge state before describing it as shipped.
+F1's package foundation, O1's source acquisition and F2's contracts/example are merged. [PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66) merged into main b46cf25; its implementation/configuration matches the pinned source explained here. The documentation itself is under review in [PR #67](https://github.com/Protagonist01/my-production-agentic-systems/pull/67). Merged foundation code still does not imply that the planned provider-backed/domain applications exist.
 
 This guide covers all meaningful implementation blocks in the four nontrivial application/tool Python files, their four test files, and package/configuration boundaries. Package marker files are grouped. Historical untracked plans, generated distributions, dependency internals, raw Olist rows and future applications are outside this inspection. This is a source-grounded engineering study, not an exhaustive security audit.
 
