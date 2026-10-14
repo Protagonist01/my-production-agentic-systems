@@ -10,4 +10,6 @@ Select a Ready implementation issue from the [delivery plan](docs/project-manage
 
 Never commit credentials, raw datasets, sensitive traces or unreviewed recordings. Keep source manifests and independently reviewed evaluation labels reproducible. Append material design/debugging decisions to BUILD_BOOK.md while working.
 
+Maintain [CODE_STUDY_GUIDE.md](CODE_STUDY_GUIDE.md) alongside the Build Book. For substantive implementation/design changes, refresh affected architecture, code walkthroughs and verified line links, tradeoffs, findings, test evidence and interview explanations. Record the inspected revision and keep planned/unmerged behavior distinct. The reusable `$code-study-guide` skill supports this workflow when installed; the guide itself defines the maintenance/evidence requirements for other contributors. Do not silently fix code or publish issues as part of a guide-only update.
+
 F1 provides the direct install/test/boundary/build commands in README. Portable command wrappers remain F3 and automated CI remains F5. From the root, run `uv sync --locked --all-packages --link-mode copy` before the checks. Keep dynamic imports out of package boundaries unless reviewed explicitly; static import contracts cannot police reflective module loading.

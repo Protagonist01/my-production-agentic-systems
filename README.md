@@ -54,6 +54,6 @@ The software/API/UI is real; business write backends are controlled environments
 
 Start repository foundation and Olist source acquisition. Verify minimal shared contracts, then implement gateway, evaluation and Olist in bounded worktrees. Each release needs independent scoring, required-case/fault checks and fresh candidate evidence. Replay checks current software against captured dependencies; fresh evaluation measures candidate quality; monitoring observes served traffic.
 
-[Delivery plan](docs/project-management.md) · [Backlog](docs/backlog.json) · [Architecture and data plans](docs/README.md) · [Build Book](BUILD_BOOK.md)
+[Delivery plan](docs/project-management.md) · [Backlog](docs/backlog.json) · [Architecture and data plans](docs/README.md) · [Build Book](BUILD_BOOK.md) · [Code study guide and interview preparation](CODE_STUDY_GUIDE.md)
 
 [F1 PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63) and [O1 integration PR #65](https://github.com/Protagonist01/my-production-agentic-systems/pull/65) are merged and their tasks closed after verification. O1 acquired and profiled the original version-7 source outside Git: [handling and acquisition](docs/data/olist-source.md), [aggregate manifest](docs/data/olist-v7-manifest.json). [F2 PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66) defines [shared contracts](docs/shared-contracts.md) and the fake end-to-end case, and is open for review. Parallel implementation worktrees await the reviewed, merged F2 baseline.
