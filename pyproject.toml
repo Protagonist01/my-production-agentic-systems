@@ -34,6 +34,10 @@ dev = [
     "pyyaml==6.0.3",
     "pytest>=9.1.1",
     "ruff>=0.17.0",
+    "google-genai==2.30.1",
+    "langgraph==1.2.15",
+    "pydantic-ai-slim[google]==2.56.0",
+    "langfuse==5.0.1",
 ]
 
 [tool.mypy]
