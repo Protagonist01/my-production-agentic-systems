@@ -54,3 +54,7 @@ Design references: [uv command environments](https://docs.astral.sh/uv/concepts/
 ## Locked dependency audit — F5
 
 `python dev.py audit` uses the same locked uv environment to call ci_checks.py. Export all exact locked third-party/dev-group requirements with hashes, omit local workspace packages, and run pip-audit 2.10.1 with --require-hashes/--disable-pip/--strict. It queries public advisory services, returns actual failure status and never suppresses IDs or treats an outage as clear. It is separate from offline check.
+
+## H1 provider and trace probes
+
+On the H1 branch, integration-check uses the pinned SDK/frameworks on mock HTTP transport; its negative/network-boundary cases run in ordinary check. integration-live requires a user-confirmed Free Gemini project and two fresh invented requests. trace-check additionally requires dedicated local Langfuse credentials, Node/npx and successful v4 CLI read-back. These live commands are excluded from hosted offline CI. See [integration commands](integration-smoke.md) and [decision](adr/0001-first-integration.md).
