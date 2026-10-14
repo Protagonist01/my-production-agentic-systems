@@ -28,7 +28,7 @@ SERVICE_COMMANDS = {
 def uv_command(command: str, executable: str) -> list[str]:
     """One argument map for individual checks and the aggregate check command."""
     run = [executable, "run", "--locked", "--all-packages", "--link-mode", "copy"]
-    sources = ["dev.py", "harness", "projects", "tests"]
+    sources = ["dev.py", "ci_checks.py", "harness", "projects", "tests"]
     commands = {
         "setup": [executable, "sync", "--locked", "--all-packages", "--link-mode", "copy"],
         "lock": [executable, "lock", "--check"],
@@ -38,6 +38,7 @@ def uv_command(command: str, executable: str) -> list[str]:
         "imports": [*run, "lint-imports", "--no-cache"],
         "test": [*run, "python", "-m", "pytest", "-q"],
         "build": [executable, "build", "--all-packages"],
+        "audit": [*run, "python", "ci_checks.py", "audit"],
         "db-check": [
             *run,
             "python",
@@ -94,6 +95,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             *CHECKS,
             "check",
             "build",
+            "audit",
             "example",
             *PLANNED,
             *SERVICE_COMMANDS,

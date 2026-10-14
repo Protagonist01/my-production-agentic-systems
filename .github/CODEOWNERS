@@ -1,0 +1,10 @@
+# Shared foundation files route to the repository integrator.
+/dev.py @Protagonist01
+/ci_checks.py @Protagonist01
+/pyproject.toml @Protagonist01
+/uv.lock @Protagonist01
+/.github/ @Protagonist01
+/harness/src/agent_harness/contracts.py @Protagonist01
+/harness/src/agent_harness/evaluation.py @Protagonist01
+/harness/src/agent_harness/migrations/ @Protagonist01
+/BUILD_BOOK.md @Protagonist01

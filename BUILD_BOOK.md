@@ -16,6 +16,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 9 — Adding a current-code study guide](#entry-9--adding-a-current-code-study-guide)
 - [Entry 10 — Giving Windows and CI one command path](#entry-10--giving-windows-and-ci-one-command-path)
 - [Entry 11 — Isolating local Postgres services and trial state](#entry-11--isolating-local-postgres-services-and-trial-state)
+- [Entry 12 — Turning portable checks into hosted CI](#entry-12--turning-portable-checks-into-hosted-ci)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -470,3 +471,35 @@ Built all six archives/wheels and verified the harness wheel contains both SQL r
 ### Review publication
 
 Published [PR #69](https://github.com/Protagonist01/my-production-agentic-systems/pull/69) after pushing code and code/runbook documentation. Attached it to this chat. Updated #13 with all three acceptance criteria checked, 64 offline plus 11 required database results, fixture/image/code versions and limitations; left merged-PR unchecked and issue open. Native Project move to Review was read back after the asynchronous save; screenshot under ignored artifacts shows F4 Review and F3 Done together. Ordinary db-down stopped only this checkout’s test service, retaining its named volume/configuration; temporary integration projects/volumes were removed by their fixture cleanup. All 77 immutable source ranges and document references resolve. F4 is review-ready, not merged/completed.
+
+## Entry 12 — Turning portable checks into hosted CI
+
+Date: 2026-10-14 (Africa/Lagos). Task F5 #14. Branch codex/f5-offline-ci, based on reviewed merged main d3f783c. Work underway.
+
+**Files touched:** GitHub workflows/contribution rules, portable audit/CI helpers and tests, locked tooling, current code guide and delivery docs.
+
+### Context and question
+
+The user reviewed/merged F4 #69. GitHub read-back confirms merge; first fetch failed transiently, retry fetched main d3f783c. Reused the attached clean worktree on a new branch, preserving original checkout files. Merged baseline passed setup/check (64 tests, strict types, Ruff, two import contracts), the fake example with exact clean main identity and six package builds; Postgres post-merge verification is running before issue closure.
+
+How do we prove CI is actually rejecting bad code rather than publishing a green workflow file that never exercises the intended interpreter/checks?
+
+### Options considered and why
+
+A Linux-only job would leave the advertised Windows/Python range unproven. Duplicating shell-specific command recipes would drift from F3. Chosen: four quality jobs using the same dev.py setup/check/example/build on Ubuntu and Windows, Python 3.12 and 3.13; override uv interpreter selection explicitly so .python-version cannot silently select 3.13 for every matrix entry. Keep disposable database checks on Ubuntu with Docker rather than implying Windows hosted runners provide a Linux engine.
+
+Dependency advisories and secret detection require package/registry/advisory downloads but no AI provider credential or model call. Pin external Actions to resolved full commit SHAs and uv/tool versions; run PR code with read-only repository permissions and no persisted checkout credentials. PR metadata uses the event's untrusted text only as data, never shell syntax, and verifies a repository issue reference plus evidence sections. Add a final stable gate so a failed/skipped/cancelled required job cannot masquerade as success.
+
+### How to build it
+
+1. Resolve official Action release tags to actual commits via GitHub; consult official uv interpreter-selection and pip-audit/Gitleaks behavior before implementing. Configure push-main and pull-request triggers, read-only permissions, concurrency cancellation and timeouts.
+2. Run the shared checks in the OS/Python matrix with explicit UV_PYTHON. Run F4 db-check as a required separate job. Keep fake evaluation marked synthetic/offline_fake; replay/fresh evaluation remains explicitly unavailable until H3/H10.
+3. Export exact locked third-party dependencies for pip-audit without workspace/editable projects; fail collection/service errors instead of silently dropping packages. Secret scan repository history with pinned Gitleaks, with PR comments and automatic sensitive-result upload disabled.
+4. Parse PR event/evidence and confirm the referenced repository issue exists; route root contracts, lock, commands, CI and shared migrations through the integrator. Add contribution/template rules and a stable gate for all required job results.
+5. Use a disposable deliberate forbidden import on the PR branch to obtain a real red CI result, then remove it and verify the final exact head passes. Record actual run URLs, rather than calling local lint a hosted CI pass.
+
+### Work underway
+
+Implementation and hosted evidence follow. No passing hosted workflow or dependency/secret audit is claimed yet.
+
+Post-merge F4 db-check passed all 11 tests in 119 seconds with no skips; closed #13 as completed and assigned #14 In progress. Initial F5 local check passed 77 tests (13 CI-boundary cases added), strict mypy on eight source files, Ruff and both import contracts. Dependency audit returned no known vulnerabilities. Changed the export to retain package hashes and require them in pip-audit, avoiding an unhashed advisory input. Official pinned Gitleaks CLI download timed out locally; hosted scan evidence remains pending rather than claiming a local secret scan. No Langfuse experiment/threshold is configured: its official CI docs require a dataset, real task/evaluators and declared gates, which belong to H3/H5/H9/H10 rather than this offline foundation issue.
