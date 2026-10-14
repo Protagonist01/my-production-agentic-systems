@@ -30,11 +30,13 @@ select = ["E", "F", "I", "UP", "B"]
 dev = [
     "import-linter>=2.15",
     "mypy==2.4.0",
+    "pip-audit==2.10.1",
+    "pyyaml==6.0.3",
     "pytest>=9.1.1",
     "ruff>=0.17.0",
 ]
 
 [tool.mypy]
-files = ["dev.py", "harness/src/agent_harness"]
+files = ["dev.py", "ci_checks.py", "harness/src/agent_harness"]
 python_version = "3.12"
 strict = true

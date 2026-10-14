@@ -1,6 +1,6 @@
 # Development commands — F3
 
-`python dev.py <command>` is the shared PowerShell/Linux/CI entrypoint. Python 3.12–3.13 and uv on PATH are prerequisites; the exercised environment is Windows/Python 3.13.4/uv 0.11.1. No Bash, Make, shell activation or runtime service is required. F3 defines these commands; F5 still owns actual GitHub Actions jobs and Linux/Python 3.12 validation.
+`python dev.py <command>` is the shared PowerShell/Linux/CI entrypoint. Python 3.12–3.13 and uv on PATH are prerequisites; the exercised environment is Windows/Python 3.13.4/uv 0.11.1. No Bash, Make, shell activation or runtime service is required. F3 defines these commands; F5 implements [hosted Foundation CI](ci.md) on Ubuntu/Windows with explicit Python 3.12/3.13 selection. Actual run results are recorded there and in PR #70.
 
 ## Fresh checkout
 
@@ -22,9 +22,9 @@ Every tool runs with the same locked/all-packages/copy flags, rooted at `Path(__
 | Runner command | Underlying command, after the uv prefix |
 |---|---|
 | `lock` | `uv lock --check` |
-| `lint` | `python -m ruff check dev.py harness projects tests` |
-| `format-check` | `python -m ruff format --check dev.py harness projects tests` |
-| `types` | `python -m mypy`, using strict root configuration for dev.py and harness |
+| `lint` | `python -m ruff check dev.py ci_checks.py harness projects tests` |
+| `format-check` | `python -m ruff format --check dev.py ci_checks.py harness projects tests` |
+| `types` | `python -m mypy`, using strict root configuration for dev.py, ci_checks.py and harness |
 | `imports` | `lint-imports --no-cache` |
 | `test` | `python -m pytest -q` |
 | `build` | `uv build --all-packages` |
@@ -43,10 +43,14 @@ The stdout report is JSON, marked `synthetic`/`offline_fake`; lockfile SHA-256 a
 
 ## CI contract
 
-After F5 installs Python/uv, its job should call the same four commands in the fresh-checkout block above. There is no independent CI check list or a shell command chain that can ignore an earlier failure. F5 must still choose/install supported tools, test OS/interpreter combinations, control offline/provider boundaries and report job results. No CI pass is claimed by this document.
+F5 installs supported Python/uv and calls the same four commands in the fresh-checkout block above. The workflow selects/asserts the actual matrix interpreter instead of letting .python-version silently select every cell. Required separate db-check, hashed dependency audits, secret scan and PR evidence feed CI gate. The clean hosted implementation passed all ten jobs on Ubuntu/Windows and Python 3.12/3.13; latest-head results and limits are in [Foundation CI](ci.md). Real provider/replay/fresh-quality work remains explicitly unavailable.
 
 Design references: [uv command environments](https://docs.astral.sh/uv/concepts/projects/run/) and [locked syncing](https://docs.astral.sh/uv/concepts/projects/sync/). The exact tested commands are in dev.py, rather than inferred from current docs.
 
 ## Local services — F4
 
 `db-up/status/down/destroy` and `trial-create/reset/drop` dispatch through the same locked uv prefix to `agent_harness.local_services`, with this runner’s absolute root. Trial commands require `--trial`; destroy requires `--confirm-workspace`. Wrong options fail before dispatch. `db-check` runs `tests/integration` with the offline pytest exclusion explicitly overridden; missing Docker is a failure, not a skip. Ordinary `test/check` exclude database execution while Ruff still inspects its code. See [local Postgres](local-postgres.md) for setup, ownership, reset and limits.
+
+## Locked dependency audit — F5
+
+`python dev.py audit` uses the same locked uv environment to call ci_checks.py. Export all exact locked third-party/dev-group requirements with hashes, omit local workspace packages, and run pip-audit 2.10.1 with --require-hashes/--disable-pip/--strict. It queries public advisory services, returns actual failure status and never suppresses IDs or treats an outage as clear. It is separate from offline check.

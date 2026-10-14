@@ -1,6 +1,6 @@
 # Code study: local Postgres and trial isolation
 
-F4 #13, branch `codex/f4-postgres-isolation`, based on merged main ce8334c. This chapter covers both new implementation files, their callers, packaged SQL and offline/disposable-database tests. Inspected source commit: **65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8**. Subsequent docs do not change those implementation bytes; all anchors below were checked against that commit. Read [local Postgres](local-postgres.md) for commands/state ownership and Build Book Entry 11 for construction history.
+F4 #13 is merged through PR #69 on main d3f783c. Its original branch was codex/f4-postgres-isolation based on ce8334c. This chapter covers both new implementation files, their callers, packaged SQL and offline/disposable-database tests. Inspected source commit: **65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8**. Subsequent docs do not change those implementation bytes; all anchors below were checked against that commit. Read [local Postgres](local-postgres.md) for commands/state ownership and Build Book Entry 11 for construction history.
 
 ## Architecture and an invented execution
 
