@@ -209,7 +209,7 @@
         "Migration up/down or restore instructions are verified against a disposable database."
       ],
       "priority": "P0",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 13,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/13",
@@ -221,7 +221,8 @@
       "branch": "codex/f4-postgres-isolation",
       "command_document": "docs/local-postgres.md",
       "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/69",
-      "implementation_commit": "65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8"
+      "implementation_commit": "65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8",
+      "verified_main_commit": "d3f783cd4eff3dd37038c268a2bfa73775a07622"
     },
     {
       "id": "F5",
@@ -239,7 +240,7 @@
         "Contributors can identify the issue, acceptance evidence and shared-contract owner for a PR."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 14,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/14",
@@ -248,7 +249,13 @@
         11,
         12
       ],
-      "milestone_number": 1
+      "milestone_number": 1,
+      "branch": "codex/f5-offline-ci",
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/70",
+      "command_document": "docs/ci.md",
+      "implementation_commit": "b9a3d4c148866bef8ee57d92be568cd5c25d3aac",
+      "negative_ci_run_url": "https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38640533520",
+      "verified_ci_run_url": "https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38641578564"
     },
     {
       "id": "H1",
