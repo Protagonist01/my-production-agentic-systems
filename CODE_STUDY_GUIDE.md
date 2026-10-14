@@ -1,6 +1,6 @@
 # Code Study Guide — Production Agentic Systems
 
-Updated: 2026-10-14 (Africa/Lagos). Merged baseline: **b46cf254cc02f68673f7468eb25e9291c8001dfc** (F2 PR #66). F3 additions are on `codex/f3-command-entrypoints`, initially inspected in a dirty worktree. Existing runtime permalinks pin unchanged F2 code; F3 command/config links are finalized against the implementation commit below.
+Updated: 2026-10-14 (Africa/Lagos). Explained source: **71e4abd9ae023abec16ebefdc3b45507d9c75636**, branch `codex/f3-command-entrypoints`, based on merged main b46cf25 (F2 PR #66). Implementation code is committed; subsequent guide/evidence edits do not change that source snapshot. Existing runtime links pin unchanged F2 code; new command/config links pin this F3 commit.
 
 F1/O1/F2 are merged and verified; #11 is closed after a fresh merged-baseline check. F3's portable commands and this updated guide are prepared for review. Provider-backed applications and actual CI jobs remain planned. The user authorized including the previously uncommitted study guide in this implementation PR.
 
@@ -50,7 +50,7 @@ Useful vocabulary: a **case** is one evaluation input plus evaluator-only expect
 
 Input: `hello, shared contracts`. Expected output: `HELLO, SHARED CONTRACTS`. Both are invented fixture values; this is not an Olist support decision.
 
-1. [dev.py](dev.py) resolves its own checkout root. `example` discovers actual Git HEAD and porcelain status, marks tracked/untracked changes with `+dirty`, then passes revision/lockfile arguments to [CLI `main`][example-main]. The module parses those required arguments, hashes the lockfile, and calls `example_context`/`example_case`. Direct module calls or explicit revision overrides still depend on caller honesty; the wrapper does not hash a dirty tree.
+1. [dev.py][dev-main] resolves its own checkout root. `example` discovers actual Git HEAD and porcelain status, marks tracked/untracked changes with `+dirty`, then passes revision/lockfile arguments to [CLI `main`][example-main]. The module parses those required arguments, hashes the lockfile, and calls `example_context`/`example_case`. Direct module calls or explicit revision overrides still depend on caller honesty; the wrapper does not hash a dirty tree.
 2. [Context construction][example-context] fixes the test clock at 2026-01-01 UTC, uses a 30-second declared deadline, and records run/case/trial/business-event identities, seed and code/candidate/data/policy/environment versions. A zero-cost fake budget is a declaration; it does not reserve or enforce resources.
 3. [Case construction][example-case] puts request text into `AgentInput`, and keeps expected output, autonomy/review decisions, allowed decisions and a private marker in evaluator-only fields. Source kind is `synthetic`.
 4. [`run_case`][run-case] serializes/revalidates context and case, checks case/snapshot/policy agreement, rejects scheduled faults, and passes only `case.agent_input()` to the agent. This makes the public view a fresh closed model, rather than sharing the full case object.
@@ -122,15 +122,15 @@ File: [offline_example.py](harness/src/agent_harness/offline_example.py).
 
 ### F3: portable commands down to the failure paths
 
-File: [dev.py](dev.py), tested by [test_dev_commands.py](tests/test_dev_commands.py). The bootstrap imports only standard-library modules; installing the project is not necessary to parse a command or reject unavailable evaluation features.
+File: [dev.py][dev-main], tested by [test_dev_commands.py][dev-tests]. The bootstrap imports only standard-library modules; installing the project is not necessary to parse a command or reject unavailable evaluation features.
 
 | Symbol / block | Execution and reason | Evidence / limit |
 |---|---|---|
-| `ROOT`, `CHECKS`, `PLANNED` | Resolve the runner's directory, define check order once, and name unimplemented evaluation prerequisites. | Changing caller directory does not change the project. Missing implementation is an exit-2 error before tool discovery. |
-| `uv_command` | Construct argument arrays for locked setup/tools and package builds. `check` reuses the same map as individual commands. | All-members installation matters for a virtual root; no shell quoting or duplicate CI map. |
-| `execute` | Run a child with `cwd=ROOT` and no shell, return its exact exit status, convert process-start failure to a visible nonzero result. | A real child test uses a directory/argument with spaces and exits 7. This is local tooling, not a sandbox for hostile programs. |
-| `source_revision` | Read HEAD and tracked/untracked status; any dirty source adds `+dirty`. Failed/missing Git discovery requires an explicit identifier. | Dirty is a provenance flag, not a saved content snapshot. Ignored source modifications and concurrent mutation remain outside this simple check. |
-| `main` | Parse command/options → reject planned/wrong commands → locate uv → run example with revision/lockfile or run check steps sequentially → return first failure. | The type-check failure test returns 13 and proves imports/tests are skipped afterward. Setup may download packages; the fake example has no provider call. |
+| [ROOT, CHECKS, PLANNED, L10–16][dev-constants] | Resolve the runner's directory, define check order once, and name unimplemented evaluation prerequisites. | Changing caller directory does not change the project. Missing implementation is an exit-2 error before tool discovery. |
+| [uv_command, L19–33][dev-map] | Construct argument arrays for locked setup/tools and package builds. `check` reuses the same map as individual commands. | All-members installation matters for a virtual root; no shell quoting or duplicate CI map. |
+| [execute, L36–42][dev-execute] | Run a child with `cwd=ROOT` and no shell, return its exact exit status, convert process-start failure to a visible nonzero result. | A real child test uses a directory/argument with spaces and exits 7. This is local tooling, not a sandbox for hostile programs. |
+| [source_revision, L45–66][dev-revision] | Read HEAD and tracked/untracked status; any dirty source adds `+dirty`. Failed/missing Git discovery requires an explicit identifier. | Dirty is a provenance flag, not a saved content snapshot. Ignored source modifications and concurrent mutation remain outside this simple check. |
+| [main, L69–123][dev-main] | Parse command/options → reject planned/wrong commands → locate uv → run example with revision/lockfile or run check steps sequentially → return first failure. | The type-check failure test returns 13 and proves imports/tests are skipped afterward. Setup may download packages; the fake example has no provider call. |
 
 Mypy uses root configuration with strict checking for dev.py and the harness. Dataset scripts and untyped test helpers are covered by lint/behavioral tests, not declared fully type-checked. Formatting is check-only; `check` does not modify source. Actual CI orchestration and additional platform checks remain F5. [Development commands](docs/development-commands.md) specifies the future CI call path.
 
@@ -214,11 +214,11 @@ Use the synthetic snapshot helper in [test_olist_snapshot.py][snapshot-tests]; d
 
 ## 10. Tests, evidence and their limits
 
-Original guide evidence: 43 tests and three separate invented-data probes on the unchanged F2 runtime. Those probes were not permanent tests or fixes; their findings remain unresolved. Current F3 verification on Windows/Python 3.13.4/uv 0.11.1: `python dev.py check` passed all **55 tests**, strict types (five source files), Ruff lint/format, both import contracts and lock check. The wrapper example/build also passed. A fresh copied checkout walkthrough is being checked before publication; no Linux or actual CI pass is implied.
+Original guide evidence: 43 tests and three separate invented-data probes on the unchanged F2 runtime. Those probes were not permanent tests or fixes; their findings remain unresolved. Current F3 verification on Windows/Python 3.13.4/uv 0.11.1: `python dev.py check` passed all **55 tests**, strict types (five source files), Ruff lint/format, both import contracts and lock check. The wrapper example/build also passed. A fresh local clone in a directory containing spaces passed setup/check/example/build from a different caller directory, including a clean revision equal to 71e4abd; no Linux or actual CI pass is implied.
 
 | Test file and source | Behavior demonstrated | Limit to explain |
 |---|---|---|
-| [test_dev_commands.py](tests/test_dev_commands.py) | Three planned eval modes fail without uv/dependencies; missing tools fail; aggregate types failure returns 13 and skips later checks; a real child/path/argument with spaces returns 7; clean/dirty revision discovery and invalid options are checked (12 tests). | Fresh installation/example/build are additionally exercised manually; Linux CI remains F5. |
+| [test_dev_commands.py][dev-tests] | Three planned eval modes fail without uv/dependencies; missing tools fail; aggregate types failure returns 13 and skips later checks; a real child/path/argument with spaces returns 7; clean/dirty revision discovery and invalid options are checked (12 tests). | Fresh installation/example/build are additionally exercised manually; Linux CI remains F5. |
 | [test_workspace.py, L20–32][workspace-tests] | Six parametrized imports resolve to the expected source; declared dependencies match intended direction (7 tests). | Does not prove every supported OS/interpreter or supply-chain security. |
 | [test_import_boundaries.py, L13–74][boundary-tests] | Isolated source copies, tmp PYTHONPATH and the actual CLI wrapper prove one allowed import and four rejected direct/indirect/cross-domain cases (5 tests). | Reflective imports are outside the check. The subprocess wrapper matters: an inert command can falsely pass negative cases. |
 | [test_olist_snapshot.py, L15–68][snapshot-tests] | Invented CSVs test repeatable profiling, changed bytes/version, missing files/schema, malformed rows and checkout-location rejection (4 tests). | No concurrent mutation test yet; no domain joins, policy labels or authenticity proof from test fixtures. |
@@ -314,7 +314,7 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [profile-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L131-L141
 [verify-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L144-L152
 [snapshot-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L155-L209
-[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/pyproject.toml#L1-L34
+[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/pyproject.toml#L1-L40
 [harness-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/pyproject.toml#L1-L13
 [import-contracts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.importlinter#L1-L30
 [ignore-rules]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.gitignore#L1-L46
@@ -324,3 +324,10 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [shared-tests-a]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L37-L140
 [shared-tests-b]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L143-L234
 [shared-tests-c]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L237-L331
+
+[dev-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L10-L16
+[dev-map]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L19-L33
+[dev-execute]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L36-L42
+[dev-revision]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L45-L66
+[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/dev.py#L69-L123
+[dev-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/tests/test_dev_commands.py#L19-L110
