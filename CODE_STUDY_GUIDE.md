@@ -40,7 +40,7 @@ flowchart LR
 
 The two paths are independent. Olist records do not feed the fake text example. Expected answers and hidden state are available to the runner/scorer, but the runner projects only public input into the agent call. A dictionary typed as an evaluation case would be too easy to forward accidentally; a separate input type makes that mistake fail validation.
 
-Dependency direction is `vertical → agent_harness → Pydantic / Psycopg`. The harness must never import a vertical; verticals must never import each other. [Import contracts][import-contracts] enforce this for static imports. Python protocols describe replaceable agent/gateway/scorer interfaces without choosing a workflow framework. Planned LangGraph/Pydantic AI integrations are not installed.
+Dependency direction is `vertical → agent_harness → Pydantic / Psycopg`. The harness must never import a vertical; verticals must never import each other. [Import contracts][import-contracts] enforce this for static imports. Python protocols describe replaceable agent/gateway/scorer interfaces without choosing a workflow framework. H1 installs LangGraph and Pydantic AI as pinned development dependencies and tests their extension seams; shared gateway/framework adapters remain planned.
 
 All example runtime objects live in one Python process. FakeGateway retains a list of requests in memory; reports print to stdout. F4 creates generic review/ledger persistence slots; no runtime workflow queue or domain action tool uses them yet. Olist CSVs live in an external local cache, while only aggregate provenance enters Git. Worktrees alone isolate checkouts. F4 adds explicit Compose project/port/volume isolation and restricted trial databases; see [the current code walkthrough](docs/code-study-postgres.md).
 
@@ -286,7 +286,7 @@ Adjust personal contribution wording to what you actually implemented/reviewed; 
 
 For meaningful code changes, refresh affected architecture, execution steps, block links, tradeoffs, findings, tests and interview answers. Record a new inspected revision and use immutable permalinks. Retain unresolved findings until their fixes are verified; move resolved findings into a brief explanation of the fix/evidence. Append historical reasoning to the Build Book rather than rewriting it here.
 
-The reusable personal skill is `$code-study-guide`; its default output is this file and it contains an adaptable outline. Other contributors can follow this guide's maintenance requirements without installing the skill. The pending questions are the source-capture race, real response provenance, durable review contract shape, provider/framework compatibility and independently reviewed domain scoring/data views.
+The reusable personal skill is `$code-study-guide`; its default output is this file and it contains an adaptable outline. Other contributors can follow this guide's maintenance requirements without installing the skill. The pending questions are the source-capture race, real response provenance, durable review contract shape, shared provider/framework adapters and independently reviewed domain scoring/data views. H1 verifies the small compatibility probes described in its integration chapter.
 
 [aliases]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L10-L13
 [contract]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L16-L37
