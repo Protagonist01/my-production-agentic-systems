@@ -14,6 +14,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 7 — Pinning authentic Olist source evidence](#entry-7--pinning-authentic-olist-source-evidence)
 - [Entry 8 — Integrating the first wave and defining shared contracts](#entry-8--integrating-the-first-wave-and-defining-shared-contracts)
 - [Entry 9 — Adding a current-code study guide](#entry-9--adding-a-current-code-study-guide)
+- [Entry 10 — Giving Windows and CI one command path](#entry-10--giving-windows-and-ci-one-command-path)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -363,6 +364,10 @@ Keep a current-state `CODE_STUDY_GUIDE.md` beside the chronological book. The re
 
 The installed skill passes its structural validator. Three isolated probes executed: fake scoring does not inspect expected state changes; a supplied alternate gateway can return a different provider/model without rejection by FakeAgent; concurrent source mutation can pass snapshot verification. The first is a deliberate fake-scorer limitation; the second is a missing integration check, not a live-provider exploit. Guide source links, coverage and reproduction steps are being checked next.
 
+Continued 2026-10-14: wrote the 5,700-word guide and checked all 41 immutable line-range links against `git show 0e85f9a:<path>`, including source equality with the working implementation. Local document links/reference definitions resolve and every core top-level class/function appears in the walkthrough. The existing suite passed 43 tests on Windows/Python 3.13.4. Added README discovery and CONTRIBUTING maintenance guidance. The personal skill's validator passes; applying it to this repository produced the intended architectural/code-level guide and honest evidence distinctions. No runtime code was changed. The guide includes the verified hash/parse race, but fixing/tracking it is a separate action.
+
+Published the documentation in commit 1d49c90 and [PR #67](https://github.com/Protagonist01/my-production-agentic-systems/pull/67). A fresh server check then confirmed F2 had merged into main b46cf25; compared all implementation/configuration paths with the documentation branch and found no differences. Updated the guide's current merge-status note while retaining immutable links to source snapshot 0e85f9a. PR #67 targets main and changes four documentation files only. The installed personal skill contains its SKILL.md, UI metadata and adaptable outline; it requires no new plugin or runtime dependency. The guide was queued in Codex's file panel for this chat.
+
 ## Entry 10 — Giving Windows and CI one command path
 
 Date: 2026-10-14 (Africa/Lagos). Task: F3 #12. Branch: `codex/f3-command-entrypoints`, based on main b46cf25. Implementation underway.
@@ -407,4 +412,4 @@ Committed code as 71e4abd. Cloned that local branch into a new temporary checkou
 
 Audited 47 immutable source ranges against their exact commits and checked guide reference/local links. Published [PR #68](https://github.com/Protagonist01/my-production-agentic-systems/pull/68) and updated #12's acceptance/evidence to Review, keeping its merged-PR checkbox unchecked. F2 #11 is server-verified closed/completed after merge. Browser and Node helpers both failed before initialization with `failed to write kernel assets`; repository API writes still work, but existing Git credentials lack Project scopes. Asked the user to move #12's native Project field to Review or reconnect browser control. No new credential/access or successful native-board change is claimed.
 
-Continued 2026-10-14: wrote the 5,700-word guide and checked all 41 immutable line-range links against `git show 0e85f9a:<path>`, including source equality with the working implementation. Local document links/reference definitions resolve and every core top-level class/function appears in the walkthrough. The existing suite passed 43 tests on Windows/Python 3.13.4. Added README discovery and CONTRIBUTING maintenance guidance. The personal skill's validator passes; applying it to this repository produced the intended architectural/code-level guide and honest evidence distinctions. No runtime code was changed. The guide includes the verified hash/parse race, but fixing/tracking it is a separate action.
+Imported the completed study-guide history from PR #67 (commit 79fd64f) into the F3 branch. The guide content/maintenance links are retained and refreshed for F3; Entry 9's final verification/publication notes precede this new entry. This preserves both branches' history and allows #68 to carry the guide and commands together without requiring a separate documentation merge.
