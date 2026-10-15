@@ -80,8 +80,12 @@ class ProviderGateway:
 
     def generate(self, context: RunContext, request: ModelRequest) -> ModelResponse:
         # Frozen models contain mutable nested dictionaries: wire round trips detach them.
-        context = RunContext.model_validate_json(context.model_dump_json())
-        request = ModelRequest.model_validate_json(request.model_dump_json())
+        context = RunContext.model_validate_json(
+            RunContext.model_validate(context).canonical_json()
+        )
+        request = ModelRequest.model_validate_json(
+            ModelRequest.model_validate(request).canonical_json()
+        )
         scope = (
             context.run_id,
             context.tenant_id,
@@ -100,11 +104,10 @@ class ProviderGateway:
                 dispatched=False,
             )
         else:
-            transport_request = ModelRequest.model_validate_json(request.model_dump_json())
+            transport_request = ModelRequest.model_validate_json(request.canonical_json())
             try:
-                response = ModelResponse.model_validate_json(
-                    self._transport.generate(transport_request).model_dump_json()
-                )
+                returned = ModelResponse.model_validate(self._transport.generate(transport_request))
+                response = ModelResponse.model_validate_json(returned.canonical_json())
             except ValueError:
                 response = failed_response(
                     request,

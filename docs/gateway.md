@@ -14,7 +14,7 @@ The transport converts only leading system messages to ordered system-instructio
 
 ## One dispatch and detached evidence
 
-The gateway validates/detaches context and request through JSON. It allocates an occurrence under a lock within `(run, tenant, agent, case, trial)`, then gives the transport a separate request copy. It validates the returned model contract and checks provider/requested-model plus any explicitly requested revision. A provider alias and returned model version are separate facts; no immutable-weight claim follows from matching the alias.
+The gateway revalidates the Python model first, then detaches context/request through canonical JSON. This order matters: nested dictionaries remain mutable even on frozen models, and direct JSON serialization can turn a mutated NaN into null. It allocates an occurrence under a lock within `(run, tenant, agent, case, trial)`, then gives the transport a separate request copy. It revalidates the returned Python model before JSON and checks provider/requested-model plus any explicitly requested revision. Invalid caller contracts raise before allocation/dispatch; supported contracts with unsupported transport choices return typed preflight failures. A provider alias and returned model version are separate facts; no immutable-weight claim follows from matching the alias.
 
 Each `ModelExchange` retains context, occurrence, request and response. Its identity includes the scoped occurrence and request fingerprint. Two identical requests in a trial produce separate records and can have different answers; a new trial restarts occurrence at one. Snapshot readers get detached copies. Concurrent completion order can differ from allocation order: use the occurrence, not the list index.
 
@@ -24,7 +24,7 @@ The live gateway refuses `offline_fake` and `strict_replay` without dispatch. Fr
 
 ## Gemini boundary and usage
 
-Install the optional runtime extra `production-agent-harness[gemini]` for the adapter. It pins google-genai 2.30.1 and jsonschema 4.26.0. The root development group selects that extra and pins types-jsonschema; `python dev.py setup` installs it through the shared lock. A base harness wheel does not require Google/framework packages.
+Install the optional runtime extra `production-agent-harness[gemini]` for the adapter. It pins google-genai 2.30.1, jsonschema 4.26.0 and referencing 0.37.0. The root development group selects that extra and pins types-jsonschema 4.26.0.20261006; `python dev.py setup` installs it through the shared lock. A base harness wheel does not require Google/framework packages.
 
 The route is explicitly Gemini Developer API, `https://generativelanguage.googleapis.com`, `v1beta`, `gemini-3.5-flash-lite`. Enterprise/Vertex routing, environment proxies and redirects are disabled. Each call owns/closes its client, uses a 30-second request timeout and one SDK attempt. Automatic continuation is **false**; automatic function execution is disabled. Pinned serializer-v2 defaults are one candidate, LOW thinking and 512 maximum output tokens. Changing these implicit translation defaults requires a serializer version review.
 
@@ -47,3 +47,9 @@ Ordinary checks use actual SDK parsing/serialization over mock HTTP, with socket
 The live probe makes at most two invented requests: a forced `lookup_order` proposal for `invented-order-001`, then its unchanged signed assistant history plus an invented tool result `{"answer":42}`, requiring JSON `case_id="invented-h2", answer=42`. It prints only aggregate identities/usage and the invented answer, not raw signatures/keys. It records the actual code revision (with a dirty marker when applicable) and lock hash. No real source records, business actions, model-quality experiment or Langfuse export are part of this command. H1's separately verified local trace remains compatibility evidence for its original path.
 
 Primary references inspected: [pinned Google SDK](https://googleapis.github.io/python-genai/), [structured output](https://ai.google.dev/gemini-api/docs/structured-output), [thinking/signature distinctions](https://ai.google.dev/gemini-api/docs/thinking), [schema referencing](https://python-jsonschema.readthedocs.io/en/stable/referencing/), [jsonschema 4.26.0](https://pypi.org/project/jsonschema/4.26.0/). See the Build Book Entry 14 and the current study guide for construction and source-level walkthroughs.
+
+## Observed live evidence
+
+On 2026-10-15, clean source 9b3af1c2df397779901cb100613e166948b41ff6 passed both requests in run `h2-smoke-9efe87dd80b24474ab1f4d3a48654b12`. The proposal retained one opaque signature; the follow-up returned `{"case_id":"invented-h2","answer":42}`. Scoped occurrences were 1/2 with distinct request fingerprints. Reported inputs were 95/133 tokens, visible candidate tokens 25/19, thinking unknown and provider totals 120/152. Aggregate output and cost stayed unknown. No raw signature or configured secret appeared in the saved aggregate output.
+
+Later pre-serialization hardening rejects mutated non-finite contracts before dispatch; declaring the directly imported referencing pin does not change resolved package versions. The live observation above belongs to its actual source/lock, not a fabricated later run. Offline final-head and hosted evidence is recorded with the H2 PR. This small tool-result round trip establishes compatibility, not domain quality, model accuracy, real write safety or production recovery.

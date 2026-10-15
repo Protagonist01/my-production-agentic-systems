@@ -397,8 +397,7 @@ def test_mutating_transport_and_malformed_contract_cannot_corrupt_record():
             )
 
     instance = ProviderGateway(MutatingTransport())
-    with pytest.warns(UserWarning, match="Pydantic serializer warnings"):
-        result = instance.generate(context(), request())
+    result = instance.generate(context(), request())
     assert result.failure.code == "invalid_response"
     assert instance.exchanges[0].request.parameters["temperature"] == 0
 
@@ -419,3 +418,13 @@ def test_numeric_usage_is_not_coerced_by_sdk(count):
         lambda _: httpx.Response(200, json=wire(usageMetadata={"promptTokenCount": count}))
     ).generate(context(), request())
     assert result.failure.code == "invalid_response" and result.usage.input_tokens is None
+
+
+@pytest.mark.parametrize("bad", [float("nan"), float("inf")])
+def test_mutated_nested_nonfinite_input_is_rejected_before_json_can_turn_it_null(bad):
+    value = request()
+    value.parameters["temperature"] = bad
+    instance = gateway(lambda _: pytest.fail("Invalid mutated request was dispatched"))
+    with pytest.raises(ValidationError):
+        instance.generate(context(), value)
+    assert instance.exchanges == ()

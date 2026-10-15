@@ -617,3 +617,17 @@ The first H2 transport test run failed 25 cases because I used a non-existent Au
 
 
 Corrected automatic_continuation=False against the actual pinned SDK field. The first 41 transport/identity checks passed, followed by 147 complete offline tests and strict types in thirteen source files. Added accounting/serialization hardening before live dispatch: strict successful HTTP JSON and token types before SDK coercion, preserved known usage on invalid content, aggregate output includes known thinking, and explicit enterprise=False. Optional Gemini runtime extra owns pinned Google/jsonschema dependencies; development selects that extra plus exact stubs. Registry refuses external schema fetches; local refs work. Final 149-case run and package/live checks are underway. Browser initialization fails before loading assets; API issue updates succeeded, native board movement/read-back remains unverified.
+
+
+### First real gateway round trip and snapshot correction
+
+The hardened run passed 149 offline cases, thirteen source files under strict mypy, Ruff/imports/lock and six builds. Committed source 9b3af1c. Wheel source bytes match; metadata parsing initially compared quote/spacing syntax rather than requirement meaning, so changed the local verifier to parse Requires-Dist markers. Both isolated wheel installs passed: base imports with no Google SDK, optional Gemini extra imports exact SDK/schema versions. Hashed dependency audit found no known vulnerabilities.
+
+The two-request live gateway probe passed at clean 9b3af1c: run h2-smoke-9efe87dd80b24474ab1f4d3a48654b12 proposed lookup_order, preserved one encrypted signature in unchanged assistant parts, accepted the invented function result and returned the required case/answer JSON. Occurrences 1/2; inputs 95/133, visible candidates 25/19, thinking unknown, provider totals 120/152. Kept aggregate output/cost unknown. No secret/raw signature printed. No new Langfuse instrumentation or domain data/action was used.
+
+Final snapshot audit found a real edge: a shallow-frozen request dictionary mutated to NaN serialized as null before validation, changing its meaning. Reproduced locally without dispatch. Revalidate Python models before canonical JSON copies for both request/context and responses; added regression cases for NaN and infinity. Invalid caller contracts now raise before allocation/dispatch rather than quietly becoming default parameters. Declared directly imported referencing 0.37.0 in the optional extra; resolved package versions stay the same. Final checks are running before the correction is committed.
+
+The user reconnected browser control, but the tool still fails before initialization; native board state remains unverified. API updates and source work continue without widening credential permissions.
+
+
+The final snapshot correction passed all 151 offline cases (54 H2 cases), thirteen source files under strict mypy, Ruff/format/import/lock. The malformed-contract regression now validates before serialization, so no warning-based coercion path is needed. Direct referencing pin leaves the same 115 resolved packages. Source correction is committed before updating immutable guide anchors; final rebuilt wheel and hosted evidence follow.
