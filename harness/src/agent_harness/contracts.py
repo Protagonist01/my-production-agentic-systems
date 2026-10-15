@@ -1,5 +1,7 @@
 """Versioned wire contracts; no domain rules or evaluator labels in public input."""
 
+import base64
+import binascii
 import hashlib
 import json
 from decimal import Decimal
@@ -11,9 +13,19 @@ NonEmpty = Annotated[str, Field(min_length=1)]
 Count = Annotated[int, Field(ge=0)]
 Money = Annotated[Decimal, Field(ge=0, allow_inf_nan=False)]
 Outcome = Literal["completed", "review_required", "blocked", "failed"]
+FailureCode = Literal[
+    "timeout",
+    "rate_limited",
+    "invalid_response",
+    "budget_exhausted",
+    "replay_mismatch",
+    "permission_denied",
+    "unavailable",
+    "scorer_error",
+]
 
 
-class Contract(BaseModel):
+class WireContract(BaseModel):
     """Reject extra fields/coercion; revalidate instances at dispatch boundaries."""
 
     model_config = ConfigDict(
@@ -24,7 +36,6 @@ class Contract(BaseModel):
         revalidate_instances="always",
         allow_inf_nan=False,
     )
-    schema_version: Literal[1] = 1
 
     def canonical_json(self) -> str:
         # JSON mode preserves wire types; sorting never reorders messages or trims text.
@@ -35,6 +46,14 @@ class Contract(BaseModel):
             separators=(",", ":"),
             allow_nan=False,
         )
+
+
+class Contract(WireContract):
+    schema_version: Literal[1] = 1
+
+
+class ModelContract(WireContract):
+    schema_version: Literal[2] = 2
 
 
 class Budget(Contract):
@@ -106,16 +125,7 @@ class Usage(Contract):
 
 class Failure(Contract):
     stage: Literal["agent", "model", "tool", "scorer"]
-    code: Literal[
-        "timeout",
-        "rate_limited",
-        "invalid_response",
-        "budget_exhausted",
-        "replay_mismatch",
-        "permission_denied",
-        "unavailable",
-        "scorer_error",
-    ]
+    code: FailureCode
     message: NonEmpty
     retryable: bool
     evidence: tuple[EvidenceReference, ...] = ()
@@ -144,21 +154,56 @@ class AgentResult(Contract):
         return self
 
 
-class ToolCall(Contract):
+class ToolCall(ModelContract):
     call_id: NonEmpty
+    provider_call_id: NonEmpty | None = None
     name: NonEmpty
     arguments: dict[str, JsonValue]
 
 
-class ModelMessage(Contract):
+class ModelPart(Contract):
+    """Ordered assistant text/calls and opaque base64 signature; never execute a call."""
+
+    text: str | None = None
+    tool_call: ToolCall | None = None
+    thought: bool = False
+    thought_signature: NonEmpty | None = None
+
+    @model_validator(mode="after")
+    def valid_part(self) -> Self:
+        if self.text is not None and self.tool_call is not None:
+            raise ValueError("a part cannot contain both text and a function call")
+        if self.text is None and self.tool_call is None and self.thought_signature is None:
+            raise ValueError("an assistant part must retain content or a signature")
+        if self.thought and self.tool_call is not None:
+            raise ValueError("a thought cannot propose a function call")
+        if self.thought_signature is not None:
+            try:
+                decoded = base64.b64decode(self.thought_signature, validate=True)
+            except (ValueError, binascii.Error) as error:
+                raise ValueError("signature must be canonical base64") from error
+            if not decoded or base64.b64encode(decoded).decode("ascii") != self.thought_signature:
+                raise ValueError("signature must be canonical nonempty base64")
+        return self
+
+
+class ModelMessage(ModelContract):
     role: Literal["system", "developer", "user", "assistant", "tool"]
     content: str | None = None
     tool_calls: tuple[ToolCall, ...] = ()
     tool_call_id: NonEmpty | None = None
     tool_name: NonEmpty | None = None
+    parts: tuple[ModelPart, ...] = ()
 
     @model_validator(mode="after")
     def valid_tool_shape(self) -> Self:
+        if self.parts:
+            if self.role != "assistant":
+                raise ValueError("retained provider parts belong only to assistant messages")
+            texts = [part.text for part in self.parts if part.text is not None and not part.thought]
+            calls = tuple(part.tool_call for part in self.parts if part.tool_call is not None)
+            if self.content != ("".join(texts) if texts else None) or self.tool_calls != calls:
+                raise ValueError("assistant public projection must match its ordered parts")
         if self.tool_calls and self.role != "assistant":
             raise ValueError("only assistant messages may contain tool_calls")
         if self.role == "tool":
@@ -177,8 +222,8 @@ class ToolSchema(Contract):
     parameters: dict[str, JsonValue]
 
 
-class ModelRequest(Contract):
-    serializer_version: Literal[1] = 1
+class ModelRequest(ModelContract):
+    serializer_version: Literal[2] = 2
     provider: NonEmpty
     endpoint: NonEmpty
     model: NonEmpty
@@ -194,7 +239,7 @@ class ModelRequest(Contract):
         return hashlib.sha256(self.canonical_json().encode("utf-8")).hexdigest()
 
 
-class ModelResponse(Contract):
+class ModelResponse(ModelContract):
     provider: NonEmpty
     model: NonEmpty
     model_revision: NonEmpty | None = None
@@ -202,6 +247,7 @@ class ModelResponse(Contract):
     output: ModelMessage | None = None
     finish_reason: NonEmpty | None = None
     usage: Usage
+    provider_usage: dict[str, Count | None] = Field(default_factory=dict)
     failure: Failure | None = None
 
     @model_validator(mode="after")

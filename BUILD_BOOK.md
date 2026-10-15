@@ -18,6 +18,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 11 — Isolating local Postgres services and trial state](#entry-11--isolating-local-postgres-services-and-trial-state)
 - [Entry 12 — Turning portable checks into hosted CI](#entry-12--turning-portable-checks-into-hosted-ci)
 - [Entry 13 — Selecting a free provider and local trace integration](#entry-13--selecting-a-free-provider-and-local-trace-integration)
+- [Entry 14 — Moving Gemini calls behind the shared gateway](#entry-14--moving-gemini-calls-behind-the-shared-gateway)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -585,3 +586,34 @@ Published and attached [PR #71](https://github.com/Protagonist01/my-production-a
 The native More actions expansion timed out but left the card control focused; pressing Return opened its actual menu. Selected Move to column then Review. The first observation preceded the asynchronous save; the later read-back showed H1 under Review, with counts Backlog 53, Ready 0, In progress 0/3, Review 1, Done 8. Saved artifacts/h1-review-board.png with H1 Review and Epic F 5/5 Done together. Updated current delivery docs and acceptance evidence, leaving the issue open and merge unchecked. This documentation-only handoff commit receives final exact-head CI before review is presented. H2 remains Backlog until H1 is reviewed/merged and verified.
 
 Final guide read-back caught an old foundation sentence claiming LangGraph/Pydantic AI were not installed. Corrected it to the actual H1 boundary: pinned development packages and tested extension seams exist, while shared gateway adapters remain planned. No source or immutable source anchor changed. This guide-only correction also receives exact-head CI.
+
+
+## Entry 14 — Moving Gemini calls behind the shared gateway
+
+Date: 2026-10-15 (Africa/Lagos). Task H2 #16. Branch codex/h2-gemini-gateway, based on reviewed main 0a859bb. Work underway.
+
+### Context and question
+
+The user merged H1 PR #71. Verified the merge SHA, inclusion of final PR source, and successful push-main run 38660002889. Clean merged checkout passed locked setup/check (97 tests, strict types, imports/Ruff), offline integration probe, exact main fake example, six builds and dependency audit. Hosted main verifies Postgres; H1 changed no database implementation. Existing service state is preserved.
+
+How can a provider adapter preserve complete messages, tool signatures and usage while identical prompts in one trial still have distinct call occurrences?
+
+### Options considered and why
+
+Calling Gemini directly from every framework would duplicate routing and later bypass replay/budgets. Reusing only prompt text as the recording key would collapse different schemas, tool history and repeated calls. Chosen: one generic gateway with typed per-occurrence exchanges, and one explicitly bounded Gemini text/JSON/function transport. Durable storage/replay stays H3; retry/deadline/budget reservation stays H4. Framework-specific adapters belong to the domain integrations, built on this gateway.
+
+The pinned SDK exposes ordered parts and opaque thought signatures. A single joined text plus tool-call list loses their placement. Extend the model wire with typed ordered assistant parts and bump model message/request/response schema plus request serializer to version 2; reject old model versions explicitly. Existing generic runtime/evaluation contracts stay version 1. Preserve signatures as base64 data, never decrypt or log them. Version 1 model records need an explicit migration before H3, not an accidental hash reinterpretation.
+
+### How to build it
+
+Snapshot validated context/request at dispatch, allocate an occurrence within run/tenant/agent/case/trial under a lock, and keep the full context/request/response as detached exchange evidence. Request fingerprints describe content; occurrence identifies an attempt. Return typed preflight/HTTP/timeout/invalid-response failures with actual dispatch counts and unknown cost. Reject unsupported roles/parameters/modalities instead of silently transforming them. Disable SDK retries, automatic tool execution and continuation. Use the pinned Google SDK as an optional harness runtime extra, with mocks exercising actual serialization and parsing. Prove the boundaries offline before at most two invented free-tier calls. No domain quality or durable recording is claimed.
+
+### Work underway
+
+Official SDK/content/function/schema and current thinking documentation inspected before implementation. The old thought-signatures URL now points to the thinking guide. Source changes and actual transport/error/occurrence evidence follow.
+
+
+The first H2 transport test run failed 25 cases because I used a non-existent AutomaticContinuationConfig name. The pinned SDK exposes automatic_continuation on GenerateContentConfig itself. Its dynamic module attribute fallback also let that name pass strict mypy. Isolated the first failing case rather than treating type-check success as runtime compatibility. Inspecting the actual pinned field before fixing it. Also separated the shared model-v2 base from runtime-v1 rather than overriding incompatible Literal fields, which strict mypy correctly rejected.
+
+
+Corrected automatic_continuation=False against the actual pinned SDK field. The first 41 transport/identity checks passed, followed by 147 complete offline tests and strict types in thirteen source files. Added accounting/serialization hardening before live dispatch: strict successful HTTP JSON and token types before SDK coercion, preserved known usage on invalid content, aggregate output includes known thinking, and explicit enterprise=False. Optional Gemini runtime extra owns pinned Google/jsonschema dependencies; development selects that extra plus exact stubs. Registry refuses external schema fetches; local refs work. Final 149-case run and package/live checks are underway. Browser initialization fails before loading assets; API issue updates succeeded, native board movement/read-back remains unverified.
