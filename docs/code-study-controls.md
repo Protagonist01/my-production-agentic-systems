@@ -1,6 +1,6 @@
 # H4 code study: admission before bounded execution
 
-Inspected H4 implementation source: 68e7383939bc0aadd7ef78e5328fdf7bce4a7da3, branch codex/h4-shared-controls, based on merged/verified main 1207eb5 (H3 #73). H4 is unmerged. This chapter covers three new source modules, changed gateway/Gemini/probe paths and tests/test_controls.py. Base contracts, H3 storage and SDK internals retain their separate walkthroughs. No exhaustive security audit or live H4 result is claimed.
+Inspected H4 implementation source: 68e7383939bc0aadd7ef78e5328fdf7bce4a7da3, branch codex/h4-shared-controls, based on merged/verified main 1207eb5 (H3 #73). H4 merged through #74 into main e9ebd07; separate clean setup/check passed 276 tests, replay and nine applicable hosted jobs. This chapter covers three new source modules, changed gateway/Gemini/probe paths and tests/test_controls.py. Base contracts, H3 storage and SDK internals retain their separate walkthroughs. No exhaustive security audit or live H4 result is claimed.
 
 ## Trace an invented retry
 

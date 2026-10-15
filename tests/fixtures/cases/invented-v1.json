@@ -1,0 +1,56 @@
+{
+  "manifest_id": "invented-cases",
+  "version": "v1",
+  "case_ids": [
+    "fake-text-001"
+  ],
+  "snapshots": [
+    {
+      "reference": "invented-text-v1",
+      "source_kind": "synthetic",
+      "source_version": "invented-v1"
+    }
+  ],
+  "entries": [
+    {
+      "group_id": "invented-order-1",
+      "split": "development",
+      "scorer_id": "invented-state",
+      "case": {
+        "schema_version": 1,
+        "case_id": "fake-text-001",
+        "input": {
+          "schema_version": 1,
+          "request": "hello, shared contracts",
+          "observations": []
+        },
+        "snapshot_ref": "invented-text-v1",
+        "source_kind": "synthetic",
+        "source_version": "invented-v1",
+        "policy_version": "fake-text-policy-v1",
+        "scorer_version": "invented-state-v1",
+        "expected": {
+          "schema_version": 1,
+          "outcome": "completed",
+          "output": "HELLO, SHARED CONTRACTS",
+          "eligible_for_autonomy": true,
+          "required_review": false,
+          "allowed_decisions": [
+            "return_text"
+          ],
+          "expected_state_changes": {
+            "status": "settled"
+          }
+        },
+        "hidden_state": {
+          "private_answer": "private-hidden-outcome"
+        },
+        "risk": "none",
+        "slices": [
+          "contract-wiring"
+        ],
+        "faults": []
+      }
+    }
+  ]
+}
