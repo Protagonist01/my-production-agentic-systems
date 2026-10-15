@@ -380,7 +380,7 @@
         "Exhaustion yields typed safe-stop/review outcome and usage; retry loops are bounded."
       ],
       "priority": "P0",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 18,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/18",
@@ -391,7 +391,9 @@
       "milestone_number": 2,
       "branch": "codex/h4-shared-controls",
       "command_document": "docs/controls.md",
-      "control_policy_version": "h4-control-v1"
+      "control_policy_version": "h4-control-v1",
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/74",
+      "implementation_commit": "68e7383939bc0aadd7ef78e5328fdf7bce4a7da3"
     },
     {
       "id": "H5",

@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-15. F1–F5/O1/H1–H3 are merged and verified on main 1207eb5 (PR #73): 220 offline tests and nine applicable hosted jobs passed. H3 #17 is closed/completed. H4 #18 is assigned/In progress on codex/h4-shared-controls, implementing shared admission, retries, deadlines and route circuits. Domain workflows and independent evaluation remain unimplemented.
+Updated: 2026-10-15. F1–F5/O1/H1–H3 are merged and verified on main 1207eb5 (PR #73): 220 offline tests and nine applicable hosted jobs passed. H3 #17 is closed/completed. H4 #18 is assigned/in Review on codex/h4-shared-controls, implementing shared admission, retries, deadlines and route circuits. Domain workflows and independent evaluation remain unimplemented.
 
 ## Scope and source of truth
 

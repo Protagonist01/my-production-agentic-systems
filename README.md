@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5/O1/H1–H3 are merged and verified; main 1207eb5 ([PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73)) passed 220 offline tests and nine applicable hosted jobs. H3 #17 is closed/completed. H4 #18 implements [shared budgets, deadlines, retries and circuit controls](docs/controls.md) on codex/h4-shared-controls. H4 is unmerged; its final verification and review evidence follow on the issue/PR. Domain workflows, independent state scoring and fresh quality/release evaluation remain subsequent work.
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5/O1/H1–H3 are merged and verified; main 1207eb5 ([PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73)) passed 220 offline tests and nine applicable hosted jobs. H3 #17 is closed/completed. H4 #18 implements [shared budgets, deadlines, retries and circuit controls](docs/controls.md) on codex/h4-shared-controls. [H4 PR #74](https://github.com/Protagonist01/my-production-agentic-systems/pull/74) is open for review; local 276-test validation passed. Final hosted evidence is recorded on #18/PR #74. Domain workflows, independent state scoring and fresh quality/release evaluation remain subsequent work.
 
 ## Setup and working commands
 
