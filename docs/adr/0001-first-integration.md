@@ -1,6 +1,6 @@
 # ADR 0001 — First provider, framework and tracing integration
 
-Date: 2026-10-15 (Africa/Lagos). Task [H1 #15](https://github.com/Protagonist01/my-production-agentic-systems/issues/15). Status: selected and smoke-tested; unmerged H1 implementation. Based on verified main 6e48011 (F5 PR #70).
+Date: 2026-10-15 (Africa/Lagos). Task [H1 #15](https://github.com/Protagonist01/my-production-agentic-systems/issues/15). Status: merged and verified on main 0a859bb (PR #71). Original H1 implementation was based on verified main 6e48011 (F5 PR #70).
 
 ## Decision and reasons
 
@@ -64,3 +64,8 @@ Source commit ccc036efc843155818d4c591915deb13d46e2069. After the first trace pa
 ## Review evidence
 
 [PR #71](https://github.com/Protagonist01/my-production-agentic-systems/pull/71) is unmerged and H1 is in native Review. [Hosted run 38655659165](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38655659165) passed all ten jobs on 2ac2f4a083602619f5babaebf775623aadf93bfa; the final documentation handoff commit is checked separately in the PR. Local source passed 97 offline cases, types/imports/Ruff/lock, six builds and dependency audit. Provider and Langfuse live checks are local evidence; CI uses mocks and contains no provider keys or live requests.
+
+
+## Post-merge verification
+
+User merged PR #71. Main 0a859bb passed [run 38660002889](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38660002889), nine applicable jobs with PR metadata intentionally skipped. Clean merged installation/check passed 97 offline tests, strict types/imports/Ruff, the SDK/framework mock probe, exact-main fake example, six builds and dependency audit. H1 is completed. H2 builds the separate shared transport described in [the gateway runbook](../gateway.md); the H1 trace URLs above retain their original path/source boundary.

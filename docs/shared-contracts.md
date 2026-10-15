@@ -1,6 +1,6 @@
 # Shared contracts — F2
 
-Schema version 1, implemented for review in F2 #11. These are shared interfaces for the first text/tool slice. Provider compatibility remains H1; the fake example exercises wiring only.
+Runtime/evaluation schemas remain version 1. H2 uses model request/message/response/tool-call schema version 2 and request serializer 2; old version-1 model records fail validation and require an explicit migration. F2 is merged; H1 compatibility is verified. The fake example still exercises wiring only; [H2 gateway](gateway.md) adds bounded real transport and per-occurrence evidence.
 
 ## Public runtime and model objects
 
@@ -42,8 +42,13 @@ python dev.py example
 
 The wrapper discovers actual Git HEAD and marks a dirty working tree with `+dirty`. Source exports need an explicit `--code-revision`; see [development commands](development-commands.md). The underlying module still accepts required revision/lockfile arguments directly. It hashes the lockfile, runs one invented case through `FakeAgent` → `FakeGateway` → `FakeScorer` → `CaseReport`, validates the JSON round trip, prints the report and exits nonzero if its text check fails. It uses no credentials, provider, database or telemetry.
 
-The source is synthetic, mode is `offline_fake`, and metric is `fake_case_correct`. Zero tokens/cost describe an in-process text transformation, not model pricing. The gateway rejects fresh/replay/monitoring modes, unsupported routes, tools and output schemas. Fault definitions serialize, but scheduled faults fail explicitly until H7 implements them. Budgets/deadlines are declarations; enforcement remains H2. Durable reviews, state scorers, recordings, fresh quality and release gates remain later tasks.
+The source is synthetic, mode is `offline_fake`, and metric is `fake_case_correct`. Zero tokens/cost describe an in-process text transformation, not model pricing. The gateway rejects fresh/replay/monitoring modes, unsupported routes, tools and output schemas. Fault definitions serialize, but scheduled faults fail explicitly until H7 implements them. Budgets/deadlines are declarations; reservation/enforcement remains H4. Durable reviews, state scorers, recordings, fresh quality and release gates remain later tasks.
 
 Tests cover an invented model timeout, review/usage/evidence round trips, tool-call/result wire shapes, request identity changes, invalid payloads/identities and scorer failures. These establish contract behavior, not industry accuracy or safety.
 
 Design references: [Pydantic models](https://docs.pydantic.dev/latest/concepts/models/), [serialization](https://docs.pydantic.dev/latest/concepts/serialization/), and [Langfuse input/expected-output separation](https://langfuse.com/docs/evaluation/experiments/datasets). No live Langfuse dataset or SDK integration is created by F2.
+
+
+## H2 model extensions
+
+ModelPart retains ordered assistant text/calls, thought flags and canonical-base64 opaque signatures. Public content/tool_calls must match the non-thought projection; retained parts are assistant-only. ToolCall separates local call_id from optional provider_call_id. ModelResponse adds raw provider_usage beside aggregate Usage; cost remains unknown and aggregate output is unknown when thinking usage is absent. The shared contract validates shape, while GeminiTransport checks local schemas, pending function history and supported dialect/route. ProviderGateway revalidates Python objects before canonical JSON snapshots, checks response route/revision and retains detached scoped occurrences. Runtime identities do not grant authorization. See [gateway details and migration boundary](gateway.md).
