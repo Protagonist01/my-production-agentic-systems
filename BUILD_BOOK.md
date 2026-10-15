@@ -752,3 +752,9 @@ The targeted suite passed 52 cases after increasing only SDK classification-work
 ### Full source verification
 
 The full locked check passed 276 offline cases (56 H4), nineteen typed source files, both import contracts, Ruff/format and the unchanged lock. All six source archives/wheels built. Direct Gemini invalid/nonfinite time is now rejected before HTTP. No live provider request was needed. Preparing an implementation commit so documentation can link immutable code; installed-base-wheel, link/content review and final hosted checks remain separate evidence.
+
+### Installed package and source review
+
+The built harness wheel contains exact bytes for all six changed/new source modules. Installed only the base wheel and mandatory dependencies into a fresh environment: Google and Langfuse were absent. A separate importable invented worker ran through BoundedGateway → ProviderGateway → IsolatedTransport with network audit denial, returned its invented answer and retained one reservation. The first handwritten package probe omitted required ModelRequest.parameters and failed validation before dispatch; adding the explicit empty dictionary made the probe valid. This was a probe-input error, not a package change.
+
+Audited 144 immutable source ranges, 105 selected local links and twenty intended publication files for configured secret values/local artifacts. Re-anchored changed gateway/Gemini/probe symbols to implementation 68e7383; unchanged links retain verified source slices. A Windows helper initially read Markdown using cp1252; restored its three affected planning files from clean Git bytes and reran with explicit UTF-8. Link/content verification then passed. No source, lock or provider fixture was modified by documentation repair. Preparing the review publication; hosted final-head evidence is pending.

@@ -80,3 +80,7 @@ The bundled file is `harness/src/agent_harness/resources/replay/invented-v1.json
 To intentionally revise it, first commit the source that constructs the capture. Run the maintenance helper from that clean revision, publish to a new versioned filename with `write_recording`, inspect the invented content and provenance, then update the separately reviewed pin/resource reference in a new commit. Never regenerate a fixture on mismatch or during ordinary CI. Recorded files already in Git remain historical; creating a reviewed version is different from overwriting a runtime fixture.
 
 `tests/test_replay.py` exercises exact request/history/context matching, isolated trials, repeated distinct answers, signed tool history, typed failures/unknown usage, sticky failures, completion, network denial, malformed/tampered fixtures, nested non-finite mutation, publication races and failed fsync/link cleanup. Local/hosted final results are recorded in the H3 PR and Build Book. No production traffic, live latency, domain correctness or fresh held-out quality claim follows from these checks.
+
+## H4 controlled replay
+
+H4 ReplayAttempts wraps only StrictReplayGateway, allowing current retry/admission logic to consume recorded attempts without SDK access. Always assert_complete afterward. ReplayMismatch remains an infrastructure exception after settlement/freeze, never a scored model response. Shared virtual time and complete domain state still require explicit adapters. See [controls](controls.md).

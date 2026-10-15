@@ -63,3 +63,5 @@ Merged H1 integration-check uses the pinned SDK/frameworks on mock HTTP transpor
 ## H2 shared gateway probe
 
 `gateway-live` uses the same locked uv environment and revision/dirty detection as `example`; it dispatches agent_harness.gateway_probe with the checkout root and code revision. Source exports can pass --code-revision explicitly. It makes at most two invented Free-tier requests through ProviderGateway and GeminiTransport, preserving the signed function history and validating the final JSON. It is excluded from CI and is not a quality evaluation or durable recorder. [Scope, optional runtime installation and observed evidence](gateway.md).
+
+On the H4 branch, gateway-live uses BoundedGateway and an owned SDK process with one attempt per request, two shared call reservations and separate observed usage. It remains explicit, credentialed and excluded from CI. H1 compatibility/live/trace probes retain their original path; see [controls](controls.md).
