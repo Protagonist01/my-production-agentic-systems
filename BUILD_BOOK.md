@@ -21,6 +21,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 14 — Moving Gemini calls behind the shared gateway](#entry-14--moving-gemini-calls-behind-the-shared-gateway)
 - [Entry 15 — Preserving calls without turning replay into a cache](#entry-15--preserving-calls-without-turning-replay-into-a-cache)
 - [Entry 16 — Reserving shared capacity before bounded attempts](#entry-16--reserving-shared-capacity-before-bounded-attempts)
+- [Entry 17 — Pinning case membership and independent scorers](#entry-17--pinning-case-membership-and-independent-scorers)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -762,3 +763,40 @@ Audited 144 immutable source ranges, 105 selected local links and twenty intende
 ### H4 Review publication
 
 Published and attached [PR #74](https://github.com/Protagonist01/my-production-agentic-systems/pull/74), based on reviewed main 1207eb5. Implementation links pin 68e7383; the delivery snapshot now records Review. H4 #18 remains open with merge unchecked until user review/merge and post-merge verification. Exact final-head hosted checks, clean replay identity and native saved Review read-back are verified separately after this handoff commit. No final hosted pass is inferred from publication.
+
+## Entry 17 — Pinning case membership and independent scorers
+
+Date: 2026-10-15 (Africa/Lagos). H5 #19, branch `codex/h5-versioned-cases`, based on user-reviewed merged H4 main e9ebd07. Work underway.
+
+**Files touched:** case manifest/scorer registry modules, invented fixtures/tests, evaluation documentation and current-code guide.
+
+### Context and question
+
+H4 #74 is merged. A separate clean clone is checking the merged implementation. H5 must load a fixed population without leaking labels and select a fixed independent scorer. How can a missing case fail before an agent runs, rather than quietly shrinking a denominator?
+
+### Options considered and why
+
+Inferring membership from loaded files cannot detect a missing file. Chosen: an explicit case-ID inventory, embedded case records and snapshot descriptors in one manifest, reviewed by a separate SHA-256/id/version pin. Hash and parse the same byte buffer. Reject duplicate JSON keys, duplicate/missing/unlisted IDs, incompatible snapshot provenance and group leakage across development/holdout splits before dispatch. A hash detects changes relative to the supplied pin; it does not prove labels are true or the pin is trusted.
+
+Loading Python module names from manifest data would turn a case file into executable configuration and complicate static package boundaries. Chosen: explicit application composition registers trusted scorer objects by ID/version and compatible snapshot/policy pairs. The harness imports no vertical and loads no code named by JSON. New batch execution, database evidence readers and release gates remain H6/domain work.
+
+### How to build it
+
+1. Keep F2 EvalCase and AgentInput intact. Wrap each private case with a group, split and scorer ID; bind its existing scorer version to an explicit registration.
+2. Validate an exact declared membership inventory and snapshot descriptors, including source kind/version. Group IDs cannot occur in both development and holdout, even across source snapshots.
+3. Read one manifest byte buffer, verify its externally supplied digest, then parse with duplicate-key rejection and closed strict contracts. Retain a canonical serialized copy and reconstruct it on access to avoid nested dictionary mutation changing loaded evidence.
+4. Resolve every manifest scorer against explicit registered compatibility declarations before dispatch. Pin the resolved bindings for this run. Copy/revalidate the case and result at the scorer boundary; require nonempty unique metrics and the declared scorer version.
+5. Reuse run_case's closed public projection. Wrap its result with manifest ID/version/digest, group/split and scorer identity so evidence can be traced without changing model-call wire contracts.
+6. Use an invented external-state reader in acceptance tests: identical completed claims and invented ledger references receive different scores when actual stored state differs. This proves plugin wiring and independent checking, not a real domain scorer.
+
+### Verification underway
+
+Current Langfuse dataset/evaluator guidance was read for input/expectation separation and deterministic checks. H5 is a local library/contract increment with invented fixtures, not a live Langfuse dataset or a new quality metric. No live dataset/service, provider call, dependency update or judged quality experiment is required. The existing declared metric/release plan remains authoritative. Implementation and verification results follow as work proceeds.
+
+### Verification and portability
+
+Separate clean main e9ebd07 passed locked setup/check: 276 tests, nineteen typed files, imports/Ruff/format/lock, six-call replay with two recorded timeouts and zero provider calls. Main run 38803477072 passed nine applicable jobs (PR-only metadata skipped). H4 #18 is closed/completed. Native project read-back confirms H4 Done and H5 In progress.
+
+H5 targeted checks passed 53 cases. The full locked check passed 329 tests, twenty-one typed source files, both import boundaries, Ruff/format/lock; all six archives/wheels built. Invented actual state settled/pending/absent earns 1/0/0 despite identical completed claims and forged references. Typed scorer errors retain no score, exceptions propagate, and private metadata never enters captured agent/gateway input. No domain quality or live state-store claim follows.
+
+Before publication, noticed that a raw-byte-pinned JSON fixture needs a line-ending rule: this Windows checkout has core.autocrlf=true. Added a narrow tests/fixtures/cases/*.json text eol=lf attribute, matching the existing replay/lock strategy. Verify the staged blob and a Windows-style checkout against the separately declared digest. Registry.bind uses a quoted forward return type because BoundEvaluation is declared later; the first collection exposed that annotation order and was corrected before the 53/329 passing checks. Package and immutable-link verification follows.

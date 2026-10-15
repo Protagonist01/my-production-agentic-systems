@@ -1,3 +1,4 @@
 # Raw lock hashes are provenance across Windows/Linux checkouts.
 uv.lock text eol=lf
 harness/src/agent_harness/resources/replay/*.json text eol=lf
+tests/fixtures/cases/*.json text eol=lf
