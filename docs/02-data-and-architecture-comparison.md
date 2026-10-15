@@ -91,7 +91,7 @@ The original already specifies a thin harness, independent verticals, code-enfor
 | Parallelism | Sequential calendar, no explicit contributor ownership | Three bounded worktrees, one integrator, shared-contract owner, isolated services and continual integration |
 | Scope of claims | Production-minded, zero-cost, multi-industry | Same aim; report local/replay cost separately from provider resources, synthetic outcomes separately from observed data |
 
-The exact primary model, tracing backend and retrieval technology remain choices to make after environment checks and the first baseline. Do not install every alternative in the initial README.
+H1 selects Gemini Developer API / gemini-3.5-flash-lite and the existing local Langfuse, with pinned LangGraph/Pydantic AI probes; see the [integration ADR](adr/0001-first-integration.md). This unmerged smoke-tested integration does not implement the shared gateway or prove domain quality. Retrieval technology remains a choice for the first retrieval task; alternatives are deferred.
 
 ## 4. Proposed runtime architecture
 

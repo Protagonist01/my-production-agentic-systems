@@ -1,6 +1,6 @@
 # Architecture and implementation plan
 
-Accepted delivery direction, updated 2026-10-14. This document replaces the older design overview; historical design notes are preserved locally under `docs/archive`. [F2 shared contracts](shared-contracts.md) and F3 commands are merged and verified. [F4 local Postgres](local-postgres.md) is merged and verified; [F5 Foundation CI](ci.md) is in PR #70 with actual negative-control and clean hosted evidence. Provider/framework SDK pins, thresholds and remaining commands become final through their implementation issues.
+Accepted delivery direction, updated 2026-10-15. This document replaces the older design overview; historical design notes are preserved locally under `docs/archive`. [F2 shared contracts](shared-contracts.md) and F3 commands are merged and verified. [F4 local Postgres](local-postgres.md) is merged and verified; [F5 Foundation CI](ci.md) is merged/verified and the foundation milestone is complete. [H1 integration ADR](adr/0001-first-integration.md) and [smoke commands](integration-smoke.md) record pinned Gemini/framework/local-tracing behavior on its unmerged branch; quality thresholds and shared transport/replay remain their own implementation tasks.
 
 ## Shared platform and vertical boundary
 

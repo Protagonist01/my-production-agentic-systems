@@ -1,10 +1,10 @@
 # Code Study Guide — Production Agentic Systems
 
-Updated: 2026-10-14 (Africa/Lagos). Explained source: **b9a3d4c148866bef8ee57d92be568cd5c25d3aac**, branch `codex/f5-offline-ci`, based on merged main d3f783c (F4 PR #69). Implementation code is committed; subsequent guide/evidence edits do not change that source snapshot. Unchanged F2/F3 runtime/test links retain their verified revisions; changed command/config and new CI links pin this F5 implementation commit; the Postgres chapter retains its verified F4 source links. Subsequent documentation edits are separate from that source snapshot.
+Updated: 2026-10-15 (Africa/Lagos). Explained H1 source: **ccc036efc843155818d4c591915deb13d46e2069**, branch `codex/h1-integration-selection`, based on verified main 6e48011 (F5 PR #70). H1 implementation is committed but unmerged; guide/evidence changes are separate. Unchanged runtime/CI/Postgres source links retain their verified revisions; changed command/config and the new integration chapter pin this H1 source.
 
-F1/O1/F2/F3/F4 are merged and verified; #13 closed after 64 offline and 11 database post-merge tests. F5 hosted CI is under verification in [PR #70](https://github.com/Protagonist01/my-production-agentic-systems/pull/70). Its forbidden-import run failed at the architecture stage as expected; clean head 9cbc8ad passed all ten hosted jobs. Final documentation-head evidence is maintained in the PR. Provider-backed applications remain planned. The user authorized including the previously uncommitted study guide in this implementation PR.
+F1–F5/O1 are merged and verified. F5 #14, Epic F #2 and milestone M1 are completed after main CI, 77 offline tests, builds/audit and 11 database checks; an initial local restart-wait failure is retained in the journal. H1 adds pinned Gemini/free-tier and local Langfuse compatibility probes: live structured/function behavior and trace read-back passed on invented data. The shared provider gateway, real framework adapters and domain applications remain planned.
 
-This guide covers all meaningful implementation blocks in the eight nontrivial application/tool Python files (including dev.py, ci_checks.py and two Postgres modules), their eight test files, and package/configuration boundaries. Package marker files are grouped. Historical untracked plans, generated distributions, dependency internals, raw Olist rows and future applications are outside this inspection. This is a source-grounded engineering study, not an exhaustive security audit.
+This guide covers ten nontrivial application/tool Python files (including two integration probe modules), nine test files, package/config boundaries and related entrypoints. Package markers are grouped. Historical untracked plans, generated distributions, dependency internals, raw data, existing Langfuse server/security configuration and future applications are outside inspection. This is a source-grounded engineering study, not an exhaustive security audit.
 
 ## Reading route
 
@@ -14,11 +14,11 @@ This guide covers all meaningful implementation blocks in the eight nontrivial a
 4. Study the design tradeoffs, test evidence and reproduced concerns.
 5. Practice the interview questions and offline exercises.
 
-[BUILD_BOOK.md](BUILD_BOOK.md) explains construction history and documented decisions, particularly Entries 6–12. [Postgres code chapter](docs/code-study-postgres.md) explains persistence/service blocks; [CI code chapter](docs/code-study-ci.md) explains the hosted workflow, audit and contribution/gate helpers. [Shared contracts](docs/shared-contracts.md) is the API reference. [Delivery plan](docs/project-management.md) defines later work. This guide explains how the current pieces fit together.
+[BUILD_BOOK.md](BUILD_BOOK.md) explains construction history and documented decisions, particularly Entries 6–13. [Postgres code chapter](docs/code-study-postgres.md) explains persistence/service blocks; [CI code chapter](docs/code-study-ci.md) explains the hosted workflow, audit and contribution/gate helpers; [integration code chapter](docs/code-study-integration.md) traces the H1 SDK/framework/live/export/read-back checks. [Shared contracts](docs/shared-contracts.md) is the API reference. [Delivery plan](docs/project-management.md) defines later work. This guide explains how the current pieces fit together.
 
 ## 1. What exists and what the architecture means
 
-The destination is a shared agent/evaluation platform serving Olist support, CFPB triage, revenue integrity, prior authorization and supply-chain disruption. The current executable work is much smaller: installable packages, import checks, original Olist snapshot profiling/verification, a deterministic fake agent/evaluation flow, and checkout/trial-isolated local Postgres persistence. No operational refund system, live model adapter, workflow/review adapter, web service, deployment or production traffic exists at this snapshot.
+The destination is a shared agent/evaluation platform serving Olist support, CFPB triage, revenue integrity, prior authorization and supply-chain disruption. The current executable work is much smaller: installable packages, import checks, original Olist snapshot profiling/verification, a deterministic fake agent/evaluation flow, and checkout/trial-isolated local Postgres persistence. H1 adds development-only Gemini calls and local trace export/read-back. No shared production model adapter, operational refund system, workflow/review adapter, web service, deployment or production traffic exists at this snapshot.
 
 ```mermaid
 flowchart LR
@@ -40,7 +40,7 @@ flowchart LR
 
 The two paths are independent. Olist records do not feed the fake text example. Expected answers and hidden state are available to the runner/scorer, but the runner projects only public input into the agent call. A dictionary typed as an evaluation case would be too easy to forward accidentally; a separate input type makes that mistake fail validation.
 
-Dependency direction is `vertical → agent_harness → Pydantic / Psycopg`. The harness must never import a vertical; verticals must never import each other. [Import contracts][import-contracts] enforce this for static imports. Python protocols describe replaceable agent/gateway/scorer interfaces without choosing a workflow framework. Planned LangGraph/Pydantic AI integrations are not installed.
+Dependency direction is `vertical → agent_harness → Pydantic / Psycopg`. The harness must never import a vertical; verticals must never import each other. [Import contracts][import-contracts] enforce this for static imports. Python protocols describe replaceable agent/gateway/scorer interfaces without choosing a workflow framework. H1 installs LangGraph and Pydantic AI as pinned development dependencies and tests their extension seams; shared gateway/framework adapters remain planned.
 
 All example runtime objects live in one Python process. FakeGateway retains a list of requests in memory; reports print to stdout. F4 creates generic review/ledger persistence slots; no runtime workflow queue or domain action tool uses them yet. Olist CSVs live in an external local cache, while only aggregate provenance enters Git. Worktrees alone isolate checkouts. F4 adds explicit Compose project/port/volume isolation and restricted trial databases; see [the current code walkthrough](docs/code-study-postgres.md).
 
@@ -127,10 +127,10 @@ File: [dev.py][dev-main], tested by [test_dev_commands.py][dev-tests]. The boots
 | Symbol / block | Execution and reason | Evidence / limit |
 |---|---|---|
 | [ROOT, CHECKS, PLANNED, SERVICE_COMMANDS, L10–25][dev-constants] | Resolve the runner's directory, define check order once, and name unimplemented evaluation prerequisites. | Changing caller directory does not change the project. Missing implementation is an exit-2 error before tool discovery. |
-| [uv_command, L28–53][dev-map] | Construct argument arrays for locked setup/tools and package builds. `check` reuses the same map as individual commands. | All-members installation matters for a virtual root; no shell quoting or duplicate CI map. |
-| [execute, L56–62][dev-execute] | Run a child with `cwd=ROOT` and no shell, return its exact exit status, convert process-start failure to a visible nonzero result. | A real child test uses a directory/argument with spaces and exits 7. This is local tooling, not a sandbox for hostile programs. |
-| [source_revision, L65–86][dev-revision] | Read HEAD and tracked/untracked status; any dirty source adds `+dirty`. Failed/missing Git discovery requires an explicit identifier. | Dirty is a provenance flag, not a saved content snapshot. Ignored source modifications and concurrent mutation remain outside this simple check. |
-| [main, L89–179][dev-main] | Parse command/options → reject planned/wrong commands → locate uv → dispatch locked service commands with absolute root or run the example/check steps → return first failure. Trial-only and destroy-only options are validated before dispatch; db-check explicitly overrides offline database-test exclusion. | The type-check failure test returns 13 and proves imports/tests are skipped afterward. Setup may download packages; the fake example has no provider call. |
+| [uv_command, L28–79][dev-map] | Construct argument arrays for locked setup/tools, package builds and explicit integration/trace commands. `check` reuses the same map as individual commands. | All-members installation matters for a virtual root; no shell quoting or duplicate CI map. |
+| [execute, L82–88][dev-execute] | Run a child with `cwd=ROOT` and no shell, return its exact exit status, convert process-start failure to a visible nonzero result. | A real child test uses a directory/argument with spaces and exits 7. This is local tooling, not a sandbox for hostile programs. |
+| [source_revision, L91–112][dev-revision] | Read HEAD and tracked/untracked status; any dirty source adds `+dirty`. Failed/missing Git discovery requires an explicit identifier. | Dirty is a provenance flag, not a saved content snapshot. Ignored source modifications and concurrent mutation remain outside this simple check. |
+| [main, L115–208][dev-main] | Parse command/options → reject planned/wrong commands → locate uv → dispatch locked service commands with absolute root or run the example/check steps → return first failure. Trial-only and destroy-only options are validated before dispatch; db-check explicitly overrides offline database-test exclusion. | The type-check failure test returns 13 and proves imports/tests are skipped afterward. H1 maps offline/live/trace probes separately; only provider-free probe tests run in ordinary CI. Setup may download packages; the fake example has no provider call. |
 
 Mypy uses root configuration with strict checking for dev.py, ci_checks.py and the harness. Dataset scripts and untyped test helpers are covered by lint/behavioral tests, not declared fully type-checked. Formatting is check-only; `check` does not modify source. F5 supplies actual CI orchestration and additional platform checks; exact hosted evidence is recorded in [the CI runbook](docs/ci.md). [Development commands](docs/development-commands.md) specifies the future CI call path.
 
@@ -286,7 +286,7 @@ Adjust personal contribution wording to what you actually implemented/reviewed; 
 
 For meaningful code changes, refresh affected architecture, execution steps, block links, tradeoffs, findings, tests and interview answers. Record a new inspected revision and use immutable permalinks. Retain unresolved findings until their fixes are verified; move resolved findings into a brief explanation of the fix/evidence. Append historical reasoning to the Build Book rather than rewriting it here.
 
-The reusable personal skill is `$code-study-guide`; its default output is this file and it contains an adaptable outline. Other contributors can follow this guide's maintenance requirements without installing the skill. The pending questions are the source-capture race, real response provenance, durable review contract shape, provider/framework compatibility and independently reviewed domain scoring/data views.
+The reusable personal skill is `$code-study-guide`; its default output is this file and it contains an adaptable outline. Other contributors can follow this guide's maintenance requirements without installing the skill. The pending questions are the source-capture race, real response provenance, durable review contract shape, shared provider/framework adapters and independently reviewed domain scoring/data views. H1 verifies the small compatibility probes described in its integration chapter.
 
 [aliases]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L10-L13
 [contract]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/contracts.py#L16-L37
@@ -319,7 +319,7 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [profile-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L131-L141
 [verify-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L144-L152
 [snapshot-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L155-L209
-[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/pyproject.toml#L1-L42
+[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/ccc036efc843155818d4c591915deb13d46e2069/pyproject.toml#L1-L46
 [harness-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/harness/pyproject.toml#L1-L13
 [import-contracts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.importlinter#L1-L30
 [ignore-rules]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/.gitignore#L1-L47
@@ -331,8 +331,12 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [shared-tests-c]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L237-L331
 
 [dev-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/dev.py#L10-L25
-[dev-map]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/dev.py#L28-L53
-[dev-execute]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/dev.py#L56-L62
-[dev-revision]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/dev.py#L65-L86
-[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/dev.py#L89-L179
+[dev-map]: https://github.com/Protagonist01/my-production-agentic-systems/blob/ccc036efc843155818d4c591915deb13d46e2069/dev.py#L28-L79
+[dev-execute]: https://github.com/Protagonist01/my-production-agentic-systems/blob/ccc036efc843155818d4c591915deb13d46e2069/dev.py#L82-L88
+[dev-revision]: https://github.com/Protagonist01/my-production-agentic-systems/blob/ccc036efc843155818d4c591915deb13d46e2069/dev.py#L91-L112
+[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/ccc036efc843155818d4c591915deb13d46e2069/dev.py#L115-L208
 [dev-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/71e4abd9ae023abec16ebefdc3b45507d9c75636/tests/test_dev_commands.py#L19-L110
+
+## H1 current integration evidence
+
+[Integration chapter](docs/code-study-integration.md) covers both new modules and their twenty boundary cases. Full local checks passed 97 tests and strict types in ten source files; all six builds passed. Gemini 3.8 Flash returned HTTP 503 twice; explicitly selected gemini-3.5-flash-lite, which passed live JSON and one allowed function proposal. Local Langfuse v4.50.0 with SDK 5.0.1/CLI 1.2.4 returned a correlated root/two-generation trace with actual input/output/usage; final context/CI evidence is in the ADR and H1 PR. Cost remains unknown; no domain-quality result or production framework/gateway/redaction claim follows. Original R1/R2/R3 findings remain unresolved.

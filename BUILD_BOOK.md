@@ -17,6 +17,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 10 — Giving Windows and CI one command path](#entry-10--giving-windows-and-ci-one-command-path)
 - [Entry 11 — Isolating local Postgres services and trial state](#entry-11--isolating-local-postgres-services-and-trial-state)
 - [Entry 12 — Turning portable checks into hosted CI](#entry-12--turning-portable-checks-into-hosted-ci)
+- [Entry 13 — Selecting a free provider and local trace integration](#entry-13--selecting-a-free-provider-and-local-trace-integration)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -517,3 +518,70 @@ Verified the [second negative run 38640533520](https://github.com/Protagonist01/
 ### Native Review and final publication
 
 Documentation head eef5e9adb70462e21bb3e855cba5f4824205876f passed all ten jobs in run 38643732590. Rewrote PR #70 around the delivered behavior, real negative/positive evidence and limits; updated #14 to Review with all three acceptance criteria checked, leaving merged-PR unchecked. Browser connection recovered, but the semantic filter fill stalled; the visible AX input setValue plus Return worked. Filtered F5, used More actions → Move to column → Review, waited for saved card/count, then cleared/applied the temporary filter. Native board now shows Backlog 55, Ready 0, In progress 0/3, Review 1 and Done 6. Saved screenshot artifacts/f5-review-board.png shows F5 Review and F4 Done together. No access/permission expansion, network protection change or unrelated cleanup was required. This final documentation-only correction will be pushed and its exact-head CI/PR diff read back before handoff; implementation source remains b9a3d4c and the 87 audited ranges are unchanged.
+
+## Entry 13 — Selecting a free provider and local trace integration
+
+Date: 2026-10-14 (Africa/Lagos). Task H1 #15. Branch `codex/h1-integration-selection`, based on merged main 6e48011. Work underway.
+
+**Files touched:** integration decision, optional tooling and smoke checks, development instructions and current-code guide.
+
+### Context
+
+The user reviewed and merged F5 PR #70. GitHub confirms the merge; fetched main 6e48011 and reused the clean attached worktree on an issue-sized branch. Locked setup/check passed 77 offline tests, strict types, both import contracts and Ruff. The fake example recorded clean main 6e48011 and lock hash 98653c01; all six distributions built and the hashed dependency audit passed. Required Postgres post-merge verification is still running before closing F5.
+
+H1 must choose and test one provider/framework/tracing integration before the gateway implementation. No provider or Langfuse credentials were present in this shell or either checkout's .env/.env.local. Asked the user rather than treating the absence as access or assuming a spending budget. The user selected free tier only, then explicitly selected Google Gemini and local Langfuse.
+
+### Before you read on
+
+How can a smoke check establish schema/tool compatibility without pretending it proves application quality, and without letting a framework bypass the shared gateway when replay arrives?
+
+### Options considered and why
+
+Paid OpenAI/Anthropic requests were deferred because the user requires free tier. Gemini Developer API is the selected provider, subject to the actual project's free eligibility and model quota. Local Langfuse is the user's tracing choice; Cloud would remove service administration but is not the requested deployment. LangGraph and Pydantic AI remain the intended vertical frameworks; their model calls must converge through the shared gateway rather than introduce independent live/replay paths.
+
+### How to build it
+
+First read current official provider schema/tool/model/limit docs and framework extension interfaces. Resolve exact SDK versions from publisher metadata, then test the pinned combination. Keep invented compatibility input separate from real-source/domain evaluation. Keep a missing-key check explicit: local mocks prove software plumbing only, and H1's live acceptance stays incomplete without an actual provider response. Pin the local trace service configuration, isolate its resources by checkout, and retrieve an emitted trace to verify export rather than treating SDK initialization as success. Shared adapter/replay/budget/export behavior remains H2/H3/H4/H8.
+
+### Work underway
+
+Current documentation and package metadata are being inspected before implementation. No live Gemini or exported Langfuse trace has passed yet; key setup, free-tier eligibility, installed-version compatibility and local service readiness remain to establish.
+
+Resolved current publisher versions: google-genai 2.30.1, LangGraph 1.2.15, pydantic-ai-slim[google] 2.56.0 and Langfuse SDK 5.0.1. Installed these as pinned development probes rather than claiming an H2 transport already exists. Official Gemini docs now direct new projects toward 3.8 Flash/3.5 Flash-Lite; old 2.5 access may be restricted for new projects. Selected stable gemini-3.8-flash for the two bounded schema/function probes, with actual project access still unverified. Aliases/returned model versions do not establish immutable weights. Official free quotas are project-specific, not a hard-coded universal RPM.
+
+The first local post-merge database rerun passed ten tests but failed restart recovery: Docker's 90-second wait expired, then cleanup encountered Postgres still in recovery. Hosted push-main run 38647582091 passed the same required database stage. Do not erase the local failure or close F5 based only on a previous green run. A fresh isolated rerun is underway before deciding whether this is repeatable or needs a prerequisite fix. Avoid further trace-service startup while the database check is running. The disposable fixture cleanup owns these temporary services.
+
+The user supplied a provider key in chat. Saved it only in the ignored local .env.local without echoing it; free-tier/billing confirmation remains required before a request. No secret is part of tracked files or the Build Book. No Gemini request has been sent.
+
+### Availability, framework and local-state findings
+
+The user confirmed Free tier with billing disabled. The first Gemini 3.8 Flash request returned HTTP 503 and stopped; a bounded second invocation did the same. A credentialed metadata read succeeded and showed generateContent support, so this was observed generation unavailability rather than a successful live compatibility test. Explicitly selected the documented stable gemini-3.5-flash-lite as the first candidate. Both of its invented probes passed: structured answer 42, then exactly one allowed lookup_order proposal for invented-order-001. Initial usage was 25/25 input/output tokens for JSON and 86/25 plus 39 thinking tokens for the function proposal. No tool was executed and no paid fallback was configured.
+
+Pinned framework/SDK mock transport checks passed. The first socket-blocked test failed because Windows asyncio itself creates a loopback wake-up socketpair. Diagnosed the traceback at socket._fallback_socketpair, not an AI-provider call. Create the owned event loop/socketpair before entering the guard; block all connections while running the probe; undo the guard and close the loop afterward. The corrected full check passed 88 tests. Strict mypy also caught string values where Google SDK enums were required; used the actual enum members rather than suppressing types.
+
+The fresh post-merge Postgres rerun passed all eleven tests in 793.42 seconds. Kept the original restart-wait failure visible. Hosted main run 38647582091 passed its nine applicable jobs, with only PR metadata intentionally skipped. Closed F5 #14, then verified all five foundation children closed, closed Epic F #2 and milestone M1. Native board read-back showed Done 8 and Review 0. H1 was assigned, moved to In progress and read back with active count 1/3.
+
+Docker inventory revealed an existing Langfuse stack plus other project services. The user selected reuse rather than starting another six containers. Removed the unused separate-stack Compose/manager code before publication. The existing readiness API identified Langfuse v4.50.0. User signed in/created the dedicated local project and supplied its keys; saved them only in ignored .env.local. No existing container, volume, account, binding or server version was changed.
+
+### Trace construction and actual read-back
+
+Use a separate tracer provider for the H1 command, explicit root/generation inputs and whitelisted metadata, and localhost-only configuration. This avoids globally patching all framework traffic during a compatibility check. The two actual SDK calls are children of h1-provider-smoke. Export only invented inputs/output, model/version, response IDs and known token fields; retain thinking tokens separately, including unknown values. Flush and shut down the SDK, then use pinned CLI 1.2.4 to query v4 observations for the exact trace/time interval. Do not treat flush, authentication or a submitted event as verified export.
+
+The first traced calls worked, but read-back failed. Inspected only the CLI response shape: it is status/headers/body/data, not the data/data wrapper the initial fixture had assumed. Corrected the validator and fixture, requiring status 200, a valid root, both generation children, parent/trace/model agreement, known nonnegative usage and input/output. Added negative response/correlation/configuration tests. Also reject successful read-back containing either configured secret, without printing the collection.
+
+The corrected traced invocation passed. Trace a8bd44895cdcc0df04779db8ba36d9ca contained exactly three observations; retrieved both real generations and root using the CLI. Both generation inputs/outputs and 25/25, 86/25 usage survived export; thinking tokens were unknown in this invocation rather than reusing the earlier count of 39. No configured secret appeared in the collection. Local trace URL: http://localhost:3000/project/cmv8pr1r00006rd07qo80hr5h/traces/a8bd44895cdcc0df04779db8ba36d9ca. These are small invented-data compatibility observations, not measured application quality or production latency. Final offline checks, package builds and hosted PR verification follow before Review.
+
+Auditing against current Langfuse guidance exposed a context gap: prompts/output alone do not show the tool/output schema or selected generation parameters. Added explicit schemas, allowed function/no-execution metadata, LOW/512 parameters and root SDK/source/lock identities. The read query expands only these known metadata keys. A fresh traced run will verify this added context before publication. Full offline checks already passed 97 cases, strict types in ten source files and both import contracts; all six archives/wheels built. No production trace/privacy claim is being made.
+
+### Final source and context check
+
+On continuation, read the failed root observation through the CLI. It contained an actual Gemini 503 during the second request, not another parser failure. Improved safe command diagnostics to disclose status/exception class only. A new bounded traced invocation passed as ce1613328f8a20c48cbd4e2ef2fb35aa: all three correlated observations, real 25/25 and 86/25 usage, explicit schema/parameter/source/SDK context and no configured secret in read-back. Committed seven intended source/config/test files as ccc036e after checking the staged diff for both configured secrets. Updated the study guide against this exact commit; unchanged historical source anchors retain their revisions. Documentation and hosted PR verification are next.
+
+
+### Hosted and native Review handoff
+
+Published and attached [PR #71](https://github.com/Protagonist01/my-production-agentic-systems/pull/71), source ccc036e and documentation 2ac2f4a. [Run 38655659165](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38655659165) passed all ten hosted jobs on exact head 2ac2f4a083602619f5babaebf775623aadf93bfa: Ubuntu/Windows Python 3.12/3.13 quality, required Postgres isolation, two locked audits, secret scan, PR metadata and final gate. Local final source passed 97 offline cases, strict types in ten source files, imports/Ruff/lock, six archive/wheel builds and audit. Audited 100 immutable guide source ranges and 103 local Markdown links. H1 remains unmerged.
+
+The native More actions expansion timed out but left the card control focused; pressing Return opened its actual menu. Selected Move to column then Review. The first observation preceded the asynchronous save; the later read-back showed H1 under Review, with counts Backlog 53, Ready 0, In progress 0/3, Review 1, Done 8. Saved artifacts/h1-review-board.png with H1 Review and Epic F 5/5 Done together. Updated current delivery docs and acceptance evidence, leaving the issue open and merge unchecked. This documentation-only handoff commit receives final exact-head CI before review is presented. H2 remains Backlog until H1 is reviewed/merged and verified.
+
+Final guide read-back caught an old foundation sentence claiming LangGraph/Pydantic AI were not installed. Corrected it to the actual H1 boundary: pinned development packages and tested extension seams exist, while shared gateway adapters remain planned. No source or immutable source anchor changed. This guide-only correction also receives exact-head CI.
