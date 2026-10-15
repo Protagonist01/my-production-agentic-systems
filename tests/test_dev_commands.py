@@ -15,7 +15,7 @@ dev = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(dev)
 
 
-@pytest.mark.parametrize("command", ["eval-replay", "eval-record", "eval-compare"])
+@pytest.mark.parametrize("command", ["eval-record", "eval-compare"])
 def test_planned_commands_fail_without_uv_or_project_dependencies(command, tmp_path) -> None:
     result = subprocess.run(
         [sys.executable, str(ROOT / "dev.py"), command],
@@ -108,3 +108,12 @@ def test_wrong_option_and_unknown_command_fail_before_dispatch(monkeypatch) -> N
         with pytest.raises(SystemExit) as error:
             dev.main(arguments)
         assert error.value.code == 2
+
+
+def test_replay_dispatches_current_code_with_revision_and_lock(monkeypatch) -> None:
+    calls = []
+    monkeypatch.setattr(dev.shutil, "which", lambda name: "invented-uv")
+    monkeypatch.setattr(dev, "execute", lambda arguments: calls.append(arguments) or 7)
+    assert dev.main(["eval-replay", "--code-revision", "current-code"]) == 7
+    assert "agent_harness.replay_example" in calls[0] and "current-code" in calls[0]
+    assert str(ROOT / "uv.lock") in calls[0]

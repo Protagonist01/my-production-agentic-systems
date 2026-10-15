@@ -10,7 +10,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 CHECKS = ("lock", "lint", "format-check", "types", "imports", "test")
 PLANNED = {
-    "eval-replay": "H3 #17: immutable recordings and strict offline replay",
     "eval-record": "H10 #24: fresh candidate recording and release evidence",
     "eval-compare": "H9 #23: scorecards and case-level baseline comparison",
 }
@@ -126,6 +125,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "integration-live",
             "trace-check",
             "gateway-live",
+            "eval-replay",
             "example",
             *PLANNED,
             *SERVICE_COMMANDS,
@@ -139,8 +139,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--trial", help="Trial identity for trial-create/reset/drop")
     parser.add_argument("--confirm-workspace", help="Exact workspace identity for db-destroy")
     args = parser.parse_args(argv)
-    if args.code_revision is not None and args.command not in ("example", "gateway-live"):
-        parser.error("--code-revision is only supported by example/gateway-live")
+    if args.code_revision is not None and args.command not in (
+        "example",
+        "gateway-live",
+        "eval-replay",
+    ):
+        parser.error("--code-revision is only supported by example/gateway-live/eval-replay")
     if args.command.startswith("trial-") != (args.trial is not None):
         parser.error("--trial is required only for trial commands")
     if args.confirm_workspace is not None and args.command != "db-destroy":
@@ -175,7 +179,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.confirm_workspace is not None:
             arguments.extend(["--confirm-workspace", args.confirm_workspace])
         return execute(arguments)
-    if args.command in ("example", "gateway-live"):
+    if args.command in ("example", "gateway-live", "eval-replay"):
         try:
             revision = args.code_revision if args.code_revision is not None else source_revision()
             if not revision.strip():
@@ -193,14 +197,16 @@ def main(argv: Sequence[str] | None = None) -> int:
                 "copy",
                 "python",
                 "-m",
-                "agent_harness.offline_example"
-                if args.command == "example"
-                else "agent_harness.gateway_probe",
+                {
+                    "example": "agent_harness.offline_example",
+                    "gateway-live": "agent_harness.gateway_probe",
+                    "eval-replay": "agent_harness.replay_example",
+                }[args.command],
                 "--code-revision",
                 revision,
                 *(
                     ["--lockfile", str(ROOT / "uv.lock")]
-                    if args.command == "example"
+                    if args.command in ("example", "eval-replay")
                     else ["--root", str(ROOT)]
                 ),
             ]
