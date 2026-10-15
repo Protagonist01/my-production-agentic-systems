@@ -1,9 +1,13 @@
 """H3: exact replay, immutable publication, safe diagnostics and no provider escape."""
 
 import json
+import os
 import socket
+import subprocess
+import sys
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
+from pathlib import Path
 
 import pytest
 from agent_harness.contracts import (
@@ -588,3 +592,94 @@ def test_unknown_and_empty_review_provenance_fails_validation():
     for changes in ({"schema_version": 99}, {"content_review_ref": ""}, {"content_policy": ""}):
         with pytest.raises(ValidationError):
             make_recording(recording().exchanges, provenance(**changes))
+
+
+def test_invalid_request_cannot_be_caught_and_retried_into_a_passing_session():
+    gateway, bindings = session()
+    invalid = request()
+    invalid.parameters["temperature"] = float("nan")
+    with pytest.raises(ReplayMismatch, match="invalid model request") as caught:
+        gateway.generate(bindings[0].current, invalid)
+    with pytest.raises(ReplayMismatch) as again:
+        gateway.generate(bindings[0].current, request())
+    assert caught.value is again.value
+
+
+def test_packaged_fixture_pin_and_current_agent_execution():
+    from importlib.resources import as_file, files
+
+    from agent_harness.replay_example import INVENTED_DIGEST, run_invented_replay
+
+    with as_file(files("agent_harness").joinpath("resources/replay/invented-v1.json")) as path:
+        value = load_recording(path, expected_digest=INVENTED_DIGEST)
+    lock = value.exchanges[0].context.versions.environment_lock
+    report = run_invented_replay(value, code_revision="current-test-code", environment_lock=lock)
+    assert report["recorded_calls_consumed"] == 6
+    assert report["recorded_timeouts_reproduced"] == 2
+    assert value.provenance.source_kind == "synthetic"
+
+
+def test_standalone_process_blocks_connect_dns_and_datagrams_without_provider_imports(tmp_path):
+    script = """
+import socket,sys
+from agent_harness.replay_example import _deny_network, NetworkDisabledError
+sys.addaudithook(_deny_network)
+denied = 0
+with socket.socket() as stream, socket.socket(type=socket.SOCK_DGRAM) as datagram:
+    for attempt in (
+        lambda: stream.connect(("127.0.0.1", 9)),
+        lambda: socket.getaddrinfo("example.invalid", 443),
+        lambda: datagram.sendto(b"invented", ("127.0.0.1", 9)),
+    ):
+        try:
+            attempt()
+        except NetworkDisabledError:
+            denied += 1
+assert denied == 3
+assert "google.genai" not in sys.modules and "langfuse" not in sys.modules
+print("three network operations denied; no provider SDK imported")
+"""
+    env = {
+        key: value
+        for key, value in os.environ.items()
+        if not key.startswith(("GEMINI_", "GOOGLE_", "LANGFUSE_", "OPENAI_", "ANTHROPIC_"))
+    }
+    result = subprocess.run(
+        [sys.executable, "-c", script],
+        cwd=tmp_path,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=20,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "three network operations denied" in result.stdout
+
+
+def test_replay_cli_runs_without_credentials_or_services(tmp_path):
+    root = Path(__file__).resolve().parents[1]
+    env = {
+        key: value
+        for key, value in os.environ.items()
+        if not key.startswith(("GEMINI_", "GOOGLE_", "LANGFUSE_", "OPENAI_", "ANTHROPIC_"))
+    }
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "agent_harness.replay_example",
+            "--code-revision",
+            "current-cli-source",
+            "--lockfile",
+            str(root / "uv.lock"),
+        ],
+        cwd=tmp_path,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=20,
+    )
+    assert result.returncode == 0, result.stderr
+    report = json.loads(result.stdout)
+    assert report["current_code_revision"] == "current-cli-source"
+    assert report["recorded_calls_consumed"] == 6 and report["outbound_provider_calls"] == 0

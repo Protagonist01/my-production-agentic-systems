@@ -131,9 +131,6 @@ class StrictReplayGateway:
         context = RunContext.model_validate_json(
             RunContext.model_validate(context).canonical_json()
         )
-        request = ModelRequest.model_validate_json(
-            ModelRequest.model_validate(request).canonical_json()
-        )
         scope = trial_scope(context)
         with self._lock:
             if self._failed is not None:
@@ -145,6 +142,12 @@ class StrictReplayGateway:
             if binding is None or binding.current != context:
                 self._fail(context, position + 1, "unbound or changed replay context")
             assert binding is not None
+            try:
+                request = ModelRequest.model_validate_json(
+                    ModelRequest.model_validate(request).canonical_json()
+                )
+            except ValueError:
+                self._fail(context, position + 1, "invalid model request contract")
             rows = self._rows[trial_scope(binding.recorded)]
             if position >= len(rows):
                 self._fail(context, position + 1, "no recorded call at this occurrence")
