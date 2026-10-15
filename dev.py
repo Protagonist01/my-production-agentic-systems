@@ -125,6 +125,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "integration-check",
             "integration-live",
             "trace-check",
+            "gateway-live",
             "example",
             *PLANNED,
             *SERVICE_COMMANDS,
@@ -138,8 +139,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--trial", help="Trial identity for trial-create/reset/drop")
     parser.add_argument("--confirm-workspace", help="Exact workspace identity for db-destroy")
     args = parser.parse_args(argv)
-    if args.code_revision is not None and args.command != "example":
-        parser.error("--code-revision is only supported by example")
+    if args.code_revision is not None and args.command not in ("example", "gateway-live"):
+        parser.error("--code-revision is only supported by example/gateway-live")
     if args.command.startswith("trial-") != (args.trial is not None):
         parser.error("--trial is required only for trial commands")
     if args.confirm_workspace is not None and args.command != "db-destroy":
@@ -174,7 +175,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.confirm_workspace is not None:
             arguments.extend(["--confirm-workspace", args.confirm_workspace])
         return execute(arguments)
-    if args.command == "example":
+    if args.command in ("example", "gateway-live"):
         try:
             revision = args.code_revision if args.code_revision is not None else source_revision()
             if not revision.strip():
@@ -192,11 +193,16 @@ def main(argv: Sequence[str] | None = None) -> int:
                 "copy",
                 "python",
                 "-m",
-                "agent_harness.offline_example",
+                "agent_harness.offline_example"
+                if args.command == "example"
+                else "agent_harness.gateway_probe",
                 "--code-revision",
                 revision,
-                "--lockfile",
-                str(ROOT / "uv.lock"),
+                *(
+                    ["--lockfile", str(ROOT / "uv.lock")]
+                    if args.command == "example"
+                    else ["--root", str(ROOT)]
+                ),
             ]
         )
     steps = CHECKS if args.command == "check" else (args.command,)

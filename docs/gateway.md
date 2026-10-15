@@ -1,0 +1,60 @@
+# H2 provider gateway
+
+H2 implements `ProviderGateway.generate(context, request)` with a pinned Gemini Developer API transport. It accepts text, local JSON Schema 2020-12 constraints and function proposals/results. It executes no tool. Domain/framework adapters, durable recording/replay (H3), shared deadline/retry/budget enforcement (H4), full outcome accounting (H6) and production tracing/redaction (H8) remain subsequent work.
+
+## Request identity and model wire version 2
+
+Model request/message/response and tool-call schemas are now **2**. Runtime, usage, evaluation and new exchange/part objects retain their own version **1**. Request serializer version is **2**. Old model wire records explicitly fail validation; no persisted recording format existed before H2. Do not relabel old records as version 2 or reuse their hashes; H3 must provide any reviewed migration it needs.
+
+`ModelRequest.fingerprint()` hashes canonical UTF-8 JSON: provider, endpoint, requested model/revision, complete ordered messages, supplied generation parameters, tool declarations/choice, output schema and serializer/schema versions. Object-key order is canonicalized; whitespace, message/part/tool order, arguments and opaque signatures remain significant. This is content identity, not response identity or a replay store.
+
+`ModelPart` preserves the exact order of assistant text/function parts plus optional encrypted thought signatures as canonical base64. `ModelMessage.content/tool_calls` must equal the public projection of those parts; thought text is excluded from public content. Tool calls carry both a local correlation ID and the provider ID when present. Missing provider IDs get unique local IDs; those invented IDs are not sent back as provider IDs. Retain the returned assistant message unchanged when appending tool results. Gemini function history without original parts fails before dispatch.
+
+The transport converts only leading system messages to ordered system-instruction parts. It rejects developer messages and late system messages rather than changing their meaning. Function results require matching pending IDs/names and a JSON object body; all pending results must arrive before another turn. Parallel result messages are grouped as one ordered function-response turn.
+
+## One dispatch and detached evidence
+
+The gateway revalidates the Python model first, then detaches context/request through canonical JSON. This order matters: nested dictionaries remain mutable even on frozen models, and direct JSON serialization can turn a mutated NaN into null. It allocates an occurrence under a lock within `(run, tenant, agent, case, trial)`, then gives the transport a separate request copy. It revalidates the returned Python model before JSON and checks provider/requested-model plus any explicitly requested revision. Invalid caller contracts raise before allocation/dispatch; supported contracts with unsupported transport choices return typed preflight failures. A provider alias and returned model version are separate facts; no immutable-weight claim follows from matching the alias.
+
+Each `ModelExchange` retains context, occurrence, request and response. Its identity includes the scoped occurrence and request fingerprint. Two identical requests in a trial produce separate records and can have different answers; a new trial restarts occurrence at one. Snapshot readers get detached copies. Concurrent completion order can differ from allocation order: use the occurrence, not the list index.
+
+Records are private in-memory JSON, contain model-visible content and are not automatically logged/exported. They are neither durable nor globally unique across gateway instances/restarts. Unexpected programming exceptions propagate and may leave an allocated occurrence without an exchange; complete attempt/outcome accounting is H6. Caller-provided identities are provenance, not authentication or tenant authorization.
+
+The live gateway refuses `offline_fake` and `strict_replay` without dispatch. Fresh/monitoring calls have no cache, retry, model fallback or automatic tool execution. This is not H10's fresh evaluation/release recorder. Budget/deadline fields are declarations here; H4 must reserve and enforce shared limits before real workloads.
+
+## Gemini boundary and usage
+
+Install the optional runtime extra `production-agent-harness[gemini]` for the adapter. It pins google-genai 2.30.1, jsonschema 4.26.0 and referencing 0.37.0. The root development group selects that extra and pins types-jsonschema 4.26.0.20261006; `python dev.py setup` installs it through the shared lock. A base harness wheel does not require Google/framework packages.
+
+The route is explicitly Gemini Developer API, `https://generativelanguage.googleapis.com`, `v1beta`, `gemini-3.5-flash-lite`. Enterprise/Vertex routing, environment proxies and redirects are disabled. Each call owns/closes its client, uses a 30-second request timeout and one SDK attempt. Automatic continuation is **false**; automatic function execution is disabled. Pinned serializer-v2 defaults are one candidate, LOW thinking and 512 maximum output tokens. Changing these implicit translation defaults requires a serializer version review.
+
+Supported explicit parameters are temperature (0–2), top_p (0–1), positive top_k, max_output_tokens (1–512), stop_sequences, integer seed and LOW thinking. Unknown/coerced parameters fail before dispatch. The caller must put intended sampling settings in the request; `RunContext.seed` is not silently substituted into model parameters. This fixed small transport slice can be extended through a reviewed versioned change.
+
+Successful HTTP bodies are checked before SDK parsing so duplicate keys, non-finite values and coerced/negative token counts cannot become valid accounting. Output must have exactly one model candidate ending STOP; blocked, truncated, unsupported multimodal/streaming or ambiguous output becomes a typed failure. JSON text and proposed arguments are validated against supplied schemas, without coercion. References must remain local; an empty referencing registry performs no HTTP/file lookup. Format keywords remain annotations, not additional format checks. Google's supported schema dialect can still reject a locally valid schema; HTTP errors remain failures.
+
+Known prompt tokens include cached tokens; cached counts are retained separately. Output accounting is candidate plus thinking tokens only when both are known. Missing thinking tokens make aggregate output unknown; raw provider fields survive separately. Cost/currency stay unknown, including on a user-confirmed Free project. HTTP/timeout/transport failures count one attempted SDK request and unknown usage; preflight/mode failures count zero. Known usage survives invalid content. Retryable is a classification for H4, not permission to retry automatically.
+
+## Verification and optional live probe
+
+```powershell
+python dev.py setup
+python dev.py check
+python dev.py gateway-live
+```
+
+Ordinary checks use actual SDK parsing/serialization over mock HTTP, with socket connections denied. They need no keys, live provider or Langfuse. `gateway-live` is explicitly separate and excluded from CI. It requires the existing ignored `.env.local` Gemini key and `GEMINI_FREE_TIER_CONFIRMED=true`; the flag is a user attestation, not SDK billing verification. Never paste keys into chat or put them in command arguments/Git.
+
+The live probe makes at most two invented requests: a forced `lookup_order` proposal for `invented-order-001`, then its unchanged signed assistant history plus an invented tool result `{"answer":42}`, requiring JSON `case_id="invented-h2", answer=42`. It prints only aggregate identities/usage and the invented answer, not raw signatures/keys. It records the actual code revision (with a dirty marker when applicable) and lock hash. No real source records, business actions, model-quality experiment or Langfuse export are part of this command. H1's separately verified local trace remains compatibility evidence for its original path.
+
+Primary references inspected: [pinned Google SDK](https://googleapis.github.io/python-genai/), [structured output](https://ai.google.dev/gemini-api/docs/structured-output), [thinking/signature distinctions](https://ai.google.dev/gemini-api/docs/thinking), [schema referencing](https://python-jsonschema.readthedocs.io/en/stable/referencing/), [jsonschema 4.26.0](https://pypi.org/project/jsonschema/4.26.0/). See the Build Book Entry 14 and the current study guide for construction and source-level walkthroughs.
+
+## Observed live evidence
+
+On 2026-10-15, clean source 9b3af1c2df397779901cb100613e166948b41ff6 passed both requests in run `h2-smoke-9efe87dd80b24474ab1f4d3a48654b12`. The proposal retained one opaque signature; the follow-up returned `{"case_id":"invented-h2","answer":42}`. Scoped occurrences were 1/2 with distinct request fingerprints. Reported inputs were 95/133 tokens, visible candidate tokens 25/19, thinking unknown and provider totals 120/152. Aggregate output and cost stayed unknown. No raw signature or configured secret appeared in the saved aggregate output.
+
+Later pre-serialization hardening rejects mutated non-finite contracts before dispatch; declaring the directly imported referencing pin does not change resolved package versions. The live observation above belongs to its actual source/lock, not a fabricated later run. Offline final-head and hosted evidence is recorded with the H2 PR. This small tool-result round trip establishes compatibility, not domain quality, model accuracy, real write safety or production recovery.
+
+
+## Hosted review evidence
+
+[PR #72](https://github.com/Protagonist01/my-production-agentic-systems/pull/72) remains unmerged. [Run 38775295828](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38775295828) passed all ten jobs on 8af463fa47edddb0feaec40eeed9e7bcff440046; final handoff-head status is verified separately in the PR. Local final source passed 151 cases and thirteen typed source files. An additional isolated mock CONTINUATION control observed one request and a typed failure with no hidden follow-up. Native board columns are pending because browser initialization failed and the user has not manually applied the moves.

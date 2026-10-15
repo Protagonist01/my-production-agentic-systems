@@ -274,7 +274,7 @@
         "Provider limits and timestamp are recorded; model aliases and their drift limits are explicit."
       ],
       "priority": "P0",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 15,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/15",
@@ -292,7 +292,9 @@
       "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/71",
       "implementation_commit": "ccc036efc843155818d4c591915deb13d46e2069",
       "verified_ci_commit": "2ac2f4a083602619f5babaebf775623aadf93bfa",
-      "verified_ci_run_url": "https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38655659165"
+      "verified_ci_run_url": "https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38655659165",
+      "verified_main_commit": "0a859bbf0ef66420128577d8f01e05f3c927c53b",
+      "verified_main_ci_run_url": "https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38660002889"
     },
     {
       "id": "H2",
@@ -310,7 +312,7 @@
         "Trial/call occurrence preserves different responses to identical requests."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 16,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/16",
@@ -319,7 +321,14 @@
         11,
         15
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "branch": "codex/h2-gemini-gateway",
+      "command_document": "docs/gateway.md",
+      "implementation_commit": "4b33c3c0ce242a4f4553840c6ffb79d97338e095",
+      "model_serializer_version": 2,
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/72",
+      "verified_ci_commit": "8af463fa47edddb0feaec40eeed9e7bcff440046",
+      "verified_ci_run_url": "https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38775295828"
     },
     {
       "id": "H3",

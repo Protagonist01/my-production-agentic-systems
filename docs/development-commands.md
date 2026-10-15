@@ -57,4 +57,9 @@ Design references: [uv command environments](https://docs.astral.sh/uv/concepts/
 
 ## H1 provider and trace probes
 
-On the H1 branch, integration-check uses the pinned SDK/frameworks on mock HTTP transport; its negative/network-boundary cases run in ordinary check. integration-live requires a user-confirmed Free Gemini project and two fresh invented requests. trace-check additionally requires dedicated local Langfuse credentials, Node/npx and successful v4 CLI read-back. These live commands are excluded from hosted offline CI. See [integration commands](integration-smoke.md) and [decision](adr/0001-first-integration.md).
+Merged H1 integration-check uses the pinned SDK/frameworks on mock HTTP transport; its negative/network-boundary cases run in ordinary check. integration-live requires a user-confirmed Free Gemini project and two fresh invented requests. trace-check additionally requires dedicated local Langfuse credentials, Node/npx and successful v4 CLI read-back. These live commands are excluded from hosted offline CI. See [integration commands](integration-smoke.md) and [decision](adr/0001-first-integration.md).
+
+
+## H2 shared gateway probe
+
+`gateway-live` uses the same locked uv environment and revision/dirty detection as `example`; it dispatches agent_harness.gateway_probe with the checkout root and code revision. Source exports can pass --code-revision explicitly. It makes at most two invented Free-tier requests through ProviderGateway and GeminiTransport, preserving the signed function history and validating the final JSON. It is excluded from CI and is not a quality evaluation or durable recorder. [Scope, optional runtime installation and observed evidence](gateway.md).

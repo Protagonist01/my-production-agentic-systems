@@ -34,10 +34,11 @@ dev = [
     "pyyaml==6.0.3",
     "pytest>=9.1.1",
     "ruff>=0.17.0",
-    "google-genai==2.30.1",
+    "production-agent-harness[gemini]",
     "langgraph==1.2.15",
     "pydantic-ai-slim[google]==2.56.0",
     "langfuse==5.0.1",
+    "types-jsonschema==4.26.0.20261006",
 ]
 
 [tool.mypy]

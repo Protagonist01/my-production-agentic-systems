@@ -50,8 +50,8 @@ Calibrate numeric quality floors from reviewed baselines, declare before candida
 
 ## Execution
 
-[Project management](project-management.md) defines the 8 epics and 53 tasks, acceptance gates, ownership and worktree operation. F1/O1/F2 are merged and verified; F3's [portable commands](development-commands.md) and [current-code study guide](../CODE_STUDY_GUIDE.md) are prepared for review. Gateway/evaluation/Olist streams integrate small increments according to task prerequisites. Complete O8 first; prepare later data in parallel and integrate at most two verticals concurrently.
+[Project management](project-management.md) defines the 8 epics and 53 tasks, acceptance gates, ownership and worktree operation. F1–F5/O1/H1 are merged and verified. H2 adds the bounded [provider gateway](gateway.md), with [portable commands](development-commands.md) and [current-code study guide](../CODE_STUDY_GUIDE.md) maintained alongside it. Gateway/evaluation/Olist streams integrate small increments according to task prerequisites. Complete O8 first; prepare later data in parallel and integrate at most two verticals concurrently.
 
-40 hours/week includes implementation, integration, labeling and review. Task sizes are provisional; fixed dates follow observed throughput. Working foundation/offline-example commands appear in the root README. No provider smoke test or model release score is claimed to pass yet.
+40 hours/week includes implementation, integration, labeling and review. Task sizes are provisional; fixed dates follow observed throughput. Working foundation/offline-example commands appear in the root README. Invented H1/H2 provider compatibility probes passed. No domain model-quality release score is available yet.
 
 [Planning index](00-planning-index.md) · [Execution rationale](01-execution-and-evidence-proposal.md) · [Data/architecture rationale](02-data-and-architecture-comparison.md)
