@@ -61,4 +61,4 @@ User reviewed/merged [PR #72](https://github.com/Protagonist01/my-production-age
 
 Browser control recovered by restoring two missing cached Temp asset directories; reconnecting alone did not address that startup failure. H3 #17 completed after user merge of [PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73). [Recording/replay](replay.md) persists reviewed detached exchanges explicitly; it does not add automatic live recording or domain evaluation. H4 supplies the separate shared-budget wrapper.
 
-The H4 branch changes gateway-live to use one shared controller, conservative admission and owned worker per attempt. It still makes at most two invented calls (one attempt each), now emitting separate reserved/observed accounting. Historical H2 live evidence above is not a new H4 run. See [controls](controls.md).
+Merged H4 changes gateway-live to use one shared controller, conservative admission and owned worker per attempt. It still makes at most two invented calls (one attempt each), now emitting separate reserved/observed accounting. Historical H2 live evidence above is not a new H4 run. See [controls](controls.md).
