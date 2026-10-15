@@ -20,6 +20,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 13 — Selecting a free provider and local trace integration](#entry-13--selecting-a-free-provider-and-local-trace-integration)
 - [Entry 14 — Moving Gemini calls behind the shared gateway](#entry-14--moving-gemini-calls-behind-the-shared-gateway)
 - [Entry 15 — Preserving calls without turning replay into a cache](#entry-15--preserving-calls-without-turning-replay-into-a-cache)
+- [Entry 16 — Reserving shared capacity before bounded attempts](#entry-16--reserving-shared-capacity-before-bounded-attempts)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -703,3 +704,51 @@ Audited 143 immutable source ranges against exact Git objects and their current 
 ### H3 Review publication
 
 Published and attached [PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73), based on reviewed main 9282d87. Source modules are fbf0d80; capture source remains bce80f8. Updated the delivery snapshot to Review and linked #17. The issue stays open with the merge checkbox unchecked until user review/merge and post-merge verification. Required hosted quality cells now execute the pinned invented replay alongside all existing checks. Final exact-head CI and native saved Review read-back are verified separately and recorded on the issue/PR after this handoff commit; do not infer their success from this journal entry.
+
+## Entry 16 — Reserving shared capacity before bounded attempts
+
+Date: 2026-10-15 (Africa/Lagos). H4 #18. Branch `codex/h4-shared-controls`, based on merged main 1207eb5. Work underway.
+
+**Files touched:** execution controls, bounded transport/worker, gateway/probe, tests, runbooks and study guide.
+
+### Context
+
+User reviewed/merged H3 #73. Verified main 1207eb5385e06d5c32fceede92c6d3817ec5ad27 and run 38787114829: nine applicable hosted jobs passed, with PR-only metadata intentionally skipped. Clean merged setup/check/replay verification is running. H3 final-head run 38782567025 passed all ten jobs; native H2 Done/H3 Review were verified before merge. H4 now owns shared admission, bounded retry/deadline handling and circuit state rather than adding hidden SDK retries.
+
+### Before you read on
+
+Two concurrent agents see one model call remaining. Where must reservation happen? If the admitted call times out without usage, which capacity can safely be refunded, and what stops the request from continuing in a background thread?
+
+### Options considered and why
+
+Per-instance counters lose the shared run boundary. Optimistic refund on unknown usage understates consumed capacity. Chosen: one explicitly shared, locked controller keyed by tenant/run; atomically reserve a call and conservative token/cost ceiling before each attempt, never refund admitted capacity in this first implementation. Observed usage stays separate and unknown remains unknown. A ceiling breach freezes further admission rather than hiding the overrun. Caller-supplied ceilings need reviewed transport evidence; they are not measurements.
+
+A thread timeout only stops waiting. Chosen for the real SDK path: one spawned worker per attempt, bounded result frame and parent deadline; terminate/join the owned worker on timeout. Stopping the local worker cannot cancel work already accepted by the provider, so its reservation remains charged. No background retry or tool execution is allowed. Process startup/cleanup overhead is included in the documented deadline boundary; OS scheduling/termination cannot be promised at an exact nanosecond.
+
+The existing Free-project attestation remains required. Google model/pricing docs currently declare a 1,048,576 input and 65,536 output limit and Free-tier text inference at no charge for gemini-3.5-flash-lite. Reserve the entire declared 1,114,112-token ceiling per attempt, not a guessed prompt estimate; reserve zero monetary capacity only under the explicit billing-disabled Free attestation. Observed monetary usage remains unknown. This conservative policy may reject small budgets and does not independently prove project billing. Tightening it requires reviewed counting/limits evidence, not an undocumented heuristic.
+
+### How to build it
+
+1. Introduce an execution policy and admission quote with versions, finite limits and explicit currency/evidence. Share a controller across gateways and agents for one process. Reject budget/deadline drift for a registered tenant/run.
+2. Under one lock, check the monotonic run deadline, circuit state and remaining call/token/cost capacity, then reserve all three together. Keep reservations even on timeout/unknown usage; track actual usage separately and freeze on observed ceiling breach.
+3. Keep one generic H2 exchange per admitted attempt. Retry only typed transient failures within max attempts, clipped exponential backoff, remaining deadline and a new reservation. Return aggregate observed attempt usage with a terminal typed failure on budget/deadline/circuit stop.
+4. Scope circuits by tenant and provider route. Open after the configured transient-failure threshold, admit only one half-open probe after cooldown, and close on successful/nontransient response. Share that state across gateway instances using the same controller.
+5. Isolate the real Gemini SDK in a spawned worker without putting credentials in command arguments or records. Clip its HTTP timeout and enforce parent elapsed bounds. Test scripted failures/concurrency with an injected clock; separately test actual process timeout/cleanup and SDK mock wire behavior without credentials/live calls.
+
+### Work underway
+
+Read current Google model/pricing and Python 3.13 multiprocessing documentation before implementation. Langfuse remains unchanged; H8 owns production trace/export health. No new live call is required to verify H4. Implementation results and any failures follow below.
+
+### First checks and corrections
+
+A separate clean clone of merged main 1207eb5 in a path with spaces completed locked setup/check: 220 tests, sixteen typed files, imports/Ruff/format/lock. Replay identified that exact clean revision, consumed six invented calls and reproduced two timeouts with zero provider calls. The earlier active-checkout replay reported +dirty after H4 edits began; it was not used as clean-main evidence. H3 #17 can now close after the user's merge.
+
+The first control tests exposed two test-harness errors: the fake transport recorded zero-duration sleeps as backoffs, and a two-second spawn timeout expired before a Windows child reached its hang marker. Skip the fake zero sleep; allow eight seconds in the real hang test and still require a child PID marker, elapsed bound and no surviving owned child. This tests interruption of an executing worker rather than startup alone. Strict mypy rejected byte-array slice assignment; use ctypes.memmove into the fixed bounded frame. None of these changes require live calls.
+
+Replay needs its own explicit adapter. Allow strict_replay only with ReplayAttempts wrapping StrictReplayGateway; reject a live attempt gateway in that mode. Propagate ReplayMismatch as an infrastructure exception after keeping/finalizing the reservation and freezing the run. Swallowing it into a typed model response would let a caller mistake invalid evidence for a model outcome. Require assert_complete on the underlying replay as before. Targeted and full validation follow.
+
+The targeted suite passed 52 cases after increasing only SDK classification-worker allowances to thirty seconds. One earlier 503 classification case returned a legitimate parent timeout at ten seconds during Windows startup; the longer allowance isolates classification from startup slowness. Added invalid direct Gemini timeout checks before HTTP. Full check/build and documentation verification are now running; no hosted H4 result is claimed.
+
+### Full source verification
+
+The full locked check passed 276 offline cases (56 H4), nineteen typed source files, both import contracts, Ruff/format and the unchanged lock. All six source archives/wheels built. Direct Gemini invalid/nonfinite time is now rejected before HTTP. No live provider request was needed. Preparing an implementation commit so documentation can link immutable code; installed-base-wheel, link/content review and final hosted checks remain separate evidence.
