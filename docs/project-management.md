@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-15. F1–F5/O1/H1/H2 are merged and verified on main 9282d87 (PR #72): 151 offline tests and nine applicable hosted jobs passed. H2 #16 is closed/completed. H3 #17 is assigned/In progress on codex/h3-strict-replay, implementing reviewed immutable model-call fixtures and strict replay. Domain workflows and independent evaluation remain unimplemented.
+Updated: 2026-10-15. F1–F5/O1/H1/H2 are merged and verified on main 9282d87 (PR #72): 151 offline tests and nine applicable hosted jobs passed. H2 #16 is closed/completed. H3 #17 is assigned/in Review in PR #73 on codex/h3-strict-replay, implementing reviewed immutable model-call fixtures and strict replay. Domain workflows and independent evaluation remain unimplemented.
 
 ## Scope and source of truth
 

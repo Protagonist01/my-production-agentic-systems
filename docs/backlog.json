@@ -347,7 +347,7 @@
         "Repeated call order and typed recorded failures are reproduced; fixtures are not overwritten."
       ],
       "priority": "P0",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 17,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/17",
@@ -359,7 +359,9 @@
       "branch": "codex/h3-strict-replay",
       "command_document": "docs/replay.md",
       "recording_schema_version": 1,
-      "fixture_sha256": "72125a30c816dca9f2e72b3ac6f4fc5e718ee9386c95f6243db43ba19702ac2b"
+      "fixture_sha256": "72125a30c816dca9f2e72b3ac6f4fc5e718ee9386c95f6243db43ba19702ac2b",
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/73",
+      "implementation_commit": "fbf0d80a4d450ab9de27b325108613b9fdc497c5"
     },
     {
       "id": "H4",

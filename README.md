@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5/O1/H1/H2 are merged and verified; current main is 9282d87 ([PR #72](https://github.com/Protagonist01/my-production-agentic-systems/pull/72)). H2 provides a bounded shared Gemini gateway, model wire v2 and per-occurrence exchanges. H3 #17 adds [immutable recordings and strict replay](docs/replay.md) on codex/h3-strict-replay, pending review/merge. The pinned invented replay executes current code, consumes six calls and reproduces two timeouts without provider access. Policy enforcement, domain workflows and independent quality evaluation remain subsequent work.
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5/O1/H1/H2 are merged and verified; current main is 9282d87 ([PR #72](https://github.com/Protagonist01/my-production-agentic-systems/pull/72)). H2 provides a bounded shared Gemini gateway, model wire v2 and per-occurrence exchanges. H3 #17 adds [immutable recordings and strict replay](docs/replay.md) on codex/h3-strict-replay, in [PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73), awaiting review/merge. The pinned invented replay executes current code, consumes six calls and reproduces two timeouts without provider access. Policy enforcement, domain workflows and independent quality evaluation remain subsequent work.
 
 ## Setup and working commands
 
