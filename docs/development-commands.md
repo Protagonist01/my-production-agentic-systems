@@ -39,11 +39,11 @@ All commands use subprocess argument lists and `shell=False` (the default), so p
 
 The stdout report is JSON, marked `synthetic`/`offline_fake`; lockfile SHA-256 and revision remain in its context. Store optional reports under an ignored artifacts directory outside source. A fake score of 1 is wiring evidence, not real model quality.
 
-`eval-replay`, `eval-record` and `eval-compare` return exit 2 before finding/installing uv. Their messages name H3 #17, H10 #24 and H9 #23 respectively. Unknown commands and wrong options also fail. A future implementation must replace the explicit unavailable path and add its required behavioral tests; it must never return success with a placeholder result.
+`eval-replay` now runs the [H3 pinned invented replay](replay.md), with actual current source/lock identity and no provider client. It requires complete consumption and exits nonzero on mismatch. `eval-record` and `eval-compare` still return exit 2 before finding/installing uv; their messages name H10 #24 and H9 #23 respectively. Unknown commands and wrong options also fail. A future implementation must replace the explicit unavailable path and add its required behavioral tests; it must never return success with a placeholder result.
 
 ## CI contract
 
-F5 installs supported Python/uv and calls the same four commands in the fresh-checkout block above. The workflow selects/asserts the actual matrix interpreter instead of letting .python-version silently select every cell. Required separate db-check, hashed dependency audits, secret scan and PR evidence feed CI gate. The clean hosted implementation passed all ten jobs on Ubuntu/Windows and Python 3.12/3.13; latest-head results and limits are in [Foundation CI](ci.md). Real provider/replay/fresh-quality work remains explicitly unavailable.
+F5 installs supported Python/uv and calls the same four commands in the fresh-checkout block above. The workflow selects/asserts the actual matrix interpreter instead of letting .python-version silently select every cell. Required separate db-check, hashed dependency audits, secret scan and PR evidence feed CI gate. The clean hosted implementation passed all ten jobs on Ubuntu/Windows and Python 3.12/3.13; latest-head results and limits are in [Foundation CI](ci.md). H3 adds `python dev.py eval-replay` after the invented example in each quality cell. This is synthetic model replay, not a domain quality gate. Fresh quality/release evaluation remains H9/H10.
 
 Design references: [uv command environments](https://docs.astral.sh/uv/concepts/projects/run/) and [locked syncing](https://docs.astral.sh/uv/concepts/projects/sync/). The exact tested commands are in dev.py, rather than inferred from current docs.
 

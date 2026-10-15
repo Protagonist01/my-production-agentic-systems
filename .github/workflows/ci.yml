@@ -47,6 +47,8 @@ jobs:
         run: python dev.py check
       - name: Invented offline example
         run: python dev.py example
+      - name: Pinned invented strict replay
+        run: python dev.py eval-replay
       - name: Build all six packages
         run: python dev.py build
 

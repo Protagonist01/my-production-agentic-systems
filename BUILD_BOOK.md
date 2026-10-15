@@ -19,6 +19,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 12 — Turning portable checks into hosted CI](#entry-12--turning-portable-checks-into-hosted-ci)
 - [Entry 13 — Selecting a free provider and local trace integration](#entry-13--selecting-a-free-provider-and-local-trace-integration)
 - [Entry 14 — Moving Gemini calls behind the shared gateway](#entry-14--moving-gemini-calls-behind-the-shared-gateway)
+- [Entry 15 — Preserving calls without turning replay into a cache](#entry-15--preserving-calls-without-turning-replay-into-a-cache)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -638,3 +639,67 @@ The final snapshot correction passed all 151 offline cases (54 H2 cases), thirte
 Published and attached [PR #72](https://github.com/Protagonist01/my-production-agentic-systems/pull/72), source 4b33c3c and documentation 8af463f. [Run 38775295828](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38775295828) passed all ten jobs on exact head 8af463fa47edddb0feaec40eeed9e7bcff440046: four OS/Python quality cells, Postgres, two audits, secret scan, PR evidence and CI gate. Remote file list matched the 20 intended files. Final rebuilt wheel bytes/metadata and isolated base/extra imports passed; 122 immutable guide ranges and 77 selected local links verified. A separate mock CONTINUATION negative control sent exactly one request and returned typed invalid_response, proving no automatic follow-up.
 
 Updated #16 acceptance/Review evidence, keeping the issue open and merge unchecked. Native browser initialization still fails after user reconnection; user confirmed no manual board update yet. Do not claim native H1 Done/H2 Review columns were verified. Final handoff documentation receives exact-head CI before user review; H3 stays Backlog until H2 is merged and verified.
+
+## Entry 15 — Preserving calls without turning replay into a cache
+
+Date: 2026-10-15 (Africa/Lagos). H3 #17. Branch `codex/h3-strict-replay`, based on merged H2 main 9282d87. Work underway.
+
+**Files touched:** recording/replay modules, replay command, invented fixture/tests, delivery docs and current-code guide.
+
+### Context
+
+The user reviewed and merged #72. Server main run 38779049159 passed all nine applicable jobs; PR-only metadata was intentionally skipped. Local merged-baseline checks are running. Browser recovery before this task restored native H1 Done/H2 Review verification: two missing cached temporary asset folders caused the helper failure. Recreating those empty folders allowed the runtime to regenerate its own files. What removed the folders remains unknown. This supersedes Entry 14's pending native-board note, without changing that historical observation.
+
+H2 already detaches typed exchanges and allocates per-trial occurrences. A request hash alone cannot distinguish two identical prompts with different answers. Persist those occurrences, requests, typed outcomes and provenance rather than building a response cache.
+
+### Before you read on
+
+How would you notice that current agent code stopped after the first of two identical recorded calls? How would replay distinguish that regression from a successful matching prefix?
+
+### Options considered and why
+
+SQLite offers transactions and queries, but this issue needs a small inspectable export rather than a shared mutable service. Chosen: one versioned JSON document, canonical SHA-256, explicit external digest pin, and exclusive create with no replacement. Publish a fully written temporary file through a no-replace hard link so a crash before publication leaves no partial final fixture. A content hash detects edits against a trusted pin; it is not a signature or authorization.
+
+Rewriting captured prompts after dispatch would break exact request identity and opaque signed history. Require callers to sanitize the model-visible input before capture, then supply a content-review reference and forbidden values. Reject discovered credential values rather than silently redacting a transcript into a different experiment. This is a review boundary, not a universal PII detector. Only invented content will be committed for H3.
+
+### How to build it
+
+1. Validate detached H2 exchanges, group by full run/tenant/agent/case/trial scope, sort each by allocated occurrence and require contiguous sequences from one. Reject changing context within a trial and mixed routes/invalid provenance. Typed model failures remain responses, not thrown-away rows.
+2. Store source category/version, snapshot/policy/scorer and review provenance beside the exchanges. Hash canonical UTF-8 JSON; load with a caller-pinned digest and reject duplicate JSON keys, non-finite numbers and unsupported versions before execution.
+3. Bind each recorded trial explicitly to a current strict-replay context. Permit a new run/code/candidate identity; keep tenant, agent, case, trial, clock, seed, budget, policy, data and lock exact. Preserve captured and current contexts separately.
+4. Replay consumes the next occurrence for that bound scope only after full canonical request equality. Fail closed on mismatches without moving the cursor, retain case/trial/call evidence, and make failure sticky. A final completion check rejects a matching prefix with unconsumed rows.
+5. Execute current agent code with recorded responses, not cached final agent results. Test without credentials and with outbound sockets blocked; change prompts, ordering, schemas and context and require failures. Cover immutable publication races, tampering, detached return values and typed errors separately.
+
+### What went wrong / work underway
+
+No H3 implementation result is claimed yet. The first documentation read accidentally targeted the original checkout rather than the attached worktree; corrected subsequent reads to the explicit worktree before changing source. The original checkout and its unrelated files are preserved.
+
+### First implementation checks
+
+Recording/replay plus command boundaries passed 77 targeted cases, including 65 recording/replay cases. Strict mypy passed sixteen source files. No provider requests were made. The writer stages and fsyncs complete bytes, then uses exclusive linking: four concurrent publishers produced one winner and three existing-file failures. Failed fsync/link leaves no destination or staging file. Replay tests ran current FakeAgent code with keys absent and sockets denied; repeated requests retained distinct outcomes, independent trials and typed failures. Changed prompt/schema/route/history/context, corrupted fixtures and skipped trailing calls fail closed. Added a standalone-process audit hook to refuse normal Python network connect/DNS/datagram operations in the replay command; it is not an OS sandbox for malicious code.
+
+The first lint invocation ran before formatting and reported long lines; formatting resolved them. The connector only prepared issue-edit forms, so used existing Git Credential Manager authorization for direct REST writes and verified the server responses. H2 #16 is closed/completed; H3 #17 is assigned and native In progress is visible. The bundled invented fixture is not yet authored or claimed verified; capture source is committed first so its provenance can identify actual code.
+
+### Pinned invented capture and current-code replay
+
+The first full check passed 216 offline tests, sixteen typed source files, both import contracts, Ruff/format and the unchanged 115-package lock. Committed construction source bce80f8c94ce81578767dacf4b95c5676662e6be, then authored the fixture from that clean revision through the existing FakeAgent/FakeGateway. Two trials each record two repeated successful requests and one typed timeout. Capture mode is offline_fake and source is synthetic; this is not provider evidence. Lock SHA-256 is ab937ab9313389ded7eec95658a168f68f29ee5b9589f4ea8f3d498420c7ea72, recording digest 72125a30c816dca9f2e72b3ac6f4fc5e718ee9386c95f6243db43ba19702ac2b. Published through the exclusive writer and pinned the digest in separate source. Ordinary replay never calls the fixture-authoring helper.
+
+The new command consumed all six calls and reproduced both timeouts, reporting capture bce80f8 and the then-dirty current revision separately. Added subprocess checks without provider credentials: connect, DNS and datagram attempts were denied; no Google/Langfuse SDK was imported. Current-agent prompt changes fail matching. The expanded targeted suite passed 81 cases (69 H3 plus twelve command cases), and strict types passed. Tightened malformed-request handling so catching an invalid request cannot retry into a passing replay session. Full final checks/builds and installed-wheel execution follow; no final hosted result is claimed yet.
+
+### A real Windows checkout mismatch
+
+Final source checks passed 220 tests, sixteen typed source files, Ruff/format/imports/lock and all six archives/wheels. The replay command consumed six calls and reproduced both timeouts. Before calling that portable, cloned committed source 76a562d with `git -c core.autocrlf=true clone` into an ignored directory with spaces. The cloned lock's raw SHA differed from its Git blob and replay refused the environment binding. The dependency content had not changed: Git's line-ending conversion changed the observed bytes.
+
+Fix this at the checkout boundary, not by silently normalizing provenance hashes: add `.gitattributes` forcing LF for `uv.lock` and the bundled fixture JSON. Keep raw lock hashing and exact context matching. A fresh forced-CRLF clone after the commit must retain the pinned lock hash and run the current installed command. This control is pending at this point in the journal. No dependency upgrade or fixture overwrite is needed.
+
+### Clean-checkout and installed-wheel evidence
+
+Committed the attributes fix as fbf0d80a4d450ab9de27b325108613b9fdc497c5. A new forced-CRLF clone in a directory with spaces retained the exact lock SHA. Locked setup succeeded; invoking its absolute dev.py path from the parent directory ran replay successfully with clean current revision exactly fbf0d80, six consumed calls and two reproduced timeouts. This directly closes the reproduced checkout bug without weakening content pins.
+
+Verified all three new source modules and the fixture have identical bytes inside the built harness wheel. Installed only the base wheel and its mandatory dependencies into a new isolated environment: Google and Langfuse were absent; recording/replay imports and `python -I -m agent_harness.replay_example` succeeded. The wheel run identified actual source 76a562d (the source modules match fbf0d80) and consumed all six calls without provider/trace clients. No live provider or existing local Langfuse service was contacted. All six packages built; no dependency versions changed. Preparing source-link/content review and a concrete PR; hosted final-head evidence remains pending.
+
+Audited 143 immutable source ranges against exact Git objects and their current code slices, and 86 selected local Markdown links. The checker caught a hand-written test end line beyond EOF and an obsolete whole-command link in the H2 chapter; corrected both and reran successfully. Scanned all 23 intended publication files against configured secret values; no configured value or local/raw artifact was included. New replay/command links pin fbf0d80 while unchanged implementation links retain their verified revisions. Publishing the bounded H3 implementation next; H4 remains Backlog until reviewed capacity is assigned.
+
+### H3 Review publication
+
+Published and attached [PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73), based on reviewed main 9282d87. Source modules are fbf0d80; capture source remains bce80f8. Updated the delivery snapshot to Review and linked #17. The issue stays open with the merge checkbox unchecked until user review/merge and post-merge verification. Required hosted quality cells now execute the pinned invented replay alongside all existing checks. Final exact-head CI and native saved Review read-back are verified separately and recorded on the issue/PR after this handoff commit; do not infer their success from this journal entry.
