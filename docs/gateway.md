@@ -53,3 +53,8 @@ Primary references inspected: [pinned Google SDK](https://googleapis.github.io/p
 On 2026-10-15, clean source 9b3af1c2df397779901cb100613e166948b41ff6 passed both requests in run `h2-smoke-9efe87dd80b24474ab1f4d3a48654b12`. The proposal retained one opaque signature; the follow-up returned `{"case_id":"invented-h2","answer":42}`. Scoped occurrences were 1/2 with distinct request fingerprints. Reported inputs were 95/133 tokens, visible candidate tokens 25/19, thinking unknown and provider totals 120/152. Aggregate output and cost stayed unknown. No raw signature or configured secret appeared in the saved aggregate output.
 
 Later pre-serialization hardening rejects mutated non-finite contracts before dispatch; declaring the directly imported referencing pin does not change resolved package versions. The live observation above belongs to its actual source/lock, not a fabricated later run. Offline final-head and hosted evidence is recorded with the H2 PR. This small tool-result round trip establishes compatibility, not domain quality, model accuracy, real write safety or production recovery.
+
+
+## Hosted review evidence
+
+[PR #72](https://github.com/Protagonist01/my-production-agentic-systems/pull/72) remains unmerged. [Run 38775295828](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38775295828) passed all ten jobs on 8af463fa47edddb0feaec40eeed9e7bcff440046; final handoff-head status is verified separately in the PR. Local final source passed 151 cases and thirteen typed source files. An additional isolated mock CONTINUATION control observed one request and a typed failure with no hidden follow-up. Native board columns are pending because browser initialization failed and the user has not manually applied the moves.

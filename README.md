@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5, O1 and H1 are merged and verified; current main is 0a859bb (PR #71). H2 #16 implements a bounded shared Gemini gateway, model wire v2 and per-occurrence exchanges on codex/h2-gemini-gateway. Offline checks and a real invented function-result/JSON round trip passed. Durable replay, policy enforcement, domain workflows and independent quality evaluation remain subsequent work. [Gateway boundary and evidence](docs/gateway.md).
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5, O1 and H1 are merged and verified; current main is 0a859bb (PR #71). H2 #16 is in Review in [PR #72](https://github.com/Protagonist01/my-production-agentic-systems/pull/72), with a bounded shared Gemini gateway, model wire v2 and per-occurrence exchanges on codex/h2-gemini-gateway. Offline checks and a real invented function-result/JSON round trip passed. Durable replay, policy enforcement, domain workflows and independent quality evaluation remain subsequent work. [Gateway boundary and evidence](docs/gateway.md).
 
 ## Setup and working commands
 

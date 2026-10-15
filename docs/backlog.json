@@ -312,7 +312,7 @@
         "Trial/call occurrence preserves different responses to identical requests."
       ],
       "priority": "P0",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 16,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/16",
@@ -325,7 +325,10 @@
       "branch": "codex/h2-gemini-gateway",
       "command_document": "docs/gateway.md",
       "implementation_commit": "4b33c3c0ce242a4f4553840c6ffb79d97338e095",
-      "model_serializer_version": 2
+      "model_serializer_version": 2,
+      "pull_request_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/72",
+      "verified_ci_commit": "8af463fa47edddb0feaec40eeed9e7bcff440046",
+      "verified_ci_run_url": "https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38775295828"
     },
     {
       "id": "H3",
