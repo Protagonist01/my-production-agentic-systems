@@ -1,6 +1,6 @@
 # Architecture and implementation plan
 
-Accepted delivery direction, updated 2026-10-15. This document replaces the older design overview; historical design notes are preserved locally under `docs/archive`. [F2 shared contracts](shared-contracts.md) and F3 commands are merged and verified. [F4 local Postgres](local-postgres.md) is merged and verified; [F5 Foundation CI](ci.md) is merged/verified and the foundation milestone is complete. [H1 integration ADR](adr/0001-first-integration.md) and [smoke commands](integration-smoke.md) record pinned Gemini/framework/local-tracing behavior on its unmerged branch; quality thresholds and shared transport/replay remain their own implementation tasks.
+Accepted delivery direction, updated 2026-10-15. This document replaces the older design overview; historical design notes are preserved locally under `docs/archive`. [F2 shared contracts](shared-contracts.md) and F3 commands are merged and verified. [F4 local Postgres](local-postgres.md) is merged and verified; [F5 Foundation CI](ci.md) is merged/verified and the foundation milestone is complete. [H1 integration ADR](adr/0001-first-integration.md) and [smoke commands](integration-smoke.md) record merged Gemini/framework/local-tracing compatibility. H2 transport is merged; H3 adds [reviewed model recordings and strict replay](replay.md) on its review branch. Independent domain quality thresholds remain subsequent work.
 
 ## Shared platform and vertical boundary
 
@@ -50,7 +50,7 @@ Calibrate numeric quality floors from reviewed baselines, declare before candida
 
 ## Execution
 
-[Project management](project-management.md) defines the 8 epics and 53 tasks, acceptance gates, ownership and worktree operation. F1–F5/O1/H1 are merged and verified. H2 adds the bounded [provider gateway](gateway.md), with [portable commands](development-commands.md) and [current-code study guide](../CODE_STUDY_GUIDE.md) maintained alongside it. Gateway/evaluation/Olist streams integrate small increments according to task prerequisites. Complete O8 first; prepare later data in parallel and integrate at most two verticals concurrently.
+[Project management](project-management.md) defines the 8 epics and 53 tasks, acceptance gates, ownership and worktree operation. F1–F5/O1/H1/H2 are merged and verified. H2 adds the bounded [provider gateway](gateway.md); H3 adds [immutable model recordings/replay](replay.md), with [portable commands](development-commands.md) and [current-code study guide](../CODE_STUDY_GUIDE.md) maintained alongside it. Gateway/evaluation/Olist streams integrate small increments according to task prerequisites. Complete O8 first; prepare later data in parallel and integrate at most two verticals concurrently.
 
 40 hours/week includes implementation, integration, labeling and review. Task sizes are provisional; fixed dates follow observed throughput. Working foundation/offline-example commands appear in the root README. Invented H1/H2 provider compatibility probes passed. No domain model-quality release score is available yet.
 

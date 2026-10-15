@@ -20,7 +20,7 @@ Pydantic 2.14.1 is pinned exactly. Contracts use strict validation, forbidden ex
 
 `review_required` requires a review reference; `failed` requires a typed failure. Other outcomes cannot carry those fields. References are claims, not verified durable records: domain scorers must inspect actual state, review and ledger stores.
 
-`ModelRequest.canonical_json()` preserves message/tool order and prompt whitespace while sorting object keys. `fingerprint()` hashes this complete representation. It is request identity, not replay: H3 must also retain trial/call occurrence and provenance. Schemas are preserved JSON objects; provider dialect validation remains H1/H2. Multimodal content and streaming need a reviewed contract extension before use.
+`ModelRequest.canonical_json()` preserves message/tool order and prompt whitespace while sorting object keys. `fingerprint()` hashes this complete representation. It is request identity; [H3 replay](replay.md) additionally retains full scoped trial/call occurrence and provenance. Schemas are preserved JSON objects; provider dialect validation remains H1/H2. Multimodal content and streaming need a reviewed contract extension before use.
 
 ## Evaluator-only objects and dispatch
 
@@ -42,7 +42,7 @@ python dev.py example
 
 The wrapper discovers actual Git HEAD and marks a dirty working tree with `+dirty`. Source exports need an explicit `--code-revision`; see [development commands](development-commands.md). The underlying module still accepts required revision/lockfile arguments directly. It hashes the lockfile, runs one invented case through `FakeAgent` → `FakeGateway` → `FakeScorer` → `CaseReport`, validates the JSON round trip, prints the report and exits nonzero if its text check fails. It uses no credentials, provider, database or telemetry.
 
-The source is synthetic, mode is `offline_fake`, and metric is `fake_case_correct`. Zero tokens/cost describe an in-process text transformation, not model pricing. The gateway rejects fresh/replay/monitoring modes, unsupported routes, tools and output schemas. Fault definitions serialize, but scheduled faults fail explicitly until H7 implements them. Budgets/deadlines are declarations; reservation/enforcement remains H4. Durable reviews, state scorers, recordings, fresh quality and release gates remain later tasks.
+The source is synthetic, mode is `offline_fake`, and metric is `fake_case_correct`. Zero tokens/cost describe an in-process text transformation, not model pricing. The gateway rejects fresh/replay/monitoring modes, unsupported routes, tools and output schemas. Fault definitions serialize, but scheduled faults fail explicitly until H7 implements them. Budgets/deadlines are declarations; reservation/enforcement remains H4. H3 supplies immutable reviewed model-call fixtures/replay separately. Durable reviews, state scorers, fresh quality and release gates remain later tasks.
 
 Tests cover an invented model timeout, review/usage/evidence round trips, tool-call/result wire shapes, request identity changes, invalid payloads/identities and scorer failures. These establish contract behavior, not industry accuracy or safety.
 

@@ -1,6 +1,6 @@
 # Foundation CI — F5
 
-The Foundation CI workflow implements the existing portable development checks and disposable Postgres acceptance checks. It runs for every pull request and pushes to main, without path filters. No live AI provider, Langfuse experiment or fresh/replay evaluation is configured. The invented example remains a contract-wiring check; unavailable eval commands still return exit 2.
+The Foundation CI workflow implements the existing portable development checks and disposable Postgres acceptance checks. It runs for every pull request and pushes to main, without path filters. No live AI provider, Langfuse experiment or fresh-quality evaluation is configured. H3 adds a required pinned invented strict-replay command in each quality cell. The fake example and replay remain wiring checks; eval-record/eval-compare still return exit 2.
 
 ## Jobs and local equivalents
 
@@ -15,7 +15,7 @@ The Foundation CI workflow implements the existing portable development checks a
 
 The job uses explicit `UV_PYTHON` and `UV_PYTHON_DOWNLOADS=never` after setup-python installs the matrix interpreter. .python-version still defaults local development to 3.13, but cannot silently make every CI matrix cell run 3.13. Each quality job prints/asserts its actual interpreter version. Setup and audit need package/advisory downloads; Postgres can need the pinned image download. “Offline” means no AI-provider dependency, not an air-gapped installation.
 
-Ordinary `check/test` intentionally excludes database execution, while lint inspects its source. CI requires the separate db-check job, so an absent Docker service or skipped database job cannot earn a gate pass. Replay/record/compare are still visibly unavailable; add real required evaluation jobs only when their cases/scorers/recordings exist, with completeness/critical-case checks and reviewed thresholds under H3/H5/H9/H10. Do not turn the fake score into an industry quality threshold.
+Ordinary `check/test` intentionally excludes database execution, while lint inspects its source. CI requires the separate db-check job, so an absent Docker service or skipped database job cannot earn a gate pass. H3 replay consumes the bundled reviewed fixture without provider clients; record/compare remain unavailable. Add domain quality gates only when their cases/scorers exist, with completeness/critical-case checks and reviewed thresholds under H5/H6/H9/H10. Do not turn the fake score into an industry quality threshold.
 
 ## PR conventions and shared ownership
 

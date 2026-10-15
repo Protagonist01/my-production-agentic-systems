@@ -1,6 +1,6 @@
 # H2 gateway code walkthrough
 
-Inspected source: **4b33c3c0ce242a4f4553840c6ffb79d97338e095**, branch codex/h2-gemini-gateway, based on verified main 0a859bb. H2 is unmerged; documentation updates follow the source commit. Model request/message/response/tool calls and serializer are v2; other contracts remain v1.
+Inspected source: **4b33c3c0ce242a4f4553840c6ffb79d97338e095**, branch codex/h2-gemini-gateway, based on verified main 0a859bb. H2 is merged/verified through #72 on main 9282d87; the linked source remains the exact H2 implementation. H3 recording/replay is explained in its [own chapter](code-study-replay.md). Model request/message/response/tool calls and serializer are v2; other contracts remain v1.
 
 Read [the runbook](gateway.md) for installation, migration and acceptance evidence; Build Book Entry 14 records construction and failures. This chapter covers every meaningful block in gateway.py, gemini.py, gateway_probe.py and the 54 new cases. Unchanged runtime/evaluation/Postgres/CI code is explained by the root guide and its other chapters. SDK/server internals, production deployment/security, durable replay and domain applications remain outside this inspection.
 
@@ -75,11 +75,11 @@ The clean live observation used source 9b3af1c, before the later snapshot harden
 
 ## Risks and interview practice
 
-**Verified bug fixed in H2:** invalid mutated nested numbers could become null through JSON-first copying. Python-first revalidation plus NaN/infinity regressions closes this gateway path. **Design limitations:** synchronous calls, private unbounded in-memory history/counters, no restart uniqueness/durability, no global reservations/deadline enforcement and no complete unexpected-exception accounting. H3/H4/H6 own those layers. Model schema v2 has no automatic v1 migration.
+**Verified bug fixed in H2:** invalid mutated nested numbers could become null through JSON-first copying. Python-first revalidation plus NaN/infinity regressions closes this gateway path. **Design limitations:** synchronous calls, private unbounded in-memory history/counters, no restart uniqueness/durability, no global reservations/deadline enforcement and no complete unexpected-exception accounting. H3 now supplies explicit reviewed model fixtures/replay; it does not make this in-memory gateway automatically durable. H4/H6 own budget/complete attempt accounting. Model schema v2 has no automatic v1 migration.
 
 **Potential security weakness:** trusted caller context is not tenant authorization; model-visible content/signatures remain in process memory. Transport controls prevent the supported configuration from selecting arbitrary endpoints, proxy routes or automatic tools; they do not sandbox Python code or supply production data redaction/retention. **Not assessed:** malicious production prompts/tool actions, server authentication/network deployment, provider internals, full privacy/error-path export and real-data model quality. Root guide R1/R3 remain open; R2's fake-agent weakness remains, while this gateway checks returned route/revision.
 
-1. Why can two identical prompts have distinct recordings? Explain full request content identity versus scoped occurrence, and what persistence/atomic uniqueness H3 must add. Do not call this memory list a durable replay store.
+1. Why can two identical prompts have distinct recordings? Explain full request content identity versus scoped occurrence, and how H3 publishes immutable occurrences and requires complete consumption. Do not call this memory list a durable replay store.
 2. Trace a signed function result. Name the ordered ModelPart, public projection, provider/local ID distinction and pending-result mapping. Explain why stripping a signature changes context.
 3. Why validate before serializing? Reproduce the shallow-frozen NaN example and state the expected ValidationError/no dispatch. Then explain detached copies versus deep immutability.
 4. A 503 occurs after dispatch. Explain one attempted call, unknown tokens/cost, retryability metadata and why H4 must reserve attempts/time/budget before retrying. Do not claim a 30-second HTTP setting is a global deadline.
@@ -95,7 +95,7 @@ The clean live observation used source 9b3af1c, before the later snapshot harden
 [dispatch]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gateway.py#L81-L145
 [probe]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gateway_probe.py#L21-L129
 [main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gateway_probe.py#L132-L156
-[dev]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/dev.py#L115-L214
+[dev]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L114-L220
 [tests-wire]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/tests/test_gateway.py#L72-L164
 [tests-errors]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/tests/test_gateway.py#L165-L260
 [tests-state]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/tests/test_gateway.py#L263-L320
