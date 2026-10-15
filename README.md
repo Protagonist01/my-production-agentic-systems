@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5/O1/H1/H2 are merged and verified; current main is 9282d87 ([PR #72](https://github.com/Protagonist01/my-production-agentic-systems/pull/72)). H2 provides a bounded shared Gemini gateway, model wire v2 and per-occurrence exchanges. H3 #17 adds [immutable recordings and strict replay](docs/replay.md) on codex/h3-strict-replay, in [PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73), awaiting review/merge. The pinned invented replay executes current code, consumes six calls and reproduces two timeouts without provider access. Policy enforcement, domain workflows and independent quality evaluation remain subsequent work.
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5/O1/H1–H3 are merged and verified; main 1207eb5 ([PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73)) passed 220 offline tests and nine applicable hosted jobs. H3 #17 is closed/completed. H4 #18 implements [shared budgets, deadlines, retries and circuit controls](docs/controls.md) on codex/h4-shared-controls. [H4 PR #74](https://github.com/Protagonist01/my-production-agentic-systems/pull/74) is open for review; local 276-test validation passed. Final hosted evidence is recorded on #18/PR #74. Domain workflows, independent state scoring and fresh quality/release evaluation remain subsequent work.
 
 ## Setup and working commands
 
@@ -33,7 +33,7 @@ PowerShell and the hosted CI jobs use the same `python dev.py check`: lock, lint
 | `audit` | Audit hashed locked third-party/development requirements against public advisories |
 | `integration-check` | Merged H1: pinned SDK/framework checks over a mock HTTP transport |
 | `integration-live` | Merged H1: two invented Gemini requests; requires a confirmed Free project |
-| `gateway-live` | Merged H2: at most two invented calls through the shared gateway |
+| `gateway-live` | H4 branch: at most two invented calls through reserved, process-bounded attempts |
 | `trace-check` | Merged H1: two fresh calls, local Langfuse export and required CLI read-back |
 | `db-up`, `db-status`, `db-down` | Start, inspect or stop this checkout’s isolated Postgres service |
 | `trial-create`, `trial-reset`, `trial-drop` | Manage one disposable trial; require `--trial <identity>` |

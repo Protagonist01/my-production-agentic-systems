@@ -1,6 +1,6 @@
 # Architecture and implementation plan
 
-Accepted delivery direction, updated 2026-10-15. This document replaces the older design overview; historical design notes are preserved locally under `docs/archive`. [F2 shared contracts](shared-contracts.md) and F3 commands are merged and verified. [F4 local Postgres](local-postgres.md) is merged and verified; [F5 Foundation CI](ci.md) is merged/verified and the foundation milestone is complete. [H1 integration ADR](adr/0001-first-integration.md) and [smoke commands](integration-smoke.md) record merged Gemini/framework/local-tracing compatibility. H2 transport is merged; H3 adds [reviewed model recordings and strict replay](replay.md) on its review branch. Independent domain quality thresholds remain subsequent work.
+Accepted delivery direction, updated 2026-10-15. This document replaces the older design overview; historical design notes are preserved locally under `docs/archive`. [F2 shared contracts](shared-contracts.md) and F3 commands are merged and verified. [F4 local Postgres](local-postgres.md) is merged and verified; [F5 Foundation CI](ci.md) is merged/verified and the foundation milestone is complete. [H1 integration ADR](adr/0001-first-integration.md) and [smoke commands](integration-smoke.md) record merged Gemini/framework/local-tracing compatibility. H2 transport is merged; H3 [reviewed model recordings and strict replay](replay.md) is merged/verified on main 1207eb5. H4 implements [shared execution controls](controls.md) on its unmerged branch. Independent domain quality thresholds remain subsequent work.
 
 ## Shared platform and vertical boundary
 
@@ -8,7 +8,7 @@ One Python monorepo contains a domain-independent harness and five domain applic
 
 F1 establishes a virtual uv workspace, one lockfile and six installable packages under `harness/src/agent_harness` and `projects/<vertical>/src/<import_name>`. See the root README for import names and verified commands. Import Linter enforces harness independence and static cross-vertical boundaries. LangGraph serves the workflow verticals and Pydantic AI serves CFPB; neither is installed yet. H1 checks provider/framework/telemetry compatibility and pins tested versions before use. Use one telemetry backend initially.
 
-Postgres holds operational records, checkpoints, reviews and action ledgers with isolated worktree/trial state. Gateway recordings use an immutable, exportable format (H3 selects storage). Source snapshots live outside Git with checksums and provenance. Thin Inngest wrappers are added only for demonstrated external-event waits; each wait/checkpoint has a single owner.
+Postgres holds operational records, checkpoints, reviews and action ledgers with isolated worktree/trial state. Gateway recordings use an immutable, exportable format (H3 uses reviewed exportable JSON). Source snapshots live outside Git with checksums and provenance. Thin Inngest wrappers are added only for demonstrated external-event waits; each wait/checkpoint has a single owner.
 
 Extract reusable scope/registry/write machinery only after Olist and Revenue demonstrate reuse. Domain-specific refund, invoice, criterion and spend rules stay in their vertical.
 
@@ -50,8 +50,10 @@ Calibrate numeric quality floors from reviewed baselines, declare before candida
 
 ## Execution
 
-[Project management](project-management.md) defines the 8 epics and 53 tasks, acceptance gates, ownership and worktree operation. F1–F5/O1/H1/H2 are merged and verified. H2 adds the bounded [provider gateway](gateway.md); H3 adds [immutable model recordings/replay](replay.md), with [portable commands](development-commands.md) and [current-code study guide](../CODE_STUDY_GUIDE.md) maintained alongside it. Gateway/evaluation/Olist streams integrate small increments according to task prerequisites. Complete O8 first; prepare later data in parallel and integrate at most two verticals concurrently.
+[Project management](project-management.md) defines the 8 epics and 53 tasks, acceptance gates, ownership and worktree operation. F1–F5/O1/H1–H3 are merged and verified. H2 adds the bounded [provider gateway](gateway.md); H3 adds [immutable model recordings/replay](replay.md), with [portable commands](development-commands.md) and [current-code study guide](../CODE_STUDY_GUIDE.md) maintained alongside it. Gateway/evaluation/Olist streams integrate small increments according to task prerequisites. Complete O8 first; prepare later data in parallel and integrate at most two verticals concurrently.
 
 40 hours/week includes implementation, integration, labeling and review. Task sizes are provisional; fixed dates follow observed throughput. Working foundation/offline-example commands appear in the root README. Invented H1/H2 provider compatibility probes passed. No domain model-quality release score is available yet.
 
 [Planning index](00-planning-index.md) · [Execution rationale](01-execution-and-evidence-proposal.md) · [Data/architecture rationale](02-data-and-architecture-comparison.md)
+
+H4 [operating boundary](controls.md) and [code study](code-study-controls.md) cover reservations, retries/circuits, monotonic time and owned workers; exact-head review evidence is recorded on #18.

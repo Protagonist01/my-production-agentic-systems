@@ -1,6 +1,6 @@
 # H2 provider gateway
 
-H2 implements `ProviderGateway.generate(context, request)` with a pinned Gemini Developer API transport. It accepts text, local JSON Schema 2020-12 constraints and function proposals/results. It executes no tool. Domain/framework adapters, durable recording/replay (H3), shared deadline/retry/budget enforcement (H4), full outcome accounting (H6) and production tracing/redaction (H8) remain subsequent work.
+H2 implements `ProviderGateway.generate(context, request)` with a pinned Gemini Developer API transport. It accepts text, local JSON Schema 2020-12 constraints and function proposals/results. It executes no tool. H3 supplies [recording/replay](replay.md); H4 adds [shared execution controls](controls.md). Domain/framework adapters, full outcome accounting (H6) and production tracing/redaction (H8) remain subsequent work.
 
 ## Request identity and model wire version 2
 
@@ -20,13 +20,13 @@ Each `ModelExchange` retains context, occurrence, request and response. Its iden
 
 Records are private in-memory JSON, contain model-visible content and are not automatically logged/exported. They are neither durable nor globally unique across gateway instances/restarts. Unexpected programming exceptions propagate and may leave an allocated occurrence without an exchange; complete attempt/outcome accounting is H6. Caller-provided identities are provenance, not authentication or tenant authorization.
 
-The live gateway refuses `offline_fake` and `strict_replay` without dispatch. Fresh/monitoring calls have no cache, retry, model fallback or automatic tool execution. This is not H10's fresh evaluation/release recorder. Budget/deadline fields are declarations here; H4 must reserve and enforce shared limits before real workloads.
+The live gateway refuses `offline_fake` and `strict_replay` without dispatch. Fresh/monitoring calls have no cache, retry, model fallback or automatic tool execution. This is not H10's fresh evaluation/release recorder. Budget/deadline fields remain declarations on this bare API. H4 BoundedGateway reserves shared limits before each attempt and IsolatedTransport owns deadline cleanup; select that path for controlled live work.
 
 ## Gemini boundary and usage
 
 Install the optional runtime extra `production-agent-harness[gemini]` for the adapter. It pins google-genai 2.30.1, jsonschema 4.26.0 and referencing 0.37.0. The root development group selects that extra and pins types-jsonschema 4.26.0.20261006; `python dev.py setup` installs it through the shared lock. A base harness wheel does not require Google/framework packages.
 
-The route is explicitly Gemini Developer API, `https://generativelanguage.googleapis.com`, `v1beta`, `gemini-3.5-flash-lite`. Enterprise/Vertex routing, environment proxies and redirects are disabled. Each call owns/closes its client, uses a 30-second request timeout and one SDK attempt. Automatic continuation is **false**; automatic function execution is disabled. Pinned serializer-v2 defaults are one candidate, LOW thinking and 512 maximum output tokens. Changing these implicit translation defaults requires a serializer version review.
+The route is explicitly Gemini Developer API, `https://generativelanguage.googleapis.com`, `v1beta`, `gemini-3.5-flash-lite`. Enterprise/Vertex routing, environment proxies and redirects are disabled. Each call owns/closes its client, uses a caller-clipped HTTP timeout of at most 30 seconds and one SDK attempt. Automatic continuation is **false**; automatic function execution is disabled. Pinned serializer-v2 defaults are one candidate, LOW thinking and 512 maximum output tokens. Changing these implicit translation defaults requires a serializer version review.
 
 Supported explicit parameters are temperature (0–2), top_p (0–1), positive top_k, max_output_tokens (1–512), stop_sequences, integer seed and LOW thinking. Unknown/coerced parameters fail before dispatch. The caller must put intended sampling settings in the request; `RunContext.seed` is not silently substituted into model parameters. This fixed small transport slice can be extended through a reviewed versioned change.
 
@@ -59,4 +59,6 @@ Later pre-serialization hardening rejects mutated non-finite contracts before di
 
 User reviewed/merged [PR #72](https://github.com/Protagonist01/my-production-agentic-systems/pull/72). Main 9282d87a22ec287231a17414b5590fa90f1f6385 passed [run 38779049159](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38779049159): nine applicable jobs, with PR metadata intentionally skipped. Clean merged setup/check passed 151 offline tests, thirteen typed source files, Ruff/format/import/lock. H2 #16 is closed/completed. Native Done is verified after issue closure.
 
-Browser control recovered by restoring two missing cached Temp asset directories; reconnecting alone did not address that startup failure. H3 #17 is in Review in [PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73). [Recording/replay](replay.md) persists reviewed detached exchanges explicitly; it does not add automatic live recording, shared budgets or domain evaluation to this gateway.
+Browser control recovered by restoring two missing cached Temp asset directories; reconnecting alone did not address that startup failure. H3 #17 completed after user merge of [PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73). [Recording/replay](replay.md) persists reviewed detached exchanges explicitly; it does not add automatic live recording or domain evaluation. H4 supplies the separate shared-budget wrapper.
+
+The H4 branch changes gateway-live to use one shared controller, conservative admission and owned worker per attempt. It still makes at most two invented calls (one attempt each), now emitting separate reserved/observed accounting. Historical H2 live evidence above is not a new H4 run. See [controls](controls.md).

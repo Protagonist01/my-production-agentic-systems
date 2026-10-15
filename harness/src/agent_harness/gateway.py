@@ -1,7 +1,8 @@
 """One dispatch boundary with detached per-occurrence evidence; persistence is H3."""
 
+import math
 import threading
-from typing import Annotated, Protocol
+from typing import Annotated, Protocol, cast
 
 from pydantic import Field
 
@@ -45,6 +46,10 @@ class ModelTransport(Protocol):
     def generate(self, request: ModelRequest) -> ModelResponse: ...
 
 
+class DeadlineTransport(Protocol):
+    def generate(self, request: ModelRequest, *, timeout_seconds: float) -> ModelResponse: ...
+
+
 class ModelExchange(Contract):
     context: RunContext
     occurrence: Annotated[int, Field(gt=0)]
@@ -78,7 +83,9 @@ class ProviderGateway:
         with self._lock:
             return tuple(ModelExchange.model_validate_json(value) for value in self._records)
 
-    def generate(self, context: RunContext, request: ModelRequest) -> ModelResponse:
+    def generate(
+        self, context: RunContext, request: ModelRequest, *, timeout_seconds: float | None = None
+    ) -> ModelResponse:
         # Frozen models contain mutable nested dictionaries: wire round trips detach them.
         context = RunContext.model_validate_json(
             RunContext.model_validate(context).canonical_json()
@@ -96,7 +103,13 @@ class ProviderGateway:
         with self._lock:
             occurrence = self._counts.get(scope, 0) + 1
             self._counts[scope] = occurrence
-        if context.mode not in ("fresh_candidate", "monitoring"):
+        if timeout_seconds is not None and (
+            not math.isfinite(timeout_seconds) or timeout_seconds <= 0
+        ):
+            response = failed_response(
+                request, "timeout", "No attempt time remaining", dispatched=False
+            )
+        elif context.mode not in ("fresh_candidate", "monitoring"):
             response = failed_response(
                 request,
                 "permission_denied",
@@ -106,7 +119,13 @@ class ProviderGateway:
         else:
             transport_request = ModelRequest.model_validate_json(request.canonical_json())
             try:
-                returned = ModelResponse.model_validate(self._transport.generate(transport_request))
+                returned = ModelResponse.model_validate(
+                    self._transport.generate(transport_request)
+                    if timeout_seconds is None
+                    else cast(DeadlineTransport, self._transport).generate(
+                        transport_request, timeout_seconds=timeout_seconds
+                    )
+                )
                 response = ModelResponse.model_validate_json(returned.canonical_json())
             except ValueError:
                 response = failed_response(

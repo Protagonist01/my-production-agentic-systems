@@ -2,6 +2,7 @@
 
 import base64
 import json
+import math
 from typing import Annotated, Any, Literal
 from uuid import uuid4
 
@@ -339,7 +340,11 @@ class GeminiTransport:
         self._key = api_key
         self._http_transport = http_transport
 
-    def generate(self, request: ModelRequest) -> ModelResponse:
+    def generate(self, request: ModelRequest, *, timeout_seconds: float = 30.0) -> ModelResponse:
+        if not math.isfinite(timeout_seconds) or timeout_seconds <= 0:
+            return failed_response(
+                request, "timeout", "No Gemini attempt time remaining", dispatched=False
+            )
         try:
             contents, config = request_payload(request)
         except (ValueError, SchemaError, Unresolvable):
@@ -364,7 +369,7 @@ class GeminiTransport:
                 http_options=types.HttpOptions(
                     base_url=ENDPOINT,
                     api_version="v1beta",
-                    timeout=30_000,
+                    timeout=max(1, min(30_000, int(timeout_seconds * 1000))),
                     retry_options=types.HttpRetryOptions(attempts=1),
                     client_args=arguments,
                 ),

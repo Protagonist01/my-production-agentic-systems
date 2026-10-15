@@ -1,6 +1,6 @@
 # H2 gateway code walkthrough
 
-Inspected source: **4b33c3c0ce242a4f4553840c6ffb79d97338e095**, branch codex/h2-gemini-gateway, based on verified main 0a859bb. H2 is merged/verified through #72 on main 9282d87; the linked source remains the exact H2 implementation. H3 recording/replay is explained in its [own chapter](code-study-replay.md). Model request/message/response/tool calls and serializer are v2; other contracts remain v1.
+Inspected source: **4b33c3c0ce242a4f4553840c6ffb79d97338e095**, branch codex/h2-gemini-gateway, based on verified main 0a859bb. H2 is merged/verified through #72 on main 9282d87; unchanged links retain that implementation; changed gateway/transport/probe symbols pin H4 source 68e7383939bc0aadd7ef78e5328fdf7bce4a7da3 on codex/h4-shared-controls. H4 remains unmerged. H3 recording/replay is explained in its [own chapter](code-study-replay.md). Model request/message/response/tool calls and serializer are v2; other contracts remain v1.
 
 Read [the runbook](gateway.md) for installation, migration and acceptance evidence; Build Book Entry 14 records construction and failures. This chapter covers every meaningful block in gateway.py, gemini.py, gateway_probe.py and the 54 new cases. Unchanged runtime/evaluation/Postgres/CI code is explained by the root guide and its other chapters. SDK/server internals, production deployment/security, durable replay and domain applications remain outside this inspection.
 
@@ -53,7 +53,7 @@ The initial snapshot implementation copied JSON first. A safe repro mutated `req
 | [request_payload][payload] | Enforce the one route, build typed generation settings, declarations/choice/schema, retain ordered conversation content, move only leading system text into ordered instruction parts. Track pending/used call IDs; bind each tool result to its name and JSON object. Group parallel results in their received order. | Developer/late-system roles, orphan/duplicate/missing results, unknown tool choices and function history without retained parts fail. Unsupported semantics are refused rather than flattened into user text. |
 | [response_usage][usage] | Retain prompt, candidate, thinking, cached-input and total counts. Input is full prompt count; aggregate output is visible plus thinking only when both are known. Currency/cost remain null. | Missing thinking makes aggregate output unknown. Cached counts are not subtracted speculatively; raw totals are not substituted for output. Attempt count is one even for a dispatched error. |
 | [parse_response][parse] | Require exactly one STOP candidate with model role and supported parts. Validate declared function names/arguments and choice, unique call IDs, public projection and requested JSON output. Retain ordered signed parts, reported revision/ID and usage. | Blocked/truncated/ambiguous/multimodal output fails. Tool/schema content is validated, not executed or authorized. Streaming/continuing functions are excluded. |
-| [GeminiTransport][transport] | Constructor requires a key and Free-project attestation. Each generate validates preflight, creates a fixed-route client with one attempt/30-second HTTP timeout, disables Enterprise/Vertex, proxy inheritance, redirects and automatic continuation/function execution, and closes it. Classify API/HTTP/timeout/wire/content failures using fixed messages. | HTTP 429/503/timeout are retryable classifications only; one mock request is observed. All output errors keep safe known evidence. This is not an end-to-end deadline, shared budget, fallback router or production transport/privacy audit. |
+| [GeminiTransport][transport] | Constructor requires a key and Free-project attestation. Each generate validates preflight, creates a fixed-route client with one attempt/caller-clipped HTTP timeout (at most thirty seconds), disables Enterprise/Vertex, proxy inheritance, redirects and automatic continuation/function execution, and closes it. Classify API/HTTP/timeout/wire/content failures using fixed messages. | HTTP 429/503/timeout are retryable classifications only; one mock request is observed. All output errors keep safe known evidence. The bare adapter is not an elapsed deadline or shared budget; H4 adds those through the controlled path. No fallback router or production transport/privacy audit is supplied. |
 
 SDK defaults deserve tests: mypy passed a nonexistent configuration type because the SDK module has a dynamic attribute fallback. The first run failed at runtime; inspecting the actual field showed automatic_continuation is a boolean. The corrected adapter sets false. Runtime mock serialization and real two-turn evidence support the result; strict types alone did not.
 
@@ -61,7 +61,7 @@ SDK defaults deserve tests: mypy passed a nonexistent configuration type because
 
 | Block | Mechanics and result |
 |---|---|
-| [GatewayAnswer/live_probe][probe] | Read only whitelisted ignored Free-project config, construct the transport/gateway and invented versioned context. Make one forced proposal, validate its arguments, append unchanged assistant parts and invented result, then require typed JSON on the second request. Print aggregate identities/known usage and signature count, never raw signatures or keys. |
+| [GatewayAnswer/live_probe][probe] | Read only whitelisted ignored Free-project config, construct H4 shared controls/admission/owned worker/gateway and invented versioned context. Make one forced proposal, validate its arguments, append unchanged assistant parts and invented result, then require typed JSON on the second request. Print aggregate identities/known usage and signature count, never raw signatures or keys. |
 | [Probe main][main] | Require root/revision, run the probe explicitly, return nonzero with a fixed permitted failure label. Raw validation text is not printed. Missing configuration fails before provider construction. |
 | [dev.py main][dev] | gateway-live shares example's Git revision/dirty handling and portable locked uv subprocess; it passes the root instead of a fake-example lockfile argument. It is absent from ordinary check and hosted CI. |
 | [Wire/JSON/function tests][tests-wire] | Actual pinned SDK over MockTransport, socket connects denied, schema-invalid JSON and signed function-result round trip with exact order/IDs. |
@@ -82,19 +82,19 @@ The clean live observation used source 9b3af1c, before the later snapshot harden
 1. Why can two identical prompts have distinct recordings? Explain full request content identity versus scoped occurrence, and how H3 publishes immutable occurrences and requires complete consumption. Do not call this memory list a durable replay store.
 2. Trace a signed function result. Name the ordered ModelPart, public projection, provider/local ID distinction and pending-result mapping. Explain why stripping a signature changes context.
 3. Why validate before serializing? Reproduce the shallow-frozen NaN example and state the expected ValidationError/no dispatch. Then explain detached copies versus deep immutability.
-4. A 503 occurs after dispatch. Explain one attempted call, unknown tokens/cost, retryability metadata and why H4 must reserve attempts/time/budget before retrying. Do not claim a 30-second HTTP setting is a global deadline.
+4. A 503 occurs after dispatch. Explain one attempted call, unknown tokens/cost, retryability metadata and how H4 reserves attempts/time/budget before retrying. Do not claim a 30-second HTTP setting is a global deadline.
 5. A response omits thinking counts. Keep aggregate output unknown and retain visible/raw fields; do not infer zero thinking or actual free-tier charges from an estimated price.
-6. To add a framework adapter, route every model call through ProviderGateway and preserve complete history/usage/errors. To add another model/parameter/default, update transport validation, wire/serializer review, tests, runbook and this guide before live use.
+6. To add a framework adapter, route every controlled live model call through BoundedGateway with ProviderGateway/IsolatedTransport and preserve complete history/usage/errors. To add another model/parameter/default, update transport validation, wire/serializer review, tests, runbook and this guide before live use.
 
 
 [parts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/contracts.py#L157-L216
 [models]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/contracts.py#L219-L261
 [failed]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gateway.py#L19-L41
-[exchange]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gateway.py#L44-L64
+[exchange]: https://github.com/Protagonist01/my-production-agentic-systems/blob/68e7383939bc0aadd7ef78e5328fdf7bce4a7da3/harness/src/agent_harness/gateway.py#L45-L69
 [state]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gateway.py#L67-L80
-[dispatch]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gateway.py#L81-L145
-[probe]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gateway_probe.py#L21-L129
-[main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gateway_probe.py#L132-L156
+[dispatch]: https://github.com/Protagonist01/my-production-agentic-systems/blob/68e7383939bc0aadd7ef78e5328fdf7bce4a7da3/harness/src/agent_harness/gateway.py#L86-L164
+[probe]: https://github.com/Protagonist01/my-production-agentic-systems/blob/68e7383939bc0aadd7ef78e5328fdf7bce4a7da3/harness/src/agent_harness/gateway_probe.py#L24-L144
+[main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/68e7383939bc0aadd7ef78e5328fdf7bce4a7da3/harness/src/agent_harness/gateway_probe.py#L147-L172
 [dev]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L114-L220
 [tests-wire]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/tests/test_gateway.py#L72-L164
 [tests-errors]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/tests/test_gateway.py#L165-L260
@@ -108,4 +108,6 @@ The clean live observation used source 9b3af1c, before the later snapshot harden
 [payload]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gemini.py#L123-L228
 [usage]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gemini.py#L231-L251
 [parse]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gemini.py#L254-L326
-[transport]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/src/agent_harness/gemini.py#L329-L434
+[transport]: https://github.com/Protagonist01/my-production-agentic-systems/blob/68e7383939bc0aadd7ef78e5328fdf7bce4a7da3/harness/src/agent_harness/gemini.py#L330-L439
+
+H4 [controls chapter](code-study-controls.md) explains the added deadline-aware transport protocol and the current controlled entrypoint. Old H2 live observations retain their original source; current changed-symbol links above point to the H4 implementation.

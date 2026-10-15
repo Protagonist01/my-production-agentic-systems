@@ -11,10 +11,13 @@ from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict
 
+from agent_harness.admission import GEMINI_TOKEN_CEILING, GeminiFreeAdmission
 from agent_harness.contracts import ModelMessage, ModelRequest, ToolSchema
+from agent_harness.controls import BoundedGateway, ExecutionPolicy, SharedControls
 from agent_harness.gateway import ProviderGateway
-from agent_harness.gemini import ENDPOINT, MODEL, PROVIDER, GeminiTransport
+from agent_harness.gemini import ENDPOINT, MODEL, PROVIDER
 from agent_harness.integration_smoke import LookupArguments, local_environment
+from agent_harness.isolated_transport import GeminiWorker, IsolatedTransport
 from agent_harness.offline_example import example_context
 
 
@@ -26,11 +29,11 @@ class GatewayAnswer(BaseModel):
 
 def live_probe(root: Path, code_revision: str) -> dict[str, Any]:
     values = local_environment(root)
-    transport = GeminiTransport(
-        values["GEMINI_API_KEY"],
-        free_tier_confirmed=values["GEMINI_FREE_TIER_CONFIRMED"].lower() == "true",
-    )
-    gateway = ProviderGateway(transport)
+    confirmed = values["GEMINI_FREE_TIER_CONFIRMED"].lower() == "true"
+    admission = GeminiFreeAdmission(free_tier_confirmed=confirmed)
+    attempts = ProviderGateway(IsolatedTransport(GeminiWorker(values["GEMINI_API_KEY"], confirmed)))
+    controls = SharedControls()
+    gateway = BoundedGateway(attempts, controls, admission, policy=ExecutionPolicy(max_attempts=1))
     now = datetime.now(UTC)
     context = example_context(
         code_revision, hashlib.sha256((root / "uv.lock").read_bytes()).hexdigest()
@@ -38,12 +41,16 @@ def live_probe(root: Path, code_revision: str) -> dict[str, Any]:
     context = context.model_copy(
         update={
             "mode": "fresh_candidate",
-            "run_id": "h2-smoke-" + uuid4().hex,
+            "run_id": "h4-smoke-" + uuid4().hex,
             "case_id": "invented-h2",
             "clock": now,
             "deadline": now + timedelta(seconds=90),
-            "budget": context.budget.model_copy(update={"max_model_calls": 2, "max_tokens": 2048}),
-            "versions": context.versions.model_copy(update={"candidate": "h2-compatibility-probe"}),
+            "budget": context.budget.model_copy(
+                update={"max_model_calls": 2, "max_tokens": 2 * GEMINI_TOKEN_CEILING}
+            ),
+            "versions": context.versions.model_copy(
+                update={"candidate": "h4-controlled-compatibility-probe"}
+            ),
         }
     )
     declaration = ToolSchema(
@@ -68,7 +75,7 @@ def live_probe(root: Path, code_revision: str) -> dict[str, Any]:
         tools=(declaration,),
         tool_choice="lookup_order",
     )
-    print("H2 gateway function proposal (one request)", file=sys.stderr, flush=True)
+    print("H4 controlled gateway function proposal (one request)", file=sys.stderr, flush=True)
     proposal = gateway.generate(context, request)
     if (
         proposal.failure is not None
@@ -76,7 +83,7 @@ def live_probe(root: Path, code_revision: str) -> dict[str, Any]:
         or len(proposal.output.tool_calls) != 1
     ):
         code = "invalid_response" if proposal.failure is None else proposal.failure.code
-        raise ValueError("H2 proposal failed: " + code)
+        raise ValueError("H4 proposal failed: " + code)
     call = proposal.output.tool_calls[0]
     LookupArguments.model_validate(call.arguments)
     followup = request.model_copy(
@@ -95,11 +102,15 @@ def live_probe(root: Path, code_revision: str) -> dict[str, Any]:
             "output_schema": GatewayAnswer.model_json_schema(),
         }
     )
-    print("H2 gateway tool-result/JSON continuation (one request)", file=sys.stderr, flush=True)
+    print(
+        "H4 controlled gateway tool-result/JSON continuation (one request)",
+        file=sys.stderr,
+        flush=True,
+    )
     response = gateway.generate(context, followup)
     if response.failure is not None or response.output is None:
         code = "invalid_response" if response.failure is None else response.failure.code
-        raise ValueError("H2 continuation failed: " + code)
+        raise ValueError("H4 continuation failed: " + code)
     answer = GatewayAnswer.model_validate_json(response.output.content or "")
     return {
         "mode": "live_gateway_compatibility",
@@ -108,9 +119,13 @@ def live_probe(root: Path, code_revision: str) -> dict[str, Any]:
         "lock_sha256": context.versions.environment_lock,
         "model": MODEL,
         "result": answer.model_dump(),
-        "requests": len(gateway.exchanges),
-        "occurrences": [exchange.occurrence for exchange in gateway.exchanges],
-        "fingerprints": [exchange.request.fingerprint() for exchange in gateway.exchanges],
+        "requests": len(attempts.exchanges),
+        "occurrences": [exchange.occurrence for exchange in attempts.exchanges],
+        "fingerprints": [exchange.request.fingerprint() for exchange in attempts.exchanges],
+        "execution_policy": gateway.policy.model_dump(mode="json"),
+        "budget_accounting": controls.snapshot(context.tenant_id, context.run_id).model_dump(
+            mode="json"
+        ),
         "opaque_signatures_preserved": sum(
             part.thought_signature is not None for part in proposal.output.parts
         ),
@@ -121,7 +136,7 @@ def live_probe(root: Path, code_revision: str) -> dict[str, Any]:
                 "usage": exchange.response.usage.model_dump(mode="json"),
                 "provider_usage": exchange.response.provider_usage,
             }
-            for exchange in gateway.exchanges
+            for exchange in attempts.exchanges
         ],
         "quality_evaluation": False,
         "durable_recording": False,
@@ -146,10 +161,11 @@ def main(argv: list[str] | None = None) -> int:
             "timeout",
             "rate_limited",
             "unavailable",
+            "budget_exhausted",
         }
         label = message.rsplit(": ", 1)[-1]
         print(
-            "H2 gateway probe failed: "
+            "H4 controlled gateway probe failed: "
             + (label if label in allowed else "configuration/validation"),
             file=sys.stderr,
         )
