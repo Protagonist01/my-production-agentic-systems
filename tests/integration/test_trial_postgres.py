@@ -1,11 +1,15 @@
 """H6 real database reset, restricted worker access and timeout cleanup."""
 
+import json
 import time
 from dataclasses import dataclass
 from datetime import timedelta
 
 import pytest
 from agent_harness.evaluation import ScoreResult
+from agent_harness.fault_example import approved_effect, fault_population
+from agent_harness.faults import FaultSession, InjectedToolTimeout
+from agent_harness.invariants import Effect, StateExpectation, StateObservation, inspect_state
 from agent_harness.offline_example import FakeAgent, FakeGateway
 from agent_harness.scorers import ScorerCompatibility, ScorerRegistry, ScorerSpec
 from agent_harness.trial_example import invented_schedule
@@ -161,3 +165,77 @@ def test_runner_uses_fresh_restricted_databases_and_cleans_up_after_timeout(
             assert (
                 admin.execute("SELECT 1 FROM pg_roles WHERE rolname=%s", (name,)).fetchone() is None
             )
+
+
+@pytest.mark.parametrize("behavior", ["reconcile", "duplicate", "unauthorized"])
+def test_fault_after_real_commit_is_checked_against_independent_ledger(
+    workspaces, request, behavior
+):
+    workspace = workspaces[0]
+    trial = workspace.create(request.node.name)
+    server = workspace.server()
+    loaded, schedule = fault_population("h7-postgres-source", "h7-test-lock")
+    task = schedule.tasks[4]
+    case = loaded.entry(task.context.case_id).case
+    session = FaultSession(task.context, case.faults, schedule.fault_plan)
+    session.bind(task.context, case.faults)
+    expected_effect = approved_effect()
+    actual_effect = (
+        expected_effect.model_copy(update={"actor": "unapproved"})
+        if behavior == "unauthorized"
+        else expected_effect
+    )
+    deliveries = []
+
+    def commit_effect():
+        with server.connect_trial(trial) as connection:
+            connection.execute(
+                "UPDATE runtime.checkpoints SET payload=%s", (Jsonb({"step": "done"}),)
+            )
+            connection.execute(
+                "INSERT INTO runtime.ledger VALUES (%s,%s)",
+                (
+                    "invented-effect-" + str(len(deliveries)),
+                    Jsonb(actual_effect.model_dump(mode="json")),
+                ),
+            )
+        deliveries.append("committed")
+        return None
+
+    try:
+        with pytest.raises(InjectedToolTimeout):
+            session.invoke("tool:write", commit_effect, committed=True)
+        assert session.evidence().complete and deliveries == ["committed"]
+        if behavior == "duplicate":
+            session.invoke("tool:write", commit_effect, committed=True)
+        # Reopen with an independent restricted connection, never use a claimed reference.
+        with server.connect_trial(trial) as reader:
+            state = reader.execute(
+                "SELECT payload FROM runtime.checkpoints WHERE checkpoint_key='invented-checkpoint'"
+            ).fetchone()[0]
+            baseline = reader.execute(
+                "SELECT payload FROM runtime.ledger WHERE entry_key='invented-baseline'"
+            ).fetchone()[0]
+            assert baseline == {"effect": "none", "source_kind": "synthetic"}
+            effects = tuple(
+                Effect.model_validate_json(json.dumps(row[0]))
+                for row in reader.execute(
+                    "SELECT payload FROM runtime.ledger "
+                    "WHERE entry_key <> 'invented-baseline' ORDER BY entry_key"
+                )
+            )
+        expected = StateExpectation(
+            state={"step": "done"},
+            allowed_effects=(expected_effect,),
+            required_operation_keys=(expected_effect.operation_key,),
+            business_event_id=task.context.business_event_id,
+            allowed_review_reasons=("model_unavailable",),
+        )
+        verdict = inspect_state(
+            StateObservation(state=state, effects=effects, reviews=()), expected
+        )
+        assert verdict.correct == (behavior == "reconcile")
+        assert verdict.effects_once == (behavior != "duplicate")
+        assert verdict.authorized_effects == (behavior != "unauthorized")
+    finally:
+        workspace.drop(request.node.name)
