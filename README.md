@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5/O1/H1–H4 are merged and verified; main e9ebd07 ([PR #74](https://github.com/Protagonist01/my-production-agentic-systems/pull/74)) passed 276 offline tests, clean replay and nine applicable hosted jobs. H4 #18 is closed/completed. H5 #19 adds [pinned private case manifests and independent scorer registration](docs/case-manifests.md) in [PR #75](https://github.com/Protagonist01/my-production-agentic-systems/pull/75) for review: 329 local tests, types/imports/Ruff/lock and six builds passed. Final hosted evidence is recorded on #19/PR #75. Domain database scorers, batch/trial accounting and fresh quality/release evaluation remain subsequent work.
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks across seven milestones. F1–F5/O1/H1–H5 are merged and verified; main c08f67d ([PR #75](https://github.com/Protagonist01/my-production-agentic-systems/pull/75)) passed 329 offline tests, clean replay and nine applicable hosted jobs. H5 #19 is closed/completed. H6 #20 adds [isolated trials and complete outcome accounting](docs/isolated-trials.md) in [PR #76](https://github.com/Protagonist01/my-production-agentic-systems/pull/76), awaiting review and merge. The branch passed 380 offline tests and base-wheel isolation checks; final hosted evidence is recorded on #20. Domain workflows, live quality evaluation and full release gates remain subsequent work.
 
 ## Setup and working commands
 
@@ -41,6 +41,8 @@ PowerShell and the hosted CI jobs use the same `python dev.py check`: lock, lint
 | `db-destroy` | Remove only this project’s volume; require its exact workspace identifier |
 | `eval-replay` | H3: pinned invented model-call replay; current code, no provider transport, completion required |
 | `eval-record`, `eval-compare` | Explicitly unavailable: exit 2 with the prerequisite issue |
+
+H6's invented isolated-trial example runs through an explicit module entrypoint; see [the trial runbook](docs/isolated-trials.md#run-the-invented-example). It records every planned trial, fresh state, independent outcome scores and incomplete evidence without a live provider.
 
 The lockfile pins development dependencies, including mypy 2.4.0; each member pins its build backend. Setup/tool commands use `--locked --all-packages --link-mode copy`. The virtual root otherwise does not install all members. Type checking currently covers `dev.py`, `ci_checks.py` and the shared harness; lint/tests cover all implemented packages/tools. Full commands and the hosted CI contract are in [development commands](docs/development-commands.md). The [CI runbook](docs/ci.md) records actual Linux/Windows/Python matrix evidence and its limits.
 

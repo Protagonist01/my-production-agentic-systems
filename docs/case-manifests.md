@@ -1,6 +1,6 @@
 # Versioned cases and independent scorer registration
 
-H5 #19 adds local evaluator infrastructure on `codex/h5-versioned-cases`, based on reviewed main e9ebd07 (H4 #74). [PR #75](https://github.com/Protagonist01/my-production-agentic-systems/pull/75) contains H5 for review; it remains unmerged. It loads a fixed, private population and binds explicitly registered scorer versions before any case runs. Domain database scorers, batch/trial reset and complete outcome accounting remain H6/domain work.
+H5 #19 adds local evaluator infrastructure on `codex/h5-versioned-cases`, based on reviewed main e9ebd07 (H4 #74). H5 merged through [PR #75](https://github.com/Protagonist01/my-production-agentic-systems/pull/75) into verified main c08f67d. It loads a fixed, private population and binds explicitly registered scorer versions before any case runs. The H6 [isolated-trial extension](isolated-trials.md) adds fresh state and complete outcome accounting in its review branch. Domain scorers remain vertical integration work.
 
 ## Author and review a manifest
 
@@ -46,7 +46,7 @@ This is an application composition fragment, not a working Olist scorer or a new
 
 `BoundEvaluation.run_case` selects an exact manifest case, rechecks scorer compatibility and delegates to F2 `run_case`. Context case/snapshot/policy mismatches fail before agent dispatch. The agent receives only a copied `AgentInput` and public `RunContext`. Group, split, scorer selection, expected labels, eligibility and hidden outcomes stay on the evaluator side. These fields remain private by structure, not by process isolation; reviewed public text/references must also be free of embedded answers.
 
-The scorer receives detached private case/result copies. Empty/duplicate metrics or a returned scorer version differing from registration fails. Scorer exceptions propagate. A typed scorer failure remains a score row with no numeric/category value; it cannot become a pass. H6 must account for these failures across every scheduled trial. A `ScoreResult.eligible` field belongs to that metric's declared denominator; H5 does not force every metric to use autonomous eligibility.
+The scorer receives detached private case/result copies. Empty/duplicate metrics or a returned scorer version differing from registration fails. Scorer exceptions propagate. A typed scorer failure remains a score row with no numeric/category value; it cannot become a pass. The H6 extension accounts for these failures across every scheduled trial. A `ScoreResult.eligible` field belongs to that metric's declared denominator; H5 does not force every metric to use autonomous eligibility.
 
 `ManifestCaseReport` wraps the existing `CaseReport` with the reviewed manifest pin, group/split and scorer ID. The nested report retains scorer/policy/source versions, public candidate provenance, result and scores. It does not add private expected/hidden fields. Trusted plugins can emit sensitive evidence strings, so their output still needs review before export. This wrapper changes no model wire, replay fixture, operational database or existing F2 report schema.
 
