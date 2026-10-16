@@ -183,6 +183,7 @@ class FaultStateScorer:
 class FaultExampleFactory:
     behavior: str = "careful"
     deduplicate: bool = True
+    deny_network: bool = False
 
     def build(self, context: RunContext, state: StateLease) -> TrialComponents:
         raise ValueError("invented fault example requires the explicit fault-aware path")
@@ -192,7 +193,8 @@ class FaultExampleFactory:
     ) -> TrialComponents:
         if context.mode != "offline_fake" or not isinstance(state.access, str):
             raise ValueError("invented file faults require offline_fake file state")
-        sys.addaudithook(_deny_network)
+        if self.deny_network:
+            sys.addaudithook(_deny_network)
         store = InventedStore(Path(state.access) / "state.json")
         if json.loads(store.path.read_text(encoding="utf-8")) != {"status": "start"}:
             raise ValueError("invented state was not reset")
@@ -363,7 +365,11 @@ def main() -> None:
     state = args.root / "state"
     state.mkdir(mode=0o700)
     report = run_trials(
-        schedule, loaded, FaultExampleFactory(), FileTrialEnvironment(state), args.root / "journal"
+        schedule,
+        loaded,
+        FaultExampleFactory(deny_network=True),
+        FileTrialEnvironment(state),
+        args.root / "journal",
     )
     report.require_release_evidence(loaded, fault_plan=schedule.fault_plan)
     categories = [
