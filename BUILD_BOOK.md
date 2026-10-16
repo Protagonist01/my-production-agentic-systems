@@ -22,6 +22,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 15 — Preserving calls without turning replay into a cache](#entry-15--preserving-calls-without-turning-replay-into-a-cache)
 - [Entry 16 — Reserving shared capacity before bounded attempts](#entry-16--reserving-shared-capacity-before-bounded-attempts)
 - [Entry 17 — Pinning case membership and independent scorers](#entry-17--pinning-case-membership-and-independent-scorers)
+- [Entry 18 — Accounting for isolated trials even when execution fails](#entry-18--accounting-for-isolated-trials-even-when-execution-fails)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -810,3 +811,51 @@ Created and attached draft [PR #75](https://github.com/Protagonist01/my-producti
 ### Hosted scanner diagnosis
 
 The first hosted final-documentation run failed its generic API-credential heuristic on ordinary prose in the H5 study chapter's test-coverage paragraph (line 63); redacted diagnostics identify that exact documentation location, not a configured credential or fixture digest. Inspection confirmed the line lists malformed/absent-file tests. Rephrased the sentence and replaced only the unmerged documentation commit using force-with-lease. No scanner rule or allowlist was changed. The original implementation commit and immutable source links stay pinned. Other checks from that superseded head are not final acceptance evidence; verify the replacement head from scratch.
+
+## Entry 18 — Accounting for isolated trials even when execution fails
+
+Date: 2026-10-15 (Africa/Lagos). H6 #20, branch `codex/h6-isolated-trials`, based on reviewed merged H5 main c08f67d. Work underway.
+
+**Files touched:** trial scheduling/accounting, spawned runner, F4 state adapter, invented example, offline/integration tests and operating/study documentation.
+
+### Context and question
+
+The user reviewed and merged #75. H5 fixes case population and scorer selection, but a scorer exception still prevents a case report. How do we retain all scheduled denominators and distinguish verified autonomous completion from a claimed success or unnecessary handoff?
+
+### Options considered and why
+
+A thread timeout cannot stop an executing agent. Chosen: bounded coordinator threads, each owning one spawned trial process, with a bounded shared-memory response and explicit terminate/join/kill cleanup. Construct agent/gateway/scorers inside each child from a trusted importable factory, avoiding pickling live SDK clients/locks and preventing ordinary per-instance state from crossing trials. Child input remains evaluator-private; factories pass only the existing public projection to agents.
+
+Deriving correctness from an agent outcome would award false success. Chosen: a versioned outcome policy selects separate required binary correctness, safety and durable-review metrics from the registered independent scorer. Private predeclared eligibility/review flags bind to the pinned case before execution. A handoff on an eligible completion case keeps its denominator and earns no completion credit. Unknown/missing/error scores are unverified; unsafe observations are retained even if other evidence fails. This implements the already declared metrics, not a new domain experiment or quality floor.
+
+Create a private schedule journal before setup, exclusively write one terminal row per planned identity, and reconcile missing rows after interruption. A process/host crash can prevent a write; recovery must expose missing evidence rather than fabricate a completed trial. This first runner refuses to resume/overwrite an existing journal. Full release quality gates remain H9/H10; H6 provides the required completeness/safety evidence precondition.
+
+### How to build it
+
+1. Declare every case × repeated-trial identity with fixed clock, seed, candidate/code/lock and budgets; validate exact manifest membership, context/snapshot/policy agreement, unique run IDs and compatible experiment provenance before any setup.
+2. A trusted parent environment prepares fresh state and returns an opaque lease with restricted access. F4's adapter creates a unique migrated/seeded database and least-privilege role for each trial; existing identities fail rather than silently resetting someone else's work. Only restricted login information enters the child; administrator credentials stay in the parent.
+3. Run the trusted component factory and existing H5 binding/runner inside one spawned process. Bound elapsed child execution including startup by both the declared trial duration and runner limit. Return a validated frame or a fixed sanitized error code; never export arbitrary exception text.
+4. Stop/reap the child before releasing its state. F4 cleanup verifies ownership and refuses active connections. Setup/cleanup errors are terminal evidence failures, not passing empty results. Parent lifecycle hooks must bound their own I/O; F4 uses its existing connection/lock timeouts. A hostile or hanging lifecycle hook and abrupt host termination remain explicit limitations.
+5. Derive categories and denominators from scheduled flags and independent scores, retain errors and reconcile the exclusive journal. Test worker timeout/crash, scorer errors, bounded concurrency, reset isolation, all-escalation behavior and missing rows. Add real Postgres integration through the existing required db-check job.
+
+### Verification underway
+
+A separate clean clone is checking H5 main c08f67d. Read current Python multiprocessing and Langfuse deterministic-evaluator guidance before implementation. No new dataset, live provider call, Langfuse service change, dependency upgrade or model-wire migration is needed. Implementation and test results follow as work proceeds.
+
+### First worker checks
+
+The initial targeted run passed 48 tests and exposed one test allowance issue: while Docker startup and other validation were active, a valid typed-scorer-error worker exhausted its twelve-second deadline. That was correctly recorded as timeout, so the classification assertion was wrong for the observed run. Use the declared thirty-second worker allowance for that mixed failure test and retain a marker proving the hung worker actually entered execution; its bounded duration and cleanup assertions remain.
+
+The unpicklable-factory negative control exposed a Windows spawn detail: Python starts a bootstrap process before dumping all arguments, so failed pickling can produce a child-side invalid-handle traceback. Add a ForkingPickler preflight for trusted factory/context/lease data before allocating a worker. This rejects ordinary unpicklable objects without creating that bootstrap process. It does not sandbox custom serialization hooks. The process is a daemon so nested multiprocessing workers are refused; controlled adapters inside an already bounded trial must use direct deadline-aware transport rather than nesting H4 IsolatedTransport. Trusted factories must not launch background subprocesses. These limits belong in the operating guide.
+
+Clean H5 main c08f67d passed 329 tests, strict checks and exact replay. Push-main run 38815711769 passed nine applicable jobs; H5 #19 is now closed/completed. Docker Desktop was stopped; started the installed backend to run disposable database checks. Existing required checks are running; the new H6 database tests additionally verify fresh state, restricted role attributes, independent committed-state scoring and cleanup after an executing worker times out. Browser board control timed out twice; no H6 native status change is claimed yet.
+
+### Binding recovered evidence back to the reviewed cases
+
+While inspecting recovery, identified a gap in the first design: a self-consistent recovered schedule could omit an entry or change eligibility unless the reader/gate checked the original reviewed manifest again. Added explicit case inventory and matrix validation to TrialSchedule itself, and require the separately pinned LoadedManifest in TrialJournal.read and BatchReport.require_release_evidence. Both revalidate membership and private eligibility/review flags. A regression constructs internally consistent changed labels; even with all rows present, the evidence gate must reject it. Local JSON consistency alone is not approval of a new population. Signed/tamper-authenticated score artifacts remain outside H6.
+
+### Continuation on 2026-10-16
+
+The session interruption left no retrievable completion result for the final suites. Rerun them with output saved under ignored artifacts rather than inferring success from intermediate progress. Docker Desktop was stopped after the interruption, so the first resumed db-check failed all thirteen cases during fixture setup, before trial execution. Start the installed backend and rerun the complete database suite; do not treat setup errors as skipped acceptance.
+
+Two earlier diagnostic runs also showed why worker classification tests need room for Windows startup. The mixed failure test observed legitimate thirty-second timeouts for ordinary scorer/crash workers while other validation was active. Give ordinary test workers a ninety-second allowance within declared 120-second contexts; the designated hanging trial retains its own thirty-second duration and entry marker. The Postgres test similarly uses a forty-five-second worker allowance within a ninety-second context, with a 120-second deliberate hang. Runner defaults remain thirty seconds. These are test allowances, not measured provider latency or a production deadline promise.
