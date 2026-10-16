@@ -10,12 +10,14 @@ from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import dataclass, field
 from multiprocessing.reduction import ForkingPickler
 from pathlib import Path
-from typing import Protocol, Self
+from typing import Protocol, Self, cast
 
 from pydantic import model_validator
 
 from agent_harness.cases import LoadedManifest
 from agent_harness.contracts import Agent, Contract, ModelGateway, RunContext
+from agent_harness.fault_contracts import FaultPlan
+from agent_harness.faults import FaultSession
 from agent_harness.scorers import ManifestCaseReport, ScorerRegistry
 from agent_harness.trials import (
     BatchReport,
@@ -61,6 +63,12 @@ class TrialFactory(Protocol):
     def build(self, context: RunContext, state: StateLease) -> TrialComponents: ...
 
 
+class FaultTrialFactory(Protocol):
+    def build_faults(
+        self, context: RunContext, state: StateLease, faults: FaultSession
+    ) -> TrialComponents: ...
+
+
 class _WorkerResult(Contract):
     report: ManifestCaseReport | None = None
     error: TrialError | None = None
@@ -79,13 +87,24 @@ def _worker(
     lease: StateLease,
     buffer: ctypes.Array[ctypes.c_ubyte],
     size: ctypes.c_int,
+    plan: FaultPlan | None,
 ) -> None:
     with open(os.devnull, "w") as sink, redirect_stdout(sink), redirect_stderr(sink):
         try:
             context = RunContext.model_validate_json(context.canonical_json())
-            parts = factory.build(context, lease)
+            case = loaded.entry(context.case_id).case
+            faults = None
+            if case.faults:
+                if plan is None or not callable(getattr(factory, "build_faults", None)):
+                    raise ValueError("fault trial requires explicit fault-aware factory")
+                faults = FaultSession(context, case.faults, plan)
+                parts = cast(FaultTrialFactory, factory).build_faults(context, lease, faults)
+            else:
+                parts = factory.build(context, lease)
             bound = parts.scorers.bind(loaded)
-            report = bound.run_case(context, context.case_id, parts.agent, parts.gateway)
+            report = bound.run_case(
+                context, context.case_id, parts.agent, parts.gateway, faults=faults
+            )
             result = _WorkerResult(report=report)
         except BaseException:
             result = _WorkerResult(error="execution_error")
@@ -106,11 +125,12 @@ def _isolated(
     task: TrialTask,
     lease: StateLease,
     timeout_seconds: float,
+    plan: FaultPlan | None = None,
 ) -> _WorkerResult:
     try:
         # Windows starts a bootstrap process before serializing spawn arguments.
         # Reject ordinary unpicklable factory/state objects before creating that process.
-        ForkingPickler.dumps((factory, loaded, task.context, lease))
+        ForkingPickler.dumps((factory, loaded, task.context, lease, plan))
     except Exception:
         return _WorkerResult(error="worker_start_error")
     end = time.monotonic() + timeout_seconds
@@ -118,7 +138,7 @@ def _isolated(
     buffer = ctx.RawArray(ctypes.c_ubyte, MAX_TRIAL_BYTES)
     size = ctx.RawValue(ctypes.c_int, 0)
     process = ctx.Process(
-        target=_worker, args=(factory, loaded, task.context, lease, buffer, size), daemon=True
+        target=_worker, args=(factory, loaded, task.context, lease, buffer, size, plan), daemon=True
     )
     started = False
     try:
@@ -178,7 +198,12 @@ def _coordinate(
             else:
                 duration = (task.context.deadline - task.context.clock).total_seconds()
                 result = _isolated(
-                    factory, loaded, task, lease, min(schedule.worker_timeout_seconds, duration)
+                    factory,
+                    loaded,
+                    task,
+                    lease,
+                    min(schedule.worker_timeout_seconds, duration),
+                    schedule.fault_plan,
                 )
                 report = result.report
                 if result.error is not None:
@@ -231,4 +256,4 @@ def run_trials(
         futures = [pool.submit(execute, task) for task in schedule.tasks]
         for future in futures:
             future.result()
-    return journal.read(loaded)
+    return journal.read(loaded, fault_plan=schedule.fault_plan)

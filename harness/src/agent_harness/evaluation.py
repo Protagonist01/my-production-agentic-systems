@@ -1,8 +1,13 @@
 """Evaluator-only objects and a minimal runner, separate from agent contracts."""
 
-from typing import Annotated, Literal, Protocol, Self
+from typing import TYPE_CHECKING, Annotated, Literal, Protocol, Self
 
 from pydantic import Field, JsonValue, model_validator
+
+from agent_harness.fault_contracts import FaultEvidence
+
+if TYPE_CHECKING:
+    from agent_harness.faults import FaultSession
 
 from agent_harness.contracts import (
     Agent,
@@ -28,7 +33,7 @@ class ExpectedResult(Contract):
 
 
 class FaultScenario(Contract):
-    """Definition/expectations only; injection execution remains H7."""
+    """Private expectations; execution requires a separately bound H7 plan/session."""
 
     scenario_id: NonEmpty
     target: NonEmpty
@@ -89,6 +94,7 @@ class CaseReport(Contract):
     scorer_version: NonEmpty
     result: AgentResult
     scores: Annotated[tuple[ScoreResult, ...], Field(min_length=1)]
+    fault_evidence: FaultEvidence | None = None
 
     @model_validator(mode="after")
     def matching_evidence(self) -> Self:
@@ -99,6 +105,8 @@ class CaseReport(Contract):
             raise ValueError("score version differs from report")
         if self.policy_version != self.context.versions.policy:
             raise ValueError("policy version differs from report context")
+        if self.fault_evidence is not None and self.fault_evidence.seed != self.context.seed:
+            raise ValueError("fault evidence seed differs from report context")
         return self
 
 
@@ -107,7 +115,13 @@ class Scorer(Protocol):
 
 
 def run_case(
-    context: RunContext, case: EvalCase, agent: Agent, gateway: ModelGateway, scorer: Scorer
+    context: RunContext,
+    case: EvalCase,
+    agent: Agent,
+    gateway: ModelGateway,
+    scorer: Scorer,
+    *,
+    faults: "FaultSession | None" = None,
 ) -> CaseReport:
     """Run one case; infrastructure/programming errors propagate, never become a pass."""
     context = RunContext.model_validate_json(context.model_dump_json())
@@ -118,10 +132,20 @@ def run_case(
         raise ValueError("snapshot differs from run context")
     if context.versions.policy != case.policy_version:
         raise ValueError("policy differs from run context")
-    if case.faults:
+    if case.faults and faults is None:
         raise NotImplementedError("FaultScenario execution is not implemented; see H7")
+    if faults is not None:
+        if not case.faults:
+            raise ValueError("fault session supplied to a case without faults")
+        from agent_harness.faults import FaultGateway
+
+        faults.bind(context, case.faults)
+        public_input = faults.input(case.agent_input())
+        gateway = FaultGateway(faults, gateway)
+    else:
+        public_input = case.agent_input()
     result = AgentResult.model_validate_json(
-        agent.run(context, case.agent_input(), gateway).model_dump_json()
+        agent.run(context, public_input, gateway).model_dump_json()
     )
     if (result.run_id, result.case_id, result.trial_id) != (
         context.run_id,
@@ -143,4 +167,5 @@ def run_case(
         scorer_version=case.scorer_version,
         result=result,
         scores=scores,
+        fault_evidence=faults.evidence() if faults is not None else None,
     )

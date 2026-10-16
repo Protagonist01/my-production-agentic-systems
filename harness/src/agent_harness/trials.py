@@ -9,6 +9,8 @@ from pydantic import Field, model_validator
 
 from agent_harness.cases import Identifier, LoadedManifest, ManifestPin
 from agent_harness.contracts import Contract, RunContext
+from agent_harness.fault_contracts import FaultPlan, digest
+from agent_harness.faults import validate_plan, verify_evidence
 from agent_harness.scorers import ManifestCaseReport
 
 
@@ -49,6 +51,8 @@ class TrialSchedule(Contract):
     tasks: Annotated[tuple[TrialTask, ...], Field(min_length=1)]
     max_parallel: Annotated[int, Field(ge=1, le=8)] = 1
     worker_timeout_seconds: Annotated[float, Field(gt=0, le=300)] = 30.0
+    fault_plan: FaultPlan | None = None
+    fault_case_ids: tuple[Identifier, ...] = ()
 
     @model_validator(mode="after")
     def unique_schedule(self) -> Self:
@@ -92,6 +96,10 @@ def validate_schedule(schedule: TrialSchedule, loaded: LoadedManifest) -> None:
     if schedule.manifest != loaded.pin:
         raise ValueError("schedule differs from reviewed manifest pin")
     manifest = loaded.manifest
+    if len(set(schedule.fault_case_ids)) != len(schedule.fault_case_ids) or set(
+        schedule.fault_case_ids
+    ) != {entry.case.case_id for entry in manifest.entries if entry.case.faults}:
+        raise ValueError("scheduled fault case inventory differs from reviewed manifest")
     if set(schedule.case_ids) != set(manifest.case_ids):
         raise ValueError("scheduled case inventory differs from reviewed manifest")
     expected = {(case_id, trial) for case_id in manifest.case_ids for trial in schedule.trial_ids}
@@ -110,8 +118,11 @@ def validate_schedule(schedule: TrialSchedule, loaded: LoadedManifest) -> None:
             case.expected.required_review,
         ):
             raise ValueError("scheduled eligibility/review differs from private labels")
-        if case.faults:
-            raise ValueError("fault execution requires H7")
+    validate_plan(
+        schedule.fault_plan,
+        tuple(entry.case for entry in manifest.entries),
+        tuple(task.context.seed for task in schedule.tasks),
+    )
 
 
 TrialError = Literal[
@@ -172,6 +183,25 @@ def assess(row: TrialRow, policy: OutcomePolicy) -> TrialAssessment:
             for name in names
         )
     )
+    fault = row.report.report.fault_evidence
+    if fault is not None:
+        invariant_names = fault.required_invariants
+        valid = (
+            valid
+            and fault.complete
+            and all(
+                name in by_metric
+                and by_metric[name].failure is None
+                and by_metric[name].value in (0.0, 1.0)
+                and by_metric[name].category is None
+                for name in invariant_names
+            )
+        )
+        if any(
+            name in by_metric and by_metric[name].failure is None and by_metric[name].value == 0
+            for name in invariant_names
+        ):
+            return TrialAssessment(category="unsafe", evidence_complete=valid)
     safety = by_metric.get(policy.safety_metric)
     if safety is not None and safety.failure is None and safety.value == 0:
         return TrialAssessment(category="unsafe", evidence_complete=valid)
@@ -228,6 +258,11 @@ class BatchReport(Contract):
                 raise ValueError("unexpected or changed scheduled task")
             if row.report is not None and row.report.manifest != self.schedule.manifest:
                 raise ValueError("report manifest differs from schedule")
+            if row.report is not None:
+                evidence = row.report.report.fault_evidence
+                plan = self.schedule.fault_plan
+                if evidence is not None and (plan is None or evidence.plan_sha256 != digest(plan)):
+                    raise ValueError("fault evidence differs from scheduled plan")
         return self
 
     @property
@@ -237,8 +272,16 @@ class BatchReport(Contract):
 
     @property
     def complete(self) -> bool:
-        return not self.missing and all(
-            assess(row, self.schedule.outcome_policy).evidence_complete for row in self.rows
+        return (
+            not self.missing
+            and all(
+                assess(row, self.schedule.outcome_policy).evidence_complete for row in self.rows
+            )
+            and all(
+                row.report is not None and row.report.report.fault_evidence is not None
+                for row in self.rows
+                if row.task.context.case_id in self.schedule.fault_case_ids
+            )
         )
 
     @property
@@ -252,9 +295,21 @@ class BatchReport(Contract):
             for row in self.rows
         )
 
-    def require_release_evidence(self, loaded: LoadedManifest) -> None:
+    def require_release_evidence(
+        self, loaded: LoadedManifest, *, fault_plan: FaultPlan | None = None
+    ) -> None:
         """Necessary evidence gate only; H9/H10 add quality/regression/release criteria."""
         validate_schedule(self.schedule, loaded)
+        if self.schedule.fault_plan != fault_plan:
+            raise ValueError("reviewed fault plan differs from scheduled evidence")
+        for row in self.rows:
+            if row.report is not None and not verify_evidence(
+                row.report.report.fault_evidence,
+                self.schedule.fault_plan,
+                loaded.entry(row.task.context.case_id).case,
+                row.task.context.seed,
+            ):
+                raise ValueError("incomplete or incompatible fault evidence blocks release")
         if not self.complete:
             raise ValueError("incomplete trial evidence blocks release")
         if any(assess(row, self.schedule.outcome_policy).category == "unsafe" for row in self.rows):
@@ -288,9 +343,11 @@ class TrialJournal:
             self.path / "rows" / (row.task.fingerprint() + ".json"), row.canonical_json()
         )
 
-    def read(self, loaded: LoadedManifest) -> BatchReport:
+    def read(self, loaded: LoadedManifest, *, fault_plan: FaultPlan | None = None) -> BatchReport:
         schedule = TrialSchedule.model_validate_json((self.path / "schedule.json").read_bytes())
         validate_schedule(schedule, loaded)
+        if schedule.fault_plan != fault_plan:
+            raise ValueError("reviewed fault plan differs from journal")
         rows = tuple(
             TrialRow.model_validate_json(path.read_bytes())
             for path in sorted((self.path / "rows").iterdir())
@@ -300,6 +357,19 @@ class TrialJournal:
             raise ValueError("journal row filename differs from identity")
         by_key = {row.task.key: row for row in rows}
         report = BatchReport(schedule=schedule, rows=rows)
+        for row in report.rows:
+            if row.report is not None:
+                evidence = row.report.report.fault_evidence
+                case = loaded.entry(row.task.context.case_id).case
+                # Missing hook events are valid incomplete evidence, not a parser failure.
+                if evidence is not None and not verify_evidence(
+                    evidence,
+                    schedule.fault_plan,
+                    case,
+                    row.task.context.seed,
+                    require_complete=False,
+                ):
+                    raise ValueError("fault journal evidence differs from reviewed plan/case")
         return BatchReport(
             schedule=report.schedule,
             rows=tuple(by_key[task.key] for task in schedule.tasks if task.key in by_key),

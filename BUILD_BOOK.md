@@ -23,6 +23,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 16 — Reserving shared capacity before bounded attempts](#entry-16--reserving-shared-capacity-before-bounded-attempts)
 - [Entry 17 — Pinning case membership and independent scorers](#entry-17--pinning-case-membership-and-independent-scorers)
 - [Entry 18 — Accounting for isolated trials even when execution fails](#entry-18--accounting-for-isolated-trials-even-when-execution-fails)
+- [Entry 19 — Reproducible faults at explicit execution boundaries](#entry-19--reproducible-faults-at-explicit-execution-boundaries)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -869,3 +870,67 @@ All six source archives/wheels built. The four new modules match the harness whe
 The first hosted source run 38952883131 passed its required Postgres job and both Linux quality cells; the two Windows cells were still running when inspected. These source-head results are preliminary, not final-head acceptance. The local full database rerun is progressing through disposable Compose resources after backend restart. Complete the runbook, study chapter and delivery snapshot in a separate documentation commit, then verify the final clean revision and every required hosted job. Keep #20 open through user review/merge and post-merge acceptance; H7 #21 depends on H6 and completed H4. Native board status remains last verified In progress until browser controls return; issue/manifest Review does not prove a native board change.
 
 The expanded final documentation audit checked 186 immutable source ranges, 130 selected local links and all seventeen intended publication files; configured secret values and ignored local artifacts were absent. No runtime source changed during these checks. Publish the documentation snapshot, then record exact-head replay, hosted acceptance and the local database outcome on #20 without treating preliminary runs as final evidence.
+
+## Entry 19 — Reproducible faults at explicit execution boundaries
+
+Date: 2026-10-16 (Africa/Lagos). H7 #21, branch `codex/h7-seeded-faults`, based on user-reviewed merged H6 main 9c13b2c. Work underway.
+
+**Files touched:** fault plan/session contracts, deterministic state invariants, existing evaluation/scorer/trial composition, invented fault example/tests and operating/study documentation.
+
+### Context and question
+
+The user merged #76. H6 retains every trial but refuses declared faults. How can a tool timeout after commit be reproduced without confusing it with a timeout before a write, or crediting a claimed recovery when the ledger contains duplicate effects?
+
+### Options considered and why
+
+Random wall-clock sleeps would couple reproducibility to host scheduling and could miss the intended commit boundary. Chosen: explicit model/input/tool boundary hooks, with a versioned declarative plan and seed-derived occurrence selection. A trusted adapter declares when a tool operation has committed. The injector simulates boundary failures without altering production services or sleeping. A recorded event proves a hook ran, not that a domain transaction was correct.
+
+Automatically retrying failed tools would bake domain recovery policy into the harness and could duplicate a committed effect. Chosen: raise a fixed typed injected timeout; let the agent decide whether to reconcile, retry with a stable operation key or create durable review. Duplicate delivery explicitly invokes the same trusted operation twice. Independent state/ledger checks then expose duplicate or unauthorized effects. Recoverability stays in the pinned case declaration; it is never inferred from the observed outcome.
+
+### How to build it
+
+1. Keep F2 FaultScenario as the private expectation declaration. Add a closed executable plan for supported fault kinds, target/timing and bounded occurrence windows. Bind every declaration exactly before trial setup, rejecting unknown, missing, duplicate or conflicting rules.
+2. Derive the selected occurrence from a stable hash of plan version, scenario ID and declared seed. Record ordered metadata-only events with plan/declaration digests. Do not include injected payloads or private expected outcomes in public context or event logs.
+3. Create the fault session inside the existing H6 worker. A fault-aware factory shares that session with trusted tool wrappers; existing no-fault factories keep their interface. Route only the explicit public input/model surfaces through wrappers. Refuse faults without matching composition.
+4. Preserve the event evidence in the case report. Unreached hooks remain incomplete evidence; rebind reports to the scheduled plan and reviewed case on recovery/release checks. Keep existing independent correctness/safety/review metrics and derive separate recovered/review/unresolved/unsafe fault categories from those observations.
+5. Add pure state/ledger invariants with independently supplied expected effects and read actual state through a trusted reader. Test identical success claims with correct, duplicate, unauthorized and absent effects. Exercise every fault in invented offline state, including before/after commit and resume, plus the existing required Postgres path where useful.
+
+### Verification underway
+
+The clean merged-H6 checkout is running locked checks and exact replay. H6 final PR head passed 380 offline cases, thirteen local/hosted database cases and all ten hosted jobs; the local fixture cleanup was independently verified. Current Langfuse evaluator guidance was read for deterministic state checks. H7 implements already declared fault/outcome measures, not a new quality floor, live dataset, provider experiment or production authorization policy. No dependency upgrade or schema change is planned. Results and actual failures follow below.
+
+### First checks and recovered-plan trust
+
+The first targeted H7 suite passed 36 cases, including all eight real boundary drills, repeatability, negative duplicate/unauthorized actors and spawned accounting. The existing trial/contract subset passed 78 cases. Strict mypy initially caught an untyped JSON clone and dictionary variance; use an explicit JsonValue boundary and separate invariant-name variable, then all twenty-nine typed source files passed. These are intermediate results; final checks follow the remaining changes.
+
+Recovery needs a second reviewed input: H5's case pin declares fault expectations but does not pin an H7 payload or occurrence window. Require the separately reviewed FaultPlan when reopening a fault journal or requesting release evidence, and compare it to the scheduled plan. The running coordinator already owns its validated plan; recovered JSON alone cannot approve a changed treatment. No-fault H6 callers retain the existing default. This is consistency against reviewed inputs, not journal authentication.
+
+The Windows UI helper timed out on lightweight discovery, again on retry, and after a reset/reinitialization. Stop UI attempts after that documented recovery sequence; no new native project-board change is claimed. Issue/API and versioned status can still be maintained without expanding account permissions.
+
+The expanded targeted suite passed 44 cases and caught a missing import in the last added test, before its gate assertion ran. Restore the BatchReport import; the subsequent full lint check confirms the name is defined. The full check also stopped at formatting for a split SQL literal; run the repository formatter and restart the aggregate check. These test/static failures are retained here; they are not passing evidence. Added three real Postgres cases using the existing restricted fixture: commit then timeout, independently reread the complete non-baseline ledger, and distinguish reconciliation from duplicate keys or an unapproved actor. No schema was changed.
+
+### Windows failure: an audit hook escaped the example boundary
+
+Draft source run 38962250451 passed both Linux cells and Postgres but failed both Windows quality cells in the existing SDK/framework network-denial probe. The logs show NetworkDisabledError while Windows initializes its event loop, followed by a partial ProactorEventLoop cleanup error. The new example factory installed an irreversible process-wide network audit hook even when unit tests called it inline. That hook remained active for unrelated later tests. The correct boundary is explicit: make example network denial opt-in at factory construction, enable it in spawned CLI/package workers, and keep inline evaluator composition free of process-wide hooks. Parent CLI/package probes still deny network explicitly. Do not weaken the existing SDK test or its own scoped network checks. Rerun the full Windows checks after this fix; previous Linux/DB passes are preliminary.
+
+### Measured checks after the boundary fix
+
+The focused fault-then-SDK sequence passed 65 cases in 73.31 seconds, confirming the inline factory no longer breaks Windows event-loop setup. The earlier full local run completed 423 passes and two failures: the audit-hook bug above and the existing H4 eight-second hang test timing out before its startup marker while other checks were active. Keep the H4 assertion unchanged and rerun the complete suite after the competing checks finish; a timeout before the marker does not prove interruption of executing worker code.
+
+All sixteen required Postgres tests passed in 600.20 seconds, including the three new independently inspected committed-ledger cases. Fixtures completed normal teardown; no manual service or volume deletion was performed. Pytest's retention cleanup removed that temporary root before a separate metadata audit could reopen it, so no independent four-project read-back is claimed for this run. Existing Langfuse services were not changed. Clean merged-H6 main 9c13b2c passed 380 tests, strict checks and exact six-call/two-timeout/zero-provider replay; main run 38959680261 passed nine applicable jobs. H6 #20 is closed/completed, H7 #21 is active in draft PR #77.
+
+The first installed base-wheel drill reproduced eight terminal rows, seven recoveries and one appropriate review, with Google/Langfuse absent and parent/child network denial. Duplicate and unauthorized effects failed independent invariants. Rebuild/recheck after e9213aa's explicit network-hook fix so package evidence covers the repaired bytes. The documentation audit initially checked 214 immutable source ranges and 145 selected local links; final counts are verified again after the review snapshot.
+
+All ten hosted jobs passed for repaired source e9213aa in run 38963004360, including four Linux/Windows Python 3.12/3.13 cells and the sixteen-case Postgres suite. The local fresh aggregate rerun passed the earlier H4 worker-marker point and is continuing. Final documentation head and rebuilt installed-wheel evidence still need their own verification; source-head CI does not stand in for final-head acceptance. Updated only affected code-study chapters; their immutable source ranges were re-anchored to the implementation/fix commits and the final scope audit covers twenty-three intended publication files.
+
+### Stable-source acceptance and Review preparation
+
+The fresh aggregate passed all 425 offline tests in 303.44 seconds, including 45 H7 cases, with twenty-nine typed source files, both import boundaries, Ruff/format and unchanged lock. Both earlier failures pass without weakening the H4 marker assertion or SDK network guard. All six archives/wheels built. Verified source-head hosted job logs explicitly report 425 passed in each of the four quality cells and sixteen passed in Postgres.
+
+Rebuilt the fixed source and installed only the base harness wheel/mandatory dependencies into a new environment. All eight changed/new module bytes equal the wheel. Under isolated imports and explicit parent/child network denial, eight terminal rows yielded seven recoveries and one appropriate review, retained seven eligible completions and reopened identical pinned journals. Google and Langfuse were absent; duplicate and unapproved effects failed independent invariants. No live provider work or domain quality experiment was needed.
+
+Publish the completed runbook, source guide and merged-H6/H7 Review snapshot in a documentation commit. Keep H7 #21 open until user review/merge and post-merge acceptance. Final clean-head replay, remote file equality and all ten hosted checks are verified after that commit and recorded on #21. Native project-board read-back remains unavailable after the documented helper failure; issue/manifest Review is not represented as a verified native transition. H8 is the next harness task; its H1/H2/H6 prerequisites are complete.
+
+### Documentation scanner diagnosis
+
+The first documentation head 933ddd1 triggered the repository scanner's generic credential heuristic at docs/code-study-faults.md line 73. The flagged sentence enumerates ordinary test coverage; inspection confirmed no configured credential or secret value. Rephrase that prose as short sentences and replace only this unmerged documentation commit using force-with-lease. Keep runtime implementation/fix commits and their immutable links intact. No scanner rule, allowlist or exclusion is changed. Verify clean replay and hosted checks against the replacement head; the failed/superseded run is not final acceptance evidence.

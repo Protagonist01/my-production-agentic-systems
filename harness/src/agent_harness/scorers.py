@@ -1,13 +1,16 @@
 """Explicit trusted plugin composition; manifest data never names Python imports."""
 
 from dataclasses import dataclass
-from typing import Annotated, Self
+from typing import TYPE_CHECKING, Annotated, Self
 
 from pydantic import Field, model_validator
 
 from agent_harness.cases import CaseEntry, Identifier, LoadedManifest, ManifestPin, Split
 from agent_harness.contracts import Agent, AgentResult, Contract, ModelGateway, RunContext
 from agent_harness.evaluation import CaseReport, EvalCase, Scorer, ScoreResult, run_case
+
+if TYPE_CHECKING:
+    from agent_harness.faults import FaultSession
 
 
 class ScorerCompatibility(Contract):
@@ -100,12 +103,18 @@ class BoundEvaluation:
         self._bindings = dict(bindings)
 
     def run_case(
-        self, context: RunContext, case_id: str, agent: Agent, gateway: ModelGateway
+        self,
+        context: RunContext,
+        case_id: str,
+        agent: Agent,
+        gateway: ModelGateway,
+        *,
+        faults: "FaultSession | None" = None,
     ) -> ManifestCaseReport:
         entry = self._loaded.entry(case_id)
         scorer = self._bindings[case_id]
         scorer.check(entry)
-        report = run_case(context, entry.case, agent, gateway, scorer)
+        report = run_case(context, entry.case, agent, gateway, scorer, faults=faults)
         return ManifestCaseReport(
             manifest=self._loaded.pin,
             group_id=entry.group_id,
