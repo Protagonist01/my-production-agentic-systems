@@ -52,3 +52,7 @@ Design references: [Pydantic models](https://docs.pydantic.dev/latest/concepts/m
 ## H2 model extensions
 
 ModelPart retains ordered assistant text/calls, thought flags and canonical-base64 opaque signatures. Public content/tool_calls must match the non-thought projection; retained parts are assistant-only. ToolCall separates local call_id from optional provider_call_id. ModelResponse adds raw provider_usage beside aggregate Usage; cost remains unknown and aggregate output is unknown when thinking usage is absent. The shared contract validates shape, while GeminiTransport checks local schemas, pending function history and supported dialect/route. ProviderGateway revalidates Python objects before canonical JSON snapshots, checks response route/revision and retains detached scoped occurrences. Runtime identities do not grant authorization. See [gateway details and migration boundary](gateway.md).
+
+## H8 optional telemetry
+
+Evaluation accepts an optional single-use `TraceSession`; trusted factories construct it inside the owned worker and return `TrialComponents.trace`. Closed `TraceHealth` is retained alongside the result and terminal row, including worker execution errors. Health is distinct from model/scorer correctness. Node/tool/policy adapters use explicit hooks; the model gateway and evaluator supply run/agent/model/scorer spans. Full private reports and journals retain their original privacy boundary. See [telemetry operations](telemetry.md) and [source walkthrough](code-study-telemetry.md).

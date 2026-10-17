@@ -608,9 +608,9 @@ def test_invalid_request_cannot_be_caught_and_retried_into_a_passing_session():
 def test_packaged_fixture_pin_and_current_agent_execution():
     from importlib.resources import as_file, files
 
-    from agent_harness.replay_example import INVENTED_DIGEST, run_invented_replay
+    from agent_harness.replay_example import INVENTED_DIGEST, INVENTED_RESOURCE, run_invented_replay
 
-    with as_file(files("agent_harness").joinpath("resources/replay/invented-v1.json")) as path:
+    with as_file(files("agent_harness").joinpath(INVENTED_RESOURCE)) as path:
         value = load_recording(path, expected_digest=INVENTED_DIGEST)
     lock = value.exchanges[0].context.versions.environment_lock
     report = run_invented_replay(value, code_revision="current-test-code", environment_lock=lock)
@@ -683,3 +683,21 @@ def test_replay_cli_runs_without_credentials_or_services(tmp_path):
     report = json.loads(result.stdout)
     assert report["current_code_revision"] == "current-cli-source"
     assert report["recorded_calls_consumed"] == 6 and report["outbound_provider_calls"] == 0
+
+
+def test_historical_fixture_is_unchanged_and_refuses_current_dependency_lock():
+    import hashlib
+    from importlib.resources import as_file, files
+
+    from agent_harness.replay_example import run_invented_replay
+
+    with as_file(files("agent_harness").joinpath("resources/replay/invented-v1.json")) as path:
+        old = load_recording(
+            path, expected_digest="72125a30c816dca9f2e72b3ac6f4fc5e718ee9386c95f6243db43ba19702ac2b"
+        )
+    current_lock = hashlib.sha256(
+        (Path(__file__).resolve().parents[1] / "uv.lock").read_bytes()
+    ).hexdigest()
+    assert old.exchanges[0].context.versions.environment_lock != current_lock
+    with pytest.raises(ValueError, match="dependency"):
+        run_invented_replay(old, code_revision="current-source", environment_lock=current_lock)

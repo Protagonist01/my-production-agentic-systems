@@ -115,3 +115,15 @@ def test_workflow_uses_read_only_pinned_actions_and_explicit_interpreters():
         "secrets",
         "pr",
     }
+
+
+def test_superseded_workflow_stops_gate_without_weakening_required_results():
+    workflow = yaml.load((ROOT / ".github/workflows/ci.yml").read_text(), Loader=yaml.BaseLoader)
+    assert workflow["concurrency"]["cancel-in-progress"] == "true"
+    assert "edited" in workflow["on"]["pull_request"]["types"]
+    assert workflow["jobs"]["gate"]["if"] == "${{ !cancelled() }}"
+    # Job scheduling owns cancellation; gate validation still rejects incomplete work.
+    results = dict.fromkeys(["quality", "postgres", "dependencies", "secrets", "pr"], "success")
+    results["quality"] = "cancelled"
+    with pytest.raises(ValueError, match="quality"):
+        ci.gate(results, pull_request=True)

@@ -98,8 +98,10 @@ To extend a supported request field, first change its versioned contract/seriali
 [network]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/harness/src/agent_harness/replay_example.py#L20-L33
 [author]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/harness/src/agent_harness/replay_example.py#L36-L88
 [probe]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/harness/src/agent_harness/replay_example.py#L91-L143
-[main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/harness/src/agent_harness/replay_example.py#L146-L168
-[dev]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L114-L220
-[workflow]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/.github/workflows/ci.yml#L1-L154
+[main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/eaae533731730ed360bcc189aa85f552904a4e69/harness/src/agent_harness/replay_example.py#L147-L169
+[dev]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/dev.py#L114-L223
+[workflow]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0f3e75681cbd08206a0435a40ce805470edeebe0/.github/workflows/ci.yml#L1-L155
 [attributes]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/.gitattributes#L1-L3
-[tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/tests/test_replay.py#L38-L685
+[tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/eaae533731730ed360bcc189aa85f552904a4e69/tests/test_replay.py#L37-L685
+
+H8 adds an optional telemetry dependency group, changing the actual lock hash. PR #78 proposes a separate invented-v2 capture and digest pin at source eaae533731730ed360bcc189aa85f552904a4e69; historical invented-v1 remains unchanged and rejects the new lock. Matching and ReplayBinding are unchanged. See [the explicit fixture review record](replay.md#h8-proposed-dependency-lock-fixture-update).

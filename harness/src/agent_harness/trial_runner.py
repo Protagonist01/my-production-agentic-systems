@@ -19,6 +19,8 @@ from agent_harness.contracts import Agent, Contract, ModelGateway, RunContext
 from agent_harness.fault_contracts import FaultPlan
 from agent_harness.faults import FaultSession
 from agent_harness.scorers import ManifestCaseReport, ScorerRegistry
+from agent_harness.telemetry import TraceSession
+from agent_harness.telemetry_contracts import TraceHealth
 from agent_harness.trials import (
     BatchReport,
     TrialError,
@@ -57,6 +59,7 @@ class TrialComponents:
     agent: Agent
     gateway: ModelGateway
     scorers: ScorerRegistry
+    trace: TraceSession | None = None
 
 
 class TrialFactory(Protocol):
@@ -72,11 +75,14 @@ class FaultTrialFactory(Protocol):
 class _WorkerResult(Contract):
     report: ManifestCaseReport | None = None
     error: TrialError | None = None
+    telemetry: TraceHealth | None = None
 
     @model_validator(mode="after")
     def exactly_one(self) -> Self:
         if (self.report is None) == (self.error is None):
             raise ValueError("worker requires one report or error")
+        if self.report is not None and self.report.report.telemetry != self.telemetry:
+            raise ValueError("worker telemetry differs from case report")
         return self
 
 
@@ -90,6 +96,7 @@ def _worker(
     plan: FaultPlan | None,
 ) -> None:
     with open(os.devnull, "w") as sink, redirect_stdout(sink), redirect_stderr(sink):
+        trace = None
         try:
             context = RunContext.model_validate_json(context.canonical_json())
             case = loaded.entry(context.case_id).case
@@ -101,13 +108,16 @@ def _worker(
                 parts = cast(FaultTrialFactory, factory).build_faults(context, lease, faults)
             else:
                 parts = factory.build(context, lease)
+            trace = parts.trace
             bound = parts.scorers.bind(loaded)
             report = bound.run_case(
-                context, context.case_id, parts.agent, parts.gateway, faults=faults
+                context, context.case_id, parts.agent, parts.gateway, faults=faults, trace=trace
             )
-            result = _WorkerResult(report=report)
+            result = _WorkerResult(report=report, telemetry=report.report.telemetry)
         except BaseException:
             result = _WorkerResult(error="execution_error")
+        if trace is not None:
+            result = result.model_copy(update={"telemetry": trace.finish()})
         encoded = result.canonical_json().encode("utf-8")
         if len(encoded) > MAX_TRIAL_BYTES:
             encoded = _WorkerResult(error="invalid_frame").canonical_json().encode()
@@ -179,6 +189,7 @@ def _coordinate(
 ) -> TrialRow:
     errors: list[TrialError] = []
     report = None
+    telemetry = None
     lease = None
     state_ref = None
     can_release = True
@@ -206,6 +217,7 @@ def _coordinate(
                     schedule.fault_plan,
                 )
                 report = result.report
+                telemetry = result.telemetry
                 if result.error is not None:
                     errors.append(result.error)
                 if report is not None and (
@@ -225,7 +237,9 @@ def _coordinate(
                 environment.release(lease)
             except Exception:
                 errors.append("cleanup_error")
-    return TrialRow(task=task, state_ref=state_ref, report=report, errors=tuple(errors))
+    return TrialRow(
+        task=task, state_ref=state_ref, report=report, errors=tuple(errors), telemetry=telemetry
+    )
 
 
 def run_trials(

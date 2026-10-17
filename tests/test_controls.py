@@ -1,15 +1,13 @@
 """H4: reservation races, retry bounds, process deadlines and actual SDK mock errors."""
 
+import json
 import multiprocessing
-import os
 import socket
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass
 from datetime import timedelta
 from decimal import Decimal
-from pathlib import Path
 
 import pytest
 from agent_harness.admission import GEMINI_TOKEN_CEILING, GeminiFreeAdmission
@@ -24,6 +22,7 @@ from agent_harness.controls import (
 from agent_harness.gateway import ProviderGateway, failed_response
 from agent_harness.isolated_transport import IsolatedTransport
 from agent_harness.offline_example import example_context
+from control_workers import SdkWorker, Worker
 from pydantic import ValidationError
 
 
@@ -408,27 +407,6 @@ def test_invalid_control_limits_are_rejected(changes):
         ExecutionPolicy(**changes)
 
 
-@dataclass
-class Worker:
-    action: str = "success"
-    marker: str | None = None
-
-    def generate(self, value, *, timeout_seconds):
-        if self.marker:
-            Path(self.marker).write_text(str(os.getpid()))
-        if self.action == "hang":
-            time.sleep(30)
-        if self.action == "crash":
-            os._exit(9)
-        if self.action == "error":
-            raise RuntimeError("private child error")
-        if self.action == "oversize":
-            return response().model_copy(
-                update={"output": ModelMessage(role="assistant", content="x" * (1024 * 1024 + 1))}
-            )
-        return response()
-
-
 def test_actual_owned_process_timeout_leaves_no_background_worker(tmp_path):
     marker = tmp_path / "started"
     before = {p.pid for p in multiprocessing.active_children()}
@@ -462,54 +440,29 @@ def test_isolated_transport_requires_explicit_finite_deadline():
         assert result.failure.code == "timeout" and result.usage.model_calls == 0
 
 
-@dataclass
-class SdkWorker:
-    code: int
-
-    def generate(self, value, *, timeout_seconds):
-        import sys
-
-        import httpx
-        from agent_harness.gemini import GeminiTransport
-        from agent_harness.replay_example import _deny_network
-
-        sys.addaudithook(_deny_network)
-
-        def handler(http_request):
-            assert http_request.extensions["timeout"]["read"] <= timeout_seconds
-            if self.code == 408:
-                raise httpx.ReadTimeout("invented")
-            return httpx.Response(
-                self.code,
-                json={
-                    "error": {
-                        "code": self.code,
-                        "message": "private provider body",
-                        "status": "INVENTED",
-                    }
-                },
-            )
-
-        return GeminiTransport(
-            "invented-key", free_tier_confirmed=True, http_transport=httpx.MockTransport(handler)
-        ).generate(value, timeout_seconds=timeout_seconds)
-
-
 @pytest.mark.parametrize(
     "status,code", [(429, "rate_limited"), (503, "unavailable"), (408, "timeout")]
 )
-def test_actual_sdk_errors_retry_through_owned_workers_with_bounded_attempts(status, code):
+def test_actual_sdk_errors_retry_through_owned_workers_with_bounded_attempts(
+    status, code, tmp_path
+):
     from agent_harness.gemini import ENDPOINT, MODEL, PROVIDER
 
     req = request(provider=PROVIDER, endpoint=ENDPOINT, model=MODEL)
     clock = FakeClock()
     controls = SharedControls(clock=clock)
-    raw = ProviderGateway(IsolatedTransport(SdkWorker(status)))
+    raw = ProviderGateway(IsolatedTransport(SdkWorker(status, str(tmp_path))))
     gateway = BoundedGateway(
-        raw, controls, Quote(), policy=ExecutionPolicy(max_attempts=2, attempt_timeout_seconds=30.0)
+        raw, controls, Quote(), policy=ExecutionPolicy(max_attempts=2, attempt_timeout_seconds=60.0)
     )
+    # Classification includes cold SDK imports; deadline enforcement is tested separately.
     result = gateway.generate(context(), req)
-    assert result.failure.code == code and result.usage.model_calls == 2
+    stages = [json.loads(path.read_text()) for path in tmp_path.glob("*.json")]
+    assert result.failure.code == code and result.usage.model_calls == 2, stages
+    assert len(stages) == 2, stages
+    for attempt in stages:
+        assert attempt["phases"] == ["entered", "sdk_loaded", "mock_http", "completed"], stages
+        assert attempt["http_calls"] == 1 and attempt["code"] == code, stages
     assert len(raw.exchanges) == 2 and len(gateway.calls[0].attempt_usage) == 2
     assert result.usage.cost is None and "private" not in result.canonical_json()
 
@@ -616,3 +569,48 @@ def test_gemini_invalid_timeout_fails_before_http(timeout):
     )
     result = transport.generate(value, timeout_seconds=timeout)
     assert result.failure.code == "timeout" and result.usage.model_calls == 0
+
+
+def test_completed_frame_after_startup_deadline_cannot_be_returned(monkeypatch):
+    from types import SimpleNamespace
+
+    import agent_harness.isolated_transport as isolated
+
+    clock = FakeClock()
+    actual = multiprocessing.get_context("spawn")
+    joins = []
+    closed = []
+    data = response().canonical_json().encode("utf-8")
+
+    class FinishedDuringStartup:
+        exitcode = 0
+
+        def __init__(self, *, target, args, daemon):
+            self.buffer, self.size = args[-2:]
+
+        def start(self):
+            # Simulate expensive bootstrap followed by a valid, but late, response.
+            clock.sleep(2.0)
+            self.buffer[: len(data)] = data
+            self.size.value = len(data)
+
+        def join(self, seconds):
+            joins.append(seconds)
+
+        def is_alive(self):
+            return False
+
+        def close(self):
+            closed.append(True)
+
+    ctx = SimpleNamespace(
+        RawArray=actual.RawArray, RawValue=actual.RawValue, Process=FinishedDuringStartup
+    )
+    monkeypatch.setattr(isolated, "time", SimpleNamespace(monotonic=clock.monotonic))
+    monkeypatch.setattr(
+        isolated, "multiprocessing", SimpleNamespace(get_context=lambda method: ctx)
+    )
+    result = isolated.IsolatedTransport(Worker()).generate(request(), timeout_seconds=1.0)
+    assert result.failure.code == "timeout" and result.output is None
+    assert result.usage.model_calls == 1 and result.usage.cost is None
+    assert joins == [0.0] and closed == [True]

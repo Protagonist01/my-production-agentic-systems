@@ -1,6 +1,6 @@
 # H7 code study: reproduce the fault, inspect the effect
 
-Inspected implementation **e9213aa03ff21af2f4fbd7be4ad58feefada4f53**, branch `codex/h7-seeded-faults`, based on merged H6 main 9c13b2c. H7 is unmerged. Coverage includes four new modules, the changed evaluation/scorer/trial path, the offline acceptance file and three Postgres additions. Dependency internals, production agents/data, live provider faults, production authorization and an exhaustive security audit are outside scope. [Entry 19](../BUILD_BOOK.md#entry-19--reproducible-faults-at-explicit-execution-boundaries) records construction; the [runbook](seeded-faults.md) covers composition and recovery.
+Inspected implementation **e9213aa03ff21af2f4fbd7be4ad58feefada4f53**, branch `codex/h7-seeded-faults`, based on merged H6 main 9c13b2c. H7 merged through PR #77 into verified main 487242f. H8 adds optional telemetry to the shared evaluator/trial path; changed shared links pin H8 source 08ba28e. Coverage includes four new modules, the changed evaluation/scorer/trial path, the offline acceptance file and three Postgres additions. Dependency internals, production agents/data, live provider faults, production authorization and an exhaustive security audit are outside scope. [Entry 19](../BUILD_BOOK.md#entry-19--reproducible-faults-at-explicit-execution-boundaries) records construction; the [runbook](seeded-faults.md) covers composition and recovery.
 
 ## Follow an after-commit timeout
 

@@ -5,9 +5,11 @@ from typing import TYPE_CHECKING, Annotated, Literal, Protocol, Self
 from pydantic import Field, JsonValue, model_validator
 
 from agent_harness.fault_contracts import FaultEvidence
+from agent_harness.telemetry_contracts import TraceHealth
 
 if TYPE_CHECKING:
     from agent_harness.faults import FaultSession
+    from agent_harness.telemetry import TraceSession
 
 from agent_harness.contracts import (
     Agent,
@@ -95,6 +97,7 @@ class CaseReport(Contract):
     result: AgentResult
     scores: Annotated[tuple[ScoreResult, ...], Field(min_length=1)]
     fault_evidence: FaultEvidence | None = None
+    telemetry: TraceHealth | None = None
 
     @model_validator(mode="after")
     def matching_evidence(self) -> Self:
@@ -122,8 +125,46 @@ def run_case(
     scorer: Scorer,
     *,
     faults: "FaultSession | None" = None,
+    trace: "TraceSession | None" = None,
 ) -> CaseReport:
     """Run one case; infrastructure/programming errors propagate, never become a pass."""
+    if trace is not None:
+        from agent_harness.telemetry import TracedGateway
+
+        try:
+            context = RunContext.model_validate_json(context.canonical_json())
+            case = EvalCase.model_validate_json(case.canonical_json())
+            attrs = trace.begin(context, case)
+            with trace._span("run", attrs):
+                report = _run_case(
+                    context,
+                    case,
+                    agent,
+                    TracedGateway(trace, gateway),
+                    scorer,
+                    faults=faults,
+                    trace=trace,
+                )
+                attrs["outcome"] = report.result.outcome
+                attrs["output_ref"] = trace.reference("output", report.result.canonical_json())
+        finally:
+            trace.finish()
+        return report.model_copy(update={"telemetry": trace.health})
+    return _run_case(context, case, agent, gateway, scorer, faults=faults)
+
+
+def _run_case(
+    context: RunContext,
+    case: EvalCase,
+    agent: Agent,
+    gateway: ModelGateway,
+    scorer: Scorer,
+    *,
+    faults: "FaultSession | None" = None,
+    trace: "TraceSession | None" = None,
+) -> CaseReport:
+    from contextlib import nullcontext
+
     context = RunContext.model_validate_json(context.model_dump_json())
     case = EvalCase.model_validate_json(case.model_dump_json())
     if context.case_id != case.case_id:
@@ -144,9 +185,10 @@ def run_case(
         gateway = FaultGateway(faults, gateway)
     else:
         public_input = case.agent_input()
-    result = AgentResult.model_validate_json(
-        agent.run(context, public_input, gateway).model_dump_json()
-    )
+    with trace._span("agent", {}) if trace else nullcontext():
+        result = AgentResult.model_validate_json(
+            agent.run(context, public_input, gateway).model_dump_json()
+        )
     if (result.run_id, result.case_id, result.trial_id) != (
         context.run_id,
         context.case_id,
@@ -155,10 +197,14 @@ def run_case(
         raise ValueError("result identity differs from run context")
     # Give the scorer a distinct copy so it cannot change the retained agent result.
     scored_result = AgentResult.model_validate_json(result.model_dump_json())
-    scores = tuple(
-        ScoreResult.model_validate_json(s.model_dump_json())
-        for s in scorer.score(case, scored_result)
-    )
+    with trace._span("scorer", {}) if trace else nullcontext() as score_attrs:
+        scores = tuple(
+            ScoreResult.model_validate_json(s.model_dump_json())
+            for s in scorer.score(case, scored_result)
+        )
+        if score_attrs is not None:
+            score_attrs["scores"] = len(scores)
+            score_attrs["scorer_failed"] = any(s.failure is not None for s in scores)
     return CaseReport(
         context=context,
         source_kind=case.source_kind,

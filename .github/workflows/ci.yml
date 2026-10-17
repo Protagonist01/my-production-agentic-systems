@@ -134,7 +134,8 @@ jobs:
 
   gate:
     name: CI gate
-    if: always()
+    # Run after real failures, but do not turn a superseded run into a failed gate.
+    if: ${{ !cancelled() }}
     needs: [quality, postgres, dependencies, secrets, pr]
     runs-on: ubuntu-24.04
     timeout-minutes: 5

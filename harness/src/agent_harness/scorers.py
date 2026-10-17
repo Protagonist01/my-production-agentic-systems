@@ -11,6 +11,7 @@ from agent_harness.evaluation import CaseReport, EvalCase, Scorer, ScoreResult, 
 
 if TYPE_CHECKING:
     from agent_harness.faults import FaultSession
+    from agent_harness.telemetry import TraceSession
 
 
 class ScorerCompatibility(Contract):
@@ -110,11 +111,12 @@ class BoundEvaluation:
         gateway: ModelGateway,
         *,
         faults: "FaultSession | None" = None,
+        trace: "TraceSession | None" = None,
     ) -> ManifestCaseReport:
         entry = self._loaded.entry(case_id)
         scorer = self._bindings[case_id]
         scorer.check(entry)
-        report = run_case(context, entry.case, agent, gateway, scorer, faults=faults)
+        report = run_case(context, entry.case, agent, gateway, scorer, faults=faults, trace=trace)
         return ManifestCaseReport(
             manifest=self._loaded.pin,
             group_id=entry.group_id,

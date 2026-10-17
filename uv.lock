@@ -1226,16 +1226,22 @@ gemini = [
     { name = "jsonschema" },
     { name = "referencing" },
 ]
+telemetry = [
+    { name = "opentelemetry-exporter-otlp-proto-common" },
+    { name = "opentelemetry-sdk" },
+]
 
 [package.metadata]
 requires-dist = [
     { name = "google-genai", marker = "extra == 'gemini'", specifier = "==2.30.1" },
     { name = "jsonschema", marker = "extra == 'gemini'", specifier = "==4.26.0" },
+    { name = "opentelemetry-exporter-otlp-proto-common", marker = "extra == 'telemetry'", specifier = "==1.45.1" },
+    { name = "opentelemetry-sdk", marker = "extra == 'telemetry'", specifier = "==1.45.1" },
     { name = "psycopg", extras = ["binary"], specifier = "==3.3.6" },
     { name = "pydantic", specifier = "==2.14.1" },
     { name = "referencing", marker = "extra == 'gemini'", specifier = "==0.37.0" },
 ]
-provides-extras = ["gemini"]
+provides-extras = ["gemini", "telemetry"]
 
 [[package]]
 name = "production-agent-olist-support"
