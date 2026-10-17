@@ -25,7 +25,11 @@ The four quality cells install their specific interpreter and set UV_PYTHON expl
 
 Postgres is a required Ubuntu job using the existing db-check command and pinned Compose image. Ordinary tests intentionally exclude its integration directory; this required job explicitly invokes it. It is not a skipped optional check on a machine without Docker. Two dependency jobs cover active Linux/Windows requirements, including platform markers. Gitleaks checks the fetched history/range using a pinned action/tool and reports failure without automatic PR comments or findings uploads.
 
-CI gate runs even after failures. GitHub supplies the aggregated matrix/job results as environment values. gate requires success for quality, Postgres, dependencies and secrets. On pull_request it also requires successful PR evidence; on push-main it permits only that job's deliberate skipped state. Cancelled, missing, failed or accidentally skipped required work raises an error. This is an orchestration gate, not a case-level model-quality gate. It does not replace review, prevent an author modifying the workflow, or automatically configure protected-branch policy.
+CI gate uses `${{ !cancelled() }}` to run after ordinary failures while stopping on workflow cancellation. A superseded run is cancelled, not converted into a new gate failure. GitHub supplies the aggregated matrix/job results as environment values. gate requires success for quality, Postgres, dependencies and secrets. On pull_request it also requires successful PR evidence; on push-main it permits only that job's deliberate skipped state. For a gate that does execute, cancelled, missing, failed or accidentally skipped required work still raises an error. This is an orchestration gate, not a case-level model-quality gate. It does not replace review, prevent an author modifying the workflow, or automatically configure protected-branch policy.
+
+The H8 follow-up in Build Book Entry 21 changes the workflow scheduling condition after e072551; the Python gate remains pinned to the original strict implementation. Cancellation behavior needs an actual hosted cancellation check as well as the configuration test.
+
+The H8 follow-up in Build Book Entry 21 changes the workflow scheduling condition after e072551; the Python gate remains pinned to the original strict implementation. Cancellation behavior needs an actual hosted cancellation check as well as the configuration test.
 
 ## Meaningful code blocks
 

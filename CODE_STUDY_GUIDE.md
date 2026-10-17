@@ -6,6 +6,8 @@ F1–F5/O1/H1–H7 are merged and verified. H8 adds [correlated redacted telemet
 
 This guide covers thirty-three nontrivial application/tool Python files, associated offline/integration tests, package/config boundaries and related entrypoints. Package markers are grouped. Historical untracked plans, generated distributions, dependency internals, raw data, existing Langfuse server/security configuration and future applications are outside inspection. This is a source-grounded engineering study, not an exhaustive security audit.
 
+H8 verification follow-up after e072551 (unmerged PR #78, 2026-10-17): inspect the cancellation condition in the [CI chapter](docs/code-study-ci.md), and test-worker bootstrap, stage evidence and deadline negative control in the [controls chapter](docs/code-study-controls.md). Build Book Entry 21 records diagnosis and actual validation results; a historical passing run does not erase a cancelled suite or prove the cause of a local timeout.
+
 ## Reading route
 
 1. Read the implemented architecture and follow the offline execution.

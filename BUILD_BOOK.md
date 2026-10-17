@@ -25,6 +25,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 18 — Accounting for isolated trials even when execution fails](#entry-18--accounting-for-isolated-trials-even-when-execution-fails)
 - [Entry 19 — Reproducible faults at explicit execution boundaries](#entry-19--reproducible-faults-at-explicit-execution-boundaries)
 - [Entry 20 — Safe correlated telemetry](#entry-20--safe-correlated-telemetry)
+- [Entry 21 — Distinguishing cancellation and cold worker startup](#entry-21--distinguishing-cancellation-and-cold-worker-startup)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -1001,3 +1002,36 @@ Preparing the Review documentation snapshot for PR #78. Source eaae533, 472 offl
 All sixteen required local Postgres cases passed in 291.95 seconds. The clean publication probe then exposed a remaining reader error: the fast observations API returns I/O fields as JSON-encoded strings, while expanded metadata contains parsed lists. Inspected only field types and traceback locations; all seven observations and expected metadata were present. Decode a string root output before requiring its completed outcome, and retain support for an already decoded object. Both forms now have explicit acceptance coverage.
 
 The corrected probe verified actual backend outcome/versions/source/result/canary evidence and all lifecycle states. The focused telemetry/command suite passed 59 cases in 23.89 seconds. Reader-only source 9c1d2fca918ceb0b0d90f0ee7be0e704c7ccf7a9 leaves runtime/exporter, dependency lock, recorded calls and database behavior unchanged. Rerun the full locked suite and rebuild/reinstall the final wheel; preserve the prior 472-test and sixteen-database evidence as distinct results. Final clean-head read-back/replay and every hosted job are required before handoff, recorded on #22.
+
+
+## Entry 21 — Distinguishing cancellation and cold worker startup
+
+Date: 2026-10-17 (Africa/Lagos). Follow-up on unmerged H8 PR #78; diagnosis in progress.
+
+**Files touched:** `.github/workflows/ci.yml`, `tests/test_ci_checks.py`, `tests/test_controls.py`, a lightweight test-worker helper, CI/controls study chapters and this journal.
+
+### Context
+
+The user asked why checks were red, then requested every identified issue be fixed before proceeding. Final source e072551 had two successful hosted runs, but the PR-body edit and ready event also produced a cancelled run whose always-running gate failed. GitHub retained both suites and reported an unstable merge state. Locally, the full suite had 472 passes and a 429 classification failure: the owned attempt returned timeout instead of rate_limited. The unchanged case passed separately. These are separate failures.
+
+### Options considered and why
+
+Allowing cancelled prerequisites to pass ci_checks.gate would weaken the gate, so keep its fail-closed comparisons. Change only the job scheduling condition to `${{ !cancelled() }}`: ordinary failure still schedules the gate, but cancellation does not run it as new failed work. Keep PR-body validation on edits. GitHub's expression documentation recommends this condition for work that must run after success or failure but should stop on cancellation.
+
+For the SDK integration case, increasing a production deadline would change the contract without evidence of a runtime bug. Instead, reduce test-only child bootstrap imports and separate its cold-start classification allowance from the real interruption test. Three instrumented 429 attempts took 8.94, 7.29 and 10.14 seconds, including SDK imports of 3.23, 2.80 and 3.90 seconds and client/mock handling of 2.61, 2.40 and 2.65 seconds. All returned rate_limited. This establishes startup cost; the exact stalled stage of the historical failure is unknown because that run lacked stage evidence.
+
+### How to build it
+
+1. Replace only gate.if in the workflow; do not accept cancelled values in the Python gate. Extend workflow checks to preserve this boundary and retain the negative gate cases.
+2. Move spawned worker classes into a small importable test helper that does not import pytest or the complete controls test module. Preserve actual Google SDK calls through httpx.MockTransport, child network denial and exactly one HTTP dispatch per owned attempt.
+3. Use the policy's existing 60-second maximum only in the classification integration test. Record fixed child stages separately for each PID in the temporary test directory; assertions must show two completed real SDK attempts and one mock dispatch each. Failure diagnostics contain invented stage names, never exception bodies or credentials. Production defaults and limits stay unchanged.
+4. Preserve the independent hang/cleanup test. Add deterministic coverage that startup exhausting the supplied deadline cannot return a late success. Run focused checks, the complete locked suite and exact-head hosted jobs before claiming acceptance.
+
+### What went wrong
+
+The old handoff selected a successful run and did not foreground the simultaneously retained failed gate. That made the summary less precise than GitHub's status. Do not delete history or rerun old broken source to make badges green. A passing retry also cannot prove the timeout's cause. Keep that uncertainty visible while fixing test isolation and adding phase evidence. Results follow after execution.
+
+
+### First repair verification
+
+The focused controls/CI suite passed 71 tests in 79.97 seconds. Real SDK 408/429/503 cases completed in 23.14/21.36/19.42 seconds respectively (two owned attempts each), with two complete phase records and exactly one mock HTTP dispatch per attempt. The unchanged eight-second hang test completed in 8.02 seconds and left no child. The deterministic late-frame check and strict gate negative cases passed. Ruff and formatting passed across 63 files. Next verify a real hosted cancellation and the full locked local suite; neither is claimed from these focused results.

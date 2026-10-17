@@ -17,6 +17,12 @@ The job uses explicit `UV_PYTHON` and `UV_PYTHON_DOWNLOADS=never` after setup-py
 
 Ordinary `check/test` intentionally excludes database execution, while lint inspects its source. CI requires the separate db-check job, so an absent Docker service or skipped database job cannot earn a gate pass. H3 replay consumes the bundled reviewed fixture without provider clients; record/compare remain unavailable. Add domain quality gates only when their cases/scorers exist, with completeness/critical-case checks and reviewed thresholds under H5/H6/H9/H10. Do not turn the fake score into an industry quality threshold.
 
+## Cancellation and commit badges
+
+The workflow cancels superseded runs in the same PR concurrency group. Its final gate uses `${{ !cancelled() }}`, so it still inspects failed prerequisites but does not report a second failure after the entire run is cancelled. The Python gate still rejects incomplete required work; cancellation never earns a gate pass. PR-body edits still trigger evidence validation. This follows [GitHub status-condition guidance](https://docs.github.com/en/actions/reference/workflows-and-actions/expressions#status-check-functions).
+
+GitHub retains failed/cancelled runs on older commits and can retain multiple suites for one commit. A successful run does not erase those records. Review the current SHA and all associated suites, and distinguish cancelled work from a failed test. Do not choose evidence solely by the largest run ID: simultaneous PR events can be scheduled in a different order. Keep the latest-head passing run and any still-relevant failure visible in the handoff.
+
 ## PR conventions and shared ownership
 
 Use a literal line `Refs #<primary repository issue number>`, for example `Refs #14`, in the PR body. Keep all three template sections: Problem and behavior, Acceptance evidence, and Risks and remaining limits. Write concrete behavior, actual check evidence and applicable limitations; empty/template text fails. Additional dependencies may be linked elsewhere, but there is one primary task. The check confirms an issue, rather than another PR, at the fixed repository API endpoint. It does not prove claims in prose are true; reviewers must inspect linked logs, data/version evidence and code.
