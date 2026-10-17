@@ -1,6 +1,6 @@
 # Code Study Guide — Production Agentic Systems
 
-Updated: 2026-10-17 (Africa/Lagos). Inspected H8 source **eaae533731730ed360bcc189aa85f552904a4e69**, branch codex/h8-correlated-traces, based on verified merged H7 main 487242f (PR #77). H8 is unmerged. Changed execution links pin H8; unchanged source links retain verified revisions. Documentation edits are recorded separately from the source commit.
+Updated: 2026-10-17 (Africa/Lagos). Inspected H8 source **9c1d2fca918ceb0b0d90f0ee7be0e704c7ccf7a9**, branch codex/h8-correlated-traces, based on verified merged H7 main 487242f (PR #77). H8 is unmerged. Changed execution links pin H8; unchanged source links retain verified revisions. Documentation edits are recorded separately from the source commit.
 
 F1–F5/O1/H1–H7 are merged and verified. H8 adds [correlated redacted telemetry](docs/code-study-telemetry.md). H7 adds [seeded boundary faults and independent state invariants](docs/code-study-faults.md). H6 adds exact trial schedules, fresh controlled state, bounded spawned execution, exclusive journals and complete outcome accounting. H5 supplies pinned evaluator-only case populations, grouped splits, explicit versioned scorer composition and per-case manifest provenance. H4 supplies shared call/token/cost reservations, monotonic deadlines, bounded retries/circuits, owned SDK workers and controlled replay. Domain adapters, independent state scoring and fresh quality/release evidence remain subsequent work.
 
