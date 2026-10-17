@@ -46,3 +46,8 @@ Primary references: [GitHub security hardening](https://docs.github.com/en/actio
 ## Merged foundation and H1 boundary
 
 PR #70 merged to main 6e48011. Push-main run [38647582091](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38647582091) passed all nine applicable jobs; PR metadata was intentionally skipped and CI gate passed. Local verification recorded a restart-wait failure, then a fresh 11/11 Postgres pass; #14, Epic F and M1 are completed. H1 adds only provider-free mock compatibility tests to ordinary CI. Live Gemini/localhost Langfuse commands remain explicitly separate; no provider credentials or live quality gate was added to the workflow.
+
+
+## H8 cancellation repair
+
+Repair source 0f3e75681cbd08206a0435a40ce805470edeebe0 was exercised by deliberately cancelling [run 38991322271](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38991322271) during required work. The completed workflow and CI gate both reported cancelled; none of its ten jobs reported failure. This verifies the cancellation condition on GitHub. Final-head normal acceptance remains a separate run recorded on H8 #22. Historical failed/cancelled suites are retained.

@@ -1035,3 +1035,15 @@ The old handoff selected a successful run and did not foreground the simultaneou
 ### First repair verification
 
 The focused controls/CI suite passed 71 tests in 79.97 seconds. Real SDK 408/429/503 cases completed in 23.14/21.36/19.42 seconds respectively (two owned attempts each), with two complete phase records and exactly one mock HTTP dispatch per attempt. The unchanged eight-second hang test completed in 8.02 seconds and left no child. The deterministic late-frame check and strict gate negative cases passed. Ruff and formatting passed across 63 files. Next verify a real hosted cancellation and the full locked local suite; neither is claimed from these focused results.
+
+
+### Hosted cancellation boundary
+
+Pushed repair source 0f3e75681cbd08206a0435a40ce805470edeebe0, then deliberately cancelled owned run [38991322271](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38991322271) while required work was active. Read back the completed run and all ten jobs: the workflow and CI gate were cancelled, four completed metadata/audit/scan jobs succeeded, and no job reported failure. This is actual GitHub scheduling evidence, not a Python simulation. No cancelled run is represented as a successful acceptance run. A later final-head run must complete normally.
+
+The documentation audit first rejected the old immutable workflow slice because its gate condition changed. Re-anchor CI/replay chapters to the committed repair source and verify current bytes against that commit: 226 source ranges, 163 local links and 42 intended publication files passed. Full local tests are still running at this point.
+
+
+### Final publication boundary
+
+The full `python dev.py check` runs against the unchanged executable/test bytes of 0f3e756. This follow-up documentation commit records hosted cancellation proof and refreshes immutable workflow/test links; it does not change dependencies, production deadlines, captured fixtures or runtime modules. Publish the final-head normal hosted result and full local result on #22 after they finish. Inspect every suite associated with the final SHA, not only one selected passing run. The user reviews/merges PR #78; no H9 work starts during this repair.

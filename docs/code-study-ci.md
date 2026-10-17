@@ -27,9 +27,7 @@ Postgres is a required Ubuntu job using the existing db-check command and pinned
 
 CI gate uses `${{ !cancelled() }}` to run after ordinary failures while stopping on workflow cancellation. A superseded run is cancelled, not converted into a new gate failure. GitHub supplies the aggregated matrix/job results as environment values. gate requires success for quality, Postgres, dependencies and secrets. On pull_request it also requires successful PR evidence; on push-main it permits only that job's deliberate skipped state. For a gate that does execute, cancelled, missing, failed or accidentally skipped required work still raises an error. This is an orchestration gate, not a case-level model-quality gate. It does not replace review, prevent an author modifying the workflow, or automatically configure protected-branch policy.
 
-The H8 follow-up in Build Book Entry 21 changes the workflow scheduling condition after e072551; the Python gate remains pinned to the original strict implementation. Cancellation behavior needs an actual hosted cancellation check as well as the configuration test.
-
-The H8 follow-up in Build Book Entry 21 changes the workflow scheduling condition after e072551; the Python gate remains pinned to the original strict implementation. Cancellation behavior needs an actual hosted cancellation check as well as the configuration test.
+The H8 follow-up in Build Book Entry 21 changes the workflow scheduling condition after e072551; the Python gate remains pinned to the original strict implementation. The configuration check is backed by actual hosted cancellation run [38991322271](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38991322271): workflow and gate cancelled, no failed job. Normal final-head acceptance is recorded separately on #22.
 
 ## Meaningful code blocks
 
@@ -77,7 +75,7 @@ Verified configuration/test sources: [workflow][ci-workflow], [CODEOWNERS][ci-ow
 [ci-audit]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/ci_checks.py#L79-L122
 [ci-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/ci_checks.py#L16-L18
 [ci-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/ci_checks.py#L125-L159
-[ci-workflow]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/.github/workflows/ci.yml#L1-L154
+[ci-workflow]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0f3e75681cbd08206a0435a40ce805470edeebe0/.github/workflows/ci.yml#L1-L155
 [ci-owners]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/.github/CODEOWNERS#L1-L10
 [ci-template]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/.github/PULL_REQUEST_TEMPLATE.md#L1-L16
-[ci-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/tests/test_ci_checks.py#L1-L117
+[ci-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0f3e75681cbd08206a0435a40ce805470edeebe0/tests/test_ci_checks.py#L1-L129
