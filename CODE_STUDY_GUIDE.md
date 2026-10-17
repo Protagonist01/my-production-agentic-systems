@@ -1,10 +1,10 @@
 # Code Study Guide — Production Agentic Systems
 
-Updated: 2026-10-16 (Africa/Lagos). Inspected H7 source **e9213aa03ff21af2f4fbd7be4ad58feefada4f53**, branch codex/h7-seeded-faults, based on verified merged main 9c13b2c (H6 PR #76). H7 is unmerged. Changed execution links pin H7; unchanged foundation/CI/Postgres/H1–H6 links retain verified revisions. Documentation edits are recorded separately from the source commit.
+Updated: 2026-10-17 (Africa/Lagos). Inspected H8 source **eaae533731730ed360bcc189aa85f552904a4e69**, branch codex/h8-correlated-traces, based on verified merged H7 main 487242f (PR #77). H8 is unmerged. Changed execution links pin H8; unchanged source links retain verified revisions. Documentation edits are recorded separately from the source commit.
 
-F1–F5/O1/H1–H6 are merged and verified. H7 adds [seeded boundary faults and independent state invariants](docs/code-study-faults.md). H6 adds exact trial schedules, fresh controlled state, bounded spawned execution, exclusive journals and complete outcome accounting. H5 supplies pinned evaluator-only case populations, grouped splits, explicit versioned scorer composition and per-case manifest provenance. H4 supplies shared call/token/cost reservations, monotonic deadlines, bounded retries/circuits, owned SDK workers and controlled replay. Domain adapters, independent state scoring and fresh quality/release evidence remain subsequent work.
+F1–F5/O1/H1–H7 are merged and verified. H8 adds [correlated redacted telemetry](docs/code-study-telemetry.md). H7 adds [seeded boundary faults and independent state invariants](docs/code-study-faults.md). H6 adds exact trial schedules, fresh controlled state, bounded spawned execution, exclusive journals and complete outcome accounting. H5 supplies pinned evaluator-only case populations, grouped splits, explicit versioned scorer composition and per-case manifest provenance. H4 supplies shared call/token/cost reservations, monotonic deadlines, bounded retries/circuits, owned SDK workers and controlled replay. Domain adapters, independent state scoring and fresh quality/release evidence remain subsequent work.
 
-This guide covers twenty-nine nontrivial application/tool Python files, associated offline/integration tests, package/config boundaries and related entrypoints. Package markers are grouped. Historical untracked plans, generated distributions, dependency internals, raw data, existing Langfuse server/security configuration and future applications are outside inspection. This is a source-grounded engineering study, not an exhaustive security audit.
+This guide covers thirty-three nontrivial application/tool Python files, associated offline/integration tests, package/config boundaries and related entrypoints. Package markers are grouped. Historical untracked plans, generated distributions, dependency internals, raw data, existing Langfuse server/security configuration and future applications are outside inspection. This is a source-grounded engineering study, not an exhaustive security audit.
 
 ## Reading route
 
@@ -14,7 +14,7 @@ This guide covers twenty-nine nontrivial application/tool Python files, associat
 4. Study the design tradeoffs, test evidence and reproduced concerns.
 5. Practice the interview questions and offline exercises.
 
-[BUILD_BOOK.md](BUILD_BOOK.md) explains construction history and documented decisions, particularly Entries 6–19. [Fault chapter](docs/code-study-faults.md) traces seeded hooks, treatment evidence and independent state/ledger checks; [Isolated-trial chapter](docs/code-study-trials.md) explains H6 scheduling, process/state lifetimes, outcome categories and recovery; [Case/scorer chapter](docs/code-study-cases.md) explains H5 membership, byte pins, grouped splits and independent scorer registration; [Execution controls chapter](docs/code-study-controls.md) traces H4 admission, retries/circuits and owned worker cleanup; [Postgres code chapter](docs/code-study-postgres.md) explains persistence/service blocks; [CI code chapter](docs/code-study-ci.md) explains the hosted workflow, audit and contribution/gate helpers; [recording/replay code chapter](docs/code-study-replay.md) traces H3 publication, current-code matching and completion; [gateway code chapter](docs/code-study-gateway.md) traces the real H2 dispatch and per-occurrence evidence; [integration code chapter](docs/code-study-integration.md) traces the H1 SDK/framework/live/export/read-back checks. [Shared contracts](docs/shared-contracts.md) is the API reference. [Delivery plan](docs/project-management.md) defines later work. This guide explains how the current pieces fit together.
+[BUILD_BOOK.md](BUILD_BOOK.md) explains construction history and documented decisions, particularly Entries 6–20. [Telemetry chapter](docs/code-study-telemetry.md) follows H8 projection/export health; [Fault chapter](docs/code-study-faults.md) traces seeded hooks, treatment evidence and independent state/ledger checks; [Isolated-trial chapter](docs/code-study-trials.md) explains H6 scheduling, process/state lifetimes, outcome categories and recovery; [Case/scorer chapter](docs/code-study-cases.md) explains H5 membership, byte pins, grouped splits and independent scorer registration; [Execution controls chapter](docs/code-study-controls.md) traces H4 admission, retries/circuits and owned worker cleanup; [Postgres code chapter](docs/code-study-postgres.md) explains persistence/service blocks; [CI code chapter](docs/code-study-ci.md) explains the hosted workflow, audit and contribution/gate helpers; [recording/replay code chapter](docs/code-study-replay.md) traces H3 publication, current-code matching and completion; [gateway code chapter](docs/code-study-gateway.md) traces the real H2 dispatch and per-occurrence evidence; [integration code chapter](docs/code-study-integration.md) traces the H1 SDK/framework/live/export/read-back checks. [Shared contracts](docs/shared-contracts.md) is the API reference. [Delivery plan](docs/project-management.md) defines later work. This guide explains how the current pieces fit together.
 
 ## 1. What exists and what the architecture means
 
@@ -304,9 +304,9 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [expected-fault]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/evaluation.py#L26-L43
 [eval-case]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/evaluation.py#L41-L57
 [score-result]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/evaluation.py#L60-L81
-[case-report]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/evaluation.py#L89-L110
+[case-report]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/src/agent_harness/evaluation.py#L91-L113
 [scorer-interface]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/evaluation.py#L105-L106
-[run-case]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/evaluation.py#L117-L171
+[run-case]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/src/agent_harness/evaluation.py#L120-L153
 [fake-gateway]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/offline_example.py#L32-L75
 [fake-agent]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/offline_example.py#L78-L104
 [fake-scorer]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/harness/src/agent_harness/offline_example.py#L107-L125
@@ -320,7 +320,7 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [verify-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L144-L152
 [snapshot-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L155-L209
 [root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/pyproject.toml#L1-L47
-[harness-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/harness/pyproject.toml#L1-L16
+[harness-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/pyproject.toml#L1-L17
 [import-contracts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.importlinter#L1-L30
 [ignore-rules]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/.gitignore#L1-L47
 [workspace-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/tests/test_workspace.py#L20-L34
@@ -334,7 +334,7 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [dev-map]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L27-L78
 [dev-execute]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L81-L87
 [dev-revision]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L90-L111
-[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L114-L220
+[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/dev.py#L114-L223
 [dev-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/tests/test_dev_commands.py#L18-L119
 
 ## H1 current integration evidence

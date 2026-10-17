@@ -24,6 +24,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 17 — Pinning case membership and independent scorers](#entry-17--pinning-case-membership-and-independent-scorers)
 - [Entry 18 — Accounting for isolated trials even when execution fails](#entry-18--accounting-for-isolated-trials-even-when-execution-fails)
 - [Entry 19 — Reproducible faults at explicit execution boundaries](#entry-19--reproducible-faults-at-explicit-execution-boundaries)
+- [Entry 20 — Safe correlated telemetry](#entry-20--safe-correlated-telemetry)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -934,3 +935,62 @@ Publish the completed runbook, source guide and merged-H6/H7 Review snapshot in 
 ### Documentation scanner diagnosis
 
 The first documentation head 933ddd1 triggered the repository scanner's generic credential heuristic at docs/code-study-faults.md line 73. The flagged sentence enumerates ordinary test coverage; inspection confirmed no configured credential or secret value. Rephrase that prose as short sentences and replace only this unmerged documentation commit using force-with-lease. Keep runtime implementation/fix commits and their immutable links intact. No scanner rule, allowlist or exclusion is changed. Verify clean replay and hosted checks against the replacement head; the failed/superseded run is not final acceptance evidence.
+
+## Entry 20 — Safe correlated telemetry
+
+Date: 2026-10-17 (Africa/Lagos). H8 #22, branch `codex/h8-correlated-traces`, based on reviewed H7 main 487242f. Work underway.
+
+**Files touched:** telemetry contracts/session, explicit Langfuse OTLP adapter, evaluator and owned-worker composition, invented probes/tests and study chapter.
+
+### Context and question
+
+H7 #77 is merged. The existing H1 probe demonstrates export but calls a live model and does not expose exporter failure as runtime evidence. How can the harness retain the real result when telemetry fails, while preventing identifiers, prompts, tool arguments and exception messages from reaching the backend?
+
+### Options considered and why
+
+Automatic SDK instrumentation would capture provider arguments and ambient process resources. The latest installed Langfuse SDK is 5.0.1, whose current full-platform documentation requires server 4.59.0; the existing local server reports 4.50.0. Chosen: Langfuse's documented standard OTLP endpoint, using locked OpenTelemetry 1.45.1 encoding through an optional package extra. Keep the server untouched. Manual, closed projections make the privacy boundary inspectable; the cost is less payload context and model names represented by keyed references, without automatic model pricing.
+
+### How to build it
+
+1. Define TraceHealth with generated trace ID, bounded span/drop counts and separate export/flush/cleanup states. Keep full evaluation journals private: this safe health object does not redact an existing CaseReport.
+2. Construct one TraceSession inside each trial factory, with a private key of at least 32 bytes. Generate random trace/span IDs; use domain-separated HMAC-SHA256 for identities, request/result content, versions and source references. Never include exception strings, arbitrary span names or ambient environment resources.
+3. Wrap evaluator execution in a root, agent and scorer span; wrap the supplied ModelGateway for request/response facts and token usage. Expose explicit invoke(node/tool/policy, operation, callable) hooks to adapters. Context-local parents keep tool/policy calls under the executing node. A fixed capacity drops excess child spans visibly, while retaining admitted parents.
+4. Finish only after all spans end. Send one batch, then flush and shut down even when preceding steps fail. Attach health beside the successful CaseReport and carry it through worker frames/journals; error workers retain safe health separately. Process termination may prevent cleanup, so missing health is unknown rather than an export success.
+5. Encode fixed resources and Langfuse observation types. Use an explicit authenticated HTTP origin, deny redirects and ambient proxies, reject partial OTLP acceptance, and expose only finite health states. Export socket timeouts are bounded; the H6 supervisor remains the overall process deadline.
+
+### Verification underway
+
+Fresh Langfuse OpenTelemetry, masking and best-practice documentation was read before implementation. The merged baseline check is still running. Next: canaries across all free-text fields and errors; failed send/flush/cleanup; nested/concurrent parents; actual local export and CLI read-back; full locked checks, base-wheel isolation and final-head hosted evidence. No H8 pass is claimed yet.
+
+
+### First results and backend compatibility correction
+
+The first 22 focused tests passed in 9.09 seconds; strict types passed 33 source files after making the protobuf encoder's bytes return explicit. The first local export check failed. Inspected only HTTP status, content type, body size and top-level field names: the server returned HTTP 200 with a Langfuse queued-job JSON acknowledgement, not a protobuf reply. The strict decoder had correctly refused an unrecognized body. Added recognition of this observed legacy acknowledgement and standard OTLP JSON/protobuf responses, retaining partial-rejection checks. Enqueue acceptance cannot establish storage; the separate CLI read-back remains required. No credential or backend body was printed.
+
+
+### Source publication and trace audit
+
+The focused telemetry/portable-command checks passed 58 cases in 24.87 seconds. The local backend returned seven observations with the expected chain/agent/span/generation/tool/guardrail/evaluator types, parents, known zero token usage and keyed code/candidate/data/policy/lock/source/tool-result evidence. Configured keys and invented canaries were absent. The probe prints only safe health; it never publishes the private evaluation report. During read-back testing, fixed the CLI envelope (`body.data`), parsed source-reference lists and aggregate usage totals; the independent response tests also caught a shadowed expected-version variable.
+
+Fetched the current best-practices page again after reading real observations. Kept the strict privacy boundary, and improved input/output to show safe shape facts, outcome and keyed content/result references rather than only a redaction marker. Raw prompts, outputs and thought text remain private. Source is committed as 08ba28e; [draft PR #78](https://github.com/Protagonist01/my-production-agentic-systems/pull/78) is published. Full locked suite, installed-package, local database and exact-head hosted acceptance remain separate pending evidence.
+
+
+### Strict replay caught the changed dependency lock
+
+The first source-head Linux jobs passed 470 tests and failed the standalone replay test: ReplayBinding rejected the captured lock hash. This is the intended dependency condition check. Adding the installable telemetry extra changes uv.lock even though it reuses already locked OpenTelemetry versions. Do not weaken ReplayBinding, substitute the historical lock when reporting current execution, or rewrite the old capture in place.
+
+Prepare a new invented-v2 resource by running the existing six-call in-process FakeGateway capture helper against source 08ba28e and the actual H8 lock. Keep invented-v1 byte-for-byte. Publish the new file exclusively through write_recording, record its separately pinned digest and switch the bundled command to that proposed version. PR #78 explicitly includes fixture/pin review before merge. This creates no live provider evidence and leaves request matching and dependency equality strict. Add a check that the historical fixture still loads at its original pin and still refuses the new lock. Then rerun all current checks and hosted jobs; the failed first source run is not acceptance.
+
+
+### Stable source check and installed-extra probe correction
+
+Stable source eaae533 passed all 472 offline tests in 344.64 seconds, strict types in 33 source files, both import contracts, Ruff/format/lock; all six source archives/wheels built. Nine changed/new harness modules and both recording resources match the wheel bytes. The base-only installed probe passed two independently scored completions, retained rejected-export health through journal recovery, and denied network in parent/children with provider/telemetry SDKs absent.
+
+The additional telemetry-extra probe stopped at an overly broad import assertion: protobuf legitimately supplies the `google` namespace, which does not mean Google GenAI is installed. Correct the probe to check `google.genai` and Langfuse separately, keep the base-only evidence, and rerun both modes in a fresh environment/output directory. The first extra-probe failure is preserved, not treated as a product regression or a passing encode check. The wire mode must actually encode and return accepted status; an assertion hidden inside an intentionally rejecting exporter would otherwise be unable to prove encoding succeeded. Local database acceptance follows this corrected package probe.
+
+
+### Installed package results and review snapshot
+
+The corrected package probe passed in a fresh environment in both modes. Base-only: two autonomous completions, deliberately rejected exports retained in recovered journals, network denied in parent and children, no OpenTelemetry/Google GenAI/Langfuse SDK. Telemetry extra: actual protobuf encoding acknowledged, the same two independent completions and journal equality, no Google GenAI or Langfuse SDK. Protobuf's Google namespace is expected in this second mode. No source fix was needed for the probe assertion. Both packaged recording resources and all nine affected module bytes match source.
+
+Preparing the Review documentation snapshot for PR #78. Source eaae533, 472 offline passes, strict checks, six builds and installed-package evidence are verified; local Postgres and exact final-head hosted/clean trace/replay results are recorded separately on #22 after they complete. Keep the merge checkbox unchecked until user review/merge and post-merge acceptance. Native board state is unverified after the prior helper failure. H9 follows this review cycle; no domain quality or complete release gate is claimed.

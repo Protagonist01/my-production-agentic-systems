@@ -1,6 +1,6 @@
 # H5 code study: fixed populations and independent scorer selection
 
-Inspected source **9ac83e5dbde2bb6689d8b08a80b0a4bc42b4d3f8**, branch `codex/h5-versioned-cases`, based on merged/verified H4 main e9ebd07. H5 merged through #75 into verified main c08f67d: clean 329-test checks/replay and nine applicable hosted jobs. This chapter covers every class/function in `cases.py` and `scorers.py`, their acceptance tests and invented fixture. H7 extends evaluator/scorer dispatch with an optional explicit fault session; changed scorer links pin 2982797. F2 public input and model contracts remain unchanged. Dependencies and model wire formats are unchanged. Raw source data, real domain scorers and plugin internals outside the invented test implementation are unassessed.
+Inspected source **9ac83e5dbde2bb6689d8b08a80b0a4bc42b4d3f8**, branch `codex/h5-versioned-cases`, based on merged/verified H4 main e9ebd07. H5 merged through #75 into verified main c08f67d: clean 329-test checks/replay and nine applicable hosted jobs. This chapter covers every class/function in `cases.py` and `scorers.py`, their acceptance tests and invented fixture. H7 extends evaluator/scorer dispatch with an optional explicit fault session; H8 forwards optional telemetry to evaluation; changed scorer links pin source 08ba28e. F2 public input and model contracts remain unchanged. Dependencies and model wire formats are unchanged. Raw source data, real domain scorers and plugin internals outside the invented test implementation are unassessed.
 
 ## Trace one claimed success
 
@@ -93,7 +93,7 @@ Refresh this chapter when manifest identity/membership rules, registration compa
 [register]: https://github.com/Protagonist01/my-production-agentic-systems/blob/9ac83e5dbde2bb6689d8b08a80b0a4bc42b4d3f8/harness/src/agent_harness/scorers.py#L63-L73
 [bind]: https://github.com/Protagonist01/my-production-agentic-systems/blob/9ac83e5dbde2bb6689d8b08a80b0a4bc42b4d3f8/harness/src/agent_harness/scorers.py#L75-L84
 [report]: https://github.com/Protagonist01/my-production-agentic-systems/blob/9ac83e5dbde2bb6689d8b08a80b0a4bc42b4d3f8/harness/src/agent_harness/scorers.py#L87-L92
-[run]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/scorers.py#L98-L124
+[run]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/src/agent_harness/scorers.py#L99-L126
 [tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/9ac83e5dbde2bb6689d8b08a80b0a4bc42b4d3f8/tests/test_case_manifests.py
 [fixture]: https://github.com/Protagonist01/my-production-agentic-systems/blob/9ac83e5dbde2bb6689d8b08a80b0a4bc42b4d3f8/tests/fixtures/cases/invented-v1.json
 

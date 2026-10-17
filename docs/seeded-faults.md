@@ -1,6 +1,6 @@
 # Seeded fault drills and state invariants
 
-H7 #21 extends reviewed H6 main 9c13b2c on `codex/h7-seeded-faults`. It is unmerged. It executes explicit offline boundary faults and preserves their evidence through H6 accounting. It does not inject failures into production services, implement domain recovery policy, or establish a model-quality/release threshold. The invented example uses files; the required database checks independently inspect real disposable Postgres state/ledger rows.
+H7 #21 extends reviewed H6 main 9c13b2c on `codex/h7-seeded-faults`. It merged through PR #77 into verified main 487242f. H8 adds optional redacted telemetry to the shared evaluator/runner; fault execution and scoring stay independent. It executes explicit offline boundary faults and preserves their evidence through H6 accounting. It does not inject failures into production services, implement domain recovery policy, or establish a model-quality/release threshold. The invented example uses files; the required database checks independently inspect real disposable Postgres state/ledger rows.
 
 ## Declare a reviewed treatment
 

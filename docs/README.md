@@ -57,3 +57,5 @@ Calibrate numeric quality floors from reviewed baselines, declare before candida
 [Planning index](00-planning-index.md) · [Execution rationale](01-execution-and-evidence-proposal.md) · [Data/architecture rationale](02-data-and-architecture-comparison.md)
 
 H4 [operating boundary](controls.md) and [code study](code-study-controls.md) cover reservations, retries/circuits, monotonic time and owned workers; merged acceptance evidence is recorded on closed #18.
+
+[H8 telemetry operations](telemetry.md) cover explicit tracing, pseudonymous evidence and export/flush/cleanup health; [source study](code-study-telemetry.md) follows the implementation.
