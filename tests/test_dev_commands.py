@@ -117,3 +117,14 @@ def test_replay_dispatches_current_code_with_revision_and_lock(monkeypatch) -> N
     assert dev.main(["eval-replay", "--code-revision", "current-code"]) == 7
     assert "agent_harness.replay_example" in calls[0] and "current-code" in calls[0]
     assert str(ROOT / "uv.lock") in calls[0]
+
+
+def test_telemetry_command_uses_invented_probe_with_current_source(monkeypatch) -> None:
+    calls = []
+    monkeypatch.setattr(dev.shutil, "which", lambda name: "invented-uv")
+    monkeypatch.setattr(dev, "source_revision", lambda: "actual-head+dirty")
+    monkeypatch.setattr(dev, "execute", lambda args: calls.append(args) or 1)
+    assert dev.main(["telemetry-check"]) == 1
+    assert "agent_harness.telemetry_probe" in calls[0]
+    assert "actual-head+dirty" in calls[0] and str(ROOT) in calls[0]
+    assert "agent_harness.trace_probe" not in calls[0]
