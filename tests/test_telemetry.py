@@ -501,7 +501,7 @@ def test_untrusted_model_metadata_and_schema_only_export_as_references():
 
 
 @pytest.mark.parametrize(
-    "change", ["valid", "missing_source", "bad_parent", "canary", "wrong_code"]
+    "change", ["valid", "json_io", "missing_source", "bad_parent", "canary", "wrong_code"]
 )
 def test_cli_readback_checks_real_envelope_and_evidence(change):
     from agent_harness.telemetry_probe import validate_readback
@@ -543,6 +543,8 @@ def test_cli_readback_checks_real_envelope_and_evidence(change):
         )
     by_name = {r["id"]: r for r in rows}
     by_name["run"]["output"] = {"outcome": "completed"}
+    if change == "json_io":
+        by_name["run"]["output"] = json.dumps(by_name["run"]["output"])
     by_name["run"]["metadata"] = {
         **versions,
         "source_version": "c" * 64,
@@ -563,7 +565,7 @@ def test_cli_readback_checks_real_envelope_and_evidence(change):
     if change == "wrong_code":
         by_name["run"]["metadata"]["version_code_revision"] = "0" * 64
     raw = json.dumps({"status": 200, "body": {"data": rows}})
-    if change == "valid":
+    if change in ("valid", "json_io"):
         assert validate_readback(raw, "b" * 32, (CANARY,), versions)["versions_verified"]
     else:
         with pytest.raises(ValueError):

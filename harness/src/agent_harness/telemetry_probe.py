@@ -97,7 +97,10 @@ def validate_readback(
     ):
         raise ValueError("backend model usage differs")
     metadata = by_name["harness-run"].get("metadata") or {}
-    if (by_name["harness-run"].get("output") or {}).get("outcome") != "completed":
+    root_output = by_name["harness-run"].get("output")
+    if isinstance(root_output, str):
+        root_output = json.loads(root_output)
+    if not isinstance(root_output, dict) or root_output.get("outcome") != "completed":
         raise ValueError("backend runtime outcome missing")
     required = (
         "version_code_revision",
