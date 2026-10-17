@@ -14,7 +14,8 @@ from agent_harness.recording import Recording, RecordingProvenance, load_recordi
 from agent_harness.replay import ReplayBinding, ReplayMismatch, StrictReplayGateway
 
 # Updated only through explicit fixture review; never learn a trusted pin from the input file.
-INVENTED_DIGEST = "72125a30c816dca9f2e72b3ac6f4fc5e718ee9386c95f6243db43ba19702ac2b"
+INVENTED_DIGEST = "0d05fc31a93abe4872000aeb81895d5bbf0529f1f427b849edc16e366ce2432e"
+INVENTED_RESOURCE = "resources/replay/invented-v2.json"
 
 
 class NetworkDisabledError(RuntimeError):
@@ -151,7 +152,7 @@ def main() -> int:
     parser.add_argument("--code-revision", required=True)
     parser.add_argument("--lockfile", required=True)
     args = parser.parse_args()
-    resource = files("agent_harness").joinpath("resources/replay/invented-v1.json")
+    resource = files("agent_harness").joinpath(INVENTED_RESOURCE)
     # as_file supports installed packages as well as source trees.
     try:
         with as_file(resource) as path:
