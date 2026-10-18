@@ -1,6 +1,6 @@
 # Code Study Guide — Production Agentic Systems
 
-Updated: 2026-10-18 (Africa/Lagos). O2 unmerged branch codex/o2-orders-360 is based on verified merged H10 main54f5af2 (PR #80). This refresh covers three Olist source/view/CLI modules, invented tests and expanded strict type-check scope. H10 is merged/verified; unchanged source links retain inspected historical bytes. C1 proceeds independently in the user-approved parallel batch. Source anchors are updated after executable source verification.
+Updated: 2026-10-18 (Africa/Lagos). O2 unmerged branch codex/o2-orders-360 is based on verified merged H10 main54f5af2 (PR #80). This refresh covers three Olist source/view/CLI modules, invented tests and expanded strict type-check scope. H10 is merged/verified; unchanged source links retain inspected historical bytes. C1 proceeds independently in the user-approved parallel batch. Executable O2 source is pinned to 0781dddf0577bd8e00db94e04d15198050ffd4af; unchanged source anchors retain inspected historical bytes.
 
 F1–F5/O1/H1–H10 are merged and verified. H9 adds [private scorecards and paired case regressions](docs/code-study-scorecards.md). H8 supplies [correlated redacted telemetry](docs/code-study-telemetry.md). H7 adds [seeded boundary faults and independent state invariants](docs/code-study-faults.md). H6 adds exact trial schedules, fresh controlled state, bounded spawned execution, exclusive journals and complete outcome accounting. H5 supplies pinned evaluator-only case populations, grouped splits, explicit versioned scorer composition and per-case manifest provenance. H4 supplies shared call/token/cost reservations, monotonic deadlines, bounded retries/circuits, owned SDK workers and controlled replay. H10 adds [fresh dispatch receipts and independently reviewed release gates](docs/code-study-release.md). Verification is offline only; domain adapters, reviewed domain scoring/thresholds and actual fresh domain quality remain subsequent work.
 
@@ -321,7 +321,7 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [profile-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L131-L141
 [verify-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L144-L152
 [snapshot-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L155-L209
-[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/pyproject.toml#L1-L47
+[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/pyproject.toml#L1-L47
 [harness-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/pyproject.toml#L1-L17
 [import-contracts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.importlinter#L1-L30
 [ignore-rules]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/.gitignore#L1-L47

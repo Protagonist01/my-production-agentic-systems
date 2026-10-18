@@ -1,6 +1,6 @@
 # Code study — Olist order snapshots
 
-Snapshot: unmerged codex/o2-orders-360 based on verified54f5af2, 2026-10-18. Coverage: three new installable Olist modules, invented CSV fixtures/tests and shared mypy scope. The source commit and immutable function anchors are added after executable verification. Raw Olist records, independent domain policy/actions, provider calls, production authentication and infrastructure internals are outside this study. [Operations](data/olist-orders.md) and [Build Book Entry24](../BUILD_BOOK.md#entry-24--parallel-source-preparation-and-honest-historical-order-views) explain the data/clock decisions.
+Snapshot: unmerged codex/o2-orders-360 based on verified54f5af2, 2026-10-18. Coverage: three new installable Olist modules, invented CSV fixtures/tests and shared mypy scope. Executable source is pinned to 0781dddf0577bd8e00db94e04d15198050ffd4af; documentation follow-ups retain those bytes. Raw Olist records, independent domain policy/actions, provider calls, production authentication and infrastructure internals are outside this study. [Operations](data/olist-orders.md) and [Build Book Entry24](../BUILD_BOOK.md#entry-24--parallel-source-preparation-and-honest-historical-order-views) explain the data/clock decisions.
 
 ## Architecture and representative execution
 
@@ -68,3 +68,26 @@ When adding columns, update source schema handling, grain/reference validation, 
 ### Reproduced pre-publication bugs
 
 **Verified bug, repaired before review:** the initial read-only store checked its file digest only once and could return another connection's later committed value. A WAL could hold changed pages outside the main-file hash. The repair rejects sidecars, retains a read snapshot and rechecks the digest under its lock; tests require a competing commit to fail and the old view to remain equal. **Verified resource bug, repaired:** a SQLite connection context does not close its handle. Explicit closing now releases importer handles before the final digest is returned, verified with a strongly retained real connection that rejects subsequent SQL as closed. No production deployment existed for either bug. Exact final results follow in Entry24/#27.
+
+
+## Verified source anchors
+
+- [source.digest_file](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L40-L42)
+- [source.private_path](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L45-L49)
+- [source.source_time](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L52-L56)
+- [source.minor_units](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L59-L73)
+- [source.quoted](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L76-L79)
+- [source.verify_source](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L82-L100)
+- [source._import_table](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L103-L141)
+- [source._references](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L144-L158)
+- [source._aggregates](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L161-L205)
+- [source.import_snapshot](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source.py#L208-L267)
+- [views.OrderScope](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/views.py#L16-L20)
+- [views.AmountTotal](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/views.py#L23-L27)
+- [views.Event](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/views.py#L30-L32)
+- [views.Item](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/views.py#L35-L42)
+- [views.Review](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/views.py#L45-L50)
+- [views.Payment](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/views.py#L53-L57)
+- [views.OrderView](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/views.py#L60-L81)
+- [views.OrderStore](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/views.py#L84-L238)
+- [source_cli.main](https://github.com/Protagonist01/my-production-agentic-systems/blob/0781dddf0577bd8e00db94e04d15198050ffd4af/projects/olist-support/src/olist_support/source_cli.py#L15-L53)
