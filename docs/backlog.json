@@ -556,7 +556,7 @@
         "Zero-event safety reports use 0/N and a suitable rare-event interval; no zero-width bootstrap safety claim."
       ],
       "priority": "P0",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 23,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/23",
@@ -567,7 +567,10 @@
       ],
       "milestone_number": 2,
       "branch": "codex/h9-scorecards",
-      "command_document": "docs/scorecards.md"
+      "command_document": "docs/scorecards.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/79",
+      "implementation_commit": "a25050a",
+      "review_evidence": "Private complete-schedule JSON/Markdown scorecards and external-digest paired comparisons. Core local aggregate: 521 passes; final presentation focused suite: 59 passes. Six builds and installed base-wheel isolated trials/reporting verified with no optional SDKs or provider calls. Exact final-head stable aggregate/hosted evidence maintained on #23. Native board read-back unavailable: insufficient project scope."
     },
     {
       "id": "H10",
