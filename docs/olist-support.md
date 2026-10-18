@@ -1,6 +1,6 @@
 # Olist support
 
-Accepted scope, updated 2026-10-12. O1's authentic version-7 source snapshot is acquired and profiled; no application or model evaluation result exists yet. See [source handling and commands](data/olist-source.md) and [checksums/schema/missingness manifest](data/olist-v7-manifest.json).
+Accepted scope, updated 2026-10-12. O1's authentic version-7 source snapshot is acquired and profiled. O2 adds [private order aggregates and conservative as-of views](data/olist-orders.md); no refund application or model evaluation result exists yet. See [source handling and commands](data/olist-source.md) and [checksums/schema/missingness manifest](data/olist-v7-manifest.json).
 
 ## Delivered application
 
@@ -34,7 +34,7 @@ Acceptance evidence:
 
 ### O2: Build orders_360 with correct joins and historical as-of views
 
-Priority: P0; provisional size M; prerequisites: O1, F2. Status: Backlog.
+Priority: P0; provisional size M; prerequisites: O1, F2. Status: In progress.
 
 Import/aggregate orders, items, payments, delivery and reviews at declared grain; produce scoped snapshots that expose only facts known at case time.
 

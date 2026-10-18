@@ -62,3 +62,6 @@ H4 [operating boundary](controls.md) and [code study](code-study-controls.md) co
 
 
 H8 #78 is merged/verified on main 21a5720. H9 #23 implements private [scorecards and paired case-level comparisons](scorecards.md) with complete scheduled denominators, unknown usage and conditional group-level safety uncertainty. [Source study](code-study-scorecards.md) traces the mechanism. H9 is merged/verified on fd87750. H10 adds [fresh dispatch and release evidence](release-evidence.md) with an independently pinned baseline approval; [source study](code-study-release.md) traces it. Verification stays offline by user choice. No domain quality result is claimed.
+
+
+The user-approved O2+C1 batch follows verified H10 merge54f5af2. O2 adds [private exact-grain orders and conservative source-clock views](data/olist-orders.md), with a [source study](code-study-olist-orders.md). C1 proceeds in its own worktree and PR with the complete September2023–March2024 narrative archive and March holdout. These source-preparation mechanisms do not establish domain model quality or business actions.

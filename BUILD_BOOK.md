@@ -31,6 +31,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 23 — Fresh dispatch receipts and independently reviewed releases](#entry-23--fresh-dispatch-receipts-and-independently-reviewed-releases)
 
+- [Entry 24 — Parallel source preparation and honest historical order views](#entry-24--parallel-source-preparation-and-honest-historical-order-views)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -1169,3 +1171,55 @@ Executable source is 6b20fb959e5f54a71495aeac97f5c6b9b54ca182. The documentation
 ### Review publication
 
 Published H10 in PR #80, attached it to the chat, and marked #24 Review while keeping it open and its merge checkbox unchecked. Initial hosted run 39169936224 is in progress, not accepted yet. This small follow-up records the actual PR link; executable source/test/dependency bytes are unchanged. Verify every suite on the resulting final SHA and the PR merge state, then append exact results to #24. User review/merge and post-merge verification remain the completion boundary. No Olist/domain task starts during review.
+
+
+## Entry 24 — Parallel source preparation and honest historical order views
+
+Date: 2026-10-18 (Africa/Lagos). O2 #27 on codex/o2-orders-360, based on verified merged #80 main54f5af2. C1 #34 proceeds in a separate managed worktree/branch under explicit user choice.
+
+**Files touched:** Olist import/storage/view modules, tests, source operations/study docs and shared planning/type-check scope.
+
+### Context
+
+The user reviewed/merged #80 and requested multiple issues for speed, then explicitly selected O2+C1 in parallel. H10 post-merge locked setup/check passed570tests252.92s plus exactsixcall/twotimeout/zero-provider replay; main39170421239 passed nineapplicable jobs, actual570tests ineachqualitycell and16databasechecks. H10 is completed; nativeboardstatus remains unverified. O2/C1 have merged prerequisites and independent package/data boundaries. SeparatePRs preserve targeted review and do not skip dependentO3/C2 gates. This explicitly changes the earlier single-issue-at-a-time execution for independent work only.
+
+### Before you read on
+
+An order has two items, two payments and two reviews. A flat join yields eight rows. Which amounts should be summed once, and when can a historical view reveal a payment row whose source has no recorded availability timestamp?
+
+### Options considered and why
+
+Reject a raw many-to-many join: summing after it would inflate money and count rows. Import explicit source grains into separate SQLite tables with key/foreign-key checks; compute each child's totals independently before assembling one order row. Full review_id is not globally unique in the actual source; the inspected key(order_id,review_id) is unique. Keep missing amounts/counts distinct from zero. Use exact Decimal parsing and integer minor units, without inventing a currency.
+
+Do not assign historical availability of items/payments/customer attributes/estimated delivery/final status from purchase time: their source has no observation timestamp. Keep those facts hidden until an externally declared snapshot observation time. Event timestamps and completed review answers can support a limited effective-time projection; hide future facts, retain source-local clock semantics without timezone conversion, and document that this is not a historical ingestion log. Raw Portuguese text and source category translations stay separate.
+
+### How to build it
+
+1. Verify the externally pinned O1 manifest and rawCSV hashes outsideGit, import needed tables at declared grain, and validate widths, keys, references, finite two-decimal amounts and source timestamp formats. Build a new privateSQLite file exclusively; never overwrite an earlier derivedsnapshot.
+2. Make independent per-order item/payment/review aggregates, reconcile their global totals/counts with source tables, and preserve exact source strings/missingness. Emit only aggregate provenance/count/checksum evidence toGit; keep source rows and database outsideGit.
+3. Expose a read-only OrderStore requiring explicit tenant-bound allowed-order scope, naive source-local as_of and declared observed_at. Refuse out-of-scope access. Return no future delivery/review data and no snapshot-only details beforeobserved_at; never translate reviewtext automatically or label sourceamounts BRL without evidence.
+4. Test join-multiplicity witnesses, duplicate/orphan corruption, historicalfuture canaries, unknown availability, sourcehash changes, scope violations and exact decimal sums with inventedCSV. Then verify actual pinnedOlist source and fullpackaged flow without provider calls. Add vertical sources to strict mypy so CI checks new applicationcode.
+
+### What went wrong
+
+No implementation result yet. The actual snapshot inspection found802 duplicated review_id keys(up to3orders), but no duplicate(order_id,review_id) pairs; source rows/IDs were not printed. Treat grain discovery as evidence, not a reason to deduplicate real observations silently.
+
+
+### Availability refinement and first source verification
+
+Tighten the first design before implementation: a review answer timestamp does not establish that final text/score was never edited later. Keep all final review content hidden until the declared snapshot observation boundary, then also require answer_at <= as_of. Recorded order events remain an explicitly limited effective-time projection, not a recovered ingestion log. Reject an observation boundary before any recorded actual event; estimated/shipping dates remain plans. The real-source drill uses declared source-clock boundary 2026-10-18 00:00:00, not a claimed UTC conversion or recovered historical observation.
+
+The focused source/order suite passed 27 tests in 8.05 seconds, and strict mypy passed 52 source files. The eight-row join witness produced inflated item total12012 while the independent aggregate retained3003. All99,441 authentic orders imported with112,650items,103,886payments and100,000reviews; key/reference/count/amount checks passed. Exact integer-hundredth totals reconciled: price1,359,164,370, freight225,190,954, payment1,600,887,212. These are undeclared source-unit sums, not a currency or business-value claim. The private database digest is in docs/data/olist-orders-v7-report.json; no source rows orIDs were exported.
+
+A deterministic read smoke check selected the first1,000 source orders byID solely for software verification. At each purchase clock, no future events or snapshot-only fields/text leaked; at the declared observation boundary child counts matched returned rows. Currency remained null; no provider call occurred. This is not a sampled model evaluation or source-wide claim about historical ingestion. Full checks/package/source-link verification follow.
+
+
+### Review caught two SQLite lifetime bugs before publication
+
+Independent read-only review reproduced a pin violation with an invented database: after opening a store with the correct digest, another SQLite connection committed a changed order and the already-open store returned it. A read-only connection alone does not hold a stable snapshot. A WAL can also contain committed changes absent from the hashed main file. Reject WAL/SHM/journal sidecars, begin and retain a read transaction, read metadata to acquire its shared lock, then recheck the main digest while the lock is held. A writer's commit must remain blocked while the store exists; close releases the snapshot. Constructor failures must close the connection.
+
+The reviewer also reproduced a Windows file-handle leak: `with sqlite3.connect(...)` manages transactions but does not close the connection. The imported database could not be renamed until garbage collection. Wrap the connection in contextlib.closing as well as the transaction context. A test retains a strong reference to the actual connection and requires SQL access to raise ProgrammingError after import returns. These are verified bugs in the unmerged O2 implementation, not claims of production exploitation. Add the three meaningful resource/pin witnesses before rebuilding/retesting.
+
+The first complete O2 run had592passes and one unchanged H6 worker test failure: expected timeout but receivedworker_cleanup_error. Its cleanup waits are two bounded0.25second joins; the result correctly fails closed rather than releasing potentially live state. It occurred while source imports ran, but the cause is not established by that coincidence. Preserve the failure, recheck that case and rerun the final complete check after source work finishes; do not weaken production cleanup or treat an isolated retry as proof of cause.
+
+The first installed base-wheel drill imported all99,441 real orders under network denial and read100 deterministic orders with optional SDKs absent. It matched the pre-repair three module bytes. This is useful earlier evidence, not final-byte acceptance: rebuild/reinstall and repeat the final snapshot/read/CLI checks after the SQLite repairs.

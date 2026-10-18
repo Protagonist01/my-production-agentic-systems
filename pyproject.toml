@@ -42,6 +42,6 @@ dev = [
 ]
 
 [tool.mypy]
-files = ["dev.py", "ci_checks.py", "harness/src/agent_harness"]
+files = ["dev.py", "ci_checks.py", "harness/src/agent_harness", "projects/*/src"]
 python_version = "3.12"
 strict = true
