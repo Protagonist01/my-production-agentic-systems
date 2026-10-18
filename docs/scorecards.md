@@ -1,6 +1,6 @@
 # Private scorecards and paired comparisons — H9
 
-H9 #23 builds reports over H6/H7 evidence. It does not invoke an agent, scorer, model or exporter. H8 is merged/verified on main 21a5720; H9 is unmerged on codex/h9-scorecards. Fresh recording, approved baselines, numerical release thresholds and the eval-compare/release commands remain H10 #24.
+H9 #23 builds reports over H6/H7 evidence. It does not invoke an agent, scorer, model or exporter. H8 is merged/verified on main 21a5720; H9 is merged/verified on main fd87750. H10 #24 adds [fresh evidence verification and release gates](release-evidence.md) separately from these report-only APIs.
 
 ## Read a reviewed journal
 
@@ -52,7 +52,7 @@ These are conditional model-based intervals: comparable independent groups are a
 
 ## Repeated-trial correctness and modes
 
-All-three correctness is emitted only for an explicitly declared subset, fresh_candidate mode and exactly three scheduled trials per case. Missing/unverified trials cannot pass. Other modes or trial counts show a reason and null metric. The report always states freshness_verified=false: mode is a declaration, and H10 must prove three actual cache-bypassed executions. Replay cannot silently become a fresh quality result. Monitoring is not a controlled H6 schedule mode.
+All-three correctness is emitted only for an explicitly declared subset, fresh_candidate mode and exactly three scheduled trials per case. Missing/unverified trials cannot pass. Other modes or trial counts show a reason and null metric. The report always states freshness_verified=false: mode is a declaration, and H10 verifies fresh dispatch receipts separately, without changing this report-only flag. Replay cannot silently become a fresh quality result. Monitoring is not a controlled H6 schedule mode.
 
 ## Explicit baseline comparison
 

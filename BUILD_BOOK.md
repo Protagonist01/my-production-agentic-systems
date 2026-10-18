@@ -29,6 +29,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 22 — Reporting every scheduled outcome](#entry-22--reporting-every-scheduled-outcome)
 
+- [Entry 23 — Fresh dispatch receipts and independently reviewed releases](#entry-23--fresh-dispatch-receipts-and-independently-reviewed-releases)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -1108,3 +1110,62 @@ The documentation verifier caught old dev.main ranges in the gateway/replay chap
 ### Review publication
 
 H9 is published in PR #79. The implementation commit is a25050a; source links and installed-wheel evidence are recorded in 482a575. Final stable-source local/hosted checks are running and will be read back against the final documentation head on #23 before handoff. The Review snapshot links a concrete implementation and measured focused/full/package evidence; it does not treat pending CI as a pass. Keep #23 open and its merged checkbox unchecked until user review/merge and post-merge acceptance. No H10 work begins during this review. Native project-board transitions remain unverified after the explicit project-scope rejection.
+
+
+## Entry 23 — Fresh dispatch receipts and independently reviewed releases
+
+Date: 2026-10-18 (Africa/Lagos). H10 #24, codex/h10-release-evidence, based on verified fd87750.
+
+**Files touched:** release contracts, fresh recording adapter, evidence verifier/gate, CLI, tests and documentation.
+
+### Context
+
+The user reviewed/merged #79 and asked to proceed. H9 acceptance on merged main passed locked setup/check (521 tests in 209.75 seconds), strict replay (six calls, two recorded timeouts, zero provider calls), and main run 39167447801 (nine applicable successful jobs, 521 tests in each quality cell and sixteen database tests). #23 is completed; #17 was already closed. Native board access remains unverified. The user explicitly chose offline mechanism verification only for H10; no live model call is authorized by this acceptance plan.
+
+### Before you read on
+
+Three equal answers can still come from three fresh requests. What should be counted to distinguish real dispatch from cached answers, and who is allowed to approve the baseline?
+
+### Options considered and why
+
+Incremental slice reuse needs a trustworthy dependency map that this repository does not yet have. Choose conservative whole-population invalidation on any declared behavior change. Require an externally pinned candidate specification covering source/configuration, prompt, route, tools, policy, scorer and environment; do not infer freshness from answer diversity. Keep separately pinned baseline approval and policy inputs outside the recorder. Neither eval-record nor eval-release creates or updates approval.
+
+The H6 owned worker is a daemon and cannot spawn an H4 isolated transport child. Compose ProviderGateway directly with a deadline-aware transport inside the H6 whole-worker deadline, and retain BoundedGateway reservation/retry controls. Partition the externally bounded recording budget across sequential trials rather than pretend process-local controls share a global quota. Capture raw per-attempt receipts exclusively before returning the response to the agent. Missing receipts or worker failures remain failed evidence. Mock receipts can test dispatch mechanics but always block a production release.
+
+### How to build it
+
+1. Define immutable candidate specifications, capture manifests, external baseline approvals and release policy/decision DTOs. Canonical SHA-256 pins cover nested values; callers provide expected pins separately.
+2. Validate exactly three fresh trials per case, the complete reviewed case population and matching candidate versions. Create a new private execution directory; no prior-response input or resume exists. Adapt trusted agent/transport/scorer factories to H6, wrap the transport in the owned gateway, and persist each dispatched attempt with its context, request, response and unique nonce.
+3. Seal the batch and receipt hashes into an evidence manifest. On reading, revalidate journal, receipts, identities, accounting and behavior against the external candidate pin. A modified artifact must invalidate its digest.
+4. Compare compatible populations and independent evaluator versions. Refuse a candidate used as its own baseline; require a separately pinned, unexpired approval bound to exact baseline and policy. Enforce explicit required-case floors, pass regressions, completeness and zero critical violations before a release decision.
+5. Exercise these mechanisms with invented fixtures/provider mocks only. Keep actual provider freshness, domain thresholds and release approval unclaimed. Record commands and results after they execute.
+
+### What went wrong
+
+No implementation result yet. Freshness receipts are trusted local execution evidence, not cryptographic proof against an operator who controls the code and can forge all approval inputs. Document that boundary explicitly.
+
+
+### Initial mechanism checks
+
+The first focused recording/gate/command suite passed 58 tests in 54.67 seconds. Three identical mock requests yielded three identical answers but distinct per-trial receipts; a second execution produced disjoint nonces. Tamper witnesses cover missing, modified, extra, replayed-identity and duplicate-nonce receipts and journal deletion. Gate logic tests use explicitly artificial provider-labelled DTOs only to exercise the positive branch; they are never saved as real provider results or offered as a domain approval. Actual persisted runs retain origin=mock and cannot pass release.
+
+The five CLI checks passed in 18.00 seconds: real spawned mock recording, offline comparison, mock release rejection, unchanged approval bytes, missing/wrong pins and refusal to record from previous response evidence. Before the full check, tighten built-in composition validation: prompt/model/tools, scorer implementation, policy and file-state environment must match declared fingerprints. Require every executing harness Python file plus uv.lock in its reviewed inventory and verify those bytes against the source root. Generic adapters remain trusted code responsible for declaring all behavior dependencies. No runtime SDK/dependency change or live provider call is part of this work.
+
+The initial strict type check caught a pin helper restricted to Contract although model requests use WireContract; accept the shared canonical wire base. This is a type/API correction, not a failed experiment. Full checks and installed-wheel evidence follow.
+
+
+### First full check
+
+The complete locked check passed 570 tests in 200.02 seconds, strict types across forty-four source files, both import boundaries, Ruff and lock validation. The first aggregate invocation stopped at formatting for two newly patched files; format them and rerun the aggregate before citing this result. No test failure occurred in that formatting-only stop. These checks exercise the actual mock recorder and negative release paths, not a live provider or reviewed domain quality baseline. Build/install/source-link checks follow.
+
+
+### Installed wheel and documentation boundary
+
+All six packages built. A fresh base-only wheel environment, with Google GenAI/Langfuse/OpenTelemetry SDKs absent, matched all five new module bytes. The installed CLI recorded two actual mock executions (three trials each), independently scored six completions, verified raw receipts/journals and produced a comparison. Parent and spawned workers denied outbound network. eval-release returned nonzero with exactly baseline_mock_evidence and candidate_mock_evidence; approval bytes remained unchanged. This is six mock dispatches and zero provider calls, not a fresh domain quality result.
+
+Executable source is 6b20fb959e5f54a71495aeac97f5c6b9b54ca182. The documentation scanner found obsolete root-command constants, dev.main and command-test ranges after H10 replaced PLANNED. Re-anchor changed symbols and update their prose, retaining unchanged historical slices. The refreshed audit passed 279 immutable source ranges, 197 local links and 23 intended publication files with configured secrets absent. This documentation follow-up changes no executable/test/dependency bytes. Final clean-head replay and hosted checks are recorded on #24 before handoff; user review/merge remains required for completion.
+
+
+### Review publication
+
+Published H10 in PR #80, attached it to the chat, and marked #24 Review while keeping it open and its merge checkbox unchecked. Initial hosted run 39169936224 is in progress, not accepted yet. This small follow-up records the actual PR link; executable source/test/dependency bytes are unchanged. Verify every suite on the resulting final SHA and the PR merge state, then append exact results to #24. User review/merge and post-merge verification remain the completion boundary. No Olist/domain task starts during review.

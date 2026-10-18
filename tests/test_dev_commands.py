@@ -1,7 +1,6 @@
 """Command boundary checks; real setup/check/example are exercised separately."""
 
 import importlib.util
-import os
 import subprocess
 import sys
 from pathlib import Path
@@ -15,20 +14,14 @@ dev = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(dev)
 
 
-@pytest.mark.parametrize("command", ["eval-record", "eval-compare"])
-def test_planned_commands_fail_without_uv_or_project_dependencies(command, tmp_path) -> None:
-    result = subprocess.run(
-        [sys.executable, str(ROOT / "dev.py"), command],
-        cwd=tmp_path,
-        env={**os.environ, "PATH": ""},
-        capture_output=True,
-        text=True,
-        timeout=15,
-        check=False,
-    )
-    assert result.returncode == 2
-    assert "not implemented" in result.stderr and "Prerequisite: H" in result.stderr
-    assert "Running" not in result.stdout
+@pytest.mark.parametrize("command", ["eval-record", "eval-compare", "eval-release"])
+def test_release_commands_dispatch_explicit_arguments_and_preserve_failure(command, monkeypatch):
+    calls = []
+    monkeypatch.setattr(dev.shutil, "which", lambda name: "invented-uv")
+    monkeypatch.setattr(dev, "execute", lambda args: calls.append(args) or 7)
+    assert dev.main([command, "--candidate-spec", "private candidate.json"]) == 7
+    assert calls[0][-3:] == [command, "--candidate-spec", "private candidate.json"]
+    assert "agent_harness.release_cli" in calls[0]
 
 
 def test_missing_uv_fails_clearly(monkeypatch, capsys) -> None:

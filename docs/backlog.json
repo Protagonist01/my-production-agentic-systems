@@ -556,7 +556,7 @@
         "Zero-event safety reports use 0/N and a suitable rare-event interval; no zero-width bootstrap safety claim."
       ],
       "priority": "P0",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 23,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/23",
@@ -570,7 +570,8 @@
       "command_document": "docs/scorecards.md",
       "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/79",
       "implementation_commit": "a25050a",
-      "review_evidence": "Private complete-schedule JSON/Markdown scorecards and external-digest paired comparisons. Core local aggregate: 521 passes; final presentation focused suite: 59 passes. Six builds and installed base-wheel isolated trials/reporting verified with no optional SDKs or provider calls. Exact final-head stable aggregate/hosted evidence maintained on #23. Native board read-back unavailable: insufficient project scope."
+      "review_evidence": "Private complete-schedule JSON/Markdown scorecards and external-digest paired comparisons. Core local aggregate: 521 passes; final presentation focused suite: 59 passes. Six builds and installed base-wheel isolated trials/reporting verified with no optional SDKs or provider calls. Exact final-head stable aggregate/hosted evidence maintained on #23. Native board read-back unavailable: insufficient project scope.",
+      "completion_evidence": "Merged #79 at fd87750. Clean locked setup/check: 521 tests; six-call/two-timeout/zero-provider replay; main run 39167447801: nine applicable jobs, 521 per quality cell and sixteen Postgres checks. Native board unverified."
     },
     {
       "id": "H10",
@@ -588,7 +589,7 @@
         "Missing/expired/incompatible evidence or critical violations block release; candidate cannot automatically bless its own baseline."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 24,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/24",
@@ -597,7 +598,12 @@
         17,
         23
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "branch": "codex/h10-release-evidence",
+      "command_document": "docs/release-evidence.md",
+      "implementation_commit": "6b20fb9",
+      "review_evidence": "Locked local check: 570 passes, forty-four typed sources, import/lint/format/lock checks. Six package builds. Installed base-only CLI: six actual mock dispatches/completions under parent/child network denial, comparison generated, release blocked for both mock origins, approval unchanged. Offline-only by explicit user choice; no H10 live provider call/domain baseline. Exact final-head hosted checks maintained on #24. Native board unverified.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/80"
     },
     {
       "id": "H11",

@@ -95,7 +95,7 @@ The clean live observation used source 9b3af1c, before the later snapshot harden
 [dispatch]: https://github.com/Protagonist01/my-production-agentic-systems/blob/68e7383939bc0aadd7ef78e5328fdf7bce4a7da3/harness/src/agent_harness/gateway.py#L86-L164
 [probe]: https://github.com/Protagonist01/my-production-agentic-systems/blob/68e7383939bc0aadd7ef78e5328fdf7bce4a7da3/harness/src/agent_harness/gateway_probe.py#L24-L144
 [main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/68e7383939bc0aadd7ef78e5328fdf7bce4a7da3/harness/src/agent_harness/gateway_probe.py#L147-L172
-[dev]: https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/dev.py#L114-L282
+[dev]: https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/dev.py#L111-L293
 [tests-wire]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/tests/test_gateway.py#L72-L164
 [tests-errors]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/tests/test_gateway.py#L165-L260
 [tests-state]: https://github.com/Protagonist01/my-production-agentic-systems/blob/4b33c3c0ce242a4f4553840c6ffb79d97338e095/tests/test_gateway.py#L263-L320

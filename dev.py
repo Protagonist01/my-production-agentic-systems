@@ -9,10 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 CHECKS = ("lock", "lint", "format-check", "types", "imports", "test")
-PLANNED = {
-    "eval-record": "H10 #24: fresh candidate recording and release evidence",
-    "eval-compare": "H10 #24: approved baseline and release comparison",
-}
+RELEASE_COMMANDS = ("eval-record", "eval-compare", "eval-release")
 SERVICE_COMMANDS = {
     "db-up": "up",
     "db-status": "status",
@@ -112,6 +109,26 @@ def source_revision() -> str:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    if arguments and arguments[0] in RELEASE_COMMANDS:
+        uv = shutil.which("uv")
+        if uv is None:
+            print("uv is unavailable on PATH. See README setup prerequisites.", file=sys.stderr)
+            return 1
+        return execute(
+            [
+                uv,
+                "run",
+                "--locked",
+                "--all-packages",
+                "--link-mode",
+                "copy",
+                "python",
+                "-m",
+                "agent_harness.release_cli",
+                *arguments,
+            ]
+        )
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "command",
@@ -129,7 +146,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "eval-replay",
             "scorecard",
             "example",
-            *PLANNED,
+            *RELEASE_COMMANDS,
             *SERVICE_COMMANDS,
             "db-check",
         ],
@@ -182,12 +199,6 @@ def main(argv: Sequence[str] | None = None) -> int:
         parser.error("--trial is required only for trial commands")
     if args.confirm_workspace is not None and args.command != "db-destroy":
         parser.error("--confirm-workspace is only supported by db-destroy")
-    if args.command in PLANNED:
-        print(
-            f"{args.command} is not implemented. Prerequisite: {PLANNED[args.command]}",
-            file=sys.stderr,
-        )
-        return 2
     uv = shutil.which("uv")
     if uv is None:
         print("uv is unavailable on PATH. See README setup prerequisites.", file=sys.stderr)
