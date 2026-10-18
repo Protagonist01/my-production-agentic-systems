@@ -34,7 +34,7 @@ Acceptance evidence:
 
 ### O2: Build orders_360 with correct joins and historical as-of views
 
-Priority: P0; provisional size M; prerequisites: O1, F2. Status: In progress.
+Priority: P0; provisional size M; prerequisites: O1, F2. Status: Review.
 
 Import/aggregate orders, items, payments, delivery and reviews at declared grain; produce scoped snapshots that expose only facts known at case time.
 

@@ -675,7 +675,7 @@
         "Currency, missingness, provenance and Portuguese/translation handling are preserved."
       ],
       "priority": "P0",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 27,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/27",
@@ -685,7 +685,10 @@
         11
       ],
       "milestone_number": 2,
-      "branch": "codex/o2-orders-360"
+      "branch": "codex/o2-orders-360",
+      "implementation_commit": "0781ddd",
+      "command_document": "docs/data/olist-orders.md",
+      "review_evidence": "30 source/order checks plus unchanged H6 timeout witness:31passed40.29s; strict52sources; actual99441orders imported with exactchildcounts/totals;1000realordersmoke. Finalbasewheel3modulebytes, exactinvented3003/3203totals, closedhandles andrealpinned99441orderstoreunder networkdenial/nooptionalSDKs. Firstaggregate592passes+1existingH6cleanupfailure retained; finalcombined/hostedacceptancependingon#27. No modelquality/businessactionclaim."
     },
     {
       "id": "O3",
