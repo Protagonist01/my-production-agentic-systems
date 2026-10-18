@@ -12,6 +12,7 @@ from agent_harness.contracts import Contract, RunContext
 from agent_harness.fault_contracts import FaultPlan, digest
 from agent_harness.faults import validate_plan, verify_evidence
 from agent_harness.scorers import ManifestCaseReport
+from agent_harness.telemetry_contracts import TraceHealth
 
 
 class OutcomePolicy(Contract):
@@ -142,6 +143,7 @@ class TrialRow(Contract):
     state_ref: Identifier | None = None
     report: ManifestCaseReport | None = None
     errors: tuple[TrialError, ...] = ()
+    telemetry: "TraceHealth | None" = None
 
     @model_validator(mode="after")
     def terminal_identity(self) -> Self:
@@ -149,6 +151,8 @@ class TrialRow(Contract):
             raise ValueError("terminal row requires a report or explicit error")
         if self.report is not None and self.report.report.context != self.task.context:
             raise ValueError("trial report context differs from scheduled context")
+        if self.report is not None and self.report.report.telemetry != self.telemetry:
+            raise ValueError("trial telemetry differs from case report")
         return self
 
 

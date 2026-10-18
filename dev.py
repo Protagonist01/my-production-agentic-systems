@@ -124,6 +124,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "integration-check",
             "integration-live",
             "trace-check",
+            "telemetry-check",
             "gateway-live",
             "eval-replay",
             "example",
@@ -143,8 +144,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         "example",
         "gateway-live",
         "eval-replay",
+        "telemetry-check",
     ):
-        parser.error("--code-revision is only supported by example/gateway-live/eval-replay")
+        parser.error("--code-revision requires example/gateway-live/eval-replay/telemetry-check")
     if args.command.startswith("trial-") != (args.trial is not None):
         parser.error("--trial is required only for trial commands")
     if args.confirm_workspace is not None and args.command != "db-destroy":
@@ -179,7 +181,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.confirm_workspace is not None:
             arguments.extend(["--confirm-workspace", args.confirm_workspace])
         return execute(arguments)
-    if args.command in ("example", "gateway-live", "eval-replay"):
+    if args.command in ("example", "gateway-live", "eval-replay", "telemetry-check"):
         try:
             revision = args.code_revision if args.code_revision is not None else source_revision()
             if not revision.strip():
@@ -201,6 +203,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     "example": "agent_harness.offline_example",
                     "gateway-live": "agent_harness.gateway_probe",
                     "eval-replay": "agent_harness.replay_example",
+                    "telemetry-check": "agent_harness.telemetry_probe",
                 }[args.command],
                 "--code-revision",
                 revision,

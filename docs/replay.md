@@ -75,7 +75,7 @@ gateway.assert_complete()  # required: a matching prefix is not a completed repl
 
 ## Fixture maintenance and evidence
 
-The bundled file is `harness/src/agent_harness/resources/replay/invented-v1.json`; its external pin lives in `replay_example.INVENTED_DIGEST`. It was authored through `invented_recording` at clean source **bce80f8c94ce81578767dacf4b95c5676662e6be** with lock SHA-256 **ab937ab9313389ded7eec95658a168f68f29ee5b9589f4ea8f3d498420c7ea72**. Digest: **72125a30c816dca9f2e72b3ac6f4fc5e718ee9386c95f6243db43ba19702ac2b**. This was synthetic in-process capture, with no provider requests.
+The historical file is `harness/src/agent_harness/resources/replay/invented-v1.json`; it remains byte-for-byte unchanged. It was authored through `invented_recording` at clean source **bce80f8c94ce81578767dacf4b95c5676662e6be** with lock SHA-256 **ab937ab9313389ded7eec95658a168f68f29ee5b9589f4ea8f3d498420c7ea72**. Digest: **72125a30c816dca9f2e72b3ac6f4fc5e718ee9386c95f6243db43ba19702ac2b**. This was synthetic in-process capture, with no provider requests.
 
 To intentionally revise it, first commit the source that constructs the capture. Run the maintenance helper from that clean revision, publish to a new versioned filename with `write_recording`, inspect the invented content and provenance, then update the separately reviewed pin/resource reference in a new commit. Never regenerate a fixture on mismatch or during ordinary CI. Recorded files already in Git remain historical; creating a reviewed version is different from overwriting a runtime fixture.
 
@@ -84,3 +84,10 @@ To intentionally revise it, first commit the source that constructs the capture.
 ## H4 controlled replay
 
 H4 ReplayAttempts wraps only StrictReplayGateway, allowing current retry/admission logic to consume recorded attempts without SDK access. Always assert_complete afterward. ReplayMismatch remains an infrastructure exception after settlement/freeze, never a scored model response. Shared virtual time and complete domain state still require explicit adapters. See [controls](controls.md).
+
+
+## H8 proposed dependency-lock fixture update
+
+PR #78 includes an explicit new invented fixture/pin for review. The optional telemetry package extra changes lock metadata, so the historical fixture correctly refuses the current lock. ReplayBinding and request matching remain unchanged. The bundled command now proposes `replay_example.INVENTED_RESOURCE` = `resources/replay/invented-v2.json` and external `INVENTED_DIGEST` = **0d05fc31a93abe4872000aeb81895d5bbf0529f1f427b849edc16e366ce2432e**, captured through the in-process FakeGateway helper at source **08ba28e28e9ac01a946648cdc3411ae65451833b** with actual lock **5458e34a1d1ac88d11b478235fa3bc4912ee272e24b81f7b51b866fd49412dbc**. Its provenance is synthetic / invented-h8-lock-v2, with review reference review:pr-78-invented-v2. That reference identifies this proposed PR review; it does not claim user approval before merge.
+
+Both resources remain packaged. The six model requests/responses, including two typed timeouts, agree with the historical fixture. No real provider output was captured or substituted. The old resource retains its original pin and still rejects the new lock. Future lock changes again require explicit fixture/pin review rather than silently rebinding recorded conditions or regenerating during normal replay. H8's final source/PR evidence records actual replay results separately.

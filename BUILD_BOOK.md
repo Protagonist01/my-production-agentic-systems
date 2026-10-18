@@ -24,6 +24,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 17 — Pinning case membership and independent scorers](#entry-17--pinning-case-membership-and-independent-scorers)
 - [Entry 18 — Accounting for isolated trials even when execution fails](#entry-18--accounting-for-isolated-trials-even-when-execution-fails)
 - [Entry 19 — Reproducible faults at explicit execution boundaries](#entry-19--reproducible-faults-at-explicit-execution-boundaries)
+- [Entry 20 — Safe correlated telemetry](#entry-20--safe-correlated-telemetry)
+- [Entry 21 — Distinguishing cancellation and cold worker startup](#entry-21--distinguishing-cancellation-and-cold-worker-startup)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -934,3 +936,114 @@ Publish the completed runbook, source guide and merged-H6/H7 Review snapshot in 
 ### Documentation scanner diagnosis
 
 The first documentation head 933ddd1 triggered the repository scanner's generic credential heuristic at docs/code-study-faults.md line 73. The flagged sentence enumerates ordinary test coverage; inspection confirmed no configured credential or secret value. Rephrase that prose as short sentences and replace only this unmerged documentation commit using force-with-lease. Keep runtime implementation/fix commits and their immutable links intact. No scanner rule, allowlist or exclusion is changed. Verify clean replay and hosted checks against the replacement head; the failed/superseded run is not final acceptance evidence.
+
+## Entry 20 — Safe correlated telemetry
+
+Date: 2026-10-17 (Africa/Lagos). H8 #22, branch `codex/h8-correlated-traces`, based on reviewed H7 main 487242f. Work underway.
+
+**Files touched:** telemetry contracts/session, explicit Langfuse OTLP adapter, evaluator and owned-worker composition, invented probes/tests and study chapter.
+
+### Context and question
+
+H7 #77 is merged. The existing H1 probe demonstrates export but calls a live model and does not expose exporter failure as runtime evidence. How can the harness retain the real result when telemetry fails, while preventing identifiers, prompts, tool arguments and exception messages from reaching the backend?
+
+### Options considered and why
+
+Automatic SDK instrumentation would capture provider arguments and ambient process resources. The latest installed Langfuse SDK is 5.0.1, whose current full-platform documentation requires server 4.59.0; the existing local server reports 4.50.0. Chosen: Langfuse's documented standard OTLP endpoint, using locked OpenTelemetry 1.45.1 encoding through an optional package extra. Keep the server untouched. Manual, closed projections make the privacy boundary inspectable; the cost is less payload context and model names represented by keyed references, without automatic model pricing.
+
+### How to build it
+
+1. Define TraceHealth with generated trace ID, bounded span/drop counts and separate export/flush/cleanup states. Keep full evaluation journals private: this safe health object does not redact an existing CaseReport.
+2. Construct one TraceSession inside each trial factory, with a private key of at least 32 bytes. Generate random trace/span IDs; use domain-separated HMAC-SHA256 for identities, request/result content, versions and source references. Never include exception strings, arbitrary span names or ambient environment resources.
+3. Wrap evaluator execution in a root, agent and scorer span; wrap the supplied ModelGateway for request/response facts and token usage. Expose explicit invoke(node/tool/policy, operation, callable) hooks to adapters. Context-local parents keep tool/policy calls under the executing node. A fixed capacity drops excess child spans visibly, while retaining admitted parents.
+4. Finish only after all spans end. Send one batch, then flush and shut down even when preceding steps fail. Attach health beside the successful CaseReport and carry it through worker frames/journals; error workers retain safe health separately. Process termination may prevent cleanup, so missing health is unknown rather than an export success.
+5. Encode fixed resources and Langfuse observation types. Use an explicit authenticated HTTP origin, deny redirects and ambient proxies, reject partial OTLP acceptance, and expose only finite health states. Export socket timeouts are bounded; the H6 supervisor remains the overall process deadline.
+
+### Verification underway
+
+Fresh Langfuse OpenTelemetry, masking and best-practice documentation was read before implementation. The merged baseline check is still running. Next: canaries across all free-text fields and errors; failed send/flush/cleanup; nested/concurrent parents; actual local export and CLI read-back; full locked checks, base-wheel isolation and final-head hosted evidence. No H8 pass is claimed yet.
+
+
+### First results and backend compatibility correction
+
+The first 22 focused tests passed in 9.09 seconds; strict types passed 33 source files after making the protobuf encoder's bytes return explicit. The first local export check failed. Inspected only HTTP status, content type, body size and top-level field names: the server returned HTTP 200 with a Langfuse queued-job JSON acknowledgement, not a protobuf reply. The strict decoder had correctly refused an unrecognized body. Added recognition of this observed legacy acknowledgement and standard OTLP JSON/protobuf responses, retaining partial-rejection checks. Enqueue acceptance cannot establish storage; the separate CLI read-back remains required. No credential or backend body was printed.
+
+
+### Source publication and trace audit
+
+The focused telemetry/portable-command checks passed 58 cases in 24.87 seconds. The local backend returned seven observations with the expected chain/agent/span/generation/tool/guardrail/evaluator types, parents, known zero token usage and keyed code/candidate/data/policy/lock/source/tool-result evidence. Configured keys and invented canaries were absent. The probe prints only safe health; it never publishes the private evaluation report. During read-back testing, fixed the CLI envelope (`body.data`), parsed source-reference lists and aggregate usage totals; the independent response tests also caught a shadowed expected-version variable.
+
+Fetched the current best-practices page again after reading real observations. Kept the strict privacy boundary, and improved input/output to show safe shape facts, outcome and keyed content/result references rather than only a redaction marker. Raw prompts, outputs and thought text remain private. Source is committed as 08ba28e; [draft PR #78](https://github.com/Protagonist01/my-production-agentic-systems/pull/78) is published. Full locked suite, installed-package, local database and exact-head hosted acceptance remain separate pending evidence.
+
+
+### Strict replay caught the changed dependency lock
+
+The first source-head Linux jobs passed 470 tests and failed the standalone replay test: ReplayBinding rejected the captured lock hash. This is the intended dependency condition check. Adding the installable telemetry extra changes uv.lock even though it reuses already locked OpenTelemetry versions. Do not weaken ReplayBinding, substitute the historical lock when reporting current execution, or rewrite the old capture in place.
+
+Prepare a new invented-v2 resource by running the existing six-call in-process FakeGateway capture helper against source 08ba28e and the actual H8 lock. Keep invented-v1 byte-for-byte. Publish the new file exclusively through write_recording, record its separately pinned digest and switch the bundled command to that proposed version. PR #78 explicitly includes fixture/pin review before merge. This creates no live provider evidence and leaves request matching and dependency equality strict. Add a check that the historical fixture still loads at its original pin and still refuses the new lock. Then rerun all current checks and hosted jobs; the failed first source run is not acceptance.
+
+
+### Stable source check and installed-extra probe correction
+
+Stable source eaae533 passed all 472 offline tests in 344.64 seconds, strict types in 33 source files, both import contracts, Ruff/format/lock; all six source archives/wheels built. Nine changed/new harness modules and both recording resources match the wheel bytes. The base-only installed probe passed two independently scored completions, retained rejected-export health through journal recovery, and denied network in parent/children with provider/telemetry SDKs absent.
+
+The additional telemetry-extra probe stopped at an overly broad import assertion: protobuf legitimately supplies the `google` namespace, which does not mean Google GenAI is installed. Correct the probe to check `google.genai` and Langfuse separately, keep the base-only evidence, and rerun both modes in a fresh environment/output directory. The first extra-probe failure is preserved, not treated as a product regression or a passing encode check. The wire mode must actually encode and return accepted status; an assertion hidden inside an intentionally rejecting exporter would otherwise be unable to prove encoding succeeded. Local database acceptance follows this corrected package probe.
+
+
+### Installed package results and review snapshot
+
+The corrected package probe passed in a fresh environment in both modes. Base-only: two autonomous completions, deliberately rejected exports retained in recovered journals, network denied in parent and children, no OpenTelemetry/Google GenAI/Langfuse SDK. Telemetry extra: actual protobuf encoding acknowledged, the same two independent completions and journal equality, no Google GenAI or Langfuse SDK. Protobuf's Google namespace is expected in this second mode. No source fix was needed for the probe assertion. Both packaged recording resources and all nine affected module bytes match source.
+
+Preparing the Review documentation snapshot for PR #78. Source eaae533, 472 offline passes, strict checks, six builds and installed-package evidence are verified; local Postgres and exact final-head hosted/clean trace/replay results are recorded separately on #22 after they complete. Keep the merge checkbox unchecked until user review/merge and post-merge acceptance. Native board state is unverified after the prior helper failure. H9 follows this review cycle; no domain quality or complete release gate is claimed.
+
+
+### Actual I/O shape and final reader correction
+
+All sixteen required local Postgres cases passed in 291.95 seconds. The clean publication probe then exposed a remaining reader error: the fast observations API returns I/O fields as JSON-encoded strings, while expanded metadata contains parsed lists. Inspected only field types and traceback locations; all seven observations and expected metadata were present. Decode a string root output before requiring its completed outcome, and retain support for an already decoded object. Both forms now have explicit acceptance coverage.
+
+The corrected probe verified actual backend outcome/versions/source/result/canary evidence and all lifecycle states. The focused telemetry/command suite passed 59 cases in 23.89 seconds. Reader-only source 9c1d2fca918ceb0b0d90f0ee7be0e704c7ccf7a9 leaves runtime/exporter, dependency lock, recorded calls and database behavior unchanged. Rerun the full locked suite and rebuild/reinstall the final wheel; preserve the prior 472-test and sixteen-database evidence as distinct results. Final clean-head read-back/replay and every hosted job are required before handoff, recorded on #22.
+
+
+## Entry 21 — Distinguishing cancellation and cold worker startup
+
+Date: 2026-10-17 (Africa/Lagos). Follow-up on unmerged H8 PR #78; diagnosis in progress.
+
+**Files touched:** `.github/workflows/ci.yml`, `tests/test_ci_checks.py`, `tests/test_controls.py`, a lightweight test-worker helper, CI/controls study chapters and this journal.
+
+### Context
+
+The user asked why checks were red, then requested every identified issue be fixed before proceeding. Final source e072551 had two successful hosted runs, but the PR-body edit and ready event also produced a cancelled run whose always-running gate failed. GitHub retained both suites and reported an unstable merge state. Locally, the full suite had 472 passes and a 429 classification failure: the owned attempt returned timeout instead of rate_limited. The unchanged case passed separately. These are separate failures.
+
+### Options considered and why
+
+Allowing cancelled prerequisites to pass ci_checks.gate would weaken the gate, so keep its fail-closed comparisons. Change only the job scheduling condition to `${{ !cancelled() }}`: ordinary failure still schedules the gate, but cancellation does not run it as new failed work. Keep PR-body validation on edits. GitHub's expression documentation recommends this condition for work that must run after success or failure but should stop on cancellation.
+
+For the SDK integration case, increasing a production deadline would change the contract without evidence of a runtime bug. Instead, reduce test-only child bootstrap imports and separate its cold-start classification allowance from the real interruption test. Three instrumented 429 attempts took 8.94, 7.29 and 10.14 seconds, including SDK imports of 3.23, 2.80 and 3.90 seconds and client/mock handling of 2.61, 2.40 and 2.65 seconds. All returned rate_limited. This establishes startup cost; the exact stalled stage of the historical failure is unknown because that run lacked stage evidence.
+
+### How to build it
+
+1. Replace only gate.if in the workflow; do not accept cancelled values in the Python gate. Extend workflow checks to preserve this boundary and retain the negative gate cases.
+2. Move spawned worker classes into a small importable test helper that does not import pytest or the complete controls test module. Preserve actual Google SDK calls through httpx.MockTransport, child network denial and exactly one HTTP dispatch per owned attempt.
+3. Use the policy's existing 60-second maximum only in the classification integration test. Record fixed child stages separately for each PID in the temporary test directory; assertions must show two completed real SDK attempts and one mock dispatch each. Failure diagnostics contain invented stage names, never exception bodies or credentials. Production defaults and limits stay unchanged.
+4. Preserve the independent hang/cleanup test. Add deterministic coverage that startup exhausting the supplied deadline cannot return a late success. Run focused checks, the complete locked suite and exact-head hosted jobs before claiming acceptance.
+
+### What went wrong
+
+The old handoff selected a successful run and did not foreground the simultaneously retained failed gate. That made the summary less precise than GitHub's status. Do not delete history or rerun old broken source to make badges green. A passing retry also cannot prove the timeout's cause. Keep that uncertainty visible while fixing test isolation and adding phase evidence. Results follow after execution.
+
+
+### First repair verification
+
+The focused controls/CI suite passed 71 tests in 79.97 seconds. Real SDK 408/429/503 cases completed in 23.14/21.36/19.42 seconds respectively (two owned attempts each), with two complete phase records and exactly one mock HTTP dispatch per attempt. The unchanged eight-second hang test completed in 8.02 seconds and left no child. The deterministic late-frame check and strict gate negative cases passed. Ruff and formatting passed across 63 files. Next verify a real hosted cancellation and the full locked local suite; neither is claimed from these focused results.
+
+
+### Hosted cancellation boundary
+
+Pushed repair source 0f3e75681cbd08206a0435a40ce805470edeebe0, then deliberately cancelled owned run [38991322271](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38991322271) while required work was active. Read back the completed run and all ten jobs: the workflow and CI gate were cancelled, four completed metadata/audit/scan jobs succeeded, and no job reported failure. This is actual GitHub scheduling evidence, not a Python simulation. No cancelled run is represented as a successful acceptance run. A later final-head run must complete normally.
+
+The documentation audit first rejected the old immutable workflow slice because its gate condition changed. Re-anchor CI/replay chapters to the committed repair source and verify current bytes against that commit: 226 source ranges, 163 local links and 42 intended publication files passed. Full local tests are still running at this point.
+
+
+### Final publication boundary
+
+The full `python dev.py check` runs against the unchanged executable/test bytes of 0f3e756. This follow-up documentation commit records hosted cancellation proof and refreshes immutable workflow/test links; it does not change dependencies, production deadlines, captured fixtures or runtime modules. Publish the final-head normal hosted result and full local result on #22 after they finish. Inspect every suite associated with the final SHA, not only one selected passing run. The user reviews/merges PR #78; no H9 work starts during this repair.

@@ -482,7 +482,7 @@
         "Invariant checks inspect state/ledger and identify duplicate or unauthorized effects."
       ],
       "priority": "P0",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 21,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/21",
@@ -498,7 +498,9 @@
       "command_document": "docs/seeded-faults.md",
       "example_fault_plan": "invented-fault-plan-v1",
       "example_scorer": "invented-fault-state-v1",
-      "review_evidence": "425 offline tests (45 H7), 29 typed source files, imports/Ruff/format/lock, 16 Postgres cases, six builds and rebuilt installed base-wheel seven recovery/one review checks. Final exact-head CI/replay recorded on #21. Native board read-back unavailable after UI helper recovery failed."
+      "review_evidence": "425 offline tests (45 H7), 29 typed source files, imports/Ruff/format/lock, 16 Postgres cases, six builds and rebuilt installed base-wheel seven recovery/one review checks. Final exact-head CI/replay recorded on #21. Native board read-back unavailable after UI helper recovery failed.",
+      "merged_commit": "487242f43410ab78f8180a6c5592f528485d47cc",
+      "completion_evidence": "Main CI run 38965744185: nine applicable jobs passed. Clean local 424 passes, one pre-start Windows timeout; unchanged case passed in isolation. Exact replay six calls/two timeouts/zero provider calls. Native board unverified."
     },
     {
       "id": "H8",
@@ -517,7 +519,7 @@
         "Exporter flush/cleanup is verified and observability failure is visible."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 22,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/22",
@@ -527,7 +529,14 @@
         20,
         15
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "branch": "codex/h8-correlated-traces",
+      "command_document": "docs/telemetry.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/78",
+      "implementation_commit": "9c1d2fca918ceb0b0d90f0ee7be0e704c7ccf7a9",
+      "telemetry_commit": "08ba28e28e9ac01a946648cdc3411ae65451833b",
+      "replay_fixture_sha256": "0d05fc31a93abe4872000aeb81895d5bbf0529f1f427b849edc16e366ce2432e",
+      "review_evidence": "Runtime/exporter and package isolation verified; corrected actual I/O reader passed 59 focused checks and real seven-observation read-back. Sixteen local Postgres cases passed. Final current-source aggregate, rebuilt installed wheel, clean trace/replay and exact-head hosted results are maintained on #22. Original replay v1 remains; v2/pin explicitly proposed for the new lock. Native board unverified."
     },
     {
       "id": "H9",

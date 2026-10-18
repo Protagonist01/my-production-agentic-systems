@@ -1,6 +1,6 @@
 # H6 code study: isolate execution and retain the denominator
 
-H6 was reviewed/merged in PR #76 and verified on main 9c13b2c (380 tests, clean replay and nine applicable hosted jobs). The current changed trial blocks are inspected at H7 source **2982797d6009e2686508fe56fa018a222982381e**, branch `codex/h7-seeded-faults`; H7 is unmerged. Unchanged H6 example/state links retain their verified implementation. This chapter covers all classes/functions in the four H6 trial modules, the offline acceptance file and two new required Postgres cases. H7 extends dispatch with optional explicit fault sessions; F4 schema/migrations, H4 transport and model wire contracts are unchanged. No domain agent, production authorization, third-party SDK internals or complete security audit is included.
+H6 was reviewed/merged in PR #76 and verified on main 9c13b2c (380 tests, clean replay and nine applicable hosted jobs). The current changed trial blocks are inspected at H7 source **2982797d6009e2686508fe56fa018a222982381e**, branch `codex/h7-seeded-faults`; H7 merged through PR #77 into verified main 487242f. H8 adds factory-owned trace sessions and safe health to frames/rows; changed trial links pin H8 source 08ba28e. Unchanged H6 example/state links retain their verified implementation. This chapter covers all classes/functions in the four H6 trial modules, the offline acceptance file and two new required Postgres cases. H7 extends dispatch with optional explicit fault sessions; F4 schema/migrations, H4 transport and model wire contracts are unchanged. No domain agent, production authorization, third-party SDK internals or complete security audit is included.
 
 ## Follow one scheduled failure
 
@@ -95,18 +95,18 @@ Refresh this chapter when the matrix, private projection, process/lifecycle boun
 [task]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trials.py#L28-L38
 [schedule]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/trials.py#L43-L92
 [validate]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/trials.py#L95-L125
-[row]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trials.py#L117-L141
+[row]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/src/agent_harness/trials.py#L129-L156
 [assessment]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trials.py#L144-L155
 [assess]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/trials.py#L169-L242
 [batch]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/trials.py#L245-L316
 [write]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trials.py#L264-L270
 [journal]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/trials.py#L328-L376
 [lease]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trial_runner.py#L35-L50
-[parts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trial_runner.py#L53-L61
-[frame]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trial_runner.py#L64-L72
-[worker]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/trial_runner.py#L83-L115
+[parts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/src/agent_harness/trial_runner.py#L57-L66
+[frame]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/src/agent_harness/trial_runner.py#L75-L86
+[worker]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/src/agent_harness/trial_runner.py#L89-L125
 [isolated]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/trial_runner.py#L118-L169
-[coordinate]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/trial_runner.py#L172-L228
+[coordinate]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/src/agent_harness/trial_runner.py#L182-L242
 [runner]: https://github.com/Protagonist01/my-production-agentic-systems/blob/2982797d6009e2686508fe56fa018a222982381e/harness/src/agent_harness/trial_runner.py#L231-L259
 [access]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trial_postgres.py#L16-L28
 [pg-env]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trial_postgres.py#L32-L57

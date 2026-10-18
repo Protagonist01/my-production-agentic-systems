@@ -1,6 +1,6 @@
 # Isolated trials and complete outcome accounting
 
-H6 #20 is merged/verified on main 9c13b2c after user review of [PR #76](https://github.com/Protagonist01/my-production-agentic-systems/pull/76): 380 offline tests, clean replay and nine applicable hosted jobs. H7 extends the runner with [seeded fault composition](seeded-faults.md) on its unmerged branch. The runner fixes every case/trial identity before execution, prepares fresh controlled state, bounds child execution, records terminal errors, and reconciles missing evidence. H9/H10 still own scorecards, regressions and complete candidate release gates. Domain state readers and real quality experiments remain subsequent integration.
+H6 #20 is merged/verified on main 9c13b2c after user review of [PR #76](https://github.com/Protagonist01/my-production-agentic-systems/pull/76): 380 offline tests, clean replay and nine applicable hosted jobs. H7 extends the runner with [seeded fault composition](seeded-faults.md) merged through PR #77 into verified main 487242f. H8 adds optional [trace sessions and safe exporter health](telemetry.md). The runner fixes every case/trial identity before execution, prepares fresh controlled state, bounds child execution, records terminal errors, and reconciles missing evidence. H9/H10 still own scorecards, regressions and complete candidate release gates. Domain state readers and real quality experiments remain subsequent integration.
 
 ## Declare the population and execution
 
