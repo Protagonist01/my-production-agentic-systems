@@ -1,6 +1,6 @@
 # Code study — fresh recording and release gates
 
-Inspected: 2026-10-18, unmerged codex/h10-release-evidence based on verified fd87750. This chapter covers the five new H10 modules, root dispatch and adversarial tests. Source permalinks are added after the executable source commit. Existing H6/H9 boundaries are explained in [trial](code-study-trials.md) and [reporting](code-study-scorecards.md) chapters. [Operations](release-evidence.md) lists exact arguments and trust/approval requirements; [Build Book Entry 23](../BUILD_BOOK.md#entry-23--fresh-dispatch-receipts-and-independently-reviewed-releases) records construction choices. Verification is offline only by user instruction.
+Inspected: 2026-10-18, unmerged codex/h10-release-evidence based on verified fd87750. This chapter covers the five new H10 modules, root dispatch and adversarial tests. Executable source is pinned to 6b20fb959e5f54a71495aeac97f5c6b9b54ca182; later documentation commits do not change these source bytes. Existing H6/H9 boundaries are explained in [trial](code-study-trials.md) and [reporting](code-study-scorecards.md) chapters. [Operations](release-evidence.md) lists exact arguments and trust/approval requirements; [Build Book Entry 23](../BUILD_BOOK.md#entry-23--fresh-dispatch-receipts-and-independently-reviewed-releases) records construction choices. Verification is offline only by user instruction.
 
 ## Trace an invented case
 
@@ -70,3 +70,34 @@ Verified behavior is established by actual spawned mock recording and CLI tests,
 - A capture contains three rows but two receipts. read_evidence rejects the missing scheduled dispatch before any quality decision. Re-run using a new directory; do not copy an old receipt.
 
 When extending a composition, update its source inventory, behavior digests, expected candidate pin, generic factory registration, independent scorer/fault compatibility and negative tests together. Changes to evaluator/policy/environment also require a newly reviewed compatible baseline. Refresh immutable symbol anchors after the source commit and run the documentation verifier; keep measured offline evidence distinct from a future live domain release.
+
+
+## Verified source anchors
+
+- [release_contracts.sha256](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_contracts.py#L18-L19)
+- [release_contracts.pin](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_contracts.py#L22-L23)
+- [release_contracts.CandidateSpec](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_contracts.py#L26-L49)
+- [release_contracts.verify_sources](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_contracts.py#L52-L56)
+- [release_contracts.AttemptReceipt](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_contracts.py#L59-L70)
+- [release_contracts.EvidenceManifest](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_contracts.py#L73-L81)
+- [release_contracts.ReleasePolicy](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_contracts.py#L84-L89)
+- [release_contracts.BaselineApproval](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_contracts.py#L92-L105)
+- [release_contracts.ReleaseDecision](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_contracts.py#L108-L118)
+- [fresh_recording.FreshComponents](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_recording.py#L34-L38)
+- [fresh_recording.FreshFactory](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_recording.py#L41-L48)
+- [fresh_recording.FaultFreshFactory](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_recording.py#L51-L54)
+- [fresh_recording.validate_fresh](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_recording.py#L57-L79)
+- [fresh_recording.ReceiptGateway](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_recording.py#L82-L109)
+- [fresh_recording.CaptureFactory](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_recording.py#L113-L139)
+- [fresh_recording.record_candidate](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_recording.py#L142-L191)
+- [fresh_example.RecordingConfig](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_example.py#L32-L35)
+- [fresh_example.MockUppercase](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_example.py#L38-L50)
+- [fresh_example.MockAdmission](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_example.py#L53-L61)
+- [fresh_example.UppercaseAgent](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_example.py#L65-L90)
+- [fresh_example.UppercaseScorer](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_example.py#L94-L109)
+- [fresh_example.UppercaseFactory](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/fresh_example.py#L113-L197)
+- [release_evidence.VerifiedEvidence](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_evidence.py#L25-L28)
+- [release_evidence.read_evidence](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_evidence.py#L31-L107)
+- [release_evidence.compare_evidence](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_evidence.py#L110-L180)
+- [release_evidence.release_candidate](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_evidence.py#L183-L262)
+- [release_cli.main](https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/harness/src/agent_harness/release_cli.py#L26-L203)

@@ -1157,3 +1157,10 @@ The initial strict type check caught a pin helper restricted to Contract althoug
 ### First full check
 
 The complete locked check passed 570 tests in 200.02 seconds, strict types across forty-four source files, both import boundaries, Ruff and lock validation. The first aggregate invocation stopped at formatting for two newly patched files; format them and rerun the aggregate before citing this result. No test failure occurred in that formatting-only stop. These checks exercise the actual mock recorder and negative release paths, not a live provider or reviewed domain quality baseline. Build/install/source-link checks follow.
+
+
+### Installed wheel and documentation boundary
+
+All six packages built. A fresh base-only wheel environment, with Google GenAI/Langfuse/OpenTelemetry SDKs absent, matched all five new module bytes. The installed CLI recorded two actual mock executions (three trials each), independently scored six completions, verified raw receipts/journals and produced a comparison. Parent and spawned workers denied outbound network. eval-release returned nonzero with exactly baseline_mock_evidence and candidate_mock_evidence; approval bytes remained unchanged. This is six mock dispatches and zero provider calls, not a fresh domain quality result.
+
+Executable source is 6b20fb959e5f54a71495aeac97f5c6b9b54ca182. The documentation scanner found obsolete root-command constants, dev.main and command-test ranges after H10 replaced PLANNED. Re-anchor changed symbols and update their prose, retaining unchanged historical slices. The refreshed audit passed 279 immutable source ranges, 197 local links and 23 intended publication files with configured secrets absent. This documentation follow-up changes no executable/test/dependency bytes. Final clean-head replay and hosted checks are recorded on #24 before handoff; user review/merge remains required for completion.

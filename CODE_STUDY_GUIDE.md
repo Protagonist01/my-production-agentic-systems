@@ -1,6 +1,6 @@
 # Code Study Guide — Production Agentic Systems
 
-Updated: 2026-10-18 (Africa/Lagos). H10 unmerged branch codex/h10-release-evidence is based on verified merged H9 main fd87750 (PR #79). This refresh covers five fresh recording/release modules, root dispatch and adversarial tests. New executable source is committed before immutable anchors are generated; unchanged source links retain verified history. Documentation edits are separate from source acceptance.
+Updated: 2026-10-18 (Africa/Lagos). H10 unmerged branch codex/h10-release-evidence is based on verified merged H9 main fd87750 (PR #79). This refresh covers five fresh recording/release modules, root dispatch and adversarial tests. New executable source is pinned to 6b20fb959e5f54a71495aeac97f5c6b9b54ca182; unchanged source links retain verified history. Documentation edits are separate from source acceptance.
 
 F1–F5/O1/H1–H9 are merged and verified. H9 adds [private scorecards and paired case regressions](docs/code-study-scorecards.md). H8 supplies [correlated redacted telemetry](docs/code-study-telemetry.md). H7 adds [seeded boundary faults and independent state invariants](docs/code-study-faults.md). H6 adds exact trial schedules, fresh controlled state, bounded spawned execution, exclusive journals and complete outcome accounting. H5 supplies pinned evaluator-only case populations, grouped splits, explicit versioned scorer composition and per-case manifest provenance. H4 supplies shared call/token/cost reservations, monotonic deadlines, bounded retries/circuits, owned SDK workers and controlled replay. H10 adds [fresh dispatch receipts and independently reviewed release gates](docs/code-study-release.md). Verification is offline only; domain adapters, reviewed domain scoring/thresholds and actual fresh domain quality remain subsequent work.
 
@@ -124,17 +124,17 @@ File: [offline_example.py](harness/src/agent_harness/offline_example.py).
 
 ### F3: portable commands down to the failure paths
 
-File: [dev.py][dev-main], tested by [test_dev_commands.py][dev-tests]. The bootstrap imports only standard-library modules; installing the project is not necessary to parse a command or reject unavailable evaluation features.
+File: [dev.py][dev-main], tested by [test_dev_commands.py][dev-tests]. The bootstrap imports only standard-library modules. H10 release commands delegate argument validation to the locked installed release module.
 
 | Symbol / block | Execution and reason | Evidence / limit |
 |---|---|---|
-| [ROOT, CHECKS, PLANNED, SERVICE_COMMANDS][dev-constants] | Resolve the runner's directory, define check order once, and name the remaining unimplemented record/compare prerequisites. | Changing caller directory does not change the project. Missing implementation is an exit-2 error before tool discovery. |
+| [ROOT, CHECKS, RELEASE_COMMANDS, SERVICE_COMMANDS][dev-constants] | Resolve the runner's directory, define check order once, and name release/service commands. | Changing caller directory does not change the project. Release arguments go unchanged to the locked module; invalid or missing inputs fail there. |
 | [uv_command][dev-map] | Construct argument arrays for locked setup/tools, package builds and explicit integration/trace commands. `check` reuses the same map as individual commands. | All-members installation matters for a virtual root; no shell quoting or duplicate CI map. |
 | [execute][dev-execute] | Run a child with `cwd=ROOT` and no shell, return its exact exit status, convert process-start failure to a visible nonzero result. | A real child test uses a directory/argument with spaces and exits 7. This is local tooling, not a sandbox for hostile programs. |
 | [source_revision][dev-revision] | Read HEAD and tracked/untracked status; any dirty source adds `+dirty`. Failed/missing Git discovery requires an explicit identifier. | Dirty is a provenance flag, not a saved content snapshot. Ignored source modifications and concurrent mutation remain outside this simple check. |
-| [main][dev-main] | Parse command/options → reject planned/wrong commands → locate uv → dispatch locked service commands with absolute root or run example/replay/check steps → return first failure. Trial-only and destroy-only options are validated before dispatch; db-check explicitly overrides offline database-test exclusion. | The type-check failure test returns 13 and proves imports/tests are skipped afterward. H1 maps offline/live/trace probes separately; only provider-free probe tests and pinned H3 replay run in ordinary CI. Setup may download packages; the fake example has no provider call. |
+| [main][dev-main] | Route release commands to their locked module; otherwise parse command/options → reject wrong commands → locate uv → dispatch locked service commands with absolute root or run example/replay/check steps → return first failure. Trial-only and destroy-only options are validated before dispatch; db-check explicitly overrides offline database-test exclusion. | The type-check failure test returns 13 and proves imports/tests are skipped afterward. H1 maps offline/live/trace probes separately; only provider-free probe tests and pinned H3 replay run in ordinary CI. Setup may download packages; the fake example has no provider call. |
 
-Mypy uses root configuration with strict checking for dev.py, ci_checks.py and the harness. Dataset scripts and untyped test helpers are covered by lint/behavioral tests, not declared fully type-checked. Formatting is check-only; `check` does not modify source. F5 supplies actual CI orchestration and additional platform checks; exact hosted evidence is recorded in [the CI runbook](docs/ci.md). [Development commands](docs/development-commands.md) specifies the future CI call path.
+Mypy uses root configuration with strict checking for dev.py, ci_checks.py and the harness. Dataset scripts and untyped test helpers are covered by lint/behavioral tests, not declared fully type-checked. Formatting is check-only; `check` does not modify source. F5 supplies actual CI orchestration and additional platform checks; exact hosted evidence is recorded in [the CI runbook](docs/ci.md). [Development commands](docs/development-commands.md) specifies the shared command path.
 
 ## 6. Olist source path: acquisition is not evaluation
 
@@ -332,12 +332,12 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [shared-tests-b]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L143-L234
 [shared-tests-c]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L237-L331
 
-[dev-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/dev.py#L10-L24
+[dev-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/dev.py#L10-L21
 [dev-map]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L27-L78
 [dev-execute]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L81-L87
 [dev-revision]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L90-L111
-[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/dev.py#L114-L282
-[dev-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/tests/test_dev_commands.py#L18-L119
+[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/dev.py#L111-L293
+[dev-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/tests/test_dev_commands.py#L17-L155
 
 ## H1 current integration evidence
 
