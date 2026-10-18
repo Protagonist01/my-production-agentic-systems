@@ -30,6 +30,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 22 — Reporting every scheduled outcome](#entry-22--reporting-every-scheduled-outcome)
 
 - [Entry 23 — Fresh dispatch receipts and independently reviewed releases](#entry-23--fresh-dispatch-receipts-and-independently-reviewed-releases)
+- [Entry 24 — Archive-grounded CFPB preparation in parallel](#entry-24--archive-grounded-cfpb-preparation-in-parallel)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -1169,3 +1170,43 @@ Executable source is 6b20fb959e5f54a71495aeac97f5c6b9b54ca182. The documentation
 ### Review publication
 
 Published H10 in PR #80, attached it to the chat, and marked #24 Review while keeping it open and its merge checkbox unchecked. Initial hosted run 39169936224 is in progress, not accepted yet. This small follow-up records the actual PR link; executable source/test/dependency bytes are unchanged. Verify every suite on the resulting final SHA and the PR merge state, then append exact results to #24. User review/merge and post-merge verification remain the completion boundary. No Olist/domain task starts during review.
+
+
+## Entry 24 — Archive-grounded CFPB preparation in parallel
+
+Date: 2026-10-18 (Africa/Lagos). C1 #34, codex/c1-cfpb-import, based on merged main 54f5af2. O2 proceeds independently in another worktree after the user explicitly selected O2 + C1 in parallel.
+
+**Files touched:** CFPB source preparation modules, private SQLite boundaries, invented importer tests and source/study documentation.
+
+### Context
+
+The user reviewed and merged #80. Parent verification of merged main passed locked setup/check (570 tests in 252.92 seconds), exact replay (six calls, two recorded timeouts, zero provider calls), and hosted run 39170421239 (nine applicable jobs, 570 tests in each quality cell and sixteen database checks). C1 is source preparation, not a classifier or reviewed risk-label dataset. The user explicitly chose the complete September 2023–March 2024 archive cohort with March held out.
+
+Current primary-source research changed the acquisition plan: CFPB ceased narrative publication in August 2026 and moved previously published narratives to its FOIA archive. Current live API exports therefore cannot serve as the narrative source. The official archived ZIP is bounded at 100,880,669 compressed bytes; raw source and derived records stay in external local storage.
+
+### Before you read on
+
+How would you prevent a target label from reaching a classifier while also keeping repeated complaint text out of multiple time partitions? Sketch the two storage schemas and decide what happens to a duplicate that straddles a cutoff.
+
+### Options considered and why
+
+A random capped sample is cheaper but adds a selection decision; the user selected the complete bounded archive. A single wide table with a friendly input projection leaves target columns alongside every agent read. Choose separate narrative-only agent and scorer databases, and a closed input type. Preserve consumer-selected labels exactly in scorer storage; do not invent reviewed truth. Assign September–December to development, January–February to regression and March to holdout. Normalize only for exact duplicate grouping; quarantine every group crossing time cutoffs rather than move future records into development. No consumer identity is available, so exact-text grouping cannot promise consumer-level or near-duplicate independence.
+
+### How to build it
+
+1. Download the fixed official ZIP and August 24, 2023 taxonomy PDF outside Git, hash their exact bytes, and record the publisher URLs plus aggregate schemas/counts. Pin those digests for every subsequent import; never silently replace source bytes.
+2. Validate the ZIP member and CSV schema before reading rows. Stream into a private staging SQLite file rather than retain all narratives in RAM. Count missing text/labels and masking tokens; retain source date and exact target labels only on the evaluator side.
+3. Hash case IDs and normalized narrative groups, assign dates to fixed windows, and quarantine groups spanning partitions. Write a separate agent database containing only opaque case ID and original published narrative, plus a scorer database with dates/splits/groups/consumer labels. Do not append company, response, issue or product metadata to inputs.
+4. Seal file hashes and aggregate evidence in a new manifest. Verify schema, counts, one-to-one case membership and group partition integrity independently before publishing aggregate provenance. Refuse existing output paths and source/output paths under a Git checkout.
+5. Exercise leakage, boundary dates, duplicates, missing text, malformed schema and tamper failures using invented complaints. Inspect complete real-source aggregates separately; neither source preparation nor passing plumbing tests establishes classification quality or reduced consumer harm.
+
+### What went wrong
+
+No implementation result yet. The original live-API direction was ruled out by the official 2026 source change before coding. Archive selection already conditions on consent, scrubbing and publication eligibility; missingness counts within this archive do not describe every complaint received by CFPB.
+
+
+### First C1 mechanism checks and host storage boundary
+
+The first 22 invented-data checks found eight failures before ingestion: this host has a real C:\.git ancestor, so a strict outside-any-checkout guard correctly rejected both the usual C: cache and pytest temporary directories. Keep the guard strict. Move the raw ZIP/PDF to D:\document\.cache\production-agents\cfpb and set TEMP/TMP only in this verification shell to an external D: test directory. CI's ordinary temporary directories remain outside its checkout. This corrects the initial cache location before preparing source records; no exception weakens source storage.
+
+Focused importer/CLI/acquisition verification then passed 26 tests in 3.29 seconds. These cover physical/typed target isolation, exact-text groups across cutoffs, all date boundaries including leap day, missingness/masking, source/target pins, malformed rows/inventory, output tampering, no-overwrite and bounded host-restricted downloads. Strict types found a ZIP stream typing mismatch: use explicit chunked SHA-256 because the advertised ZIP IO type does not promise readinto even though the concrete reader supports it. This does not change the digest encoding. Complete real-source preparation and full checks remain pending.
