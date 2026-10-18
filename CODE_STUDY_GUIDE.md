@@ -1,6 +1,6 @@
 # Code Study Guide — Production Agentic Systems
 
-Updated: 2026-10-18 (Africa/Lagos). H9 unmerged branch codex/h9-scorecards is based on verified merged H8 main 21a5720 (PR #78). This refresh inspects private reporting/uncertainty/comparison/CLI modules and the changed root command. Unchanged execution links retain previously verified revisions; source/reporting links are pinned after the implementation commit. Documentation edits are separate from source acceptance.
+Updated: 2026-10-18 (Africa/Lagos). H9 unmerged branch codex/h9-scorecards is based on verified merged H8 main 21a5720 (PR #78). This refresh inspects private reporting/uncertainty/comparison/CLI modules and the changed root command. Unchanged execution links retain previously verified revisions; Changed reporting/root-command source is pinned to a25050accb8d918079f88057fb1f0c6d63bd893f; unchanged links retain verified history. Documentation edits are separate from source acceptance.
 
 F1–F5/O1/H1–H8 are merged and verified. H9 adds [private scorecards and paired case regressions](docs/code-study-scorecards.md). H8 supplies [correlated redacted telemetry](docs/code-study-telemetry.md). H7 adds [seeded boundary faults and independent state invariants](docs/code-study-faults.md). H6 adds exact trial schedules, fresh controlled state, bounded spawned execution, exclusive journals and complete outcome accounting. H5 supplies pinned evaluator-only case populations, grouped splits, explicit versioned scorer composition and per-case manifest provenance. H4 supplies shared call/token/cost reservations, monotonic deadlines, bounded retries/circuits, owned SDK workers and controlled replay. Domain adapters, independent state scoring and fresh quality/release evidence remain subsequent work.
 
@@ -332,11 +332,11 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [shared-tests-b]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L143-L234
 [shared-tests-c]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/tests/test_shared_contracts.py#L237-L331
 
-[dev-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L10-L24
+[dev-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/dev.py#L10-L24
 [dev-map]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L27-L78
 [dev-execute]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L81-L87
 [dev-revision]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/dev.py#L90-L111
-[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/dev.py#L114-L223
+[dev-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/dev.py#L114-L282
 [dev-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/tests/test_dev_commands.py#L18-L119
 
 ## H1 current integration evidence

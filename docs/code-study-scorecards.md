@@ -1,6 +1,6 @@
 # Code study: private scorecards and paired evidence — H9
 
-H9 #23, unmerged branch codex/h9-scorecards, based on verified H8 main 21a5720. This chapter inspects the six new reporting modules, root-command change and associated tests. Runtime execution, scorers, H6/H7 persistence, SDK/dependency internals, domain datasets, live model quality and Langfuse server security are unchanged and not re-audited. Read [operations and statistical definitions](scorecards.md) and Build Book Entry 22 first.
+H9 #23, unmerged branch codex/h9-scorecards, based on verified H8 main 21a5720. Implementation source a25050accb8d918079f88057fb1f0c6d63bd893f. This chapter inspects the six new reporting modules, root-command change and associated tests. Runtime execution, scorers, H6/H7 persistence, SDK/dependency internals, domain datasets, live model quality and Langfuse server security are unchanged and not re-audited. Read [operations and statistical definitions](scorecards.md) and Build Book Entry 22 first.
 
 ## Follow one interrupted experiment
 
@@ -56,3 +56,33 @@ Tests cover absent rows, all-missing schedules, worker/scorer/cleanup errors, kn
 - Change only a wrapped report's split, then its source version. Explain why H9 rejects both rather than trusting those report fields.
 - Add EUR to an otherwise USD run. Identify which subtotals remain meaningful and why a single total/cost-per-completion becomes null.
 - Make a baseline run use strict_replay and the candidate fresh_candidate. Explain why a numerical delta is refused and which H10 evidence would be needed for release.
+
+
+## Verified source ranges
+
+- [scorecard_contracts.py: ReportPolicy](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L14-L24)
+- [scorecard_contracts.py: Ratio](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L27-L42)
+- [scorecard_contracts.py: ratio](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L45-L52)
+- [scorecard_contracts.py: SafetyUncertainty](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L55-L66)
+- [scorecard_contracts.py: UsageSummary](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L69-L85)
+- [scorecard_contracts.py: TrialFact](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L88-L112)
+- [scorecard_contracts.py: CaseScorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L115-L132)
+- [scorecard_contracts.py: Summary](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L135-L148)
+- [scorecard_contracts.py: SliceScorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L151-L154)
+- [scorecard_contracts.py: RepeatedCorrectness](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L157-L162)
+- [scorecard_contracts.py: Scorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L165-L187)
+- [scorecard_contracts.py: CaseChange](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L190-L199)
+- [scorecard_contracts.py: Comparison](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L202-L221)
+- [scorecard_stats.py: binomial_bounds](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_stats.py#L19-L34)
+- [scorecard_stats.py: safety_uncertainty](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_stats.py#L37-L55)
+- [scorecard_stats.py: usage_summary](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_stats.py#L58-L102)
+- [scorecard_stats.py: summarize](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_stats.py#L105-L143)
+- [scorecards.py: _validate](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecards.py#L22-L53)
+- [scorecards.py: build_scorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecards.py#L56-L196)
+- [scorecard_compare.py: compare_batches](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_compare.py#L10-L109)
+- [scorecard_render.py: escape](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L8-L10)
+- [scorecard_render.py: rate](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L13-L15)
+- [scorecard_render.py: _summary](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L18-L88)
+- [scorecard_render.py: render_scorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L91-L155)
+- [scorecard_render.py: render_comparison](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L158-L182)
+- [scorecard_cli.py: main](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_cli.py#L17-L72)

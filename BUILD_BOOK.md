@@ -1096,3 +1096,10 @@ One boundary needs care: installing the CLI's network audit hook inside main wou
 ### Full core suite and final report formatting
 
 The first full locked check passed 521 tests in 168.87 seconds with 39 typed source files, imports/Ruff/format/lock. A small Markdown-only adjustment replaces an escaped usage dictionary with readable subtotal/unknown tables; its focused reporting/CLI/fault/dispatch suite passed 59 tests in 4.57 seconds, including the newly added partial-write failure case. Reporter help text now distinguishes report software from candidate code. Run the final stable-source full check after these presentation/help changes; do not silently equate the earlier full result with later bytes. Build all six distributions and prove base-wheel operation without optional SDKs before Review.
+
+
+### Installed-wheel and source-link verification
+
+All six packages built. A fresh base-only wheel environment (isolated imports, no Google GenAI/Langfuse/OpenTelemetry SDK) matched all six new module bytes. Under outbound network denial in parent and spawned children, actual file-state trials produced two independently scored completions and two unnecessary reviews, recovered equal journals and generated four private JSON/Markdown files through the installed CLI. Both regressed trial IDs and the one required case were flagged; no baseline approval or release pass was issued and no provider call occurred. Raw fake input/output were absent from report text. No state directory retained unexpected files.
+
+The documentation verifier caught old dev.main ranges in the gateway/replay chapters after the new dispatch branch expanded that function. Re-anchor only the affected source links to a25050a and add AST-verified reporting symbol ranges. The refreshed audit passed 252 immutable source ranges, 180 local links and 24 intended publication files, with configured secrets absent. Final stable-source locked/hosted acceptance is recorded on #23 after completion; the earlier 521-pass run and the final-render 59 focused passes remain distinct.
