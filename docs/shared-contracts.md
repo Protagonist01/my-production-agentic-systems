@@ -56,3 +56,8 @@ ModelPart retains ordered assistant text/calls, thought flags and canonical-base
 ## H8 optional telemetry
 
 Evaluation accepts an optional single-use `TraceSession`; trusted factories construct it inside the owned worker and return `TrialComponents.trace`. Closed `TraceHealth` is retained alongside the result and terminal row, including worker execution errors. Health is distinct from model/scorer correctness. Node/tool/policy adapters use explicit hooks; the model gateway and evaluator supply run/agent/model/scorer spans. Full private reports and journals retain their original privacy boundary. See [telemetry operations](telemetry.md) and [source walkthrough](code-study-telemetry.md).
+
+
+## H9 private reporting contracts
+
+ReportPolicy supplies externally declared required/repeated case sets. Ratio keeps numerator/denominator/unknown counts; TrialFact joins every scheduled key to verified assessment metadata or an explicit missing outcome. Scorecard retains mode, candidate/source/lock, manifest, scorer/outcome/reporting policies, fault treatment, slices and complete/partial usage. Comparison binds an explicit baseline digest and lists case/trial regressions without approving a release. These are private metadata reports, not the H8 pseudonymous telemetry projection. See [operations](scorecards.md) and [code study](code-study-scorecards.md).

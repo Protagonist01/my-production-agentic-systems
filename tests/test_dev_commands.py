@@ -128,3 +128,35 @@ def test_telemetry_command_uses_invented_probe_with_current_source(monkeypatch) 
     assert "agent_harness.telemetry_probe" in calls[0]
     assert "actual-head+dirty" in calls[0] and str(ROOT) in calls[0]
     assert "agent_harness.trace_probe" not in calls[0]
+
+
+def test_scorecard_requires_explicit_inputs_and_dispatches_current_reporter_source(monkeypatch):
+    calls = []
+    monkeypatch.setattr(dev.shutil, "which", lambda name: "invented-uv")
+    monkeypatch.setattr(dev, "source_revision", lambda: "actual-reporter+dirty")
+    monkeypatch.setattr(dev, "execute", lambda args: calls.append(args) or 9)
+    args = [
+        "scorecard",
+        "--manifest",
+        "private manifest.json",
+        "--manifest-pin",
+        "reviewed pin.json",
+        "--journal",
+        "private journal",
+        "--report-policy",
+        "reviewed policy.json",
+        "--output",
+        "new report",
+    ]
+    assert dev.main(args) == 9
+    assert "agent_harness.scorecard_cli" in calls[0] and "actual-reporter+dirty" in calls[0]
+    assert "private manifest.json" in calls[0]
+    for invalid in (
+        ["scorecard"],
+        ["check", "--output", "unexpected"],
+        [*args, "--baseline-journal", "one-sided"],
+    ):
+        with pytest.raises(SystemExit) as error:
+            dev.main(invalid)
+        assert error.value.code == 2
+    assert len(calls) == 1
