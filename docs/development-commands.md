@@ -39,7 +39,7 @@ All commands use subprocess argument lists and `shell=False` (the default), so p
 
 The stdout report is JSON, marked `synthetic`/`offline_fake`; lockfile SHA-256 and revision remain in its context. Store optional reports under an ignored artifacts directory outside source. A fake score of 1 is wiring evidence, not real model quality.
 
-`eval-replay` now runs the [H3 pinned invented replay](replay.md), with actual current source/lock identity and no provider client. It requires complete consumption and exits nonzero on mismatch. `eval-record` and `eval-compare` still return exit 2 before finding/installing uv; their messages name H10 #24 and H9 #23 respectively. Unknown commands and wrong options also fail. A future implementation must replace the explicit unavailable path and add its required behavioral tests; it must never return success with a placeholder result.
+`eval-replay` now runs the [H3 pinned invented replay](replay.md), with actual current source/lock identity and no provider client. It requires complete consumption and exits nonzero on mismatch. `eval-record` and `eval-compare` still return exit 2 before finding/installing uv; both messages name H10 #24. Unknown commands and wrong options also fail. A future implementation must replace the explicit unavailable path and add its required behavioral tests; it must never return success with a placeholder result.
 
 ## CI contract
 
@@ -69,3 +69,8 @@ On the H4 branch, gateway-live uses BoundedGateway and an owned SDK process with
 ## H8 invented telemetry check
 
 `python dev.py telemetry-check` sends an invented seven-observation trace to the configured local Langfuse project and independently reads it through the pinned CLI. It obtains actual source/lock identity, verifies correlation/version/source/privacy evidence and prints safe health. It uses no provider and is excluded from offline CI. The full setup, privacy distinction and failure limits are in [telemetry operations](telemetry.md). The existing H1 trace-check retains its live-model behavior.
+
+
+## H9 private journal reporting
+
+`python dev.py scorecard` accepts explicit manifest, reviewed pin, journal, reporting policy and new output paths. It reads existing evidence without agent/provider/exporter calls and writes private JSON/escaped Markdown. An optional baseline journal also requires an externally supplied canonical digest. Reporter source identity is recorded separately from candidate source. See [scorecard operations](scorecards.md) for arguments, denominators, uncertainty, privacy and comparison limits. This does not implement the H10 eval-compare release command.

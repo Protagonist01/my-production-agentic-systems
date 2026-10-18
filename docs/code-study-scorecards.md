@@ -1,0 +1,88 @@
+# Code study: private scorecards and paired evidence — H9
+
+H9 #23, unmerged branch codex/h9-scorecards, based on verified H8 main 21a5720. Implementation source a25050accb8d918079f88057fb1f0c6d63bd893f. This chapter inspects the six new reporting modules, root-command change and associated tests. Runtime execution, scorers, H6/H7 persistence, SDK/dependency internals, domain datasets, live model quality and Langfuse server security are unchanged and not re-audited. Read [operations and statistical definitions](scorecards.md) and Build Book Entry 22 first.
+
+## Follow one interrupted experiment
+
+An invented pinned manifest contains case-0/1/2 with three distinct groups, one scheduled trial each and an externally declared required case-0. Baseline independently passes only case-0 (1/3). Candidate passes case-1 and case-2 but has no case-0 terminal row (2/3). The candidate's average improves, but a required pass has disappeared.
+
+1. `scorecard_cli.main` reads the separate ManifestPin and calls `load_manifest`, then loads ReportPolicy. `TrialJournal.read` checks schedule/row identity filenames and private labels against that manifest. A changed schedule cannot quietly become a smaller population. Fault evidence needs the external FaultPlan.
+2. `build_scorecard` detaches and revalidates the batch and policy. `_validate` checks every wrapped report's source, scorer, policy, group and split against the pinned case; changing a report's split cannot move a failure out of holdout. Known invalid provenance raises, rather than becoming missing evidence.
+3. The builder iterates schedule.tasks, not batch.rows. No row for case-0 yields a TrialFact with assessment=None. Its category property returns missing; its passed/complete properties are false. Existing rows use H6 assess, with an extra explicit missing-hook check for declared fault cases. A known unsafe result survives an incomplete evidence flag.
+4. `summarize` derives 2/3 completion with one unknown, not 2/2. Per-case facts preserve the missing key and mode/provenance remains separate from the reporter revision. Manifest source/split/risk/tags/fault kinds determine slices, including missing rows. Overlapping slices are not totals to add.
+5. `safety_uncertainty` groups all scheduled facts by reviewed group_id. There are zero observed unsafe groups, three groups and one unknown group. The interval envelope spans the outer endpoints at zero and one possible event. The missing group is neither a proven safe outcome nor an independent repeated-trial observation.
+6. `compare_batches` first requires the supplied expected digest to equal canonical baseline content. It builds both scorecards using the same loaded manifest/policy, checks population/treatment/mode and fixed trial conditions, then pairs by case/trial identity. case-0 has a regressed and newly-unverified trial; newly_failing_required_cases includes case-0 despite a positive completion_delta.
+7. Escaped Markdown and canonical JSON are prepared before publication. Only after validation does the CLI create a new private directory. `_write_exclusive` flushes each fixed-name file. Existing output fails; a mid-write failure is non-success and may leave partial files for inspection. None of this grants baseline approval or a release pass.
+
+## Function and contract anatomy
+
+| File / symbol | Input and ordered behavior | Invariant and consequence |
+|---|---|---|
+| [ReportPolicy](../harness/src/agent_harness/scorecard_contracts.py) | Versioned external required-case list and optional repeated subset; reject duplicates and then reject IDs absent from the manifest. | A candidate result cannot infer which losses should matter. Explicit empty required lists are permitted and visible. H10 must bind approval to policy/evidence. |
+| Ratio / ratio | Carry positive-count numerator, full denominator, unknown count, observed value and possible upper value. Validate counts and derived values; a zero denominator yields null. | Missing work cannot create a higher observed completion fraction. Unknown is separate from a known failure. |
+| TrialFact / CaseScorecard | Retain IDs, seed, fixed outcome/error codes, detached usage, assessment and verified case metadata. passed requires complete evidence plus a correct completion/appropriate-review category. | Raw requests/results, hidden state, scorer messages and exception text are omitted. IDs/labels remain private; this is not H8 pseudonymous export. |
+| Scorecard / Summary / UsageSummary | Close the generated schema; retain reporter/run/candidate/manifest/policy/fault/version identities, counts, slices and explicit mode. | Freshness is always unverified by the report itself. Complete totals and lower-bound subtotals are distinct. No domain release threshold is invented. |
+| [binomial_bounds](../harness/src/agent_harness/scorecard_stats.py) | Reject impossible counts. For N=0 return nulls; for zero/all events use exact two-sided boundaries; for interior counts invert the normal score test (Wilson). | `-expm1(log(0.025)/N)` avoids subtracting nearly equal numbers for a very small zero-event upper bound. No bootstrapping a zero-event sample. |
+| safety_uncertainty | Within each slice, any unsafe trial makes its group positive; unresolved evidence without a known event makes it unknown. Take lower endpoint at P and upper at P+U. | Nine related trials in one group still give one group, with a zero-event upper bound of 0.975. IDs do not establish statistical independence. |
+| usage_summary | Sum observed calls/tokens and per-currency known cost using precision-preserving add_money. Count missing/error/unknown components before deciding whether a total exists. | Null never silently becomes a complete zero. Currency mixture prevents a single cost total. All run cost is divided by autonomous completions only when fully known. |
+| summarize | Flatten scheduled facts, separately select eligible/required-review/not-required-review populations, compute known categories and conditional safety evidence. | Observed review can be known despite another error; correctness and appropriate-review credit require independent complete assessment. |
+| [build_scorecard / _validate](../harness/src/agent_harness/scorecards.py) | Validate externally pinned membership and report provenance, join every scheduled key, preserve unsafe, construct sorted case/slice structures. | Aggregation does not execute or re-score the agent. An entirely missing fault evidence object cannot earn completion from unrelated positive scores. |
+| [compare_batches](../harness/src/agent_harness/scorecard_compare.py) | Revalidate/detach both batches; match external baseline digest; require compatible population and conditions; compare per-trial pass/unsafe/evidence state; retain all case changes. | Required-case regressions remain explicit even if the mean improves. Different modes or missing schedule keys are incompatible, while absent terminal rows are explicit comparable failures. |
+| [escape / render_scorecard / render_comparison](../harness/src/agent_harness/scorecard_render.py) | Escape HTML, Markdown punctuation and embedded newlines for every data-derived label. Emit count tables, uncertainty, usage and per-case regressions. | Case IDs cannot turn into links, remote images or raw HTML in the generated Markdown. JSON is still private data, not HTML. |
+| [CLI main](../harness/src/agent_harness/scorecard_cli.py) | Require pin/manifest/policy/journal/output and reporter revision; pair optional baseline args; read/compute first; publish fixed filenames exclusively. | No automatic latest baseline, output overwrite, live evaluator or backend API. Validation/write errors return nonzero with error type only. |
+| dev.main scorecard branch | Validate command-specific paths before dispatch; resolve actual reporter source including dirty marker; pass argv as a list through the existing uv runner. | Spaces remain one argument. Stored experiment code is not rewritten to the reporter's current code. H10 eval-record/eval-compare remain unavailable. |
+
+## Why these choices
+
+The existing H6/H7 assessment is the single outcome vocabulary; re-implementing correctness here would let reports disagree with journal gates. H9 adds provenance checks where report metadata could otherwise masquerade as another split/source. Aggregating complete schedules costs more memory than streaming present rows, but makes dropped outcomes and paired regressions auditable. Very large populations may later need a validated streaming implementation with equivalent fixed inventories.
+
+Binomial uncertainty is conditional on comparable independent groups. The report states this assumption rather than pretending that every trial is independent. A zero-event boundary is intentionally wide for tiny samples. The envelope treats all unknown groups as either safe or unsafe at its endpoints; it does not claim a missing outcome was observed. A bootstrap confidence interval for all zeros would be degenerate and misleading. No confidence interval for a paired quality delta or population safety claim is invented here.
+
+Two caller-provided journals plus an external canonical digest identify a baseline comparison without automatically approving it. H10 must enforce its reviewed baseline, release thresholds and fresh execution provenance. Keeping this boundary makes the H9 command useful for private debugging while preserving fail-closed release commands.
+
+## Evidence and limits
+
+The focused reporting/CLI/fault/root-dispatch suite passed 59 tests in 4.57 seconds after the Markdown usage-table change. Before that formatting-only change, 58 passed in 7.74 seconds; those are separate results. Strict type checks passed 39 source files. Full locked, package and hosted acceptance follow on #23; a passing focused test is not final acceptance.
+
+Tests cover absent rows, all-missing schedules, worker/scorer/cleanup errors, known unsafe with another error, required-review bypass, escalate-everything, mode/source/split slices, group dependence, exact zero-event bounds, an interior Wilson reference, unknown/mixed-currency usage, required regression despite a better average, incompatible pairs/digests, report-field provenance changes, escaping, journal corruption, exclusive output and write failure. Executed H7 fixtures independently inspect invented committed effects and hook coverage; this does not establish production domain performance.
+
+**Design limitation:** trusted scorers/journals can fabricate truth; hashes do not authenticate an author. **Design limitation:** group IDs, source labels and a fresh_candidate mode do not prove independence, authenticity or fresh-provider execution. **Design limitation:** labels/IDs and known resource usage remain private even though payload text is omitted. **Not assessed:** real-domain quality, deployment backup/security, live provider behavior, statistical representativeness and H10 release policy. A present independent safety metric is binary per trial, not a count of every action-level violation opportunity.
+
+## Interview exercises
+
+- Explain how a 1/3 → 2/3 average improvement can still surface a required failure. Trace policy → schedule → missing fact → case pairing → regression list.
+- Delete one terminal row from a disposable invented journal. Predict completion denominator, unknown usage, group uncertainty and required-case comparison before running the CLI.
+- Put three trials for three related cases in one group. Explain why safety interval N is one, then remove one row and predict the uncertainty envelope widening to [0, 1].
+- Change only a wrapped report's split, then its source version. Explain why H9 rejects both rather than trusting those report fields.
+- Add EUR to an otherwise USD run. Identify which subtotals remain meaningful and why a single total/cost-per-completion becomes null.
+- Make a baseline run use strict_replay and the candidate fresh_candidate. Explain why a numerical delta is refused and which H10 evidence would be needed for release.
+
+
+## Verified source ranges
+
+- [scorecard_contracts.py: ReportPolicy](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L14-L24)
+- [scorecard_contracts.py: Ratio](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L27-L42)
+- [scorecard_contracts.py: ratio](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L45-L52)
+- [scorecard_contracts.py: SafetyUncertainty](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L55-L66)
+- [scorecard_contracts.py: UsageSummary](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L69-L85)
+- [scorecard_contracts.py: TrialFact](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L88-L112)
+- [scorecard_contracts.py: CaseScorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L115-L132)
+- [scorecard_contracts.py: Summary](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L135-L148)
+- [scorecard_contracts.py: SliceScorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L151-L154)
+- [scorecard_contracts.py: RepeatedCorrectness](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L157-L162)
+- [scorecard_contracts.py: Scorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L165-L187)
+- [scorecard_contracts.py: CaseChange](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L190-L199)
+- [scorecard_contracts.py: Comparison](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_contracts.py#L202-L221)
+- [scorecard_stats.py: binomial_bounds](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_stats.py#L19-L34)
+- [scorecard_stats.py: safety_uncertainty](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_stats.py#L37-L55)
+- [scorecard_stats.py: usage_summary](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_stats.py#L58-L102)
+- [scorecard_stats.py: summarize](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_stats.py#L105-L143)
+- [scorecards.py: _validate](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecards.py#L22-L53)
+- [scorecards.py: build_scorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecards.py#L56-L196)
+- [scorecard_compare.py: compare_batches](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_compare.py#L10-L109)
+- [scorecard_render.py: escape](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L8-L10)
+- [scorecard_render.py: rate](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L13-L15)
+- [scorecard_render.py: _summary](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L18-L88)
+- [scorecard_render.py: render_scorecard](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L91-L155)
+- [scorecard_render.py: render_comparison](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_render.py#L158-L182)
+- [scorecard_cli.py: main](https://github.com/Protagonist01/my-production-agentic-systems/blob/a25050accb8d918079f88057fb1f0c6d63bd893f/harness/src/agent_harness/scorecard_cli.py#L17-L72)

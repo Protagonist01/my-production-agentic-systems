@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent
 CHECKS = ("lock", "lint", "format-check", "types", "imports", "test")
 PLANNED = {
     "eval-record": "H10 #24: fresh candidate recording and release evidence",
-    "eval-compare": "H9 #23: scorecards and case-level baseline comparison",
+    "eval-compare": "H10 #24: approved baseline and release comparison",
 }
 SERVICE_COMMANDS = {
     "db-up": "up",
@@ -127,6 +127,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "telemetry-check",
             "gateway-live",
             "eval-replay",
+            "scorecard",
             "example",
             *PLANNED,
             *SERVICE_COMMANDS,
@@ -135,18 +136,48 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument(
         "--code-revision",
-        help="Explicit source identifier for example when Git is unavailable",
+        help="Explicit reporter/example source identifier when Git is unavailable",
     )
     parser.add_argument("--trial", help="Trial identity for trial-create/reset/drop")
     parser.add_argument("--confirm-workspace", help="Exact workspace identity for db-destroy")
+    report_paths = (
+        "manifest",
+        "manifest-pin",
+        "journal",
+        "report-policy",
+        "output",
+        "fault-plan",
+        "baseline-journal",
+    )
+    for name in report_paths:
+        parser.add_argument("--" + name, type=Path)
+    parser.add_argument("--baseline-sha256")
     args = parser.parse_args(argv)
+    report_values = [getattr(args, name.replace("-", "_")) for name in report_paths]
+    if args.command != "scorecard" and (
+        any(v is not None for v in report_values) or args.baseline_sha256 is not None
+    ):
+        parser.error("report flags require scorecard")
+    if args.command == "scorecard":
+        if any(
+            getattr(args, name) is None
+            for name in ("manifest", "manifest_pin", "journal", "report_policy", "output")
+        ):
+            parser.error(
+                "scorecard requires manifest, manifest-pin, journal, report-policy and output"
+            )
+        if (args.baseline_journal is None) != (args.baseline_sha256 is None):
+            parser.error("baseline-journal and baseline-sha256 must be paired")
     if args.code_revision is not None and args.command not in (
         "example",
         "gateway-live",
         "eval-replay",
         "telemetry-check",
+        "scorecard",
     ):
-        parser.error("--code-revision requires example/gateway-live/eval-replay/telemetry-check")
+        parser.error(
+            "--code-revision requires example/gateway-live/eval-replay/telemetry-check/scorecard"
+        )
     if args.command.startswith("trial-") != (args.trial is not None):
         parser.error("--trial is required only for trial commands")
     if args.confirm_workspace is not None and args.command != "db-destroy":
@@ -161,6 +192,34 @@ def main(argv: Sequence[str] | None = None) -> int:
     if uv is None:
         print("uv is unavailable on PATH. See README setup prerequisites.", file=sys.stderr)
         return 1
+    if args.command == "scorecard":
+        try:
+            revision = args.code_revision if args.code_revision is not None else source_revision()
+            if not revision.strip():
+                raise ValueError("--code-revision must not be empty")
+        except (ValueError, OSError) as error:
+            print(str(error), file=sys.stderr)
+            return 1
+        arguments = [
+            uv,
+            "run",
+            "--locked",
+            "--all-packages",
+            "--link-mode",
+            "copy",
+            "python",
+            "-m",
+            "agent_harness.scorecard_cli",
+            "--code-revision",
+            revision,
+        ]
+        for name in report_paths:
+            value = getattr(args, name.replace("-", "_"))
+            if value is not None:
+                arguments.extend(["--" + name, str(value)])
+        if args.baseline_sha256 is not None:
+            arguments.extend(["--baseline-sha256", args.baseline_sha256])
+        return execute(arguments)
     if args.command in SERVICE_COMMANDS:
         arguments = [
             uv,

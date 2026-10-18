@@ -27,6 +27,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 20 — Safe correlated telemetry](#entry-20--safe-correlated-telemetry)
 - [Entry 21 — Distinguishing cancellation and cold worker startup](#entry-21--distinguishing-cancellation-and-cold-worker-startup)
 
+- [Entry 22 — Reporting every scheduled outcome](#entry-22--reporting-every-scheduled-outcome)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -1047,3 +1049,62 @@ The documentation audit first rejected the old immutable workflow slice because 
 ### Final publication boundary
 
 The full `python dev.py check` runs against the unchanged executable/test bytes of 0f3e756. This follow-up documentation commit records hosted cancellation proof and refreshes immutable workflow/test links; it does not change dependencies, production deadlines, captured fixtures or runtime modules. Publish the final-head normal hosted result and full local result on #22 after they finish. Inspect every suite associated with the final SHA, not only one selected passing run. The user reviews/merges PR #78; no H9 work starts during this repair.
+
+
+## Entry 22 — Reporting every scheduled outcome
+
+Date: 2026-10-18 (Africa/Lagos). H9 #23, branch codex/h9-scorecards, based on verified merged H8 main 21a5720. Work underway.
+
+**Files touched:** new scorecard contracts, aggregation/statistics, paired comparison and private CLI modules, tests, root command and reporting/study/planning documentation.
+
+### Context
+
+The user reviewed/merged #78 and asked to proceed. H8 #22 is closed/completed after clean locked setup/check (475 passes in 281.95 seconds), exact six-call/two-timeout/zero-provider replay and main run 39164862391: nine applicable jobs passed, 475 tests per platform/Python cell and sixteen Postgres checks. PR-only metadata skipped deliberately. GitHub project reads failed with INSUFFICIENT_SCOPES; issue/manifest status is verified, native board status is not. H6/H7 prerequisites for H9 are already completed.
+
+### Before you read on
+
+An interrupted run has one fewer journal row than scheduled. Should its completion percentage improve because that row disappeared? If an average improves while a required case loses an approved pass, what evidence must a comparison preserve?
+
+### Options considered and why
+
+Aggregate only present rows is simple but rewards missing outcomes. Use the reviewed manifest plus complete H6 schedule as the denominator and join optional terminal rows to it. Validate report provenance against private manifest entries before deriving source/split labels. Keep every missing/error/scorer-failure row visible and preserve known unsafe outcomes even when another error occurs.
+
+Counting repeated trials as independent safety samples would narrow uncertainty without evidence. Use reviewed group IDs as the unit: any observed unsafe trial makes its group positive; a group with no known event but missing/unverified work remains unknown. Report the possible event-count range and a 95% binomial interval envelope over its endpoints. Exact two-sided boundaries for zero/all events avoid a zero-width safety interval; use Wilson for interior counts. This assumes independent comparable groups, which the software cannot prove. Synthetic/replay reports are not real-world risk estimates. Do not bootstrap zero-event safety.
+
+Reuse the accepted repository metric set and existing independently registered scorers. This task builds a reporting mechanism, not a new evaluation experiment or evaluator. H10 retains fresh-provider proof, baseline approval, release thresholds and eval-compare semantics. No new dependencies, live model calls or Langfuse service changes are needed.
+
+### How to build it
+
+1. Define closed count/rate, usage, group-uncertainty, per-case, slice and comparison DTOs. Require an external versioned policy listing required cases; allow an explicitly declared repeated-trial subset. No candidate-derived required-case list or quality floor is invented.
+2. Revalidate the batch/schedule against LoadedManifest and the separately supplied fault plan. Match wrapped group/split/scorer/source/policy versions to the pinned case. Produce one safe metadata fact per scheduled key; never copy raw input/output, hidden state, scorer text or exception bodies. Reports still contain private case/group identities and labels.
+3. Aggregate completion/review/safety/fault measures with visible numerators, denominators, unknowns and source/split/risk/tag/fault-kind slices. Keep partial usage as a known subtotal; an unknown component never becomes a complete total or zero. Never sum currencies together.
+4. Compare matched case/trial keys only after checking manifest, mode, evaluator, treatment, state environment, seeds, clocks and declared trial population. Flag every previously passing required trial that fails or disappears, independently of an average improvement. Explicit baseline arguments identify a comparison; they do not approve a release.
+5. Add a read-only journal CLI that requires reviewed manifest/policy inputs and a separately supplied baseline digest when comparing. Create a new private output directory exclusively, deny network, render JSON and escaped Markdown, and leave H10 commands fail-closed. Exercise adversarial missing/error/unsafe, mismatched provenance, mixed usage/currency, modes, escaping and zero-event cases before full hosted acceptance.
+
+### What went wrong
+
+No implementation result is claimed yet. Current Langfuse guidance confirms that dataset/evaluator versions and individual regressions matter more than a single average; NIST documents Wilson and exact binomial boundaries. We use these as reporting references, not as evidence of domain quality or approved release thresholds.
+
+
+### First H9 source checks
+
+The first reporting/CLI/fault/command run passed 58 tests in 7.74 seconds; strict types passed across 39 source files. The paired witness improves autonomous completion from 1/3 to 2/3 while case-0 loses its only approved pass to a missing outcome; the required regression remains explicit. Executed H7 fault fixtures independently inspect real invented file effects, and missing hook evidence earns no completion. Nine related trials in one reviewed group retain one safety sample and a nonzero upper interval. Raw output/hidden/scorer canaries are absent from generated metadata reports, which remain private because identities and labels are retained.
+
+One boundary needs care: installing the CLI's network audit hook inside main would affect later inline tests, reproducing the earlier H7 failure. Install it only in the module execution guard; direct library calls remain composable. The module CLI still denies outbound connections. A write failure can leave partial files, so report failure and refuse an existing output directory on retry; no implicit cleanup or overwrite. Full suite/build/installed-wheel and hosted checks follow; focused checks are not final acceptance.
+
+
+### Full core suite and final report formatting
+
+The first full locked check passed 521 tests in 168.87 seconds with 39 typed source files, imports/Ruff/format/lock. A small Markdown-only adjustment replaces an escaped usage dictionary with readable subtotal/unknown tables; its focused reporting/CLI/fault/dispatch suite passed 59 tests in 4.57 seconds, including the newly added partial-write failure case. Reporter help text now distinguishes report software from candidate code. Run the final stable-source full check after these presentation/help changes; do not silently equate the earlier full result with later bytes. Build all six distributions and prove base-wheel operation without optional SDKs before Review.
+
+
+### Installed-wheel and source-link verification
+
+All six packages built. A fresh base-only wheel environment (isolated imports, no Google GenAI/Langfuse/OpenTelemetry SDK) matched all six new module bytes. Under outbound network denial in parent and spawned children, actual file-state trials produced two independently scored completions and two unnecessary reviews, recovered equal journals and generated four private JSON/Markdown files through the installed CLI. Both regressed trial IDs and the one required case were flagged; no baseline approval or release pass was issued and no provider call occurred. Raw fake input/output were absent from report text. No state directory retained unexpected files.
+
+The documentation verifier caught old dev.main ranges in the gateway/replay chapters after the new dispatch branch expanded that function. Re-anchor only the affected source links to a25050a and add AST-verified reporting symbol ranges. The refreshed audit passed 252 immutable source ranges, 180 local links and 24 intended publication files, with configured secrets absent. Final stable-source locked/hosted acceptance is recorded on #23 after completion; the earlier 521-pass run and the final-render 59 focused passes remain distinct.
+
+
+### Review publication
+
+H9 is published in PR #79. The implementation commit is a25050a; source links and installed-wheel evidence are recorded in 482a575. Final stable-source local/hosted checks are running and will be read back against the final documentation head on #23 before handoff. The Review snapshot links a concrete implementation and measured focused/full/package evidence; it does not treat pending CI as a pass. Keep #23 open and its merged checkbox unchecked until user review/merge and post-merge acceptance. No H10 work begins during this review. Native project-board transitions remain unverified after the explicit project-scope rejection.

@@ -59,3 +59,6 @@ Calibrate numeric quality floors from reviewed baselines, declare before candida
 H4 [operating boundary](controls.md) and [code study](code-study-controls.md) cover reservations, retries/circuits, monotonic time and owned workers; merged acceptance evidence is recorded on closed #18.
 
 [H8 telemetry operations](telemetry.md) cover explicit tracing, pseudonymous evidence and export/flush/cleanup health; [source study](code-study-telemetry.md) follows the implementation.
+
+
+H8 #78 is merged/verified on main 21a5720. H9 #23 implements private [scorecards and paired case-level comparisons](scorecards.md) with complete scheduled denominators, unknown usage and conditional group-level safety uncertainty. [Source study](code-study-scorecards.md) traces the mechanism. H10 retains baseline approval, fresh recording and release gates; no domain quality result is claimed.
