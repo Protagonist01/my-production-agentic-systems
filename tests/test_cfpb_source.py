@@ -324,6 +324,44 @@ def test_redirect_cannot_leave_official_https_host(url: str) -> None:
         )
 
 
+def test_initial_url_cannot_leave_official_https_host(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="official HTTPS"):
+        acquire_file("https://example.com/source", tmp_path / "source", "0" * 64, 10)
+
+
+def test_active_sqlite_wal_is_not_part_of_a_sealed_snapshot(tmp_path: Path) -> None:
+    output, _ = build(tmp_path, [invented_row(1, "2023-09-01")])
+    pin = digest_file(output / "manifest.json")
+    database = sqlite3.connect(output / "evaluator.sqlite")
+    try:
+        database.execute("PRAGMA journal_mode=WAL")
+        database.execute("UPDATE targets SET product='INVENTED WAL TARGET'")
+        database.commit()
+        assert (output / "evaluator.sqlite-wal").exists()
+        with pytest.raises(ValueError, match="inventory"):
+            verify_prepared(output, pin)
+    finally:
+        database.close()
+
+
+def test_change_during_semantic_verification_fails_second_hash(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    output, _ = build(tmp_path, [invented_row(1, "2023-09-01")])
+    pin = digest_file(output / "manifest.json")
+    original = inspect_prepared
+
+    def change_after_inspection(directory: Path) -> dict:
+        result = original(directory)
+        with sqlite3.connect(directory / "agent.sqlite") as database:
+            database.execute("UPDATE inputs SET narrative='Changed invented narrative'")
+        return result
+
+    monkeypatch.setattr("cfpb_triage.source.inspect_prepared", change_after_inspection)
+    with pytest.raises(ValueError, match="database differs"):
+        verify_prepared(output, pin)
+
+
 def test_empty_usable_population_never_seals_manifest(tmp_path: Path) -> None:
     archive, taxonomy, pin = invented_source(tmp_path, [invented_row(1, "2023-09-01", " ")])
     output = tmp_path / "empty"

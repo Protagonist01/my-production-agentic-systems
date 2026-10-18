@@ -45,6 +45,9 @@ class OfficialRedirect(HTTPRedirectHandler):
 
 
 def acquire_file(url: str, destination: Path, digest: str, maximum_bytes: int) -> None:
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or parsed.hostname != "files.consumerfinance.gov":
+        raise ValueError("Source URL must use the official HTTPS host")
     destination = external_path(destination)
     destination.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
     if destination.exists():

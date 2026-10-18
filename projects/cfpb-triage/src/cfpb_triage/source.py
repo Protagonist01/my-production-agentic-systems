@@ -83,7 +83,12 @@ def archive_rows(archive: Path) -> Iterator[dict[str, str]]:
 
 
 def _readonly(path: Path) -> sqlite3.Connection:
-    return sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)
+    database = sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)
+    database.execute("PRAGMA query_only=ON")
+    database.execute("BEGIN")
+    # Establish one stable SQLite snapshot for every schema/row read on this connection.
+    database.execute("SELECT name FROM sqlite_master").fetchall()
+    return database
 
 
 def read_inputs(agent_database: Path) -> Iterator[ComplaintInput]:
@@ -373,6 +378,17 @@ def verify_prepared(output: Path, expected_manifest_sha256: str) -> dict[str, An
         TAXONOMY_VERSION,
     ):
         raise ValueError("Prepared manifest version is incompatible")
+    _verify_files(output, manifest)
+    if inspect_prepared(output) != manifest["prepared"]:
+        raise ValueError("Prepared aggregate evidence differs")
+    # A concurrent writer between the initial hash and read cannot silently change the stores.
+    _verify_files(output, manifest)
+    if digest_file(output / "manifest.json") != expected_manifest_sha256:
+        raise ValueError("Prepared manifest changed during verification")
+    return manifest
+
+
+def _verify_files(output: Path, manifest: dict[str, Any]) -> None:
     if {path.name for path in output.iterdir()} != {
         "agent.sqlite",
         "evaluator.sqlite",
@@ -385,6 +401,3 @@ def verify_prepared(output: Path, expected_manifest_sha256: str) -> dict[str, An
             "bytes": (output / name).stat().st_size,
         } != manifest["files"][name]:
             raise ValueError("Prepared database differs from pinned manifest")
-    if inspect_prepared(output) != manifest["prepared"]:
-        raise ValueError("Prepared aggregate evidence differs")
-    return manifest
