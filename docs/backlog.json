@@ -602,7 +602,8 @@
       "branch": "codex/h10-release-evidence",
       "command_document": "docs/release-evidence.md",
       "implementation_commit": "6b20fb9",
-      "review_evidence": "Locked local check: 570 passes, forty-four typed sources, import/lint/format/lock checks. Six package builds. Installed base-only CLI: six actual mock dispatches/completions under parent/child network denial, comparison generated, release blocked for both mock origins, approval unchanged. Offline-only by explicit user choice; no H10 live provider call/domain baseline. Exact final-head hosted checks maintained on #24. Native board unverified."
+      "review_evidence": "Locked local check: 570 passes, forty-four typed sources, import/lint/format/lock checks. Six package builds. Installed base-only CLI: six actual mock dispatches/completions under parent/child network denial, comparison generated, release blocked for both mock origins, approval unchanged. Offline-only by explicit user choice; no H10 live provider call/domain baseline. Exact final-head hosted checks maintained on #24. Native board unverified.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/80"
     },
     {
       "id": "H11",

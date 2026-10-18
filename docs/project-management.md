@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-18. F1–F5/O1/H1–H9 are merged and verified. H9 #23 completed after user merge of [PR #79](https://github.com/Protagonist01/my-production-agentic-systems/pull/79), clean main fd87750 (521 local tests and exact replay) and main run 39167447801 (nine applicable jobs, 521 tests per quality cell, sixteen Postgres checks). H10 #24 is in Review on codex/h10-release-evidence: fresh dispatch receipts and independently reviewed release gates, verified offline only by user choice. Native project-board state remains unverified because the API credential lacks project scope. No reviewed domain release baseline or domain quality result exists.
+Updated: 2026-10-18. F1–F5/O1/H1–H9 are merged and verified. H9 #23 completed after user merge of [PR #79](https://github.com/Protagonist01/my-production-agentic-systems/pull/79), clean main fd87750 (521 local tests and exact replay) and main run 39167447801 (nine applicable jobs, 521 tests per quality cell, sixteen Postgres checks). H10 #24 is in Review in [PR #80](https://github.com/Protagonist01/my-production-agentic-systems/pull/80) on codex/h10-release-evidence: fresh dispatch receipts and independently reviewed release gates, verified offline only by user choice. Native project-board state remains unverified because the API credential lacks project scope. No reviewed domain release baseline or domain quality result exists.
 
 ## Scope and source of truth
 
