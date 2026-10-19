@@ -105,3 +105,8 @@ To extend a supported request field, first change its versioned contract/seriali
 [tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/eaae533731730ed360bcc189aa85f552904a4e69/tests/test_replay.py#L37-L685
 
 H8 adds an optional telemetry dependency group, changing the actual lock hash. PR #78 proposes a separate invented-v2 capture and digest pin at source eaae533731730ed360bcc189aa85f552904a4e69; historical invented-v1 remains unchanged and rejects the new lock. Matching and ReplayBinding are unchanged. See [the explicit fixture review record](replay.md#h8-proposed-dependency-lock-fixture-update).
+
+
+## O4 + O5 dependency-lock maintenance
+
+The workflow extra changes uv.lock. The [fixture maintenance record](replay.md#o4--o5-explicit-workflow-lock-fixture-update) documents an explicit invented-v3 resource and external digest, captured at clean source `8d10f3a6161c008d4e27c4c9ba11496c443f2fc3`. All six request/response objects equal v2; only capture context/provenance changes. Historical v1/v2 bytes remain unchanged and both reject the new lock. The normal replay path, ReplayBinding compatibility and matching behavior are unchanged. Final exact-source replay and hosted checks are recorded on #29/#30.
