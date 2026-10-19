@@ -34,15 +34,15 @@ Acceptance evidence:
 
 ### O2: Build orders_360 with correct joins and historical as-of views
 
-Priority: P0; provisional size M; prerequisites: O1, F2. Status: Review in [PR #81](https://github.com/Protagonist01/my-production-agentic-systems/pull/81).
+Priority: P0; provisional size M; prerequisites: O1, F2. Status: Done after [PR #81](https://github.com/Protagonist01/my-production-agentic-systems/pull/81) merged as36ad712 and passed post-merge acceptance; issue#27 is closed.
 
 Import/aggregate orders, items, payments, delivery and reviews at declared grain; produce scoped snapshots that expose only facts known at case time.
 
 Acceptance evidence:
 
-- [ ] Key/cardinality/totals checks detect duplicate join inflation.
-- [ ] Future delivery/review facts cannot leak into an earlier request view.
-- [ ] Currency, missingness, provenance and Portuguese/translation handling are preserved.
+- [x] Key/cardinality/totals checks detect duplicate join inflation.
+- [x] Future delivery/review facts cannot leak into an earlier request view.
+- [x] Currency, missingness, provenance and Portuguese/translation handling are preserved.
 
 ### O3: Write refund/reship rules and independently reviewed case sets
 

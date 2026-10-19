@@ -1,6 +1,6 @@
 # Olist order grain and historical visibility — O2
 
-O2 #27 follows verified O1 and shared contracts. This branch implements a local private SQLite importer and read-only order projections. It does not implement refunds, a support policy, runtime authentication or a model workflow. C1 #34 proceeds independently in the user-selected parallel batch. See [source acquisition](olist-source.md), [source study](../code-study-olist-orders.md) and [Build Book Entry 24](../../BUILD_BOOK.md#entry-24--parallel-source-preparation-and-honest-historical-order-views).
+O2 #27 is merged/verified through PR#81 on36ad712 after596 local tests, exact replay and nineapplicable hosted jobs. It follows verified O1 and shared contracts. This branch implements a local private SQLite importer and read-only order projections. It does not implement refunds, a support policy, runtime authentication or a model workflow. C1 #34 proceeds independently in the user-selected parallel batch. See [source acquisition](olist-source.md), [source study](../code-study-olist-orders.md) and [Build Book Entry 24](../../BUILD_BOOK.md#entry-24--parallel-source-preparation-and-honest-historical-order-views).
 
 ## Create and pin a private derived store
 

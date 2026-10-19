@@ -84,3 +84,6 @@ H7 #77 is merged and verified on main 487242f. H8 adds [correlated redacted tele
 
 
 O2 adds [private Olist order aggregates and conservative historical views](docs/data/olist-orders.md), with exact source-grain checks and preserved unknown currency/timezone. C1 source preparation proceeds independently in the user-selected parallel batch. Refund rules, business actions and domain model-quality evidence remain subsequent work.
+
+
+C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-only agent storage, separate consumer-selected targets and exact-text grouped temporal partitions from the user-selected complete September 2023–March 2024 archive. [Source walkthrough](docs/code-study-cfpb.md) explains the boundaries. Raw records stay outside Git; this supplies data preparation, not a classifier or reviewed risk labels.

@@ -33,6 +33,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 24 — Parallel source preparation and honest historical order views](#entry-24--parallel-source-preparation-and-honest-historical-order-views)
 
+- [Entry 25 — Archive-grounded CFPB preparation in parallel](#entry-25--archive-grounded-cfpb-preparation-in-parallel)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -1240,3 +1242,79 @@ Move O2 to Review with the concrete source/package/source-data evidence, while p
 ### Published O2 review and final batch verification
 
 2026-10-19: O2 is published in PR#81 and C1 in PR#82, both attached to the chat and their issues remain open in Review. O2 publication head6ae7ff8 passed hosted run39172484822, alltenjobs: actual596tests per Ubuntu/Windows Python3.12/3.13 cell, sixteenPostgres tests, strictreplay and allsixbuilds. This final metadata commit records the concrete review links without changing executable/test/lock bytes from0781ddd. Verify its exact-head checks before handoff; historical passing runs do not replace that read-back. Combined-source local validation is running against O2source0781ddd+C1source1dd98fb; its result will be appended on#27/#34 after completion. The first592pass/cleanupfailure aggregate remains recorded above; production cleanup was not weakened.
+
+
+## Entry 25 — Archive-grounded CFPB preparation in parallel
+
+Date: 2026-10-18 (Africa/Lagos). C1 #34, codex/c1-cfpb-import, based on merged main 54f5af2. O2 proceeds independently in another worktree after the user explicitly selected O2 + C1 in parallel.
+
+**Files touched:** CFPB source preparation modules, private SQLite boundaries, invented importer tests and source/study documentation.
+
+### Context
+
+The user reviewed and merged #80. Parent verification of merged main passed locked setup/check (570 tests in 252.92 seconds), exact replay (six calls, two recorded timeouts, zero provider calls), and hosted run 39170421239 (nine applicable jobs, 570 tests in each quality cell and sixteen database checks). C1 is source preparation, not a classifier or reviewed risk-label dataset. The user explicitly chose the complete September 2023–March 2024 archive cohort with March held out.
+
+Current primary-source research changed the acquisition plan: CFPB ceased narrative publication in August 2026 and moved previously published narratives to its FOIA archive. Current live API exports therefore cannot serve as the narrative source. The official archived ZIP is bounded at 100,880,669 compressed bytes; raw source and derived records stay in external local storage.
+
+### Before you read on
+
+How would you prevent a target label from reaching a classifier while also keeping repeated complaint text out of multiple time partitions? Sketch the two storage schemas and decide what happens to a duplicate that straddles a cutoff.
+
+### Options considered and why
+
+A random capped sample is cheaper but adds a selection decision; the user selected the complete bounded archive. A single wide table with a friendly input projection leaves target columns alongside every agent read. Choose separate narrative-only agent and scorer databases, and a closed input type. Preserve consumer-selected labels exactly in scorer storage; do not invent reviewed truth. Assign September–December to development, January–February to regression and March to holdout. Normalize only for exact duplicate grouping; quarantine every group crossing time cutoffs rather than move future records into development. No consumer identity is available, so exact-text grouping cannot promise consumer-level or near-duplicate independence.
+
+### How to build it
+
+1. Download the fixed official ZIP and August 24, 2023 taxonomy PDF outside Git, hash their exact bytes, and record the publisher URLs plus aggregate schemas/counts. Pin those digests for every subsequent import; never silently replace source bytes.
+2. Validate the ZIP member and CSV schema before reading rows. Stream into a private staging SQLite file rather than retain all narratives in RAM. Count missing text/labels and masking tokens; retain source date and exact target labels only on the evaluator side.
+3. Hash case IDs and normalized narrative groups, assign dates to fixed windows, and quarantine groups spanning partitions. Write a separate agent database containing only opaque case ID and original published narrative, plus a scorer database with dates/splits/groups/consumer labels. Do not append company, response, issue or product metadata to inputs.
+4. Seal file hashes and aggregate evidence in a new manifest. Verify schema, counts, one-to-one case membership and group partition integrity independently before publishing aggregate provenance. Refuse existing output paths and source/output paths under a Git checkout.
+5. Exercise leakage, boundary dates, duplicates, missing text, malformed schema and tamper failures using invented complaints. Inspect complete real-source aggregates separately; neither source preparation nor passing plumbing tests establishes classification quality or reduced consumer harm.
+
+### What went wrong
+
+No implementation result yet. The original live-API direction was ruled out by the official 2026 source change before coding. Archive selection already conditions on consent, scrubbing and publication eligibility; missingness counts within this archive do not describe every complaint received by CFPB.
+
+
+### First C1 mechanism checks and host storage boundary
+
+The first 22 invented-data checks found eight failures before ingestion: this host has a real C:\.git ancestor, so a strict outside-any-checkout guard correctly rejected both the usual C: cache and pytest temporary directories. Keep the guard strict. Move the raw ZIP/PDF to D:\document\.cache\production-agents\cfpb and set TEMP/TMP only in this verification shell to an external D: test directory. CI's ordinary temporary directories remain outside its checkout. This corrects the initial cache location before preparing source records; no exception weakens source storage.
+
+Focused importer/CLI/acquisition verification then passed 26 tests in 3.29 seconds. These cover physical/typed target isolation, exact-text groups across cutoffs, all date boundaries including leap day, missingness/masking, source/target pins, malformed rows/inventory, output tampering, no-overwrite and bounded host-restricted downloads. Strict types found a ZIP stream typing mismatch: use explicit chunked SHA-256 because the advertised ZIP IO type does not promise readinto even though the concrete reader supports it. This does not change the digest encoding. Complete real-source preparation and full checks remain pending.
+
+
+### Complete historical-source preparation
+
+The actual pinned archive preparation completed successfully from source commit 8ddf6c1. It scanned 945,532 records, all within the user-selected seven-month window, and found 626,728 missing narratives. This corrects a possible interpretation of the FOIA page: its full-record archive includes records without published text, while the usable narrative subset is additionally selected by consent/scrubbing. Of 318,804 narrated records, 1,651 normalized groups spanning time partitions account for 58,066 quarantined records. The final private pair contains 260,738 records (139,732 development, 71,859 regression, 49,147 March holdout), 206,109 groups and eleven observed product selections.
+
+The profile counts 229,967 narratives with whole-word X patterns and 5,757,323 such tokens before quarantine. These are masking-pattern counts, not privacy verification. One source issue is empty on a record already excluded for missing narrative; the conditional narrated-target exclusion counter is zero. Closed agent/evaluator SQLite files are approximately400MB/104MB and remain outside Git. The aggregate manifest alone is copied into documentation. Current-code verification and installed-wheel checks follow; model-quality and independent risk labels remain absent.
+
+The focused suite now passes 28 checks in 5.06 seconds, including an active WAL witness: a write-ahead sidecar makes the sealed output inventory invalid before any database content is accepted. The source acquisition helper also rejects an initial nonofficial URL, in addition to redirect checks.
+
+
+### Final local and installed acceptance
+
+Verification completed against executable source1dd98fb66426b7c992a794d8f0a1232a8d32383b. The complete locked check passed599tests in322.20seconds with53strict typed sources, both import contracts, Ruff/format/lock. The final focused suite passed29tests5.16seconds, including active WAL inventory rejection and a deterministic change-during-verification witness. Allsixpackages built.
+
+A base-only installed wheel matched allfive package module bytes (four implementation modules plus the package marker), with Google/Langfuse/OpenTelemetry absent. Under network denial, its current verifier read the independently pinned copied documentation manifest and verified all260,738prepared records,206,109groups and exact139,732/71,859/49,147split counts. No source row, provider call or model evaluation was produced. Source acquisition/ingestion remains dated2026-10-18; this final documentation handoff is2026-10-19. Independent source review found no actionable C1 issue; it did not validate consumer labels as truth.
+
+The parent coordinates publication after an interrupted delegation. C1 is a separate PR from O2, with its issue kept open in Review until user merge/post-merge acceptance. Temporary combined-source validation uses O2source0781ddd and C1source1dd98fb, without merging either user PR. Exact hosted/final combined evidence remains pending and will be recorded on#34 after execution; no pending result is counted as a pass.
+
+Entry25 follows the O2 Entry24 reserved in the parallel [PR#81](https://github.com/Protagonist01/my-production-agentic-systems/pull/81). These independent append histories will be reconciled after the first reviewed PR merges; no earlier journal history is deleted.
+
+
+### Published C1 review
+
+C1 is published as PR#82, attached alongside O2 PR#81. The issue and manifest retain Review, with the merge checkbox unchecked. This metadata follow-up changes no executable/test/lock bytes from1dd98fb. Verify all ten applicable hosted jobs at its final head before handoff, then record actual combined625-test population results if the combined run passes. The two PRs have independent source changes; reconcile their parallel journal/planning appends after the first reviewed merge. No user PR is merged automatically.
+
+
+### Reconcile C1 after O2 merge
+
+2026-10-19: the user reviewed/merged PR#81 as36ad712436c9437512745d192da844a984d14d13 and asked to proceed. Merge origin/main into the existing C1 branch without rewriting its reviewed source history. Conflicts are confined to six shared documentation/planning files; preserve complete O2 Entry24 and C1 Entry25, both source studies, both task records and the independent source/use boundaries. Source files and test logic merge without conflicts. O2 post-merge verification is running and will be recorded before marking itDone. C1 remains open in Review; its re-integrated final-head checks must pass before handoff. This reconciliation creates no model call, new source cohort, policy label or business behavior.
+
+
+The resolved tree retains exact O2source/test bytes0781ddd and C1source/test bytes1dd98fb, plus shared harness/config/lock bytes equal to main36ad712. Focused source verification passed59tests8.27seconds. The combined documentation audit passed322immutable source ranges,225local links and18intended publication files with configuredsecrets absent. These are focused/documentation results, not a claim that the final full integrated run has passed yet. Both source chapters now distinguish original inspection from the merged O2 status. The original source datasets, prepared manifests and independently reviewed pins are unchanged.
+
+
+O2 post-merge acceptance completed on clean36ad712: locked setup/check596passed198.88seconds,52typed sources/imports/Ruff/format/lock; strictreplay consumed6calls/reproduced2timeouts with zero provider calls. Mainrun39229270824 passed allnineapplicable jobs, with actual596tests perqualitycell and16Postgres. Close#27 ascompleted and update its manifest/task checks; nativeprojectDone remains unverified. Preserve C1#34 in Review, its merge checkbox unchecked, and verify its final merged-main head before user handoff. No O3/C2 work starts during this reconciliation.

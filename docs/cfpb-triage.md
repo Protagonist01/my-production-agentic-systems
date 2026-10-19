@@ -1,6 +1,6 @@
 # CFPB complaint triage
 
-Accepted scope, updated 2026-10-11. Planned implementation; no application or evaluation result exists yet.
+Updated 2026-10-18. C1 source preparation is implemented on an unmerged branch; no application or classification evaluation result exists yet. The user selected O2 + C1 in parallel and the complete September 2023–March 2024 archive cohort. [Source evidence and operations](data/cfpb-source.md) · [Code walkthrough](code-study-cfpb.md).
 
 ## Delivered application
 
@@ -22,7 +22,7 @@ Each importer produces provenance/checksum/use notes and validated agent-visible
 
 ### C1: Import CFPB complaints and build a label-isolated temporal split
 
-Priority: P1; provisional size M; prerequisites: F2, H5. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: F2, H5. Status: Review in [PR #82](https://github.com/Protagonist01/my-production-agentic-systems/pull/82).
 
 Snapshot published narratives/metadata with source taxonomy versions. Store consumer-selected product/issue labels only in evaluation tables.
 

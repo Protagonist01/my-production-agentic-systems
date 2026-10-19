@@ -1,6 +1,6 @@
 # Code study — Olist order snapshots
 
-Snapshot: unmerged codex/o2-orders-360 based on verified54f5af2, 2026-10-18. Coverage: three new installable Olist modules, invented CSV fixtures/tests and shared mypy scope. Executable source is pinned to 0781dddf0577bd8e00db94e04d15198050ffd4af; documentation follow-ups retain those bytes. Raw Olist records, independent domain policy/actions, provider calls, production authentication and infrastructure internals are outside this study. [Operations](data/olist-orders.md) and [Build Book Entry24](../BUILD_BOOK.md#entry-24--parallel-source-preparation-and-honest-historical-order-views) explain the data/clock decisions.
+Source inspected 2026-10-18 on codex/o2-orders-360; O2 merged through PR#81 as36ad712 on2026-10-19. Coverage: three new installable Olist modules, invented CSV fixtures/tests and shared mypy scope. Executable source is pinned to 0781dddf0577bd8e00db94e04d15198050ffd4af; documentation follow-ups retain those bytes. Raw Olist records, independent domain policy/actions, provider calls, production authentication and infrastructure internals are outside this study. [Operations](data/olist-orders.md) and [Build Book Entry24](../BUILD_BOOK.md#entry-24--parallel-source-preparation-and-honest-historical-order-views) explain the data/clock decisions.
 
 ## Architecture and representative execution
 

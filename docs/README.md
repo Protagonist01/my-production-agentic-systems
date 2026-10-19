@@ -65,3 +65,6 @@ H8 #78 is merged/verified on main 21a5720. H9 #23 implements private [scorecards
 
 
 The user-approved O2+C1 batch follows verified H10 merge54f5af2. O2 adds [private exact-grain orders and conservative source-clock views](data/olist-orders.md), with a [source study](code-study-olist-orders.md). C1 proceeds in its own worktree and PR with the complete September2023–March2024 narrative archive and March holdout. These source-preparation mechanisms do not establish domain model quality or business actions.
+
+
+C1 [CFPB source preparation](data/cfpb-source.md) uses a pinned official FOIA archive because the current live database removed narratives in 2026. Separate private agent/target stores and exact-text grouped temporal partitions preserve label isolation; [source study](code-study-cfpb.md) traces implementation and limits. The complete archive is scanned, missing narratives are counted, and groups crossing date windows are quarantined. Consumer targets remain unreviewed references; no classification or consumer-harm result is established.

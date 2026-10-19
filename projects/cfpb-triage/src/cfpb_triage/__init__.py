@@ -1,1 +1,1 @@
-"""cfpb_triage: package scaffold; runtime behavior is not implemented yet."""
+"""CFPB archive preparation; classifier/runtime delivery follows later issues."""
