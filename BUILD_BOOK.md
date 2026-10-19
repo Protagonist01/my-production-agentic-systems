@@ -37,6 +37,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 26 — Constructed policy and review evidence before domain baselines](#entry-26--constructed-policy-and-review-evidence-before-domain-baselines)
 
+- [Entry 28 — Transactional refunds and a bounded LangGraph workflow](#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -1368,3 +1370,30 @@ The initial thirty pure-policy witnesses passed. The private pipeline test then 
 Executable source15908425fa0735317a9e5ec281e7948c9aaa9bba passed the full locked check:658tests511.08seconds,59strict typed source files, both import contracts, Ruff/format/lock. Focused33tests passed after the encoding fix. The actual pinned O2 store produced12hybrid cases in6order groups,4per split,6base/6adversarial;3refund proposals and9reviews matched literal provisional AI policy-table expectations. No business write or provider call occurred.
 
 Allsixpackages built. A base-only installed Olist wheel matched all7modulebytes and read the independently pinned private evaluator file under network denial, with optionalSDKs andpytestabsent; all12proposals matched. This validates installed mechanism behavior, not human adjudication or a transaction. Documentation audit checked329immutable source ranges and242local links. Raw/private literal scans and final exact-head hosted checks are recorded on#28 after completion. Keep issue open in Review until user merge and post-merge acceptance. No O4 work starts on an unmerged prerequisite.
+
+
+## Entry 28 — Transactional refunds and a bounded LangGraph workflow
+
+**Files touched:** Olist backend/schema/workflow modules, their integration tests, optional workflow dependencies and operations. Started2026-10-20 from verified O3 mainde04a96. Entry27 is reserved in C2#84 and will be preserved when that reviewed branch integrates. The user explicitly approved combining O4#29 and O5#30 in one PR to reduce review cycles; O5's O4 prerequisite is satisfied inside this reviewed bundle rather than requiring a separate intermediate merge. O3 is already merged/verified.
+
+### Before you read on
+
+A refund commits, but the process crashes before a graph checkpoint or response is saved. On restart in a different run, how can the system return the original effect without refunding twice? What must be checked even before returning an old receipt?
+
+### Options considered and why
+
+A memory-only ledger/checkpointer is easy but cannot survive process restart. SQLite would simplify local tests, but F4 already supplies isolated restricted Postgres databases and O4 needs real concurrent transactional evidence. Use a vertical-owned Postgres schema in an F4 trial database, with the official persistent Postgres LangGraph saver in its own schema. Keep base import/source/policy installation light; expose LangGraph/checkpointer through an explicit optional workflow extra. Retain the reviewed LangGraph1.2.15 pin and verify checkpoint-postgres3.2.0 compatibility before relying on it. No shared harness API or migration is replaced.
+
+### How to build it
+
+1. A trusted bootstrap admin creates Olist-owned tables and checkpoint schema, records immutable schema version/checksum and grants only required table privileges to the trial role. Agent-visible tools receive a bound connection factory and explicit caller grant, never admin credentials or SQL authority.
+2. Enroll a pinned O2 order view plus separately declared timed SIM confirmations. Keep original source fields/currency unchanged. The current refund balance/version belongs to the business database, not stale caller text or an agent-supplied confirmation.
+3. Serialize a tenant/business-operation key with a transaction-scoped advisory lock. Check scope first; compare any prior operation's exact payload before returning its original receipt. New run IDs do not change the operation key or consume a new refund.
+4. Lock the tenant/run budget and order record in a fixed order. Refuse changed limit configuration, stale versions, unknown/ineligible facts, mismatched full amounts and amounts above either per-order policy cap or explicitly configured per-run SIM limit. Update order state/version, budget and append-only receipt in one transaction. A before-commit fault rolls everything back; an after-commit fault must be recoverable by the same business key.
+5. Build an acyclic LangGraph intent/context/policy/action/result flow, using an official Postgres checkpointer and bounded step count. Only narrative/request facts enter intent planning; the planner cannot choose tenant/order, permissions or commit success. Revalidate every proposal in the business tool. On restart, resume saved graph state; business idempotency protects a repeated action node.
+6. Derive thread identity from trusted tenant/business event, bind the original input fingerprint and serialize same-thread execution. Responses claim completion only after rereading the actual matching ledger/state; a proposal or forged result reference is insufficient. Status/review paths never claim a refund. O6's operator approval/resume workflow and O7 authentication/UI remain later work.
+7. Test invented unit boundaries and real isolated Postgres transactions/concurrency/restart behavior. Reuse pinned source evidence; perform one final complete integrated check and required hosted CI after the feature is ready. No live model calls are authorized; model-path tests use invented gateway responses.
+
+### What went wrong
+
+Docker's Linux engine was stopped at resumption; its CLI reported a missing engine pipe. Start the existing Docker Desktop installation without a visible helper window, then verify the engine before attempting DB evidence. No database result is claimed until it runs. Optional workflow packages, bootstrap role privileges and checkpoint serialization are explicit trust boundaries; do not substitute a memory saver and call it durable.
