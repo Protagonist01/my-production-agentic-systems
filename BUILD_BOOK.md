@@ -30,6 +30,9 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 22 — Reporting every scheduled outcome](#entry-22--reporting-every-scheduled-outcome)
 
 - [Entry 23 — Fresh dispatch receipts and independently reviewed releases](#entry-23--fresh-dispatch-receipts-and-independently-reviewed-releases)
+
+- [Entry 24 — Parallel source preparation and honest historical order views](#entry-24--parallel-source-preparation-and-honest-historical-order-views)
+
 - [Entry 25 — Archive-grounded CFPB preparation in parallel](#entry-25--archive-grounded-cfpb-preparation-in-parallel)
 
 ## Entry 1 — Proposed execution and evidence boundaries
@@ -1172,6 +1175,75 @@ Executable source is 6b20fb959e5f54a71495aeac97f5c6b9b54ca182. The documentation
 Published H10 in PR #80, attached it to the chat, and marked #24 Review while keeping it open and its merge checkbox unchecked. Initial hosted run 39169936224 is in progress, not accepted yet. This small follow-up records the actual PR link; executable source/test/dependency bytes are unchanged. Verify every suite on the resulting final SHA and the PR merge state, then append exact results to #24. User review/merge and post-merge verification remain the completion boundary. No Olist/domain task starts during review.
 
 
+## Entry 24 — Parallel source preparation and honest historical order views
+
+Date: 2026-10-18 (Africa/Lagos). O2 #27 on codex/o2-orders-360, based on verified merged #80 main54f5af2. C1 #34 proceeds in a separate managed worktree/branch under explicit user choice.
+
+**Files touched:** Olist import/storage/view modules, tests, source operations/study docs and shared planning/type-check scope.
+
+### Context
+
+The user reviewed/merged #80 and requested multiple issues for speed, then explicitly selected O2+C1 in parallel. H10 post-merge locked setup/check passed570tests252.92s plus exactsixcall/twotimeout/zero-provider replay; main39170421239 passed nineapplicable jobs, actual570tests ineachqualitycell and16databasechecks. H10 is completed; nativeboardstatus remains unverified. O2/C1 have merged prerequisites and independent package/data boundaries. SeparatePRs preserve targeted review and do not skip dependentO3/C2 gates. This explicitly changes the earlier single-issue-at-a-time execution for independent work only.
+
+### Before you read on
+
+An order has two items, two payments and two reviews. A flat join yields eight rows. Which amounts should be summed once, and when can a historical view reveal a payment row whose source has no recorded availability timestamp?
+
+### Options considered and why
+
+Reject a raw many-to-many join: summing after it would inflate money and count rows. Import explicit source grains into separate SQLite tables with key/foreign-key checks; compute each child's totals independently before assembling one order row. Full review_id is not globally unique in the actual source; the inspected key(order_id,review_id) is unique. Keep missing amounts/counts distinct from zero. Use exact Decimal parsing and integer minor units, without inventing a currency.
+
+Do not assign historical availability of items/payments/customer attributes/estimated delivery/final status from purchase time: their source has no observation timestamp. Keep those facts hidden until an externally declared snapshot observation time. Event timestamps and completed review answers can support a limited effective-time projection; hide future facts, retain source-local clock semantics without timezone conversion, and document that this is not a historical ingestion log. Raw Portuguese text and source category translations stay separate.
+
+### How to build it
+
+1. Verify the externally pinned O1 manifest and rawCSV hashes outsideGit, import needed tables at declared grain, and validate widths, keys, references, finite two-decimal amounts and source timestamp formats. Build a new privateSQLite file exclusively; never overwrite an earlier derivedsnapshot.
+2. Make independent per-order item/payment/review aggregates, reconcile their global totals/counts with source tables, and preserve exact source strings/missingness. Emit only aggregate provenance/count/checksum evidence toGit; keep source rows and database outsideGit.
+3. Expose a read-only OrderStore requiring explicit tenant-bound allowed-order scope, naive source-local as_of and declared observed_at. Refuse out-of-scope access. Return no future delivery/review data and no snapshot-only details beforeobserved_at; never translate reviewtext automatically or label sourceamounts BRL without evidence.
+4. Test join-multiplicity witnesses, duplicate/orphan corruption, historicalfuture canaries, unknown availability, sourcehash changes, scope violations and exact decimal sums with inventedCSV. Then verify actual pinnedOlist source and fullpackaged flow without provider calls. Add vertical sources to strict mypy so CI checks new applicationcode.
+
+### What went wrong
+
+No implementation result yet. The actual snapshot inspection found802 duplicated review_id keys(up to3orders), but no duplicate(order_id,review_id) pairs; source rows/IDs were not printed. Treat grain discovery as evidence, not a reason to deduplicate real observations silently.
+
+
+### Availability refinement and first source verification
+
+Tighten the first design before implementation: a review answer timestamp does not establish that final text/score was never edited later. Keep all final review content hidden until the declared snapshot observation boundary, then also require answer_at <= as_of. Recorded order events remain an explicitly limited effective-time projection, not a recovered ingestion log. Reject an observation boundary before any recorded actual event; estimated/shipping dates remain plans. The real-source drill uses declared source-clock boundary 2026-10-18 00:00:00, not a claimed UTC conversion or recovered historical observation.
+
+The focused source/order suite passed 27 tests in 8.05 seconds, and strict mypy passed 52 source files. The eight-row join witness produced inflated item total12012 while the independent aggregate retained3003. All99,441 authentic orders imported with112,650items,103,886payments and100,000reviews; key/reference/count/amount checks passed. Exact integer-hundredth totals reconciled: price1,359,164,370, freight225,190,954, payment1,600,887,212. These are undeclared source-unit sums, not a currency or business-value claim. The private database digest is in docs/data/olist-orders-v7-report.json; no source rows orIDs were exported.
+
+A deterministic read smoke check selected the first1,000 source orders byID solely for software verification. At each purchase clock, no future events or snapshot-only fields/text leaked; at the declared observation boundary child counts matched returned rows. Currency remained null; no provider call occurred. This is not a sampled model evaluation or source-wide claim about historical ingestion. Full checks/package/source-link verification follow.
+
+
+### Review caught two SQLite lifetime bugs before publication
+
+Independent read-only review reproduced a pin violation with an invented database: after opening a store with the correct digest, another SQLite connection committed a changed order and the already-open store returned it. A read-only connection alone does not hold a stable snapshot. A WAL can also contain committed changes absent from the hashed main file. Reject WAL/SHM/journal sidecars, begin and retain a read transaction, read metadata to acquire its shared lock, then recheck the main digest while the lock is held. A writer's commit must remain blocked while the store exists; close releases the snapshot. Constructor failures must close the connection.
+
+The reviewer also reproduced a Windows file-handle leak: `with sqlite3.connect(...)` manages transactions but does not close the connection. The imported database could not be renamed until garbage collection. Wrap the connection in contextlib.closing as well as the transaction context. A test retains a strong reference to the actual connection and requires SQL access to raise ProgrammingError after import returns. These are verified bugs in the unmerged O2 implementation, not claims of production exploitation. Add the three meaningful resource/pin witnesses before rebuilding/retesting.
+
+The first complete O2 run had592passes and one unchanged H6 worker test failure: expected timeout but receivedworker_cleanup_error. Its cleanup waits are two bounded0.25second joins; the result correctly fails closed rather than releasing potentially live state. It occurred while source imports ran, but the cause is not established by that coincidence. Preserve the failure, recheck that case and rerun the final complete check after source work finishes; do not weaken production cleanup or treat an isolated retry as proof of cause.
+
+The first installed base-wheel drill imported all99,441 real orders under network denial and read100 deterministic orders with optional SDKs absent. It matched the pre-repair three module bytes. This is useful earlier evidence, not final-byte acceptance: rebuild/reinstall and repeat the final snapshot/read/CLI checks after the SQLite repairs.
+
+
+### Final repaired source and installed boundary
+
+Committed executable source as0781dddf0577bd8e00db94e04d15198050ffd4af. The repaired source/order plus unchanged H6 timeout case passed31tests40.29seconds; strict types passed52sources. Allsixpackages rebuilt and the base-only wheel was reinstalled. Under network denial, the final installed three module bytes matched source; its CLI imported hand-invented separate grains and returned exact3003/3203 totals, hid future/untimed facts, retained Portuguese text and nullcurrency, then released all handles so the file could be renamed. The repaired reader also verified/read the full99,441-order privately pinned real store. Optional model/telemetry SDKs and pytest were absent. Final-byte import/reader acceptance is separate from the earlier full real-source pre-repair wheel drill.
+
+Source anchors are pinned to0781ddd. Expanding strict type-check scope invalidated the old full pyproject slice; refresh that anchor while retaining other historical slices. Documentation verification passed298 immutable ranges,209local links and17publicationfiles withconfiguredsecrets absent. Source/modeldatafilesremainoutsideGit; aggregate reports carry no rawrows/IDs/text. Finalcompletechecks and exact-head hostedacceptance remain pending, not claimed from the focusedrepair result.
+
+
+### Review preparation and combined acceptance
+
+Move O2 to Review with the concrete source/package/source-data evidence, while preserving the first local failure and pending final acceptance. Publish its PR early so hosted jobs can run while C1 finishes. A separate temporary integration checkout combines O2source0781ddd and C1source1dd98fb; only the parallel BuildBook append conflicts, resolved by retaining the O2 copy for this temporary validation. It is not a user PR merge or a replacement publication branch. Run the combined locked full suite after C1's current full suite finishes to avoid duplicate heavy local runs. Exact final CI and combined evidence will be recorded on each issue before handoff.
+
+
+### Published O2 review and final batch verification
+
+2026-10-19: O2 is published in PR#81 and C1 in PR#82, both attached to the chat and their issues remain open in Review. O2 publication head6ae7ff8 passed hosted run39172484822, alltenjobs: actual596tests per Ubuntu/Windows Python3.12/3.13 cell, sixteenPostgres tests, strictreplay and allsixbuilds. This final metadata commit records the concrete review links without changing executable/test/lock bytes from0781ddd. Verify its exact-head checks before handoff; historical passing runs do not replace that read-back. Combined-source local validation is running against O2source0781ddd+C1source1dd98fb; its result will be appended on#27/#34 after completion. The first592pass/cleanupfailure aggregate remains recorded above; production cleanup was not weakened.
+
+
 ## Entry 25 — Archive-grounded CFPB preparation in parallel
 
 Date: 2026-10-18 (Africa/Lagos). C1 #34, codex/c1-cfpb-import, based on merged main 54f5af2. O2 proceeds independently in another worktree after the user explicitly selected O2 + C1 in parallel.
@@ -1235,3 +1307,14 @@ Entry25 follows the O2 Entry24 reserved in the parallel [PR#81](https://github.c
 ### Published C1 review
 
 C1 is published as PR#82, attached alongside O2 PR#81. The issue and manifest retain Review, with the merge checkbox unchecked. This metadata follow-up changes no executable/test/lock bytes from1dd98fb. Verify all ten applicable hosted jobs at its final head before handoff, then record actual combined625-test population results if the combined run passes. The two PRs have independent source changes; reconcile their parallel journal/planning appends after the first reviewed merge. No user PR is merged automatically.
+
+
+### Reconcile C1 after O2 merge
+
+2026-10-19: the user reviewed/merged PR#81 as36ad712436c9437512745d192da844a984d14d13 and asked to proceed. Merge origin/main into the existing C1 branch without rewriting its reviewed source history. Conflicts are confined to six shared documentation/planning files; preserve complete O2 Entry24 and C1 Entry25, both source studies, both task records and the independent source/use boundaries. Source files and test logic merge without conflicts. O2 post-merge verification is running and will be recorded before marking itDone. C1 remains open in Review; its re-integrated final-head checks must pass before handoff. This reconciliation creates no model call, new source cohort, policy label or business behavior.
+
+
+The resolved tree retains exact O2source/test bytes0781ddd and C1source/test bytes1dd98fb, plus shared harness/config/lock bytes equal to main36ad712. Focused source verification passed59tests8.27seconds. The combined documentation audit passed322immutable source ranges,225local links and18intended publication files with configuredsecrets absent. These are focused/documentation results, not a claim that the final full integrated run has passed yet. Both source chapters now distinguish original inspection from the merged O2 status. The original source datasets, prepared manifests and independently reviewed pins are unchanged.
+
+
+O2 post-merge acceptance completed on clean36ad712: locked setup/check596passed198.88seconds,52typed sources/imports/Ruff/format/lock; strictreplay consumed6calls/reproduced2timeouts with zero provider calls. Mainrun39229270824 passed allnineapplicable jobs, with actual596tests perqualitycell and16Postgres. Close#27 ascompleted and update its manifest/task checks; nativeprojectDone remains unverified. Preserve C1#34 in Review, its merge checkbox unchecked, and verify its final merged-main head before user handoff. No O3/C2 work starts during this reconciliation.

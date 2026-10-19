@@ -1,0 +1,46 @@
+{
+  "counts": {
+    "customers": 99441,
+    "items": 112650,
+    "orders": 99441,
+    "payments": 103886,
+    "products": 32951,
+    "reviews": 100000,
+    "sellers": 3095,
+    "translations": 71
+  },
+  "currency": {
+    "source_declared_unit": null,
+    "status": "Unverified; do not infer from country."
+  },
+  "database_sha256": "3f97471af1ad88653e04fffb9619d190358ba6673a83e8026964aa7ae801d73f",
+  "language": "Portuguese fields/text retained; category translation is source supplied.",
+  "observed_at": "2026-10-18T00:00:00",
+  "quality_evaluation": false,
+  "source_manifest_sha256": "24c1a4b0f6975cb1cff8e87d0674cf91cbccc3766f4f08ba93360f72e55b803f",
+  "source_version": 7,
+  "timestamp_timezone": null,
+  "totals": {
+    "amounts": {
+      "freight_value": {
+        "known_minor": 225190954,
+        "missing": 0
+      },
+      "payment_value": {
+        "known_minor": 1600887212,
+        "missing": 0
+      },
+      "price": {
+        "known_minor": 1359164370,
+        "missing": 0
+      }
+    },
+    "child_counts": {
+      "items": 112650,
+      "payments": 103886,
+      "reviews": 100000
+    },
+    "orders": 99441
+  },
+  "visibility_policy": "conservative-effective-time-v1"
+}

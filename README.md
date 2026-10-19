@@ -83,4 +83,7 @@ Start repository foundation and Olist source acquisition. Verify minimal shared 
 H7 #77 is merged and verified on main 487242f. H8 adds [correlated redacted telemetry](docs/telemetry.md) and an invented-only `python dev.py telemetry-check` export/read-back command. [Source walkthrough](docs/code-study-telemetry.md) follows the privacy and exporter-health boundaries. H8 #22 is completed after merge #78 on verified main 21a5720. H9 #23 adds [private scorecards and case-level comparisons](docs/scorecards.md); H10 #24 adds [fresh recording and release gates](docs/release-evidence.md), verified offline only. No domain release baseline exists.
 
 
+O2 adds [private Olist order aggregates and conservative historical views](docs/data/olist-orders.md), with exact source-grain checks and preserved unknown currency/timezone. C1 source preparation proceeds independently in the user-selected parallel batch. Refund rules, business actions and domain model-quality evidence remain subsequent work.
+
+
 C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-only agent storage, separate consumer-selected targets and exact-text grouped temporal partitions from the user-selected complete September 2023–March 2024 archive. [Source walkthrough](docs/code-study-cfpb.md) explains the boundaries. Raw records stay outside Git; this supplies data preparation, not a classifier or reviewed risk labels.
