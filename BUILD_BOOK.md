@@ -1397,3 +1397,21 @@ A memory-only ledger/checkpointer is easy but cannot survive process restart. SQ
 ### What went wrong
 
 Docker's Linux engine was stopped at resumption; its CLI reported a missing engine pipe. Start the existing Docker Desktop installation without a visible helper window, then verify the engine before attempting DB evidence. No database result is claimed until it runs. Optional workflow packages, bootstrap role privileges and checkpoint serialization are explicit trust boundaries; do not substitute a memory saver and call it durable.
+
+
+### Transaction, source and installation evidence
+
+Executable source `efd822fffc1b17c0272a4c2bd966f789109081ff` passed fourteen focused graph/model-boundary witnesses and the full required database suite: 27 tests in 259.92 seconds (16 existing + 11 Olist). The owned child process exits with code23 after business commit; independent SQL observes one 5,000-minor effect, and a new persistent saver recovers the original-run receipt without a second write. Concurrent run spending and same-order competing-operation checks passed.
+
+Reuse O2 database pin `3f97471af1ad88653e04fffb9619d190358ba6673a83e8026964aa7ae801d73f` and private O3 evaluator pin `0e542a7a4d13964c3fa3d4519f8c78e6452cb3e55f827997bed23eb67069011d`. Select the three already-eligible hybrid groups, enroll original views plus declared fictional proofs in a fresh owned F4 trial, run refund/status/reship and completed new-run retries, then independently SELECT ledger count/sum, order balance/version and budget spending. Actual results: three refunds, three statuses, three reviews, three completion resumes; exactly three ledger entries and19,116minor SIM in ledger/orders/budgets. Source currency remains null; zero model calls/real payments. Drop only that owned trial afterward. Public aggregate report contains pins/counts only.
+
+The first private report writer attempted to JSON-encode Postgres SUM as Decimal and failed after all business assertions and trial cleanup. Convert aggregate integer sums explicitly to int and repeat the complete drill in a fresh owned trial; the second report passed. This was a report serialization error, not evidence of a failed transaction. The first installed-byte probe also included the wheel directory entry as if it were a file; filter directory entries before comparing. Fresh base and optional-workflow installed probes then matched all twelve Python modules plus business.sql under network denial. Base has no LangGraph/Google/Langfuse/OpenTelemetry/pytest; optional workflow imports and checkpoint serializer round-trip passed. All six wheel/sdist pairs built, and the locked dependency audit reported no known vulnerabilities.
+
+One final complete local check is running. Record its actual failures/results before handoff; do not infer a pass from focused tests. Final hosted checks and issue Review evidence follow after source and documentation are ready.
+
+
+### Final integrated check exposed two existing boundaries
+
+The full local run completed:670passed,2failed in511.07seconds; lock/lint/format/64types/twoimportcontracts passed. The replay CLI correctly refused its v2 capture because the newly added workflow dependencies changed uv.lock. Do not relax ReplayBinding: preserve v1/v2 bytes, parameterize historical rejection for both, and intentionally publish a new invented-only v3 fixture with its own reviewed content pin from a committed clean capture revision. Normal replay/CI must never regenerate it.
+
+The other failure was the existing owned-process cleanup witness: an eight-second deadline expired before its worker body wrote the started marker on a cold Windows spawn. Usage stayed unknown and the process was reaped; the test failed its required entered-body assertion. Give this particular test thirty seconds of startup/execution budget, keep the marker/unknown-usage/no-surviving-child assertions and a33second wall bound, and make the invented hanging body sleep60seconds so it cannot complete normally inside the deadline. Production transport deadlines are unchanged. Recheck affected controls/replay and the complete suite after the explicit fixture update.

@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-19. F1–F5/O1/H1–H10/O2/C1 are merged and verified. C1 #34 is complete after user merge of #82 as2988428 and post-merge locked setup/check:625tests252.46s,56typed sources/imports/Ruff/format/lock, exact6call/2timeout/zero-provider replay and nine applicable hosted jobs (625perqualitycell/16Postgres). Native board remains unverified. The user selected O3+C2 for the next batch: constructed Olist SIM refund policy/cases and CFPB blind provisional risk review/deterministic baselines. No live provider calls or domain release-quality claim.
+Updated: 2026-10-20. O3 #28 is complete after user merge of #83 as `de04a96` and verified main run 39330860614 (nine applicable jobs) plus strict six-call/two-timeout/zero-provider replay. Its tree matches the reviewed O3 head, so unchanged full local tests/source ingestion/builds were reused. C2 #84 remains open in Review after a documentation-only main reconciliation and ten successful hosted jobs at `618b6c6`. Native board state is unverified. The next user-authorized delivery combines O4 #29 + O5 #30 in one PR; no live provider calls or domain release-quality claim.
 
 ## Scope and source of truth
 
@@ -42,7 +42,7 @@ P0 = foundation/first-release critical path, P1 = remaining committed product sc
 
 ## Worktrees and ownership
 
-Create implementation worktrees only after a verified contract baseline exists in Git. Use one issue-sized branch per worktree, based on the current reviewed main. Proposed streams:
+Create implementation worktrees only after a verified contract baseline exists in Git. Use one issue-sized branch per worktree, based on the current reviewed main, unless the user authorizes a tightly coupled delivery bundle (O4 + O5 below). Proposed streams:
 
 | Stream | Owned paths |
 |---|---|
@@ -107,3 +107,10 @@ The Project is private and linked to this public repository. Creation and update
 The user selected O3+C2 after verified main2988428. Root owns both issue-sized branches: O3 reuses the existing c1-cfpb-import checkout on codex/o3-refund-policy; C2 uses the separate managed c2-risk-baselines checkout. O3 owns Olist policy, case preparation, tests and chapter; C2 owns CFPB review/baselines, tests and chapter. Shared planning/index/Build Book appends require reconciliation after the first reviewed merge. Entry26 is O3; Entry27 is C2. Retain complete journal history. Raw/private source records and per-case labels stay external.
 
 The user accepted a constructed full-refund-only SIM policy capped at100.00; missing/conflicting facts, over-cap and reship require review. Olist's actual currency stays unknown. The user asked Codex to label the twelve-case CFPB blind batch. Those judgments are explicitly AI-reviewed/provisional; no human/adjudicated labels or agreement evidence is invented. Baselines use development-only fitting, show split/slice denominators and preserve uncertain cases. Neither task authorizes live provider calls, business writes or release promotion. O4/C3 stay Backlog until prerequisite user merge and verification. Native project-board state remains unverified.
+
+
+## Authorized O4 + O5 delivery bundle
+
+The user approved one PR for scoped transactional refund tools (#29) and the dependent LangGraph workflow (#30). Both use `codex/o4-o5-refund-workflow` in the existing managed c1-cfpb-import checkout, based on verified O3 main `de04a96`. O4 is verified inside the same review bundle before the O5 delivery rather than requiring an intermediate user merge. One primary `Refs #29` satisfies contribution metadata; the body also links #30. Both issues remain open in Review until user merge and post-merge acceptance. C2 #84 remains independent; preserve Entry27 when reconciling journal/planning appends.
+
+Reuse unchanged pinned source stores and previous exact-source evidence. Perform one final complete integrated offline check, the required database suite, package checks and one hosted matrix at the final head; repeat only checks affected by new failures/changes. No live provider calls, real payment writes or release promotion are authorized. Source-backed tests use declared hybrid SIM facts and explicit offline intent. O6 reviewer approvals, O7 authentication/API/UI and O8 complete release acceptance remain Backlog. Native project-board transitions are unverified.
