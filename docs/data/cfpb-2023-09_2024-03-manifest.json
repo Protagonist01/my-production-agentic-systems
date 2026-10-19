@@ -1,0 +1,781 @@
+{
+  "schema_version": 1,
+  "source_kind": "original",
+  "source_pin": {
+    "schema_version": 1,
+    "archive_sha256": "993747363e52239e4762b804662d7f604f976a139de4f729f613329d3d8c7206",
+    "taxonomy_sha256": "6827dc88463217507e103fb0ec0eb7583dc203eb608ff6efd152bebc18655535"
+  },
+  "archive_url": "https://files.consumerfinance.gov/f/documents/CCDB_Export_5_September_2023_through_March_2024.zip",
+  "archive_bytes": 100880669,
+  "csv_member": "CCDB_Export_5_September_2023_through_March_2024.csv",
+  "csv_sha256": "7a8645f6f602762fcf8cdbf01005aaad9a5834debc9cab549ff94b6b128b1ab0",
+  "taxonomy_url": "https://files.consumerfinance.gov/f/documents/cfpb_consumer_complaint_form_product_issue_options_August_2023_FINAL.pdf",
+  "taxonomy_version": "cfpb-form-effective-2023-08-24",
+  "policy_version": "cfpb-archive-temporal-exact-groups-v1",
+  "code_revision": "8ddf6c1",
+  "prepared_at_utc": "2026-10-18T22:22:14.067512+00:00",
+  "temporal_windows": {
+    "development": [
+      "2023-09-01",
+      "2023-12-31"
+    ],
+    "regression": [
+      "2024-01-01",
+      "2024-02-29"
+    ],
+    "holdout": [
+      "2024-03-01",
+      "2024-03-31"
+    ]
+  },
+  "group_policy": "NFKC/casefold/whitespace-normalized exact narrative; crossing groups quarantined",
+  "profile": {
+    "counts": {
+      "archive_rows": 945532,
+      "outside_cohort": 0,
+      "cohort_rows": 945532,
+      "missing_narrative": 626728,
+      "missing_required_consumer_target": 0,
+      "masked_narrative_rows": 229967,
+      "mask_tokens": 5757323,
+      "cross_partition_groups": 1651,
+      "cross_partition_rows": 58066
+    },
+    "empty_source_fields": {
+      "Date received": 0,
+      "Product": 0,
+      "Sub-product": 1,
+      "Issue": 1,
+      "Sub-issue": 16705,
+      "Consumer complaint narrative": 626728,
+      "Company public response": 382185,
+      "Company": 0,
+      "State": 2112,
+      "ZIP code": 0,
+      "Tags": 894287,
+      "Submitted via": 0,
+      "Date sent to company": 0,
+      "Company response to consumer": 11,
+      "Timely response?": 0,
+      "Complaint ID": 0
+    },
+    "received_range": {
+      "min": "2023-09-01",
+      "max": "2024-03-31"
+    }
+  },
+  "prepared": {
+    "prepared_rows": 260738,
+    "group_count": 206109,
+    "narrative_characters": 294905410,
+    "split_counts": {
+      "development": 139732,
+      "regression": 71859,
+      "holdout": 49147
+    },
+    "product_counts": {
+      "Checking or savings account": 15313,
+      "Credit card": 18393,
+      "Credit reporting or other personal consumer reports": 172255,
+      "Debt collection": 26186,
+      "Debt or credit management": 594,
+      "Money transfer, virtual currency, or money service": 5463,
+      "Mortgage": 7157,
+      "Payday loan, title loan, personal loan, or advance loan": 2742,
+      "Prepaid card": 2374,
+      "Student loan": 6159,
+      "Vehicle loan or lease": 4102
+    },
+    "product_issue_counts": [
+      {
+        "product": "Checking or savings account",
+        "issue": "Closing an account",
+        "count": 2355
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Credit monitoring or identity theft protection services",
+        "count": 5
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Improper use of your report",
+        "count": 18
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Incorrect information on your report",
+        "count": 21
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Managing an account",
+        "count": 8451
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Opening an account",
+        "count": 1326
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Problem caused by your funds being low",
+        "count": 1043
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "count": 33
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Problem with a lender or other company charging your account",
+        "count": 2052
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Problem with fraud alerts or security freezes",
+        "count": 8
+      },
+      {
+        "product": "Checking or savings account",
+        "issue": "Unable to get your credit report or credit score",
+        "count": 1
+      },
+      {
+        "product": "Credit card",
+        "issue": "Advertising and marketing, including promotional offers",
+        "count": 911
+      },
+      {
+        "product": "Credit card",
+        "issue": "Closing your account",
+        "count": 1284
+      },
+      {
+        "product": "Credit card",
+        "issue": "Credit monitoring or identity theft protection services",
+        "count": 55
+      },
+      {
+        "product": "Credit card",
+        "issue": "Fees or interest",
+        "count": 1824
+      },
+      {
+        "product": "Credit card",
+        "issue": "Getting a credit card",
+        "count": 2315
+      },
+      {
+        "product": "Credit card",
+        "issue": "Improper use of your report",
+        "count": 243
+      },
+      {
+        "product": "Credit card",
+        "issue": "Incorrect information on your report",
+        "count": 1006
+      },
+      {
+        "product": "Credit card",
+        "issue": "Other features, terms, or problems",
+        "count": 2165
+      },
+      {
+        "product": "Credit card",
+        "issue": "Problem when making payments",
+        "count": 1168
+      },
+      {
+        "product": "Credit card",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "count": 1790
+      },
+      {
+        "product": "Credit card",
+        "issue": "Problem with a purchase shown on your statement",
+        "count": 4634
+      },
+      {
+        "product": "Credit card",
+        "issue": "Problem with fraud alerts or security freezes",
+        "count": 15
+      },
+      {
+        "product": "Credit card",
+        "issue": "Struggling to pay your bill",
+        "count": 201
+      },
+      {
+        "product": "Credit card",
+        "issue": "Trouble using your card",
+        "count": 775
+      },
+      {
+        "product": "Credit card",
+        "issue": "Unable to get your credit report or credit score",
+        "count": 7
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Advertising and marketing, including promotional offers",
+        "count": 1
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Credit monitoring or identity theft protection services",
+        "count": 1215
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Identity theft protection or other monitoring services",
+        "count": 96
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Improper use of your report",
+        "count": 56634
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Incorrect information on your report",
+        "count": 73177
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Problem with a company's investigation into an existing issue",
+        "count": 297
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "count": 38429
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Problem with a purchase shown on your statement",
+        "count": 1
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Problem with fraud alerts or security freezes",
+        "count": 981
+      },
+      {
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Unable to get your credit report or credit score",
+        "count": 1424
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Attempts to collect debt not owed",
+        "count": 11435
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Communication tactics",
+        "count": 1667
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Electronic communications",
+        "count": 473
+      },
+      {
+        "product": "Debt collection",
+        "issue": "False statements or representation",
+        "count": 1982
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Threatened to contact someone or share information improperly",
+        "count": 412
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Took or threatened to take negative or legal action",
+        "count": 2289
+      },
+      {
+        "product": "Debt collection",
+        "issue": "Written notification about debt",
+        "count": 7928
+      },
+      {
+        "product": "Debt or credit management",
+        "issue": "Charged upfront or unexpected fees",
+        "count": 98
+      },
+      {
+        "product": "Debt or credit management",
+        "issue": "Confusing or misleading advertising or marketing",
+        "count": 74
+      },
+      {
+        "product": "Debt or credit management",
+        "issue": "Confusing or missing disclosures",
+        "count": 108
+      },
+      {
+        "product": "Debt or credit management",
+        "issue": "Didn't provide services promised",
+        "count": 153
+      },
+      {
+        "product": "Debt or credit management",
+        "issue": "Problem with customer service",
+        "count": 92
+      },
+      {
+        "product": "Debt or credit management",
+        "issue": "Unauthorized withdrawals or charges",
+        "count": 69
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Confusing or misleading advertising or marketing",
+        "count": 29
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Confusing or missing disclosures",
+        "count": 137
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Fraud or scam",
+        "count": 2054
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Incorrect exchange rate",
+        "count": 7
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Lost or stolen money order",
+        "count": 44
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Managing, opening, or closing your mobile wallet account",
+        "count": 280
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Money was not available when promised",
+        "count": 486
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Other service problem",
+        "count": 141
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Other transaction problem",
+        "count": 911
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Overdraft, savings, or rewards features",
+        "count": 11
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Problem adding money",
+        "count": 20
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Problem with customer service",
+        "count": 109
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Trouble accessing funds in your mobile or digital wallet",
+        "count": 524
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Unauthorized transactions or other transaction problem",
+        "count": 524
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Unexpected or other fees",
+        "count": 119
+      },
+      {
+        "product": "Money transfer, virtual currency, or money service",
+        "issue": "Wrong amount charged or received",
+        "count": 67
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Applying for a mortgage or refinancing an existing mortgage",
+        "count": 736
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Closing on a mortgage",
+        "count": 507
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Credit monitoring or identity theft protection services",
+        "count": 9
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Improper use of your report",
+        "count": 29
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Incorrect information on your report",
+        "count": 141
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "count": 85
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Problem with fraud alerts or security freezes",
+        "count": 3
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Struggling to pay mortgage",
+        "count": 1577
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Trouble during payment process",
+        "count": 4065
+      },
+      {
+        "product": "Mortgage",
+        "issue": "Unable to get your credit report or credit score",
+        "count": 5
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Can't contact lender or servicer",
+        "count": 41
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Can't stop withdrawals from your bank account",
+        "count": 45
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Charged fees or interest you didn't expect",
+        "count": 677
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Confusing or misleading advertising or marketing",
+        "count": 12
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Confusing or missing disclosures",
+        "count": 14
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Credit limit changed",
+        "count": 10
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Credit monitoring or identity theft protection services",
+        "count": 15
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Getting a line of credit",
+        "count": 138
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Getting the loan",
+        "count": 198
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Improper use of your report",
+        "count": 56
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Incorrect information on your report",
+        "count": 95
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Issues with repayment",
+        "count": 19
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Loan payment wasn't credited to your account",
+        "count": 36
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Lost or stolen refund",
+        "count": 1
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Money was taken from your bank account on the wrong day or for the wrong amount",
+        "count": 25
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Problem when making payments",
+        "count": 345
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "count": 40
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Problem with additional add-on products or services",
+        "count": 245
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Problem with cash advance",
+        "count": 15
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Problem with fraud alerts or security freezes",
+        "count": 5
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Problem with the payoff process at the end of the loan",
+        "count": 219
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Problems receiving the advance",
+        "count": 13
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Property was sold",
+        "count": 1
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Received a loan you didn't apply for",
+        "count": 60
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Struggling to pay your loan",
+        "count": 333
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Unable to get your credit report or credit score",
+        "count": 6
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Unexpected fees",
+        "count": 12
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Vehicle was damaged or destroyed the vehicle",
+        "count": 13
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Vehicle was repossessed or sold the vehicle",
+        "count": 31
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Was approved for a loan, but didn't receive money",
+        "count": 5
+      },
+      {
+        "product": "Payday loan, title loan, personal loan, or advance loan",
+        "issue": "Was approved for a loan, but didn't receive the money",
+        "count": 17
+      },
+      {
+        "product": "Prepaid card",
+        "issue": "Advertising",
+        "count": 25
+      },
+      {
+        "product": "Prepaid card",
+        "issue": "Problem getting a card or closing an account",
+        "count": 224
+      },
+      {
+        "product": "Prepaid card",
+        "issue": "Problem with a purchase or transfer",
+        "count": 516
+      },
+      {
+        "product": "Prepaid card",
+        "issue": "Problem with overdraft",
+        "count": 8
+      },
+      {
+        "product": "Prepaid card",
+        "issue": "Trouble using the card",
+        "count": 1343
+      },
+      {
+        "product": "Prepaid card",
+        "issue": "Unexpected or other fees",
+        "count": 258
+      },
+      {
+        "product": "Student loan",
+        "issue": "Credit monitoring or identity theft protection services",
+        "count": 17
+      },
+      {
+        "product": "Student loan",
+        "issue": "Dealing with your lender or servicer",
+        "count": 4990
+      },
+      {
+        "product": "Student loan",
+        "issue": "Getting a loan",
+        "count": 46
+      },
+      {
+        "product": "Student loan",
+        "issue": "Improper use of your report",
+        "count": 44
+      },
+      {
+        "product": "Student loan",
+        "issue": "Incorrect information on your report",
+        "count": 159
+      },
+      {
+        "product": "Student loan",
+        "issue": "Issue where my lender is my school",
+        "count": 11
+      },
+      {
+        "product": "Student loan",
+        "issue": "Issue with income share agreement",
+        "count": 9
+      },
+      {
+        "product": "Student loan",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "count": 42
+      },
+      {
+        "product": "Student loan",
+        "issue": "Problem with fraud alerts or security freezes",
+        "count": 1
+      },
+      {
+        "product": "Student loan",
+        "issue": "Struggling to repay your loan",
+        "count": 835
+      },
+      {
+        "product": "Student loan",
+        "issue": "Unable to get your credit report or credit score",
+        "count": 5
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Credit monitoring or identity theft protection services",
+        "count": 16
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Getting a loan or lease",
+        "count": 594
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Improper use of your report",
+        "count": 96
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Incorrect information on your report",
+        "count": 230
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Managing the loan or lease",
+        "count": 1370
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "count": 85
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Problem with fraud alerts or security freezes",
+        "count": 2
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Problems at the end of the loan or lease",
+        "count": 564
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Repossession",
+        "count": 942
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Struggling to pay your loan",
+        "count": 196
+      },
+      {
+        "product": "Vehicle loan or lease",
+        "issue": "Unable to get your credit report or credit score",
+        "count": 7
+      }
+    ]
+  },
+  "files": {
+    "agent.sqlite": {
+      "sha256": "416f0d12be531b8dc8dc8a4dfc66d8bee23cf37447ebe80847dba7b1f17762f7",
+      "bytes": 399843328
+    },
+    "evaluator.sqlite": {
+      "sha256": "c33d5445d0ff5ae6e4ab68cb9d548e6ef8062ba63d272a454b0ce86778e76d98",
+      "bytes": 103874560
+    }
+  },
+  "limitations": [
+    "Publication/consent/scrubbing selected archive; not all complaints or population risk.",
+    "Consumer-selected targets are unverified reference labels, not independently reviewed truth.",
+    "Exact normalized-text groups only; no consumer IDs or near-duplicate independence guarantee.",
+    "Published masking retained; no privacy certification or automatic provider export.",
+    "No reviewed risk labels, classification evaluation, baseline or harm-reduction result.",
+    "Current live database removed narratives in 2026; this is a fixed historical archive."
+  ]
+}

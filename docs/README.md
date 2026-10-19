@@ -62,3 +62,6 @@ H4 [operating boundary](controls.md) and [code study](code-study-controls.md) co
 
 
 H8 #78 is merged/verified on main 21a5720. H9 #23 implements private [scorecards and paired case-level comparisons](scorecards.md) with complete scheduled denominators, unknown usage and conditional group-level safety uncertainty. [Source study](code-study-scorecards.md) traces the mechanism. H9 is merged/verified on fd87750. H10 adds [fresh dispatch and release evidence](release-evidence.md) with an independently pinned baseline approval; [source study](code-study-release.md) traces it. Verification stays offline by user choice. No domain quality result is claimed.
+
+
+C1 [CFPB source preparation](data/cfpb-source.md) uses a pinned official FOIA archive because the current live database removed narratives in 2026. Separate private agent/target stores and exact-text grouped temporal partitions preserve label isolation; [source study](code-study-cfpb.md) traces implementation and limits. The complete archive is scanned, missing narratives are counted, and groups crossing date windows are quarantined. Consumer targets remain unreviewed references; no classification or consumer-harm result is established.

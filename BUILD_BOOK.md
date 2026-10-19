@@ -30,7 +30,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 22 — Reporting every scheduled outcome](#entry-22--reporting-every-scheduled-outcome)
 
 - [Entry 23 — Fresh dispatch receipts and independently reviewed releases](#entry-23--fresh-dispatch-receipts-and-independently-reviewed-releases)
-- [Entry 24 — Archive-grounded CFPB preparation in parallel](#entry-24--archive-grounded-cfpb-preparation-in-parallel)
+- [Entry 25 — Archive-grounded CFPB preparation in parallel](#entry-25--archive-grounded-cfpb-preparation-in-parallel)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -1172,7 +1172,7 @@ Executable source is 6b20fb959e5f54a71495aeac97f5c6b9b54ca182. The documentation
 Published H10 in PR #80, attached it to the chat, and marked #24 Review while keeping it open and its merge checkbox unchecked. Initial hosted run 39169936224 is in progress, not accepted yet. This small follow-up records the actual PR link; executable source/test/dependency bytes are unchanged. Verify every suite on the resulting final SHA and the PR merge state, then append exact results to #24. User review/merge and post-merge verification remain the completion boundary. No Olist/domain task starts during review.
 
 
-## Entry 24 — Archive-grounded CFPB preparation in parallel
+## Entry 25 — Archive-grounded CFPB preparation in parallel
 
 Date: 2026-10-18 (Africa/Lagos). C1 #34, codex/c1-cfpb-import, based on merged main 54f5af2. O2 proceeds independently in another worktree after the user explicitly selected O2 + C1 in parallel.
 
@@ -1210,3 +1210,23 @@ No implementation result yet. The original live-API direction was ruled out by t
 The first 22 invented-data checks found eight failures before ingestion: this host has a real C:\.git ancestor, so a strict outside-any-checkout guard correctly rejected both the usual C: cache and pytest temporary directories. Keep the guard strict. Move the raw ZIP/PDF to D:\document\.cache\production-agents\cfpb and set TEMP/TMP only in this verification shell to an external D: test directory. CI's ordinary temporary directories remain outside its checkout. This corrects the initial cache location before preparing source records; no exception weakens source storage.
 
 Focused importer/CLI/acquisition verification then passed 26 tests in 3.29 seconds. These cover physical/typed target isolation, exact-text groups across cutoffs, all date boundaries including leap day, missingness/masking, source/target pins, malformed rows/inventory, output tampering, no-overwrite and bounded host-restricted downloads. Strict types found a ZIP stream typing mismatch: use explicit chunked SHA-256 because the advertised ZIP IO type does not promise readinto even though the concrete reader supports it. This does not change the digest encoding. Complete real-source preparation and full checks remain pending.
+
+
+### Complete historical-source preparation
+
+The actual pinned archive preparation completed successfully from source commit 8ddf6c1. It scanned 945,532 records, all within the user-selected seven-month window, and found 626,728 missing narratives. This corrects a possible interpretation of the FOIA page: its full-record archive includes records without published text, while the usable narrative subset is additionally selected by consent/scrubbing. Of 318,804 narrated records, 1,651 normalized groups spanning time partitions account for 58,066 quarantined records. The final private pair contains 260,738 records (139,732 development, 71,859 regression, 49,147 March holdout), 206,109 groups and eleven observed product selections.
+
+The profile counts 229,967 narratives with whole-word X patterns and 5,757,323 such tokens before quarantine. These are masking-pattern counts, not privacy verification. One source issue is empty on a record already excluded for missing narrative; the conditional narrated-target exclusion counter is zero. Closed agent/evaluator SQLite files are approximately400MB/104MB and remain outside Git. The aggregate manifest alone is copied into documentation. Current-code verification and installed-wheel checks follow; model-quality and independent risk labels remain absent.
+
+The focused suite now passes 28 checks in 5.06 seconds, including an active WAL witness: a write-ahead sidecar makes the sealed output inventory invalid before any database content is accepted. The source acquisition helper also rejects an initial nonofficial URL, in addition to redirect checks.
+
+
+### Final local and installed acceptance
+
+Verification completed against executable source1dd98fb66426b7c992a794d8f0a1232a8d32383b. The complete locked check passed599tests in322.20seconds with53strict typed sources, both import contracts, Ruff/format/lock. The final focused suite passed29tests5.16seconds, including active WAL inventory rejection and a deterministic change-during-verification witness. Allsixpackages built.
+
+A base-only installed wheel matched allfive package module bytes (four implementation modules plus the package marker), with Google/Langfuse/OpenTelemetry absent. Under network denial, its current verifier read the independently pinned copied documentation manifest and verified all260,738prepared records,206,109groups and exact139,732/71,859/49,147split counts. No source row, provider call or model evaluation was produced. Source acquisition/ingestion remains dated2026-10-18; this final documentation handoff is2026-10-19. Independent source review found no actionable C1 issue; it did not validate consumer labels as truth.
+
+The parent coordinates publication after an interrupted delegation. C1 is a separate PR from O2, with its issue kept open in Review until user merge/post-merge acceptance. Temporary combined-source validation uses O2source0781ddd and C1source1dd98fb, without merging either user PR. Exact hosted/final combined evidence remains pending and will be recorded on#34 after execution; no pending result is counted as a pass.
+
+Entry25 follows the O2 Entry24 reserved in the parallel [PR#81](https://github.com/Protagonist01/my-production-agentic-systems/pull/81). These independent append histories will be reconciled after the first reviewed PR merges; no earlier journal history is deleted.
