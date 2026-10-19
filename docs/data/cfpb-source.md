@@ -1,6 +1,6 @@
 # CFPB archived source preparation
 
-C1 #34, 2026-10-18 (Africa/Lagos), unmerged `codex/c1-cfpb-import`. The user selected the complete September 2023–March 2024 archive cohort, with March held out. Preparation and verification are implemented; classification, reviewed risk labels and application workflows remain later tasks.
+C1 #34 is merged through #82 and verified on main `2988428`, 2026-10-19 (Africa/Lagos). Source inspection/acquisition occurred 2026-10-18. The user selected the complete September 2023–March 2024 archive cohort, with March held out. Preparation and verification are implemented; classification, reviewed risk labels and application workflows remain later tasks.
 
 ## Source and taxonomy
 

@@ -46,15 +46,15 @@ Acceptance evidence:
 
 ### O3: Write refund/reship rules and independently reviewed case sets
 
-Priority: P0; provisional size M; prerequisites: O2. Status: Backlog.
+Priority: P0; provisional size M; prerequisites: O2. Status: Review; exact PR/hosted evidence is maintained on #28. [Constructed policy and private pilot](olist-policy.md) use provisional AI-reviewed expected outputs; human adjudication is not established.
 
 Version policy, eligibility/review rules and source-grounded support messages. Create development/regression/holdout splits grouped by order.
 
 Acceptance evidence:
 
-- [ ] Expected actions come from reviewed policy examples independent of runtime implementation.
-- [ ] Original records, hybrid messages and adversarial edits have separate source labels.
-- [ ] Case evidence includes valid refund, over-limit, missing-data and genuinely ambiguous outcomes.
+- [x] Expected actions come from reviewed policy examples independent of runtime implementation.
+- [x] Original records, hybrid messages and adversarial edits have separate source labels.
+- [x] Case evidence includes valid refund, over-limit, missing-data and genuinely ambiguous outcomes.
 
 ### O4: Implement scoped order tools and transactional refund ledger
 
