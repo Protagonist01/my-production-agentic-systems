@@ -159,7 +159,11 @@ def validate_reviews(items: tuple[BlindItem, ...], reviews: tuple[Review, ...]) 
         if r.risk == "elevated" and not r.evidence:
             raise ValueError("elevated judgment requires concrete evidence")
         for span in r.evidence:
-            if span.end <= span.start or item.narrative[span.start : span.end] != span.text:
+            if (
+                span.end <= span.start
+                or span.end > len(item.narrative)
+                or item.narrative[span.start : span.end] != span.text
+            ):
                 raise ValueError("review evidence is not an exact narrative span")
     if not reviewers or any(ids != set(lookup) for ids in reviewers.values()):
         raise ValueError("every reviewer must cover the complete blind batch")

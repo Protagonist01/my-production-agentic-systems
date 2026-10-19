@@ -136,3 +136,10 @@ def test_pinned_json_rejects_byte_tamper_duplicate_fields_and_repo_output(tmp_pa
     (tmp_path / ".git").mkdir()
     with pytest.raises(ValueError, match="outside Git"):
         load_json(p, text_digest(p.read_text(encoding="utf-8")))
+
+
+def test_evidence_end_cannot_exceed_narrative_even_when_python_slice_clamps():
+    x = item()
+    tail = EvidenceSpan(start=9, end=len(x.narrative) + 100, text=x.narrative[9:])
+    with pytest.raises(ValueError, match="exact narrative span"):
+        validate_reviews((x,), (label(evidence=(tail,)),))
