@@ -886,7 +886,8 @@
       "branch": "codex/c1-cfpb-import",
       "command_document": "docs/data/cfpb-source.md",
       "implementation_commit": "1dd98fb",
-      "review_evidence": "Full locked check599passes322.20s;53typed sources; focused29passes5.16s; sixbuilds. Installed base-only currentverifier matched5modulebytes and independentlypinnedmanifest for260738preparedrows/206109groups undernetworkdenial. Full945532rowarchive scanned,626728missingnarratives/58066cross-windowquarantinerows documented. No modelquality/reviewedrisklabels/provider-callclaim. Finalcombined/hostedchecks maintainedon#34; nativeboardunverified."
+      "review_evidence": "Full locked check599passes322.20s;53typed sources; focused29passes5.16s; sixbuilds. Installed base-only currentverifier matched5modulebytes and independentlypinnedmanifest for260738preparedrows/206109groups undernetworkdenial. Full945532rowarchive scanned,626728missingnarratives/58066cross-windowquarantinerows documented. No modelquality/reviewedrisklabels/provider-callclaim. Finalcombined/hostedchecks maintainedon#34; nativeboardunverified.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/82"
     },
     {
       "id": "C2",

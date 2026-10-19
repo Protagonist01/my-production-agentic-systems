@@ -22,7 +22,7 @@ Each importer produces provenance/checksum/use notes and validated agent-visible
 
 ### C1: Import CFPB complaints and build a label-isolated temporal split
 
-Priority: P1; provisional size M; prerequisites: F2, H5. Status: Review.
+Priority: P1; provisional size M; prerequisites: F2, H5. Status: Review in [PR #82](https://github.com/Protagonist01/my-production-agentic-systems/pull/82).
 
 Snapshot published narratives/metadata with source taxonomy versions. Store consumer-selected product/issue labels only in evaluation tables.
 
