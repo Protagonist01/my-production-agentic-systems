@@ -1,0 +1,31 @@
+{
+  "version": "olist-policy-cases-v1",
+  "policy_version": "olist-canceled-full-refund-sim-v1",
+  "case_count": 12,
+  "group_count": 6,
+  "split_counts": {
+    "development": 4,
+    "regression": 4,
+    "holdout": 4
+  },
+  "source_counts": {
+    "hybrid": 12
+  },
+  "treatment_counts": {
+    "base": 6,
+    "adversarial": 6
+  },
+  "expected_action_counts": {
+    "propose_full_refund": 3,
+    "review": 9
+  },
+  "reviewer_kind": "ai",
+  "review_status": "provisional",
+  "evaluator_sha256": "0e542a7a4d13964c3fa3d4519f8c78e6452cb3e55f827997bed23eb67069011d",
+  "source_database_sha256": "3f97471af1ad88653e04fffb9619d190358ba6673a83e8026964aa7ae801d73f",
+  "source_manifest_sha256": "24c1a4b0f6975cb1cff8e87d0674cf91cbccc3766f4f08ba93360f72e55b803f",
+  "quality_evaluation": false,
+  "outbound_provider_calls": 0,
+  "literal_proposal_matches": 12,
+  "business_writes": 0
+}

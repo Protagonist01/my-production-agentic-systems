@@ -707,7 +707,7 @@
         "Case evidence includes valid refund, over-limit, missing-data and genuinely ambiguous outcomes."
       ],
       "priority": "P0",
-      "status": "In progress",
+      "status": "Done",
       "blocker": null,
       "issue_number": 28,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/28",
@@ -717,7 +717,11 @@
       ],
       "milestone_number": 2,
       "branch": "codex/o3-refund-policy",
-      "review_evidence": "User-selected O3+C2 batch from verified main2988428. Offline-only; provisional AI label evidence explicitly separated from human validation. Native board unverified."
+      "review_evidence": "658passed511.08s;59typed sources;33focused;all6builds;installed7modulebytes match and12realhybridcase proposals undernetworkdenial/noSDKs. Expected labels are provisional AI policy-table reviews; no human-validation/business-write/modelquality claim. ExactheadCI maintainedon#28; nativeboardunverified.",
+      "implementation_commit": "15908425fa0735317a9e5ec281e7948c9aaa9bba",
+      "command_document": "docs/olist-policy.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/83",
+      "completion_evidence": "User merged #83 asde04a96; exact tree equals reviewed e65b866; mainrun39330860614 passed all nine applicable jobs, PR-onlymetadata skipped. Prior exact-tree658tests perqualitycell and installed/fullsource evidence reused; clean-main replay recorded on#28. Nativeboardunverified."
     },
     {
       "id": "O4",

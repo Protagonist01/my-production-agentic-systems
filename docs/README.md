@@ -71,3 +71,6 @@ C1 [CFPB source preparation](data/cfpb-source.md) uses a pinned official FOIA ar
 
 
 O2 and C1 are merged/verified. The user selected O3+C2 next. This branch adds [provisional blind CFPB review and deterministic baselines](cfpb-risk-baselines.md). No business write, live provider call or human-validated risk claim follows.
+
+
+O2 and C1 are merged/verified. The user selected O3+C2 next. Merged #83 adds [constructed Olist policy proposals and grouped private cases](olist-policy.md). No business write, live provider call or human-validated risk claim follows.

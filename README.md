@@ -90,3 +90,6 @@ C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-o
 
 
 O2 and C1 are merged/verified. The user selected O3+C2 next. This branch adds [provisional blind CFPB review and deterministic baselines](docs/cfpb-risk-baselines.md). No business write, live provider call or human-validated risk claim follows.
+
+
+O2 and C1 are merged/verified. The user selected O3+C2 next. Merged #83 adds [constructed Olist policy proposals and grouped private cases](docs/olist-policy.md). No business write, live provider call or human-validated risk claim follows.
