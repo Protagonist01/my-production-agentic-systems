@@ -1235,3 +1235,8 @@ Source anchors are pinned to0781ddd. Expanding strict type-check scope invalidat
 ### Review preparation and combined acceptance
 
 Move O2 to Review with the concrete source/package/source-data evidence, while preserving the first local failure and pending final acceptance. Publish its PR early so hosted jobs can run while C1 finishes. A separate temporary integration checkout combines O2source0781ddd and C1source1dd98fb; only the parallel BuildBook append conflicts, resolved by retaining the O2 copy for this temporary validation. It is not a user PR merge or a replacement publication branch. Run the combined locked full suite after C1's current full suite finishes to avoid duplicate heavy local runs. Exact final CI and combined evidence will be recorded on each issue before handoff.
+
+
+### Published O2 review and final batch verification
+
+2026-10-19: O2 is published in PR#81 and C1 in PR#82, both attached to the chat and their issues remain open in Review. O2 publication head6ae7ff8 passed hosted run39172484822, alltenjobs: actual596tests per Ubuntu/Windows Python3.12/3.13 cell, sixteenPostgres tests, strictreplay and allsixbuilds. This final metadata commit records the concrete review links without changing executable/test/lock bytes from0781ddd. Verify its exact-head checks before handoff; historical passing runs do not replace that read-back. Combined-source local validation is running against O2source0781ddd+C1source1dd98fb; its result will be appended on#27/#34 after completion. The first592pass/cleanupfailure aggregate remains recorded above; production cleanup was not weakened.

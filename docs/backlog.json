@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
-  "updated": "2026-10-18",
+  "updated": "2026-10-19",
   "capacity_hours_per_week": 40,
   "issue_creation_status": "verified",
   "epics": [
@@ -688,7 +688,8 @@
       "branch": "codex/o2-orders-360",
       "implementation_commit": "0781ddd",
       "command_document": "docs/data/olist-orders.md",
-      "review_evidence": "30 source/order checks plus unchanged H6 timeout witness:31passed40.29s; strict52sources; actual99441orders imported with exactchildcounts/totals;1000realordersmoke. Finalbasewheel3modulebytes, exactinvented3003/3203totals, closedhandles andrealpinned99441orderstoreunder networkdenial/nooptionalSDKs. Firstaggregate592passes+1existingH6cleanupfailure retained; finalcombined/hostedacceptancependingon#27. No modelquality/businessactionclaim."
+      "review_evidence": "30 source/order checks plus unchanged H6 timeout witness:31passed40.29s; strict52sources; actual99441orders imported with exactchildcounts/totals;1000realordersmoke. Finalbasewheel3modulebytes, exactinvented3003/3203totals, closedhandles andrealpinned99441orderstoreunder networkdenial/nooptionalSDKs. Firstaggregate592passes+1existingH6cleanupfailure retained; finalcombined/hostedacceptancependingon#27. No modelquality/businessactionclaim.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/81"
     },
     {
       "id": "O3",
@@ -872,7 +873,7 @@
         "Manifest records missing narratives, masking patterns and consumer-label limitations."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 34,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/34",
@@ -882,7 +883,8 @@
         19
       ],
       "milestone_number": 3,
-      "branch": "codex/c1-cfpb-import"
+      "branch": "codex/c1-cfpb-import",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/82"
     },
     {
       "id": "C2",
