@@ -68,3 +68,6 @@ The user-approved O2+C1 batch follows verified H10 merge54f5af2. O2 adds [privat
 
 
 C1 [CFPB source preparation](data/cfpb-source.md) uses a pinned official FOIA archive because the current live database removed narratives in 2026. Separate private agent/target stores and exact-text grouped temporal partitions preserve label isolation; [source study](code-study-cfpb.md) traces implementation and limits. The complete archive is scanned, missing narratives are counted, and groups crossing date windows are quarantined. Consumer targets remain unreviewed references; no classification or consumer-harm result is established.
+
+
+O2 and C1 are merged/verified. The user selected O3+C2 next. This branch adds [provisional blind CFPB review and deterministic baselines](cfpb-risk-baselines.md). No business write, live provider call or human-validated risk claim follows.

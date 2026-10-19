@@ -1,6 +1,6 @@
 # CFPB complaint triage
 
-Updated 2026-10-18. C1 source preparation is implemented on an unmerged branch; no application or classification evaluation result exists yet. The user selected O2 + C1 in parallel and the complete September 2023–March 2024 archive cohort. [Source evidence and operations](data/cfpb-source.md) · [Code walkthrough](code-study-cfpb.md).
+Updated 2026-10-19. C1 source preparation is merged and verified through #82 on2988428. C2 prepares provisional review and deterministic baseline evidence; no model classifier or released application exists. The user selected O2 + C1 in parallel and the complete September 2023–March 2024 archive cohort. [Source evidence and operations](data/cfpb-source.md) · [Code walkthrough](code-study-cfpb.md).
 
 ## Delivered application
 
@@ -22,27 +22,27 @@ Each importer produces provenance/checksum/use notes and validated agent-visible
 
 ### C1: Import CFPB complaints and build a label-isolated temporal split
 
-Priority: P1; provisional size M; prerequisites: F2, H5. Status: Review in [PR #82](https://github.com/Protagonist01/my-production-agentic-systems/pull/82).
+Priority: P1; provisional size M; prerequisites: F2, H5. Status: Done after user merge of [PR #82](https://github.com/Protagonist01/my-production-agentic-systems/pull/82) and verified main2988428 (625localtests and nineapplicable hosted jobs).
 
 Snapshot published narratives/metadata with source taxonomy versions. Store consumer-selected product/issue labels only in evaluation tables.
 
 Acceptance evidence:
 
-- [ ] Agent input excludes targets and other answer-revealing metadata.
-- [ ] Temporal/grouped holdout and category changes are documented.
-- [ ] Manifest records missing narratives, masking patterns and consumer-label limitations.
+- [x] Agent input excludes targets and other answer-revealing metadata.
+- [x] Temporal/grouped holdout and category changes are documented.
+- [x] Manifest records missing narratives, masking patterns and consumer-label limitations.
 
 ### C2: Review risk/ambiguity labels and establish deterministic baselines
 
-Priority: P1; provisional size M; prerequisites: C1. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: C1. Status: Review; exact PR and hosted evidence is maintained on #35. AI-reviewed provisional labels; human validation is not established. [Review operations](cfpb-risk-baselines.md).
 
 Write labeling rules, blind-label risk/ambiguous examples in batches and implement majority/rules baselines.
 
 Acceptance evidence:
 
-- [ ] Labels include reviewer/guideline/version evidence and disagreements.
-- [ ] Risk labels are not derived from candidate predictions.
-- [ ] Baseline results and slice denominators are published before tuning.
+- [x] Labels include reviewer/guideline/version evidence and disagreements.
+- [x] Risk labels are not derived from candidate predictions.
+- [x] Baseline results and slice denominators are published before tuning.
 
 ### C3: Implement Pydantic AI classifier and calibrated routing
 

@@ -35,6 +35,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 25 — Archive-grounded CFPB preparation in parallel](#entry-25--archive-grounded-cfpb-preparation-in-parallel)
 
+- [Entry 27 — Blind provisional risk review before deterministic baselines](#entry-27--blind-provisional-risk-review-before-deterministic-baselines)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -1318,3 +1320,56 @@ The resolved tree retains exact O2source/test bytes0781ddd and C1source/test byt
 
 
 O2 post-merge acceptance completed on clean36ad712: locked setup/check596passed198.88seconds,52typed sources/imports/Ruff/format/lock; strictreplay consumed6calls/reproduced2timeouts with zero provider calls. Mainrun39229270824 passed allnineapplicable jobs, with actual596tests perqualitycell and16Postgres. Close#27 ascompleted and update its manifest/task checks; nativeprojectDone remains unverified. Preserve C1#34 in Review, its merge checkbox unchecked, and verify its final merged-main head before user handoff. No O3/C2 work starts during this reconciliation.
+
+
+## Entry 27 — Blind provisional risk review before deterministic baselines
+
+**Files touched:** `projects/cfpb-triage/src/cfpb_triage/review.py`, baseline/review tools and tests, `docs/cfpb-risk-guideline.md`. Started 2026-10-19 on verified main `2988428`, independently of the O3 branch's reserved Entry26.
+
+### Context
+
+The user selected O3+C2 after merging #82, then asked Codex to perform the first risk-label review. The agreed proposal is twelve real narratives, four from each existing split, selected by a fixed hash before inspecting labels. No qualified human reviewer is established. The resulting judgments must be AI-reviewed and provisional, not promoted to human ground truth.
+
+### Before you read on
+
+If a rules baseline generates its own risk labels, what would a perfect score actually mean? How do you keep the review evidence separate from candidate outputs and prevent a small convenience batch from becoming a claimed release benchmark?
+
+### Options considered and why
+
+Using consumer product/issue labels as risk truth would answer a different question. Generating risk labels with the baseline itself would measure self-consistency. Instead, freeze a written rubric, select distinct exact-text groups with a fixed hash, expose full narrative text alone, record the review before calculating baseline outputs and pin its bytes. One AI reviewer cannot establish human validation or inter-reviewer agreement; record those limits as missing evidence rather than zero disagreements.
+
+### How to build it
+
+1. Verify C1's externally stored prepared manifest against its reviewed digest. Read only group/split/case identifiers for selection; never use product/issue labels, keywords or predictions in the sampling function.
+2. Rank groups by SHA-256 of a fixed seed/domain/group ID, choose four in each split, choose one fixed representative per group and shuffle presentation with another domain. Write narrative-only `blind.json` and separate evaluator-only `selection.json` outside every Git checkout. Recheck source pins after reading.
+3. Write a versioned rubric for elevated/routine/uncertain risk and clear/ambiguous interpretation. Record reviewer identity/kind/time, source text digest, exact Unicode evidence offsets and rationale for each entire narrative. Elevated judgments require a concrete supporting span. Preserve all twelve rows; no silent exclusion of difficult cases.
+4. Reject missing/extra/duplicate reviews, wrong narrative digests, invalid evidence and false prediction-blindness claims in the schema. Keep reviewer identity/truthfulness an explicit trusted assertion; software cannot authenticate an independent judgment.
+5. Seal the review byte digest before running majority or fixed rules. Fit any majority using development only, freeze tie handling, and report each split's actual denominator. Keep provisional risk agreement separate from consumer-label reference agreement and from actual harm.
+6. Test invented cases and source/label-isolation boundaries offline. Preserve any additional reviewer disagreement without silently choosing a preferred label. No live Langfuse dataset or provider call is required.
+
+### What went wrong
+
+No results are claimed at design time. A planning clarification mattered: the user asked the agent to label the cases, so waiting indefinitely for an unspecified human reviewer would not satisfy the request. Proceed with honest AI-review provenance and leave human/adjudicated validation unestablished.
+
+
+### Review and first baseline evidence
+
+Read all twelve complete narratives in the shuffled blind packet before writing/running a baseline. Record one AI reviewer, guideline bytes, exact Unicode spans and separate rationale, then seal reviews6f7dd5a0603aa7326d9b2ab9e28e74a6b4f5a92b5028d11ca8ad456865a3b9b3. Judgments:9routine/1elevated/2uncertain and10clear/2ambiguous. Zero human reviews and no comparable reviewer pairs mean disagreement is null/unassessed, not zero.
+
+The first packet's metadata exposed the Windows intended-text versus actual-byte pin bug also caught in O3. Preserve original blind/review bytes and original selection metadata. Create selection-v2.json correcting only the packet byte pin and adding the rubric digest. Membership, narratives, splits and judgments are unchanged. Current generation writes UTF-8/LF; an invented pipeline test now checks actual file bytes.
+
+Twenty focused invented checks passed1.08s. Strict types passed59sources after a heterogeneous per-class dictionary caused mypy to infer the F1 sum as object: accumulate float F1 values separately instead of suppressing the error. The first pilot finds majority risk matches9/12 but misses the only elevated holdout case; rules match5/12 and send7/12 to review including that positive, with false positives from legal/negated/unauthorized wording. Preserve these failures without tuning on the reviewed holdout. Fixed rules were authored by the same agent after blind labels were sealed; do not claim independent model-development or human validation.
+
+The complete consumer-reference baseline remains a separate report across260738records. Majority product and conditional issue choices fit development only; keyword product rules take narrative alone. Static review clarified the distinction between most frequent joint label and most frequent product followed by conditional issue; the final implementation uses the latter and reruns the complete report. This is a deterministic development specification correction before candidate tuning, not an improved-risk claim.
+
+
+### Bounds review before publication
+
+Static review found that Python slicing clamps an oversized end offset: a reviewer could supply an end past the narrative length while the selected suffix text still matches. Reject end offsets beyond the actual Unicode text length and add an invented witness with a matching tail plus oversized end. This is evidence-integrity correctness, not a claimed remote vulnerability. Preserve the original complete-suite result's source boundary and run the repaired evidence tests/current hosted suite before publication acceptance.
+
+
+### Repaired package and publication evidence
+
+Repaired source087d4703f4ae72cb9aa75b5c68418f76392d8cea passed21focused cases6.10seconds and strict59source types. The complete consumer-reference report rerun exactly reproduced all initial counts/metrics after majority-fitting clarification; no observed-metric improvement is claimed. Allsixpackages built. The rebuilt base-only CFPB wheel matched8modulebytes and exactly reproduced the sealed12caseprovisional-risk aggregate report undernetworkdenial with optionalSDKs/pytestabsent. Existing C1 source/ingestion bytes remain unchanged.
+
+Documentation verification passed331immutable source ranges/250local links. Literal publication scans checked all260738preparednarratives (complete strings at least40characters) and99441OlistorderIDs against20intendedfiles with zero matches. This is a limited literal check, not a privacy certification. Combined O3source1590842 and repairedC2source087d470 focused verification passed54new tests9.44seconds. Full/current-head hosted results remain on#35 after actual completion; no pending result counts as a pass. Keep C2 open in Review until user merge and verified main, with human validation explicitly unestablished. Shared Entry26/27 planning appends must be reconciled after the first user merge.
