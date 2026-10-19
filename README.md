@@ -87,3 +87,6 @@ O2 adds [private Olist order aggregates and conservative historical views](docs/
 
 
 C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-only agent storage, separate consumer-selected targets and exact-text grouped temporal partitions from the user-selected complete September 2023–March 2024 archive. [Source walkthrough](docs/code-study-cfpb.md) explains the boundaries. Raw records stay outside Git; this supplies data preparation, not a classifier or reviewed risk labels.
+
+
+O2 and C1 are merged/verified. The user selected O3+C2 next. This branch adds [constructed Olist policy proposals and grouped private cases](docs/olist-policy.md). No business write, live provider call or human-validated risk claim follows.

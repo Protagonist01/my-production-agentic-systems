@@ -35,6 +35,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 25 — Archive-grounded CFPB preparation in parallel](#entry-25--archive-grounded-cfpb-preparation-in-parallel)
 
+- [Entry 26 — Constructed policy and review evidence before domain baselines](#entry-26--constructed-policy-and-review-evidence-before-domain-baselines)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -1318,3 +1320,51 @@ The resolved tree retains exact O2source/test bytes0781ddd and C1source/test byt
 
 
 O2 post-merge acceptance completed on clean36ad712: locked setup/check596passed198.88seconds,52typed sources/imports/Ruff/format/lock; strictreplay consumed6calls/reproduced2timeouts with zero provider calls. Mainrun39229270824 passed allnineapplicable jobs, with actual596tests perqualitycell and16Postgres. Close#27 ascompleted and update its manifest/task checks; nativeprojectDone remains unverified. Preserve C1#34 in Review, its merge checkbox unchecked, and verify its final merged-main head before user handoff. No O3/C2 work starts during this reconciliation.
+
+
+## Entry 26 — Constructed policy and review evidence before domain baselines
+
+**Files touched:** `projects/olist-support/src/olist_support/policy.py`, `docs/olist-policy.md`, O3 case preparation and tests. Started 2026-10-19 from user-merged C1 main `2988428`. The user selected O3+C2 as the next batch; this branch owns O3 only.
+
+### Context
+
+Olist has historical order/payment facts, but no refund policy, verified currency, refund ledger or non-delivery confirmations. CFPB has consumer-selected labels but no independently reviewed risk labels. Neither source can supply the missing business truth by itself. The user accepted a constructed full-refund-only policy for confirmed canceled, paid, undelivered orders, capped at 100.00 simulation units; unknown/conflicting facts, over-cap amounts and reship requests require review.
+
+### Before you read on
+
+How can a source-grounded cancellation example produce a useful refund proposal without pretending that a missing delivery timestamp proves non-delivery, or that the source declared a currency?
+
+### Options considered
+
+- Infer currency from country and non-delivery from a blank timestamp: rejected because neither inference is source evidence.
+- Route every scenario to review: safe but cannot exercise the accepted valid-refund path.
+- Keep the source view unchanged and supply explicit, timed, fictional scenario confirmations: chosen. Label every such case hybrid and keep the original unit unknown.
+
+### Why
+
+A controlled demonstration can choose its policy and ledger facts, provided those choices do not masquerade as observed commerce. Policy proposals remain separate from business writes. Literal expected decisions and reviewer evidence must be authored separately from the policy implementation, otherwise the evaluator merely repeats the same bug.
+
+### How to build it
+
+1. Preserve O2's `OrderView` and its conservative visibility boundary. Do not modify its currency or source events.
+2. Define a strict scenario-confirmation record keyed to tenant/order, with its availability time, explicit SIM unit, payment/non-delivery confirmations and prior refunded integer amount. Its values are constructed, never imported refund history.
+3. Implement a pure proposal function. Revalidate input contracts, reject mismatched scope and future scenario evidence, then require visible cancellation, complete positive payment, independent non-delivery confirmation, no contradictory delivery event and no previous refund. Compare integer hundredths to 10,000. Partial/excess amounts and reship requests require review.
+4. Return a proposed action and reasons, never a success/committed-money assertion. O4 will enforce actual transactions and stable business-operation identity.
+5. Author evaluator-only expected outputs as literals; preserve source/edit provenance and group all edits by order into one split. Obtain review before describing these outputs as gold or releasing baseline claims. Keep source-grounded private records outside Git; public tests use invented orders.
+6. Run focused boundary tests before the full locked check. Record actual results when available; no result is claimed at design time.
+
+### What went wrong
+
+No implementation result yet. The first design review exposed two important traps: unknown currency must not become BRL through an overlay, and a blank delivery field cannot serve as independently confirmed non-delivery. The explicit hybrid boundary addresses both. Human risk-label review for C2 remains a separate dependency, not something a candidate or rule baseline may manufacture.
+
+
+### First implementation check
+
+The initial thirty pure-policy witnesses passed. The private pipeline test then caught a portability bug: a digest computed from intended Unicode text need not identify the bytes written by Windows newline/encoding defaults. Preserve the failure: one of33focused cases failed; the implementation types passed59sources. Write private JSON explicitly as UTF-8 with LF, and verify its actual bytes in tests. Literal expected outputs remain separate from runtime calls. The standalone single-file mypy invocation also hid the local harness package and reported untyped imports; the repository's complete `python dev.py types` invocation correctly resolves all source roots. A real Literal annotation fixed the separate policy-version default type error.
+
+
+### O3 source and package acceptance
+
+Executable source15908425fa0735317a9e5ec281e7948c9aaa9bba passed the full locked check:658tests511.08seconds,59strict typed source files, both import contracts, Ruff/format/lock. Focused33tests passed after the encoding fix. The actual pinned O2 store produced12hybrid cases in6order groups,4per split,6base/6adversarial;3refund proposals and9reviews matched literal provisional AI policy-table expectations. No business write or provider call occurred.
+
+Allsixpackages built. A base-only installed Olist wheel matched all7modulebytes and read the independently pinned private evaluator file under network denial, with optionalSDKs andpytestabsent; all12proposals matched. This validates installed mechanism behavior, not human adjudication or a transaction. Documentation audit checked329immutable source ranges and242local links. Raw/private literal scans and final exact-head hosted checks are recorded on#28 after completion. Keep issue open in Review until user merge and post-merge acceptance. No O4 work starts on an unmerged prerequisite.
