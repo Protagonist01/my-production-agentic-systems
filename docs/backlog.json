@@ -1042,7 +1042,7 @@
         "Numeric/citation gold labels are reviewed independently from extractor output."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 39,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/39",
@@ -1054,7 +1054,9 @@
       "branch": "codex/o8-release-evidence",
       "review_evidence": "Complete official CUAD archive/member pinned:510contracts20910questions13823spans,457inferred families;417development/93holdoutcontracts. Full source-to-store verifier passed after exact schema-object guard;18inventedtests6.15s. Original published references preserved, numeric account-linked billinggold absent; inferred-family limits explicit. Integrated final package/local/DB/hosted evidence pending, usermergepending.",
       "implementation_commit": "32265b2",
-      "command_document": "docs/data/revenue-source.md"
+      "command_document": "docs/data/revenue-source.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/87",
+      "completion_evidence": "Usermerged#87as058d1c7, identicalreviewede536c96; main39457223872nineapplicablejobspassed actual713perquality/43Postgres/replay6calls2timeouts0provider/12buildsperquality. Cleanmainreplaypassed; unchangedlocal713807.41s75types/43DB701.73s/package/sourceevidenceretained. Originalpublishedreferences/familyinferenceandnumericbillinggapsremainexplicit. Nativeboardunverified."
     },
     {
       "id": "R2",
@@ -1071,7 +1073,7 @@
         "Hidden should-be schedules and leakage labels cannot be read by the agent."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 40,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/40",
@@ -1079,7 +1081,9 @@
       "dependency_issue_numbers": [
         39
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "branch": "codex/r2-r3-r4-revenue-engine",
+      "review_evidence": "Userauthorizedatleastthreeissuesandapprovedmonthlywhole-seatSIMintegerhundredthspolicy,noproration/tax,expressramps/credits/amendments/uplift,missing/conflictingfactsreview. ParallelR2fixtures/R3exactscope/R4read-onlyreconciliationintegratefromverified058d1c7. No provider/realmoney/R5writes; no acceptanceclaimyet."
     },
     {
       "id": "R3",
@@ -1098,7 +1102,7 @@
         "In-process tools remain testable; MCP adapter exposes the same contracts when added."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 41,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/41",
@@ -1108,7 +1112,9 @@
         40,
         11
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "branch": "codex/r2-r3-r4-revenue-engine",
+      "review_evidence": "Userauthorizedatleastthreeissuesandapprovedmonthlywhole-seatSIMintegerhundredthspolicy,noproration/tax,expressramps/credits/amendments/uplift,missing/conflictingfactsreview. ParallelR2fixtures/R3exactscope/R4read-onlyreconciliationintegratefromverified058d1c7. No provider/realmoney/R5writes; no acceptanceclaimyet."
     },
     {
       "id": "R4",
@@ -1127,7 +1133,7 @@
         "Original extraction and hybrid end-to-end errors are separated in reports."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 42,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/42",
@@ -1137,7 +1143,9 @@
         40,
         24
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "branch": "codex/r2-r3-r4-revenue-engine",
+      "review_evidence": "Userauthorizedatleastthreeissuesandapprovedmonthlywhole-seatSIMintegerhundredthspolicy,noproration/tax,expressramps/credits/amendments/uplift,missing/conflictingfactsreview. ParallelR2fixtures/R3exactscope/R4read-onlyreconciliationintegratefromverified058d1c7. No provider/realmoney/R5writes; no acceptanceclaimyet."
     },
     {
       "id": "R5",

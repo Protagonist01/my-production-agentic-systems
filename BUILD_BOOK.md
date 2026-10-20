@@ -41,6 +41,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 29 — Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
 - [Entry 30 — Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
+- [Entry 31 — Three Revenue tasks behind explicit simulation rules](#entry-31--three-revenue-tasks-behind-explicit-simulation-rules)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -1555,3 +1556,28 @@ The corrected clean integrated7dfd144 capture completed all36scheduled trials (t
 
 
 The integrated six-package build produced all wheel/source pairs and the locked audit found no known vulnerabilities. Installed Olist/Revenue wheels matched24and5package files respectively with network operations denied; imports/API construction/input projection passed without provider calls. Full R1 verifier rerun after schema hardening returnedverifiedtrue for unchanged510contracts/20,910questions/13,823spans/457families. Post-capture executing Olist/harness source inventory still matches the36-task plan. Documentation audit:409immutable source ranges,304local links,25publication files and no configured secret values;21,929CUAD source title/question-ID/context needles absent. Final full-suite and hosted exact-head results are maintained on #33/#39 after actual completion; no planned result is a pass.
+
+
+## Entry 31 — Three Revenue tasks behind explicit simulation rules
+
+Date: 2026-10-20 (Africa/Lagos). Implementation in progress; no new batch acceptance is claimed.
+
+**Context:** user merged #87 and explicitly requested at least three issues per delivery. Verify main058d1c7 against reviewede536c96: identical tree. Inspect main39457223872 actual logs: nine applicable jobs passed,713offline tests per quality cell,43required Postgres tests, replay6recordings/2typedtimeouts/zero-provider and allsixwheel/sdistpairs. Clean exact-main replay passed; preserve unchanged local/source/package evidence instead of re-running it. R1#39 completes original published context/reference preparation with numeric billing/family limitations retained. O8#33 remains open pending fresh provider/baseline/threshold/human-review evidence under the user's offline-only constraint. C2#84 is still an independent unmerged review.
+
+### Decide the three-task boundary before implementing
+
+Deliver R2#40 billing worlds, R3#41 common access mechanism and R4#42 cited extraction/reconciliation in one PR. User approved constructed monthly whole-seat charges in SIM integer hundredths, no proration/tax, explicit dated ramps/credits/amendments, annual uplift only expressly stated, and review for missing/conflicting terms. Original CUAD extraction never becomes invented invoice truth. No real money, provider calls or R5billingwrites are authorized.
+
+Give each worker owned modules/tests/docs in separate worktrees. The R2worker defines public BillingInput and evaluator-only literal schedules, with deterministic family splits and external private stores. The R4worker implements a read-only engine against those public contracts and keeps gold-terms versus extracted-terms errors separate. Fixture labels must not import or call that engine. The R3worker first examines two real call sites, then moves only exact tenant/resource-kind/resource-ID/capability membership into harness.access. Root owns shared configuration, journal/planning/indices and final integrated checks. Merge local worker branches to retain immutable source anchors; run one final full suite/build/audit/hosted matrix after integration.
+
+### Keep the common API smaller than the domain
+
+Olist CallerGrant already performs exact tenant/order/capability checks; its closed read/refund capability and JSONwire shape remain unchanged. Revenue's second consumer is a private world reader guarded by BillingGrant read/reconcile capability and explicit tenant/world scope before file access, then parsed case/tenant identity before return. ResourceScope carries an explicit resource_kind so equal IDs in two domains do not match. Shared code contains no refund/invoice rule, account role, wildcard, authentication, transaction, approval or receipt policy. A generic registry/write primitive has no second demonstrated use; do not extract it speculatively. MCP exposure remains later work.
+
+### Define safe arithmetic limits
+
+Use first-of-month effective events and half-open monthly periods. Uplift anchor explicitly names the first uplift date, with annual exact-integer compounding only when declared. An explicit price amendment resets base price; subsequent applicable anniversaries may uplift it. A simultaneous price reset/uplift is ambiguous and routes to review. Mid-month events need review because proration is excluded. Fractional-minor results also need review because no rounding policy was approved. No legal span supplies missing billing authority; unsupported extraction remains unresolved rather than guessed. Literal benign credits/ramps/amendments are negative controls as well as leakage cases. Automated arithmetic checks are not new human adjudication.
+
+### Results to record as work proceeds
+
+Workers are implementing focused checks; original-source, constructed billing and tool-migration evidence remain distinct. Record real failures and complete integrated results before review.
