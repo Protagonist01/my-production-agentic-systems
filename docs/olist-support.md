@@ -1,6 +1,6 @@
 # Olist support
 
-Accepted scope, updated 2026-10-12. O1's authentic version-7 source snapshot is acquired and profiled. O2 adds [private order aggregates and conservative as-of views](data/olist-orders.md); no refund application or model evaluation result exists yet. See [source handling and commands](data/olist-source.md) and [checksums/schema/missingness manifest](data/olist-v7-manifest.json).
+Accepted scope, updated 2026-10-12. O1's authentic version-7 source snapshot is acquired and profiled. O2 adds [private order aggregates and conservative as-of views](data/olist-orders.md). O3 is merged/verified; O4 + O5 add a [controlled SIM refund workflow](olist-workflow.md) in one user-authorized review bundle. Human approval, authenticated UI/API and model release acceptance remain later tasks. See [source handling and commands](data/olist-source.md) and [checksums/schema/missingness manifest](data/olist-v7-manifest.json).
 
 ## Delivered application
 
@@ -12,7 +12,7 @@ Request → scoped historical order view → policy and bounded proposal → val
 
 ## Data and boundary
 
-Anonymized historical Olist orders, items, payments, delivery observations and reviews. Acquire a pinned source snapshot and record source/use conditions; preserve Brazilian currency and Portuguese or reviewed translations.
+Anonymized historical Olist orders, items, payments, delivery observations and reviews. Acquire a pinned source snapshot and record source/use conditions; preserve original numeric values and Portuguese or reviewed translations; source currency/timezone remain explicitly unverified.
 
 Support messages, refund/reship policy and expected actions are constructed. Hide facts not yet available at the request's as-of time. Use controlled transactions, never claim these are Olist's observed refund decisions.
 
@@ -46,7 +46,7 @@ Acceptance evidence:
 
 ### O3: Write refund/reship rules and independently reviewed case sets
 
-Priority: P0; provisional size M; prerequisites: O2. Status: Done after user merge of #83 asde04a96 and post-merge hosted acceptance; evidence on #28. [Constructed policy and private pilot](olist-policy.md) use provisional AI-reviewed expected outputs; human adjudication is not established.
+Priority: P0; provisional size M; prerequisites: O2. Status: Done after user merge of #83 as `de04a96` and verified main CI/replay; #28 is closed completed. [Constructed policy and private pilot](olist-policy.md) use provisional AI-reviewed expected outputs; human adjudication is not established.
 
 Version policy, eligibility/review rules and source-grounded support messages. Create development/regression/holdout splits grouped by order.
 
@@ -58,27 +58,27 @@ Acceptance evidence:
 
 ### O4: Implement scoped order tools and transactional refund ledger
 
-Priority: P0; provisional size M; prerequisites: O2, O3, F4. Status: Backlog.
+Priority: P0; provisional size M; prerequisites: O2, O3, F4. Status: Review in the user-authorized O4 + O5 bundle; exact PR/hosted evidence is maintained on #29. [Operations and limits](olist-workflow.md).
 
 Build typed reads/writes on the controlled business backend; enforce scopes, per-order/run limits and stable tenant/business-operation idempotency.
 
 Acceptance evidence:
 
-- [ ] Authorized refund changes state once; duplicate event in a new run returns the original result.
-- [ ] Over-limit, unauthorized and payload-mismatched repeated-key requests cannot write.
-- [ ] State transition and audit/ledger are consistent after transaction failure or timeout-after-commit.
+- [x] Authorized refund changes state once; duplicate event in a new run returns the original result.
+- [x] Over-limit, unauthorized and payload-mismatched repeated-key requests cannot write.
+- [x] State transition and audit/ledger are consistent after transaction failure or timeout-after-commit.
 
 ### O5: Build the LangGraph workflow with bounded reasoning and validation
 
-Priority: P0; provisional size M; prerequisites: O4, H2, H4. Status: Backlog.
+Priority: P0; provisional size M; prerequisites: O4, H2, H4. Status: Review in the same O4 + O5 bundle, with O4 implemented and verified together; exact PR/hosted evidence is maintained on #30. [Source walkthrough](code-study-olist-workflow.md).
 
 Implement intent/context/policy/proposed-action/tool/result flow, checkpointing and step limits. Responses reflect actual committed state.
 
 Acceptance evidence:
 
-- [ ] Refund/status/review paths execute against source-grounded context.
-- [ ] Model/tool input injection cannot relax code-enforced write rules.
-- [ ] Claiming a successful refund without committed state fails output verification.
+- [x] Refund/status/review paths execute against source-grounded context.
+- [x] Model/tool input injection cannot relax code-enforced write rules.
+- [x] Claiming a successful refund without committed state fails output verification.
 
 ### O6: Implement durable review and exact-action approval/resume
 

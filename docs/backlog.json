@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "capacity_hours_per_week": 40,
   "issue_creation_status": "verified",
   "epics": [
@@ -717,7 +717,7 @@
       ],
       "milestone_number": 2,
       "branch": "codex/o3-refund-policy",
-      "review_evidence": "658passed511.08s;59typed sources;33focused;all6builds;installed7modulebytes match and12realhybridcase proposals undernetworkdenial/noSDKs. Expected labels are provisional AI policy-table reviews; no human-validation/business-write/modelquality claim. ExactheadCI maintainedon#28; nativeboardunverified.",
+      "review_evidence": "User merged #83 as de04a96; reviewed tree identical. Main run39330860614 nine applicable jobs success; clean strict replay6calls/2timeouts/zero provider. Prior exact-tree658tests/59types/sixbuilds/installed proof retained. #28 closed completed; native board unverified.",
       "implementation_commit": "15908425fa0735317a9e5ec281e7948c9aaa9bba",
       "command_document": "docs/olist-policy.md",
       "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/83",
@@ -740,7 +740,7 @@
         "State transition and audit/ledger are consistent after transaction failure or timeout-after-commit."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 29,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/29",
@@ -750,7 +750,11 @@
         28,
         13
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "branch": "codex/o4-o5-refund-workflow",
+      "implementation_commit": "efd822fffc1b17c0272a4c2bd966f789109081ff",
+      "command_document": "docs/olist-workflow.md",
+      "review_evidence": "User-authorized combined O4+O5 delivery. 14 offline graph checks;27 required real Postgres tests, including hard process exit/recovery. Pinned hybrid source drill:3refund/3status/3review,3new-run resumes,3ledger entries/19116minor SIM matched independent order/budget totals, zero provider/real payment. Final local and exact-head hosted evidence maintained on#29/#30; no human policy validation or model-quality claim. Native board unverified."
     },
     {
       "id": "O5",
@@ -769,7 +773,7 @@
         "Claiming a successful refund without committed state fails output verification."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 30,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/30",
@@ -779,7 +783,11 @@
         16,
         18
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "branch": "codex/o4-o5-refund-workflow",
+      "implementation_commit": "efd822fffc1b17c0272a4c2bd966f789109081ff",
+      "command_document": "docs/olist-workflow.md",
+      "review_evidence": "User-authorized combined O4+O5 delivery. 14 offline graph checks;27 required real Postgres tests, including hard process exit/recovery. Pinned hybrid source drill:3refund/3status/3review,3new-run resumes,3ledger entries/19116minor SIM matched independent order/budget totals, zero provider/real payment. Final local and exact-head hosted evidence maintained on#29/#30; no human policy validation or model-quality claim. Native board unverified."
     },
     {
       "id": "O6",

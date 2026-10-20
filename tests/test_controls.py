@@ -411,11 +411,15 @@ def test_actual_owned_process_timeout_leaves_no_background_worker(tmp_path):
     marker = tmp_path / "started"
     before = {p.pid for p in multiprocessing.active_children()}
     started = time.monotonic()
-    result = IsolatedTransport(Worker("hang", str(marker))).generate(request(), timeout_seconds=8.0)
+    # Include cold Windows spawn/import time while still requiring the worker to
+    # enter its hanging body and be reaped within the finite attempt bound.
+    result = IsolatedTransport(Worker("hang", str(marker))).generate(
+        request(), timeout_seconds=30.0
+    )
     elapsed = time.monotonic() - started
     assert result.failure.code == "timeout" and result.usage.model_calls == 1
     assert result.usage.cost is None and marker.exists()
-    assert elapsed < 11.0
+    assert elapsed < 33.0
     assert {p.pid for p in multiprocessing.active_children()} == before
 
 

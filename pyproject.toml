@@ -13,6 +13,7 @@ members = ["harness", "projects/*"]
 
 [tool.uv.sources]
 production-agent-harness = { workspace = true }
+production-agent-olist-support = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -35,6 +36,7 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.17.0",
     "production-agent-harness[gemini]",
+    "production-agent-olist-support[workflow]",
     "langgraph==1.2.15",
     "pydantic-ai-slim[google]==2.56.0",
     "langfuse==5.0.1",

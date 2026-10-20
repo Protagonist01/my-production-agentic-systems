@@ -5,6 +5,9 @@ description = "Package boundary for olist_support; runtime implementation follow
 requires-python = ">=3.12,<3.14"
 dependencies = ["production-agent-harness"]
 
+[project.optional-dependencies]
+workflow = ["langgraph==1.2.15", "langgraph-checkpoint-postgres==3.2.0", "langsmith==0.14.8"]
+
 [build-system]
 requires = ["uv_build==0.11.1"]
 build-backend = "uv_build"

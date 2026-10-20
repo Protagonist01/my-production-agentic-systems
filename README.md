@@ -89,7 +89,7 @@ O2 adds [private Olist order aggregates and conservative historical views](docs/
 C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-only agent storage, separate consumer-selected targets and exact-text grouped temporal partitions from the user-selected complete September 2023–March 2024 archive. [Source walkthrough](docs/code-study-cfpb.md) explains the boundaries. Raw records stay outside Git; this supplies data preparation, not a classifier or reviewed risk labels.
 
 
-O2 and C1 are merged/verified. The user selected O3+C2 next. This branch adds [provisional blind CFPB review and deterministic baselines](docs/cfpb-risk-baselines.md). No business write, live provider call or human-validated risk claim follows.
+O3 is merged/verified after user merge of #83. The authorized combined O4 #29 + O5 #30 delivery adds a [transactional SIM refund backend and persistent LangGraph workflow](docs/olist-workflow.md), with [source walkthrough](docs/code-study-olist-workflow.md). Source-backed offline refund/status/review and recovery checks use fictional scenario facts; no real payment or model-quality result is claimed. C2 remains a separate review in #84. O6 approval and O7 authenticated UI/API remain next.
 
 
-O2 and C1 are merged/verified. The user selected O3+C2 next. Merged #83 adds [constructed Olist policy proposals and grouped private cases](docs/olist-policy.md). No business write, live provider call or human-validated risk claim follows.
+C2 #84 adds [provisional blind CFPB review and deterministic baselines](docs/cfpb-risk-baselines.md), with [source study](docs/code-study-cfpb-baselines.md). It remains a separate unmerged review after reconciliation with O4 + O5 main. AI-review labels are provisional, and consumer targets remain reference labels; no human-validated risk/model-quality claim.
