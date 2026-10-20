@@ -804,7 +804,7 @@
         "Restart preserves review state; repeated approval/resume cannot refund twice."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 31,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/31",
@@ -812,7 +812,11 @@
       "dependency_issue_numbers": [
         30
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "implementation_branch": "codex/o6-o7-review-console",
+      "implementation_commit": "c656ef564048ff02870c6966ab23da77cbf041d2",
+      "command_document": "docs/olist-console.md",
+      "review_evidence": "User merged #86 as67e0349; tree identical to reviewed661badc. Main39447892854 nine applicable jobs passed:681tests per quality cell,36Postgres,6call/2timeout/zero-provider replay,6wheel/sdist pairs each. Exact-tree local681tests368.12s/69types/36DB470.72s and installed base/web/browser/source-drill evidence retained. Issues#31/#32completed; native board unverified."
     },
     {
       "id": "O7",
@@ -830,7 +834,7 @@
         "UI accurately shows pending, failed and committed actions and evidence."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 32,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/32",
@@ -839,7 +843,11 @@
         31,
         22
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "implementation_branch": "codex/o6-o7-review-console",
+      "implementation_commit": "c656ef564048ff02870c6966ab23da77cbf041d2",
+      "command_document": "docs/olist-console.md",
+      "review_evidence": "User merged #86 as67e0349; tree identical to reviewed661badc. Main39447892854 nine applicable jobs passed:681tests per quality cell,36Postgres,6call/2timeout/zero-provider replay,6wheel/sdist pairs each. Exact-tree local681tests368.12s/69types/36DB470.72s and installed base/web/browser/source-drill evidence retained. Issues#31/#32completed; native board unverified."
     },
     {
       "id": "O8",

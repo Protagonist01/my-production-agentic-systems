@@ -23,6 +23,7 @@ from olist_support.views import OrderView
 
 ConnectionFactory = Callable[[], Connection[Any]]
 FaultHook = Callable[[str], None]
+CommitRecorder = Callable[[Connection[Any], RefundReceipt], None]
 
 
 def sha(value: str) -> str:
@@ -142,6 +143,7 @@ class BusinessStore:
         run_limit_minor: int,
         fault: FaultHook | None = None,
         expires_at: datetime | None = None,
+        record_commit: CommitRecorder | None = None,
     ) -> RefundReceipt:
         grant = CallerGrant.model_validate_json(grant.canonical_json())
         command = RefundCommand.model_validate_json(command.canonical_json())
@@ -176,7 +178,10 @@ class BusinessStore:
                 if prior is not None:
                     if prior["payload_sha256"] != payload:
                         raise BusinessReview("repeated_operation_payload_mismatch")
-                    return RefundReceipt.model_validate_json(json.dumps(prior["receipt"]))
+                    previous = RefundReceipt.model_validate_json(json.dumps(prior["receipt"]))
+                    if record_commit:
+                        record_commit(connection, previous)
+                    return previous
                 connection.execute(
                     (
                         "INSERT INTO olist.run_budgets(tenant_id,run_id,limit_minor) "
@@ -255,6 +260,10 @@ class BusinessStore:
                         command.amount_minor,
                     ),
                 )
+                # Trusted application composition only. Approval/case/audit state
+                # shares this transaction; an invalid approval rolls back everything.
+                if record_commit:
+                    record_commit(connection, receipt)
                 if expires_at is not None and datetime.now(UTC) >= expires_at:
                     raise TimeoutError("refund deadline exhausted before commit")
                 if fault:

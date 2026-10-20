@@ -6,6 +6,7 @@ requires-python = ">=3.12,<3.14"
 dependencies = ["production-agent-harness"]
 
 [project.optional-dependencies]
+web = ["production-agent-olist-support[workflow]==0.1.0", "fastapi==0.150.0", "uvicorn==0.54.0"]
 workflow = ["langgraph==1.2.15", "langgraph-checkpoint-postgres==3.2.0", "langsmith==0.14.8"]
 
 [build-system]
