@@ -870,7 +870,7 @@
       ],
       "priority": "P0",
       "status": "In progress",
-      "blocker": null,
+      "blocker": "Fresh held-out provider evidence and reviewed release baseline/thresholds/human labels remain pending by explicit offline-only user choice.",
       "issue_number": 33,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/33",
       "parent_issue_number": 4,
@@ -882,7 +882,9 @@
       ],
       "milestone_number": 2,
       "branch": "codex/o8-release-evidence",
-      "review_evidence": "User authorized three parallel agents and larger batches after verified main67e0349. O8 offline release mechanisms and R1 original contract preparation integrate together; C2#84 reconciles separately. Fresh provider release acceptance remains pending by user offline-only instruction. No completion claim yet."
+      "review_evidence": "User authorized three parallel agents and larger batches after verified main67e0349. O8 offline release mechanisms and R1 original contract preparation integrate together; C2#84 reconciles separately. Fresh provider release acceptance remains pending by user offline-only instruction. No completion claim yet.",
+      "implementation_commit": "54953b22c5944a43b377987fcaa837d5369e9ccc",
+      "command_document": "docs/olist-release.md"
     },
     {
       "id": "C1",
@@ -1040,7 +1042,7 @@
         "Numeric/citation gold labels are reviewed independently from extractor output."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 39,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/39",
@@ -1050,7 +1052,9 @@
       ],
       "milestone_number": 4,
       "branch": "codex/o8-release-evidence",
-      "review_evidence": "User authorized three parallel agents and larger batches after verified main67e0349. O8 offline release mechanisms and R1 original contract preparation integrate together; C2#84 reconciles separately. Fresh provider release acceptance remains pending by user offline-only instruction. No completion claim yet."
+      "review_evidence": "Complete official CUAD archive/member pinned:510contracts20910questions13823spans,457inferred families;417development/93holdoutcontracts. Full source-to-store verifier passed after exact schema-object guard;18inventedtests6.15s. Original published references preserved, numeric account-linked billinggold absent; inferred-family limits explicit. Integrated final package/local/DB/hosted evidence pending, usermergepending.",
+      "implementation_commit": "32265b2",
+      "command_document": "docs/data/revenue-source.md"
     },
     {
       "id": "R2",

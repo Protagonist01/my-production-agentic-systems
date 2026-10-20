@@ -97,18 +97,20 @@ Useful interview/debugging exercises:
 [input]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source_contracts.py#L30-L35
 [span]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source_contracts.py#L38-L40
 [target]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source_contracts.py#L43-L61
-[source-shapes]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source.py#L36-L60
+[source-shapes]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/projects/revenue-integrity/src/revenue_integrity/source.py#L36-L60
 [io-path]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source_io.py#L12-L20
 [load]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source_io.py#L23-L27
 [archive]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source_io.py#L30-L58
 [canonical]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source_io.py#L61-L62
-[normalization]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source.py#L63-L74
-[families]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source.py#L77-L141
-[split]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source.py#L144-L146
-[validate]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source.py#L149-L181
-[import]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source.py#L184-L273
-[inputs]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source.py#L276-L284
-[targets]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source.py#L287-L292
-[verify]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source.py#L295-L407
+[normalization]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/projects/revenue-integrity/src/revenue_integrity/source.py#L63-L74
+[families]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/projects/revenue-integrity/src/revenue_integrity/source.py#L77-L141
+[split]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/projects/revenue-integrity/src/revenue_integrity/source.py#L144-L146
+[validate]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/projects/revenue-integrity/src/revenue_integrity/source.py#L149-L181
+[import]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/projects/revenue-integrity/src/revenue_integrity/source.py#L184-L273
+[inputs]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/projects/revenue-integrity/src/revenue_integrity/source.py#L276-L284
+[targets]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/projects/revenue-integrity/src/revenue_integrity/source.py#L287-L292
+[verify]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/projects/revenue-integrity/src/revenue_integrity/source.py#L295-L417
 [cli]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/projects/revenue-integrity/src/revenue_integrity/source_cli.py#L14-L52
-[tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/229a238a495bd515df8024cb0a97c086863a7b27/tests/test_revenue_source.py#L1-L263
+[tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/32265b23e6c5185eccdfcfd436413b29d6c8801a/tests/test_revenue_source.py#L1-L283
+
+The verifier also rejects unexpected schema objects (views, triggers and additional indexes) in both private stores. Three invented repinned-agent-store negative controls reproduce and reject those additions; all18focused source checks passed6.15seconds. This validates the application data boundary, not protection against a malicious administrator or a caller that bypasses verification.
