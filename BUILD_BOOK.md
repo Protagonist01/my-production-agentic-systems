@@ -1488,3 +1488,11 @@ Affected controls/replay acceptance now passes128tests80.50seconds. Ruff/format 
 ### Reconcile C2 after O4 + O5 merge
 
 2026-10-20: user merged#85 as `e11290a92f22588aa7c1c6d799a7b649097dc2fa`. Its tree is identical to reviewed41a2b19; clean-main replay passed. Reconcile still-open C2#84 with this main, preserving complete Entries27/28, both source chapters, accepted policy and the optional workflow lock/explicit v3 fixture. Six conflicts are shared documentation only. CFPB source/test bytes retain reviewed618b6c6; Olist/backend/workflow/config/lock/test bytes retain merged e11290a. Run focused C2 checks and final exact-head hosted matrix over the combined population; do not reingest unchanged data or repeat the unchanged complete local O4/O5 acceptance. Main/post-merge verification is pending until the actual run completes. Both O4/O5 remain open until then; C2 remains in Review.
+
+
+### O4 + O5 verified main acceptance
+
+User merged#85 as `e11290a92f22588aa7c1c6d799a7b649097dc2fa`; Git tree is identical to reviewed41a2b19. Main run39348205740 passed nine applicable jobs; PR-only metadata intentionally skipped. All actual job logs inspected:673tests perfourqualitycells,27Postgres,6call/2timeout/zero-provider replay and6wheel/sdist pairs each. Clean local main replay passed. Reuse exact-tree local673tests438.95s/64types/27DB/installed/source-drill evidence; avoid redundant source ingestion/full local rebuilds. Close#29/#30completed only now and update both active planning copies. Native board remains unverified.
+
+
+C2 reconciliation focused acceptance passed21tests2.94seconds; the combined source audit passed363immutable ranges/271local links and18publication files, configuredsecretvaluesabsent. Clean strict replay consumed6calls/reproduced2timeouts withzero providercalls. CFPB source/tests byte-identical to reviewed618b6c6, Olist/backend/config/lock bytes identical to merged e11290a. No source acquisition/label generation/baseline recomputation was repeated. Final combined full population and Postgres acceptance run in hosted CI at the published C2 head; record actual counts on#35.

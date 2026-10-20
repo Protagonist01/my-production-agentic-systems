@@ -54,3 +54,6 @@ Twenty-one invented focused tests passed; strict typing passed59sources after an
 Reverse the selection input and explain why membership stays fixed. Introduce a repeated group across cutoffs and predict the error. Change only holdout labels and show that fitted majority remains unchanged. Hand-calculate the three-case macro-F1 witness. Explain why missing elevated support is null and why one AI review cannot report an agreement percentage. For a future calibrated router, describe a development-only threshold-selection procedure and a new held-out evaluation without claiming this code implements it.
 
 [Root guide](../CODE_STUDY_GUIDE.md) · [Build Book](../BUILD_BOOK.md#entry-27--blind-provisional-risk-review-before-deterministic-baselines)
+
+
+Reconciled2026-10-20 with user-merged O4+O5 main `e11290a`; C2source/tests remain unchanged from618b6c6. Shared planning/journal/index conflicts only; preserve Olist transaction/workflow study and optional workflow lock/v3 replay fixture. Focused21checks and clean replay pass; final complete hosted population is recorded on#35. CFPB has no authenticated application service in this task.
