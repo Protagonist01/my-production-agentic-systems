@@ -58,7 +58,7 @@ Acceptance evidence:
 
 ### O4: Implement scoped order tools and transactional refund ledger
 
-Priority: P0; provisional size M; prerequisites: O2, O3, F4. Status: Review in the user-authorized O4 + O5 bundle; exact PR/hosted evidence is maintained on #29. [Operations and limits](olist-workflow.md).
+Priority: P0; provisional size M; prerequisites: O2, O3, F4. Status: Done after user merge of #85 as `e11290a` and verified main run39348205740; #29 is completed. [Operations and limits](olist-workflow.md).
 
 Build typed reads/writes on the controlled business backend; enforce scopes, per-order/run limits and stable tenant/business-operation idempotency.
 
@@ -70,7 +70,7 @@ Acceptance evidence:
 
 ### O5: Build the LangGraph workflow with bounded reasoning and validation
 
-Priority: P0; provisional size M; prerequisites: O4, H2, H4. Status: Review in the same O4 + O5 bundle, with O4 implemented and verified together; exact PR/hosted evidence is maintained on #30. [Source walkthrough](code-study-olist-workflow.md).
+Priority: P0; provisional size M; prerequisites: O4, H2, H4. Status: Done after the same user merge and main acceptance; #30 is completed. [Source walkthrough](code-study-olist-workflow.md).
 
 Implement intent/context/policy/proposed-action/tool/result flow, checkpointing and step limits. Responses reflect actual committed state.
 

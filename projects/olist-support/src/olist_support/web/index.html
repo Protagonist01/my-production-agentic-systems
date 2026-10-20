@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Olist · Support desk</title>
+  <link rel="stylesheet" href="/assets/console.css">
+  <script src="/assets/console.js" defer></script>
+</head>
+<body>
+  <section id="login-screen" class="login-screen">
+    <div class="login-note"><span class="wordmark">olist<span class="brand-dot">.</span></span><p class="eyebrow">SUPPORT OPERATIONS</p><h1>Clear evidence.<br>Considered decisions.</h1><p>A shared desk for order requests and refund reviews.</p><span class="simulation-label">Controlled simulation · SIM funds only</span></div>
+    <form id="login-form" class="login-card">
+      <p class="eyebrow">YOUR WORKSPACE</p><h2>Sign in to the desk</h2><p class="muted">Use your provisioned operator or reviewer account.</p>
+      <label for="username">Username</label><input id="username" name="username" autocomplete="username" maxlength="64" required>
+      <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" maxlength="128" required>
+      <button class="primary" type="submit">Sign in <span aria-hidden="true">→</span></button>
+      <p id="login-error" class="error-text" role="alert"></p>
+      <p class="small muted">Accounts and access are managed by the local administrator.</p>
+    </form>
+  </section>
+  <div id="desk" hidden>
+    <header class="app-header"><div class="brand"><span class="wordmark">olist<span class="brand-dot">.</span></span><span class="header-divider"></span><span>Support desk</span></div><div class="header-right"><span class="simulation-label">SIMULATION</span><span id="identity"></span><button id="logout" class="text-button">Sign out</button></div></header>
+    <div class="workbench">
+      <aside class="queue">
+        <div class="queue-heading"><p class="eyebrow">WORKSPACE</p><h2>Case queue <span id="queue-count" class="count">0</span></h2><p id="tenant" class="small muted"></p></div>
+        <button id="new-case" class="primary full">+ New request</button>
+        <div class="queue-toolbar"><span>Recent cases</span><button id="refresh" class="text-button">Refresh</button></div>
+        <p id="queue-state" class="muted small" role="status">Loading cases…</p><div id="case-list"></div>
+        <div class="queue-footer"><span class="status-dot"></span><span id="health">Checking storage…</span></div>
+      </aside>
+      <main id="workspace" tabindex="-1">
+        <div id="notice" role="status" hidden></div>
+        <section id="empty" class="empty"><span class="empty-mark" aria-hidden="true">↗</span><p class="eyebrow">READY WHEN YOU ARE</p><h1>A place for the next decision.</h1><p class="muted">Choose a case to inspect its evidence and history.</p></section>
+        <section id="compose" hidden>
+          <p class="eyebrow">NEW CASE</p><h1>Start with the request.</h1><p class="muted intro">Choose an order within your assigned scope. Keep the customer’s request separate from the decision.</p>
+          <form id="request-form" class="form-panel">
+            <label for="order">Order</label><select id="order" required><option value="">Loading assigned orders…</option></select>
+            <label for="intent">Request type</label><select id="intent"><option value="refund">Refund</option><option value="status">Order status</option><option value="reship">Reship</option></select>
+            <label for="request-text">Customer request</label><textarea id="request-text" rows="5" maxlength="8192" placeholder="Describe what the customer needs…" required></textarea>
+            <label class="checkbox"><input id="manual-review" type="checkbox"><span>Send for a reviewer’s decision before any refund</span></label>
+            <p class="small muted">SIM refunds stay within the 100.00 cap and require confirmed eligibility. Request text cannot change these rules.</p>
+            <button class="primary" type="submit">Submit request <span aria-hidden="true">→</span></button>
+          </form>
+        </section>
+        <section id="detail" hidden>
+          <div class="detail-heading"><div><p class="eyebrow" id="case-ref"></p><h1 id="case-title"></h1><p class="muted small" id="case-order"></p></div><span id="case-status" class="pill"></span></div>
+          <div class="detail-grid">
+            <div class="evidence-column">
+              <article class="panel"><p class="eyebrow">CUSTOMER REQUEST</p><p id="customer-message" class="request-message"></p></article>
+              <article class="panel"><div class="panel-heading"><h2>Evidence for this decision</h2><span class="small muted">Recorded snapshot</span></div><dl id="evidence"></dl><p class="evidence-boundary small">Original source currency and timezone remain unverified. Scenario confirmations below are fictional SIM facts.</p><dl id="scenario"></dl></article>
+              <article class="panel"><h2>Decision history</h2><ol id="history" class="timeline"></ol></article>
+            </div>
+            <aside class="decision-column">
+              <article class="decision-panel"><p class="eyebrow">CURRENT OUTCOME</p><h2 id="outcome-title"></h2><p id="outcome-message" class="muted"></p><div id="receipt" hidden></div><div id="actions"></div><p class="decision-footnote small">A proposal or approval is not a committed refund. Completion requires a matching ledger receipt.</p></article>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # Olist business transactions and persistent workflow
 
-Inspected executable commit `efd822fffc1b17c0272a4c2bd966f789109081ff`, branch `codex/o4-o5-refund-workflow`, 2026-10-20 Africa/Lagos. O3 prerequisite main is `de04a96ecfefea597a7407e9551902da7dc65470`. O4 #29 and O5 #30 are one user-authorized unmerged delivery; C2 #84 remains a separate review. This chapter covers all five added Python modules, business SQL, callers and unit/database witnesses. It excludes SDK internals, deployment, service authentication and independent policy/model-quality validation. [Operations](olist-workflow.md) gives executable commands; [Entry 28](../BUILD_BOOK.md#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow) records construction.
+Inspected executable commit `efd822fffc1b17c0272a4c2bd966f789109081ff`, branch `codex/o4-o5-refund-workflow`, 2026-10-20 Africa/Lagos. O3 prerequisite main is `de04a96ecfefea597a7407e9551902da7dc65470`. O4 #29 and O5 #30 merged through user-reviewed #85 as `e11290a92f22588aa7c1c6d799a7b649097dc2fa`, with identical reviewed tree and verified main acceptance. C2 #84 remains a separate review. This chapter covers all five added Python modules, business SQL, callers and unit/database witnesses. It excludes SDK internals, deployment, service authentication and independent policy/model-quality validation. [Operations](olist-workflow.md) gives executable commands; [Entry 28](../BUILD_BOOK.md#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow) records construction.
 
 ## State ownership and execution
 
