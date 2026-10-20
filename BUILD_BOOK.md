@@ -1518,3 +1518,17 @@ Research official CUAD source/license metadata, pin the actual source archive an
 ### Verification still to complete
 
 Workers are implementing focused checks; integration, source drill, final full acceptance and hosted evidence follow. Record actual failures/results as they occur.
+
+
+### Parallel review catches a wrong-operation receipt
+
+The independent C2 worker reviewed O8 during its hosted-CI wait and reproduced a false pass with invented records: preserve an unrelated older ledger row in the before snapshot, make the exact newly permitted change, but return the old receipt. Searching the entire expected ledger for any matching returned receipt incorrectly called this correct. Bind the returned receipt to the newly expected task tenant/operation/order/run/actor specifically, and add the negative prior-receipt witness. The new state delta alone cannot authenticate a response about a different business operation. This was found before integrated acceptance; record the correction and actual test result after implementation.
+
+The first combined O8 test invocation also caught duplicate pytest module names for offline/integration files; rename the integration module `test_olist_release_state.py`. No application transaction failure was inferred from a collection-name collision. Canonical Contract pins and raw file byte hashes are distinct encodings: preserve both explicitly in private reports and command documentation.
+
+
+### Olist worker completes focused evidence
+
+O8 source/tests commit e849296 fixes the reproduced wrong-operation receipt acceptance and compares the executing package inventory with the reviewed source root, preventing an incomplete source directory from shrinking the required manifest. Final fourteen offline checks passed in3.37seconds; Ruff/format and strict typing of both new modules passed. Earlier combined focused execution passed seventeen checks in167.66seconds (twelve offline plus five real Postgres cases). Five DB cases cover repeated normal/before-commit/after-commit/process-exit behavior plus no-write review/unrelated effects; integrated acceptance will exercise latest source bytes.
+
+The report deliberately supports O5 automatic refund/review templates and routing/state correctness. It does not grade review-rationale semantics or console-consent evidence; existing O6/O7 tests remain the consent witness. Provider cost/latency remain null/unmeasured, with fresh evidence, reviewed baseline/thresholds and human adjudication explicitly pending. Source code and operation/study chapters are committed; the parent must still execute the private36-task drill and final integrated acceptance.
