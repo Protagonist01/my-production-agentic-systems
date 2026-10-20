@@ -34,7 +34,7 @@ class Worker:
         if self.marker:
             Path(self.marker).write_text(str(os.getpid()))
         if self.action == "hang":
-            time.sleep(30)
+            time.sleep(60)
         if self.action == "crash":
             os._exit(9)
         if self.action == "error":

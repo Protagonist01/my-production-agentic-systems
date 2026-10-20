@@ -685,16 +685,21 @@ def test_replay_cli_runs_without_credentials_or_services(tmp_path):
     assert report["recorded_calls_consumed"] == 6 and report["outbound_provider_calls"] == 0
 
 
-def test_historical_fixture_is_unchanged_and_refuses_current_dependency_lock():
+@pytest.mark.parametrize(
+    "filename,pin",
+    [
+        ("invented-v1.json", "72125a30c816dca9f2e72b3ac6f4fc5e718ee9386c95f6243db43ba19702ac2b"),
+        ("invented-v2.json", "0d05fc31a93abe4872000aeb81895d5bbf0529f1f427b849edc16e366ce2432e"),
+    ],
+)
+def test_historical_fixture_is_unchanged_and_refuses_current_dependency_lock(filename, pin):
     import hashlib
     from importlib.resources import as_file, files
 
     from agent_harness.replay_example import run_invented_replay
 
-    with as_file(files("agent_harness").joinpath("resources/replay/invented-v1.json")) as path:
-        old = load_recording(
-            path, expected_digest="72125a30c816dca9f2e72b3ac6f4fc5e718ee9386c95f6243db43ba19702ac2b"
-        )
+    with as_file(files("agent_harness").joinpath("resources/replay/" + filename)) as path:
+        old = load_recording(path, expected_digest=pin)
     current_lock = hashlib.sha256(
         (Path(__file__).resolve().parents[1] / "uv.lock").read_bytes()
     ).hexdigest()

@@ -37,6 +37,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 26 — Constructed policy and review evidence before domain baselines](#entry-26--constructed-policy-and-review-evidence-before-domain-baselines)
 
+- [Entry 28 — Transactional refunds and a bounded LangGraph workflow](#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -1368,3 +1370,54 @@ The initial thirty pure-policy witnesses passed. The private pipeline test then 
 Executable source15908425fa0735317a9e5ec281e7948c9aaa9bba passed the full locked check:658tests511.08seconds,59strict typed source files, both import contracts, Ruff/format/lock. Focused33tests passed after the encoding fix. The actual pinned O2 store produced12hybrid cases in6order groups,4per split,6base/6adversarial;3refund proposals and9reviews matched literal provisional AI policy-table expectations. No business write or provider call occurred.
 
 Allsixpackages built. A base-only installed Olist wheel matched all7modulebytes and read the independently pinned private evaluator file under network denial, with optionalSDKs andpytestabsent; all12proposals matched. This validates installed mechanism behavior, not human adjudication or a transaction. Documentation audit checked329immutable source ranges and242local links. Raw/private literal scans and final exact-head hosted checks are recorded on#28 after completion. Keep issue open in Review until user merge and post-merge acceptance. No O4 work starts on an unmerged prerequisite.
+
+
+## Entry 28 — Transactional refunds and a bounded LangGraph workflow
+
+**Files touched:** Olist backend/schema/workflow modules, their integration tests, optional workflow dependencies and operations. Started2026-10-20 from verified O3 mainde04a96. Entry27 is reserved in C2#84 and will be preserved when that reviewed branch integrates. The user explicitly approved combining O4#29 and O5#30 in one PR to reduce review cycles; O5's O4 prerequisite is satisfied inside this reviewed bundle rather than requiring a separate intermediate merge. O3 is already merged/verified.
+
+### Before you read on
+
+A refund commits, but the process crashes before a graph checkpoint or response is saved. On restart in a different run, how can the system return the original effect without refunding twice? What must be checked even before returning an old receipt?
+
+### Options considered and why
+
+A memory-only ledger/checkpointer is easy but cannot survive process restart. SQLite would simplify local tests, but F4 already supplies isolated restricted Postgres databases and O4 needs real concurrent transactional evidence. Use a vertical-owned Postgres schema in an F4 trial database, with the official persistent Postgres LangGraph saver in its own schema. Keep base import/source/policy installation light; expose LangGraph/checkpointer through an explicit optional workflow extra. Retain the reviewed LangGraph1.2.15 pin and verify checkpoint-postgres3.2.0 compatibility before relying on it. No shared harness API or migration is replaced.
+
+### How to build it
+
+1. A trusted bootstrap admin creates Olist-owned tables and checkpoint schema, records immutable schema version/checksum and grants only required table privileges to the trial role. Agent-visible tools receive a bound connection factory and explicit caller grant, never admin credentials or SQL authority.
+2. Enroll a pinned O2 order view plus separately declared timed SIM confirmations. Keep original source fields/currency unchanged. The current refund balance/version belongs to the business database, not stale caller text or an agent-supplied confirmation.
+3. Serialize a tenant/business-operation key with a transaction-scoped advisory lock. Check scope first; compare any prior operation's exact payload before returning its original receipt. New run IDs do not change the operation key or consume a new refund.
+4. Lock the tenant/run budget and order record in a fixed order. Refuse changed limit configuration, stale versions, unknown/ineligible facts, mismatched full amounts and amounts above either per-order policy cap or explicitly configured per-run SIM limit. Update order state/version, budget and append-only receipt in one transaction. A before-commit fault rolls everything back; an after-commit fault must be recoverable by the same business key.
+5. Build an acyclic LangGraph intent/context/policy/action/result flow, using an official Postgres checkpointer and bounded step count. Only narrative/request facts enter intent planning; the planner cannot choose tenant/order, permissions or commit success. Revalidate every proposal in the business tool. On restart, resume saved graph state; business idempotency protects a repeated action node.
+6. Derive thread identity from trusted tenant/business event, bind the original input fingerprint and serialize same-thread execution. Responses claim completion only after rereading the actual matching ledger/state; a proposal or forged result reference is insufficient. Status/review paths never claim a refund. O6's operator approval/resume workflow and O7 authentication/UI remain later work.
+7. Test invented unit boundaries and real isolated Postgres transactions/concurrency/restart behavior. Reuse pinned source evidence; perform one final complete integrated check and required hosted CI after the feature is ready. No live model calls are authorized; model-path tests use invented gateway responses.
+
+### What went wrong
+
+Docker's Linux engine was stopped at resumption; its CLI reported a missing engine pipe. Start the existing Docker Desktop installation without a visible helper window, then verify the engine before attempting DB evidence. No database result is claimed until it runs. Optional workflow packages, bootstrap role privileges and checkpoint serialization are explicit trust boundaries; do not substitute a memory saver and call it durable.
+
+
+### Transaction, source and installation evidence
+
+Executable source `efd822fffc1b17c0272a4c2bd966f789109081ff` passed fourteen focused graph/model-boundary witnesses and the full required database suite: 27 tests in 259.92 seconds (16 existing + 11 Olist). The owned child process exits with code23 after business commit; independent SQL observes one 5,000-minor effect, and a new persistent saver recovers the original-run receipt without a second write. Concurrent run spending and same-order competing-operation checks passed.
+
+Reuse O2 database pin `3f97471af1ad88653e04fffb9619d190358ba6673a83e8026964aa7ae801d73f` and private O3 evaluator pin `0e542a7a4d13964c3fa3d4519f8c78e6452cb3e55f827997bed23eb67069011d`. Select the three already-eligible hybrid groups, enroll original views plus declared fictional proofs in a fresh owned F4 trial, run refund/status/reship and completed new-run retries, then independently SELECT ledger count/sum, order balance/version and budget spending. Actual results: three refunds, three statuses, three reviews, three completion resumes; exactly three ledger entries and19,116minor SIM in ledger/orders/budgets. Source currency remains null; zero model calls/real payments. Drop only that owned trial afterward. Public aggregate report contains pins/counts only.
+
+The first private report writer attempted to JSON-encode Postgres SUM as Decimal and failed after all business assertions and trial cleanup. Convert aggregate integer sums explicitly to int and repeat the complete drill in a fresh owned trial; the second report passed. This was a report serialization error, not evidence of a failed transaction. The first installed-byte probe also included the wheel directory entry as if it were a file; filter directory entries before comparing. Fresh base and optional-workflow installed probes then matched all twelve Python modules plus business.sql under network denial. Base has no LangGraph/Google/Langfuse/OpenTelemetry/pytest; optional workflow imports and checkpoint serializer round-trip passed. All six wheel/sdist pairs built, and the locked dependency audit reported no known vulnerabilities.
+
+One final complete local check is running. Record its actual failures/results before handoff; do not infer a pass from focused tests. Final hosted checks and issue Review evidence follow after source and documentation are ready.
+
+
+### Final integrated check exposed two existing boundaries
+
+The full local run completed:670passed,2failed in511.07seconds; lock/lint/format/64types/twoimportcontracts passed. The replay CLI correctly refused its v2 capture because the newly added workflow dependencies changed uv.lock. Do not relax ReplayBinding: preserve v1/v2 bytes, parameterize historical rejection for both, and intentionally publish a new invented-only v3 fixture with its own reviewed content pin from a committed clean capture revision. Normal replay/CI must never regenerate it.
+
+The other failure was the existing owned-process cleanup witness: an eight-second deadline expired before its worker body wrote the started marker on a cold Windows spawn. Usage stayed unknown and the process was reaped; the test failed its required entered-body assertion. Give this particular test thirty seconds of startup/execution budget, keep the marker/unknown-usage/no-surviving-child assertions and a33second wall bound, and make the invented hanging body sleep60seconds so it cannot complete normally inside the deadline. Production transport deadlines are unchanged. Recheck affected controls/replay and the complete suite after the explicit fixture update.
+
+
+The new v3 invented capture was published exclusively from clean source `8d10f3a6161c008d4e27c4c9ba11496c443f2fc3`, actual lock `8bbcb51e6362da19b3c100440d4b5f9e2644f7829b47561c874526d0a772f3f3`, content pin `434e62b9e97f6164b41412d94317c257914d6e6d8c6ec5adeedc286db78ea345`. Compare all six request/response objects against v2 before publishing; they are equal. Update only the ordinary command resource/pin after exclusive publication. Preserve old fixtures and add both pinned historical rejection witnesses. The capture is synthetic FakeGateway execution, not live provider evidence.
+
+
+Affected controls/replay acceptance now passes128tests80.50seconds. Ruff/format and the documentation audit pass354immutable source ranges/261local links;30intended publication files contain no configured secret values. Allsixwheel/sdist pairs rebuilt with the v3 fixture included. Freeze the executable changes, run clean exact-source replay and repeat the complete local suite because the first integrated run had real failures. Required database27test evidence is reused locally because no business/workflow/DB source changed; final hosted Postgres repeats it at the published head. Record final full/hosted outcomes on#29/#30 without a documentation-only CI rerun.
