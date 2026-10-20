@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-20. User merged O4/O5 #85 as `e11290a`, identical to reviewed source. Main run39348205740 passed nine applicable jobs (673 tests per quality cell,27Postgres). C2 #84 remains independent in Review at52a942e with ten successful jobs. User authorized O6 #31 + O7 #32 together, retaining the existing SIM cap/eligibility and choosing local operator/reviewer accounts. Native board state is unverified.
+Updated: 2026-10-20. O6/O7 user-merged #86 as67e0349, tree identical to reviewed661badc. Main39447892854 passed nine applicable jobs with actual681tests per quality cell/36Postgres and clean exact-main replay. O6#31/O7#32completed. User authorized three parallel agents/larger review batches for O8 offline release preparation, R1 original-contract corpus and keeping C2#84 current. Offline-only remains: fresh first-release acceptance pending. Native board state unverified.
 
 ## Scope and source of truth
 
@@ -119,3 +119,12 @@ Reuse unchanged pinned source stores and previous exact-source evidence. Perform
 ## Authorized O6 + O7 delivery bundle
 
 The user approved one PR on `codex/o6-o7-review-console`, based on verified #85 main `e11290a`. O6 consent/recovery is implemented before O7 API/UI acceptance within this bundle. Both issues enter Review together and remain open until user merge and main acceptance. One primary `Refs #31` accompanies a link to #32. Local pre-provisioned accounts use opaque server-side sessions; the 100.00 SIM cap and missing/conflicting-fact rules are unchanged. Approval cannot override eligibility. [Commands and limits](olist-console.md), [source study](code-study-olist-console.md), Build Book Entry29 and the aggregate source drill preserve evidence. C2 #84 stays a separate review; O8 complete release scoring/fresh repeated trials remains Backlog. No live provider or real payment is authorized.
+
+
+## Higher-throughput batch after #86
+
+The user explicitly authorized up to three parallel agents plus integration: O8 offline release/state evidence, R1 original-contract preparation and independent reconciliation of existing C2#84. O8/R1 use separate owned paths/worktrees and consolidate into one new review candidate on `codex/o8-release-evidence`; #84 remains a separate existing review. Root configuration, lock, planning, study indices and Build Book have one integrator. Each worker verifies its changed behavior with focused checks; the final integrated candidate receives one complete local/database/package/hosted pass. Repeat a completed broad check only when changes/failures invalidate it. Reuse exact unchanged evidence after a documentation-only reconciliation or identical-tree merge.
+
+Main job timings show the slowest quality cell took213seconds, including16seconds setup and174seconds checks; no speed multiplier is promised. Improve throughput through parallel independent work and fewer serialized review/retest cycles while preserving required checks and user merge control. Preflight source/licensing/labels and decisions while code progresses. Keep at most three implementation streams active and surface concrete blockers promptly.
+
+O8 fresh held-out provider results, baseline/threshold review and first-release acceptance remain pending by explicit user choice to stay offline. An offline report or three repeated fake-planner executions cannot satisfy that gate. R1 source-family/label coverage must disclose inference and unsupported billing fields. No live provider/payment/deployment is authorized.

@@ -40,6 +40,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 28 — Transactional refunds and a bounded LangGraph workflow](#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow)
 
 - [Entry 29 — Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
+- [Entry 30 — Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -1488,3 +1489,32 @@ The final complete offline check passed 681 tests in 368.12 seconds, with 69 str
 All six packages built as wheels and source distributions; the harness was rebuilt for explicit invented-v4 replay, and Olist was rebuilt after readable asset formatting. Locked audit found no known vulnerabilities. Fresh installed base/web environments matched all 17 Olist Python modules, two SQL files and three web assets byte for byte under denied network operations. Base excludes web/workflow/provider SDKs. The web probe imports the actual API, constructs the loopback app, verifies password and checkpoint serialization, and reads packaged assets. An initial overly broad probe expected OpenTelemetry to be absent from the web extra; inspection showed FastAPI0.150.0 explicitly depends on opentelemetry-api, so the probe now checks that absence only for base. No instrumentation/export or provider call is claimed.
 
 The source walkthrough audit verified 380 immutable source ranges and 288 local links. All 32 publication files contain no null bytes, configured secret values or the private O3 source identifiers checked. Strict replay at clean ec56534 consumed six recordings, reproduced two typed timeouts and made zero provider calls, preserving all historical fixture bytes. Documentation-only acceptance updates reuse unchanged executable evidence. Final exact-head replay and hosted job logs are retained on #31/#32; user merge remains pending.
+
+
+## Entry 30 — Parallel release evidence and original contract preparation
+
+Date: 2026-10-20 (Africa/Lagos). Status: implementation in progress; no final batch or first-release acceptance is claimed.
+
+**Files touched:** Olist release/scorer tooling, Revenue source preparation, their tests and dedicated documentation; shared planning and study navigation after integration.
+
+### Context and decisions
+
+The user merged #86 and asked for much higher throughput. Verify the new main67e0349 tree against reviewed661badc before doing more work: identical trees retain the prior681-test/36-Postgres/package/browser/source-drill evidence. Inspect main run39447892854 and its actual logs: nine applicable jobs pass, PR metadata intentionally skipped,681tests in every quality cell and36Postgres checks. Run exact-main six-call/two-timeout/zero-provider replay. Close O6/O7 only after that evidence, not merely because the PR merged.
+
+The user explicitly chose three parallel agents and larger review batches: O8 offline release preparation, R1 original-contract corpus, and reconciliation of existing #84. The integrator owns shared files, root configuration, journal, metadata and final integrated acceptance. O8 uses the existing c1 checkout; R1 gets its own attached worktree; C2 keeps its own existing checkout/PR. Workers run focused checks and return explicit commits; integrate the new O8/R1 changes before one complete local/package/database/hosted pass. Reconcile #84 separately without silently merging it. Do not schedule an upstream-dependent feature against an unmerged branch as if the prerequisite were complete.
+
+The user retained offline-only acceptance. O8 can build deterministic domain state scoring, complete private reports and repeated fault mechanisms, but fresh held-out provider results, reviewed baseline/threshold approval and final first-release acceptance remain pending. Repeating a fixed offline planner three times does not establish fresh model reliability. No live provider budget, real payment or deployment is authorized.
+
+Measured main CI durations explain what to optimize: slowest quality job213seconds, of which16seconds is locked setup and174seconds shared checks. Ubuntu setup is2seconds. Enabling a new dependency cache would address a small part of this run and add a separate configuration change; retain the pinned workflow and reduce serialized work/redundant full passes instead. These are observed job durations, not a promised speed multiplier for parallel agents.
+
+### How to build the Olist evidence boundary
+
+Collect all order/refund/run-budget rows in an isolated trial within one repeatable-read transaction, rather than trusting the runtime receipt verifier or filtering away unrelated effects. Compare before/after snapshots against an independently supplied expectation: unchanged existing rows, and only the exact permitted ledger/order/budget delta. Review/status should produce no refund. Use existing ScoreResult/Ratio contracts and preserve every scheduled case/trial, including missing/error observations and source/split categories. Keep the H10 fresh release gate unchanged. A private offline report must always disclose the missing fresh/independent-review release evidence; it must not create its own approval.
+
+### How to prepare the original contract boundary
+
+Research official CUAD source/license metadata, pin the actual source archive and preserve complete original contexts/annotations outside Git. Separate an agent-readable context/question store from evaluator-only source identifiers, published spans, group/split membership and expected labels. Published contract annotations are independent source evidence, not an invented invoice/price/uplift truth set. Report unsupported billing fields as gaps. Group detected issuer/template relatives before assigning splits, verify no detected group crosses a boundary, and document inferred-family limitations rather than certifying unobserved legal relationships. Publish only aggregate provenance/counts/pins.
+
+### Verification still to complete
+
+Workers are implementing focused checks; integration, source drill, final full acceptance and hosted evidence follow. Record actual failures/results as they occur.

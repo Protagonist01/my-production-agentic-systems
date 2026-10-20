@@ -802,7 +802,7 @@
         "Restart preserves review state; repeated approval/resume cannot refund twice."
       ],
       "priority": "P0",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 31,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/31",
@@ -814,7 +814,9 @@
       "implementation_branch": "codex/o6-o7-review-console",
       "implementation_commit": "c656ef564048ff02870c6966ab23da77cbf041d2",
       "command_document": "docs/olist-console.md",
-      "review_evidence": "Combined user-authorized O6/O7 delivery based on verified e11290a. Required Postgres suite36passed470.72s, focused newconsole9passed46.55s, automated browser approval/restart/50SIM receipt/mobile checks, private source3approvals/3refunds19116minorSIM. Final full local/package/hosted evidence maintained on #31/#32. Offline mechanisms only; native board unverified; user merge pending."
+      "review_evidence": "Combined user-authorized O6/O7 delivery based on verified e11290a. Required Postgres suite36passed470.72s, focused newconsole9passed46.55s, automated browser approval/restart/50SIM receipt/mobile checks, private source3approvals/3refunds19116minorSIM. Final full local/package/hosted evidence maintained on #31/#32. Offline mechanisms only; native board unverified; user merge pending.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/86",
+      "completion_evidence": "User merged#86 as67e0349, identical tree to reviewed661badc. Main39447892854 nine applicable jobs passed; actual logs681perfourqualitycells/36Postgres/replay6calls2timeouts0provider/12builds eachquality. Clean exact-main replay passed. Unchangedlocal681tests368.12s69types/36DB470.72s/installed/browser/source evidence reused. Nativeboardunverified."
     },
     {
       "id": "O7",
@@ -832,7 +834,7 @@
         "UI accurately shows pending, failed and committed actions and evidence."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 32,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/32",
@@ -845,7 +847,9 @@
       "implementation_branch": "codex/o6-o7-review-console",
       "implementation_commit": "c656ef564048ff02870c6966ab23da77cbf041d2",
       "command_document": "docs/olist-console.md",
-      "review_evidence": "Combined user-authorized O6/O7 delivery based on verified e11290a. Required Postgres suite36passed470.72s, focused newconsole9passed46.55s, automated browser approval/restart/50SIM receipt/mobile checks, private source3approvals/3refunds19116minorSIM. Final full local/package/hosted evidence maintained on #31/#32. Offline mechanisms only; native board unverified; user merge pending."
+      "review_evidence": "Combined user-authorized O6/O7 delivery based on verified e11290a. Required Postgres suite36passed470.72s, focused newconsole9passed46.55s, automated browser approval/restart/50SIM receipt/mobile checks, private source3approvals/3refunds19116minorSIM. Final full local/package/hosted evidence maintained on #31/#32. Offline mechanisms only; native board unverified; user merge pending.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/86",
+      "completion_evidence": "User merged#86 as67e0349, identical tree to reviewed661badc. Main39447892854 nine applicable jobs passed; actual logs681perfourqualitycells/36Postgres/replay6calls2timeouts0provider/12builds eachquality. Clean exact-main replay passed. Unchangedlocal681tests368.12s69types/36DB470.72s/installed/browser/source evidence reused. Nativeboardunverified."
     },
     {
       "id": "O8",
@@ -865,7 +869,7 @@
         "Release artifact contains source/split/code/scorer manifests and a reproducible operational walkthrough."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 33,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/33",
@@ -876,7 +880,9 @@
         21,
         14
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "branch": "codex/o8-release-evidence",
+      "review_evidence": "User authorized three parallel agents and larger batches after verified main67e0349. O8 offline release mechanisms and R1 original contract preparation integrate together; C2#84 reconciles separately. Fresh provider release acceptance remains pending by user offline-only instruction. No completion claim yet."
     },
     {
       "id": "C1",
@@ -926,7 +932,7 @@
         "Baseline results and slice denominators are published before tuning."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 35,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/35",
@@ -1034,7 +1040,7 @@
         "Numeric/citation gold labels are reviewed independently from extractor output."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 39,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/39",
@@ -1042,7 +1048,9 @@
       "dependency_issue_numbers": [
         19
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "branch": "codex/o8-release-evidence",
+      "review_evidence": "User authorized three parallel agents and larger batches after verified main67e0349. O8 offline release mechanisms and R1 original contract preparation integrate together; C2#84 reconciles separately. Fresh provider release acceptance remains pending by user offline-only instruction. No completion claim yet."
     },
     {
       "id": "R2",
