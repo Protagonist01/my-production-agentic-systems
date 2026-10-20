@@ -816,7 +816,9 @@
       "implementation_branch": "codex/o6-o7-review-console",
       "implementation_commit": "c656ef564048ff02870c6966ab23da77cbf041d2",
       "command_document": "docs/olist-console.md",
-      "review_evidence": "User merged #86 as67e0349; tree identical to reviewed661badc. Main39447892854 nine applicable jobs passed:681tests per quality cell,36Postgres,6call/2timeout/zero-provider replay,6wheel/sdist pairs each. Exact-tree local681tests368.12s/69types/36DB470.72s and installed base/web/browser/source-drill evidence retained. Issues#31/#32completed; native board unverified."
+      "review_evidence": "Combined user-authorized O6/O7 delivery based on verified e11290a. Required Postgres suite36passed470.72s, focused newconsole9passed46.55s, automated browser approval/restart/50SIM receipt/mobile checks, private source3approvals/3refunds19116minorSIM. Final full local/package/hosted evidence maintained on #31/#32. Offline mechanisms only; native board unverified; user merge pending.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/86",
+      "completion_evidence": "User merged#86 as67e0349, identical tree to reviewed661badc. Main39447892854 nine applicable jobs passed; actual logs681perfourqualitycells/36Postgres/replay6calls2timeouts0provider/12builds eachquality. Clean exact-main replay passed. Unchangedlocal681tests368.12s69types/36DB470.72s/installed/browser/source evidence reused. Nativeboardunverified."
     },
     {
       "id": "O7",
@@ -847,7 +849,9 @@
       "implementation_branch": "codex/o6-o7-review-console",
       "implementation_commit": "c656ef564048ff02870c6966ab23da77cbf041d2",
       "command_document": "docs/olist-console.md",
-      "review_evidence": "User merged #86 as67e0349; tree identical to reviewed661badc. Main39447892854 nine applicable jobs passed:681tests per quality cell,36Postgres,6call/2timeout/zero-provider replay,6wheel/sdist pairs each. Exact-tree local681tests368.12s/69types/36DB470.72s and installed base/web/browser/source-drill evidence retained. Issues#31/#32completed; native board unverified."
+      "review_evidence": "Combined user-authorized O6/O7 delivery based on verified e11290a. Required Postgres suite36passed470.72s, focused newconsole9passed46.55s, automated browser approval/restart/50SIM receipt/mobile checks, private source3approvals/3refunds19116minorSIM. Final full local/package/hosted evidence maintained on #31/#32. Offline mechanisms only; native board unverified; user merge pending.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/86",
+      "completion_evidence": "User merged#86 as67e0349, identical tree to reviewed661badc. Main39447892854 nine applicable jobs passed; actual logs681perfourqualitycells/36Postgres/replay6calls2timeouts0provider/12builds eachquality. Clean exact-main replay passed. Unchangedlocal681tests368.12s69types/36DB470.72s/installed/browser/source evidence reused. Nativeboardunverified."
     },
     {
       "id": "O8",
@@ -867,8 +871,8 @@
         "Release artifact contains source/split/code/scorer manifests and a reproducible operational walkthrough."
       ],
       "priority": "P0",
-      "status": "Backlog",
-      "blocker": null,
+      "status": "In progress",
+      "blocker": "Fresh held-out provider evidence and reviewed release baseline/thresholds/human labels remain pending by explicit offline-only user choice.",
       "issue_number": 33,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/33",
       "parent_issue_number": 4,
@@ -878,7 +882,11 @@
         21,
         14
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "branch": "codex/o8-release-evidence",
+      "review_evidence": "User authorized three parallel agents and larger batches after verified main67e0349. O8 offline release mechanisms and R1 original contract preparation integrate together; C2#84 reconciles separately. Fresh provider release acceptance remains pending by user offline-only instruction. No completion claim yet.",
+      "implementation_commit": "54953b22c5944a43b377987fcaa837d5369e9ccc",
+      "command_document": "docs/olist-release.md"
     },
     {
       "id": "C1",
@@ -1038,7 +1046,7 @@
         "Numeric/citation gold labels are reviewed independently from extractor output."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 39,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/39",
@@ -1046,7 +1054,12 @@
       "dependency_issue_numbers": [
         19
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "branch": "codex/o8-release-evidence",
+      "review_evidence": "Complete official CUAD archive/member pinned:510contracts20910questions13823spans,457inferred families;417development/93holdoutcontracts. Full source-to-store verifier passed after exact schema-object guard;18inventedtests6.15s. Original published references preserved, numeric account-linked billinggold absent; inferred-family limits explicit. Integrated final package/local/DB/hosted evidence pending, usermergepending.",
+      "implementation_commit": "32265b2",
+      "command_document": "docs/data/revenue-source.md",
+      "completion_evidence": "Usermerged#87as058d1c7, main39457223872nineapplicablejobspassed with713testsperquality/43Postgres; identicalreviewedtree, exactmainreplay6/2/zero. Limitsretained; nativeboardunverified."
     },
     {
       "id": "R2",

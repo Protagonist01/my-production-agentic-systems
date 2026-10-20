@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-20. User merged O6/O7 #86 as `67e0349baa848ba329b027dd6948f0e64046f94b`, with the same tree as reviewed661badc. Main run39447892854 passed nine applicable jobs: 681 tests per quality cell and36Postgres. C2 #84 remains independent in Review; this branch reconciles it without executable changes. The user authorized three parallel agents and larger batches for offline O8/R1 groundwork and keeping C2 current. Fresh O8 release acceptance remains pending. Native board state is unverified.
+Updated: 2026-10-20. Usermerged#87as058d1c7, identicalreviewede536c96; verifiedmain39457223872nineapplicablejobs/713testsperquality/43Postgres/strictreplay6/2/zero. R1complete; O8freshreleaseacceptancepending. C2#84reconcilesmainwithunchangedparent source/test/config/lock bytes and remainsReview. Nativeboardunverified.
 
 ## Scope and source of truth
 
@@ -128,9 +128,18 @@ The user merged#85 as e11290a. Keep still-open C2#84 current by merging this mai
 
 ## Authorized O6 + O7 delivery bundle
 
-The user approved one PR on `codex/o6-o7-review-console`, based on verified #85 main `e11290a`. O6 consent/recovery is implemented before O7 API/UI acceptance within this bundle. The user subsequently merged #86; main run39447892854 passed and #31/#32 completed. One primary `Refs #31` accompanies a link to #32. Local pre-provisioned accounts use opaque server-side sessions; the 100.00 SIM cap and missing/conflicting-fact rules are unchanged. Approval cannot override eligibility. [Commands and limits](olist-console.md), [source study](code-study-olist-console.md), Build Book Entry29 and the aggregate source drill preserve evidence. C2 #84 stays a separate review; O8 complete release scoring/fresh repeated trials remains Backlog. No live provider or real payment is authorized.
+The user approved one PR on `codex/o6-o7-review-console`, based on verified #85 main `e11290a`. O6 consent/recovery is implemented before O7 API/UI acceptance within this bundle. Both issues enter Review together and remain open until user merge and main acceptance. One primary `Refs #31` accompanies a link to #32. Local pre-provisioned accounts use opaque server-side sessions; the 100.00 SIM cap and missing/conflicting-fact rules are unchanged. Approval cannot override eligibility. [Commands and limits](olist-console.md), [source study](code-study-olist-console.md), Build Book Entry29 and the aggregate source drill preserve evidence. C2 #84 stays a separate review; O8 complete release scoring/fresh repeated trials remains Backlog. No live provider or real payment is authorized.
 
 
-## C2 reconciliation after O6 + O7 merge
+## Higher-throughput batch after #86
 
-Merge verified main67e0349 into pending C2#84 and resolve five shared-documentation conflicts. Preserve complete Entries27/28/29, all reviewed C2 source/tests and all merged Olist/configuration/lock bytes. Focused C2 tests and source/link audits support the documentation merge; final exact-head hosted CI supplies the combined population and database check. Do not reingest source, regenerate labels or repeat identical full local checks/builds. C2 stays Review and #35 stays open with its merged checkbox unchecked; no human adjudication is claimed.
+The user explicitly authorized up to three parallel agents plus integration: O8 offline release/state evidence, R1 original-contract preparation and independent reconciliation of existing C2#84. O8/R1 use separate owned paths/worktrees and consolidate into one new review candidate on `codex/o8-release-evidence`; #84 remains a separate existing review. Root configuration, lock, planning, study indices and Build Book have one integrator. Each worker verifies its changed behavior with focused checks; the final integrated candidate receives one complete local/database/package/hosted pass. Repeat a completed broad check only when changes/failures invalidate it. Reuse exact unchanged evidence after a documentation-only reconciliation or identical-tree merge.
+
+Main job timings show the slowest quality cell took213seconds, including16seconds setup and174seconds checks; no speed multiplier is promised. Improve throughput through parallel independent work and fewer serialized review/retest cycles while preserving required checks and user merge control. Preflight source/licensing/labels and decisions while code progresses. Keep at most three implementation streams active and surface concrete blockers promptly.
+
+O8 fresh held-out provider results, baseline/threshold review and first-release acceptance remain pending by explicit user choice to stay offline. An offline report or three repeated fake-planner executions cannot satisfy that gate. R1 source-family/label coverage must disclose inference and unsupported billing fields. No live provider/payment/deployment is authorized.
+
+
+## C2 reconciliation after #87
+
+Keep existing #84 current with verified058d1c7. Six conflicts are shared documentation/planning only. Preserve full Entries27–30, C2 baselines and merged Olist/Revenue studies. Focused C2, immutable-source/link audit and clean replay validate this reconciliation; final exact-head hosted checks cover734offline tests and43Postgres (counts require actual logs). No repeated ingestion, label generation or unchanged full local suite/build. #35 stays open Review pending user merge; fresh/domain/human quality limits remain.

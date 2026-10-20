@@ -42,6 +42,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 28 — Transactional refunds and a bounded LangGraph workflow](#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow)
 
 - [Entry 29 — Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
+- [Entry 30 — Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -1563,3 +1564,68 @@ The source walkthrough audit verified 380 immutable source ranges and 288 local 
 2026-10-20: user merged#86 as `67e0349baa848ba329b027dd6948f0e64046f94b`, identical in tree to reviewed661badc. Actual main39447892854 logs passed nine applicable jobs:681tests perqualitycell,36Postgres,6call/2timeout/zero-provider replay and6wheel/sdist pairs each. Retain exact-tree local681tests368.12s/69types/36DB470.72s and installed/browser/source-drill evidence. Merge this main into still-open C2#84, resolving five shared-documentation conflicts while preserving complete Entries27/28/29 and each vertical’s executable bytes. Run only focused C2 checks, immutable-source/link audit and strict replay locally, then one final hosted matrix; do not reacquire source or regenerate sealed provisional reviews. C2 remains Review, not human-adjudicated; native board remains unverified.
 
 Focused C2 acceptance passed21tests1.08seconds. Source identity checks matched82merged-main executable/test/configuration files and10reviewedCFPBsource/test files (Git-normalized LF). The documentation audit passed389immutable source ranges/287local links across18publicationfiles with configuredsecretvaluesabsent. No executable C2 or Olist change was needed. Final exact-head replay and hosted matrix evidence will be recorded on#35 without another docs-only push.
+
+## Entry 30 — Parallel release evidence and original contract preparation
+
+Date: 2026-10-20 (Africa/Lagos). Status: implementation in progress; no final batch or first-release acceptance is claimed.
+
+**Files touched:** Olist release/scorer tooling, Revenue source preparation, their tests and dedicated documentation; shared planning and study navigation after integration.
+
+### Context and decisions
+
+The user merged #86 and asked for much higher throughput. Verify the new main67e0349 tree against reviewed661badc before doing more work: identical trees retain the prior681-test/36-Postgres/package/browser/source-drill evidence. Inspect main run39447892854 and its actual logs: nine applicable jobs pass, PR metadata intentionally skipped,681tests in every quality cell and36Postgres checks. Run exact-main six-call/two-timeout/zero-provider replay. Close O6/O7 only after that evidence, not merely because the PR merged.
+
+The user explicitly chose three parallel agents and larger review batches: O8 offline release preparation, R1 original-contract corpus, and reconciliation of existing #84. The integrator owns shared files, root configuration, journal, metadata and final integrated acceptance. O8 uses the existing c1 checkout; R1 gets its own attached worktree; C2 keeps its own existing checkout/PR. Workers run focused checks and return explicit commits; integrate the new O8/R1 changes before one complete local/package/database/hosted pass. Reconcile #84 separately without silently merging it. Do not schedule an upstream-dependent feature against an unmerged branch as if the prerequisite were complete.
+
+The user retained offline-only acceptance. O8 can build deterministic domain state scoring, complete private reports and repeated fault mechanisms, but fresh held-out provider results, reviewed baseline/threshold approval and final first-release acceptance remain pending. Repeating a fixed offline planner three times does not establish fresh model reliability. No live provider budget, real payment or deployment is authorized.
+
+Measured main CI durations explain what to optimize: slowest quality job213seconds, of which16seconds is locked setup and174seconds shared checks. Ubuntu setup is2seconds. Enabling a new dependency cache would address a small part of this run and add a separate configuration change; retain the pinned workflow and reduce serialized work/redundant full passes instead. These are observed job durations, not a promised speed multiplier for parallel agents.
+
+### How to build the Olist evidence boundary
+
+Collect all order/refund/run-budget rows in an isolated trial within one repeatable-read transaction, rather than trusting the runtime receipt verifier or filtering away unrelated effects. Compare before/after snapshots against an independently supplied expectation: unchanged existing rows, and only the exact permitted ledger/order/budget delta. Review/status should produce no refund. Use existing ScoreResult/Ratio contracts and preserve every scheduled case/trial, including missing/error observations and source/split categories. Keep the H10 fresh release gate unchanged. A private offline report must always disclose the missing fresh/independent-review release evidence; it must not create its own approval.
+
+### How to prepare the original contract boundary
+
+Research official CUAD source/license metadata, pin the actual source archive and preserve complete original contexts/annotations outside Git. Separate an agent-readable context/question store from evaluator-only source identifiers, published spans, group/split membership and expected labels. Published contract annotations are independent source evidence, not an invented invoice/price/uplift truth set. Report unsupported billing fields as gaps. Group detected issuer/template relatives before assigning splits, verify no detected group crosses a boundary, and document inferred-family limitations rather than certifying unobserved legal relationships. Publish only aggregate provenance/counts/pins.
+
+### Verification still to complete
+
+Workers are implementing focused checks; integration, source drill, final full acceptance and hosted evidence follow. Record actual failures/results as they occur.
+
+
+### Parallel review catches a wrong-operation receipt
+
+The independent C2 worker reviewed O8 during its hosted-CI wait and reproduced a false pass with invented records: preserve an unrelated older ledger row in the before snapshot, make the exact newly permitted change, but return the old receipt. Searching the entire expected ledger for any matching returned receipt incorrectly called this correct. Bind the returned receipt to the newly expected task tenant/operation/order/run/actor specifically, and add the negative prior-receipt witness. The new state delta alone cannot authenticate a response about a different business operation. This was found before integrated acceptance; record the correction and actual test result after implementation.
+
+The first combined O8 test invocation also caught duplicate pytest module names for offline/integration files; rename the integration module `test_olist_release_state.py`. No application transaction failure was inferred from a collection-name collision. Canonical Contract pins and raw file byte hashes are distinct encodings: preserve both explicitly in private reports and command documentation.
+
+
+### Olist worker completes focused evidence
+
+O8 source/tests commit e849296 fixes the reproduced wrong-operation receipt acceptance and compares the executing package inventory with the reviewed source root, preventing an incomplete source directory from shrinking the required manifest. Final fourteen offline checks passed in3.37seconds; Ruff/format and strict typing of both new modules passed. Earlier combined focused execution passed seventeen checks in167.66seconds (twelve offline plus five real Postgres cases). Five DB cases cover repeated normal/before-commit/after-commit/process-exit behavior plus no-write review/unrelated effects; integrated acceptance will exercise latest source bytes.
+
+The report deliberately supports O5 automatic refund/review templates and routing/state correctness. It does not grade review-rationale semantics or console-consent evidence; existing O6/O7 tests remain the consent witness. Provider cost/latency remain null/unmeasured, with fresh evidence, reviewed baseline/thresholds and human adjudication explicitly pending. Source code and operation/study chapters are committed; the parent must still execute the private36-task drill and final integrated acceptance.
+
+
+### First private source capture exposes connection row shape
+
+Run the private36-task capture from clean2f453e3, after source pin verification and owned service startup, using a new external output directory. It failed at the first before-state read, before workflow/refund dispatch: checkpoint setup had set the reused admin connection's row factory to dictionaries. The collector unpacked rows as tuples, so Pydantic received the literal keys `version` and `refunded_minor` instead of integer values. Existing focused DB calls opened fresh default tuple-row connections and did not exercise this composition.
+
+The correct product fix is to own an explicit tuple-row cursor inside collection, preserve the caller's row factory and test a dictionary-configured connection. Do not silently add a caller precondition to conceal a valid composition failure. The helper's finally block removed the first owned database/role; its private directory contains an incomplete plan only and is not passing evidence. Keep it as diagnostic state and retry with a new exclusive directory after the correction. No refund dispatch or provider call occurred in this failed attempt.
+
+
+The row-shape correction54953b2 passed fourteen offline plus two tuple/dictionary-connection database regressions (sixteen checks72.19seconds), with strict typing/Ruff/format. The collector owns its cursor shape and preserves caller settings. During R1 final review, an unexpected SQLite view/trigger/index could evade a table-column-only check after derived store/manifest repinning. Added exact schema-object inventory checks and three invented negative controls before integrated acceptance. Source ingestion remains reusable; the verifier is rerun against unchanged private stores.
+
+
+R1 full official source preparation verified510contracts,20,910questions and13,823published spans with no source-offset mismatch. Versioned inference produced457families, development417contracts/17,097questions and holdout93contracts/3,813questions. Family detection combines source issuer, exact normalized contexts and65percentJaccard over normalized five-word shingles (minimum100); it cannot certify all legal relationships. One undelimited issuer remains explicitly unknown. Original text/answers stay private; numeric account-linked billing truth remains absent.
+
+Final R1 schema-object controls passed18invented tests6.15seconds after a reproduced repinned-view gap. The integrated merge had one README-only conflict, resolved by retaining the implemented source-preparation description and limits. An attempted capture before merge completion correctly rejected a dirty checkout before creating output; retry starts at clean7dfd144. The already running complete offline check sees identical integrated executable bytes; documentation conflict resolution does not invalidate its test inputs.
+
+
+### Complete pinned cohort capture
+
+The corrected clean integrated7dfd144 capture completed all36scheduled trials (twelve O3 hybrid cases times three repetitions):36correct, zero incorrect/unsafe/unresolved/missing. Every saved workflow result was retried through a new store/checkpointer and matched;36duplicate deliveries created no additional effects. All36owned trial databases/roles were removed. Public aggregate excludes case/order identities and private texts/labels. Original O3 raw pin0e542a7a remains unchanged; canonicalcasepinf7fb1e44 differs intentionally. Report canonicalpin7a940c95 and planpinbb9306a8 identify the private run. Provider calls and real payments are zero; release_allowed remainsfalse with all fresh/baseline/threshold/human-review blockers preserved.
+
+
+The integrated six-package build produced all wheel/source pairs and the locked audit found no known vulnerabilities. Installed Olist/Revenue wheels matched24and5package files respectively with network operations denied; imports/API construction/input projection passed without provider calls. Full R1 verifier rerun after schema hardening returnedverifiedtrue for unchanged510contracts/20,910questions/13,823spans/457families. Post-capture executing Olist/harness source inventory still matches the36-task plan. Documentation audit:409immutable source ranges,304local links,25publication files and no configured secret values;21,929CUAD source title/question-ID/context needles absent. Final full-suite and hosted exact-head results are maintained on #33/#39 after actual completion; no planned result is a pass.
