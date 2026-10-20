@@ -802,7 +802,7 @@
         "Restart preserves review state; repeated approval/resume cannot refund twice."
       ],
       "priority": "P0",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 31,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/31",
@@ -810,7 +810,11 @@
       "dependency_issue_numbers": [
         30
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "implementation_branch": "codex/o6-o7-review-console",
+      "implementation_commit": "c656ef564048ff02870c6966ab23da77cbf041d2",
+      "command_document": "docs/olist-console.md",
+      "review_evidence": "Combined user-authorized O6/O7 delivery based on verified e11290a. Required Postgres suite36passed470.72s, focused newconsole9passed46.55s, automated browser approval/restart/50SIM receipt/mobile checks, private source3approvals/3refunds19116minorSIM. Final full local/package/hosted evidence maintained on #31/#32. Offline mechanisms only; native board unverified; user merge pending."
     },
     {
       "id": "O7",
@@ -828,7 +832,7 @@
         "UI accurately shows pending, failed and committed actions and evidence."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 32,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/32",
@@ -837,7 +841,11 @@
         31,
         22
       ],
-      "milestone_number": 2
+      "milestone_number": 2,
+      "implementation_branch": "codex/o6-o7-review-console",
+      "implementation_commit": "c656ef564048ff02870c6966ab23da77cbf041d2",
+      "command_document": "docs/olist-console.md",
+      "review_evidence": "Combined user-authorized O6/O7 delivery based on verified e11290a. Required Postgres suite36passed470.72s, focused newconsole9passed46.55s, automated browser approval/restart/50SIM receipt/mobile checks, private source3approvals/3refunds19116minorSIM. Final full local/package/hosted evidence maintained on #31/#32. Offline mechanisms only; native board unverified; user merge pending."
     },
     {
       "id": "O8",
