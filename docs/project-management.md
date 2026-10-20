@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-20. O3 #28 is complete after user merge of #83 as `de04a96` and verified main run 39330860614 (nine applicable jobs) plus strict six-call/two-timeout/zero-provider replay. Its tree matches the reviewed O3 head, so unchanged full local tests/source ingestion/builds were reused. C2 #84 remains open in Review after a documentation-only main reconciliation and ten successful hosted jobs at `618b6c6`. Native board state is unverified. The next user-authorized delivery combines O4 #29 + O5 #30 in one PR; no live provider calls or domain release-quality claim.
+Updated: 2026-10-20. User merged O4/O5 #85 as `e11290a`, identical to reviewed source. Main run39348205740 passed nine applicable jobs (673 tests per quality cell,27Postgres). C2 #84 remains independent in Review at52a942e with ten successful jobs. User authorized O6 #31 + O7 #32 together, retaining the existing SIM cap/eligibility and choosing local operator/reviewer accounts. Native board state is unverified.
 
 ## Scope and source of truth
 
@@ -114,3 +114,8 @@ The user accepted a constructed full-refund-only SIM policy capped at100.00; mis
 The user approved one PR for scoped transactional refund tools (#29) and the dependent LangGraph workflow (#30). Both use `codex/o4-o5-refund-workflow` in the existing managed c1-cfpb-import checkout, based on verified O3 main `de04a96`. O4 is verified inside the same review bundle before the O5 delivery rather than requiring an intermediate user merge. One primary `Refs #29` satisfies contribution metadata; the body also links #30. Both issues remain open in Review until user merge and post-merge acceptance. C2 #84 remains independent; preserve Entry27 when reconciling journal/planning appends.
 
 Reuse unchanged pinned source stores and previous exact-source evidence. Perform one final complete integrated offline check, the required database suite, package checks and one hosted matrix at the final head; repeat only checks affected by new failures/changes. No live provider calls, real payment writes or release promotion are authorized. Source-backed tests use declared hybrid SIM facts and explicit offline intent. O6 reviewer approvals, O7 authentication/API/UI and O8 complete release acceptance remain Backlog. Native project-board transitions are unverified.
+
+
+## Authorized O6 + O7 delivery bundle
+
+The user approved one PR on `codex/o6-o7-review-console`, based on verified #85 main `e11290a`. O6 consent/recovery is implemented before O7 API/UI acceptance within this bundle. Both issues enter Review together and remain open until user merge and main acceptance. One primary `Refs #31` accompanies a link to #32. Local pre-provisioned accounts use opaque server-side sessions; the 100.00 SIM cap and missing/conflicting-fact rules are unchanged. Approval cannot override eligibility. [Commands and limits](olist-console.md), [source study](code-study-olist-console.md), Build Book Entry29 and the aggregate source drill preserve evidence. C2 #84 stays a separate review; O8 complete release scoring/fresh repeated trials remains Backlog. No live provider or real payment is authorized.

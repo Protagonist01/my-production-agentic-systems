@@ -36,7 +36,7 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.17.0",
     "production-agent-harness[gemini]",
-    "production-agent-olist-support[workflow]",
+    "production-agent-olist-support[web]",
     "langgraph==1.2.15",
     "pydantic-ai-slim[google]==2.56.0",
     "langfuse==5.0.1",

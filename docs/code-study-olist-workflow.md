@@ -1,6 +1,6 @@
 # Olist business transactions and persistent workflow
 
-Inspected executable commit `efd822fffc1b17c0272a4c2bd966f789109081ff`, branch `codex/o4-o5-refund-workflow`, 2026-10-20 Africa/Lagos. O3 prerequisite main is `de04a96ecfefea597a7407e9551902da7dc65470`. O4 #29 and O5 #30 are one user-authorized unmerged delivery; C2 #84 remains a separate review. This chapter covers all five added Python modules, business SQL, callers and unit/database witnesses. It excludes SDK internals, deployment, service authentication and independent policy/model-quality validation. [Operations](olist-workflow.md) gives executable commands; [Entry 28](../BUILD_BOOK.md#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow) records construction.
+Inspected executable commit `efd822fffc1b17c0272a4c2bd966f789109081ff`, branch `codex/o4-o5-refund-workflow`, 2026-10-20 Africa/Lagos. O3 prerequisite main is `de04a96ecfefea597a7407e9551902da7dc65470`. O4 #29 and O5 #30 merged through user-reviewed #85 as `e11290a92f22588aa7c1c6d799a7b649097dc2fa`, with identical reviewed tree and verified main acceptance. C2 #84 remains a separate review. This chapter covers all five added Python modules, business SQL, callers and unit/database witnesses. It excludes SDK internals, deployment, service authentication and independent policy/model-quality validation. [Operations](olist-workflow.md) gives executable commands; [Entry 28](../BUILD_BOOK.md#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow) records construction.
 
 ## State ownership and execution
 
@@ -78,11 +78,11 @@ The invented [unit witnesses][unit-tests] exercise all routes, deadline/scope/so
 
 The [source drill aggregate](data/olist-workflow-drill-v1.json) reuses three eligible groups from the pinned O3 private hybrid pilot. Each runs refund/status/reship and completed new-run recovery. Three ledger entries total 19,116 minor SIM, equal to order balances and budget spending, and source currency stays null. Provider calls and real payments are zero. Existing expected labels are provisional AI policy-table judgments, not independent human truth. A report-writer issue initially rejected Postgres SUM's Decimal during aggregate JSON encoding; integer conversion fixed the report, and a fresh owned trial repeated the complete drill successfully. No runtime transaction bug was inferred from that private report failure.
 
-**Design limitation:** the database role can update order/budget/session/checkpoint state. Trusted local Python and a compromised connection can bypass tool-level checks; no RLS/authenticated service is implemented. Protect credentials/private data; O7 must introduce the user-facing authorization boundary.
+**Design limitation:** the database role can update order/budget/session/checkpoint state. Trusted local Python and a compromised connection can bypass tool-level checks; no RLS isolation is implemented. The [O6/O7 console](code-study-olist-console.md) now supplies the user-facing account/session boundary. Protect credentials/private data.
 
 **Design limitation:** checkpoints bind request/policy/source, but do not automatically migrate candidate code across deployments. Resume using the same reviewed implementation/schema; a changed candidate requires an explicit migration/recovery procedure or isolated new trial. Serialization avoids dynamic imports/pickle; it does not authenticate a DB administrator.
 
-**Design limitation:** saved review is terminal. No human approval/reship/compensation is implemented. O6 provides audited exact-action approval; O8 provides release scoring and held-out fresh repeated trials. Live provider execution, model quality, production performance, disaster restore and broader security testing are **not assessed** here.
+O5 saved review remains terminal within that graph. The [O6 application](code-study-olist-console.md) stores a separate exact-action decision and uses a trusted callback to commit case/receipt/audit atomically with the business write. Reship/compensation remain unimplemented; O8 provides release scoring and held-out fresh repeated trials. Live provider execution, model quality, production performance, disaster restore and broader security testing are **not assessed** here.
 
 ## Explain it in an interview
 
@@ -100,11 +100,11 @@ The [source drill aggregate](data/olist-workflow-drill-v1.json) reuses three eli
 [setup]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business.py#L36-L65
 [enroll]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business.py#L68-L93
 [order]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business.py#L101-L134
-[refund-start]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business.py#L136-L181
-[refund-write]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business.py#L182-L259
-[refund-after]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business.py#L260-L264
-[verify]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business.py#L266-L297
-[session]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business.py#L300-L323
+[refund-start]: https://github.com/Protagonist01/my-production-agentic-systems/blob/c656ef564048ff02870c6966ab23da77cbf041d2/projects/olist-support/src/olist_support/business.py#L137-L186
+[refund-write]: https://github.com/Protagonist01/my-production-agentic-systems/blob/c656ef564048ff02870c6966ab23da77cbf041d2/projects/olist-support/src/olist_support/business.py#L187-L269
+[refund-after]: https://github.com/Protagonist01/my-production-agentic-systems/blob/c656ef564048ff02870c6966ab23da77cbf041d2/projects/olist-support/src/olist_support/business.py#L270-L273
+[verify]: https://github.com/Protagonist01/my-production-agentic-systems/blob/c656ef564048ff02870c6966ab23da77cbf041d2/projects/olist-support/src/olist_support/business.py#L275-L306
+[session]: https://github.com/Protagonist01/my-production-agentic-systems/blob/c656ef564048ff02870c6966ab23da77cbf041d2/projects/olist-support/src/olist_support/business.py#L309-L332
 [intent]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/workflow.py#L32-L60
 [gateway]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/workflow.py#L63-L116
 [result-contract]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/workflow.py#L119-L140

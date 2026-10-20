@@ -39,6 +39,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 28 — Transactional refunds and a bounded LangGraph workflow](#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow)
 
+- [Entry 29 — Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
+
 ## Entry 1 — Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
@@ -1421,3 +1423,68 @@ The new v3 invented capture was published exclusively from clean source `8d10f3a
 
 
 Affected controls/replay acceptance now passes128tests80.50seconds. Ruff/format and the documentation audit pass354immutable source ranges/261local links;30intended publication files contain no configured secret values. Allsixwheel/sdist pairs rebuilt with the v3 fixture included. Freeze the executable changes, run clean exact-source replay and repeat the complete local suite because the first integrated run had real failures. Required database27test evidence is reused locally because no business/workflow/DB source changed; final hosted Postgres repeats it at the published head. Record final full/hosted outcomes on#29/#30 without a documentation-only CI rerun.
+
+
+### O4 + O5 verified main acceptance
+
+User merged#85 as `e11290a92f22588aa7c1c6d799a7b649097dc2fa`; Git tree is identical to reviewed41a2b19. Main run39348205740 passed nine applicable jobs; PR-only metadata intentionally skipped. All actual job logs inspected:673tests perfourqualitycells,27Postgres,6call/2timeout/zero-provider replay and6wheel/sdist pairs each. Clean local main replay passed. Reuse exact-tree local673tests438.95s/64types/27DB/installed/source-drill evidence; avoid redundant source ingestion/full local rebuilds. Close#29/#30completed only now and update both active planning copies. Native board remains unverified.
+
+
+## Entry 29 — Exact-action approval behind a scoped local console
+
+**Files touched:** Olist review/auth/API/console modules, private schema, optional web dependencies and acceptance tests. Started2026-10-20 on `codex/o6-o7-review-console` from verified main `e11290a`. Entry27 remains preserved in pending C2#84. The user explicitly authorized combining O6#31 and O7#32, retaining the existing100.00SIM cap/eligibility and pre-provisioned local operator/reviewer accounts with server-side sessions.
+
+### Context and question
+
+O5 can return a saved review, but no reviewer can inspect/decide/resume it through an authenticated application. How do we bind consent to the exact tenant/order/amount/version and reviewer, then survive a crash after refund commit without losing the approval audit or duplicating money?
+
+### Options considered and why
+
+A flag in the checkpoint is insufficient: it does not identify a reviewer or exact action and can lag the business transaction. A separate approval update after refund commit leaves an avoidable audit gap. Choose a vertical-owned application schema for cases, append-only decision events, accounts and opaque session digests. Keep immutable O4 business-v1 DDL unchanged. Add a trusted commit recorder inside the existing business transaction so receipt/case/audit commit together. Reuse O5 graph checkpoints for ordinary request recovery; approvals invoke the same fresh policy/version/budget enforcement.
+
+Use opaque server-side sessions rather than adding a hosted identity-provider dependency, per user choice. Pin FastAPI/Uvicorn from current official package metadata, keep the web extra optional, and serve local static HTML/CSS/JS without a separate frontend build/CDN. A compact support workbench should foreground evidence, exact SIM amount and decision state; movement is limited to clear feedback/focus states.
+
+### How to build it
+
+1. Bootstrap a new private application schema through admin provisioning, then grant the runtime only needed case/session/account access and append-only audit insertion. Account provisioning is a trusted CLI operation; HTTP callers cannot grant their own tenant/order/role.
+2. Hash passwords with salted PBKDF2-SHA256 at600,000iterations; enforce bounds, compare constant-time, return generic login errors and throttle failed attempts. Store only digests of random session and CSRF tokens, enforce expiry/logout, reread account roles/scopes on every request, and require same-origin JSON+CSRF for mutations. Bind the supported local server to loopback; remote deployment/TLS is later operational work.
+3. Persist an idempotent case before running O5. Tenant/actor/scope come from the authenticated account. Keep request, context and original/provisional evidence private. Terminal review snapshots store a pure-policy candidate only when already eligible, plus the exact command, source/confirmation/version digest and action digest.
+4. Require reviewer role, matching order scope, exact case version/action digest and a distinct submitting actor before accepting a decision. Missing/conflicting/over-cap facts cannot be approved; rejection records no business effect. Any changed evidence/version invalidates approval and requires reevaluation.
+5. Persist approval before execution. The business transaction rechecks fresh policy/version/run limit, then an internal commit recorder checks the exact approved action/reviewer and appends receipt/audit/case completion atomically. A failed recorder rolls back all effects. Retry returns verified original receipt; a process death after commit cannot leave a second financial effect.
+6. Expose authenticated submit/list/detail/decision/resume/session/health routes. Render loading, empty, pending, error, rejection, stale and verified-commit states accurately. Do not place passwords/session tokens in browser storage or raw request/source content in telemetry/logs.
+7. Verify invented scope/CSRF/role/expiry/mutation cases, real Postgres decision atomicity/races/restart and a real browser operator→reviewer→receipt flow. Reuse pinned source stores for a private aggregate drill. Keep offline model acceptance and SIM-only boundary; O8 still owns complete fresh domain release evidence.
+
+### What went wrong
+
+No implementation result is claimed yet. The design review caught the approval/ledger split-transaction gap before coding. Record actual failures and results as implementation proceeds.
+
+
+### First console database run
+
+Six of seven new real Postgres tests passed in36.31seconds, including exact-action consent, atomic rollback/lost-response recovery, changed-record reapproval, cap/missing-fact refusal, concurrent reviewers/resume, session expiry/revocation/throttling and runtime audit/account privilege refusal. The one failure was the health route: it queried the private schema-pin table, whose SELECT privilege intentionally belongs only to admin. Query an existing runtime-readable case table instead of granting extra schema metadata access. Re-run after this correction; no final acceptance is claimed yet.
+
+
+The corrected console database suite passed7tests77.35seconds; unit+existing workflow checks passed21tests9.45seconds, with69strict typed sources. The browser drill then caught a UI accessibility defect: the busy helper restored button.textContent after an operation, flattening the sign-in arrow’s aria-hidden span and changing its accessible name. Preserve/reattach the original child nodes after loading feedback instead. The first drill created a review case but no decision/refund; retain that interrupted case in private diagnostic evidence. Skip an anonymous session lookup when no session-indicator cookie exists, and return an empty favicon response to avoid expected startup console errors. Keep generated browser snapshots outside publication; rotate the invented test credentials after the drill.
+
+
+### Durable consent and browser proof
+
+All9new required console DB checks pass46.55seconds, including an owned child that exits29 after the approval/refund/audit transaction commits; a new store returns the original verified receipt and exactly one committed audit event. A provisioned different-tenant HTTP account cannot inspect/decide/resume the case. Operator HTTP cannot decide; reviewer HTTP cannot submit a new support action. Final queue listings also reverify committed receipts rather than relying on a saved status alone.
+
+The real Edge browser drill used invented local accounts/orders only. Operator submitted a manual-review refund with an HTML injection canary; reviewer inspected evidence and recorded consent. Independent SQL observed one approved case, zero ledger effects. Restart the owned loopback service and verify the port owner belongs to the new launcher PID before claiming process restart. The new service accepted the persisted session/approval and executed the exact50.00SIM action. Browser reload retained the verified receipt; independent SQL found one5,000minor ledger entry and one committed audit event. Desktop1440px and mobile390px screenshots were inspected; no mobile horizontal overflow or page errors, and the canary remained inert text. One abandoned review from the first failed UI probe remains private diagnostic state; it has no refund. Tool snapshots are ignored, and invented credentials are rotated before handoff.
+
+
+### Source approval and lock maintenance
+
+Pinned private O3 groups produced three exact approvals with zero ledger effects before resume. A new store then executed all three, and repeated new-store resumes returned the same receipts. Independent SQL:threeledger entries/threecommittedaudit events and19,116minor SIM equal to order balances and run spending. Owned source trial removed. Public aggregate contains pins/counts only; reviewer actions are invented automated drill decisions, not human-adjudicated labels.
+
+The optional web extra changes the lock. From clean c656ef5, capture/publish invented-v4 explicitly, compare all six request/response objects to v3 (equal), update only the ordinary resource/pin, and add pinned historical rejection for v3 alongside v1/v2. Actual lock `c52f7636fe16a7898642cb4324538741611099dcc5b6e814913643aee7c8c7a3`, v4 content pin `d92e2271b50913a4c276b9028d2441dd90a147223310225ee7438c862fbc19dd`. Old fixtures remain unchanged; no weakened matching or automatic fixture generation. All six packages built and locked audit found no known vulnerabilities. Rebuild the harness for v4 and Olist after readable static-asset formatting; complete local/required DB acceptance remains in progress.
+
+
+### Complete local acceptance and package boundary
+
+The final complete offline check passed 681 tests in 368.12 seconds, with 69 strict typed source files plus import, lint, format and lock checks. The required real Postgres suite passed 36 tests in 470.72 seconds. Interrupted earlier command sessions produced incomplete logs and were not counted as passing; the complete check ran as an owned background process.
+
+All six packages built as wheels and source distributions; the harness was rebuilt for explicit invented-v4 replay, and Olist was rebuilt after readable asset formatting. Locked audit found no known vulnerabilities. Fresh installed base/web environments matched all 17 Olist Python modules, two SQL files and three web assets byte for byte under denied network operations. Base excludes web/workflow/provider SDKs. The web probe imports the actual API, constructs the loopback app, verifies password and checkpoint serialization, and reads packaged assets. An initial overly broad probe expected OpenTelemetry to be absent from the web extra; inspection showed FastAPI0.150.0 explicitly depends on opentelemetry-api, so the probe now checks that absence only for base. No instrumentation/export or provider call is claimed.
+
+The source walkthrough audit verified 380 immutable source ranges and 288 local links. All 32 publication files contain no null bytes, configured secret values or the private O3 source identifiers checked. Strict replay at clean ec56534 consumed six recordings, reproduced two typed timeouts and made zero provider calls, preserving all historical fixture bytes. Documentation-only acceptance updates reuse unchanged executable evidence. Final exact-head replay and hosted job logs are retained on #31/#32; user merge remains pending.
