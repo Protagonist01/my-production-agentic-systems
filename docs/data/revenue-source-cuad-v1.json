@@ -1,0 +1,257 @@
+{
+  "category_coverage": {
+    "Affiliate License-Licensee": {
+      "answer_spans": 115,
+      "answerable_questions": 59,
+      "questions": 510
+    },
+    "Affiliate License-Licensor": {
+      "answer_spans": 69,
+      "answerable_questions": 23,
+      "questions": 510
+    },
+    "Agreement Date": {
+      "answer_spans": 476,
+      "answerable_questions": 470,
+      "questions": 510
+    },
+    "Anti-Assignment": {
+      "answer_spans": 654,
+      "answerable_questions": 374,
+      "questions": 510
+    },
+    "Audit Rights": {
+      "answer_spans": 643,
+      "answerable_questions": 214,
+      "questions": 510
+    },
+    "Cap On Liability": {
+      "answer_spans": 672,
+      "answerable_questions": 275,
+      "questions": 510
+    },
+    "Change Of Control": {
+      "answer_spans": 253,
+      "answerable_questions": 121,
+      "questions": 510
+    },
+    "Competitive Restriction Exception": {
+      "answer_spans": 125,
+      "answerable_questions": 76,
+      "questions": 510
+    },
+    "Covenant Not To Sue": {
+      "answer_spans": 173,
+      "answerable_questions": 100,
+      "questions": 510
+    },
+    "Document Name": {
+      "answer_spans": 521,
+      "answerable_questions": 510,
+      "questions": 510
+    },
+    "Effective Date": {
+      "answer_spans": 447,
+      "answerable_questions": 390,
+      "questions": 510
+    },
+    "Exclusivity": {
+      "answer_spans": 410,
+      "answerable_questions": 180,
+      "questions": 510
+    },
+    "Expiration Date": {
+      "answer_spans": 467,
+      "answerable_questions": 413,
+      "questions": 510
+    },
+    "Governing Law": {
+      "answer_spans": 464,
+      "answerable_questions": 437,
+      "questions": 510
+    },
+    "Insurance": {
+      "answer_spans": 560,
+      "answerable_questions": 166,
+      "questions": 510
+    },
+    "Ip Ownership Assignment": {
+      "answer_spans": 318,
+      "answerable_questions": 124,
+      "questions": 510
+    },
+    "Irrevocable Or Perpetual License": {
+      "answer_spans": 165,
+      "answerable_questions": 70,
+      "questions": 510
+    },
+    "Joint Ip Ownership": {
+      "answer_spans": 115,
+      "answerable_questions": 46,
+      "questions": 510
+    },
+    "License Grant": {
+      "answer_spans": 777,
+      "answerable_questions": 255,
+      "questions": 510
+    },
+    "Liquidated Damages": {
+      "answer_spans": 121,
+      "answerable_questions": 61,
+      "questions": 510
+    },
+    "Minimum Commitment": {
+      "answer_spans": 424,
+      "answerable_questions": 165,
+      "questions": 510
+    },
+    "Most Favored Nation": {
+      "answer_spans": 38,
+      "answerable_questions": 28,
+      "questions": 510
+    },
+    "No-Solicit Of Customers": {
+      "answer_spans": 58,
+      "answerable_questions": 34,
+      "questions": 510
+    },
+    "No-Solicit Of Employees": {
+      "answer_spans": 91,
+      "answerable_questions": 59,
+      "questions": 510
+    },
+    "Non-Compete": {
+      "answer_spans": 259,
+      "answerable_questions": 119,
+      "questions": 510
+    },
+    "Non-Disparagement": {
+      "answer_spans": 65,
+      "answerable_questions": 38,
+      "questions": 510
+    },
+    "Non-Transferable License": {
+      "answer_spans": 298,
+      "answerable_questions": 138,
+      "questions": 510
+    },
+    "Notice Period To Terminate Renewal": {
+      "answer_spans": 122,
+      "answerable_questions": 111,
+      "questions": 510
+    },
+    "Parties": {
+      "answer_spans": 2554,
+      "answerable_questions": 509,
+      "questions": 510
+    },
+    "Post-Termination Services": {
+      "answer_spans": 450,
+      "answerable_questions": 182,
+      "questions": 510
+    },
+    "Price Restrictions": {
+      "answer_spans": 27,
+      "answerable_questions": 15,
+      "questions": 510
+    },
+    "Renewal Term": {
+      "answer_spans": 210,
+      "answerable_questions": 176,
+      "questions": 510
+    },
+    "Revenue/Profit Sharing": {
+      "answer_spans": 418,
+      "answerable_questions": 166,
+      "questions": 510
+    },
+    "Rofr/Rofo/Rofn": {
+      "answer_spans": 367,
+      "answerable_questions": 85,
+      "questions": 510
+    },
+    "Source Code Escrow": {
+      "answer_spans": 66,
+      "answerable_questions": 13,
+      "questions": 510
+    },
+    "Termination For Convenience": {
+      "answer_spans": 246,
+      "answerable_questions": 183,
+      "questions": 510
+    },
+    "Third Party Beneficiary": {
+      "answer_spans": 39,
+      "answerable_questions": 32,
+      "questions": 510
+    },
+    "Uncapped Liability": {
+      "answer_spans": 167,
+      "answerable_questions": 111,
+      "questions": 510
+    },
+    "Unlimited/All-You-Can-Eat-License": {
+      "answer_spans": 32,
+      "answerable_questions": 17,
+      "questions": 510
+    },
+    "Volume Restriction": {
+      "answer_spans": 171,
+      "answerable_questions": 82,
+      "questions": 510
+    },
+    "Warranty Duration": {
+      "answer_spans": 176,
+      "answerable_questions": 75,
+      "questions": 510
+    }
+  },
+  "counts": {
+    "answer_spans": 13823,
+    "categories": 41,
+    "contracts": 510,
+    "development_contracts": 417,
+    "development_questions": 17097,
+    "holdout_contracts": 93,
+    "holdout_questions": 3813,
+    "questions": 20910,
+    "unanswerable_questions": 14208
+  },
+  "evaluator_sha256": "00d069bbde8d37fd2e5e8506623d7628a73e596b22e7cd4aecbb3b47a1cdd906",
+  "family_policy": "cuad-issuer-template-v1",
+  "family_split_rule": "SHA256(policy|sorted-source-titles) first32bits mod5=0 holdout",
+  "grouping": {
+    "exact_context_edges": 1,
+    "family_count": 457,
+    "issuer_edges": 51,
+    "largest_family": 5,
+    "multi_contract_families": 35,
+    "template_edges": 5,
+    "unknown_issuer_contracts": 1
+  },
+  "inputs_sha256": "c962eb435bf0b9a296ef59752c6db0453541d5d1c702666632bf92ef4c8acfc7",
+  "limitations": [
+    "Published expert span references are retained unchanged; no candidate authored targets.",
+    "Inferred issuer/template families only; unobserved legal relationships may remain.",
+    "Local family split replaces the published train/test split; scores are not comparable.",
+    "CUAD clause spans are not reviewed normalized billing amounts or account-linked schedules.",
+    "No seat/price/uplift billing gold, extraction baseline, provider call or recovered revenue.",
+    "Original source may be incomplete, redacted or outdated; no legal advice or warranty.",
+    "Separate SQLite files are an application boundary, not an OS sandbox or access control."
+  ],
+  "source": {
+    "archive_bytes": 18309308,
+    "archive_sha256": "f8161d18bea4e9c05e78fa6dda61c19c846fb8087ea969c172753bc2f45b999a",
+    "category_count": 41,
+    "contract_count": 510,
+    "license": "CC-BY-4.0",
+    "member": "CUADv1.json",
+    "member_bytes": 40128638,
+    "member_sha256": "ed0b77d85bdf4014d7495800e8e4a70565b48ee6f8a2e5dca9cf8655dbf10eae",
+    "schema_version": 1,
+    "source_commit": "67faa0e6023b04fcaae6cc09497ab00e5d63a2a2",
+    "source_url": "https://raw.githubusercontent.com/The-Atticus-Project/cuad/67faa0e6023b04fcaae6cc09497ab00e5d63a2a2/data.zip"
+  },
+  "source_pin_canonical_sha256": "375d645d6eb6da5b9c6a57e73de3e7acf05595f0c4f16a72af503f80a0ba5f4d",
+  "version": "revenue-original-cuad-v1"
+}

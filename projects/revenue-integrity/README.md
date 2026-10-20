@@ -1,5 +1,5 @@
 # production-agent-revenue-integrity
 
-Import package: `revenue_integrity`. This is an installable scaffold; runtime implementation follows the delivery backlog.
+Import package: `revenue_integrity`. R1 prepares pinned original CUAD contexts and published span references in separate private stores, with a versioned inferred-family development/holdout split.
 
-R1 adds [original CUAD source preparation](../../docs/data/revenue-source.md) and a [source walkthrough](../../docs/code-study-revenue-source.md). Original contexts and published expert spans remain in separate private input/reference stores; public artifacts contain provenance and aggregate counts. Inferred issuer/template families precede split assignment. Numeric billing truth and later extraction/reconciliation behavior are outside this source-preparation step.
+See [source commands, provenance and limits](../../docs/data/revenue-source.md) and the [code walkthrough](../../docs/code-study-revenue-source.md). No extractor, normalized numeric billing gold, billing action or model-quality result is implemented yet.

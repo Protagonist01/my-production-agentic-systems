@@ -1,0 +1,13 @@
+{
+  "archive_bytes": 18309308,
+  "archive_sha256": "f8161d18bea4e9c05e78fa6dda61c19c846fb8087ea969c172753bc2f45b999a",
+  "category_count": 41,
+  "contract_count": 510,
+  "license": "CC-BY-4.0",
+  "member": "CUADv1.json",
+  "member_bytes": 40128638,
+  "member_sha256": "ed0b77d85bdf4014d7495800e8e4a70565b48ee6f8a2e5dca9cf8655dbf10eae",
+  "schema_version": 1,
+  "source_commit": "67faa0e6023b04fcaae6cc09497ab00e5d63a2a2",
+  "source_url": "https://raw.githubusercontent.com/The-Atticus-Project/cuad/67faa0e6023b04fcaae6cc09497ab00e5d63a2a2/data.zip"
+}
