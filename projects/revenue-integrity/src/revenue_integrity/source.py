@@ -323,6 +323,16 @@ def verify_corpus(archive: Path, output: Path, expected_manifest_sha256: str) ->
             "PRAGMA integrity_check"
         ).fetchone() != ("ok",):
             raise ValueError("prepared SQLite integrity check failed")
+        for database, tables in ((db, ("contracts", "questions")), (ev, ("targets", "sources"))):
+            expected_objects = {
+                *(("table", name, name) for name in tables),
+                *(("index", "sqlite_autoindex_" + name + "_1", name) for name in tables),
+            }
+            actual_objects = set(
+                database.execute("SELECT type,name,tbl_name FROM sqlite_master").fetchall()
+            )
+            if actual_objects != expected_objects:
+                raise ValueError("prepared database contains unexpected schema objects")
         input_schema = {
             name: tuple(row[1] for row in db.execute(f"PRAGMA table_info({name})"))
             for (name,) in db.execute("SELECT name FROM sqlite_master WHERE type='table'")

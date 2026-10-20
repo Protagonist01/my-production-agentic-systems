@@ -233,6 +233,26 @@ def test_verifier_recomputes_aggregate_counts_even_with_a_new_manifest_pin(tmp_p
         verify_corpus(archive, output, sha256(manifest.read_bytes()))
 
 
+@pytest.mark.parametrize("extra", ["view", "trigger", "index"])
+def test_verifier_rejects_hidden_agent_schema_objects_even_after_repin(tmp_path, extra):
+    archive, pin = fixture(tmp_path)
+    output = tmp_path / "prepared"
+    report = import_corpus(archive, pin, output)
+    statements = {
+        "view": "CREATE VIEW leaked_targets AS SELECT 'invented gold' AS answer",
+        "trigger": "CREATE TRIGGER hidden_gold AFTER INSERT ON questions "
+        "BEGIN SELECT 'invented gold'; END",
+        "index": "CREATE INDEX unexpected_index ON questions(question)",
+    }
+    with sqlite3.connect(output / "inputs.sqlite") as db:
+        db.execute(statements[extra])
+    report["inputs_sha256"] = sha256((output / "inputs.sqlite").read_bytes())
+    manifest = output / "manifest.json"
+    manifest.write_bytes(canonical(report))
+    with pytest.raises(ValueError, match="unexpected schema"):
+        verify_corpus(archive, output, sha256(manifest.read_bytes()))
+
+
 def test_private_paths_and_cli_errors_never_publish_source_text(tmp_path, capsys):
     checkout = tmp_path / "checkout"
     checkout.mkdir()
