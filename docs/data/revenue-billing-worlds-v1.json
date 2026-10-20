@@ -1,0 +1,31 @@
+{
+  "as_of": "2026-10-20",
+  "case_count": 29,
+  "disposition_counts": {
+    "correct": 8,
+    "overbilled": 6,
+    "review": 9,
+    "underbilled": 6
+  },
+  "evaluator_sha256": "fc82eaa43c0100b25a3b4149b9e3990bfe94658d4d77c53b398da74e643765fd",
+  "group_count": 9,
+  "inputs_sha256": "3d9e562f8e23ac88878489e96dd064d28510fca6fa82a0d9c15ff4a3dc57e72d",
+  "limitations": [
+    "Fictional SIM cases, no source-derived or real billing truth.",
+    "Literal labels are AI-authored provisional references, not human-reviewed gold.",
+    "No provider, proration, tax, real payment, or billing write.",
+    "Separate stores and scoped reader are not an OS sandbox."
+  ],
+  "policy": "revenue-monthly-whole-seat-sim-v1",
+  "policy_approval": "user-approved-policy-not-label-review",
+  "review_status": "provisional",
+  "reviewer_kind": "ai",
+  "seed": "revenue-fictional-monthly-cohort-v1",
+  "source_kind": "synthetic",
+  "split_counts": {
+    "development": 9,
+    "holdout": 11,
+    "regression": 9
+  },
+  "version": "revenue-billing-worlds-v1"
+}
