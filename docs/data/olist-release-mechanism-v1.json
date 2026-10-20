@@ -1,0 +1,143 @@
+{
+  "version": "olist-offline-report-v1",
+  "evidence_kind": "offline_mechanism_only",
+  "release_allowed": false,
+  "provider_freshness_verified": false,
+  "provider_cost": null,
+  "provider_latency_seconds": null,
+  "cost_latency_status": "not_measured_offline_report",
+  "scheduled_trials": 36,
+  "categories": {
+    "correct": 36,
+    "incorrect": 0,
+    "missing": 0,
+    "unresolved": 0,
+    "unsafe": 0
+  },
+  "correct": {
+    "denominator": 36,
+    "numerator": 36,
+    "possible_upper": 1.0,
+    "schema_version": 1,
+    "unknown": 0,
+    "value": 1.0
+  },
+  "eligible_autonomous_completion": {
+    "denominator": 9,
+    "numerator": 9,
+    "possible_upper": 1.0,
+    "schema_version": 1,
+    "unknown": 0,
+    "value": 1.0
+  },
+  "required_review": {
+    "denominator": 27,
+    "numerator": 27,
+    "possible_upper": 1.0,
+    "schema_version": 1,
+    "unknown": 0,
+    "value": 1.0
+  },
+  "unnecessary_review": {
+    "denominator": 9,
+    "numerator": 0,
+    "possible_upper": 0.0,
+    "schema_version": 1,
+    "unknown": 0,
+    "value": 0.0
+  },
+  "observed_review": {
+    "denominator": 36,
+    "numerator": 27,
+    "possible_upper": 0.75,
+    "schema_version": 1,
+    "unknown": 0,
+    "value": 0.75
+  },
+  "all_three_correct_mechanism": {
+    "denominator": 12,
+    "numerator": 12,
+    "possible_upper": 1.0,
+    "schema_version": 1,
+    "unknown": 0,
+    "value": 1.0
+  },
+  "slices": {
+    "source_kind:hybrid": {
+      "denominator": 36,
+      "numerator": 36,
+      "possible_upper": 1.0,
+      "schema_version": 1,
+      "unknown": 0,
+      "value": 1.0
+    },
+    "split:development": {
+      "denominator": 12,
+      "numerator": 12,
+      "possible_upper": 1.0,
+      "schema_version": 1,
+      "unknown": 0,
+      "value": 1.0
+    },
+    "split:holdout": {
+      "denominator": 12,
+      "numerator": 12,
+      "possible_upper": 1.0,
+      "schema_version": 1,
+      "unknown": 0,
+      "value": 1.0
+    },
+    "split:regression": {
+      "denominator": 12,
+      "numerator": 12,
+      "possible_upper": 1.0,
+      "schema_version": 1,
+      "unknown": 0,
+      "value": 1.0
+    },
+    "treatment:adversarial": {
+      "denominator": 18,
+      "numerator": 18,
+      "possible_upper": 1.0,
+      "schema_version": 1,
+      "unknown": 0,
+      "value": 1.0
+    },
+    "treatment:base": {
+      "denominator": 18,
+      "numerator": 18,
+      "possible_upper": 1.0,
+      "schema_version": 1,
+      "unknown": 0,
+      "value": 1.0
+    }
+  },
+  "blockers": [
+    "fresh_heldout_provider_evidence_pending",
+    "reviewed_domain_baseline_pending",
+    "reviewed_release_thresholds_pending",
+    "independent_human_label_adjudication_pending"
+  ],
+  "plan_sha256": "bb9306a8cc76bac7609cb626db1d2b4e5a8d7b79168bac48f0f11e1dcfdf7a4b",
+  "cases_sha256": "f7fb1e44677ac299ea65f9fcc2fc7c243aca50ed359ef96eccdc7e7b81d9163a",
+  "observations_sha256": "186ae0f61f522373ae668b63c6ec41393c235840ef67ffe14563dbe42b9377ca",
+  "cases_file_sha256": "0e542a7a4d13964c3fa3d4519f8c78e6452cb3e55f827997bed23eb67069011d",
+  "observations_file_sha256": "0bccccf5a3b66c4a0ed9fbcb972ee1fc715a1f6dad94c46c1949a6da9db6cb1c",
+  "code_revision": "7dfd1446e9d2927eea526d181b8f1fd879bffc84",
+  "lock_sha256": "c52f7636fe16a7898642cb4324538741611099dcc5b6e814913643aee7c8c7a3",
+  "scorer_sha256": "874d97fbe5ce410af9125cf388912cd7fcbb746a2fd33a93fb34e138c732fc9d",
+  "case_count": 12,
+  "order_group_count": 6,
+  "trial_repetitions": 3,
+  "duplicate_deliveries_checked": 36,
+  "owned_trials_removed": 36,
+  "report_canonical_sha256": "7a940c955b622c051d8e8970cee5e3a19987047e8672e6fd8b1d01dc219b2b91",
+  "provider_calls": 0,
+  "real_payments": 0,
+  "expected_label_status": "AI policy-table review, provisional; not independent human adjudication",
+  "limitations": [
+    "Fixed offline planner repetitions do not establish fresh provider reliability.",
+    "Hybrid source contexts plus constructed facts/messages are not original observed support decisions.",
+    "State/routing correctness does not grade review rationale or console consent."
+  ]
+}
