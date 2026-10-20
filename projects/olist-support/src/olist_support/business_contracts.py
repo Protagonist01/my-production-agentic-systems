@@ -2,6 +2,7 @@
 
 from typing import Annotated, Literal
 
+from agent_harness.access import ResourceScope
 from agent_harness.contracts import Contract
 from pydantic import Field
 
@@ -18,12 +19,21 @@ class CallerGrant(Contract):
     capabilities: tuple[Literal["read", "refund"], ...]
 
     def require(self, tenant: str, order: str, capability: str) -> None:
-        if (
-            tenant != self.tenant_id
-            or order not in self.order_ids
-            or capability not in self.capabilities
-        ):
-            raise PermissionError("caller grant does not authorize this tenant/order/capability")
+        scope = ResourceScope(
+            tenant_id=self.tenant_id,
+            actor_id=self.actor_id,
+            resource_kind="order",
+            resource_ids=self.order_ids,
+            capabilities=self.capabilities,
+        )
+        try:
+            scope.require(
+                tenant_id=tenant, resource_kind="order", resource_id=order, capability=capability
+            )
+        except PermissionError:
+            raise PermissionError(
+                "caller grant does not authorize this tenant/order/capability"
+            ) from None
 
 
 class RefundCommand(Contract):
