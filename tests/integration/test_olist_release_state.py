@@ -9,9 +9,32 @@ import uuid
 import pytest
 from olist_support.business import BusinessStore
 from olist_support.release import Observation, collect_state, score
+from psycopg.rows import dict_row, tuple_row
 from test_olist_business import app as app
 from test_olist_business import seed
 from test_olist_release import case_for, task_for
+
+
+@pytest.mark.parametrize("row_factory", [tuple_row, dict_row], ids=["tuple", "dict"])
+def test_snapshot_owns_row_shape_without_mutating_caller_factory(app, row_factory):
+    server, trial, store = app
+    grant, command = seed(app)
+    run = "row-shape-" + uuid.uuid4().hex
+    receipt = store.refund(grant, command, run_id=run, run_limit_minor=10000)
+    with server.connect(trial.name) as admin:
+        expected = collect_state(admin)
+        admin.row_factory = row_factory
+        actual = collect_state(admin)
+        assert actual == expected
+        assert admin.row_factory is row_factory
+        # All three SELECTs contain actual data; preserve the caller's next query shape too.
+        assert any(r.receipt == receipt for r in actual.ledger)
+        assert any(r.run_id == run and r.spent_minor == 5000 for r in actual.budgets)
+        assert any(
+            r.order_id == command.order_id and r.refunded_minor == 5000 for r in actual.orders
+        )
+        marker = admin.execute("SELECT 1 AS marker").fetchone()
+        assert marker == ({"marker": 1} if row_factory is dict_row else (1,))
 
 
 @pytest.mark.parametrize("fault_stage", ["none", "before_commit", "after_commit", "process_exit"])

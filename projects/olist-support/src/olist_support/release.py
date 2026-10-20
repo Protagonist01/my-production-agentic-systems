@@ -8,6 +8,7 @@ from agent_harness.contracts import Contract, Count, NonEmpty
 from agent_harness.evaluation import ScoreResult
 from agent_harness.scorecard_contracts import Ratio, ratio
 from psycopg import Connection
+from psycopg.rows import tuple_row
 from pydantic import Field, model_validator
 
 from olist_support.business_contracts import CallerGrant, RefundCommand, RefundReceipt
@@ -81,9 +82,10 @@ def collect_state(connection: Connection[Any]) -> StateSnapshot:
 
     Read every tenant, not only the permitted target. Never use runtime receipt verification.
     The supplied connection must be idle; this owns a consistent read-only transaction.
+    Cursor-local tuple rows preserve any caller-configured connection row factory.
     """
-    with connection.transaction():
-        connection.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY")
+    with connection.transaction(), connection.cursor(row_factory=tuple_row) as cursor:
+        cursor.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY")
         orders = tuple(
             OrderState(
                 tenant_id=t,
@@ -96,7 +98,7 @@ def collect_state(connection: Connection[Any]) -> StateSnapshot:
                 version=v,
                 refunded_minor=n,
             )
-            for t, o, view, facts, source, v, n in connection.execute(
+            for t, o, view, facts, source, v, n in cursor.execute(
                 "SELECT tenant_id,order_id,source_view,confirmation,source_pin,version,"
                 "refunded_minor FROM olist.orders ORDER BY tenant_id,order_id"
             ).fetchall()
@@ -110,14 +112,14 @@ def collect_state(connection: Connection[Any]) -> StateSnapshot:
                 amount_minor=n,
                 receipt=RefundReceipt.model_validate_json(json.dumps(r)),
             )
-            for t, op, o, p, n, r in connection.execute(
+            for t, op, o, p, n, r in cursor.execute(
                 "SELECT tenant_id,operation_id,order_id,payload_sha256,amount_minor,receipt "
                 "FROM olist.refunds ORDER BY tenant_id,operation_id"
             ).fetchall()
         )
         budgets = tuple(
             BudgetState(tenant_id=t, run_id=r, limit_minor=limit, spent_minor=n)
-            for t, r, limit, n in connection.execute(
+            for t, r, limit, n in cursor.execute(
                 "SELECT tenant_id,run_id,limit_minor,spent_minor FROM olist.run_budgets "
                 "ORDER BY tenant_id,run_id"
             ).fetchall()
