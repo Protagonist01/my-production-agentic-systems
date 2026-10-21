@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-20. Usermerged#87as058d1c7, identicalreviewede536c96; verifiedmain39457223872nineapplicablejobs/713testsperquality/43Postgres/strictreplay6/2/zero. R1complete; O8freshreleaseacceptancepending. C2#84reconcilesmainwithunchangedparent source/test/config/lock bytes and remainsReview. Nativeboardunverified.
+Updated: 2026-10-20. Usermerged#87as058d1c7, identicalreviewede536c96. Main39457223872passednineapplicablejobs actual713testsperqualitycell/43Postgres; exactmainreplay6/2/zero-provider passed. R1#39complete with source/family/numericbilling limits, O8freshreleasegatepending. Userexplicitlyauthorizedatleastthreeissues: R2#40+R3#41+R4#42 inoneparallelbatchunderapprovedconstructedbillingrules. C2#84remainsindependentunmergedreview. Nativeboardunverified.
 
 ## Scope and source of truth
 
@@ -143,3 +143,16 @@ O8 fresh held-out provider results, baseline/threshold review and first-release 
 ## C2 reconciliation after #87
 
 Keep existing #84 current with verified058d1c7. Six conflicts are shared documentation/planning only. Preserve full Entries27–30, C2 baselines and merged Olist/Revenue studies. Focused C2, immutable-source/link audit and clean replay validate this reconciliation; final exact-head hosted checks cover734offline tests and43Postgres (counts require actual logs). No repeated ingestion, label generation or unchanged full local suite/build. #35 stays open Review pending user merge; fresh/domain/human quality limits remain.
+
+
+## Three-issue Revenue delivery
+
+R2/R3/R4 share `codex/r2-r3-r4-revenue-engine` from verified058d1c7. Two isolated Revenue workers own fixture contracts and reconciliation/extraction; the shared access worker preserves Olist wire/policy behavior and adds only the demonstrated common exact-scope mechanism. Root integrates shared planning, journal, navigation and final acceptance once. The user-approved SIM billing policy and safe unsupported cases are documented in Build Book Entry31. Prerequisite R2 verification occurs inside the explicitly authorized bundle before R3/R4 acceptance; source R1 is merged/verified. No actual invoice mutation or release promotion is included.
+
+
+The combined R2/R3/R4 candidate is ready for final acceptance and user review. Its current source and offline aggregate are linked from the Revenue runbooks; final local/database/hosted results are maintained on #40/#41/#42. Keep all three issues open until user merge and exact-main verification. Provisional fixture agreement, scripted original extraction and strict replay do not satisfy fresh domain release gates. Certifi's new advisory was repaired before acceptance, with an explicit reviewed-content v5 invented replay capture for the changed environment lock.
+
+
+## C2 reconciliation after #88
+
+Keep #84 current with verified main5f73fc9. Three conflicts are shared documentation only; preserve full Entries27–31, C2 baseline chapter and all merged Revenue studies. Source/config/lock bytes inherit reviewed main; C2 code/tests remain unchanged. Focused C2 and clean replay verify composition; hosted exact-head evidence is required before acceptance. The new certifi fix and v5 replay arrive unchanged from main, with no source reingestion or relabeling. Issue35 remains open Review pending user merge.

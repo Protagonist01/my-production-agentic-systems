@@ -43,6 +43,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 29 — Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
 - [Entry 30 — Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
+- [Entry 31 — Three Revenue tasks behind explicit simulation rules](#entry-31--three-revenue-tasks-behind-explicit-simulation-rules)
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -1629,3 +1630,66 @@ The corrected clean integrated7dfd144 capture completed all36scheduled trials (t
 
 
 The integrated six-package build produced all wheel/source pairs and the locked audit found no known vulnerabilities. Installed Olist/Revenue wheels matched24and5package files respectively with network operations denied; imports/API construction/input projection passed without provider calls. Full R1 verifier rerun after schema hardening returnedverifiedtrue for unchanged510contracts/20,910questions/13,823spans/457families. Post-capture executing Olist/harness source inventory still matches the36-task plan. Documentation audit:409immutable source ranges,304local links,25publication files and no configured secret values;21,929CUAD source title/question-ID/context needles absent. Final full-suite and hosted exact-head results are maintained on #33/#39 after actual completion; no planned result is a pass.
+
+
+## Entry 31 — Three Revenue tasks behind explicit simulation rules
+
+Date: 2026-10-20 (Africa/Lagos). Implementation in progress; no new batch acceptance is claimed.
+
+**Context:** user merged #87 and explicitly requested at least three issues per delivery. Verify main058d1c7 against reviewede536c96: identical tree. Inspect main39457223872 actual logs: nine applicable jobs passed,713offline tests per quality cell,43required Postgres tests, replay6recordings/2typedtimeouts/zero-provider and allsixwheel/sdistpairs. Clean exact-main replay passed; preserve unchanged local/source/package evidence instead of re-running it. R1#39 completes original published context/reference preparation with numeric billing/family limitations retained. O8#33 remains open pending fresh provider/baseline/threshold/human-review evidence under the user's offline-only constraint. C2#84 is still an independent unmerged review.
+
+### Decide the three-task boundary before implementing
+
+Deliver R2#40 billing worlds, R3#41 common access mechanism and R4#42 cited extraction/reconciliation in one PR. User approved constructed monthly whole-seat charges in SIM integer hundredths, no proration/tax, explicit dated ramps/credits/amendments, annual uplift only expressly stated, and review for missing/conflicting terms. Original CUAD extraction never becomes invented invoice truth. No real money, provider calls or R5billingwrites are authorized.
+
+Give each worker owned modules/tests/docs in separate worktrees. The R2worker defines public BillingInput and evaluator-only literal schedules, with deterministic family splits and external private stores. The R4worker implements a read-only engine against those public contracts and keeps gold-terms versus extracted-terms errors separate. Fixture labels must not import or call that engine. The R3worker first examines two real call sites, then moves only exact tenant/resource-kind/resource-ID/capability membership into harness.access. Root owns shared configuration, journal/planning/indices and final integrated checks. Merge local worker branches to retain immutable source anchors; run one final full suite/build/audit/hosted matrix after integration.
+
+### Keep the common API smaller than the domain
+
+Olist CallerGrant already performs exact tenant/order/capability checks; its closed read/refund capability and JSONwire shape remain unchanged. Revenue's second consumer is a private world reader guarded by BillingGrant read/reconcile capability and explicit tenant/world scope before file access, then parsed case/tenant identity before return. ResourceScope carries an explicit resource_kind so equal IDs in two domains do not match. Shared code contains no refund/invoice rule, account role, wildcard, authentication, transaction, approval or receipt policy. A generic registry/write primitive has no second demonstrated use; do not extract it speculatively. MCP exposure remains later work.
+
+### Define safe arithmetic limits
+
+Use first-of-month effective events and half-open monthly periods. Uplift anchor explicitly names the first uplift date, with annual exact-integer compounding only when declared. An explicit price amendment resets base price; subsequent applicable anniversaries may uplift it. A simultaneous price reset/uplift is ambiguous and routes to review. Mid-month events need review because proration is excluded. Fractional-minor results also need review because no rounding policy was approved. No legal span supplies missing billing authority; unsupported extraction remains unresolved rather than guessed. Literal benign credits/ramps/amendments are negative controls as well as leakage cases. Automated arithmetic checks are not new human adjudication.
+
+### Results to record as work proceeds
+
+Workers are implementing focused checks; original-source, constructed billing and tool-migration evidence remain distinct. Record real failures and complete integrated results before review.
+
+
+### Verify two consumers before shared extraction acceptance
+
+R3source701353 preserves the Olist CallerGrant canonical wire fingerprint, closed read/refund capabilities, existing denial text and accepted resource counts. Generic ResourceScope checks exact tenant/kind/id/capability; asterisks/prefixes carry no wildcard meaning. Revenue BillingGrant and actual R2read_world use the same scope mechanism. Focused integrated consumer verification passed39tests26.68seconds (five access, thirteen billing-world, fourteen existing workflow and seven console), with affected lint/format and six strict typed modules passing. The reader denies absent capability/resource before opening storage, then checks schema and strict tenant/case identity before returning public fields.
+
+R2sourcec6407aa defines29literal cases across nine families, before candidate comparison: nine development/nine regression/eleven holdout, eight correct/six underbilled/six overbilled/nine review. Fixture authorship never imports the reconciler. Independent Fraction arithmetic checks each literal expression and signed difference; this is an automated arithmetic witness, not new human billing adjudication. Private preparation and verification completed with manifest97d4193e8339af5164dedc284b6b45d53fce4cb936e809ba76769adc4d104730. Public aggregate receives explicit LF attributes to preserve byte pins on Windows.
+
+Parallel review reproduced a valid-date engine failure at9999-12-01: constructing the next month attempted year10000. R4 must return review for the unsupported terminal calendar month rather than raise. The cited extractor must also have a concrete shared ModelGateway adapter tested with scripted responses; an all-abstain baseline alone would not implement extraction. Original span integrity remains distinct from semantic legal or monetary correctness. These fixes are being checked before final integration.
+
+
+### Close the response identity boundary before acceptance
+
+On 2026-10-21, independent R2 review reproduced another false acceptance: a gateway returned a well-formed literal span under a provider/model route different from the requested route, and the extractor accepted it. Validate the entire ModelResponse again at the adapter boundary, then require exact provider/model and any explicitly requested model revision before parsing its content. A mismatch must become a bounded uncertain outcome without retaining private response text. Canonical validation also rejects unchecked model objects created through bypass APIs. Record final regressions after the worker commits; this finding precedes integrated acceptance.
+
+
+### Execute the combined mechanism before broad acceptance
+
+R4 source45ebabb revalidates ModelResponse and rejects wrong provider/model/requested revision before parsing. Its final41focused tests passed0.84seconds with strict typing and lint/format. Integrated private capture at clean24e401d compared all29literal cases through provided terms and separate invented grammar:29matches on each path, two actual scoped CLI outputs equal library results and private world-store bytes unchanged. Twelve original CUAD development inputs dispatched only to a scripted abstention gateway; all returned unsupported. No original extraction accuracy, provider call or billing mutation is claimed.
+
+The first capture attempt stopped at scripted gateway construction because its helper omitted required unknown token/cost fields from Usage. This was a helper error after billing checks, not a provider or engine failure; the partial directory is diagnostic only. Explicit null usage observations corrected the helper, and a new exclusive v2 directory completed. The first required DB attempt failed all43setups because Docker Desktop was stopped. Start the installed service and repeat that check; never count setup errors as passing application evidence. The six-package wheel/sdist build completed; audit and full checks are still in progress.
+
+
+### Repair the newly disclosed dependency before final acceptance
+
+The locked audit reported certifi2026.7.22 / PYSEC-2026-4320, fixed in2026.10.19. Upgrade only certifi; preserve all other dependency versions. Stop the owned incomplete broad check rather than attributing it to the changed environment. A new lock intentionally invalidates strict replay's old environment binding, so publish an explicit invented v5 capture for review, preserve historical fixtures and compare all six request/response values. Re-run the combined mechanism under the final lock and then complete broad acceptance. This is not a fresh provider recording.
+
+
+The fixed lock6e5895cc passed audit with no known vulnerabilities. Explicit v5 capture8e25d2e preserves all six v4 requests/responses and uses independently reviewed-content pinda8f943e; proposed review is not a claim of prior user approval. All four historical fixtures remain packaged, and current-lock rejection now covers v4 too. Seventy-three focused replay checks passed14.54seconds; clean strict replay consumed six calls with two typed timeouts and zero provider calls. The normal replay command never authors or silently rebinds a fixture.
+
+A new clean combined capture at 08f5b41f4e83cd7e24f1d7698e8e9be9b10affd8 under the fixed lock repeated29/29 provided-term matches and29/29 invented-grammar matches, two scoped CLI outputs and twelve scripted original-source dispatches. All fifteen recorded source/lock hashes match the executing files. The original v2 output remains private historical evidence; the publication now points to the final-lock v3 capture. Final broad checks and the restarted database check are running. Static audit verified445 immutable ranges,319links and30publication files;42,837original-source title/question/case/context needles were absent. Package/audit/hosted outcomes will be recorded after actual completion.
+
+
+### Resolve exact source-hash false positives without weakening scanning
+
+Initial PR88 run39531375498 secret scan flagged two generic-api-key findings at historical09b2968, aggregate lines5and17. Actual redacted job log identifies billing_access.py and harness/access.py inventory values; both equal SHA256 of the current source bytes. They are public code provenance, not credentials. Add only the scanner's two exact commit/path/rule/line fingerprints to .gitleaksignore. Do not ignore the entire JSON path, source hash values elsewhere or the generic credential rule. Historical findings remain in Git; changing only the current map would not resolve the full-history scan. Rerun hosted checks after this precise configuration correction; local source/database checks remain valid because executable bytes and lock did not change.
+
+The installed-wheel probe passed with socket/DNS operations denied: all50harness,24Olist and12Revenue source/resource files match built wheels. Imports came from the installed environment, both provided/invented-extracted arithmetic paths agreed, and local console construction succeeded. Six final wheel/source pairs built; the fixed-lock audit found no known vulnerabilities. Publication audit at44272aa passed445immutable ranges,319links,34files and all15source/lock hashes, with42,837private-source needles absent.

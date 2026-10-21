@@ -32,7 +32,7 @@ An invented 50.00 SIM example follows the operator CLI into `SupportWorkflow.run
 
 | Source | Inputs, invariants and consequences |
 |---|---|
-| [Identity and CallerGrant][grant] | Bounded non-whitespace identity strings, tenant/actor, explicit order IDs and read/refund capabilities. `require` checks all three scope dimensions before lookup. This is a trusted grant DTO, not authentication. |
+| [Identity and CallerGrant][grant] | Bounded non-whitespace identity strings, tenant/actor, explicit order IDs and read/refund capabilities. R3 adapts `require` to the [shared ResourceScope](code-study-access.md) with fixed resource kind `order`; tenant/order/capability checks, wire fields, positional callers and denial wording remain unchanged. This is a trusted grant DTO, not authentication. |
 | [RefundCommand and RefundReceipt][command] | Exact integer hundredths, positive amount at most 10,000, SIM literal, expected nonnegative version. Receipt adds deterministic ledger ID, resulting positive version, original execution run and actor. Pydantic strictness rejects coercion/extra fields. |
 | [BusinessReview][business-review] | A state/policy conflict with no new write. It is distinct from an uncertain transport failure after commit; callers must recover uncertain completion. |
 | [business.sql][schema] | Orders keyed tenant/order; budgets keyed tenant/run with spent at most limit; refunds keyed tenant/operation with an order FK; sessions keyed tenant/event with input digest. DB checks complement application validation, rather than replacing policy. |
@@ -92,7 +92,7 @@ O5 saved review remains terminal within that graph. The [O6 application](code-st
 4. How would you add approvals? Persist a review, bind exact payload and record version, authorize reviewer, recheck freshness at commit, preserve the original operation identity. Do not mutate a terminal checkpoint to simulate approval.
 5. Offline exercise: use an invented 5,000-minor order, limit 4,999, and verify no ledger/balance/spend. Then use a new event with a sufficient explicit limit, force an after-commit failure, and recover with the same event/new run. Expect exactly one 5,000-minor effect and original-run receipt.
 
-[grant]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business_contracts.py#L8-L26
+[grant]: https://github.com/Protagonist01/my-production-agentic-systems/blob/701353d88c7e1e8439326bbb6ba6203db231cd5d/projects/olist-support/src/olist_support/business_contracts.py#L9-L36
 [command]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business_contracts.py#L29-L48
 [business-review]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business_contracts.py#L51-L52
 [schema]: https://github.com/Protagonist01/my-production-agentic-systems/blob/efd822fffc1b17c0272a4c2bd966f789109081ff/projects/olist-support/src/olist_support/business.sql#L1-L33
