@@ -418,3 +418,74 @@ def test_absolute_adjustment_cap_allows_large_resulting_total_but_no_override(ap
     store, operator, _, command, _ = seed(app, issued=19999, price=15000)
     with pytest.raises(BusinessReview, match="correction_cap_exceeded"):
         store.propose(operator, command)
+
+
+def test_saved_account_proposal_and_compensation_enforce_actual_resource_kind(app):
+    store, operator, reviewer, _, records = seed(app)
+    donor, target, _ = records
+    command = ChangeCommand(
+        tenant_id=operator.tenant_id,
+        business_operation_id="kind-" + uuid.uuid4().hex,
+        kind="account_merge",
+        resource_id=donor.resource_id,
+        expected_version=0,
+        target_account_id=target.resource_id,
+        expected_target_version=0,
+    )
+    store.propose(operator, command)
+    store.review(reviewer, command.business_operation_id, approve=True)
+    wrong_operator = operator.model_copy(
+        update={
+            "invoice_ids": (*operator.invoice_ids, donor.resource_id),
+            "account_ids": (target.resource_id,),
+        }
+    )
+    wrong_reviewer = reviewer.model_copy(
+        update={
+            "invoice_ids": (*reviewer.invoice_ids, donor.resource_id),
+            "account_ids": (target.resource_id,),
+        }
+    )
+    with pytest.raises(PermissionError):
+        store.propose(wrong_operator, command)
+    with pytest.raises(PermissionError):
+        store.review(wrong_reviewer, command.business_operation_id, approve=True)
+    assert store.proposals(wrong_operator) == ()
+    receipt = store.apply(operator, command.business_operation_id, run_id="kind-merge")
+    compensation = undo(receipt)
+    store.propose(operator, compensation)
+    store.review(reviewer, compensation.business_operation_id, approve=True)
+    with pytest.raises(PermissionError):
+        store.propose(wrong_operator, compensation)
+    with pytest.raises(PermissionError):
+        store.review(wrong_reviewer, compensation.business_operation_id, approve=True)
+    assert store.proposals(wrong_reviewer) == ()
+
+
+def test_workbench_snapshot_keeps_one_version_across_interleaved_commit(app):
+    store, operator, _, command = approved(seed(app))
+    original_reader = store._records
+    committed = []
+
+    def read_then_commit(connection, grant):
+        records = original_reader(connection, grant)
+        committed.append(
+            store.apply(operator, command.business_operation_id, run_id="between-reads")
+        )
+        return records
+
+    store._records = read_then_commit
+    try:
+        records, proposals, receipts = store.snapshot(operator)
+    finally:
+        store._records = original_reader
+    assert committed[0].after.version == 1
+    assert next(r for r in records if r.resource_id == command.resource_id).version == 0
+    assert proposals[0].status == "approved" and receipts == ()
+    records, _, receipts = store.snapshot(operator)
+    assert next(r for r in records if r.resource_id == command.resource_id).version == 1
+    assert receipts == (committed[0],)
+    empty = operator.model_copy(update={"invoice_ids": (), "account_ids": ()})
+    assert store.snapshot(empty) == ((), (), ())
+    with pytest.raises(PermissionError):
+        store.snapshot(operator.model_copy(update={"capabilities": ()}))
