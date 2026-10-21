@@ -1,0 +1,61 @@
+{
+  "version": "revenue-integrated-mechanism-v1",
+  "code_revision": "24e401d61c2d477b1600ce7017092ad6573e6e0c",
+  "source_files": {
+    "projects/revenue-integrity/src/revenue_integrity/billing_access.py": "e5fcd828dbda24c21491ae5193311a4d3eadb54c4696c84193b2d4906609ba80",
+    "projects/revenue-integrity/src/revenue_integrity/billing_contracts.py": "3101d54c5c6b732f3274d46b07459e0e251f92359f2eb011c4922cb680b2d2b3",
+    "projects/revenue-integrity/src/revenue_integrity/billing_worlds.py": "ac876d3ba592f939d0ddba9ec55c91cc7898c74c002b81da2a3cfce95d8e5d98",
+    "projects/revenue-integrity/src/revenue_integrity/billing_worlds_cli.py": "861ade888a5fdd3c92c0b6d38c274ac4551811d842dfdd8d9bdb4e760686becc",
+    "projects/revenue-integrity/src/revenue_integrity/extraction.py": "77dd8e7f3c419dfab144734f715d16eede08be93e8ef82ee349e9a29b90b03d5",
+    "projects/revenue-integrity/src/revenue_integrity/reconcile.py": "228199f47f39a7bf09bd4fb79369f8e8a816ff85d81b57b7ad1929dcd3f02a07",
+    "projects/revenue-integrity/src/revenue_integrity/reconcile_cli.py": "de1dfa5c35fe5e25bade8ac329098793c2a1cd3df553d1bec7ab5c8a378484ed",
+    "projects/revenue-integrity/src/revenue_integrity/source.py": "1bc7dd6b63fc5f39d14077e7839eb36d3e26b78af4b2bef161fd2536c2403d97",
+    "projects/revenue-integrity/src/revenue_integrity/source_cli.py": "f4f685da7586e1a229386ed7809a03d490e1d750be9ae2ebdc75b666d0f06704",
+    "projects/revenue-integrity/src/revenue_integrity/source_contracts.py": "c01b78581273f0aaad3f727d3ab483d3c0e5916f98c2ff8a47ce7417c7da05f3",
+    "projects/revenue-integrity/src/revenue_integrity/source_io.py": "983525fb2191bc637e734a5fe9a553f224ee6288b5c3e98ca92d9a5c334ab5e6",
+    "projects/revenue-integrity/src/revenue_integrity/__init__.py": "ce9ec8baca146e2d3694f849d114196ff3abbd97fb7c1a47de28473744b6c778",
+    "harness/src/agent_harness/access.py": "893a3edf78715117226843ceb1f1b9801ecb21730c60edc6431de395c0761297",
+    "projects/olist-support/src/olist_support/business_contracts.py": "6de01f2a74202b1b694d480f5badf028e0eb3694a08685cd941363c1329e0dd2",
+    "uv.lock": "c52f7636fe16a7898642cb4324538741611099dcc5b6e814913643aee7c8c7a3"
+  },
+  "policy_version": "revenue-monthly-whole-seat-sim-v1",
+  "source_kind": "synthetic",
+  "world_manifest_sha256": "97d4193e8339af5164dedc284b6b45d53fce4cb936e809ba76769adc4d104730",
+  "billing_cases": 29,
+  "groups": 9,
+  "split_counts": {
+    "development": 9,
+    "holdout": 11,
+    "regression": 9
+  },
+  "disposition_counts": {
+    "review": 9,
+    "underbilled": 6,
+    "correct": 8,
+    "overbilled": 6
+  },
+  "gold_terms_matches": 29,
+  "synthetic_grammar_extracted_matches": 29,
+  "world_store_bytes_unchanged": true,
+  "scoped_cli_paths_verified": 2,
+  "original_cuad": {
+    "selected_development_cases": 12,
+    "scripted_gateway_dispatches": 12,
+    "outcomes": {
+      "unsupported": 12
+    },
+    "selection": "first twelve development inputs in opaque case-key order, fixed before outputs",
+    "candidate_kind": "scripted_offline_abstention",
+    "meaning_validated": false,
+    "quality_accuracy": null,
+    "source_manifest_sha256": "b852424ab854c30bd730ccc90a799907e02d3875a3066d203aed36f842f78540"
+  },
+  "provider_calls": 0,
+  "billing_mutations": 0,
+  "release_allowed": false,
+  "limitations": [
+    "Expected billing labels are AI-authored provisional references, not human adjudication.",
+    "Synthetic grammar roundtrip is a controlled mechanism, not legal extraction accuracy.",
+    "Original CUAD scripted abstention exercises gateway plumbing only; provider quality and fresh acceptance remain pending."
+  ]
+}

@@ -1595,3 +1595,15 @@ Parallel review reproduced a valid-date engine failure at9999-12-01: constructin
 ### Close the response identity boundary before acceptance
 
 On 2026-10-21, independent R2 review reproduced another false acceptance: a gateway returned a well-formed literal span under a provider/model route different from the requested route, and the extractor accepted it. Validate the entire ModelResponse again at the adapter boundary, then require exact provider/model and any explicitly requested model revision before parsing its content. A mismatch must become a bounded uncertain outcome without retaining private response text. Canonical validation also rejects unchecked model objects created through bypass APIs. Record final regressions after the worker commits; this finding precedes integrated acceptance.
+
+
+### Execute the combined mechanism before broad acceptance
+
+R4 source45ebabb revalidates ModelResponse and rejects wrong provider/model/requested revision before parsing. Its final41focused tests passed0.84seconds with strict typing and lint/format. Integrated private capture at clean24e401d compared all29literal cases through provided terms and separate invented grammar:29matches on each path, two actual scoped CLI outputs equal library results and private world-store bytes unchanged. Twelve original CUAD development inputs dispatched only to a scripted abstention gateway; all returned unsupported. No original extraction accuracy, provider call or billing mutation is claimed.
+
+The first capture attempt stopped at scripted gateway construction because its helper omitted required unknown token/cost fields from Usage. This was a helper error after billing checks, not a provider or engine failure; the partial directory is diagnostic only. Explicit null usage observations corrected the helper, and a new exclusive v2 directory completed. The first required DB attempt failed all43setups because Docker Desktop was stopped. Start the installed service and repeat that check; never count setup errors as passing application evidence. The six-package wheel/sdist build completed; audit and full checks are still in progress.
+
+
+### Repair the newly disclosed dependency before final acceptance
+
+The locked audit reported certifi2026.7.22 / PYSEC-2026-4320, fixed in2026.10.19. Upgrade only certifi; preserve all other dependency versions. Stop the owned incomplete broad check rather than attributing it to the changed environment. A new lock intentionally invalidates strict replay's old environment binding, so publish an explicit invented v5 capture for review, preserve historical fixtures and compare all six request/response values. Re-run the combined mechanism under the final lock and then complete broad acceptance. This is not a fresh provider recording.
