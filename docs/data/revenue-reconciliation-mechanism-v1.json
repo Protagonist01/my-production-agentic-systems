@@ -1,6 +1,6 @@
 {
   "version": "revenue-integrated-mechanism-v1",
-  "code_revision": "24e401d61c2d477b1600ce7017092ad6573e6e0c",
+  "code_revision": "08f5b41f4e83cd7e24f1d7698e8e9be9b10affd8",
   "source_files": {
     "projects/revenue-integrity/src/revenue_integrity/billing_access.py": "e5fcd828dbda24c21491ae5193311a4d3eadb54c4696c84193b2d4906609ba80",
     "projects/revenue-integrity/src/revenue_integrity/billing_contracts.py": "3101d54c5c6b732f3274d46b07459e0e251f92359f2eb011c4922cb680b2d2b3",
@@ -16,7 +16,7 @@
     "projects/revenue-integrity/src/revenue_integrity/__init__.py": "ce9ec8baca146e2d3694f849d114196ff3abbd97fb7c1a47de28473744b6c778",
     "harness/src/agent_harness/access.py": "893a3edf78715117226843ceb1f1b9801ecb21730c60edc6431de395c0761297",
     "projects/olist-support/src/olist_support/business_contracts.py": "6de01f2a74202b1b694d480f5badf028e0eb3694a08685cd941363c1329e0dd2",
-    "uv.lock": "c52f7636fe16a7898642cb4324538741611099dcc5b6e814913643aee7c8c7a3"
+    "uv.lock": "6e5895cc5fc20f51ea5479695329094b41843d1e5b5a4c911df76347dde5a7c6"
   },
   "policy_version": "revenue-monthly-whole-seat-sim-v1",
   "source_kind": "synthetic",

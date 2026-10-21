@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "capacity_hours_per_week": 40,
   "issue_creation_status": "verified",
   "epics": [
@@ -1073,7 +1073,7 @@
         "Hidden should-be schedules and leakage labels cannot be read by the agent."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 40,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/40",
@@ -1083,7 +1083,8 @@
       ],
       "milestone_number": 4,
       "branch": "codex/r2-r3-r4-revenue-engine",
-      "review_evidence": "Userauthorizedatleastthreeissuesandapprovedmonthlywhole-seatSIMintegerhundredthspolicy,noproration/tax,expressramps/credits/amendments/uplift,missing/conflictingfactsreview. ParallelR2fixtures/R3exactscope/R4read-onlyreconciliationintegratefromverified058d1c7. No provider/realmoney/R5writes; no acceptanceclaimyet."
+      "review_evidence": "Combined R2/R3/R4 implementation and focused checks complete: 29 literal cases in nine groups; both gold and invented grammar paths match 29/29, two scoped CLI outputs verified; twelve original development inputs use scripted abstention only. R3 actual consumer migration passed 39 focused checks; final R4 passed 41; new-lock replay passed 73 focused checks and strict six-call/two-timeout replay. Certifi advisory fixed to 2026.10.19. Final integrated local/database/hosted evidence is recorded on issues #40/#41/#42 after actual completion. User merge pending; AI labels remain provisional, no live providers or billing mutations.",
+      "command_document": "docs/revenue-billing-worlds.md"
     },
     {
       "id": "R3",
@@ -1102,7 +1103,7 @@
         "In-process tools remain testable; MCP adapter exposes the same contracts when added."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 41,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/41",
@@ -1114,7 +1115,8 @@
       ],
       "milestone_number": 4,
       "branch": "codex/r2-r3-r4-revenue-engine",
-      "review_evidence": "Userauthorizedatleastthreeissuesandapprovedmonthlywhole-seatSIMintegerhundredthspolicy,noproration/tax,expressramps/credits/amendments/uplift,missing/conflictingfactsreview. ParallelR2fixtures/R3exactscope/R4read-onlyreconciliationintegratefromverified058d1c7. No provider/realmoney/R5writes; no acceptanceclaimyet."
+      "review_evidence": "Combined R2/R3/R4 implementation and focused checks complete: 29 literal cases in nine groups; both gold and invented grammar paths match 29/29, two scoped CLI outputs verified; twelve original development inputs use scripted abstention only. R3 actual consumer migration passed 39 focused checks; final R4 passed 41; new-lock replay passed 73 focused checks and strict six-call/two-timeout replay. Certifi advisory fixed to 2026.10.19. Final integrated local/database/hosted evidence is recorded on issues #40/#41/#42 after actual completion. User merge pending; AI labels remain provisional, no live providers or billing mutations.",
+      "command_document": "docs/code-study-access.md"
     },
     {
       "id": "R4",
@@ -1133,7 +1135,7 @@
         "Original extraction and hybrid end-to-end errors are separated in reports."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 42,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/42",
@@ -1145,7 +1147,8 @@
       ],
       "milestone_number": 4,
       "branch": "codex/r2-r3-r4-revenue-engine",
-      "review_evidence": "Userauthorizedatleastthreeissuesandapprovedmonthlywhole-seatSIMintegerhundredthspolicy,noproration/tax,expressramps/credits/amendments/uplift,missing/conflictingfactsreview. ParallelR2fixtures/R3exactscope/R4read-onlyreconciliationintegratefromverified058d1c7. No provider/realmoney/R5writes; no acceptanceclaimyet."
+      "review_evidence": "Combined R2/R3/R4 implementation and focused checks complete: 29 literal cases in nine groups; both gold and invented grammar paths match 29/29, two scoped CLI outputs verified; twelve original development inputs use scripted abstention only. R3 actual consumer migration passed 39 focused checks; final R4 passed 41; new-lock replay passed 73 focused checks and strict six-call/two-timeout replay. Certifi advisory fixed to 2026.10.19. Final integrated local/database/hosted evidence is recorded on issues #40/#41/#42 after actual completion. User merge pending; AI labels remain provisional, no live providers or billing mutations.",
+      "command_document": "docs/revenue-reconciliation.md"
     },
     {
       "id": "R5",

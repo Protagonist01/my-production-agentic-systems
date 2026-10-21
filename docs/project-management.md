@@ -133,3 +133,6 @@ O8 fresh held-out provider results, baseline/threshold review and first-release 
 ## Three-issue Revenue delivery
 
 R2/R3/R4 share `codex/r2-r3-r4-revenue-engine` from verified058d1c7. Two isolated Revenue workers own fixture contracts and reconciliation/extraction; the shared access worker preserves Olist wire/policy behavior and adds only the demonstrated common exact-scope mechanism. Root integrates shared planning, journal, navigation and final acceptance once. The user-approved SIM billing policy and safe unsupported cases are documented in Build Book Entry31. Prerequisite R2 verification occurs inside the explicitly authorized bundle before R3/R4 acceptance; source R1 is merged/verified. No actual invoice mutation or release promotion is included.
+
+
+The combined R2/R3/R4 candidate is ready for final acceptance and user review. Its current source and offline aggregate are linked from the Revenue runbooks; final local/database/hosted results are maintained on #40/#41/#42. Keep all three issues open until user merge and exact-main verification. Provisional fixture agreement, scripted original extraction and strict replay do not satisfy fresh domain release gates. Certifi's new advisory was repaired before acceptance, with an explicit reviewed-content v5 invented replay capture for the changed environment lock.
