@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-20. O6/O7 user-merged #86 as67e0349, tree identical to reviewed661badc. Main39447892854 passed nine applicable jobs with actual681tests per quality cell/36Postgres and clean exact-main replay. O6#31/O7#32completed. User authorized three parallel agents/larger review batches for O8 offline release preparation, R1 original-contract corpus and keeping C2#84 current. Offline-only remains: fresh first-release acceptance pending. Native board state unverified.
+Updated: 2026-10-20. Usermerged#87as058d1c7, identicalreviewede536c96. Main39457223872passednineapplicablejobs actual713testsperqualitycell/43Postgres; exactmainreplay6/2/zero-provider passed. R1#39complete with source/family/numericbilling limits, O8freshreleasegatepending. Userexplicitlyauthorizedatleastthreeissues: R2#40+R3#41+R4#42 inoneparallelbatchunderapprovedconstructedbillingrules. C2#84remainsindependentunmergedreview. Nativeboardunverified.
 
 ## Scope and source of truth
 
@@ -128,3 +128,11 @@ The user explicitly authorized up to three parallel agents plus integration: O8 
 Main job timings show the slowest quality cell took213seconds, including16seconds setup and174seconds checks; no speed multiplier is promised. Improve throughput through parallel independent work and fewer serialized review/retest cycles while preserving required checks and user merge control. Preflight source/licensing/labels and decisions while code progresses. Keep at most three implementation streams active and surface concrete blockers promptly.
 
 O8 fresh held-out provider results, baseline/threshold review and first-release acceptance remain pending by explicit user choice to stay offline. An offline report or three repeated fake-planner executions cannot satisfy that gate. R1 source-family/label coverage must disclose inference and unsupported billing fields. No live provider/payment/deployment is authorized.
+
+
+## Three-issue Revenue delivery
+
+R2/R3/R4 share `codex/r2-r3-r4-revenue-engine` from verified058d1c7. Two isolated Revenue workers own fixture contracts and reconciliation/extraction; the shared access worker preserves Olist wire/policy behavior and adds only the demonstrated common exact-scope mechanism. Root integrates shared planning, journal, navigation and final acceptance once. The user-approved SIM billing policy and safe unsupported cases are documented in Build Book Entry31. Prerequisite R2 verification occurs inside the explicitly authorized bundle before R3/R4 acceptance; source R1 is merged/verified. No actual invoice mutation or release promotion is included.
+
+
+The combined R2/R3/R4 candidate is ready for final acceptance and user review. Its current source and offline aggregate are linked from the Revenue runbooks; final local/database/hosted results are maintained on #40/#41/#42. Keep all three issues open until user merge and exact-main verification. Provisional fixture agreement, scripted original extraction and strict replay do not satisfy fresh domain release gates. Certifi's new advisory was repaired before acceptance, with an explicit reviewed-content v5 invented replay capture for the changed environment lock.

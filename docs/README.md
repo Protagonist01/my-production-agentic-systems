@@ -1,16 +1,16 @@
 # Architecture and implementation plan
 
-Accepted delivery direction, updated 2026-10-16. This document replaces the older design overview; historical design notes are preserved locally under `docs/archive`. [F2 shared contracts](shared-contracts.md) and F3 commands are merged and verified. [F4 local Postgres](local-postgres.md) is merged and verified; [F5 Foundation CI](ci.md) is merged/verified and the foundation milestone is complete. [H1 integration ADR](adr/0001-first-integration.md) and [smoke commands](integration-smoke.md) record merged Gemini/framework/local-tracing compatibility. H2 transport is merged; H3 [reviewed model recordings and strict replay](replay.md) is merged/verified on main 1207eb5. H4 [shared execution controls](controls.md) are merged/verified on main e9ebd07: 276 tests, clean replay and nine applicable hosted jobs. H5 [pinned private case manifests and registered independent scorers](case-manifests.md) are merged/verified on main c08f67d: 329 tests/replay and nine applicable hosted jobs. H6 [isolated trials and complete accounting](isolated-trials.md) is merged/verified on main 9c13b2c: 380 tests/replay and nine applicable hosted jobs. H7 adds [seeded fault drills and state invariants](seeded-faults.md) in [PR #77](https://github.com/Protagonist01/my-production-agentic-systems/pull/77), awaiting review/merge. Independent domain quality thresholds remain subsequent work.
+Delivery state updated 2026-10-21. Verified main `058d1c7` includes F1–F5, H1–H10, O1–O7, O8 offline mechanisms and R1 source preparation. Main passed 713 offline tests and 43 Postgres checks. O8 release acceptance remains pending fresh provider and reviewed baseline/threshold/human evidence. The authorized three-issue Revenue candidate combines [R2 billing worlds](revenue-billing-worlds.md), [R3 shared exact scopes](code-study-access.md) and [R4 cited extraction/reconciliation](revenue-reconciliation.md). C2 #84 remains a separate review; AI-provisional labels are not human adjudication.
 
 ## Shared platform and vertical boundary
 
 One Python monorepo contains a domain-independent harness and five domain applications. Harness code owns typed runtime/model/evaluation contracts, provider transport, deadlines/budgets, immutable recordings, strict replay, trial accounting, fault injection, telemetry and reports. Verticals own their imports, schema, business policy, tool permissions, workflows and independent scorers. Harness never imports a vertical; verticals never import one another.
 
-F1 establishes a virtual uv workspace, one lockfile and six installable packages under `harness/src/agent_harness` and `projects/<vertical>/src/<import_name>`. See the root README for import names and verified commands. Import Linter enforces harness independence and static cross-vertical boundaries. LangGraph serves the workflow verticals and Pydantic AI serves CFPB; neither is installed yet. H1 checks provider/framework/telemetry compatibility and pins tested versions before use. Use one telemetry backend initially.
+F1 establishes a virtual uv workspace, one lockfile and six installable packages under `harness/src/agent_harness` and `projects/<vertical>/src/<import_name>`. See the root README for import names and verified commands. Import Linter enforces harness independence and static cross-vertical boundaries. LangGraph runs the Olist workflow; Pydantic AI is pinned and compatibility-tested for the CFPB path. H1 checks provider/framework/telemetry compatibility and pins tested versions before use. Use one telemetry backend initially.
 
 Postgres holds operational records, checkpoints, reviews and action ledgers with isolated worktree/trial state. Gateway recordings use an immutable, exportable format (H3 uses reviewed exportable JSON). Source snapshots live outside Git with checksums and provenance. Thin Inngest wrappers are added only for demonstrated external-event waits; each wait/checkpoint has a single owner.
 
-Extract reusable scope/registry/write machinery only after Olist and Revenue demonstrate reuse. Domain-specific refund, invoice, criterion and spend rules stay in their vertical.
+Olist and Revenue now demonstrate shared exact tenant/resource-kind/resource-ID/capability membership. Registry and write machinery require a second demonstrated use before extraction. Domain-specific refund, invoice, criterion and spend rules stay in their vertical.
 
 ## Three evaluation modes
 
@@ -40,7 +40,7 @@ Each domain produces a source manifest, importer, validated views, independently
 | Prior auth | Selected policies and illustrative transcription examples; independently labeled note-policy pairs | [Prior auth](prior-auth.md) |
 | Supply chain | DataCo shipping + captured NWS alerts; no assumed causal historical join; BTS only optional passenger-airline proxy | [Supply chain](supply-chain-disruption.md) |
 
-O1's authentic version-7 Olist snapshot is acquired outside Git and verified against its aggregate manifest. Currency/timezone, joins and as-of views remain O2; policy/cases remain O3. Other sources await their acquisition tasks. No source is yet a reviewed domain evaluation set.
+Olist views, policy and hybrid cases are implemented; historical currency/timezone remain unverified. CFPB and original CUAD corpora are pinned outside Git. Constructed Revenue billing worlds have separate private inputs and evaluator stores. AI labels and source references do not establish human-adjudicated release quality.
 
 ## Measurement and release
 
