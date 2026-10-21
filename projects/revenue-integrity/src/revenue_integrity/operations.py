@@ -161,6 +161,9 @@ class OperationStore:
         ):
             raise BusinessReview("proposal_integrity")
         grant.require_any(proposal.command.resource_id, capability)
+        # Idempotent/status paths must check the stored resource kind too. Equal
+        # text IDs in the wrong grant collection never authorize a saved action.
+        OperationStore._record(connection, grant, proposal.command.resource_id, capability)
         if proposal.command.target_account_id is not None:
             grant.require(
                 grant.tenant_id, "account", proposal.command.target_account_id, capability
@@ -468,62 +471,79 @@ class OperationStore:
         if "read" not in grant.capabilities:
             raise PermissionError("Revenue capability denied")
         with self._connection() as c:
-            rows = c.execute(
-                "SELECT resource_id FROM revenue.records WHERE tenant_id=%s AND "
-                "resource_id=ANY(%s) ORDER BY resource_id",
-                (grant.tenant_id, list((*grant.invoice_ids, *grant.account_ids))),
-            ).fetchall()
-            values = []
-            for row in rows:
-                try:
-                    values.append(self._record(c, grant, row["resource_id"], "read"))
-                except PermissionError:
-                    continue
-            return tuple(values)
+            return self._records(c, grant)
+
+    def _records(self, c: Connection[Any], grant: RevenueGrant) -> tuple[RevenueRecord, ...]:
+        rows = c.execute(
+            "SELECT resource_id FROM revenue.records WHERE tenant_id=%s AND "
+            "resource_id=ANY(%s) ORDER BY resource_id",
+            (grant.tenant_id, list((*grant.invoice_ids, *grant.account_ids))),
+        ).fetchall()
+        values = []
+        for row in rows:
+            try:
+                values.append(self._record(c, grant, row["resource_id"], "read"))
+            except PermissionError:
+                continue
+        return tuple(values)
 
     def proposals(self, grant: RevenueGrant) -> tuple[Proposal, ...]:
         grant = self._grant(grant)
         if "read" not in grant.capabilities:
             raise PermissionError("Revenue capability denied")
         with self._connection() as c:
-            rows = c.execute(
-                "SELECT operation_id FROM revenue.proposals WHERE tenant_id=%s "
-                "ORDER BY operation_id",
-                (grant.tenant_id,),
-            ).fetchall()
-            values = []
-            for row in rows:
-                try:
-                    value = self._proposal(c, grant, row["operation_id"], "read")
-                    self._record(c, grant, value.command.resource_id, "read")
-                    values.append(value)
-                except PermissionError:
-                    continue
-            return tuple(values)
+            return self._proposals(c, grant)
+
+    def _proposals(self, c: Connection[Any], grant: RevenueGrant) -> tuple[Proposal, ...]:
+        rows = c.execute(
+            "SELECT operation_id FROM revenue.proposals WHERE tenant_id=%s ORDER BY operation_id",
+            (grant.tenant_id,),
+        ).fetchall()
+        values = []
+        for row in rows:
+            try:
+                value = self._proposal(c, grant, row["operation_id"], "read")
+                self._record(c, grant, value.command.resource_id, "read")
+                values.append(value)
+            except PermissionError:
+                continue
+        return tuple(values)
 
     def ledger(self, grant: RevenueGrant) -> tuple[Receipt, ...]:
         grant = self._grant(grant)
         if "read" not in grant.capabilities:
             raise PermissionError("Revenue capability denied")
         with self._connection() as c:
-            rows = c.execute(
-                "SELECT operation_id FROM revenue.ledger WHERE tenant_id=%s ORDER BY operation_id",
-                (grant.tenant_id,),
-            ).fetchall()
-            values = []
-            for row in rows:
-                value = self._receipt(c, grant.tenant_id, row["operation_id"])
-                assert value is not None
-                try:
-                    grant.require(
-                        grant.tenant_id, value.before.kind, value.before.resource_id, "read"
-                    )
-                    if value.target is not None:
-                        grant.require(grant.tenant_id, "account", value.target.resource_id, "read")
-                    values.append(value)
-                except PermissionError:
-                    continue
-            return tuple(values)
+            return self._ledger(c, grant)
+
+    def _ledger(self, c: Connection[Any], grant: RevenueGrant) -> tuple[Receipt, ...]:
+        rows = c.execute(
+            "SELECT operation_id FROM revenue.ledger WHERE tenant_id=%s ORDER BY operation_id",
+            (grant.tenant_id,),
+        ).fetchall()
+        values = []
+        for row in rows:
+            value = self._receipt(c, grant.tenant_id, row["operation_id"])
+            assert value is not None
+            try:
+                grant.require(grant.tenant_id, value.before.kind, value.before.resource_id, "read")
+                if value.target is not None:
+                    grant.require(grant.tenant_id, "account", value.target.resource_id, "read")
+                values.append(value)
+            except PermissionError:
+                continue
+        return tuple(values)
+
+    def snapshot(
+        self, grant: RevenueGrant
+    ) -> tuple[tuple[RevenueRecord, ...], tuple[Proposal, ...], tuple[Receipt, ...]]:
+        """One committed MVCC view for ledger-reconciled operator projections."""
+        grant = self._grant(grant)
+        if "read" not in grant.capabilities:
+            raise PermissionError("Revenue capability denied")
+        with self._connection() as c, c.transaction():
+            c.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY")
+            return self._records(c, grant), self._proposals(c, grant), self._ledger(c, grant)
 
     def sweep(self, grant: RevenueGrant) -> tuple[Proposal, ...]:
         grant = self._grant(grant)
