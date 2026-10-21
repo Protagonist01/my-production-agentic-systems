@@ -1,0 +1,5 @@
+# Exact historical false positives only: these two values are verified SHA256
+# source-file digests in the aggregate inventory, not authentication material.
+# Keep all generic-api-key rules and all other locations enabled.
+09b2968021d3f325891c5e534002b343886bf465:docs/data/revenue-reconciliation-mechanism-v1.json:generic-api-key:5
+09b2968021d3f325891c5e534002b343886bf465:docs/data/revenue-reconciliation-mechanism-v1.json:generic-api-key:17
