@@ -1581,3 +1581,17 @@ Use first-of-month effective events and half-open monthly periods. Uplift anchor
 ### Results to record as work proceeds
 
 Workers are implementing focused checks; original-source, constructed billing and tool-migration evidence remain distinct. Record real failures and complete integrated results before review.
+
+
+### Verify two consumers before shared extraction acceptance
+
+R3source701353 preserves the Olist CallerGrant canonical wire fingerprint, closed read/refund capabilities, existing denial text and accepted resource counts. Generic ResourceScope checks exact tenant/kind/id/capability; asterisks/prefixes carry no wildcard meaning. Revenue BillingGrant and actual R2read_world use the same scope mechanism. Focused integrated consumer verification passed39tests26.68seconds (five access, thirteen billing-world, fourteen existing workflow and seven console), with affected lint/format and six strict typed modules passing. The reader denies absent capability/resource before opening storage, then checks schema and strict tenant/case identity before returning public fields.
+
+R2sourcec6407aa defines29literal cases across nine families, before candidate comparison: nine development/nine regression/eleven holdout, eight correct/six underbilled/six overbilled/nine review. Fixture authorship never imports the reconciler. Independent Fraction arithmetic checks each literal expression and signed difference; this is an automated arithmetic witness, not new human billing adjudication. Private preparation and verification completed with manifest97d4193e8339af5164dedc284b6b45d53fce4cb936e809ba76769adc4d104730. Public aggregate receives explicit LF attributes to preserve byte pins on Windows.
+
+Parallel review reproduced a valid-date engine failure at9999-12-01: constructing the next month attempted year10000. R4 must return review for the unsupported terminal calendar month rather than raise. The cited extractor must also have a concrete shared ModelGateway adapter tested with scripted responses; an all-abstain baseline alone would not implement extraction. Original span integrity remains distinct from semantic legal or monetary correctness. These fixes are being checked before final integration.
+
+
+### Close the response identity boundary before acceptance
+
+On 2026-10-21, independent R2 review reproduced another false acceptance: a gateway returned a well-formed literal span under a provider/model route different from the requested route, and the extractor accepted it. Validate the entire ModelResponse again at the adapter boundary, then require exact provider/model and any explicitly requested model revision before parsing its content. A mismatch must become a bounded uncertain outcome without retaining private response text. Canonical validation also rejects unchecked model objects created through bypass APIs. Record final regressions after the worker commits; this finding precedes integrated acceptance.
