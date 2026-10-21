@@ -42,6 +42,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 29 — Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
 - [Entry 30 — Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
 - [Entry 31 — Three Revenue tasks behind explicit simulation rules](#entry-31--three-revenue-tasks-behind-explicit-simulation-rules)
+- [Entry 32 — Approved Revenue effects and independent shipping sources](#entry-32--approved-revenue-effects-and-independent-shipping-sources)
+
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -1657,3 +1659,10 @@ Acquire the official DataCo structured shipping source and its column descriptio
 ### Verification to complete
 
 Workers will run focused transaction/SDK/API/source checks against their actual implementation; planned checks are not passes. Root will integrate source once, verify package/lock/replay boundaries, run a complete combined suite and required Postgres checks, and inspect hosted exact-head logs before offering the PR for user review. No provider call, real billing write, clinical claim, shipping causal claim or release promotion is authorized.
+
+
+### Pin the event adapter before it gains state ownership
+
+R6 official documentation/PyPI inspection selected inngest0.5.19. Its optional Revenue events extra adds jcs0.2.1 alongside already locked HTTP/Pydantic dependencies; web reuses fastapi0.150.0 and uvicorn0.54.0. Root adds the workspace-source mapping and development extra so a plain locked check exercises the optional adapters. All existing dependency versions stay fixed. The changed lock requires an explicit invented replayv6 capture for review; historical v1–v5 resources remain immutable. This dependency change is part of R6, not new provider evaluation.
+
+S1 verified the official DataCo v5 structured source listing (95,910,149 bytes, CC BY4.0, versioned DOI) and captured one official NWS response separately. Its as-of policy is conservative: no historical online availability inferred from retrospective DataCo timestamps, historical timezones remain unknown, and NWS freshness is a caller-declared maximum age plus effective/expiry checks. HTTP cache age is recorded separately from meteorological validity. Actual prepared-source counts and byte pins follow verification, not the listing alone.
