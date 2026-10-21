@@ -1681,3 +1681,8 @@ Separately, pending C2#84 reconciled verified main5f73fc9 at f5195b3 with three 
 
 
 After the other heavy checks completed, the unchanged replay-v6 focused suite passed all74 tests in10.08seconds. The CLI startup retry used the same20-second bound. Ruff check and format passed for the two changed Python files. The earlier timeout remains diagnostic evidence of local contention; it was not suppressed or reclassified as a pass.
+
+
+### Recover focused transaction evidence after interrupted agents
+
+External authentication/network-permission interruption stopped worker turns, but the owned test process completed and its saved stdout/stderr remained available. Inspect its PID/command and final log before rerunning. R5 source2688d82 passed30focused checks in165.90seconds:11offline and19actualPostgres. Strict typing of two modules and Ruff/format of four Python files passed. Witnesses cover concurrentduplicates, process exit after commit, partial batch rollback/retry, separate/stale/unauthorized approvals, exact R4 source-fact binding, the10000minor absolute boundary, alias compensation, later-change refusal and immutable ledger SQL privileges. The first run's one failed negative test expected a domain-review exception but received the correct earlier permission denial; correct the expectation, then run the complete focused set. No provider or real billing effect occurred.
