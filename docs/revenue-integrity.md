@@ -1,6 +1,6 @@
 # Revenue integrity
 
-Accepted scope, updated 2026-10-11. Planned implementation; no application or evaluation result exists yet.
+Updated 2026-10-21. R1–R4 are merged and verified in #87/#88. R5/R6 is the current implementation candidate; fresh R7 release evidence remains pending.
 
 ## Delivered application
 
@@ -22,7 +22,7 @@ Each importer produces provenance/checksum/use notes and validated agent-visible
 
 ### R1: Build original-contract extraction corpus and family-level holdout
 
-Priority: P1; provisional size M; prerequisites: H5. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: H5. Status: Done.
 
 Acquire CUAD plus suitable EDGAR agreements if needed; preserve original context and reviewed field/span labels. Keep constructed clauses in separate sets.
 
@@ -34,7 +34,7 @@ Acceptance evidence:
 
 ### R2: Generate billing worlds with leakage and benign exceptions
 
-Priority: P1; provisional size M; prerequisites: R1. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: R1. Status: Done.
 
 Seed accounts/subscriptions/invoices and construct seat/price/uplift/ramp/amendment cases. Maven, if used, is labeled a fictional hardware CRM fixture.
 
@@ -46,7 +46,7 @@ Acceptance evidence:
 
 ### R3: Extract reusable access mechanisms from two demonstrated consumers
 
-Priority: P1; provisional size M; prerequisites: O4, R2, F2. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: O4, R2, F2. Status: Done.
 
 Compare Olist and Revenue tool/catalog needs; move only common scope/registry/write mechanism into harness/access with migration contracts.
 
@@ -58,7 +58,7 @@ Acceptance evidence:
 
 ### R4: Implement cited term extraction and independent reconciliation engine
 
-Priority: P1; provisional size L; prerequisites: R1, R2, H10. Status: Backlog.
+Priority: P1; provisional size L; prerequisites: R1, R2, H10. Status: Done.
 
 Build extractor/verifier and exact money/date/amendment reconciliation. Evaluate gold-terms and extracted-terms paths independently.
 
@@ -70,7 +70,7 @@ Acceptance evidence:
 
 ### R5: Implement approval-bound changes, ledger and conflict-safe compensation
 
-Priority: P1; provisional size M; prerequisites: R3, R4, F4. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: R3, R4, F4. Status: In progress.
 
 Allow limited CRM hygiene, require approval for billing/merges, bind exact payload/version, enforce stable operation keys and compensating rollback.
 
@@ -82,7 +82,7 @@ Acceptance evidence:
 
 ### R6: Deliver approval UI, digest and event-driven orchestration
 
-Priority: P1; provisional size L; prerequisites: R5, H8. Status: Backlog.
+Priority: P1; provisional size L; prerequisites: R5, H8. Status: In progress.
 
 Build usable findings/review interface and ledger-reconciled digest; add thin Inngest event/sweep/approval wrappers after confirming current SDK support.
 
@@ -114,3 +114,6 @@ Gate: Real extraction and synthetic reconciliation results separated; independen
 Use the shared strict-replay/fresh-evaluation/monitoring boundaries. Release requires merged implementation, independent case/state checks, complete fresh evidence and required fault cases. No critical observed violation can be hidden by improved averages.
 
 [Architecture](README.md) · [Delivery plan](project-management.md) · [Backlog](backlog.json)
+
+
+Current implementation commands and exact evidence: [source preparation](data/revenue-source.md), [billing worlds](revenue-billing-worlds.md), [read-only reconciliation](revenue-reconciliation.md), [approved operations](revenue-operations.md). Original extraction semantic accuracy and real recovered revenue are not established by these offline mechanisms.
