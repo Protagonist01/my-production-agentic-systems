@@ -1073,7 +1073,7 @@
         "Hidden should-be schedules and leakage labels cannot be read by the agent."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 40,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/40",
@@ -1084,7 +1084,9 @@
       "milestone_number": 4,
       "branch": "codex/r2-r3-r4-revenue-engine",
       "review_evidence": "Combined R2/R3/R4 implementation and focused checks complete: 29 literal cases in nine groups; both gold and invented grammar paths match 29/29, two scoped CLI outputs verified; twelve original development inputs use scripted abstention only. R3 actual consumer migration passed 39 focused checks; final R4 passed 41; new-lock replay passed 73 focused checks and strict six-call/two-timeout replay. Certifi advisory fixed to 2026.10.19. Final integrated local/database/hosted evidence is recorded on issues #40/#41/#42 after actual completion. User merge pending; AI labels remain provisional, no live providers or billing mutations.",
-      "command_document": "docs/revenue-billing-worlds.md"
+      "command_document": "docs/revenue-billing-worlds.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/88",
+      "completion_evidence": "User merged #88 as5f73fc9, identical reviewed dc76e5c. Main39532518481 passed nine applicable jobs with actual773 tests per quality/43 Postgres/replay6calls2timeouts0provider/12builds per quality; clean exact-main replay passed. Issues40/41/42 closed completed. Offline and AI-provisional label limits retained; native board unverified."
     },
     {
       "id": "R3",
@@ -1103,7 +1105,7 @@
         "In-process tools remain testable; MCP adapter exposes the same contracts when added."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 41,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/41",
@@ -1116,7 +1118,9 @@
       "milestone_number": 4,
       "branch": "codex/r2-r3-r4-revenue-engine",
       "review_evidence": "Combined R2/R3/R4 implementation and focused checks complete: 29 literal cases in nine groups; both gold and invented grammar paths match 29/29, two scoped CLI outputs verified; twelve original development inputs use scripted abstention only. R3 actual consumer migration passed 39 focused checks; final R4 passed 41; new-lock replay passed 73 focused checks and strict six-call/two-timeout replay. Certifi advisory fixed to 2026.10.19. Final integrated local/database/hosted evidence is recorded on issues #40/#41/#42 after actual completion. User merge pending; AI labels remain provisional, no live providers or billing mutations.",
-      "command_document": "docs/code-study-access.md"
+      "command_document": "docs/code-study-access.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/88",
+      "completion_evidence": "User merged #88 as5f73fc9, identical reviewed dc76e5c. Main39532518481 passed nine applicable jobs with actual773 tests per quality/43 Postgres/replay6calls2timeouts0provider/12builds per quality; clean exact-main replay passed. Issues40/41/42 closed completed. Offline and AI-provisional label limits retained; native board unverified."
     },
     {
       "id": "R4",
@@ -1135,7 +1139,7 @@
         "Original extraction and hybrid end-to-end errors are separated in reports."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 42,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/42",
@@ -1148,7 +1152,9 @@
       "milestone_number": 4,
       "branch": "codex/r2-r3-r4-revenue-engine",
       "review_evidence": "Combined R2/R3/R4 implementation and focused checks complete: 29 literal cases in nine groups; both gold and invented grammar paths match 29/29, two scoped CLI outputs verified; twelve original development inputs use scripted abstention only. R3 actual consumer migration passed 39 focused checks; final R4 passed 41; new-lock replay passed 73 focused checks and strict six-call/two-timeout replay. Certifi advisory fixed to 2026.10.19. Final integrated local/database/hosted evidence is recorded on issues #40/#41/#42 after actual completion. User merge pending; AI labels remain provisional, no live providers or billing mutations.",
-      "command_document": "docs/revenue-reconciliation.md"
+      "command_document": "docs/revenue-reconciliation.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/88",
+      "completion_evidence": "User merged #88 as5f73fc9, identical reviewed dc76e5c. Main39532518481 passed nine applicable jobs with actual773 tests per quality/43 Postgres/replay6calls2timeouts0provider/12builds per quality; clean exact-main replay passed. Issues40/41/42 closed completed. Offline and AI-provisional label limits retained; native board unverified."
     },
     {
       "id": "R5",
@@ -1167,7 +1173,7 @@
         "Compensation appends a ledger entry and refuses to overwrite an intervening legitimate change."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 43,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/43",
@@ -1177,7 +1183,9 @@
         42,
         13
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "branch": "codex/r5-r6-s1-operations",
+      "review_evidence": "User selected combined R5/R6/S1 after verified #88 main5f73fc9. Three workers own transactional approval/compensation, authenticated review UI/events and independent DataCo/NWS source preparation. Approved absolute adjustment cap10000SIMminor/nooverride, separate reviewer and approved conflict-safe compensation. Source/implementation verification pending; no provider or real-money work."
     },
     {
       "id": "R6",
@@ -1195,7 +1203,7 @@
         "API/UI handles review rejection, stale data and long waits visibly."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 44,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/44",
@@ -1204,7 +1212,9 @@
         43,
         22
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "branch": "codex/r5-r6-s1-operations",
+      "review_evidence": "User selected combined R5/R6/S1 after verified #88 main5f73fc9. Three workers own transactional approval/compensation, authenticated review UI/events and independent DataCo/NWS source preparation. Approved absolute adjustment cap10000SIMminor/nooverride, separate reviewer and approved conflict-safe compensation. Source/implementation verification pending; no provider or real-money work."
     },
     {
       "id": "R7",
@@ -1404,7 +1414,7 @@
         "Agent-visible facts respect the scenario clock and available source coverage."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 52,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/52",
@@ -1412,7 +1422,9 @@
       "dependency_issue_numbers": [
         19
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "branch": "codex/r5-r6-s1-operations",
+      "review_evidence": "User selected combined R5/R6/S1 after verified #88 main5f73fc9. Three workers own transactional approval/compensation, authenticated review UI/events and independent DataCo/NWS source preparation. Approved absolute adjustment cap10000SIMminor/nooverride, separate reviewer and approved conflict-safe compensation. Source/implementation verification pending; no provider or real-money work."
     },
     {
       "id": "S2",

@@ -1619,3 +1619,41 @@ A new clean combined capture at 08f5b41f4e83cd7e24f1d7698e8e9be9b10affd8 under t
 Initial PR88 run39531375498 secret scan flagged two generic-api-key findings at historical09b2968, aggregate lines5and17. Actual redacted job log identifies billing_access.py and harness/access.py inventory values; both equal SHA256 of the current source bytes. They are public code provenance, not credentials. Add only the scanner's two exact commit/path/rule/line fingerprints to .gitleaksignore. Do not ignore the entire JSON path, source hash values elsewhere or the generic credential rule. Historical findings remain in Git; changing only the current map would not resolve the full-history scan. Rerun hosted checks after this precise configuration correction; local source/database checks remain valid because executable bytes and lock did not change.
 
 The installed-wheel probe passed with socket/DNS operations denied: all50harness,24Olist and12Revenue source/resource files match built wheels. Imports came from the installed environment, both provided/invented-extracted arithmetic paths agreed, and local console construction succeeded. Six final wheel/source pairs built; the fixed-lock audit found no known vulnerabilities. Publication audit at44272aa passed445immutable ranges,319links,34files and all15source/lock hashes, with42,837private-source needles absent.
+
+
+## Entry 32 — Approved Revenue effects and independent shipping sources
+
+Date: 2026-10-21 (Africa/Lagos). The R5/R6/S1 implementation is starting; results below are recorded only after execution.
+
+### Context
+
+The user reviewed and merged #88 as `5f73fc983d9dacaa206bc84315686fa882c7ee3f`, identical to reviewed `dc76e5c`. Main run39532518481 passed nine applicable jobs; actual logs verified773 tests in each matrix cell,43 Postgres tests, six replay calls/two timeouts/zero provider calls and twelve package artifacts per quality job. Clean exact-main replay passed. Issues40/41/42 were explicitly closed completed, retaining provisional-label and offline limits. C2#84 remains unmerged and is reconciled separately; its reviewed source is not a prerequisite for this batch.
+
+The user selected R5#43 + R6#44 + S1#52, with three parallel agents and one integration branch `codex/r5-r6-s1-operations`. R7 remains blocked by the offline-only release constraint. The user approved simulated invoice corrections and account merges only with a separate reviewer; a hard100.00SIM cap applies to the absolute adjustment, not the resulting invoice total. Approval cannot override it. Only trimming outer whitespace in an internal CRM note is automatic. Compensation requires separate approval and cannot overwrite later legitimate changes.
+
+### Before you read on
+
+How would you bind a human approval to exactly one correction, prevent a retry from charging twice, and still recover after a process exits just after commit? Sketch the stable business-operation key, immutable payload fingerprint, record-version predicates and effect ledger before reading the implementation.
+
+### Options considered and chosen
+
+We considered one Revenue-only batch R5/R6/R7. R7 needs fresh provider release evidence and prerequisite O8, which the user has kept pending; including it would imply acceptance the offline work cannot establish. The user chose independent S1 source preparation alongside the two coupled Revenue implementation tasks. Each worker owns separate files/worktrees; root owns shared dependency/lock, planning, journal and final integration. This preserves parallel work while giving the R5 transaction API one owner.
+
+Use Postgres as the sole authority for Revenue approval expiry, versions and effects. Inngest supplies thin wakeups, idempotent steps and sweeps, rather than holding a second competing approval state. The SDK is verified against current official documentation and its actual installed API before use. Existing shared exact scopes stay domain-neutral; invoice eligibility, account alias semantics and amount limits remain in Revenue.
+
+### How to build the transaction boundary
+
+1. Provision explicit tenant/account/invoice records in a private, restricted trial database. Store a trusted BillingInput snapshot with each invoice; verify its tenant/account association and initial issued amount. Recompute R4 reconciliation against that snapshot and the current stored invoice amount before proposing or applying a correction. The browser cannot substitute its own claimed should-be amount.
+2. Build an immutable proposal containing operation kind, exact before/after values, expected record versions, stable tenant/business-operation identity and expiry. Hash its canonical representation. A reviewer session must be a different actor and bind that exact fingerprint; stale record/source facts or mismatched identity prevent application.
+3. Lock the relevant rows and stable operation key inside one transaction. Recheck grant, approval, versions, computed amount and absolute adjustment limit; update business state and append a receipt/ledger event atomically. A retry with the same key and payload returns the original receipt; changed payload under the key fails. A post-commit transport failure must not create another effect.
+4. Represent the bounded demo merge as a reviewed donor-account alias to a canonical target. Preserve original invoices/history; reject cross-tenant, self, cyclic or conflicting aliases. This models one explicit internal effect, not an external CRM ownership transfer.
+5. Compensate by proposing and approving an inverse effect tied to the original receipt and exact post-effect versions. If legitimate later state intervenes, refuse the overwrite. A successful inverse appends a new ledger row and preserves the original event.
+6. Derive HTTP permissions from pre-provisioned server-side operator/reviewer sessions. Show real computed findings and distinct found/proposed/approved/applied/rejected SIM amounts; reconcile the digest from durable records/ledger. Surface expired, rejected, stale and pending reviews in the interface. No incoming grant JSON acts as authentication.
+
+### How to prepare S1 without inventing history
+
+Acquire the official DataCo structured shipping source and its column description, recording version, permissions, bytes and independent source hashes outside Git. Separate customer identifiers and future delivery/outcome fields from agent-visible as-of observations. Preserve unknown historical timezones explicitly. Independently capture a timestamped official NWS alert response with source URL, retrieval time, coverage, effective/expiry and freshness evidence. Its contemporary US coverage does not establish historical weather affecting DataCo's worldwide shipments. Publish only aggregate provenance and hashes; private source text/records remain external. Test future/expired alerts, malformed timestamps, source changes and storage/schema isolation before running the real source verifier.
+
+### Verification to complete
+
+Workers will run focused transaction/SDK/API/source checks against their actual implementation; planned checks are not passes. Root will integrate source once, verify package/lock/replay boundaries, run a complete combined suite and required Postgres checks, and inspect hosted exact-head logs before offering the PR for user review. No provider call, real billing write, clinical claim, shipping causal claim or release promotion is authorized.
