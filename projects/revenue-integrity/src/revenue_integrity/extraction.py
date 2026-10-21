@@ -14,6 +14,7 @@ from agent_harness.contracts import (
     ModelGateway,
     ModelMessage,
     ModelRequest,
+    ModelResponse,
     NonEmpty,
     RunContext,
     Usage,
@@ -155,6 +156,16 @@ class GatewayExtractor:
             )
         except TimeoutError:
             return uncertain("timeout")
+        try:
+            response = ModelResponse.model_validate_json(response.canonical_json())
+        except ValueError:
+            return uncertain("invalid_model_response")
+        if (
+            response.provider != wire.provider
+            or response.model != wire.model
+            or (wire.model_revision is not None and response.model_revision != wire.model_revision)
+        ):
+            return uncertain("model_identity_mismatch", response.usage)
         if response.failure is not None:
             return uncertain(response.failure.code, response.usage)
         try:

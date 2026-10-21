@@ -233,3 +233,55 @@ def test_scoped_tool_requires_read_and_reconcile_before_disclosing_world(tmp_pat
             value.case_id,
             grant.model_copy(update={"tenant_id": "other-tenant"}),
         )
+
+
+@pytest.mark.parametrize(
+    "changed",
+    [
+        {"provider": "other-provider"},
+        {"model": "other-model"},
+        {"model_revision": "other-revision"},
+    ],
+)
+def test_wrong_gateway_candidate_identity_never_becomes_supported(changed):
+    class WrongIdentity(ScriptedGateway):
+        def generate(self, context, request):
+            response = super().generate(context, request)
+            return response.model_copy(update={"model_revision": "pinned-revision", **changed})
+
+    gateway = WrongIdentity(
+        json.dumps(
+            {
+                "outcome": "supported",
+                "spans": [{"start": 0, "text": "Invented"}],
+                "rationale": "Invented identity mismatch test.",
+            }
+        )
+    )
+    extractor = gateway_extractor(gateway)
+    extractor.route = extractor.route.model_copy(update={"model_revision": "pinned-revision"})
+    context = example_context("invented-code", "invented-lock").model_copy(
+        update={"case_id": original().case_id}
+    )
+    result = extractor.run(context, original())
+    assert result.failure_code == "model_identity_mismatch"
+    assert result.extraction.claim.outcome == "uncertain"
+    assert result.usage.model_calls == 1
+
+
+def test_unchecked_gateway_response_is_revalidated_before_content():
+    class InvalidResponse(ScriptedGateway):
+        def generate(self, context, request):
+            response = super().generate(context, request)
+            return response.model_copy(
+                update={"usage": response.usage.model_copy(update={"model_calls": -1})}
+            )
+
+    gateway = InvalidResponse('{"outcome":"unsupported","rationale":"Invented."}')
+    context = example_context("invented-code", "invented-lock").model_copy(
+        update={"case_id": original().case_id}
+    )
+    result = gateway_extractor(gateway).run(context, original())
+    assert result.failure_code == "invalid_model_response"
+    assert result.extraction.claim.outcome == "uncertain"
+    assert result.usage is None
