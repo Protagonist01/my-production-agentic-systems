@@ -103,3 +103,12 @@ All six requests/responses were compared directly with v2 and are equal, includi
 ## O6 + O7 explicit web-lock fixture update
 
 The optional web extra changes the actual lock to `c52f7636fe16a7898642cb4324538741611099dcc5b6e814913643aee7c8c7a3`. At clean committed source `c656ef564048ff02870c6966ab23da77cbf041d2`, explicitly execute the existing invented capture helper and exclusively publish `resources/replay/invented-v4.json`. The external content pin is **d92e2271b50913a4c276b9028d2441dd90a147223310225ee7438c862fbc19dd**; provenance is synthetic / invented-o6-o7-lock-v4, review reference review:proposed-o6-o7-invented-v4. This proposes the fixture for review, not prior approval. All six requests/responses match v3 exactly. Preserve all three historical resources/pins and require each to reject the current lock. Normal replay never generates or changes a fixture; no provider call or real source record enters this capture.
+
+
+## Revenue batch explicit certificate-lock fixture update
+
+On 2026-10-21 the locked dependency audit reported `PYSEC-2026-4320` against certifi 2026.7.22. Updating only certifi to 2026.10.19 changes the actual lock to `6e5895cc5fc20f51ea5479695329094b41843d1e5b5a4c911df76347dde5a7c6`. Historical replay remains strict; none of the four earlier recordings is rebound to the new lock.
+
+At clean committed capture source `8e25d2e02d7cf5d8ef788f762b912056cdde1936`, execute the existing in-process `invented_recording` helper and exclusively publish `resources/replay/invented-v5.json`. Its separately reviewed content pin is **da8f943e0c0c1af861bda3a6a6a08960e6870c09a1080207083cc681557dc1dd**; provenance is synthetic / invented-revenue-certifi-lock-v5 with review reference review:proposed-revenue-certifi-invented-v5. This identifies the proposed review, not prior user approval. Direct comparison confirms all six requests/responses equal v4, including the two typed timeouts. No provider dispatch or original contract data enters this capture.
+
+The normal replay command uses v5 without generating fixtures. All four historical files retain their independently pinned bytes and tests require them to reject the new lock. This update establishes software replay under the corrected dependency conditions; it does not establish fresh model quality or domain release acceptance.
