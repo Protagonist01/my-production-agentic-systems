@@ -14,8 +14,8 @@ from agent_harness.recording import Recording, RecordingProvenance, load_recordi
 from agent_harness.replay import ReplayBinding, ReplayMismatch, StrictReplayGateway
 
 # Updated only through explicit fixture review; never learn a trusted pin from the input file.
-INVENTED_DIGEST = "da8f943e0c0c1af861bda3a6a6a08960e6870c09a1080207083cc681557dc1dd"
-INVENTED_RESOURCE = "resources/replay/invented-v5.json"
+INVENTED_DIGEST = "4224a610495d5bc657240e5a4dc6c44c08318149fc0f4534b8716763da603883"
+INVENTED_RESOURCE = "resources/replay/invented-v6.json"
 
 
 class NetworkDisabledError(RuntimeError):
