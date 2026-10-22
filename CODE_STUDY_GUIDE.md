@@ -321,7 +321,7 @@ The reusable personal skill is `$code-study-guide`; its default output is this f
 [profile-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L131-L141
 [verify-snapshot]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L144-L152
 [snapshot-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/projects/olist-support/scripts/snapshot.py#L155-L209
-[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/c656ef564048ff02870c6966ab23da77cbf041d2/pyproject.toml#L1-L49
+[root-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/6ebcc1469ffac6df36795a643a9e8f921142acbb/pyproject.toml#L1-L51
 [harness-config]: https://github.com/Protagonist01/my-production-agentic-systems/blob/08ba28e28e9ac01a946648cdc3411ae65451833b/harness/pyproject.toml#L1-L17
 [import-contracts]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0e85f9a662651a2e6cd3694b5869a7c533c7646f/.importlinter#L1-L30
 [ignore-rules]: https://github.com/Protagonist01/my-production-agentic-systems/blob/65dcefb3ea38707f288c6b3bd3a62d823c0e8ef8/.gitignore#L1-L47
