@@ -75,7 +75,7 @@ Verified configuration/test sources: [workflow][ci-workflow], [CODEOWNERS][ci-ow
 [ci-audit]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/ci_checks.py#L79-L122
 [ci-constants]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/ci_checks.py#L16-L18
 [ci-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/ci_checks.py#L125-L159
-[ci-workflow]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0f3e75681cbd08206a0435a40ce805470edeebe0/.github/workflows/ci.yml#L1-L155
+[ci-workflow]: https://github.com/Protagonist01/my-production-agentic-systems/blob/d5531a1947ff7b488309191b79cb97c2e2b845d6/.github/workflows/ci.yml#L1-L157
 [ci-owners]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/.github/CODEOWNERS#L1-L10
 [ci-template]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/.github/PULL_REQUEST_TEMPLATE.md#L1-L16
 [ci-tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0f3e75681cbd08206a0435a40ce805470edeebe0/tests/test_ci_checks.py#L1-L129
