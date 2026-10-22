@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-20. Usermerged#87as058d1c7, identicalreviewede536c96. Main39457223872passednineapplicablejobs actual713testsperqualitycell/43Postgres; exactmainreplay6/2/zero-provider passed. R1#39complete with source/family/numericbilling limits, O8freshreleasegatepending. Userexplicitlyauthorizedatleastthreeissues: R2#40+R3#41+R4#42 inoneparallelbatchunderapprovedconstructedbillingrules. C2#84remainsindependentunmergedreview. Nativeboardunverified.
+Updated: 2026-10-22. User-merged #89 main `77b98df` is verified; R5 #43, R6 #44 and S1 #52 are explicitly closed completed, retaining their source/release limits. The user-selected S2 #53 + S3 #54 + S4 #55 implementation is in [PR #90](https://github.com/Protagonist01/my-production-agentic-systems/pull/90). Hosted source0406e82 passed all ten jobs (846 offline tests per quality cell, 86 Postgres checks); local full846 and focused30/18 checks passed. The approved SIM policy and [shipping operations limits](supply-chain-operations.md) remain explicit. New issues stay open Review until user merge/main acceptance. C2 #84 remains separate/unmerged, O8 fresh release acceptance remains pending under offline-only, and native board state is unverified.
 
 ## Scope and source of truth
 
