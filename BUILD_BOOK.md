@@ -42,6 +42,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 29 — Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
 - [Entry 30 — Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
 - [Entry 31 — Three Revenue tasks behind explicit simulation rules](#entry-31--three-revenue-tasks-behind-explicit-simulation-rules)
+- [Entry 32 — Approved Revenue effects and independent shipping sources](#entry-32--approved-revenue-effects-and-independent-shipping-sources)
+
 
 ## Entry 1 — Proposed execution and evidence boundaries
 
@@ -1619,3 +1621,99 @@ A new clean combined capture at 08f5b41f4e83cd7e24f1d7698e8e9be9b10affd8 under t
 Initial PR88 run39531375498 secret scan flagged two generic-api-key findings at historical09b2968, aggregate lines5and17. Actual redacted job log identifies billing_access.py and harness/access.py inventory values; both equal SHA256 of the current source bytes. They are public code provenance, not credentials. Add only the scanner's two exact commit/path/rule/line fingerprints to .gitleaksignore. Do not ignore the entire JSON path, source hash values elsewhere or the generic credential rule. Historical findings remain in Git; changing only the current map would not resolve the full-history scan. Rerun hosted checks after this precise configuration correction; local source/database checks remain valid because executable bytes and lock did not change.
 
 The installed-wheel probe passed with socket/DNS operations denied: all50harness,24Olist and12Revenue source/resource files match built wheels. Imports came from the installed environment, both provided/invented-extracted arithmetic paths agreed, and local console construction succeeded. Six final wheel/source pairs built; the fixed-lock audit found no known vulnerabilities. Publication audit at44272aa passed445immutable ranges,319links,34files and all15source/lock hashes, with42,837private-source needles absent.
+
+
+## Entry 32 — Approved Revenue effects and independent shipping sources
+
+Date: 2026-10-21 (Africa/Lagos). The R5/R6/S1 implementation is starting; results below are recorded only after execution.
+
+### Context
+
+The user reviewed and merged #88 as `5f73fc983d9dacaa206bc84315686fa882c7ee3f`, identical to reviewed `dc76e5c`. Main run39532518481 passed nine applicable jobs; actual logs verified773 tests in each matrix cell,43 Postgres tests, six replay calls/two timeouts/zero provider calls and twelve package artifacts per quality job. Clean exact-main replay passed. Issues40/41/42 were explicitly closed completed, retaining provisional-label and offline limits. C2#84 remains unmerged and is reconciled separately; its reviewed source is not a prerequisite for this batch.
+
+The user selected R5#43 + R6#44 + S1#52, with three parallel agents and one integration branch `codex/r5-r6-s1-operations`. R7 remains blocked by the offline-only release constraint. The user approved simulated invoice corrections and account merges only with a separate reviewer; a hard100.00SIM cap applies to the absolute adjustment, not the resulting invoice total. Approval cannot override it. Only trimming outer whitespace in an internal CRM note is automatic. Compensation requires separate approval and cannot overwrite later legitimate changes.
+
+### Before you read on
+
+How would you bind a human approval to exactly one correction, prevent a retry from charging twice, and still recover after a process exits just after commit? Sketch the stable business-operation key, immutable payload fingerprint, record-version predicates and effect ledger before reading the implementation.
+
+### Options considered and chosen
+
+We considered one Revenue-only batch R5/R6/R7. R7 needs fresh provider release evidence and prerequisite O8, which the user has kept pending; including it would imply acceptance the offline work cannot establish. The user chose independent S1 source preparation alongside the two coupled Revenue implementation tasks. Each worker owns separate files/worktrees; root owns shared dependency/lock, planning, journal and final integration. This preserves parallel work while giving the R5 transaction API one owner.
+
+Use Postgres as the sole authority for Revenue approval expiry, versions and effects. Inngest supplies thin wakeups, idempotent steps and sweeps, rather than holding a second competing approval state. The SDK is verified against current official documentation and its actual installed API before use. Existing shared exact scopes stay domain-neutral; invoice eligibility, account alias semantics and amount limits remain in Revenue.
+
+### How to build the transaction boundary
+
+1. Provision explicit tenant/account/invoice records in a private, restricted trial database. Store a trusted BillingInput snapshot with each invoice; verify its tenant/account association and initial issued amount. Recompute R4 reconciliation against that snapshot and the current stored invoice amount before proposing or applying a correction. The browser cannot substitute its own claimed should-be amount.
+2. Build an immutable proposal containing operation kind, exact before/after values, expected record versions, stable tenant/business-operation identity and expiry. Hash its canonical representation. A reviewer session must be a different actor and bind that exact fingerprint; stale record/source facts or mismatched identity prevent application.
+3. Lock the relevant rows and stable operation key inside one transaction. Recheck grant, approval, versions, computed amount and absolute adjustment limit; update business state and append a receipt/ledger event atomically. A retry with the same key and payload returns the original receipt; changed payload under the key fails. A post-commit transport failure must not create another effect.
+4. Represent the bounded demo merge as a reviewed donor-account alias to a canonical target. Preserve original invoices/history; reject cross-tenant, self, cyclic or conflicting aliases. This models one explicit internal effect, not an external CRM ownership transfer.
+5. Compensate by proposing and approving an inverse effect tied to the original receipt and exact post-effect versions. If legitimate later state intervenes, refuse the overwrite. A successful inverse appends a new ledger row and preserves the original event.
+6. Derive HTTP permissions from pre-provisioned server-side operator/reviewer sessions. Show real computed findings and distinct found/proposed/approved/applied/rejected SIM amounts; reconcile the digest from durable records/ledger. Surface expired, rejected, stale and pending reviews in the interface. No incoming grant JSON acts as authentication.
+
+### How to prepare S1 without inventing history
+
+Acquire the official DataCo structured shipping source and its column description, recording version, permissions, bytes and independent source hashes outside Git. Separate customer identifiers and future delivery/outcome fields from agent-visible as-of observations. Preserve unknown historical timezones explicitly. Independently capture a timestamped official NWS alert response with source URL, retrieval time, coverage, effective/expiry and freshness evidence. Its contemporary US coverage does not establish historical weather affecting DataCo's worldwide shipments. Publish only aggregate provenance and hashes; private source text/records remain external. Test future/expired alerts, malformed timestamps, source changes and storage/schema isolation before running the real source verifier.
+
+### Verification to complete
+
+Workers will run focused transaction/SDK/API/source checks against their actual implementation; planned checks are not passes. Root will integrate source once, verify package/lock/replay boundaries, run a complete combined suite and required Postgres checks, and inspect hosted exact-head logs before offering the PR for user review. No provider call, real billing write, clinical claim, shipping causal claim or release promotion is authorized.
+
+
+### Pin the event adapter before it gains state ownership
+
+R6 official documentation/PyPI inspection selected inngest0.5.19. Its optional Revenue events extra adds jcs0.2.1 alongside already locked HTTP/Pydantic dependencies; web reuses fastapi0.150.0 and uvicorn0.54.0. Root adds the workspace-source mapping and development extra so a plain locked check exercises the optional adapters. All existing dependency versions stay fixed. The changed lock requires an explicit invented replayv6 capture for review; historical v1–v5 resources remain immutable. This dependency change is part of R6, not new provider evaluation.
+
+S1 verified the official DataCo v5 structured source listing (95,910,149 bytes, CC BY4.0, versioned DOI) and captured one official NWS response separately. Its as-of policy is conservative: no historical online availability inferred from retrospective DataCo timestamps, historical timezones remain unknown, and NWS freshness is a caller-declared maximum age plus effective/expiry checks. HTTP cache age is recorded separately from meteorological validity. Actual prepared-source counts and byte pins follow verification, not the listing alone.
+
+
+The locked event/web setup installed only the two new dependencies and rebuilt the Revenue editable package; audit found no known vulnerabilities. At clean `28cdf485ed7cac4e1d5460b555baafea1bf9cbc4`, explicitly capture invented v6 with lock `f1d00addeaefbbd946abea7b25b0e039473109bd6f146515e35ab9b20e7609e5` and content pin `4224a610495d5bc657240e5a4dc6c44c08318149fc0f4534b8716763da603883`. Compare all six requests/responses against v5 before changing the default. Preserve v1–v5 and add a negative current-lock test for v5. This proposes a new reviewed-content fixture while keeping replay itself strict; focused tests follow before final combined acceptance.
+
+
+### Protect the reviewer from rounded numbers
+
+R6 review found that valid signed-64-bit amounts can exceed JavaScript's safe integer range. A browser rendering such JSON numbers can show a different amount from the approved payload. Emit exact decimal strings for amounts/record displays and format money with BigInt; validate any version converted back to a typed integer before submission. Add a large-amount API/UI witness before claiming this boundary is fixed.
+
+The first replay-v6 focused run passed73 cases but its credential-free CLI child exceeded the existing20-second subprocess timeout during measured host memory pressure (about580MB free physical memory). This is a failed local smoke check, not a passing result or demonstrated business-logic error. Preserve the log, finish other heavy work and retry the affected check without relaxing production or test deadlines. Two earlier focused invocations named nonexistent test files and collected no tests; corrected names are used for actual evidence.
+
+Separately, pending C2#84 reconciled verified main5f73fc9 at f5195b3 with three shared-document conflicts resolved and no executable changes beyond the existing C2 additions. Focused21checks passed1.19seconds; clean replay passed; audit checked454 immutable ranges,297 local links and18 publication files. Hosted run39533702332 passed allten jobs with actual794tests per quality cell,43Postgres, six-call/two-timeout/zero-provider replay and twelve package artifacts per quality cell. Issue35 remains Review and user merge is pending; no labels were regenerated or promoted to human adjudication.
+
+
+After the other heavy checks completed, the unchanged replay-v6 focused suite passed all74 tests in10.08seconds. The CLI startup retry used the same20-second bound. Ruff check and format passed for the two changed Python files. The earlier timeout remains diagnostic evidence of local contention; it was not suppressed or reclassified as a pass.
+
+
+### Recover focused transaction evidence after interrupted agents
+
+External authentication/network-permission interruption stopped worker turns, but the owned test process completed and its saved stdout/stderr remained available. Inspect its PID/command and final log before rerunning. R5 source2688d82 passed30focused checks in165.90seconds:11offline and19actualPostgres. Strict typing of two modules and Ruff/format of four Python files passed. Witnesses cover concurrentduplicates, process exit after commit, partial batch rollback/retry, separate/stale/unauthorized approvals, exact R4 source-fact binding, the10000minor absolute boundary, alias compensation, later-change refusal and immutable ledger SQL privileges. The first run's one failed negative test expected a domain-review exception but received the correct earlier permission denial; correct the expectation, then run the complete focused set. No provider or real billing effect occurred.
+
+
+### Bind reads to resource kind and one committed snapshot
+
+R5 peer review reproduced a wrong-kind grant edge on existing proposals: the preliminary identifier-membership check could return an account proposal when the same identifier was granted only as an invoice. Effect paths already validated stored kind. Resolve the stored record's actual kind before any proposal return/review, then add a negative database witness for the idempotent/read path. This protects the shared exact resource-kind contract rather than relying on normal account provisioning.
+
+R6 also identified a consistency gap in digest construction: records, proposals and ledger were read on three independent connections. A concurrent commit could combine a pre-effect invoice with a post-effect ledger. Add a single scoped snapshot in a REPEATABLE READ READ ONLY transaction and reuse the same filtered read helpers; test a controlled commit between logical reads and require one coherent view. Existing public reader methods remain for focused callers. The UI consumes this atomic projection.
+
+The private29-case original R2-to-R5 drill completed12eligible source-backed corrections with separate approval, stable duplicate receipts and approved inverse effects;17review/no-change cases were blocked without ledger effects. Full results stay external. Its cleanup helper incorrectly passed the derived database name to an API expecting logical trial identity; correct the helper and explicitly remove only owned logical trial r5-r6-source-drill-v1. Verified removal completes the run; no application effect was duplicated. The final read-scope/snapshot correction is still pending separate focused evidence, so this capture is an arithmetic/transaction witness at its recorded source revision, not final interface acceptance.
+
+
+The wrong-kind and consistent-snapshot regressions passed two targeted actual-Postgres cases in98.53seconds at1bb4579, separately from the prior30focused result. One deterministic witness commits an approved correction between logical read phases: the open snapshot retains old records/old ledger, and a new snapshot sees the new version and receipt. R6 now consumes this shared-connection projection. The integrated full check passed lock/lint/format/strict94source files/import contracts and is running its tests. Six final wheel/source pairs built. Original S1 source preparation completed180,519lines/65,752orders; full original-source verification is running, so its acceptance remains pending.
+
+
+### Finish independent source verification and browser preparation
+
+S1 sourcef9fb0ed prepared the complete original DataCo cohort in305.66seconds, then independently re-read the original CSV and both stores in205.42seconds:180,519lines,65,752orders,53columns and306NWSalerts. At the actual capture clock,245alerts met the explicit30-minute freshness allowance; pre-observation shipment access and stale-weather access returned zero. All20focused tests passed7.94seconds, with strict typing of three modules and affected Ruff/format. The source pin and manifest are independently retained; only allowlisted aggregate provenance/counts/hashes enter Git. Historical DataCo timezone/availability remain unverified and no weather causal join is claimed. An automatic approval review rejected a broad private-manifest copy command; an explicit small aggregate patch was subsequently verified against private receipts, preserving the publication boundary.
+
+The real-browser drill uses an invented invoice and two provisioned identities in a new owned trial. A combined background-server/browser command was rejected by automatic review; a separate foreground server succeeded. The Playwright default Chrome location was absent while Edge is installed, so select Edge explicitly. The initial unauthenticated session check correctly returns403. Browser inspection found genuine mojibake in several index.html glyphs; correct those asset bytes and verify the rendered interface before accepting it. Credentials remain only in the external private session file and are supplied through a nonprinting helper.
+
+
+### Resume final acceptance on 2026-10-22
+
+The session interruption left the first integrated broad runs incomplete: their logs do not contain final counts, so they are not passing evidence. Recover saved source and merge R6's committed8a05827 HTML correction rather than reconstructing assets. Restart the final source suite with external TEMP/TMP. Its initial database attempt reported68setup errors because Docker was stopped; restore the local daemon and confirm health before retrying. The final package build produced all six wheel/sdist pairs and the fixed optional-dependency audit found no known vulnerabilities. An immutable-source audit found exactly one obsolete root pyproject slice among485ranges; repin it to the committed event dependency configuration and actual line extent. Other source slices remained contiguous.
+
+
+### Reproduce and close a session race in the actual browser
+
+On2026-10-22, operator proposal success displayed before action() finished its automatic refresh. Signing out during that pending request let the old200response call render() after user became null: the login form hid, old scoped workbench reappeared and the UI showed a null-username exception. API sessions were revoked correctly; the bug was stale browser rendering. R6source60e4c367 introduces session epochs, captured-principal checks and refresh ordering, clears private DOM before awaiting logout and serializes cookie-changing auth requests. Late startup/refresh responses cannot overwrite a newer session. Six deterministic NodeVM scenarios execute the actual asset with delayed fetches and a controlled DOM; all pass, including failed-logout truthfulness and exact signed64-bit money formatting. Add that standalone built-in Node regression command to every hosted quality cell; it requires no npm packages or network. Python suite/SQL logic and lock remain unchanged.
+
+The complete local Python check finished815tests in789.82seconds, with strict94sources, lint/format and static import contracts passing. Required68database tests are still in progress. Initial candidate6994e8f hosted run39698621795 passed allten jobs with actual815tests per quality and68Postgres; browser findings require a new exact-head CI run after the asset correction rather than reusing its final acceptance. Built/installed source bytes must also include the corrected asset.

@@ -1,6 +1,6 @@
 # Architecture and implementation plan
 
-Delivery state updated 2026-10-21. Verified main `058d1c7` includes F1–F5, H1–H10, O1–O7, O8 offline mechanisms and R1 source preparation. Main passed 713 offline tests and 43 Postgres checks. O8 release acceptance remains pending fresh provider and reviewed baseline/threshold/human evidence. The authorized three-issue Revenue candidate combines [R2 billing worlds](revenue-billing-worlds.md), [R3 shared exact scopes](code-study-access.md) and [R4 cited extraction/reconciliation](revenue-reconciliation.md). C2 #84 remains a separate review; AI-provisional labels are not human adjudication.
+Delivery state updated 2026-10-21. Verified main `5f73fc9` includes the merged R2/R3/R4 Revenue mechanisms; main passed 773 offline tests per matrix cell and 43 Postgres checks. R5/R6/S1 is the current unmerged batch: [approval-bound Revenue effects](revenue-operations.md), authenticated review/event orchestration and independent shipping/weather source preparation. R5 focused transaction/scope/snapshot evidence is integrated; interface/source and final broad acceptance follow. O8/R7 fresh release gates and human-adjudication limits remain pending. C2 #84 is a separate review with AI-provisional labels.
 
 ## Shared platform and vertical boundary
 

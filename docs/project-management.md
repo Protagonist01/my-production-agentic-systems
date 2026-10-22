@@ -136,3 +136,8 @@ R2/R3/R4 share `codex/r2-r3-r4-revenue-engine` from verified058d1c7. Two isolate
 
 
 The combined R2/R3/R4 candidate is ready for final acceptance and user review. Its current source and offline aggregate are linked from the Revenue runbooks; final local/database/hosted results are maintained on #40/#41/#42. Keep all three issues open until user merge and exact-main verification. Provisional fixture agreement, scripted original extraction and strict replay do not satisfy fresh domain release gates. Certifi's new advisory was repaired before acceptance, with an explicit reviewed-content v5 invented replay capture for the changed environment lock.
+
+
+## Authorized R5 + R6 + S1 batch
+
+The user selected R5#43/R6#44/S1#52 after verified main5f73fc9 and closure of R2/R3/R4. Revenue transactions and the dependent review UI/events are verified inside one bundle; independent shipping/weather source preparation runs in parallel. Root integrates on codex/r5-r6-s1-operations. The approved absolute correction cap is100.00SIM with no approval override, separate reviewer, automatic outer-whitespace CRM-note trimming only and approved conflict-safe compensation. Build Book Entry32 records construction decisions and source/privacy limits. R7 remains pending offline release prerequisites; no live provider, real billing operation or release promotion is authorized. C2#84 remains a separate unmerged review.
