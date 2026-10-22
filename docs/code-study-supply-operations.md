@@ -1,6 +1,6 @@
 # Code study: shipping worlds, budgeted actions and waits
 
-Inspected branch: `codex/s2-s3-s4-supply-chain`, based on merged `77b98df` (2026-10-22, Africa/Lagos). This chapter covers all seven new Supply source files and their simulator/Postgres tests. Source anchors will pin the committed candidate before review. [Build Book Entry 33](../BUILD_BOOK.md#entry-33--independent-shipping-worlds-and-durable-budgeted-intervention) records construction and failed checks; the [runbook](supply-chain-operations.md) records operational limits. This is not the S5 UI or S6 release evaluation.
+Inspected branch: `codex/s2-s3-s4-supply-chain`, based on merged `77b98df` (2026-10-22, Africa/Lagos). This chapter covers all seven new Supply source files and their simulator/Postgres tests. Supply source is pinned to `ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e`; the table below verifies symbols against that immutable snapshot. [Build Book Entry 33](../BUILD_BOOK.md#entry-33--independent-shipping-worlds-and-durable-budgeted-intervention) records construction and failed checks; the [runbook](supply-chain-operations.md) records operational limits. This is not the S5 UI or S6 release evaluation.
 
 ## Execution and state ownership
 
@@ -71,3 +71,15 @@ The canonical replan cap is deliberately conservative and shared by the incident
 4. Replace hidden outcomes while preserving public facts. Explain unchanged choices/different scores, and distinguish the estimate optimizer from a realized-outcome oracle.
 5. Replay an opposite confirmation after timeout. Explain the unique terminal row and why no credit is silently returned.
 6. Describe what eventual production needs: authenticated service composition, durable incident registry, real carrier reconciliation, fresh source mapping, outcome validation and hosted orchestration evidence. Do not claim those from passing offline tests.
+
+
+## Verified immutable source anchors
+
+| File | Core symbols | Immutable snapshot |
+|---|---|---|
+| `action_contracts.py` | `fingerprint`, `ReviewRequired`, `DemoPolicy`, `Shipment`, `Option`, `options`, `Grant`, `Command`, `Proposal`, `Receipt`, `Snapshot` | [L16–L170](https://github.com/Protagonist01/my-production-agentic-systems/blob/ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e/projects/supply-chain-disruption/src/supply_chain/action_contracts.py#L16-L170) |
+| `events.py` | `IncidentWake`, `ShipmentWake`, `event_for`, `EventHandlers`, `build_functions` | [L17–L202](https://github.com/Protagonist01/my-production-agentic-systems/blob/ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e/projects/supply-chain-disruption/src/supply_chain/events.py#L17-L202) |
+| `operations.py` | `setup`, `enroll`, `OperationStore` | [L30–L482](https://github.com/Protagonist01/my-production-agentic-systems/blob/ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e/projects/supply-chain-disruption/src/supply_chain/operations.py#L30-L482) |
+| `simulator.py` | `HiddenOutcome`, `Scenario`, `make_scenario`, `allocate`, `do_nothing`, `rules`, `realized_cost`, `compare`, `suite`, `main` | [L36–L254](https://github.com/Protagonist01/my-production-agentic-systems/blob/ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e/projects/supply-chain-disruption/src/supply_chain/simulator.py#L36-L254) |
+| `source_adapter.py` | `hybrid_observation` | [L9–L40](https://github.com/Protagonist01/my-production-agentic-systems/blob/ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e/projects/supply-chain-disruption/src/supply_chain/source_adapter.py#L9-L40) |
+| `workflow.py` | `Planner`, `ActionStatus`, `WorkflowResult`, `FlowState`, `SupplyWorkflow` | [L17–L179](https://github.com/Protagonist01/my-production-agentic-systems/blob/ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e/projects/supply-chain-disruption/src/supply_chain/workflow.py#L17-L179) |

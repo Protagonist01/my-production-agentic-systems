@@ -1762,3 +1762,10 @@ The final simulator cohort uses four development families at seeds11/23 and six 
 ### Focused final-source acceptance
 
 The repaired complete new SQL suite passed all18tests in83.22seconds, including real child exit73 immediately after commit and recovery through a new store, exact-one concurrent effects, near-cap competing debits, stale budget/reapproval, scoped denial, expiry/rejection, first-terminal confirmations and graph/SDK recovery. One upstream Inngest experimental-test event-loop deprecation warning remains. The extended simulator suite passed30tests1.06seconds; strict full-workspace typing passed100source files. The report publishes20invented scenarios at three explicit delay-cost sensitivities, with no real source data. Full workspace/database/package/replay checks and hosted acceptance still follow; this focused evidence alone is not a release pass.
+
+
+### Pin source and preserve replay semantics
+
+Source `ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e` is committed. New lock `b0d264aeb155915511202ced1338d6840546ae6cfe8c1b18e1553f2683edf266` adds only optional workspace metadata for the existing pinned dependencies. An explicit invented v7 capture has content pin `175fdcc50359cb5471bf292e15034fc250bf5ac724d05582b3d69bf429ac548d`; all six request/response pairs equal v6, including two timeouts. Historical v1–v6 are preserved and the current-lock negative tests include v6. This is synthetic maintenance proposed for user review, not fresh provider evidence. Supply code-study AST anchors match the committed bytes.
+
+The 20-scenario sensitivity reports are deliberately unfavorable where measured: solver versus do-nothing totals are545000/422000minor at50%,888000/844000at100%,1574000/1688000at200%. Retain these results; an estimator can lose under changed efficacy and delay prices. No tuning or actual savings claim follows from this mechanism exercise.
