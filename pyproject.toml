@@ -15,6 +15,7 @@ members = ["harness", "projects/*"]
 production-agent-harness = { workspace = true }
 production-agent-olist-support = { workspace = true }
 production-agent-revenue-integrity = { workspace = true }
+production-agent-supply-chain = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -39,6 +40,7 @@ dev = [
     "production-agent-harness[gemini]",
     "production-agent-olist-support[web]",
     "production-agent-revenue-integrity[web,events]",
+    "production-agent-supply-chain[workflow]",
     "langgraph==1.2.15",
     "pydantic-ai-slim[google]==2.56.0",
     "langfuse==5.0.1",

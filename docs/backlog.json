@@ -9,7 +9,7 @@
       "id": "F",
       "title": "Foundation: repository, contracts and development workflow",
       "outcome": "A locked Python monorepo with agreed runtime/evaluation contracts, isolated development services and honest offline CI.",
-      "gate": "Fresh checkout installs successfully; one fake case traverses agent → gateway → scorer → report; labels stay outside agent input; CI does not claim unimplemented evaluation passed.",
+      "gate": "Fresh checkout installs successfully; one fake case traverses agent â†’ gateway â†’ scorer â†’ report; labels stay outside agent input; CI does not claim unimplemented evaluation passed.",
       "deps": [],
       "issue_number": 2,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/2",
@@ -1173,7 +1173,7 @@
         "Compensation appends a ledger entry and refuses to overwrite an intervening legitimate change."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 43,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/43",
@@ -1185,7 +1185,8 @@
       ],
       "milestone_number": 4,
       "branch": "codex/r5-r6-s1-operations",
-      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim."
+      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim.",
+      "completion_evidence": "User reviewed/merged PR89 as main77b98df, identical to reviewed0bdc7eb. Main run39742751290 succeeded. Prior acceptance/source evidence retained; implementation issue explicitly closed completed. Release/source/human/hosted-service limitations unchanged; native board unverified."
     },
     {
       "id": "R6",
@@ -1203,7 +1204,7 @@
         "API/UI handles review rejection, stale data and long waits visibly."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 44,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/44",
@@ -1214,7 +1215,8 @@
       ],
       "milestone_number": 4,
       "branch": "codex/r5-r6-s1-operations",
-      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim."
+      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim.",
+      "completion_evidence": "User reviewed/merged PR89 as main77b98df, identical to reviewed0bdc7eb. Main run39742751290 succeeded. Prior acceptance/source evidence retained; implementation issue explicitly closed completed. Release/source/human/hosted-service limitations unchanged; native board unverified."
     },
     {
       "id": "R7",
@@ -1414,7 +1416,7 @@
         "Agent-visible facts respect the scenario clock and available source coverage."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 52,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/52",
@@ -1424,7 +1426,8 @@
       ],
       "milestone_number": 6,
       "branch": "codex/r5-r6-s1-operations",
-      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim."
+      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim.",
+      "completion_evidence": "User reviewed/merged PR89 as main77b98df, identical to reviewed0bdc7eb. Main run39742751290 succeeded. Prior acceptance/source evidence retained; implementation issue explicitly closed completed. Release/source/human/hosted-service limitations unchanged; native board unverified."
     },
     {
       "id": "S2",
@@ -1441,7 +1444,7 @@
         "Total realized simulated cost and absolute/normalized baseline differences are defined."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 53,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/53",
@@ -1449,7 +1452,11 @@
       "dependency_issue_numbers": [
         52
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "branch": "codex/s2-s3-s4-supply-chain",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/90",
+      "review_evidence": "PR90 source0406e82; hosted run39864242079 all10jobs passed,846offline per quality cell/86Postgres/100types/six-call zero-provider replay/packages/audits/secret scan. Local full846passed666.16s; local DB85/86 then sole external-path failure passed separately32.80s. New focused30simulator/18Postgres passed. Installed52harness/11Supply files under network denial. Keep open Review pending user merge/main acceptance; invented outcomes, shared2replans, no carrier/fresh-release claim.",
+      "command_document": "docs/supply-chain-operations.md"
     },
     {
       "id": "S3",
@@ -1468,7 +1475,7 @@
         "Failure after commit returns the original effect on retry."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 54,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/54",
@@ -1478,7 +1485,11 @@
         41,
         13
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "branch": "codex/s2-s3-s4-supply-chain",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/90",
+      "review_evidence": "PR90 source0406e82; hosted run39864242079 all10jobs passed,846offline per quality cell/86Postgres/100types/six-call zero-provider replay/packages/audits/secret scan. Local full846passed666.16s; local DB85/86 then sole external-path failure passed separately32.80s. New focused30simulator/18Postgres passed. Installed52harness/11Supply files under network denial. Keep open Review pending user merge/main acceptance; invented outcomes, shared2replans, no carrier/fresh-release claim.",
+      "command_document": "docs/supply-chain-operations.md"
     },
     {
       "id": "S4",
@@ -1496,7 +1507,7 @@
         "Region bursts and duplicate/out-of-order events have deterministic tests."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 55,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/55",
@@ -1505,7 +1516,11 @@
         54,
         24
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "branch": "codex/s2-s3-s4-supply-chain",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/90",
+      "review_evidence": "PR90 source0406e82; hosted run39864242079 all10jobs passed,846offline per quality cell/86Postgres/100types/six-call zero-provider replay/packages/audits/secret scan. Local full846passed666.16s; local DB85/86 then sole external-path failure passed separately32.80s. New focused30simulator/18Postgres passed. Installed52harness/11Supply files under network denial. Keep open Review pending user merge/main acceptance; invented outcomes, shared2replans, no carrier/fresh-release claim.",
+      "command_document": "docs/supply-chain-operations.md"
     },
     {
       "id": "S5",
@@ -1731,37 +1746,37 @@
   "milestones": [
     {
       "number": 1,
-      "title": "M1 — Verified foundation",
+      "title": "M1 â€” Verified foundation",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/1"
     },
     {
       "number": 2,
-      "title": "M2 — Complete Olist release",
+      "title": "M2 â€” Complete Olist release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/2"
     },
     {
       "number": 3,
-      "title": "M3 — CFPB release",
+      "title": "M3 â€” CFPB release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/3"
     },
     {
       "number": 4,
-      "title": "M4 — Revenue integrity release",
+      "title": "M4 â€” Revenue integrity release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/4"
     },
     {
       "number": 5,
-      "title": "M5 — Prior auth release",
+      "title": "M5 â€” Prior auth release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/5"
     },
     {
       "number": 6,
-      "title": "M6 — Supply chain release",
+      "title": "M6 â€” Supply chain release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/6"
     },
     {
       "number": 7,
-      "title": "M7 — Operations and portfolio release",
+      "title": "M7 â€” Operations and portfolio release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/7"
     }
   ]

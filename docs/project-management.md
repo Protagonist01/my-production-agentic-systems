@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-20. Usermerged#87as058d1c7, identicalreviewede536c96. Main39457223872passednineapplicablejobs actual713testsperqualitycell/43Postgres; exactmainreplay6/2/zero-provider passed. R1#39complete with source/family/numericbilling limits, O8freshreleasegatepending. Userexplicitlyauthorizedatleastthreeissues: R2#40+R3#41+R4#42 inoneparallelbatchunderapprovedconstructedbillingrules. C2#84remainsindependentunmergedreview. Nativeboardunverified.
+Updated: 2026-10-22. User-merged #89 main `77b98df` is verified; R5 #43, R6 #44 and S1 #52 are explicitly closed completed, retaining their source/release limits. The user-selected S2 #53 + S3 #54 + S4 #55 implementation is in [PR #90](https://github.com/Protagonist01/my-production-agentic-systems/pull/90). Hosted source0406e82 passed all ten jobs (846 offline tests per quality cell, 86 Postgres checks); local full846 and focused30/18 checks passed. The approved SIM policy and [shipping operations limits](supply-chain-operations.md) remain explicit. New issues stay open Review until user merge/main acceptance. C2 #84 remains separate/unmerged, O8 fresh release acceptance remains pending under offline-only, and native board state is unverified.
 
 ## Scope and source of truth
 
@@ -141,3 +141,8 @@ The combined R2/R3/R4 candidate is ready for final acceptance and user review. I
 ## Authorized R5 + R6 + S1 batch
 
 The user selected R5#43/R6#44/S1#52 after verified main5f73fc9 and closure of R2/R3/R4. Revenue transactions and the dependent review UI/events are verified inside one bundle; independent shipping/weather source preparation runs in parallel. Root integrates on codex/r5-r6-s1-operations. The approved absolute correction cap is100.00SIM with no approval override, separate reviewer, automatic outer-whitespace CRM-note trimming only and approved conflict-safe compensation. Build Book Entry32 records construction decisions and source/privacy limits. R7 remains pending offline release prerequisites; no live provider, real billing operation or release promotion is authorized. C2#84 remains a separate unmerged review.
+
+
+## S2 + S3 + S4 batch
+
+The user selected #53/#54/#55 after merging #89 as main77b98df, identical to reviewed0bdc7eb. Work is isolated on codex/s2-s3-s4-supply-chain. They approved SIM100.00/action,500.00/incident, separate review above25.00,30-minute approval/confirmation limits, two stale supersessions and blocked missing/stale facts. Source choice was delegated with eventual production in mind: use independent invented worlds with unseen holdout families/formulas and a separately labeled S1 observation adapter, without manufacturing historical weather causality. SQL owns budget, approvals, receipts and confirmation outcomes; frameworks provide bounded assessment/wakeups. No paid provider, real carrier effect, deployment or release promotion is authorized. S5/S6 remain later work; keep these issues open until user merge and verified acceptance. Native project-board status unverified.

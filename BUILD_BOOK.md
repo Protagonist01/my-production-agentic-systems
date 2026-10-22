@@ -1,51 +1,52 @@
-# Build Book — Production Agent Platform
+# Build Book â€” Production Agent Platform
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
 
-- [Entry 1 — Proposed execution and evidence boundaries](#entry-1--proposed-execution-and-evidence-boundaries)
-- [Entry 2 — Real-source data before the first complete demo](#entry-2--real-source-data-before-the-first-complete-demo)
+- [Entry 1 â€” Proposed execution and evidence boundaries](#entry-1--proposed-execution-and-evidence-boundaries)
+- [Entry 2 â€” Real-source data before the first complete demo](#entry-2--real-source-data-before-the-first-complete-demo)
 
-- [Entry 3 — From design notes to a dependency-driven delivery backlog](#entry-3--from-design-notes-to-a-dependency-driven-delivery-backlog)
+- [Entry 3 â€” From design notes to a dependency-driven delivery backlog](#entry-3--from-design-notes-to-a-dependency-driven-delivery-backlog)
 
-- [Entry 4 — Recovering from an invisible connector form](#entry-4--recovering-from-an-invisible-connector-form)
-- [Entry 5 — Creating the native delivery project](#entry-5--creating-the-native-delivery-project)
-- [Entry 6 — Establishing installable package boundaries](#entry-6--establishing-installable-package-boundaries)
-- [Entry 7 — Pinning authentic Olist source evidence](#entry-7--pinning-authentic-olist-source-evidence)
-- [Entry 8 — Integrating the first wave and defining shared contracts](#entry-8--integrating-the-first-wave-and-defining-shared-contracts)
-- [Entry 9 — Adding a current-code study guide](#entry-9--adding-a-current-code-study-guide)
-- [Entry 10 — Giving Windows and CI one command path](#entry-10--giving-windows-and-ci-one-command-path)
-- [Entry 11 — Isolating local Postgres services and trial state](#entry-11--isolating-local-postgres-services-and-trial-state)
-- [Entry 12 — Turning portable checks into hosted CI](#entry-12--turning-portable-checks-into-hosted-ci)
-- [Entry 13 — Selecting a free provider and local trace integration](#entry-13--selecting-a-free-provider-and-local-trace-integration)
-- [Entry 14 — Moving Gemini calls behind the shared gateway](#entry-14--moving-gemini-calls-behind-the-shared-gateway)
-- [Entry 15 — Preserving calls without turning replay into a cache](#entry-15--preserving-calls-without-turning-replay-into-a-cache)
-- [Entry 16 — Reserving shared capacity before bounded attempts](#entry-16--reserving-shared-capacity-before-bounded-attempts)
-- [Entry 17 — Pinning case membership and independent scorers](#entry-17--pinning-case-membership-and-independent-scorers)
-- [Entry 18 — Accounting for isolated trials even when execution fails](#entry-18--accounting-for-isolated-trials-even-when-execution-fails)
-- [Entry 19 — Reproducible faults at explicit execution boundaries](#entry-19--reproducible-faults-at-explicit-execution-boundaries)
-- [Entry 20 — Safe correlated telemetry](#entry-20--safe-correlated-telemetry)
-- [Entry 21 — Distinguishing cancellation and cold worker startup](#entry-21--distinguishing-cancellation-and-cold-worker-startup)
+- [Entry 4 â€” Recovering from an invisible connector form](#entry-4--recovering-from-an-invisible-connector-form)
+- [Entry 5 â€” Creating the native delivery project](#entry-5--creating-the-native-delivery-project)
+- [Entry 6 â€” Establishing installable package boundaries](#entry-6--establishing-installable-package-boundaries)
+- [Entry 7 â€” Pinning authentic Olist source evidence](#entry-7--pinning-authentic-olist-source-evidence)
+- [Entry 8 â€” Integrating the first wave and defining shared contracts](#entry-8--integrating-the-first-wave-and-defining-shared-contracts)
+- [Entry 9 â€” Adding a current-code study guide](#entry-9--adding-a-current-code-study-guide)
+- [Entry 10 â€” Giving Windows and CI one command path](#entry-10--giving-windows-and-ci-one-command-path)
+- [Entry 11 â€” Isolating local Postgres services and trial state](#entry-11--isolating-local-postgres-services-and-trial-state)
+- [Entry 12 â€” Turning portable checks into hosted CI](#entry-12--turning-portable-checks-into-hosted-ci)
+- [Entry 13 â€” Selecting a free provider and local trace integration](#entry-13--selecting-a-free-provider-and-local-trace-integration)
+- [Entry 14 â€” Moving Gemini calls behind the shared gateway](#entry-14--moving-gemini-calls-behind-the-shared-gateway)
+- [Entry 15 â€” Preserving calls without turning replay into a cache](#entry-15--preserving-calls-without-turning-replay-into-a-cache)
+- [Entry 16 â€” Reserving shared capacity before bounded attempts](#entry-16--reserving-shared-capacity-before-bounded-attempts)
+- [Entry 17 â€” Pinning case membership and independent scorers](#entry-17--pinning-case-membership-and-independent-scorers)
+- [Entry 18 â€” Accounting for isolated trials even when execution fails](#entry-18--accounting-for-isolated-trials-even-when-execution-fails)
+- [Entry 19 â€” Reproducible faults at explicit execution boundaries](#entry-19--reproducible-faults-at-explicit-execution-boundaries)
+- [Entry 20 â€” Safe correlated telemetry](#entry-20--safe-correlated-telemetry)
+- [Entry 21 â€” Distinguishing cancellation and cold worker startup](#entry-21--distinguishing-cancellation-and-cold-worker-startup)
 
-- [Entry 22 — Reporting every scheduled outcome](#entry-22--reporting-every-scheduled-outcome)
+- [Entry 22 â€” Reporting every scheduled outcome](#entry-22--reporting-every-scheduled-outcome)
 
-- [Entry 23 — Fresh dispatch receipts and independently reviewed releases](#entry-23--fresh-dispatch-receipts-and-independently-reviewed-releases)
+- [Entry 23 â€” Fresh dispatch receipts and independently reviewed releases](#entry-23--fresh-dispatch-receipts-and-independently-reviewed-releases)
 
-- [Entry 24 — Parallel source preparation and honest historical order views](#entry-24--parallel-source-preparation-and-honest-historical-order-views)
+- [Entry 24 â€” Parallel source preparation and honest historical order views](#entry-24--parallel-source-preparation-and-honest-historical-order-views)
 
-- [Entry 25 — Archive-grounded CFPB preparation in parallel](#entry-25--archive-grounded-cfpb-preparation-in-parallel)
+- [Entry 25 â€” Archive-grounded CFPB preparation in parallel](#entry-25--archive-grounded-cfpb-preparation-in-parallel)
 
-- [Entry 26 — Constructed policy and review evidence before domain baselines](#entry-26--constructed-policy-and-review-evidence-before-domain-baselines)
+- [Entry 26 â€” Constructed policy and review evidence before domain baselines](#entry-26--constructed-policy-and-review-evidence-before-domain-baselines)
 
-- [Entry 28 — Transactional refunds and a bounded LangGraph workflow](#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow)
+- [Entry 28 â€” Transactional refunds and a bounded LangGraph workflow](#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow)
 
-- [Entry 29 — Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
-- [Entry 30 — Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
-- [Entry 31 — Three Revenue tasks behind explicit simulation rules](#entry-31--three-revenue-tasks-behind-explicit-simulation-rules)
-- [Entry 32 — Approved Revenue effects and independent shipping sources](#entry-32--approved-revenue-effects-and-independent-shipping-sources)
+- [Entry 29 â€” Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
+- [Entry 30 â€” Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
+- [Entry 31 â€” Three Revenue tasks behind explicit simulation rules](#entry-31--three-revenue-tasks-behind-explicit-simulation-rules)
+- [Entry 32 â€” Approved Revenue effects and independent shipping sources](#entry-32--approved-revenue-effects-and-independent-shipping-sources)
+- [Entry 33 — Independent shipping worlds and durable budgeted intervention](#entry-33--independent-shipping-worlds-and-durable-budgeted-intervention)
 
 
-## Entry 1 — Proposed execution and evidence boundaries
+## Entry 1 â€” Proposed execution and evidence boundaries
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposal only; implementation has not started.
 
@@ -88,7 +89,7 @@ Read-only inspection found two planning gaps: CFPB/Olist detailed plans are link
 
 The original replay claim also overreached: recording model calls alone cannot reproduce mutable reads, writes, clocks or event schedules. The proposal narrows the guarantee to captured dependencies and deterministic scheduling and leaves live latency/quality measurement to fresh runs. The calculation `1 - 0.05^(1/100)` yielded 2.9513%, illustrating why zero observed failures is limited evidence rather than proof of zero risk.
 
-## Entry 2 — Real-source data before the first complete demo
+## Entry 2 â€” Real-source data before the first complete demo
 
 Date: 2026-10-09 (Africa/Lagos). Status: proposed, not implemented. Extends Entry 1 by making source ingestion part of the first vertical's acceptance criteria.
 
@@ -130,9 +131,9 @@ The planning index categorizes Maven CRM opportunities as real data. Maven's own
 No runtime bug was diagnosed here. The verified evidence is the publisher descriptions and local planning files; downloaded schema/content quality remains untested.
 
 
-## Entry 3 — From design notes to a dependency-driven delivery backlog
+## Entry 3 â€” From design notes to a dependency-driven delivery backlog
 
-Date: 2026-10-11 (Africa/Lagos). Status: delivery documentation prepared; issue/board creation awaits verified server results. Supersedes the proposal-only execution status in Entries 1–2; their runtime checks remain unexecuted.
+Date: 2026-10-11 (Africa/Lagos). Status: delivery documentation prepared; issue/board creation awaits verified server results. Supersedes the proposal-only execution status in Entries 1â€“2; their runtime checks remain unexecuted.
 
 **Files touched:** `README.md`, `docs/project-management.md`, `docs/backlog.json`, architecture/vertical plans, contribution and issue/PR templates.
 
@@ -168,7 +169,7 @@ The dependency and documentation checks are performed as part of this setup; run
 
 The initial issue tool returned an explicit stop-and-submit form response. No issue existed on read-back. Native Project/milestone tools were also absent. We preserved the prepared breakdown, published its reviewable definition and retained the administration task rather than claiming a board or implementation was complete.
 
-## Entry 4 — Recovering from an invisible connector form
+## Entry 4 â€” Recovering from an invisible connector form
 
 Date: 2026-10-11 (Africa/Lagos). Status: local checkout connected; GitHub issue/Project setup awaiting browser authentication.
 
@@ -204,11 +205,11 @@ The browser can expose native issue and Project administration after authenticat
 
 The connector claimed a submission form had been shown, but the user could not see it; two issue-write attempts produced no created issue. The browser provided a visible alternative but required user sign-in. CLI gh was absent. We did not change account/plugin permissions or claim that setup was finished.
 
-## Entry 5 — Creating the native delivery project
+## Entry 5 â€” Creating the native delivery project
 
 Date: 2026-10-11 (Africa/Lagos). Status: native issue hierarchy, milestones and Project created; field population and workflow verification underway.
 
-**Files touched:** delivery plan, backlog manifest, README and Build Book. **Remote artifacts:** [Project 2](https://github.com/users/Protagonist01/projects/2), [root issue 1](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), issues 2–62 and milestones 1–7.
+**Files touched:** delivery plan, backlog manifest, README and Build Book. **Remote artifacts:** [Project 2](https://github.com/users/Protagonist01/projects/2), [root issue 1](https://github.com/Protagonist01/my-production-agentic-systems/issues/1), issues 2â€“62 and milestones 1â€“7.
 
 ### Context and decision
 
@@ -235,9 +236,9 @@ The table used asynchronous filtering and saves. A complete server read found th
 
 All 53 task rows were read in eight Area-filtered batches and compared with the manifest: Area, Priority, Size and milestone matched. The local validator checked 53 unique tasks, all 61 epic/task issue mappings and an acyclic dependency graph. Missing Size/Area/Priority filters initially returned only the nine aggregate root/epic rows; epics subsequently received Area/Priority/milestones and intentionally retain no Size. The root tracker spans the project and intentionally has no Area/milestone.
 
-Configured Board stages Backlog → Ready → In progress → Review → Done; removed the template's five-item Backlog limit and set In progress to three. Saved By workstream with Area grouping and hierarchy off; saved Blocked with `has:Blocker`, hierarchy off, Area and Blocker columns. Seven views exist. Dates and iteration assignments remain empty pending capacity planning.
+Configured Board stages Backlog â†’ Ready â†’ In progress â†’ Review â†’ Done; removed the template's five-item Backlog limit and set In progress to three. Saved By workstream with Area grouping and hierarchy off; saved Blocked with `has:Blocker`, hierarchy off, Area and Blocker columns. Seven views exist. Dates and iteration assignments remain empty pending capacity planning.
 
-Five workflows are enabled: repository open-issue intake, sub-issue intake, initial Backlog, explicitly closed issues → Done, and reopened items → Backlog. Disabled merge → Done, Done → automatic closure, and PR-link status changes; left archive/review automations off. Explicit closure still requires the human/integrator to inspect acceptance evidence. Updated and pinned tracker #1 with the actual Project URL and epic links. H11's O8 dependency is #33, clarified in the tracker and manifest while its connector edit remains pending.
+Five workflows are enabled: repository open-issue intake, sub-issue intake, initial Backlog, explicitly closed issues â†’ Done, and reopened items â†’ Backlog. Disabled merge â†’ Done, Done â†’ automatic closure, and PR-link status changes; left archive/review automations off. Explicit closure still requires the human/integrator to inspect acceptance evidence. Updated and pinned tracker #1 with the actual Project URL and epic links. H11's O8 dependency is #33, clarified in the tracker and manifest while its connector edit remains pending.
 
 L5 is an administrative task. Its completion evidence is this verified configuration and the published documentation commit, rather than an application implementation PR. F1 #10 and O1 #26 remain Ready. No application work is marked complete.
 
@@ -245,7 +246,7 @@ Published the planning snapshot in [commit 311e807](https://github.com/Protagoni
 
 Refetched main and used a mixed reset to align local HEAD/index with the documentation commit while preserving the original untracked plans. `git diff --check` passed and no tracked differences remained. Verification covers project administration and planning consistency; no runtime test was run because runtime code does not yet exist.
 
-## Entry 6 — Establishing installable package boundaries
+## Entry 6 â€” Establishing installable package boundaries
 
 Date: 2026-10-12 (Africa/Lagos). Task: F1 #10. Branch: `feat/f1-python-foundation`. Status: implementation and verification underway.
 
@@ -281,7 +282,7 @@ The first negative tests exposed a test-runner bug: `python -m importlinter.cli`
 
 Calling `lint_imports()` next printed the violations but returned without setting a failure process status. The installed console entry-point metadata identifies `lint-imports` as `importlinter.cli:lint_imports_command`; use that exact command wrapper so broken contracts produce a nonzero process status. The negative assertions remain unchanged.
 
-The initial uv_build 0.13 series could produce wheels, but uv 0.11.1 failed while unpacking its source archive with `malformed pax extension`. Rather than changing the user's installed tool, pinned each member's backend to `uv_build==0.11.1`, matching the exercised runner. All six source archive → wheel builds then passed. This replaces step 3's initial 0.13-series selection. Source/binary distribution artifacts remain ignored.
+The initial uv_build 0.13 series could produce wheels, but uv 0.11.1 failed while unpacking its source archive with `malformed pax extension`. Rather than changing the user's installed tool, pinned each member's backend to `uv_build==0.11.1`, matching the exercised runner. All six source archive â†’ wheel builds then passed. This replaces step 3's initial 0.13-series selection. Source/binary distribution artifacts remain ignored.
 
 ### Verified results
 
@@ -289,7 +290,7 @@ On Windows/Python 3.13.4/uv 0.11.1: 12 pytest checks passed; both import contrac
 
 The separate harness-only sync installed exactly the shared member and confirmed `find_spec('olist_support') is None`. F1 was pushed in commit c91df0f and [PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63) was created through the signed-in browser after the user confirmed the connector form was invisible. It remains open for review; no merge or implementation completion is claimed.
 
-## Entry 7 — Pinning authentic Olist source evidence
+## Entry 7 â€” Pinning authentic Olist source evidence
 
 Date: 2026-10-12 (Africa/Lagos). Task: O1 #26. Branch: `feat/o1-olist-provenance`, stacked on F1 so shared root documentation and test tooling have one baseline. Status: acquisition succeeded; provenance verification underway.
 
@@ -325,7 +326,7 @@ The original `data/` ignore pattern also hid `docs/data` aggregate reports. Caug
 
 Published O1 in commit 7ce824e and [PR #64](https://github.com/Protagonist01/my-production-agentic-systems/pull/64), based on the F1 branch. Both implementation issues remain open in Review until merged and verified; F2 stays Backlog while F1 is unmerged. The PRs intentionally use reference links without automatic closing keywords. Raw-source acquisition is complete, but source ingestion, operational state and evaluation contracts are still planned work.
 
-## Entry 8 — Integrating the first wave and defining shared contracts
+## Entry 8 â€” Integrating the first wave and defining shared contracts
 
 Date: 2026-10-13 (Africa/Lagos). Task: F2 #11. Branch: `codex/f2-shared-contracts`. Implementation underway.
 
@@ -357,7 +358,7 @@ The browser stopped responding during #65 body editing. The title saved, but the
 
 The existing Git Credential Manager authorizes the same Protagonist01 repository. Used its credential in memory with the GitHub API to update #65's description, attach completion evidence and close #10/#26 as completed, then record #11's branch. No token is printed or saved, no new credential/access is created, and task-local helper scripts live only under ignored `.git`. Server reads confirmed the closures. This avoids depending on the previously invisible connector form. The browser later displayed F1 as Closed/Done.
 
-Pinned Pydantic 2.14.1 from current PyPI metadata; uv locked its transitive dependencies. The first 27 contract tests passed; the combined suite passed 43 tests, both import contracts and formatting. The example emitted a synthetic/offline_fake report with preserved context/versions, exact-text score and zero fake cost. ScoreResult values remain finite but are not limited to 0–1: latency/cost metrics need other ranges. Static type checking is underway using an ephemeral, exactly pinned mypy 2.4.0; it does not add a new permanent root command before F3.
+Pinned Pydantic 2.14.1 from current PyPI metadata; uv locked its transitive dependencies. The first 27 contract tests passed; the combined suite passed 43 tests, both import contracts and formatting. The example emitted a synthetic/offline_fake report with preserved context/versions, exact-text score and zero fake cost. ScoreResult values remain finite but are not limited to 0â€“1: latency/cost metrics need other ranges. Static type checking is underway using an ephemeral, exactly pinned mypy 2.4.0; it does not add a new permanent root command before F3.
 
 Moved the Agent/ModelGateway protocols into the public contracts module so domain agents do not need to import evaluator-only objects just to implement the interface. The fake agent revalidates the gateway response. Re-ran the combined suite after these changes: 43 passed; strict mypy found no issues in four source files; both import contracts kept; Ruff lint/format passed. All six source archives/wheels built. A separate clean environment installation/example is being checked before publication. Only Windows/Python 3.13.4 is exercised; Linux/Python 3.12 checks remain F5.
 
@@ -365,9 +366,9 @@ The separate clean locked environment installed all six workspace members plus P
 
 Published F2 code in commit 65ff503 and [PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66), based on the integrated main. The committed CLI run also passed and reports revision 65ff503 with the actual lock hash. Updated #11's acceptance/evidence, assigned the repository owner and left it open in Review; the merged-PR checkbox remains unchecked. This shared baseline must be reviewed/merged before dependent worktrees use it. Existing Git credentials lack Projects scopes, so board changes use the signed-in browser rather than broadening access.
 
-The issue sidebar status interactions did not retain the intended value; the refreshed board showed F2 under No Status. Used the card's More actions → Move to column → Review instead, then verified the native board: Backlog 58, Ready 0, In progress 0/3, Review 1 (F2), Done 3 (F1, O1, L5). Saved a screenshot showing the Review/Done cards. PR #66's server-side diff matches all 17 intended local files; tracked changes are clean and original untracked documents are preserved. F2 remains unmerged for shared-interface review.
+The issue sidebar status interactions did not retain the intended value; the refreshed board showed F2 under No Status. Used the card's More actions â†’ Move to column â†’ Review instead, then verified the native board: Backlog 58, Ready 0, In progress 0/3, Review 1 (F2), Done 3 (F1, O1, L5). Saved a screenshot showing the Review/Done cards. PR #66's server-side diff matches all 17 intended local files; tracked changes are clean and original untracked documents are preserved. F2 remains unmerged for shared-interface review.
 
-## Entry 9 — Adding a current-code study guide
+## Entry 9 â€” Adding a current-code study guide
 
 Date: 2026-10-13 (Africa/Lagos). Branch: `codex/code-study-guide`, based on F2 snapshot 0e85f9a. Work underway.
 
@@ -397,7 +398,7 @@ Continued 2026-10-14: wrote the 5,700-word guide and checked all 41 immutable li
 
 Published the documentation in commit 1d49c90 and [PR #67](https://github.com/Protagonist01/my-production-agentic-systems/pull/67). A fresh server check then confirmed F2 had merged into main b46cf25; compared all implementation/configuration paths with the documentation branch and found no differences. Updated the guide's current merge-status note while retaining immutable links to source snapshot 0e85f9a. PR #67 targets main and changes four documentation files only. The installed personal skill contains its SKILL.md, UI metadata and adaptable outline; it requires no new plugin or runtime dependency. The guide was queued in Codex's file panel for this chat.
 
-## Entry 10 — Giving Windows and CI one command path
+## Entry 10 â€” Giving Windows and CI one command path
 
 Date: 2026-10-14 (Africa/Lagos). Task: F3 #12. Branch: `codex/f3-command-entrypoints`, based on main b46cf25. Implementation underway.
 
@@ -445,7 +446,7 @@ Imported the completed study-guide history from PR #67 (commit 79fd64f) into the
 
 On 2026-10-14 the user confirmed that #12 was moved to Review in Project 2. Recorded that confirmation in the delivery plan and PR; native UI read-back remains unavailable because reconnect/reset did not resolve the helper startup error. F3 remains open for review and merge. This final update changes documentation only; the verified command implementation is unchanged.
 
-## Entry 11 — Isolating local Postgres services and trial state
+## Entry 11 â€” Isolating local Postgres services and trial state
 
 Date: 2026-10-14 (Africa/Lagos). Task F4 #13. Branch `codex/f4-postgres-isolation`, based on merged main ce8334c. Work underway.
 
@@ -493,13 +494,13 @@ An automatic command review rejected a combined shell invocation containing the 
 
 Administrative CREATE/DROP ROLE/DATABASE cannot be made one transaction. Save local credentials first and fail visibly on incomplete bootstrap; role-only crash recovery remains a trusted administrator runbook, not an automatic success/retry. Reset is explicitly destructive disposable-state reconstruction, not production rollback. No workflow engine, real dataset import, domain policy/action authorization, production tenant security or model-quality result is implied. Final built-resource/source-anchor and PR read-back evidence follows before publication.
 
-Built all six archives/wheels and verified the harness wheel contains both SQL resources. Installed that wheel into a separate fresh virtual environment: pinned Psycopg imported, both packaged SQL files loaded, and foundation fixture hash was `36f744ed8efb28f29fb42a24da4cc3dc8a7ef1b3fa6f41e88133bc396e07f938`. This verifies packaged-resource loading without editable source. Recorded implementation in commit 65dcefb; current guide explains all seven meaningful source files and seven test files with a dedicated Postgres chapter. A Windows default text decode failed on the guide’s UTF-8 quotation marks; switched document scripts to explicit UTF-8 and repaired only newly inserted non-UTF8 bytes. Final source/reference audits passed.
+Built all six archives/wheels and verified the harness wheel contains both SQL resources. Installed that wheel into a separate fresh virtual environment: pinned Psycopg imported, both packaged SQL files loaded, and foundation fixture hash was `36f744ed8efb28f29fb42a24da4cc3dc8a7ef1b3fa6f41e88133bc396e07f938`. This verifies packaged-resource loading without editable source. Recorded implementation in commit 65dcefb; current guide explains all seven meaningful source files and seven test files with a dedicated Postgres chapter. A Windows default text decode failed on the guideâ€™s UTF-8 quotation marks; switched document scripts to explicit UTF-8 and repaired only newly inserted non-UTF8 bytes. Final source/reference audits passed.
 
 ### Review publication
 
-Published [PR #69](https://github.com/Protagonist01/my-production-agentic-systems/pull/69) after pushing code and code/runbook documentation. Attached it to this chat. Updated #13 with all three acceptance criteria checked, 64 offline plus 11 required database results, fixture/image/code versions and limitations; left merged-PR unchecked and issue open. Native Project move to Review was read back after the asynchronous save; screenshot under ignored artifacts shows F4 Review and F3 Done together. Ordinary db-down stopped only this checkout’s test service, retaining its named volume/configuration; temporary integration projects/volumes were removed by their fixture cleanup. All 77 immutable source ranges and document references resolve. F4 is review-ready, not merged/completed.
+Published [PR #69](https://github.com/Protagonist01/my-production-agentic-systems/pull/69) after pushing code and code/runbook documentation. Attached it to this chat. Updated #13 with all three acceptance criteria checked, 64 offline plus 11 required database results, fixture/image/code versions and limitations; left merged-PR unchecked and issue open. Native Project move to Review was read back after the asynchronous save; screenshot under ignored artifacts shows F4 Review and F3 Done together. Ordinary db-down stopped only this checkoutâ€™s test service, retaining its named volume/configuration; temporary integration projects/volumes were removed by their fixture cleanup. All 77 immutable source ranges and document references resolve. F4 is review-ready, not merged/completed.
 
-## Entry 12 — Turning portable checks into hosted CI
+## Entry 12 â€” Turning portable checks into hosted CI
 
 Date: 2026-10-14 (Africa/Lagos). Task F5 #14. Branch codex/f5-offline-ci, based on reviewed merged main d3f783c. Work underway.
 
@@ -531,11 +532,11 @@ Implementation and hosted evidence follow. No passing hosted workflow or depende
 
 Post-merge F4 db-check passed all 11 tests in 119 seconds with no skips; closed #13 as completed and assigned #14 In progress. Initial F5 local check passed 77 tests (13 CI-boundary cases added), strict mypy on eight source files, Ruff and both import contracts. Dependency audit returned no known vulnerabilities. Changed the export to retain package hashes and require them in pip-audit, avoiding an unhashed advisory input. Official pinned Gitleaks CLI download timed out locally; hosted scan evidence remains pending rather than claiming a local secret scan. No Langfuse experiment/threshold is configured: its official CI docs require a dataset, real task/evaluators and declared gates, which belong to H3/H5/H9/H10 rather than this offline foundation issue.
 
-Committed initial F5 source as b9a3d4c, then added a clearly labelled disposable forbidden import in 826cb6c. Local imports exited 1 with Harness cannot import industry packages BROKEN and the exact ci_failure_probe → olist_support edge. Published PR #70 with an explicit not-ready/pending-hosted-evidence body, attached it to the chat and left #14 In progress. Hosted failure/pass evidence remains pending; do not remove the probe until its actual quality-job result is observed.
+Committed initial F5 source as b9a3d4c, then added a clearly labelled disposable forbidden import in 826cb6c. Local imports exited 1 with Harness cannot import industry packages BROKEN and the exact ci_failure_probe â†’ olist_support edge. Published PR #70 with an explicit not-ready/pending-hosted-evidence body, attached it to the chat and left #14 In progress. Hosted failure/pass evidence remains pending; do not remove the probe until its actual quality-job result is observed.
 
-The first hosted run 38638985538 completed failure: all four quality jobs and CI gate failed, while Postgres, both dependency audits, Gitleaks and PR metadata passed. Its downloaded quality log showed mypy's import-untyped rejection of the forbidden harness dependency, before the architecture checker ran. That proves fail-fast CI, but not the specific architecture stage promised. Replaced the temporary control with an Olist → CFPB import in domain code, outside the explicitly declared mypy scope. This tests the architecture stage without weakening or suppressing type checks. The second run must show Industry packages cannot import one another BROKEN before removing the control.
+The first hosted run 38638985538 completed failure: all four quality jobs and CI gate failed, while Postgres, both dependency audits, Gitleaks and PR metadata passed. Its downloaded quality log showed mypy's import-untyped rejection of the forbidden harness dependency, before the architecture checker ran. That proves fail-fast CI, but not the specific architecture stage promised. Replaced the temporary control with an Olist â†’ CFPB import in domain code, outside the explicitly declared mypy scope. This tests the architecture stage without weakening or suppressing type checks. The second run must show Industry packages cannot import one another BROKEN before removing the control.
 
-Verified the [second negative run 38640533520](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38640533520), head 9e7969418ca60913fc74602d77ad78e4dd63a468: all four quality jobs and CI gate failed; the downloaded Ubuntu 3.13 log contains Industry packages cannot import one another BROKEN and the exact olist_support.ci_failure_probe → cfpb_triage edge. Postgres, both dependency audits, Gitleaks and metadata passed. Removed the disposable probe only after this evidence. Final cleaned hosted checks are next; no green result is assumed.
+Verified the [second negative run 38640533520](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/38640533520), head 9e7969418ca60913fc74602d77ad78e4dd63a468: all four quality jobs and CI gate failed; the downloaded Ubuntu 3.13 log contains Industry packages cannot import one another BROKEN and the exact olist_support.ci_failure_probe â†’ cfpb_triage edge. Postgres, both dependency audits, Gitleaks and metadata passed. Removed the disposable probe only after this evidence. Final cleaned hosted checks are next; no green result is assumed.
 
 ### Clean hosted verification
 
@@ -543,9 +544,9 @@ Verified the [second negative run 38640533520](https://github.com/Protagonist01/
 
 ### Native Review and final publication
 
-Documentation head eef5e9adb70462e21bb3e855cba5f4824205876f passed all ten jobs in run 38643732590. Rewrote PR #70 around the delivered behavior, real negative/positive evidence and limits; updated #14 to Review with all three acceptance criteria checked, leaving merged-PR unchecked. Browser connection recovered, but the semantic filter fill stalled; the visible AX input setValue plus Return worked. Filtered F5, used More actions → Move to column → Review, waited for saved card/count, then cleared/applied the temporary filter. Native board now shows Backlog 55, Ready 0, In progress 0/3, Review 1 and Done 6. Saved screenshot artifacts/f5-review-board.png shows F5 Review and F4 Done together. No access/permission expansion, network protection change or unrelated cleanup was required. This final documentation-only correction will be pushed and its exact-head CI/PR diff read back before handoff; implementation source remains b9a3d4c and the 87 audited ranges are unchanged.
+Documentation head eef5e9adb70462e21bb3e855cba5f4824205876f passed all ten jobs in run 38643732590. Rewrote PR #70 around the delivered behavior, real negative/positive evidence and limits; updated #14 to Review with all three acceptance criteria checked, leaving merged-PR unchecked. Browser connection recovered, but the semantic filter fill stalled; the visible AX input setValue plus Return worked. Filtered F5, used More actions â†’ Move to column â†’ Review, waited for saved card/count, then cleared/applied the temporary filter. Native board now shows Backlog 55, Ready 0, In progress 0/3, Review 1 and Done 6. Saved screenshot artifacts/f5-review-board.png shows F5 Review and F4 Done together. No access/permission expansion, network protection change or unrelated cleanup was required. This final documentation-only correction will be pushed and its exact-head CI/PR diff read back before handoff; implementation source remains b9a3d4c and the 87 audited ranges are unchanged.
 
-## Entry 13 — Selecting a free provider and local trace integration
+## Entry 13 â€” Selecting a free provider and local trace integration
 
 Date: 2026-10-14 (Africa/Lagos). Task H1 #15. Branch `codex/h1-integration-selection`, based on merged main 6e48011. Work underway.
 
@@ -613,7 +614,7 @@ The native More actions expansion timed out but left the card control focused; p
 Final guide read-back caught an old foundation sentence claiming LangGraph/Pydantic AI were not installed. Corrected it to the actual H1 boundary: pinned development packages and tested extension seams exist, while shared gateway adapters remain planned. No source or immutable source anchor changed. This guide-only correction also receives exact-head CI.
 
 
-## Entry 14 — Moving Gemini calls behind the shared gateway
+## Entry 14 â€” Moving Gemini calls behind the shared gateway
 
 Date: 2026-10-15 (Africa/Lagos). Task H2 #16. Branch codex/h2-gemini-gateway, based on reviewed main 0a859bb. Work underway.
 
@@ -664,7 +665,7 @@ Published and attached [PR #72](https://github.com/Protagonist01/my-production-a
 
 Updated #16 acceptance/Review evidence, keeping the issue open and merge unchecked. Native browser initialization still fails after user reconnection; user confirmed no manual board update yet. Do not claim native H1 Done/H2 Review columns were verified. Final handoff documentation receives exact-head CI before user review; H3 stays Backlog until H2 is merged and verified.
 
-## Entry 15 — Preserving calls without turning replay into a cache
+## Entry 15 â€” Preserving calls without turning replay into a cache
 
 Date: 2026-10-15 (Africa/Lagos). H3 #17. Branch `codex/h3-strict-replay`, based on merged H2 main 9282d87. Work underway.
 
@@ -728,7 +729,7 @@ Audited 143 immutable source ranges against exact Git objects and their current 
 
 Published and attached [PR #73](https://github.com/Protagonist01/my-production-agentic-systems/pull/73), based on reviewed main 9282d87. Source modules are fbf0d80; capture source remains bce80f8. Updated the delivery snapshot to Review and linked #17. The issue stays open with the merge checkbox unchecked until user review/merge and post-merge verification. Required hosted quality cells now execute the pinned invented replay alongside all existing checks. Final exact-head CI and native saved Review read-back are verified separately and recorded on the issue/PR after this handoff commit; do not infer their success from this journal entry.
 
-## Entry 16 — Reserving shared capacity before bounded attempts
+## Entry 16 â€” Reserving shared capacity before bounded attempts
 
 Date: 2026-10-15 (Africa/Lagos). H4 #18. Branch `codex/h4-shared-controls`, based on merged main 1207eb5. Work underway.
 
@@ -778,7 +779,7 @@ The full locked check passed 276 offline cases (56 H4), nineteen typed source fi
 
 ### Installed package and source review
 
-The built harness wheel contains exact bytes for all six changed/new source modules. Installed only the base wheel and mandatory dependencies into a fresh environment: Google and Langfuse were absent. A separate importable invented worker ran through BoundedGateway → ProviderGateway → IsolatedTransport with network audit denial, returned its invented answer and retained one reservation. The first handwritten package probe omitted required ModelRequest.parameters and failed validation before dispatch; adding the explicit empty dictionary made the probe valid. This was a probe-input error, not a package change.
+The built harness wheel contains exact bytes for all six changed/new source modules. Installed only the base wheel and mandatory dependencies into a fresh environment: Google and Langfuse were absent. A separate importable invented worker ran through BoundedGateway â†’ ProviderGateway â†’ IsolatedTransport with network audit denial, returned its invented answer and retained one reservation. The first handwritten package probe omitted required ModelRequest.parameters and failed validation before dispatch; adding the explicit empty dictionary made the probe valid. This was a probe-input error, not a package change.
 
 Audited 144 immutable source ranges, 105 selected local links and twenty intended publication files for configured secret values/local artifacts. Re-anchored changed gateway/Gemini/probe symbols to implementation 68e7383; unchanged links retain verified source slices. A Windows helper initially read Markdown using cp1252; restored its three affected planning files from clean Git bytes and reran with explicit UTF-8. Link/content verification then passed. No source, lock or provider fixture was modified by documentation repair. Preparing the review publication; hosted final-head evidence is pending.
 
@@ -786,7 +787,7 @@ Audited 144 immutable source ranges, 105 selected local links and twenty intende
 
 Published and attached [PR #74](https://github.com/Protagonist01/my-production-agentic-systems/pull/74), based on reviewed main 1207eb5. Implementation links pin 68e7383; the delivery snapshot now records Review. H4 #18 remains open with merge unchecked until user review/merge and post-merge verification. Exact final-head hosted checks, clean replay identity and native saved Review read-back are verified separately after this handoff commit. No final hosted pass is inferred from publication.
 
-## Entry 17 — Pinning case membership and independent scorers
+## Entry 17 â€” Pinning case membership and independent scorers
 
 Date: 2026-10-15 (Africa/Lagos). H5 #19, branch `codex/h5-versioned-cases`, based on user-reviewed merged H4 main e9ebd07. Work underway.
 
@@ -833,7 +834,7 @@ Created and attached draft [PR #75](https://github.com/Protagonist01/my-producti
 
 The first hosted final-documentation run failed its generic API-credential heuristic on ordinary prose in the H5 study chapter's test-coverage paragraph (line 63); redacted diagnostics identify that exact documentation location, not a configured credential or fixture digest. Inspection confirmed the line lists malformed/absent-file tests. Rephrased the sentence and replaced only the unmerged documentation commit using force-with-lease. No scanner rule or allowlist was changed. The original implementation commit and immutable source links stay pinned. Other checks from that superseded head are not final acceptance evidence; verify the replacement head from scratch.
 
-## Entry 18 — Accounting for isolated trials even when execution fails
+## Entry 18 â€” Accounting for isolated trials even when execution fails
 
 Date: 2026-10-15 (Africa/Lagos). H6 #20, branch `codex/h6-isolated-trials`, based on reviewed merged H5 main c08f67d. Work underway.
 
@@ -853,7 +854,7 @@ Create a private schedule journal before setup, exclusively write one terminal r
 
 ### How to build it
 
-1. Declare every case × repeated-trial identity with fixed clock, seed, candidate/code/lock and budgets; validate exact manifest membership, context/snapshot/policy agreement, unique run IDs and compatible experiment provenance before any setup.
+1. Declare every case Ã— repeated-trial identity with fixed clock, seed, candidate/code/lock and budgets; validate exact manifest membership, context/snapshot/policy agreement, unique run IDs and compatible experiment provenance before any setup.
 2. A trusted parent environment prepares fresh state and returns an opaque lease with restricted access. F4's adapter creates a unique migrated/seeded database and least-privilege role for each trial; existing identities fail rather than silently resetting someone else's work. Only restricted login information enters the child; administrator credentials stay in the parent.
 3. Run the trusted component factory and existing H5 binding/runner inside one spawned process. Bound elapsed child execution including startup by both the declared trial duration and runner limit. Return a validated frame or a fixed sanitized error code; never export arbitrary exception text.
 4. Stop/reap the child before releasing its state. F4 cleanup verifies ownership and refuses active connections. Setup/cleanup errors are terminal evidence failures, not passing empty results. Parent lifecycle hooks must bound their own I/O; F4 uses its existing connection/lock timeouts. A hostile or hanging lifecycle hook and abrupt host termination remain explicit limitations.
@@ -891,7 +892,7 @@ The first hosted source run 38952883131 passed its required Postgres job and bot
 
 The expanded final documentation audit checked 186 immutable source ranges, 130 selected local links and all seventeen intended publication files; configured secret values and ignored local artifacts were absent. No runtime source changed during these checks. Publish the documentation snapshot, then record exact-head replay, hosted acceptance and the local database outcome on #20 without treating preliminary runs as final evidence.
 
-## Entry 19 — Reproducible faults at explicit execution boundaries
+## Entry 19 â€” Reproducible faults at explicit execution boundaries
 
 Date: 2026-10-16 (Africa/Lagos). H7 #21, branch `codex/h7-seeded-faults`, based on user-reviewed merged H6 main 9c13b2c. Work underway.
 
@@ -955,7 +956,7 @@ Publish the completed runbook, source guide and merged-H6/H7 Review snapshot in 
 
 The first documentation head 933ddd1 triggered the repository scanner's generic credential heuristic at docs/code-study-faults.md line 73. The flagged sentence enumerates ordinary test coverage; inspection confirmed no configured credential or secret value. Rephrase that prose as short sentences and replace only this unmerged documentation commit using force-with-lease. Keep runtime implementation/fix commits and their immutable links intact. No scanner rule, allowlist or exclusion is changed. Verify clean replay and hosted checks against the replacement head; the failed/superseded run is not final acceptance evidence.
 
-## Entry 20 — Safe correlated telemetry
+## Entry 20 â€” Safe correlated telemetry
 
 Date: 2026-10-17 (Africa/Lagos). H8 #22, branch `codex/h8-correlated-traces`, based on reviewed H7 main 487242f. Work underway.
 
@@ -1022,7 +1023,7 @@ All sixteen required local Postgres cases passed in 291.95 seconds. The clean pu
 The corrected probe verified actual backend outcome/versions/source/result/canary evidence and all lifecycle states. The focused telemetry/command suite passed 59 cases in 23.89 seconds. Reader-only source 9c1d2fca918ceb0b0d90f0ee7be0e704c7ccf7a9 leaves runtime/exporter, dependency lock, recorded calls and database behavior unchanged. Rerun the full locked suite and rebuild/reinstall the final wheel; preserve the prior 472-test and sixteen-database evidence as distinct results. Final clean-head read-back/replay and every hosted job are required before handoff, recorded on #22.
 
 
-## Entry 21 — Distinguishing cancellation and cold worker startup
+## Entry 21 â€” Distinguishing cancellation and cold worker startup
 
 Date: 2026-10-17 (Africa/Lagos). Follow-up on unmerged H8 PR #78; diagnosis in progress.
 
@@ -1067,7 +1068,7 @@ The documentation audit first rejected the old immutable workflow slice because 
 The full `python dev.py check` runs against the unchanged executable/test bytes of 0f3e756. This follow-up documentation commit records hosted cancellation proof and refreshes immutable workflow/test links; it does not change dependencies, production deadlines, captured fixtures or runtime modules. Publish the final-head normal hosted result and full local result on #22 after they finish. Inspect every suite associated with the final SHA, not only one selected passing run. The user reviews/merges PR #78; no H9 work starts during this repair.
 
 
-## Entry 22 — Reporting every scheduled outcome
+## Entry 22 â€” Reporting every scheduled outcome
 
 Date: 2026-10-18 (Africa/Lagos). H9 #23, branch codex/h9-scorecards, based on verified merged H8 main 21a5720. Work underway.
 
@@ -1126,7 +1127,7 @@ The documentation verifier caught old dev.main ranges in the gateway/replay chap
 H9 is published in PR #79. The implementation commit is a25050a; source links and installed-wheel evidence are recorded in 482a575. Final stable-source local/hosted checks are running and will be read back against the final documentation head on #23 before handoff. The Review snapshot links a concrete implementation and measured focused/full/package evidence; it does not treat pending CI as a pass. Keep #23 open and its merged checkbox unchecked until user review/merge and post-merge acceptance. No H10 work begins during this review. Native project-board transitions remain unverified after the explicit project-scope rejection.
 
 
-## Entry 23 — Fresh dispatch receipts and independently reviewed releases
+## Entry 23 â€” Fresh dispatch receipts and independently reviewed releases
 
 Date: 2026-10-18 (Africa/Lagos). H10 #24, codex/h10-release-evidence, based on verified fd87750.
 
@@ -1185,7 +1186,7 @@ Executable source is 6b20fb959e5f54a71495aeac97f5c6b9b54ca182. The documentation
 Published H10 in PR #80, attached it to the chat, and marked #24 Review while keeping it open and its merge checkbox unchecked. Initial hosted run 39169936224 is in progress, not accepted yet. This small follow-up records the actual PR link; executable source/test/dependency bytes are unchanged. Verify every suite on the resulting final SHA and the PR merge state, then append exact results to #24. User review/merge and post-merge verification remain the completion boundary. No Olist/domain task starts during review.
 
 
-## Entry 24 — Parallel source preparation and honest historical order views
+## Entry 24 â€” Parallel source preparation and honest historical order views
 
 Date: 2026-10-18 (Africa/Lagos). O2 #27 on codex/o2-orders-360, based on verified merged #80 main54f5af2. C1 #34 proceeds in a separate managed worktree/branch under explicit user choice.
 
@@ -1254,7 +1255,7 @@ Move O2 to Review with the concrete source/package/source-data evidence, while p
 2026-10-19: O2 is published in PR#81 and C1 in PR#82, both attached to the chat and their issues remain open in Review. O2 publication head6ae7ff8 passed hosted run39172484822, alltenjobs: actual596tests per Ubuntu/Windows Python3.12/3.13 cell, sixteenPostgres tests, strictreplay and allsixbuilds. This final metadata commit records the concrete review links without changing executable/test/lock bytes from0781ddd. Verify its exact-head checks before handoff; historical passing runs do not replace that read-back. Combined-source local validation is running against O2source0781ddd+C1source1dd98fb; its result will be appended on#27/#34 after completion. The first592pass/cleanupfailure aggregate remains recorded above; production cleanup was not weakened.
 
 
-## Entry 25 — Archive-grounded CFPB preparation in parallel
+## Entry 25 â€” Archive-grounded CFPB preparation in parallel
 
 Date: 2026-10-18 (Africa/Lagos). C1 #34, codex/c1-cfpb-import, based on merged main 54f5af2. O2 proceeds independently in another worktree after the user explicitly selected O2 + C1 in parallel.
 
@@ -1262,7 +1263,7 @@ Date: 2026-10-18 (Africa/Lagos). C1 #34, codex/c1-cfpb-import, based on merged m
 
 ### Context
 
-The user reviewed and merged #80. Parent verification of merged main passed locked setup/check (570 tests in 252.92 seconds), exact replay (six calls, two recorded timeouts, zero provider calls), and hosted run 39170421239 (nine applicable jobs, 570 tests in each quality cell and sixteen database checks). C1 is source preparation, not a classifier or reviewed risk-label dataset. The user explicitly chose the complete September 2023–March 2024 archive cohort with March held out.
+The user reviewed and merged #80. Parent verification of merged main passed locked setup/check (570 tests in 252.92 seconds), exact replay (six calls, two recorded timeouts, zero provider calls), and hosted run 39170421239 (nine applicable jobs, 570 tests in each quality cell and sixteen database checks). C1 is source preparation, not a classifier or reviewed risk-label dataset. The user explicitly chose the complete September 2023â€“March 2024 archive cohort with March held out.
 
 Current primary-source research changed the acquisition plan: CFPB ceased narrative publication in August 2026 and moved previously published narratives to its FOIA archive. Current live API exports therefore cannot serve as the narrative source. The official archived ZIP is bounded at 100,880,669 compressed bytes; raw source and derived records stay in external local storage.
 
@@ -1272,7 +1273,7 @@ How would you prevent a target label from reaching a classifier while also keepi
 
 ### Options considered and why
 
-A random capped sample is cheaper but adds a selection decision; the user selected the complete bounded archive. A single wide table with a friendly input projection leaves target columns alongside every agent read. Choose separate narrative-only agent and scorer databases, and a closed input type. Preserve consumer-selected labels exactly in scorer storage; do not invent reviewed truth. Assign September–December to development, January–February to regression and March to holdout. Normalize only for exact duplicate grouping; quarantine every group crossing time cutoffs rather than move future records into development. No consumer identity is available, so exact-text grouping cannot promise consumer-level or near-duplicate independence.
+A random capped sample is cheaper but adds a selection decision; the user selected the complete bounded archive. A single wide table with a friendly input projection leaves target columns alongside every agent read. Choose separate narrative-only agent and scorer databases, and a closed input type. Preserve consumer-selected labels exactly in scorer storage; do not invent reviewed truth. Assign Septemberâ€“December to development, Januaryâ€“February to regression and March to holdout. Normalize only for exact duplicate grouping; quarantine every group crossing time cutoffs rather than move future records into development. No consumer identity is available, so exact-text grouping cannot promise consumer-level or near-duplicate independence.
 
 ### How to build it
 
@@ -1330,7 +1331,7 @@ The resolved tree retains exact O2source/test bytes0781ddd and C1source/test byt
 O2 post-merge acceptance completed on clean36ad712: locked setup/check596passed198.88seconds,52typed sources/imports/Ruff/format/lock; strictreplay consumed6calls/reproduced2timeouts with zero provider calls. Mainrun39229270824 passed allnineapplicable jobs, with actual596tests perqualitycell and16Postgres. Close#27 ascompleted and update its manifest/task checks; nativeprojectDone remains unverified. Preserve C1#34 in Review, its merge checkbox unchecked, and verify its final merged-main head before user handoff. No O3/C2 work starts during this reconciliation.
 
 
-## Entry 26 — Constructed policy and review evidence before domain baselines
+## Entry 26 â€” Constructed policy and review evidence before domain baselines
 
 **Files touched:** `projects/olist-support/src/olist_support/policy.py`, `docs/olist-policy.md`, O3 case preparation and tests. Started 2026-10-19 from user-merged C1 main `2988428`. The user selected O3+C2 as the next batch; this branch owns O3 only.
 
@@ -1378,7 +1379,7 @@ Executable source15908425fa0735317a9e5ec281e7948c9aaa9bba passed the full locked
 Allsixpackages built. A base-only installed Olist wheel matched all7modulebytes and read the independently pinned private evaluator file under network denial, with optionalSDKs andpytestabsent; all12proposals matched. This validates installed mechanism behavior, not human adjudication or a transaction. Documentation audit checked329immutable source ranges and242local links. Raw/private literal scans and final exact-head hosted checks are recorded on#28 after completion. Keep issue open in Review until user merge and post-merge acceptance. No O4 work starts on an unmerged prerequisite.
 
 
-## Entry 28 — Transactional refunds and a bounded LangGraph workflow
+## Entry 28 â€” Transactional refunds and a bounded LangGraph workflow
 
 **Files touched:** Olist backend/schema/workflow modules, their integration tests, optional workflow dependencies and operations. Started2026-10-20 from verified O3 mainde04a96. Entry27 is reserved in C2#84 and will be preserved when that reviewed branch integrates. The user explicitly approved combining O4#29 and O5#30 in one PR to reduce review cycles; O5's O4 prerequisite is satisfied inside this reviewed bundle rather than requiring a separate intermediate merge. O3 is already merged/verified.
 
@@ -1434,7 +1435,7 @@ Affected controls/replay acceptance now passes128tests80.50seconds. Ruff/format 
 User merged#85 as `e11290a92f22588aa7c1c6d799a7b649097dc2fa`; Git tree is identical to reviewed41a2b19. Main run39348205740 passed nine applicable jobs; PR-only metadata intentionally skipped. All actual job logs inspected:673tests perfourqualitycells,27Postgres,6call/2timeout/zero-provider replay and6wheel/sdist pairs each. Clean local main replay passed. Reuse exact-tree local673tests438.95s/64types/27DB/installed/source-drill evidence; avoid redundant source ingestion/full local rebuilds. Close#29/#30completed only now and update both active planning copies. Native board remains unverified.
 
 
-## Entry 29 — Exact-action approval behind a scoped local console
+## Entry 29 â€” Exact-action approval behind a scoped local console
 
 **Files touched:** Olist review/auth/API/console modules, private schema, optional web dependencies and acceptance tests. Started2026-10-20 on `codex/o6-o7-review-console` from verified main `e11290a`. Entry27 remains preserved in pending C2#84. The user explicitly authorized combining O6#31 and O7#32, retaining the existing100.00SIM cap/eligibility and pre-provisioned local operator/reviewer accounts with server-side sessions.
 
@@ -1456,7 +1457,7 @@ Use opaque server-side sessions rather than adding a hosted identity-provider de
 4. Require reviewer role, matching order scope, exact case version/action digest and a distinct submitting actor before accepting a decision. Missing/conflicting/over-cap facts cannot be approved; rejection records no business effect. Any changed evidence/version invalidates approval and requires reevaluation.
 5. Persist approval before execution. The business transaction rechecks fresh policy/version/run limit, then an internal commit recorder checks the exact approved action/reviewer and appends receipt/audit/case completion atomically. A failed recorder rolls back all effects. Retry returns verified original receipt; a process death after commit cannot leave a second financial effect.
 6. Expose authenticated submit/list/detail/decision/resume/session/health routes. Render loading, empty, pending, error, rejection, stale and verified-commit states accurately. Do not place passwords/session tokens in browser storage or raw request/source content in telemetry/logs.
-7. Verify invented scope/CSRF/role/expiry/mutation cases, real Postgres decision atomicity/races/restart and a real browser operator→reviewer→receipt flow. Reuse pinned source stores for a private aggregate drill. Keep offline model acceptance and SIM-only boundary; O8 still owns complete fresh domain release evidence.
+7. Verify invented scope/CSRF/role/expiry/mutation cases, real Postgres decision atomicity/races/restart and a real browser operatorâ†’reviewerâ†’receipt flow. Reuse pinned source stores for a private aggregate drill. Keep offline model acceptance and SIM-only boundary; O8 still owns complete fresh domain release evidence.
 
 ### What went wrong
 
@@ -1468,7 +1469,7 @@ No implementation result is claimed yet. The design review caught the approval/l
 Six of seven new real Postgres tests passed in36.31seconds, including exact-action consent, atomic rollback/lost-response recovery, changed-record reapproval, cap/missing-fact refusal, concurrent reviewers/resume, session expiry/revocation/throttling and runtime audit/account privilege refusal. The one failure was the health route: it queried the private schema-pin table, whose SELECT privilege intentionally belongs only to admin. Query an existing runtime-readable case table instead of granting extra schema metadata access. Re-run after this correction; no final acceptance is claimed yet.
 
 
-The corrected console database suite passed7tests77.35seconds; unit+existing workflow checks passed21tests9.45seconds, with69strict typed sources. The browser drill then caught a UI accessibility defect: the busy helper restored button.textContent after an operation, flattening the sign-in arrow’s aria-hidden span and changing its accessible name. Preserve/reattach the original child nodes after loading feedback instead. The first drill created a review case but no decision/refund; retain that interrupted case in private diagnostic evidence. Skip an anonymous session lookup when no session-indicator cookie exists, and return an empty favicon response to avoid expected startup console errors. Keep generated browser snapshots outside publication; rotate the invented test credentials after the drill.
+The corrected console database suite passed7tests77.35seconds; unit+existing workflow checks passed21tests9.45seconds, with69strict typed sources. The browser drill then caught a UI accessibility defect: the busy helper restored button.textContent after an operation, flattening the sign-in arrowâ€™s aria-hidden span and changing its accessible name. Preserve/reattach the original child nodes after loading feedback instead. The first drill created a review case but no decision/refund; retain that interrupted case in private diagnostic evidence. Skip an anonymous session lookup when no session-indicator cookie exists, and return an empty favicon response to avoid expected startup console errors. Keep generated browser snapshots outside publication; rotate the invented test credentials after the drill.
 
 
 ### Durable consent and browser proof
@@ -1494,7 +1495,7 @@ All six packages built as wheels and source distributions; the harness was rebui
 The source walkthrough audit verified 380 immutable source ranges and 288 local links. All 32 publication files contain no null bytes, configured secret values or the private O3 source identifiers checked. Strict replay at clean ec56534 consumed six recordings, reproduced two typed timeouts and made zero provider calls, preserving all historical fixture bytes. Documentation-only acceptance updates reuse unchanged executable evidence. Final exact-head replay and hosted job logs are retained on #31/#32; user merge remains pending.
 
 
-## Entry 30 — Parallel release evidence and original contract preparation
+## Entry 30 â€” Parallel release evidence and original contract preparation
 
 Date: 2026-10-20 (Africa/Lagos). Status: implementation in progress; no final batch or first-release acceptance is claimed.
 
@@ -1560,7 +1561,7 @@ The corrected clean integrated7dfd144 capture completed all36scheduled trials (t
 The integrated six-package build produced all wheel/source pairs and the locked audit found no known vulnerabilities. Installed Olist/Revenue wheels matched24and5package files respectively with network operations denied; imports/API construction/input projection passed without provider calls. Full R1 verifier rerun after schema hardening returnedverifiedtrue for unchanged510contracts/20,910questions/13,823spans/457families. Post-capture executing Olist/harness source inventory still matches the36-task plan. Documentation audit:409immutable source ranges,304local links,25publication files and no configured secret values;21,929CUAD source title/question-ID/context needles absent. Final full-suite and hosted exact-head results are maintained on #33/#39 after actual completion; no planned result is a pass.
 
 
-## Entry 31 — Three Revenue tasks behind explicit simulation rules
+## Entry 31 â€” Three Revenue tasks behind explicit simulation rules
 
 Date: 2026-10-20 (Africa/Lagos). Implementation in progress; no new batch acceptance is claimed.
 
@@ -1623,7 +1624,7 @@ Initial PR88 run39531375498 secret scan flagged two generic-api-key findings at 
 The installed-wheel probe passed with socket/DNS operations denied: all50harness,24Olist and12Revenue source/resource files match built wheels. Imports came from the installed environment, both provided/invented-extracted arithmetic paths agreed, and local console construction succeeded. Six final wheel/source pairs built; the fixed-lock audit found no known vulnerabilities. Publication audit at44272aa passed445immutable ranges,319links,34files and all15source/lock hashes, with42,837private-source needles absent.
 
 
-## Entry 32 — Approved Revenue effects and independent shipping sources
+## Entry 32 â€” Approved Revenue effects and independent shipping sources
 
 Date: 2026-10-21 (Africa/Lagos). The R5/R6/S1 implementation is starting; results below are recorded only after execution.
 
@@ -1663,12 +1664,12 @@ Workers will run focused transaction/SDK/API/source checks against their actual 
 
 ### Pin the event adapter before it gains state ownership
 
-R6 official documentation/PyPI inspection selected inngest0.5.19. Its optional Revenue events extra adds jcs0.2.1 alongside already locked HTTP/Pydantic dependencies; web reuses fastapi0.150.0 and uvicorn0.54.0. Root adds the workspace-source mapping and development extra so a plain locked check exercises the optional adapters. All existing dependency versions stay fixed. The changed lock requires an explicit invented replayv6 capture for review; historical v1–v5 resources remain immutable. This dependency change is part of R6, not new provider evaluation.
+R6 official documentation/PyPI inspection selected inngest0.5.19. Its optional Revenue events extra adds jcs0.2.1 alongside already locked HTTP/Pydantic dependencies; web reuses fastapi0.150.0 and uvicorn0.54.0. Root adds the workspace-source mapping and development extra so a plain locked check exercises the optional adapters. All existing dependency versions stay fixed. The changed lock requires an explicit invented replayv6 capture for review; historical v1â€“v5 resources remain immutable. This dependency change is part of R6, not new provider evaluation.
 
 S1 verified the official DataCo v5 structured source listing (95,910,149 bytes, CC BY4.0, versioned DOI) and captured one official NWS response separately. Its as-of policy is conservative: no historical online availability inferred from retrospective DataCo timestamps, historical timezones remain unknown, and NWS freshness is a caller-declared maximum age plus effective/expiry checks. HTTP cache age is recorded separately from meteorological validity. Actual prepared-source counts and byte pins follow verification, not the listing alone.
 
 
-The locked event/web setup installed only the two new dependencies and rebuilt the Revenue editable package; audit found no known vulnerabilities. At clean `28cdf485ed7cac4e1d5460b555baafea1bf9cbc4`, explicitly capture invented v6 with lock `f1d00addeaefbbd946abea7b25b0e039473109bd6f146515e35ab9b20e7609e5` and content pin `4224a610495d5bc657240e5a4dc6c44c08318149fc0f4534b8716763da603883`. Compare all six requests/responses against v5 before changing the default. Preserve v1–v5 and add a negative current-lock test for v5. This proposes a new reviewed-content fixture while keeping replay itself strict; focused tests follow before final combined acceptance.
+The locked event/web setup installed only the two new dependencies and rebuilt the Revenue editable package; audit found no known vulnerabilities. At clean `28cdf485ed7cac4e1d5460b555baafea1bf9cbc4`, explicitly capture invented v6 with lock `f1d00addeaefbbd946abea7b25b0e039473109bd6f146515e35ab9b20e7609e5` and content pin `4224a610495d5bc657240e5a4dc6c44c08318149fc0f4534b8716763da603883`. Compare all six requests/responses against v5 before changing the default. Preserve v1â€“v5 and add a negative current-lock test for v5. This proposes a new reviewed-content fixture while keeping replay itself strict; focused tests follow before final combined acceptance.
 
 
 ### Protect the reviewer from rounded numbers
@@ -1717,3 +1718,73 @@ The session interruption left the first integrated broad runs incomplete: their 
 On2026-10-22, operator proposal success displayed before action() finished its automatic refresh. Signing out during that pending request let the old200response call render() after user became null: the login form hid, old scoped workbench reappeared and the UI showed a null-username exception. API sessions were revoked correctly; the bug was stale browser rendering. R6source60e4c367 introduces session epochs, captured-principal checks and refresh ordering, clears private DOM before awaiting logout and serializes cookie-changing auth requests. Late startup/refresh responses cannot overwrite a newer session. Six deterministic NodeVM scenarios execute the actual asset with delayed fetches and a controlled DOM; all pass, including failed-logout truthfulness and exact signed64-bit money formatting. Add that standalone built-in Node regression command to every hosted quality cell; it requires no npm packages or network. Python suite/SQL logic and lock remain unchanged.
 
 The complete local Python check finished815tests in789.82seconds, with strict94sources, lint/format and static import contracts passing. Required68database tests are still in progress. Initial candidate6994e8f hosted run39698621795 passed allten jobs with actual815tests per quality and68Postgres; browser findings require a new exact-head CI run after the asset correction rather than reusing its final acceptance. Built/installed source bytes must also include the corrected asset.
+
+
+## Entry 33 â€” Independent shipping worlds and durable budgeted intervention
+
+Date: 2026-10-22 (Africa/Lagos). Branch `codex/s2-s3-s4-supply-chain`, based on user-merged #89 main `77b98df`. Implementation underway; verification results follow their execution.
+
+### Context
+
+The user selected S2 #53, S3 #54 and S4 #55 in one review batch. They approved a constructed SIM policy: maximum 100.00 per action and 500.00 per incident/run, separate reviewer above 25.00, 30-minute approval and confirmation windows, at most two replans, and blocked missing/stale facts. They delegated the simulator source choice with eventual production in mind. Offline-only remains active. Existing untracked documents and the old root checkout are preserved; implementation uses `.worktrees/supply-chain` inside the writable workspace.
+
+### Before you read on
+
+How can a planner choose interventions while the evaluator knows their realized outcomes? Where must an approval, a budget reservation and a confirmation live so a retry after commit cannot spend twice? Sketch the public/evaluator boundary and the single transaction before reading on.
+
+### Options considered and chosen
+
+Using contemporary NWS alerts as causes for historical DataCo outcomes would fabricate a causal training set. Use independently invented worlds for intervention testing; a separately labeled source-observation adapter may provide input facts, never realized intervention gold. Development and holdout have different seed namespaces, portfolio templates and outcome equations; the same named risk slices let us compare distribution changes. An exact public-estimate knapsack is a baseline, not an oracle for hidden realized cost.
+
+For execution, use Postgres as the authority for incident budgets, shipment versions, immutable proposals, reviews, receipts and confirmation outcomes. LangGraph computes bounded assessment and proposes work; Inngest fans out opaque wakeups and waits, then rereads canonical state. Do not duplicate an approval or an effect in framework state. A permanent tenant/incident/shipment key makes new run IDs and replans return the existing effect. A confirmation timeout preserves the committed debit and marks the action unresolved.
+
+### How to build it
+
+1. Define strict versioned public Shipment/Option/Command contracts. Catalog prices and expected delay reductions come from server code, not caller JSON. Validate the scenario clock, source observation/expiry, complete facts and contradictory alerts before offering options. Keep hidden outcome arrays in evaluator-owned Scenario objects; pass policies only serialized public shipments.
+2. Enumerate bounded wait/expedite/reroute choices. Optimize total estimated delay plus intervention cost using a multiple-choice knapsack, keeping one deterministic best path per spend level. Report all do-nothing/rules/solver outcomes with split/family/template/seed lineage, intervention/delay totals and undefined normalized differences at zero baseline cost.
+3. Bootstrap an immutable Supply schema with a restricted runtime role. Lock incident budget, then shipment, then proposal in every mutating path. Bind exact command, trusted price, shipment version, budget version and deadline to the review fingerprint. Atomically update budget/version and append one permanent receipt. Check retries against the original command before returning the receipt.
+4. Model confirmations separately from command acceptance. A trusted confirmer must match tenant, shipment and receipt fingerprint before the deadline. Late/out-of-order confirmation cannot rewrite a terminal result; process restarts reread persisted state. Bound planner retries at two replans, exclude committed shipment keys and retain every prior receipt.
+5. Declare optional workflow dependencies at their existing locked versions. This changes the environment-lock identity even without upgrades; create a separately reviewed invented replay capture rather than silently rebinding the old fixture. Keep historical resources immutable.
+
+### What went wrong / checks pending
+
+The initial managed worktree could not resolve the merge object until `git fetch origin main`; after fetching it succeeded. Its default C-drive location is outside this chat's writable roots, so it was archived unused and replaced by the isolated D-drive checkout. The initial Docker probe found no daemon; database acceptance is not claimed. A first setup attempt targeted an external unwritable cache and failed; use an authorized cache location before recording setup success. No implementation check has yet passed.
+
+
+### First checks and boundary repairs
+
+The first simulator suite passed 29 tests, including exhaustive public-objective comparison and hidden-target perturbation. Full strict typing inspected 100 source files; its sole remaining error was passing a conditional kwargs dictionary to Inngest.Event. Use an explicit generated string ID for repeatable review/confirmation wakeups and a deterministic ID for initial requests. Six long SQL literals were split using adjacent Python strings without changing SQL bytes.
+
+The first real Postgres run passed 13 tests and failed five (158.39 seconds). Spending serialization, duplicates, stale approvals, tenant/resource/incident scopes, expiry/rejection, confirmation terminality, rollback and SQL-role denial passed. Four failures shared one real boundary bug: LangGraph returned JSON-mode lists, then strict Python validation demanded tuples. Revalidate the serialized wire through model_validate_json, preserving strict internal tuple types. The process-crash witness failed before connecting because psycopg Connection.info.dsn intentionally omits passwords; pass the disposable trial password only in a child environment variable. Do not print it or call the failed crash witness a recovery pass. Rerun affected and complete new tests after these repairs.
+
+The final simulator cohort uses four development families at seeds11/23 and six holdout families at seeds97/193. Expired alerts and correlated delays are unseen development families; holdout portfolios and outcome equations also differ. No target label is human gold, and no NWS/DataCo causal relationship is inferred. Replanning has a conservative incident-wide allowance of two stale proposal supersessions; large bursts may remain safely unresolved rather than relaxing approval freshness.
+
+
+### Focused final-source acceptance
+
+The repaired complete new SQL suite passed all18tests in83.22seconds, including real child exit73 immediately after commit and recovery through a new store, exact-one concurrent effects, near-cap competing debits, stale budget/reapproval, scoped denial, expiry/rejection, first-terminal confirmations and graph/SDK recovery. One upstream Inngest experimental-test event-loop deprecation warning remains. The extended simulator suite passed30tests1.06seconds; strict full-workspace typing passed100source files. The report publishes20invented scenarios at three explicit delay-cost sensitivities, with no real source data. Full workspace/database/package/replay checks and hosted acceptance still follow; this focused evidence alone is not a release pass.
+
+
+### Pin source and preserve replay semantics
+
+Source `ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e` is committed. New lock `b0d264aeb155915511202ced1338d6840546ae6cfe8c1b18e1553f2683edf266` adds only optional workspace metadata for the existing pinned dependencies. An explicit invented v7 capture has content pin `175fdcc50359cb5471bf292e15034fc250bf5ac724d05582b3d69bf429ac548d`; all six request/response pairs equal v6, including two timeouts. Historical v1–v6 are preserved and the current-lock negative tests include v6. This is synthetic maintenance proposed for user review, not fresh provider evidence. Supply code-study AST anchors match the committed bytes.
+
+The 20-scenario sensitivity reports are deliberately unfavorable where measured: solver versus do-nothing totals are545000/422000minor at50%,888000/844000at100%,1574000/1688000at200%. Retain these results; an estimator can lose under changed efficacy and delay prices. No tuning or actual savings claim follows from this mechanism exercise.
+
+
+### Published source acceptance and local temporary-directory diagnosis
+
+Draft PR#90 at0406e82305619af7d33414ccd5169759c03c8dc6 passed all10jobs in hosted run39864242079. Actual downloaded logs verify846offline tests in each Ubuntu/Windows Python3.12/3.13 quality cell,86Postgres tests,100typed files, six recorded replay calls/two typed timeouts/zero provider calls, and12wheel/sdist outputs per quality job. Both locked dependency audits, repository secret scan, PR metadata and final gate passed. The tested merge checkout4c110a60a0e41102e75e471f12b4bc6f9b9e6679 has exactly the same tree169901bae724225d5b1bcb75780432a7efdc6e07 as the reviewed head, independently verified through GitHub commit objects. Main77b98df push run39742751290 also succeeded before dependency work began.
+
+Local lint/format/import/lock and strict100-source typing passed; all6wheel/sdist pairs built, the locked audit found no known vulnerabilities, and clean0406e82 strict replay consumed six calls/reproduced two timeouts with zero provider calls. A clean installed environment uses exact exported lock constraints; network-denied probes matched52harness and11Supply source/resource files, ran20simulator scenarios and constructed all3Inngest functions. An initial offline installation could not find missing binary distributions and tried newer unpinned transitive versions; the successful install uses explicit current-lock constraints and no version upgrades. Markdown audit checked78files,492immutable source ranges and409local links, with no missing targets.
+
+The first local replay test invocation hit sandbox temporary-directory restrictions (51passed/24setup errors); this is diagnostic, not a pass. The first broad local run also encountered existing CFPB raw-source guards: the default temporary directory lies beneath C:\.git. A diagnostic placed inside the checkout correctly failed for the same isolation rule. Repeating the entire CFPB source suite in an external D-drive directory passed29tests4.98seconds. The broad local run was stopped, preserving its log, and rerun with explicit external TEMP/TMP. Those broad local results remain pending here; hosted846/86 results and local30/18 focused results are the verified acceptance evidence. No source guard was weakened and C:\.git was untouched.
+
+PR review remains the user's gate. No paid provider, production carrier/billing effect, deployment, human outcome gold or release promotion is inferred from these mechanism checks. Native project-board status remains unverified. Subsequent documentation-only commits preserve the tested executable/configuration/lock bytes; repeat only affected checks and final exact-head hosted acceptance.
+
+
+### Complete local evidence and review bookkeeping
+
+The complete local offline rerun passed846tests666.16seconds using external D-drive TEMP/TMP. One cache-metadata permission warning did not affect assertions. The complete local SQL run passed85of86tests in1026.17seconds: the sole Olist operator CLI failure was its correct private-file guard under C:\.git, not a shipping transaction failure. Rerun only that failed test with external D-drive state/output:1passed32.80seconds. Do not relabel the first run as86passed; hosted SQL supplies a clean single86-test run. All owned test fixtures performed normal teardown. Existing shared Langfuse containers were not stopped or altered.
+
+Documentation-only review head3a40e44 also passed all ten hosted jobs in run39865663854. No new executable, configuration, lock or source data was changed after0406e82. Final documentation records completed evidence and updates merged R5/R6/S1 statuses; the three new issues stay open Review. Prior user-merged #89 issues43/44/52 were explicitly closed completed after verifying main77b98df and successful main run39742751290. Native project-board read-back remains unverified. User review/merge, production carrier/authentication/hosting and S6 fresh release evidence remain separate gates.

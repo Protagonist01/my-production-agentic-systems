@@ -10,3 +10,7 @@ docs/data/revenue-billing-worlds-v1.json text eol=lf
 docs/data/revenue-reconciliation-mechanism-v1.json text eol=lf
 docs/data/supply-chain-source-v1.json text eol=lf
 docs/data/revenue-approved-effects-v1.json text eol=lf
+
+# Supply schema and aggregate bytes are portable acceptance inputs.
+projects/supply-chain-disruption/src/supply_chain/operations.sql text eol=lf
+docs/data/supply-chain-simulator-v1.json text eol=lf

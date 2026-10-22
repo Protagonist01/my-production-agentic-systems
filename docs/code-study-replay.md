@@ -110,3 +110,8 @@ H8 adds an optional telemetry dependency group, changing the actual lock hash. P
 ## O4 + O5 dependency-lock maintenance
 
 The workflow extra changes uv.lock. The [fixture maintenance record](replay.md#o4--o5-explicit-workflow-lock-fixture-update) documents an explicit invented-v3 resource and external digest, captured at clean source `8d10f3a6161c008d4e27c4c9ba11496c443f2fc3`. All six request/response objects equal v2; only capture context/provenance changes. Historical v1/v2 bytes remain unchanged and both reject the new lock. The normal replay path, ReplayBinding compatibility and matching behavior are unchanged. Final exact-source replay and hosted checks are recorded on #29/#30.
+
+
+## S2/S3/S4 optional workflow lock update
+
+The Supply workflow extra changes only workspace dependency metadata while preserving all existing version pins. [The explicit v7 maintenance record](replay.md#supply-workflow-extra-explicit-invented-v7-capture) preserves six request/response pairs and historical v1–v6 resources. No replay matching rule changes, paid calls or fresh provider evidence are introduced.
