@@ -1,0 +1,21 @@
+{
+  "version": "revenue-approved-effects-mechanism-v1",
+  "code_revision": "42dadfc30a242a0597dd706f292b37f0ee6ea2fd",
+  "source_kind": "synthetic",
+  "policy": "10000-minor-absolute-adjustment-separate-reviewer-v1",
+  "unit": "SIM",
+  "world_manifest_sha256": "97d4193e8339af5164dedc284b6b45d53fce4cb936e809ba76769adc4d104730",
+  "cases": 29,
+  "approved_corrected_retried_compensated": 12,
+  "blocked_or_no_change": 17,
+  "trial_removed": true,
+  "provider_calls": 0,
+  "real_billing_mutations": 0,
+  "release_allowed": false,
+  "limitations": [
+    "Independent literal references remain AI-authored provisional.",
+    "Simulated controlled database effects only.",
+    "Capture predates the separately tested resource-kind and repeatable-read follow-up; final interface acceptance is reported separately.",
+    "Cleanup completed using explicit logical trial identity after the helper initially supplied a derived database name."
+  ]
+}

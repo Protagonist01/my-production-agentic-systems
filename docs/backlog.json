@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "capacity_hours_per_week": 40,
   "issue_creation_status": "verified",
   "epics": [
@@ -1173,7 +1173,7 @@
         "Compensation appends a ledger entry and refuses to overwrite an intervening legitimate change."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 43,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/43",
@@ -1185,7 +1185,7 @@
       ],
       "milestone_number": 4,
       "branch": "codex/r5-r6-s1-operations",
-      "review_evidence": "User selected combined R5/R6/S1 after verified #88 main5f73fc9. Three workers own transactional approval/compensation, authenticated review UI/events and independent DataCo/NWS source preparation. Approved absolute adjustment cap10000SIMminor/nooverride, separate reviewer and approved conflict-safe compensation. Source/implementation verification pending; no provider or real-money work."
+      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim."
     },
     {
       "id": "R6",
@@ -1203,7 +1203,7 @@
         "API/UI handles review rejection, stale data and long waits visibly."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 44,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/44",
@@ -1214,7 +1214,7 @@
       ],
       "milestone_number": 4,
       "branch": "codex/r5-r6-s1-operations",
-      "review_evidence": "User selected combined R5/R6/S1 after verified #88 main5f73fc9. Three workers own transactional approval/compensation, authenticated review UI/events and independent DataCo/NWS source preparation. Approved absolute adjustment cap10000SIMminor/nooverride, separate reviewer and approved conflict-safe compensation. Source/implementation verification pending; no provider or real-money work."
+      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim."
     },
     {
       "id": "R7",
@@ -1414,7 +1414,7 @@
         "Agent-visible facts respect the scenario clock and available source coverage."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 52,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/52",
@@ -1424,7 +1424,7 @@
       ],
       "milestone_number": 6,
       "branch": "codex/r5-r6-s1-operations",
-      "review_evidence": "User selected combined R5/R6/S1 after verified #88 main5f73fc9. Three workers own transactional approval/compensation, authenticated review UI/events and independent DataCo/NWS source preparation. Approved absolute adjustment cap10000SIMminor/nooverride, separate reviewer and approved conflict-safe compensation. Source/implementation verification pending; no provider or real-money work."
+      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim."
     },
     {
       "id": "S2",

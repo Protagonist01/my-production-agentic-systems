@@ -49,3 +49,6 @@ Read methods filter exact scoped results after loading tenant-local proposal/rec
 
 
 Follow-up source `1bb4579dd5c9b38c851e131301d4de51ea3cedcc` adds actual-kind checks for every saved proposal return and a single-transaction `snapshot(grant)` for ledger-consistent UI projections. Two targeted real-Postgres regressions passed in 98.53 seconds (19 database cases deselected); changed-file Ruff and strict typing passed. The snapshot uses `REPEATABLE READ READ ONLY`, so an effect committed between logical record/ledger read phases cannot produce a mixed before/after digest. Existing public record/proposal/ledger readers remain available, while the console uses the consistent snapshot. This result supplements the earlier 30-case run; it does not claim a repeated complete 32-case run.
+
+
+The private [29-case cohort drill](data/revenue-approved-effects-v1.json) independently exercised twelve eligible corrections through separate approval, apply, stable duplicate receipts and approved compensation. Seventeen review/no-change cases produced no effect. The capture revision precedes the separately tested resource-kind/snapshot follow-up; it is an arithmetic/transaction witness rather than final interface acceptance. Full per-case receipts stay external and its owned trial was removed.
