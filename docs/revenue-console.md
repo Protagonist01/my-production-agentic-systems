@@ -40,6 +40,16 @@ Account merges are approved aliases from donor to canonical target, preserving o
 
 Pending, approved, rejected, expired and applied states remain distinct. Deadline passed means reassess or reconcile expired waits; it does not imply approval. Refresh obtains a new authoritative view. A 409 conflict asks for reassessment. A 503 or lost relay means an action may already be saved; refresh and retry the same key. If server logout fails, the local view is cleared and explicitly reports that server sign-out is unconfirmed.
 
+Sign-out hides and clears the private workbench immediately, before waiting for server revocation. Every asynchronous response is bound to the session epoch that issued it; a delayed operator response cannot restore private views after sign-out or replace a newly signed-in reviewer's view. Cookie-changing login/logout requests are serialized, and signed-out actions do not fetch a workbench. The parent reproduced and repaired this timing bug during actual browser acceptance; it was not established by the original Python API tests.
+
+Run the dependency-free JavaScript regression when Node is available:
+
+```powershell
+node tests/revenue_console_session_test.cjs
+```
+
+The VM executes the actual packaged script with a minimal DOM and controlled deferred fetches. All six checked scenarios pass with no network calls. This targeted mechanism check is separate from the Python suite and real-browser layout/interaction verification.
+
 ## Read the digest without inventing a funnel
 
 All amounts are SIM hundredths, never real recovered revenue. Found is the absolute original discrepancy derived from each stored immutable original BillingInput. Current findings substitute the current invoice amount, so a successful correction resolves the current discrepancy without erasing the historical found amount. Proposed sums immutable invoice-correction proposal adjustments; rejected/reproposed attempts can make it exceed found. Approved includes historical approved amounts even after unapplied approval expires. These stages overlap and are not summed as exclusive balances.

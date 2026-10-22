@@ -2,6 +2,8 @@
 
 Inspected 2026-10-21. R6 source `1b740970f02ba3f22826518fb545c2019d81f510` is an unmerged component of the user-authorized R5/R6/S1 batch. This chapter covers six new Python modules, application SQL, three static assets and focused tests. R5 transaction source and its repeatable-read snapshot are explained in [operations](code-study-revenue-operations.md). Root integration owns final broad/browser/hosted verification. No remote production or hosted event-server behavior is inferred from local tests.
 
+Browser follow-ups `8a05827` (HTML UTF-8) and `60e4c36` (asynchronous session isolation) are inspected on 2026-10-22. The Python source ranges below remain unchanged. The current [session boundary][session-boundary] clears private DOM immediately, captures session identity for asynchronous work and serializes login/logout requests that mutate cookies.
+
 ## Follow one constructed correction
 
 An invented original invoice is 90.00 SIM and authoritative terms require 100.00. An administrator enrolls the R2 BillingInput and assigns the invoice to provisioned operator/reviewer identities. Sign-in authenticates the password and creates opaque token/CSRF hashes in Postgres. The operator's session resolves its current enabled Principal; the HTTP request cannot name another tenant, grant, role or corrected amount.
@@ -46,6 +48,7 @@ The review dialog shows the exact kind, resource/version, corrected total, adjus
 
 ## Verified bugs and limits
 
+- **Verified browser bug corrected before acceptance:** the parent reproduced proposal-refresh followed immediately by sign-out. The delayed workbench response unhides the prior operator view and attempts `user.username` after user becomes null, producing a browser error and blocking the next sign-in view. `clearLocalSession` now erases/hides private state before waiting for logout. Session epochs, captured Principal identity and refresh sequence numbers prevent stale responses from rendering; old action completions cannot refresh while signed out. An authentication queue serializes server cookie changes so a delayed old logout cannot delete a newer login's cookies. The [deterministic regression][session-test] executes the actual asset in Node VM, holds an old workbench response until after logout and reviewer login, and verifies that only the new identity/data remain. It also covers late startup responses, signed-out actions, failed logout and exact int64 formatting. This is controlled JavaScript execution, with the parent's actual browser reproduction and follow-up recorded separately.
 - **Verified design bug corrected before acceptance:** a Number-based browser money formatter could round signed64-bit values. Wire integer strings plus BigInt formatting and an explicit safe-version gate preserve the display/action boundary.
 - **Verified design bug corrected before acceptance:** selecting the first `revenue_csrf_` cookie could choose another trial's token. The page now binds the exact server-selected name. A failed logout reports unconfirmed server sign-out rather than a false success.
 - **Verified design bug corrected before acceptance:** historical approved totals initially dropped when an unapplied approval expired. Reviewer attribution plus nonrejected status preserves cumulative approval evidence; applied money still comes only from receipts.
@@ -74,3 +77,6 @@ Offline exercise: enroll a 90.00 SIM invoice with 100.00 SIM authoritative terms
 [cli]: https://github.com/Protagonist01/my-production-agentic-systems/blob/1b740970f02ba3f22826518fb545c2019d81f510/projects/revenue-integrity/src/revenue_integrity/console_cli.py#L26-L189
 [handlers]: https://github.com/Protagonist01/my-production-agentic-systems/blob/1b740970f02ba3f22826518fb545c2019d81f510/projects/revenue-integrity/src/revenue_integrity/events.py#L29-L97
 [functions]: https://github.com/Protagonist01/my-production-agentic-systems/blob/1b740970f02ba3f22826518fb545c2019d81f510/projects/revenue-integrity/src/revenue_integrity/events.py#L100-L151
+
+[session-boundary]: https://github.com/Protagonist01/my-production-agentic-systems/blob/60e4c36749d66927eabf2e8f07778bcf5243081b/projects/revenue-integrity/src/revenue_integrity/web/console.js#L1-L43
+[session-test]: https://github.com/Protagonist01/my-production-agentic-systems/blob/60e4c36749d66927eabf2e8f07778bcf5243081b/tests/revenue_console_session_test.cjs#L1-L230
