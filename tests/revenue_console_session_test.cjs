@@ -213,6 +213,25 @@ function harness(initialRestore) {
   assert.match(newer.node("notice").textContent, /unconfirmed/);
   assert.equal(newer.api.state().user, null);
   assert.equal(h.api.money("9223372036854775807"), "92,233,720,368,547,758.07");
+  const blocked = harness();
+  await tick();
+  const initialWorkbench = blocked.queue("/api/workbench");
+  const initialLogin = blocked.api
+    .signIn("operator", "invented password")
+    .catch((error) => error);
+  await tick();
+  assert.ok(blocked.calls.includes("/api/workbench"));
+  const cancelLogin = blocked.api.signOut();
+  await tick();
+  assert.ok(
+    blocked.calls.includes("/api/logout"),
+    "a stalled login workbench must not block server logout",
+  );
+  await cancelLogin;
+  initialWorkbench.resolve(response(workbench("stale-initial-operator")));
+  await initialLogin;
+  assert.equal(blocked.api.state().user, null);
+  assert.equal(blocked.node("workspace").hidden, true);
   console.log(
     JSON.stringify({
       delayed_refresh_after_logout_and_new_login: "passed",
@@ -221,6 +240,7 @@ function harness(initialRestore) {
       signed_out_actions_do_not_fetch: "passed",
       failed_logout_truthful: "passed",
       exact_signed64_formatter: "passed",
+      stalled_initial_workbench_does_not_block_logout: "passed",
       network_calls: 0,
     }),
   );

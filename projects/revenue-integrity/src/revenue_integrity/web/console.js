@@ -403,13 +403,15 @@ async function refresh(clear = true) {
 async function signIn(username, password) {
   const epoch = ++sessionEpoch;
   clearLocalSession();
-  return serializeAuth(async () => {
-    if (epoch !== sessionEpoch) return;
-    const result = await request("/api/login", { username, password });
-    if (epoch !== sessionEpoch) return;
-    user = result;
-    await refresh();
+  const result = await serializeAuth(async () => {
+    if (epoch !== sessionEpoch) return null;
+    return request("/api/login", { username, password });
   });
+  if (epoch !== sessionEpoch || !result) return;
+  user = result;
+  // Only cookie-changing requests are serialized. A stalled workbench read
+  // must not delay server-side logout or a subsequent sign-in.
+  await refresh();
 }
 async function signOut() {
   const epoch = ++sessionEpoch;

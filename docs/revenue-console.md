@@ -40,7 +40,7 @@ Account merges are approved aliases from donor to canonical target, preserving o
 
 Pending, approved, rejected, expired and applied states remain distinct. Deadline passed means reassess or reconcile expired waits; it does not imply approval. Refresh obtains a new authoritative view. A 409 conflict asks for reassessment. A 503 or lost relay means an action may already be saved; refresh and retry the same key. If server logout fails, the local view is cleared and explicitly reports that server sign-out is unconfirmed.
 
-Sign-out hides and clears the private workbench immediately, before waiting for server revocation. Every asynchronous response is bound to the session epoch that issued it; a delayed operator response cannot restore private views after sign-out or replace a newly signed-in reviewer's view. Cookie-changing login/logout requests are serialized, and signed-out actions do not fetch a workbench. The parent reproduced and repaired this timing bug during actual browser acceptance; it was not established by the original Python API tests.
+Sign-out hides and clears the private workbench immediately, before waiting for server revocation. Every asynchronous response is bound to the session epoch that issued it; a delayed operator response cannot restore private views after sign-out or replace a newly signed-in reviewer's view. Cookie-changing login/logout requests are serialized, and signed-out actions do not fetch a workbench. The initial workbench read runs outside that authentication queue, so a stalled data response cannot delay server logout. The parent reproduced and repaired this timing bug during actual browser acceptance; it was not established by the original Python API tests.
 
 Run the dependency-free JavaScript regression when Node is available:
 
@@ -48,7 +48,7 @@ Run the dependency-free JavaScript regression when Node is available:
 node tests/revenue_console_session_test.cjs
 ```
 
-The VM executes the actual packaged script with a minimal DOM and controlled deferred fetches. All six checked scenarios pass with no network calls. This targeted mechanism check is separate from the Python suite and real-browser layout/interaction verification.
+The VM executes the actual packaged script with a minimal DOM and controlled deferred fetches. All seven checked scenarios pass with no network calls. This targeted mechanism check is separate from the Python suite and real-browser layout/interaction verification.
 
 ## Read the digest without inventing a funnel
 
