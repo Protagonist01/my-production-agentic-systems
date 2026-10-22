@@ -8,7 +8,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks. Verified main `5f73fc9` includes Olist scoped refunds/review, original CUAD preparation and the [R2/R3/R4 Revenue batch](https://github.com/Protagonist01/my-production-agentic-systems/pull/88). Main passed 773 offline tests per matrix cell and 43 Postgres checks; R2/R3/R4 are closed. O8 release acceptance still requires fresh provider results, reviewed baseline/thresholds and human adjudication.
 
-The current user-approved batch adds [R5 approval-bound SIM effects](docs/revenue-operations.md), R6 authenticated review/events and S1 independent DataCo/NWS source preparation. R5 source and focused transaction checks are integrated; R6/S1 and final acceptance are in progress. All invoice corrections require a separate reviewer and an absolute adjustment no larger than 100.00 SIM. [CFPB #84](https://github.com/Protagonist01/my-production-agentic-systems/pull/84) remains a separate review with AI-provisional labels.
+The current user-approved batch adds [R5 approval-bound SIM effects](docs/revenue-operations.md), [R6 authenticated review/events](docs/revenue-console.md) and [S1 independent DataCo/NWS source preparation](docs/supply-chain-source.md). Focused transaction/API/SDK/source checks are integrated; final broad and browser acceptance are in progress. All invoice corrections require a separate reviewer and an absolute adjustment no larger than 100.00 SIM. [CFPB #84](https://github.com/Protagonist01/my-production-agentic-systems/pull/84) remains a separate review with AI-provisional labels.
 
 ## Setup and working commands
 
