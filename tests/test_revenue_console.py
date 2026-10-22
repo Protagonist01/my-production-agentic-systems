@@ -238,6 +238,12 @@ def test_api_projection_csrf_role_origin_and_private_errors():
         ).status_code
         == 403
     )
+    page = c.get("/")
+    assert "SIMULATION UNIT \u00b7 SIM" in page.text
+    assert "\u2197" in page.text and "\u2192" in page.text and "\u00d7" in page.text
+    assert not any(marker in page.text for marker in ("\u00c2", "\u00c3", "\u00e2"))
+    assert "__CSRF_COOKIE__" not in page.text and 'name="csrf-cookie"' in page.text
+    assert "All amounts simulated" in page.text
     assert c.get("/").headers["cache-control"] == "no-store"
     assert "frame-ancestors 'none'" in c.get("/").headers["content-security-policy"]
     assert (
