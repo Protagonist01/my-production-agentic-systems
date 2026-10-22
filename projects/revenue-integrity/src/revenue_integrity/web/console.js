@@ -4,6 +4,43 @@ let user = null,
   data = null,
   chosen = null,
   currentView = "findings";
+let sessionEpoch = 0,
+  viewVersion = 0,
+  authQueue = Promise.resolve();
+class StaleSession extends Error {}
+function sameSession(epoch, principal) {
+  return epoch === sessionEpoch && principal === user;
+}
+function clearLocalSession() {
+  user = null;
+  data = null;
+  chosen = null;
+  viewVersion += 1;
+  $("workspace").hidden = true;
+  $("identity").hidden = true;
+  $("login-panel").hidden = false;
+  $("who").textContent = "";
+  $("password").value = "";
+  for (const id of [
+    "findings",
+    "proposals",
+    "ledger",
+    "accounts",
+    "totals",
+    "net",
+    "review-details",
+    "merge-source",
+    "merge-target",
+  ])
+    $(id).replaceChildren();
+  if ($("review-dialog").open) $("review-dialog").close();
+  sessionStorage.clear();
+}
+function serializeAuth(handler) {
+  const next = authQueue.catch(() => {}).then(handler);
+  authQueue = next.catch(() => {});
+  return next;
+}
 const money = (n) => {
   if (n === null || n === undefined) return "—";
   const value = BigInt(n),
@@ -44,6 +81,7 @@ function csrf() {
   );
 }
 async function request(path, body) {
+  const epoch = sessionEpoch;
   const response = await fetch(path, {
     method: body === undefined ? "GET" : "POST",
     credentials: "same-origin",
@@ -64,6 +102,7 @@ async function request(path, body) {
       "The service returned an incomplete response. Refresh before retrying.",
     );
   }
+  if (epoch !== sessionEpoch) throw new StaleSession();
   if (!response.ok) {
     const messages = {
       403: "Access or session verification failed. Check your role or sign in again.",
@@ -96,11 +135,15 @@ function keyFor(kind, record, target = "", original = "") {
   return value;
 }
 async function action(button, handler) {
+  const epoch = sessionEpoch,
+    principal = user;
+  if (!principal) return;
   button.disabled = true;
   try {
     await handler();
-    await refresh(false);
+    if (sameSession(epoch, principal)) await refresh(false);
   } catch (error) {
+    if (!sameSession(epoch, principal) || error instanceof StaleSession) return;
     notice(error.message);
     try {
       await refresh(false);
@@ -139,6 +182,7 @@ function showView(name) {
   });
 }
 function render() {
+  if (!user || !data) return;
   $("login-panel").hidden = true;
   $("workspace").hidden = false;
   $("identity").hidden = false;
@@ -346,9 +390,55 @@ function render() {
   showView(currentView);
 }
 async function refresh(clear = true) {
+  const epoch = sessionEpoch,
+    principal = user;
+  if (!principal) return;
+  const version = ++viewVersion;
   if (clear) notice("");
-  data = await request("/api/workbench");
+  const result = await request("/api/workbench");
+  if (!sameSession(epoch, principal) || version !== viewVersion) return;
+  data = result;
   render();
+}
+async function signIn(username, password) {
+  const epoch = ++sessionEpoch;
+  clearLocalSession();
+  return serializeAuth(async () => {
+    if (epoch !== sessionEpoch) return;
+    const result = await request("/api/login", { username, password });
+    if (epoch !== sessionEpoch) return;
+    user = result;
+    await refresh();
+  });
+}
+async function signOut() {
+  const epoch = ++sessionEpoch;
+  // Hide and erase private state before waiting for network revocation.
+  clearLocalSession();
+  return serializeAuth(async () => {
+    let confirmed = false;
+    try {
+      await request("/api/logout", {});
+      confirmed = true;
+    } catch {}
+    if (epoch !== sessionEpoch) return;
+    notice(
+      confirmed
+        ? "Signed out."
+        : "Local view cleared. Server sign-out is unconfirmed; close this browser session and retry when the service returns.",
+    );
+  });
+}
+async function restoreSession() {
+  const epoch = sessionEpoch;
+  try {
+    const result = await request("/api/session");
+    if (epoch !== sessionEpoch) return;
+    user = result;
+    await refresh();
+  } catch {
+    if (epoch === sessionEpoch) clearLocalSession();
+  }
 }
 function openReview(p) {
   chosen = p;
@@ -394,37 +484,22 @@ for (const name of ["approve", "reject"]) {
     }),
   );
 }
-$("login-form").addEventListener("submit", (event) => {
+$("login-form").addEventListener("submit", async (event) => {
   event.preventDefault();
-  action(event.submitter, async () => {
-    user = await request("/api/login", {
-      username: $("username").value,
-      password: $("password").value,
-    });
-    $("password").value = "";
-    await refresh();
-  });
-});
-$("logout").addEventListener("click", async () => {
-  let confirmed = false;
+  const button = event.submitter;
+  button.disabled = true;
+  const promise = signIn($("username").value, $("password").value);
+  const epoch = sessionEpoch;
   try {
-    await request("/api/logout", {});
-    confirmed = true;
-  } catch {
+    await promise;
+  } catch (error) {
+    if (epoch === sessionEpoch && !(error instanceof StaleSession))
+      notice(error.message);
   } finally {
-    user = null;
-    data = null;
-    $("workspace").hidden = true;
-    $("identity").hidden = true;
-    $("login-panel").hidden = false;
-    sessionStorage.clear();
-    notice(
-      confirmed
-        ? "Signed out."
-        : "Local view cleared. Server sign-out is unconfirmed; close this browser session and retry when the service returns.",
-    );
+    button.disabled = false;
   }
 });
+$("logout").addEventListener("click", () => signOut());
 $("refresh").addEventListener("click", () =>
   action($("refresh"), () => refresh()),
 );
@@ -466,12 +541,4 @@ $("merge-form").addEventListener("submit", (event) => {
     showView("reviews");
   });
 });
-(async () => {
-  try {
-    user = await request("/api/session");
-    await refresh();
-  } catch {
-    $("workspace").hidden = true;
-    $("login-panel").hidden = false;
-  }
-})();
+void restoreSession();
