@@ -1441,7 +1441,7 @@
         "Total realized simulated cost and absolute/normalized baseline differences are defined."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 53,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/53",
@@ -1451,7 +1451,8 @@
       ],
       "milestone_number": 6,
       "branch": "codex/s2-s3-s4-supply-chain",
-      "evidence": "User-selected bundled S2/S3/S4 implementation. Approved constructed SIM policy; tests and final review evidence pending. See docs/supply-chain-operations.md; no paid model or real freight action."
+      "evidence": "PR90 source0406e82; run39864242079 all10jobs passed,846offline per quality cell/86Postgres/100types/six-call zero-provider replay/packages/audits/secret scan. Local focused30simulator/18Postgres passed. Installed52harness/11Supply files under network denial. Broad local reruns pending temp-directory repair. Keep open pending user merge/main acceptance; invented outcomes, shared2replans, no carrier/fresh-release claim.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/90"
     },
     {
       "id": "S3",
@@ -1470,7 +1471,7 @@
         "Failure after commit returns the original effect on retry."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 54,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/54",
@@ -1482,7 +1483,8 @@
       ],
       "milestone_number": 6,
       "branch": "codex/s2-s3-s4-supply-chain",
-      "evidence": "User-selected bundled S2/S3/S4 implementation. Approved constructed SIM policy; tests and final review evidence pending. See docs/supply-chain-operations.md; no paid model or real freight action."
+      "evidence": "PR90 source0406e82; run39864242079 all10jobs passed,846offline per quality cell/86Postgres/100types/six-call zero-provider replay/packages/audits/secret scan. Local focused30simulator/18Postgres passed. Installed52harness/11Supply files under network denial. Broad local reruns pending temp-directory repair. Keep open pending user merge/main acceptance; invented outcomes, shared2replans, no carrier/fresh-release claim.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/90"
     },
     {
       "id": "S4",
@@ -1500,7 +1502,7 @@
         "Region bursts and duplicate/out-of-order events have deterministic tests."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 55,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/55",
@@ -1511,7 +1513,8 @@
       ],
       "milestone_number": 6,
       "branch": "codex/s2-s3-s4-supply-chain",
-      "evidence": "User-selected bundled S2/S3/S4 implementation. Approved constructed SIM policy; tests and final review evidence pending. See docs/supply-chain-operations.md; no paid model or real freight action."
+      "evidence": "PR90 source0406e82; run39864242079 all10jobs passed,846offline per quality cell/86Postgres/100types/six-call zero-provider replay/packages/audits/secret scan. Local focused30simulator/18Postgres passed. Installed52harness/11Supply files under network denial. Broad local reruns pending temp-directory repair. Keep open pending user merge/main acceptance; invented outcomes, shared2replans, no carrier/fresh-release claim.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/90"
     },
     {
       "id": "S5",

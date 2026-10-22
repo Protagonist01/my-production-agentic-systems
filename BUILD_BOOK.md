@@ -43,6 +43,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 30 â€” Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
 - [Entry 31 â€” Three Revenue tasks behind explicit simulation rules](#entry-31--three-revenue-tasks-behind-explicit-simulation-rules)
 - [Entry 32 â€” Approved Revenue effects and independent shipping sources](#entry-32--approved-revenue-effects-and-independent-shipping-sources)
+- [Entry 33 — Independent shipping worlds and durable budgeted intervention](#entry-33--independent-shipping-worlds-and-durable-budgeted-intervention)
 
 
 ## Entry 1 â€” Proposed execution and evidence boundaries
@@ -1769,3 +1770,14 @@ The repaired complete new SQL suite passed all18tests in83.22seconds, including 
 Source `ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e` is committed. New lock `b0d264aeb155915511202ced1338d6840546ae6cfe8c1b18e1553f2683edf266` adds only optional workspace metadata for the existing pinned dependencies. An explicit invented v7 capture has content pin `175fdcc50359cb5471bf292e15034fc250bf5ac724d05582b3d69bf429ac548d`; all six request/response pairs equal v6, including two timeouts. Historical v1–v6 are preserved and the current-lock negative tests include v6. This is synthetic maintenance proposed for user review, not fresh provider evidence. Supply code-study AST anchors match the committed bytes.
 
 The 20-scenario sensitivity reports are deliberately unfavorable where measured: solver versus do-nothing totals are545000/422000minor at50%,888000/844000at100%,1574000/1688000at200%. Retain these results; an estimator can lose under changed efficacy and delay prices. No tuning or actual savings claim follows from this mechanism exercise.
+
+
+### Published source acceptance and local temporary-directory diagnosis
+
+Draft PR#90 at0406e82305619af7d33414ccd5169759c03c8dc6 passed all10jobs in hosted run39864242079. Actual downloaded logs verify846offline tests in each Ubuntu/Windows Python3.12/3.13 quality cell,86Postgres tests,100typed files, six recorded replay calls/two typed timeouts/zero provider calls, and12wheel/sdist outputs per quality job. Both locked dependency audits, repository secret scan, PR metadata and final gate passed. The tested merge checkout4c110a60a0e41102e75e471f12b4bc6f9b9e6679 has exactly the same tree169901bae724225d5b1bcb75780432a7efdc6e07 as the reviewed head, independently verified through GitHub commit objects. Main77b98df push run39742751290 also succeeded before dependency work began.
+
+Local lint/format/import/lock and strict100-source typing passed; all6wheel/sdist pairs built, the locked audit found no known vulnerabilities, and clean0406e82 strict replay consumed six calls/reproduced two timeouts with zero provider calls. A clean installed environment uses exact exported lock constraints; network-denied probes matched52harness and11Supply source/resource files, ran20simulator scenarios and constructed all3Inngest functions. An initial offline installation could not find missing binary distributions and tried newer unpinned transitive versions; the successful install uses explicit current-lock constraints and no version upgrades. Markdown audit checked78files,492immutable source ranges and409local links, with no missing targets.
+
+The first local replay test invocation hit sandbox temporary-directory restrictions (51passed/24setup errors); this is diagnostic, not a pass. The first broad local run also encountered existing CFPB raw-source guards: the default temporary directory lies beneath C:\.git. A diagnostic placed inside the checkout correctly failed for the same isolation rule. Repeating the entire CFPB source suite in an external D-drive directory passed29tests4.98seconds. The broad local run was stopped, preserving its log, and rerun with explicit external TEMP/TMP. Those broad local results remain pending here; hosted846/86 results and local30/18 focused results are the verified acceptance evidence. No source guard was weakened and C:\.git was untouched.
+
+PR review remains the user's gate. No paid provider, production carrier/billing effect, deployment, human outcome gold or release promotion is inferred from these mechanism checks. Native project-board status remains unverified. Subsequent documentation-only commits preserve the tested executable/configuration/lock bytes; repeat only affected checks and final exact-head hosted acceptance.

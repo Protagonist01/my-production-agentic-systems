@@ -63,3 +63,10 @@ The database test fixture starts its own checkout-keyed disposable Postgres serv
 For application composition, trusted administrator code calls `operations.setup(admin_connection, runtime_role)` once and `enroll(admin_connection, incident_id, shipments)` without upserts. Compose `OperationStore(connect_runtime, clock=aware_clock)`, a scoped operator Grant, and `SupplyWorkflow(store)`. Call `run(grant, incident_id, run_id)`; use separately scoped reviewer/confirmation identities through `store.review` and `store.confirm`. Never use a planner response or an Inngest event as the grant. No real database URI or password belongs in a command example, report or Git.
 
 The optional package extra is `production-agent-supply-chain[workflow]`. It reuses the existing locked LangGraph/Inngest versions. The changed environment identity requires an explicit invented replay capture; historical recordings remain immutable. Fresh provider release acceptance stays pending under the user's offline-only instruction.
+
+
+## Review evidence
+
+[PR #90](https://github.com/Protagonist01/my-production-agentic-systems/pull/90), source head0406e82: all ten jobs passed in [run39864242079](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/39864242079). Actual logs verify846tests in each quality cell and86Postgres tests, alongside package, replay, type, audit and secret checks. The installed-wheel network-denial probe verified52harness/11Supply source/resource files. Local focused30simulator/18Postgres tests passed. Broad local reruns after temporary-directory diagnosis remain pending until their logs complete; they are not claimed as passes here.
+
+On hosts with a Git marker above the default temporary directory (this host has C:\.git), raw-source tests correctly fail there. Set TEMP/TMP to a private directory outside every checkout before running source/full tests. Do not remove a Git marker, weaken the guard or put raw-source fixtures inside repository artifacts just to make a test pass. The inventory and code-study anchors pin the source snapshot; final review-head results are attached to the PR/issues.
