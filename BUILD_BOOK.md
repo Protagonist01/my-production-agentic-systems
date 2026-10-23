@@ -47,6 +47,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 34 — Scoped shipping workbench and durable factual notices](#entry-34--scoped-shipping-workbench-and-durable-factual-notices)
 - [Entry 35 — Source-grounded prior-auth evidence with fresh model evaluation](#entry-35--source-grounded-prior-auth-evidence-with-fresh-model-evaluation)
+- [Entry 36 — Durable prior-auth document review](#entry-36--durable-prior-auth-document-review)
 
 ## Entry 1 â€” Proposed execution and evidence boundaries
 
@@ -1921,3 +1922,137 @@ Local locked python dev.py check passed881tests in365.14seconds, Ruff/format and
 The unchanged0e5953c candidate completed the six development cases after holdout:42fresh requests,6/6case and42/42criterion labels matched, including allthree invented missing/negative-education/short-study edges. No provider/terminal errors or unsupported met states. Keep this development result separate from the first unseen holdout. Preserve failedv1/v2runs and their dirty-source metadata in the aggregate; do not overwrite them with the successfulv3result.
 
 Initial hosted39935230394 passed allten jobs; actual logs show881tests in each Linux/Windows/Python3.12/3.13 cell,87Postgres tests withone non-failing warning, strict types116files and replay6calls/2timeouts/zero-provider. API tree comparison proves testedmerge9a9692ac equals evaluatedhead0e5953c (treedad1fd5065f88b10e3e747df86dd91e4050d59a8). Only documentation changes follow that candidate. Final review metadata and exact-head CI are recorded on#92 after the documentation commit, avoiding an endless commit-to-record-its-own-CI loop. P1/P2/P3 move to Review, stay open until user merge and post-merge verification. Clinical labels, P4/P5 application and P6 release remain outstanding.
+
+
+## Entry 36 — Durable prior-auth document review
+
+Date: 2026-10-23. User selected #49/#50 together after merging #92. Start codex/p4-p5-prior-auth-review from main6c2b7d9; the merge tree equals reviewed6e016c6 and exact-main replay passed. Main hosted acceptance is still running; do not close prerequisites before it passes.
+
+### Context and construction decision
+
+A new document must invalidate the exact previous evidence state without duplicating work after a worker crash. Keep Postgres as canonical owner of versioned redacted notes, pinned policies, document receipts, wait deadlines, assessment jobs and review events. LangGraph drives bounded job steps; its in-memory state does not substitute for durable state. A leased job may execute its model calls again after a crash; only the current case version/lease can publish one canonical result/event. Do not promise exactly-once provider calls.
+
+Before reading on: if a policy update commits while the model is assessing a newly appended document, which versions must the result bind to, and what should the stale worker be allowed to publish?
+
+Use optimistic case versions and transaction locks. Separate trusted raw-document redaction/import from the reviewer browser: store/serve only explicitly reviewed redacted input. The reviewer sees criterion/source citations, uncertainty, missing items, waits and immutable events, with provisioned tenant/case scope and server-resolved capabilities. There is no authorization/denial action. Select a quiet editorial case-file design: warm paper, dark ink, teal status accents and compact evidence tables, with no external fonts or assets.
+
+### How to build it
+
+1. Define closed principal/wait/document/review contracts and an immutable SQL schema under prior_auth_app. Runtime can read provisioned accounts, update session counters and mutate only this domain state.
+2. Insert initial case plus pending assessment atomically. Document delivery uses stable IDs and payload digests; append redacted text without shifting earlier offsets, invalidate affected criteria, cancel obsolete work and enqueue one new version. Policy replacement invalidates every claim. Timeouts create one review event and never synthesize missing evidence.
+3. Claim jobs with skip-locked bounded leases, assess outside transactions through injected gateway controls, then compare version/lease before publishing. Retain unaffected exact evidence only when earlier text remains the identical prefix. Reconcile after restart from SQL.
+4. Provision accounts through a trusted CLI. Add scoped local sessions, CSRF/origin checks and a browser with criterion/evidence/source panels, durable requests/review notes and prompt private-state clearing on logout. Raw notes and expected labels have no browser upload route.
+5. Verify duplicate delivery, lease recovery, stale-worker/policy conflicts, waits/timeouts, tenant/role scope, redaction canaries, actual UI flows and installed resources. Model evidence remains provisional; P6/O8 release gates remain pending.
+
+No P4/P5 checks are claimed before execution. Reuse the approved ignored Free Gemini configuration for bounded illustrative checks; no paid fallback. Source/label constraints from Entry35 persist.
+
+
+### First mechanism evidence
+
+Merged #92 main39938575348 passed nine applicable jobs; metadata skipped intentionally. Actual logs881tests per qualitycell,87Postgres, strict6call/2timeout/zero-provider replay. Closed#46/#47/#48 completed after exact-main replay and identical tree verification.
+
+P4/P5 first focused checks passed29tests, strict types122sources and actual browser-asset Node session regressions. Required isolated Postgres suite passed7tests in124.95seconds: concurrent duplicate document receipt, selective criterion reassessment, persisted wait expiration/renewal, in-flight policy supersession, hard-process-exit lease recovery, bounded repeated leases, tenant/role/session restrictions and redaction-canary absence from model input/events. Source test failure found that FastAPI validates strict datetime/tuple fields in Python mode; authenticate first, then revalidate the bounded JSON payload with the closed contract's JSON mode. No broad coercion or exception-detail echo was added.
+
+PriorAuth now declares optional workflow/web extras using existing pinned versions. The first uv lock refused the missing explicit workspace source; add prior-auth to tool.uv.sources before locking. The lock metadata changes despite no library-version update, so preserve published replayv9 and create an explicit inventedv10capture. Full checks, real browser, installed extras and fresh model workflow check are still pending.
+
+
+### Fresh failure and local resource interruption
+
+The first invented workflow probe dispatched one fresh Gemini request and timed out. SQL stored qualified_review with assessment_failure and no supported findings. Preserve its external exchange/summary; do not count a conservative fallback as successful model reasoning. Continue the reviewer document-request path and a separately bounded supplemental run, with no holdout tuning.
+
+A focused combined replay run without external-cache write elevation hit26temporary-directory setup permission errors (81tests passed). Earlier elevated29focused/7SQL checks passed; the full elevated locked suite is running with external D-drive TEMP. A later shell launch briefly failed with OS112 disk-full; read-only disk inspection found C: subsequently had863MB free and D:50GB. No files were deleted. Resume with D-drive temporary paths, preserve logs and report any persistent resource block rather than altering test expectations.
+
+
+### Full local regression and resource block
+
+Full locked check passed886tests in489.06seconds, strict types122sources,184formatted Python files and both import boundaries. Allsix package builds and dependency audit passed. The shipped Node asset passes private clearing, stalled-load logout and late403after a new sign-in; the latter required binding denied-session clearing to the request's epoch. Seven focused SQL checks remain passed from before the resource interruption.
+
+Local browser sign-in then returned a fixed503 while Docker stopped responding; the host had briefly rejected process creation with disk-full. Do not weaken login timeouts or claim a browser pass. The user is clearing space; continue installed-package/hosted work and preserve initial fresh-timeout evidence. No unrelated services or user files have been stopped/deleted.
+
+
+### Preserve invented provenance on supplemental arrival
+
+Reading the delivery path found a provenance bug before supplemental live acceptance: it unconditionally marked appended notes edited_illustrative, even when the parent was wholly invented. This could misdescribe an invented workflow as an edited published source. Preserve invented for an invented parent; only a published/edited illustrative parent becomes edited_illustrative. Add a state assertion to the actual duplicate-delivery test and rerun hosted SQL acceptance with the correction. No policy or support-grammar tuning follows from this provenance fix.
+
+
+### Initial hosted and installed acceptance
+
+Draft#93 at a9b9d44 passed initial39943225425 alltenjobs. Actual logs886tests per qualitycell and94Postgres (one non-failing warning), types122sources, Node assetordering regressions and strict replay6calls/2timeouts/zero-provider. A provenance correction is still newer than this hosted run and needs corrected-head SQL evidence.
+
+A new external web-only wheel install has49cached packages and no Google SDK. With an outbound-network audit hook installed before imports, API/CLI/workflow imports pass; four packaged schema/web resources match source bytes and installed replay consumes6calls/2timeouts/zero-provider. Source publication scanning found no configured key in332publishable files and verified five new document links. Local Docker remains unavailable while the user clears space. Use an explicitly labeled in-memory UI fixture for layout checks only; do not present it as real SQL or live-model evidence.
+
+
+### Correct the probe attribution: missing Windows main guard
+
+The education-only follow-up produced a child FileExistsError at its supposedly exclusive output directory. Inspecting the temporary scripts found the real cause: neither had an if __name__ == '__main__' guard, so Windows spawn re-executed their top-level setup. The initial workflow child could block in workspace/Docker setup; the subset child re-created its existing output folder and exited. Thus those timeout/unavailable exchanges are gateway attempts, not established Gemini provider dispatch. Earlier journal wording attributing the timeout to the provider is superseded here. Production prior_auth.review_cli already has the correct guard; this is a task-local probe bug, not an application correction. Preserve both failed attempts, wrap each script in guarded main, use a fresh v2 output directory and rerun one bounded subset extraction. Never relabel failed startup as model-quality evidence.
+
+
+### Guarded subset result
+
+The corrected education-only script (fresh-education-only-v2) completed one actual Gemini request with no failure or diagnostics; the candidate supplied exact redacted evidence and the checker returned education met. Captured exchange contains no WorkflowIdentifierCanary. This independently checks subset extraction after the main-guard correction, without SQL or a full workflow claim. It ran on19f0580+dirty with the unchanged lock; raw exchange remains external. Aggregate evidence now separates both unguarded startup failures from this successful fresh observation. Do not merge them into quality denominators.
+
+
+### UI-only inspection before claiming full browser evidence
+
+The real Edge browser signed into the explicitly labeled in-memory fixture, rendered seven criteria/rationales/source citations and submitted a document request. Screenshots remain ignored/private and are UI-only, not actual SQL/model evidence. At390px, expanded policy digests caused the full page to reach415px wide; permit arbitrary wrapping only in explanatory/provenance text, keeping the evidence table's own horizontal scroll. The persistent success message also covered source text, so add a keyboard-accessible Dismiss control rather than auto-hiding information. Recheck current CSS/DOM before recording mobile acceptance.
+
+
+### Corrected UI fixture acceptance and cleanup
+
+Actual Edge UI-only flow passed document request, qualified-review routing, Dismiss, logout and read-only viewer rendering. Corrected mobile measurement: viewport390/document390/tablecontainer314/tablecontent620, with expanded policy provenance. Desktop1440 and mobile screenshots remain ignored. The fixture uses explicitly invented in-memory responses, not SQL; keep that boundary in the aggregate. Close only the task browser session and fixture process23732 after verification. The real local SQL browser/supplement path remains pending Docker restoration; do not call this UI fixture full application acceptance.
+
+
+### Current wheel and remaining external-state dependency
+
+After provenance and mobile corrections, rebuild/reinstall the PriorAuth web wheel in the isolated49-package environment. All21source/resource files match current0d8c1ad bytes; imports and installed replay pass with outbound networking denied before import. A bounded five-second Docker status probe still hangs and is stopped without touching the daemon/other services. The user is clearing host space. Keep#93draft and#49/#50Inprogress; remaining real SQL/browser/supplemental workflow checks are pending external Docker restoration, not silently marked passed by the UI fixture or the successful one-call subset check.
+
+
+### Corrected implementation hosted acceptance
+
+Corrected0d8c1ad passed39945068035 alltenjobs. Actual logs verify886tests per each Ubuntu/Windows Python3.12/3.13 cell,94Postgres withone non-failing warning,122typed sourcefiles, shipped Node session regressions and strict replay6calls/2timeouts/zero-provider. API tree comparison proves testedmerge3f2477689c2ea83fcc5c15cffe03aa8fa930dacc equals reviewhead0d8c1ad (tree81e5d3a28ab85a504e0df14b9c71305943ef091d). Only documentation follows that implementation. Final documentation-head status is recorded by PR checks; no self-referential CI commit loop. #93 remains draft until the explicitly pending real local SQL/browser/supplement path is resumed after Docker restoration. No clinical release claim.
+
+
+### Restore Docker and verify the actual failure path
+
+The user authorized restarting Docker Desktop after freeing disk space. A sandboxed Docker
+probe also had configuration-access denial, so repeat diagnostics with authorized local access
+before attributing every timeout to the engine. `docker desktop restart --timeout 45` could
+not stop Desktop; inspect process executable paths, stop only processes under the verified
+Docker installation, then relaunch Desktop hidden. Do not shut down unrelated WSL distributions.
+The engine reported running after about 53 seconds; restore only the named demo Workspace.
+
+Resume the saved version-1 case in Edge. Request all seven criteria with an explicit future
+deadline, producing version 2. Run the guarded supplement script once: trusted import masks
+the identifier, commits version 3, and the worker claims that version. Its isolated Gemini
+attempt exhausted the deadline with usage unknown; available metadata does not establish
+provider dispatch. Preserve the private fresh-supplement output, do not retry it as though the
+delivery had never committed, and do not weaken timeouts to obtain a green model result.
+
+Reconstruct ReviewStore from the saved Workspace and resubmit identical delivery ID/text with
+the original expected version 2. Receipt 3 and an unchanged event count prove idempotency even
+though the canonical case advanced. The job is done, invented provenance remains invented,
+and stored case/events exclude the identifier canary. Edge renders seven insufficient findings,
+the assessment-failure banner and cleared wait. Viewer write/unassigned-case requests both
+return 403; reviewer routing adds one durable event and logout clears private DOM. Expanded
+mobile citations measure document/viewport390/390 and table content/container620/314.
+This supersedes the pending-Docker status above: actual SQL/browser continuation is verified,
+including the guarded model failure path. Successful full-cohort extraction is not claimed;
+the earlier one-call education subset remains separate positive fresh evidence.
+
+
+### Final CI exposes an existing real-clock test race
+
+Ready-for-review run39971144131 failed only Windows3.12:885tests passed, but the combined
+Olist deadline/scope/policy/snapshot test expected a snapshot error and got event-input mismatch.
+Its first call used a real one-microsecond deadline. A coarse clock could pass the entry check,
+bind the event, then expire inside the graph; later calls reused that StubStore and changing
+the source pin correctly hit the existing event binding before the intended snapshot check.
+Reproduce with an injected clock returning the initial timestamp once, then one second later:
+first call times out after binding, next altered snapshot raises business_event_input_mismatch,
+and zero refunds occur. This is test-state contamination, not a new production decision bug.
+Fix the existing test by injecting a constant time one second after its captured clock and
+assert no binding after the expired-entry call. Keep application deadlines and identity rules
+unchanged; run the entire Olist workflow test file before publishing this narrow CI repair.
+
+The corrected Olist workflow file passed all14tests in7.53s; Ruff lint/format passed. One
+non-failing pytest cache permission warning is retained as environment evidence.

@@ -20,7 +20,7 @@ H8 and its cancellation/test-bootstrap follow-up are merged/verified; Build Book
 
 [Supply console chapter](docs/code-study-supply-console.md) traces S5 server-derived scopes, exact decisions, atomic projections and recoverable in-app notices (unmerged branch).
 
-[Prior-auth evidence chapter](docs/code-study-prior-auth.md) traces the P1–P3 source/label/model/evidence boundaries on the in-progress branch.
+[Prior-auth evidence chapter](docs/code-study-prior-auth.md) traces the P1–P3 source/label/model/evidence boundaries merged through #92. The [P4/P5 document-review chapter](docs/code-study-prior-auth-review.md) follows SQL leases, versioned waits, protected sessions and reviewer actions on the current implementation branch.
 
 ## 1. What exists and what the architecture means
 

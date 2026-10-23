@@ -134,3 +134,8 @@ S5 adds web extra metadata without changing dependency versions. At clean source
 ## Supply standalone web dependency correction: invented v9
 
 The web extra now explicitly includes the already-pinned LangGraph assessment dependency. Isolated web-only import reproduced its absence before correction. Capture at clean source `966b196dd4bd07d169e232541e082cd0f93e71f2` uses lock `e9694f444898bc4e06e70080c42634a7e39e91305b1543b5965b884af215f6c1` and digest `f2ee896a12d8a7858c165db559f70b8775d86007a14ee969f8ba97fdc5986fa4` in `invented-v9.json`. Six request/response pairs equal v8; retain v1-v8 bytes and reject their historical locks. No dependency versions, replay matching rules or provider evidence change.
+
+
+## Prior Auth web/workflow extras: explicit invented v10
+
+The P4/P5 extras reuse pinned LangGraph/FastAPI/Uvicorn versions but change the lock to e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d. At clean source4ee75bc6a7d227b2c5469bfda8f60637d69a78c4, explicitly run the existing in-process capture helper and exclusively publish invented-v10.json with digest c3a6804a93739740a196a44aaed66af31a564faa6c1b9b61600b82386b985f08. The generic invented-h3-v1 provenance remains declared synthetic; this proposed content is part of user PR review, not prior user approval. All six request/response pairs equal v9, including two timeouts. Preserve v1–v9 and test historical-lock rejection. Zero provider calls and no source notes enter fixture maintenance; normal replay never captures or rebinds it.

@@ -939,6 +939,7 @@ dev = [
     { name = "pip-audit" },
     { name = "production-agent-harness", extra = ["gemini"] },
     { name = "production-agent-olist-support", extra = ["web"] },
+    { name = "production-agent-prior-auth", extra = ["web"] },
     { name = "production-agent-revenue-integrity", extra = ["events", "web"] },
     { name = "production-agent-supply-chain", extra = ["web", "workflow"] },
     { name = "pydantic-ai-slim", extra = ["google"] },
@@ -959,6 +960,7 @@ dev = [
     { name = "pip-audit", specifier = "==2.10.1" },
     { name = "production-agent-harness", extras = ["gemini"], editable = "harness" },
     { name = "production-agent-olist-support", extras = ["web"], editable = "projects/olist-support" },
+    { name = "production-agent-prior-auth", extras = ["web"], editable = "projects/prior-auth" },
     { name = "production-agent-revenue-integrity", extras = ["web", "events"], editable = "projects/revenue-integrity" },
     { name = "production-agent-supply-chain", extras = ["workflow", "web"], editable = "projects/supply-chain-disruption" },
     { name = "pydantic-ai-slim", extras = ["google"], specifier = "==2.56.0" },
@@ -1356,8 +1358,25 @@ dependencies = [
     { name = "production-agent-harness" },
 ]
 
+[package.optional-dependencies]
+web = [
+    { name = "fastapi" },
+    { name = "langgraph" },
+    { name = "uvicorn" },
+]
+workflow = [
+    { name = "langgraph" },
+]
+
 [package.metadata]
-requires-dist = [{ name = "production-agent-harness", editable = "harness" }]
+requires-dist = [
+    { name = "fastapi", marker = "extra == 'web'", specifier = "==0.150.0" },
+    { name = "langgraph", marker = "extra == 'web'", specifier = "==1.2.15" },
+    { name = "langgraph", marker = "extra == 'workflow'", specifier = "==1.2.15" },
+    { name = "production-agent-harness", editable = "harness" },
+    { name = "uvicorn", marker = "extra == 'web'", specifier = "==0.54.0" },
+]
+provides-extras = ["workflow", "web"]
 
 [[package]]
 name = "production-agent-revenue-integrity"

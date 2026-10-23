@@ -3,7 +3,7 @@
 Scope: P1–P3 branch `codex/p1-p2-p3-prior-auth`, started from merged main `1e59722`,
 October 23, 2026. Inspected implementation commit: `0e5953cd4dbb36512452b11d766e769301f2d188`
 (clean at candidate freeze); this chapter's later documentation changes do not change candidate code.
-The implementation is unmerged in [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92).
+The implementation is merged/verified through [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92).
 P4 workflows, P5 UI and P6 release are excluded. No production clinical claim is made.
 
 `prepare.main` loads independent manifest-file byte pins, then `prepare` validates external
