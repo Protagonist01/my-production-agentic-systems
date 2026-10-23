@@ -77,4 +77,7 @@ C2 #84 adds [provisional blind AI review and deterministic CFPB baselines](cfpb-
 Supply-chain S2/S3/S4: [simulator, budgeted SIM actions and waits](supply-chain-operations.md), [source walkthrough](code-study-supply-operations.md). Invented mechanisms remain separate from S1 source observations and S6 release claims.
 
 
-CFPB C3/C4: [typed triage and durable reviewer operations](cfpb-triage-operations.md), [source walkthrough](code-study-cfpb-triage.md) and [aggregate pilot evidence](data/cfpb-triage-evidence-v1.json). This is an unmerged implementation with AI-provisional labels and all-review results; no domain release.
+CFPB C3/C4: [typed triage and durable reviewer operations](cfpb-triage-operations.md), [source walkthrough](code-study-cfpb-triage.md) and [aggregate pilot evidence](data/cfpb-triage-evidence-v1.json). PR #94 is merged and verified. Labels remain AI-provisional and the pilot produced all-review results; no domain release.
+
+
+O8 fresh review extension: [model card](olist-model-card.md), [aggregate evidence](data/olist-fresh-evidence-v1.json), [operator package](olist-fresh-review.md) and [execution/source study](code-study-olist-fresh.md). Gemini scored 30/36 correct with six unresolved timeouts and no observed unsafe effects. Proposed criteria were not met; final release approval and independent labels/baseline review remain separate.

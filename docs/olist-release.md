@@ -81,3 +81,8 @@ O8 still needs independent human label adjudication, a reviewed compatible domai
 ## Pinned cohort mechanism capture
 
 The integrated private drill reuses the twelve-case O3 hybrid cohort for three isolated offline trials per case. See the [aggregate capture](data/olist-release-mechanism-v1.json) for actual completion, duplicate-delivery and cleanup counts after execution. Expected labels are evaluator-only AI provisional judgments; three fixed-planner repetitions do not establish provider freshness or first-release acceptance.
+
+
+## Fresh evaluation resumed after #94
+
+The user superseded offline-only for the new O8 experiment on2026-10-23. [Fresh review operations](olist-fresh-review.md) and [new source study](code-study-olist-fresh.md) describe the separate pinned provider experiment. The historical report contract and artifacts above remain offline-only and cannot grant release. New source groups/request versions and literal provisional labels are sealed separately; no historical result is rewritten.

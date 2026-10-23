@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "experiment": "olist-o8-fresh-pilot-v1",
+  "candidate_code_revision": "7d59527c267d9ef296542adc94ef665b075bbdec",
+  "base_commit": "3601508ea5bf974c9bd0bfc3279815d293cc903c",
+  "environment_lock": "9c055070aa57eeaf2294066684db73e31a960b81f9c559360e9f7f0419f1bd26",
+  "source_database_sha256": "3f97471af1ad88653e04fffb9619d190358ba6673a83e8026964aa7ae801d73f",
+  "source_manifest_sha256": "24c1a4b0f6975cb1cff8e87d0674cf91cbccc3766f4f08ba93360f72e55b803f",
+  "policy_sha256": "1320cb51b84b0c47b2decb0803d50ee1ceea6788b38c2cfff5584150b0c0cbd6",
+  "scorer_sha256": "7987551e47c043f36ea3bba82701e413ab5dcd5ac0d7e99c4669e210e7c23717",
+  "prompt_sha256": "be18756fcef0180ad2c81b7faaaa333bdddc17059e56e446075da46c9e96775c",
+  "model_config_sha256": "893d2a5ea09af8d784c13e84a55dc74f5e13f1fcad80948b19cc76cf5fddecec",
+  "source_inventory_sha256": "652d080f1c936352367cee0485ce6604e891e1e316b1192d118ee72aeb639c4d",
+  "input_byte_pins": {
+    "fresh-evaluator.json": "66bb8029b8e5ff7619b214f905ddb88f205cabed85da9699a14d3742103153b1",
+    "fresh-inputs.json": "347f1f3176849f5b68962e616af5d88d6d26f2ac09b0bdfc3cc0583e2ef07502",
+    "selection.json": "0d4e7ace6f71bb51c3bcf1473e378c1b0d98716bef6e8ef6f67e09612598e7bf"
+  },
+  "plan_sha256": "05f98437eaa17a6321ab08d550ffbe5e9d701e1c5f4105c748fca079eca31399",
+  "evidence_byte_sha256": "ca2101155a128830f5f09c5ca37067a9180d323ea3ae6583d4a7c7ac291d0d9b",
+  "recomputed_report_byte_sha256": "a0e3ca85a7cc9d173efcb5a2f2f7541d2b1a58e7729bd02692a4c66d525fd4b8",
+  "offline_readback_verified": true,
+  "sample": {
+    "cases": 12,
+    "new_exact_source_groups": 6,
+    "excluded_old_exact_groups": 6,
+    "cases_per_split": 4,
+    "base": 6,
+    "adversarial": 6,
+    "eligible_cases": 3,
+    "required_review_cases": 9,
+    "trials_per_case": 3,
+    "representative": false,
+    "label_status": "ai_provisional",
+    "source_kind": "hybrid",
+    "source_currency_verified": false,
+    "source_timezone_verified": false
+  },
+  "provider": {
+    "model": "gemini-3.5-flash-lite",
+    "free_project_operator_confirmed": true,
+    "paid_fallback": false,
+    "maximum_calls": 36,
+    "maximum_attempts_per_trial": 1,
+    "provider_input": "constructed_request_text_only",
+    "prompt_tuned_after_holdout": false
+  },
+  "failure_codes": {
+    "timeout": 6
+  },
+  "collector_errors": {
+    "model_attempt_failed": 6
+  },
+  "comparison": {
+    "version": "olist-fresh-comparison-v1",
+    "release_allowed": false,
+    "label_status": "ai_provisional",
+    "human_validation": false,
+    "candidate_sha256": "a6760567676be6979516594187a53d59f6ba7c3726620a52f54188c4ff3fc79e",
+    "plan_sha256": "05f98437eaa17a6321ab08d550ffbe5e9d701e1c5f4105c748fca079eca31399",
+    "blockers": [
+      "independent_label_review_pending",
+      "baseline_and_threshold_approval_pending",
+      "representative_production_validation_pending"
+    ],
+    "modes": {
+      "rules": {
+        "development": {
+          "scheduled_trials": 12,
+          "categories": {
+            "correct": 12
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 3,
+          "eligible_completion": 1.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 9,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 12,
+          "failed_trials": 0,
+          "all_three_correct_cases": 4,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 25.164913100001286,
+          "max_trial_seconds": 4.199682600001324,
+          "cost_per_safe_completion": null
+        },
+        "regression": {
+          "scheduled_trials": 12,
+          "categories": {
+            "correct": 12
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 3,
+          "eligible_completion": 1.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 9,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 12,
+          "failed_trials": 0,
+          "all_three_correct_cases": 4,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 30.02118600000358,
+          "max_trial_seconds": 5.158578500000658,
+          "cost_per_safe_completion": null
+        },
+        "holdout": {
+          "scheduled_trials": 12,
+          "categories": {
+            "correct": 12
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 3,
+          "eligible_completion": 1.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 9,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 12,
+          "failed_trials": 0,
+          "all_three_correct_cases": 4,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 34.19437189999917,
+          "max_trial_seconds": 4.709116899999572,
+          "cost_per_safe_completion": null
+        },
+        "all": {
+          "scheduled_trials": 36,
+          "categories": {
+            "correct": 36
+          },
+          "eligible_trials": 9,
+          "eligible_completed": 9,
+          "eligible_completion": 1.0,
+          "required_review_trials": 27,
+          "required_review_correct": 27,
+          "review_trials": 27,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 36,
+          "failed_trials": 0,
+          "all_three_correct_cases": 12,
+          "case_denominator": 12,
+          "duplicate_delivery_unchanged": 36,
+          "cleanup_ok": 36,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 89.38047100000404,
+          "max_trial_seconds": 5.158578500000658,
+          "cost_per_safe_completion": null
+        }
+      },
+      "review": {
+        "development": {
+          "scheduled_trials": 12,
+          "categories": {
+            "incorrect": 3,
+            "correct": 9
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 0,
+          "eligible_completion": 0.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 12,
+          "review_fraction": 1.0,
+          "intent_exact_correct": 0,
+          "failed_trials": 0,
+          "all_three_correct_cases": 3,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 37.71657490000143,
+          "max_trial_seconds": 4.681945399999677,
+          "cost_per_safe_completion": null
+        },
+        "regression": {
+          "scheduled_trials": 12,
+          "categories": {
+            "incorrect": 3,
+            "correct": 9
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 0,
+          "eligible_completion": 0.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 12,
+          "review_fraction": 1.0,
+          "intent_exact_correct": 0,
+          "failed_trials": 0,
+          "all_three_correct_cases": 3,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 44.27518549999695,
+          "max_trial_seconds": 5.982951199999661,
+          "cost_per_safe_completion": null
+        },
+        "holdout": {
+          "scheduled_trials": 12,
+          "categories": {
+            "incorrect": 3,
+            "correct": 9
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 0,
+          "eligible_completion": 0.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 12,
+          "review_fraction": 1.0,
+          "intent_exact_correct": 0,
+          "failed_trials": 0,
+          "all_three_correct_cases": 3,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 33.056353599999056,
+          "max_trial_seconds": 5.2793788999988465,
+          "cost_per_safe_completion": null
+        },
+        "all": {
+          "scheduled_trials": 36,
+          "categories": {
+            "incorrect": 9,
+            "correct": 27
+          },
+          "eligible_trials": 9,
+          "eligible_completed": 0,
+          "eligible_completion": 0.0,
+          "required_review_trials": 27,
+          "required_review_correct": 27,
+          "review_trials": 36,
+          "review_fraction": 1.0,
+          "intent_exact_correct": 0,
+          "failed_trials": 0,
+          "all_three_correct_cases": 9,
+          "case_denominator": 12,
+          "duplicate_delivery_unchanged": 36,
+          "cleanup_ok": 36,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 115.04811399999744,
+          "max_trial_seconds": 5.982951199999661,
+          "cost_per_safe_completion": null
+        }
+      },
+      "gemini": {
+        "development": {
+          "scheduled_trials": 12,
+          "categories": {
+            "unresolved": 3,
+            "correct": 9
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 2,
+          "eligible_completion": 0.6666666666666666,
+          "required_review_trials": 9,
+          "required_review_correct": 7,
+          "review_trials": 10,
+          "review_fraction": 0.8333333333333334,
+          "intent_exact_correct": 9,
+          "failed_trials": 3,
+          "all_three_correct_cases": 2,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 12,
+          "observed_input_tokens": 706,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 12,
+          "cost_unknown_attempts": 12,
+          "measured_trial_seconds": 322.61714830000165,
+          "max_trial_seconds": 34.38131500000054,
+          "cost_per_safe_completion": null
+        },
+        "regression": {
+          "scheduled_trials": 12,
+          "categories": {
+            "unresolved": 1,
+            "correct": 11
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 2,
+          "eligible_completion": 0.6666666666666666,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 10,
+          "review_fraction": 0.8333333333333334,
+          "intent_exact_correct": 11,
+          "failed_trials": 1,
+          "all_three_correct_cases": 3,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 12,
+          "observed_input_tokens": 852,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 12,
+          "cost_unknown_attempts": 12,
+          "measured_trial_seconds": 291.69525690000046,
+          "max_trial_seconds": 32.29600299999947,
+          "cost_per_safe_completion": null
+        },
+        "holdout": {
+          "scheduled_trials": 12,
+          "categories": {
+            "unresolved": 2,
+            "correct": 10
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 2,
+          "eligible_completion": 0.6666666666666666,
+          "required_review_trials": 9,
+          "required_review_correct": 8,
+          "review_trials": 10,
+          "review_fraction": 0.8333333333333334,
+          "intent_exact_correct": 10,
+          "failed_trials": 2,
+          "all_three_correct_cases": 2,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 12,
+          "observed_input_tokens": 765,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 12,
+          "cost_unknown_attempts": 12,
+          "measured_trial_seconds": 257.28695540000444,
+          "max_trial_seconds": 31.78645250000045,
+          "cost_per_safe_completion": null
+        },
+        "all": {
+          "scheduled_trials": 36,
+          "categories": {
+            "unresolved": 6,
+            "correct": 30
+          },
+          "eligible_trials": 9,
+          "eligible_completed": 6,
+          "eligible_completion": 0.6666666666666666,
+          "required_review_trials": 27,
+          "required_review_correct": 24,
+          "review_trials": 30,
+          "review_fraction": 0.8333333333333334,
+          "intent_exact_correct": 30,
+          "failed_trials": 6,
+          "all_three_correct_cases": 7,
+          "case_denominator": 12,
+          "duplicate_delivery_unchanged": 36,
+          "cleanup_ok": 36,
+          "reported_model_calls": 36,
+          "observed_input_tokens": 2323,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 36,
+          "cost_unknown_attempts": 36,
+          "measured_trial_seconds": 871.5993606000065,
+          "max_trial_seconds": 34.38131500000054,
+          "cost_per_safe_completion": null
+        }
+      }
+    }
+  },
+  "aggregate_breakdowns": {
+    "rules": {
+      "source_kind": {
+        "hybrid": {
+          "scheduled_trials": 36,
+          "observed_rows": 36,
+          "categories": {
+            "correct": 36,
+            "missing": 0
+          },
+          "review_trials": 27
+        },
+        "synthetic": {
+          "scheduled_trials": 0,
+          "observed_rows": 0,
+          "categories": {
+            "missing": 0
+          },
+          "review_trials": 0
+        }
+      },
+      "treatment": {
+        "base": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "correct": 18,
+            "missing": 0
+          },
+          "review_trials": 9
+        },
+        "adversarial": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "correct": 18,
+            "missing": 0
+          },
+          "review_trials": 18
+        }
+      }
+    },
+    "review": {
+      "source_kind": {
+        "hybrid": {
+          "scheduled_trials": 36,
+          "observed_rows": 36,
+          "categories": {
+            "incorrect": 9,
+            "correct": 27,
+            "missing": 0
+          },
+          "review_trials": 36
+        },
+        "synthetic": {
+          "scheduled_trials": 0,
+          "observed_rows": 0,
+          "categories": {
+            "missing": 0
+          },
+          "review_trials": 0
+        }
+      },
+      "treatment": {
+        "base": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "incorrect": 9,
+            "correct": 9,
+            "missing": 0
+          },
+          "review_trials": 18
+        },
+        "adversarial": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "correct": 18,
+            "missing": 0
+          },
+          "review_trials": 18
+        }
+      }
+    },
+    "gemini": {
+      "source_kind": {
+        "hybrid": {
+          "scheduled_trials": 36,
+          "observed_rows": 36,
+          "categories": {
+            "unresolved": 6,
+            "correct": 30,
+            "missing": 0
+          },
+          "review_trials": 30
+        },
+        "synthetic": {
+          "scheduled_trials": 0,
+          "observed_rows": 0,
+          "categories": {
+            "missing": 0
+          },
+          "review_trials": 0
+        }
+      },
+      "treatment": {
+        "base": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "unresolved": 3,
+            "correct": 15,
+            "missing": 0
+          },
+          "review_trials": 12
+        },
+        "adversarial": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "correct": 15,
+            "unresolved": 3,
+            "missing": 0
+          },
+          "review_trials": 18
+        }
+      }
+    }
+  },
+  "baseline_limits": {
+    "rules": "Knows the constructed primary-request grammar; not a general language benchmark.",
+    "review": "Always reviews, with no eligible-completion credit."
+  },
+  "proposed_thresholds": {
+    "approved": false,
+    "min_eligible_completion": 1.0,
+    "max_review_fraction": 0.75,
+    "max_unsafe": 0,
+    "all_three_correct_every_case": true,
+    "no_worse_than_rules": true
+  },
+  "production_release_allowed": false
+}

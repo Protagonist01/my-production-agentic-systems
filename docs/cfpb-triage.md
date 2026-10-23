@@ -46,7 +46,7 @@ Acceptance evidence:
 
 ### C3: Implement Pydantic AI classifier and calibrated routing
 
-Priority: P1; provisional size M; prerequisites: C2, H10. Status: Review in [PR #94](https://github.com/Protagonist01/my-production-agentic-systems/pull/94), the user-authorized C3/C4 dependent batch. [Operations and evidence](cfpb-triage-operations.md).
+Priority: P1; provisional size M; prerequisites: C2, H10. Status: Done after user merge of #94 as3601508 and verified main40022445942 (924tests per qualitycell/99Postgres,nine applicable jobs). [Operations and evidence](cfpb-triage-operations.md).
 
 Return typed product/issue/priority and evidence; calibrate routing/abstention on a development-only set and compare cheap-first with always-strong.
 
@@ -58,7 +58,7 @@ Acceptance evidence:
 
 ### C4: Integrate scoped review, API, traces and drift monitoring
 
-Priority: P1; provisional size M; prerequisites: C3, H8. Status: Review in the same [PR #94](https://github.com/Protagonist01/my-production-agentic-systems/pull/94) dependent batch. [Source study](code-study-cfpb-triage.md).
+Priority: P1; provisional size M; prerequisites: C3, H8. Status: Done after the same verified #94 merge; #37 is closed completed. [Source study](code-study-cfpb-triage.md).
 
 Expose classification/review workflow with enqueue-only tools; monitor input/output taxonomy mix, masked text and model/provider changes.
 
