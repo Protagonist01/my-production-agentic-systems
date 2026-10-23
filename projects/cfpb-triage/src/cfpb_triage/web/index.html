@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Complaint desk · CFPB</title><link rel="stylesheet" href="/assets/console.css"><script src="/assets/console.js" defer></script></head>
+<body data-csrf-cookie="__CSRF_COOKIE__">
+<header><a href="/" class="brand">Complaint desk<span>CFPB / REVIEW QUEUE</span></a><div id="identity"></div><button id="logout" hidden>Sign out</button></header>
+<main>
+<section id="signin" class="signin"><p class="eyebrow">REVIEW WITH CONTEXT</p><h1>A clearer route.<br>A traceable decision.</h1><p class="intro">A private workspace for reviewing masked complaints, proposed categories and review decisions.</p><form id="login"><label>Username<input id="username" autocomplete="username" required maxlength="64"></label><label>Password<input id="password" type="password" autocomplete="current-password" required maxlength="128"></label><button class="primary">Open workspace <span aria-hidden="true">↗</span></button></form><p class="fine">Provisioned access only. Enqueue-only review. No account actions.</p></section>
+<section id="workspace" hidden><div class="mast"><div><p class="eyebrow">THE REVIEW FILE</p><h1>Evidence, in view.</h1></div><p>Published narratives · Provisional risk labels<br>Consumer allegations remain unverified.</p></div>
+<div class="layout"><aside><div class="rail-title"><h2>Your cases</h2><button id="refresh">Refresh</button></div><nav id="cases" aria-label="Scoped cases"></nav><p class="fine">Only cases assigned to your account appear here.</p></aside><article id="detail"><p class="empty">Choose a case to inspect its evidence.</p></article></div></section>
+<p id="message" role="status" aria-live="polite"></p>
+</main><footer>Complaint desk <span>Classification and review queue only</span></footer>
+</body></html>

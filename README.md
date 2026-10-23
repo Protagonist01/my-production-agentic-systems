@@ -6,9 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks. Verified main `5f73fc9` includes Olist scoped refunds/review, original CUAD preparation and the [R2/R3/R4 Revenue batch](https://github.com/Protagonist01/my-production-agentic-systems/pull/88). Main passed 773 offline tests per matrix cell and 43 Postgres checks; R2/R3/R4 are closed. O8 release acceptance still requires fresh provider results, reviewed baseline/thresholds and human adjudication.
-
-The current user-approved batch adds [R5 approval-bound SIM effects](docs/revenue-operations.md), [R6 authenticated review/events](docs/revenue-console.md) and [S1 independent DataCo/NWS source preparation](docs/supply-chain-source.md). Focused transaction/API/SDK/source checks are integrated; final broad and browser acceptance are in progress. All invoice corrections require a separate reviewer and an absolute adjustment no larger than 100.00 SIM. [CFPB #84](https://github.com/Protagonist01/my-production-agentic-systems/pull/84) remains a separate review with AI-provisional labels.
+Verified main `95397c4` includes user-merged CFPB baselines #84 and Prior Auth review #93. The current authorized batch implements CFPB #36/#37 together: [typed classification, conservative routing and protected review](docs/cfpb-triage-operations.md). The provisional Gemini pilot routes all cases to review and establishes no useful automation or model-quality claim. C5 and O8 release gates remain pending; the [backlog](docs/backlog.json) records per-task evidence. Native project-board state is unverified.
 
 ## Setup and working commands
 
@@ -91,9 +89,9 @@ O2 adds [private Olist order aggregates and conservative historical views](docs/
 C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-only agent storage, separate consumer-selected targets and exact-text grouped temporal partitions from the user-selected complete September 2023â€“March 2024 archive. [Source walkthrough](docs/code-study-cfpb.md) explains the boundaries. Raw records stay outside Git; this supplies data preparation, not a classifier or reviewed risk labels.
 
 
-O6/O7 are merged and verified through #86: the [scoped local support desk](docs/olist-console.md) provides durable exact-action approval under the unchanged 100.00 SIM cap. The next user-authorized batch adds [offline Olist state reports](docs/olist-release.md) and [original CUAD contract preparation](docs/data/revenue-source.md), implemented in parallel and integrated for one review. Fresh provider/first-release acceptance remains pending by user instruction. C2 remains a separate review in #84.
+O6/O7 are merged and verified through #86: the [scoped local support desk](docs/olist-console.md) provides durable exact-action approval under the unchanged 100.00 SIM cap. The next user-authorized batch adds [offline Olist state reports](docs/olist-release.md) and [original CUAD contract preparation](docs/data/revenue-source.md), implemented in parallel and integrated for one review. Fresh provider/first-release acceptance remains pending by user instruction. C2 #84 is now merged and verified.
 
-C2 #84 adds [provisional blind AI review and deterministic CFPB baselines](docs/cfpb-risk-baselines.md), with a [source study](docs/code-study-cfpb-baselines.md). It remains open Review until user merge; human adjudication and fresh provider release evidence are pending.
+C2 #84 adds [provisional blind AI review and deterministic CFPB baselines](docs/cfpb-risk-baselines.md), with a [source study](docs/code-study-cfpb-baselines.md). It is merged/verified as95397c4; human adjudication and domain release evidence remain pending.
 
 Supply-chain S2/S3/S4: [simulator, budgeted SIM actions and waits](docs/supply-chain-operations.md), [source walkthrough](docs/code-study-supply-operations.md). Invented mechanisms remain separate from S1 source observations and S6 release claims.
 
@@ -102,3 +100,6 @@ S5 #56 adds the [scoped Supply workbench and durable in-app previews](docs/suppl
 Prior Auth P1/P2/P3 adds [pinned CMS/Synthea preparation and evidence-checked Gemini assessment](docs/prior-auth-evidence.md), with [a source walkthrough](docs/code-study-prior-auth.md). The frozen six-case illustrative holdout matched all provisional labels; no clinical validation or authorization effect is claimed. P4/P5 extend this merged slice with document waits and a reviewer UI.
 
 The user-selected P4/P5 extension adds [durable document requests and a protected local reviewer desk](docs/prior-auth-review.md), with a [recovery/access walkthrough](docs/code-study-prior-auth-review.md). Model failures remain qualified review, not completed clinical decisions. P6/O8 release gates remain separate.
+
+
+CFPB C3/C4: [typed triage and durable reviewer operations](docs/cfpb-triage-operations.md), [source walkthrough](docs/code-study-cfpb-triage.md) and [aggregate pilot evidence](docs/data/cfpb-triage-evidence-v1.json). This is an unmerged implementation with AI-provisional labels and all-review results; no domain release.

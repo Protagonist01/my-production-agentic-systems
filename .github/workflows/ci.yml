@@ -50,6 +50,7 @@ jobs:
           node tests/revenue_console_session_test.cjs
           node tests/supply_console_session_test.cjs
           node tests/prior_auth_session_test.cjs
+          node tests/cfpb_session_test.cjs
       - name: Invented offline example
         run: python dev.py example
       - name: Pinned invented strict replay

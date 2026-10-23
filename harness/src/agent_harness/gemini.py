@@ -123,8 +123,11 @@ def sdk_part(part: ModelPart) -> types.Part:
 
 def request_payload(
     request: ModelRequest,
+    *,
+    flash_comparison: bool = False,
 ) -> tuple[list[types.Content], types.GenerateContentConfig]:
-    if (request.provider, request.endpoint, request.model) != (PROVIDER, ENDPOINT, MODEL):
+    allowed = (MODEL, "gemini-3.8-flash") if flash_comparison else (MODEL,)
+    if (request.provider, request.endpoint) != (PROVIDER, ENDPOINT) or request.model not in allowed:
         raise ValueError("Only the explicitly selected Gemini route is supported")
     parameters = GenerationParameters.model_validate(request.parameters).model_dump(
         exclude_none=True
@@ -334,11 +337,13 @@ class GeminiTransport:
         *,
         free_tier_confirmed: bool,
         http_transport: httpx.BaseTransport | None = None,
+        flash_comparison: bool = False,
     ) -> None:
         if not api_key or not free_tier_confirmed:
             raise ValueError("A key and explicit Free-project attestation are required")
         self._key = api_key
         self._http_transport = http_transport
+        self._flash_comparison = flash_comparison
 
     def generate(self, request: ModelRequest, *, timeout_seconds: float = 30.0) -> ModelResponse:
         if not math.isfinite(timeout_seconds) or timeout_seconds <= 0:
@@ -346,7 +351,7 @@ class GeminiTransport:
                 request, "timeout", "No Gemini attempt time remaining", dispatched=False
             )
         try:
-            contents, config = request_payload(request)
+            contents, config = request_payload(request, flash_comparison=self._flash_comparison)
         except (ValueError, SchemaError, Unresolvable):
             return failed_response(
                 request,

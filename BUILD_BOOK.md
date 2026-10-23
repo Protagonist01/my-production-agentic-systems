@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 37 — Typed CFPB triage and scoped review](#entry-37--typed-cfpb-triage-and-scoped-review)
 
 - [Entry 1 â€” Proposed execution and evidence boundaries](#entry-1--proposed-execution-and-evidence-boundaries)
 - [Entry 2 â€” Real-source data before the first complete demo](#entry-2--real-source-data-before-the-first-complete-demo)
@@ -2137,3 +2138,163 @@ non-failing pytest cache permission warning is retained as environment evidence.
 User selected updating still-open PR#84 after merging #93. Verify main116d7e5 tree54bafbe equals reviewed5acb634, main39973654251 nine applicable jobs, actual886tests per qualitycell/94Postgres, and clean replay6calls/2timeouts/zero-provider. Close #49/#50 completed. In the clean existing C2 checkout merge origin/main with --no-commit --no-ff. All five conflicts are shared documents, with no executable conflict. Retain C2 Entry27 and all later merged entries; combine README/planning sections and use current main study navigation plus the C2 chapter. Before committing, compare Git-normalized executable/config/lock bytes to main and all C2 source/tests to old reviewheadf5195b3. Check focused C2 behavior and links, then final clean replay and hosted matrix. Do not regenerate sealed source reviews or confuse provisional labels with human validation.
 
 Reconciliation checks passed:218main executable/config files and5C2Pythonfiles match parent blob IDs; all36journal entries preserved. Focused21C2tests passed2.88s. Documentation check passed453local links/170immutable source ranges/19publication files with configured credentials absent. The first task-local audit used a Windows default decoder on UTF-8 journal text and failed after source comparisons; rerun with explicit UTF-8 confirmed preservation. No source data, sealed review, baseline or application behavior changed. Final clean replay and hosted checks follow at the committed head.
+
+
+## Entry 37 — Typed CFPB triage and scoped review
+
+**Context:** User merged C2 PR#84 as95397c4, tree-identical to305a52c. Main40003918806
+passed nine applicable jobs, actual907tests per quality cell/94Postgres, and clean strict
+replay6calls/2timeouts/zero-provider. Close#35 completed. The user selected #36/#37 as one
+dependent batch and authorized existing Gemini Free settings plus a new24case provisional
+pilot (12development/6regression/6holdout), mixing disclosed hash and risk-keyword sampling.
+Show a small masked draft before model runs; expected risk/ambiguity judgments remain
+AI-provisional. Consumer-selected product/issue references are evaluator-only, not harm truth.
+
+**Decision in progress:** Use Pydantic AI through a custom shared-gateway model boundary,
+not a direct provider SDK that bypasses call/token/deadline controls. Pin taxonomy from the
+published form independently of held-out target frequencies. Exact evidence and valid
+product/issue membership are deterministic support checks; model confidence is merely a
+feature calibrated on development, not a probability claim. Compare Flash-Lite cheap-first
+with always-Flash on a frozen cohort, with missing/error/review cases in denominators.
+Google's2026-10-23 docs list3.5Flash-Lite and3.8Flash standard input/output free and ceilings
+1048576+65536. Extend admission only for the reviewed stronger route; preserve old-route
+behavior. Billing-disabled attestation and no paid fallback remain mandatory.
+
+**Operational boundary:** Store reviewed masked narratives and fixed metadata in a scoped
+Postgres work queue. Tools can enqueue review only; no complaint resolution, refund or
+external account mutation exists. Reuse established session/perimeter patterns without
+cross-vertical imports. Export only closed redacted trace projections and diagnostic
+aggregates. Drift is a distribution diagnostic, not evidence of accuracy or consumer harm.
+Keep data/labels/model output separate and do not change O8/C5 release gates.
+
+
+### Seal the pilot before model output
+
+The user approved the24case pilot, expressly authorized reading the published narratives
+in this tool context after automatic approval review rejected the initially unapproved
+transcript destination, then approved the first3case draft rubric. The pinned source
+verification completed. Selection excludes previous-pilot exact groups, uses full texts
+250–8000characters without truncation, and draws half keyword/half nonkeyword background
+within12development/6regression/6holdout. This restricted stress pilot is not a population
+sample; exact grouping cannot establish near-duplicate or consumer independence. Freeze
+seed/regex/frame in the private selection policy before labeling.
+
+Read all24full narratives without consumer product/issue references or predictions. Retain
+publisher masks; no additional personal identifiers were found in manual review (not a
+privacy certification). Seal9routine/5elevated/10uncertain and15clear/9ambiguous with exact
+Unicode evidence and reasons. Hash reviewed inputs, evaluator selection, reviews, taxonomy
+and selection policy before any candidate call. Taxonomy uses only development-observed
+pairs (11products/131pairs), pinned to the official form/source manifest; it is an observed
+subset, not a claim to parse every permitted form combination. Unknown pairs route review.
+The12case C2 pilot, its labels and full-cohort baseline artifacts remain unchanged.
+
+### Verify the actual Pydantic boundary
+
+The first invented tests exposed a pinned-SDK API mismatch: Agent no longer accepts an
+instrument constructor argument. Inspect the installed2.56.0 source and explicitly set
+agent.instrument=False after construction. Keep the custom Model returning structured
+output through the shared gateway, with Pydantic validation and deterministic exact-span/
+taxonomy checks. Also supply required unknown cost/currency fields in invented Usage
+witnesses rather than assuming omitted accounting means zero. All14classifier/API/diagnostic
+focused tests passed; a non-failing event-loop deprecation warning is retained. The shipped
+CFPB browser asset passed late-response/logout/session-expiry regressions with zero network.
+Both3.5Flash-Lite and3.8Flash were present in the configured model listing; that is access
+metadata, not successful generation or free-billing proof. No paid fallback is permitted.
+
+
+### Development-only evidence repair after interrupted session
+
+The first24attempt development run completed while approval review was unavailable. All12
+cases routed review; retain its private fresh-development-v1 and router-policy-v1 unchanged.
+Valid JSON responses often quoted a real passage but supplied wrong character offsets. Do
+not accept approximate spans or silently rewrite model offsets. Change the candidate schema:
+model supplies exact quotes only, trusted code accepts exactly one occurrence and computes
+Unicode offsets. Missing, repeated or duplicate quotes fail closed. Canonical stored Prediction
+still contains verified spans. This is candidate-v2 development tuning; no regression/holdout
+candidate run has occurred. Reuse sealed labels, create fresh-v2 outputs and a separately pinned
+v2 policy, and retain failures/unknown usage rather than calling all-review routing quality.
+
+### Freeze the conservative result and verify the durable desk
+
+The fresh v2 development collection completed24 gateway exchanges. Nine cheap outputs
+passed typed/quote checks, but development correctness and provider failures left both
+thresholds at1.01. Freeze that policy before fresh regression/holdout. Both independently
+executed pipeline modes then reviewed all6regression and all6holdout cases. The two
+provisionally elevated regression cases reached review; holdout had zero elevated cases,
+so recall there is unknown. Strong-route rate limits are failures, not a quality comparison.
+Do not improve the result by excluding failed cases or lowering the error bar after seeing
+holdout. Keep the original v1 failure record and publish only aggregate counts and pins.
+
+Build the desk in this order: domain-owned SQL and provisioned principals; atomic enrollment
+plus pending jobs; bounded SKIP LOCKED leases; exact-version result publication; enqueue
+receipts checked before expected version; loopback API/session/CSRF; then UI controls.
+Holding a job lock and then a case lock would invert the writer order, so claim reads the
+case without locking and publication rechecks it later. A reviewer enqueue increments the
+case version and invalidates leased work. The next lease attempt above three publishes
+review without another provider call. This fences publication, not exactly-once provider use.
+
+Five real Postgres tests passed, including concurrent identical commands, stale lease refusal,
+disabled-account/role/event-delete checks and an actual child exit after claim. Start an
+external task-owned trial and the local server, enroll a clearly invented record, log in as
+reviewer in Edge and enqueue. The stored version became2 with one review event. Switch to
+the provisioned viewer: write/unassigned reads returned403, no enqueue control appeared and
+logout cleared the private article. Expanded narrative/provenance at1440px and390px had no
+horizontal overflow. CLI locator strictness initially matched two revision strings; narrow
+the locator rather than treating that test-script error as an application failure.
+
+The first broad local test command forgot the established external D-drive TEMP/TMP settings.
+This machine has a C-drive ancestor Git boundary, so49 source-storage tests correctly rejected
+its default C-drive temp paths. The remaining replay failure correctly rejected the changed
+lock. Result50failed/873passed is not acceptance. Repeat with external temp configuration,
+and create a new invented replay version after a clean implementation commit; preserve every
+historical fixture and compare all six canonical request/response pairs before updating pins.
+
+Tracing composes H8 explicitly; automatic Pydantic prompt capture stays off. A new per-run
+HMAC key prevents raw case/input identity from escaping. Original/edited/invented maps to
+original/hybrid/synthetic trace provenance, and no fake source observations are emitted.
+The first local export was accepted, but the npm launcher stalled before independent CLI
+read-back. Use the already-installed pinned CLI directly; queue acceptance alone cannot prove
+stored observations. Diagnostics compare only assigned aggregates and retain empty/unknown
+language and usage dimensions without claiming accuracy drift.
+
+The direct pinned CLI read-back succeeded: four stored observations with run/agent/node/model
+hierarchy, no raw invented narrative/credential canaries, and healthy export/flush/cleanup.
+This was an invented mechanism trace with zero outbound model calls, separate from the live
+provisional pilot. Shared H8 intentionally uses HMAC model references, so backend model-name
+pricing inference is unavailable; do not claim automatic complete cost analytics.
+
+Capture invented replay v11 from clean implementation314211e353cfcecad0569efc64b44d11ac139d6a
+and lock9c055070aa57eeaf2294066684db73e31a960b81f9c559360e9f7f0419f1bd26.
+All six canonical requests and responses exactly match v10. Publish exclusively with digest
+aa68c8598c7306cb6f242a585a98d0e5e4df6d644754b11f4c5031af6c4e04e5, retain v1–v10
+unchanged, and add v10 to historical changed-lock rejection tests. This is invented fixture
+maintenance with zero provider calls, not a fresh CFPB result.
+
+
+### Package the review candidate
+
+The corrected complete locked check passed924tests460.78s,136typed source files,203formatted
+Python files and both import contracts, plus lock/Ruff. Six packages built and dependency
+audit found no known vulnerabilities. A fresh external CFPB web-only wheel environment matched
+all23module/schema/asset bytes, served the API/assets and denied signed-out case reads.
+Google/Langfuse SDKs and other industry packages were absent. The first proof placed the
+strict network audit hook before TestClient; Windows creates an internal socket pair for its
+event loop, so this blocked startup rather than finding a product defect. Separate the phases:
+first exercise in-process API resources, then install the strict network hook and consume all
+six recorded replay calls, with zero provider calls. Both completed after this correction.
+
+The GitHub connector showed an unsubmitted PR form and created nothing. After the user said
+proceed, use the already-authorized repository API client, check for an existing head PR,
+create draft#94 once and attach it to this chat. Final hosted results will be recorded on the
+PR/issues; no source narrative, private per-case label/output or credential entered publication.
+
+### Diagnose the hosted secret-scan failure
+
+The hosted scanner found six generic-api-key matches: two source-file digests repeated in
+the three phase inventories, all introduced in314211e. Independently hash current desk_api.py
+to reproduce its published digest. Reconstruct desk_auth.py's historical docstring and CRLF
+bytes to reproduce its second digest. These are file integrity values, not authentication
+material. Preserve the evidence and scanner rules. Follow the repository's existing narrow
+historical-fingerprint pattern: add only these six exact commit/file/rule/line fingerprints
+to .gitleaksignore, leaving every other location and future value subject to scanning.
+No runtime source changed; rerun exact-head hosted acceptance after this metadata-only fix.

@@ -34,7 +34,7 @@ Acceptance evidence:
 
 ### C2: Review risk/ambiguity labels and establish deterministic baselines
 
-Priority: P1; provisional size M; prerequisites: C1. Status: Review; exact PR and hosted evidence is maintained on #35. AI-reviewed provisional labels; human validation is not established. [Review operations](cfpb-risk-baselines.md).
+Priority: P1; provisional size M; prerequisites: C1. Status: Done after user merge of #84 as95397c4 and verified main40003918806 (907 tests per quality cell,94Postgres,nine applicable jobs); exact evidence is maintained on #35. AI-reviewed provisional labels; human validation is not established. [Review operations](cfpb-risk-baselines.md).
 
 Write labeling rules, blind-label risk/ambiguous examples in batches and implement majority/rules baselines.
 
@@ -46,27 +46,27 @@ Acceptance evidence:
 
 ### C3: Implement Pydantic AI classifier and calibrated routing
 
-Priority: P1; provisional size M; prerequisites: C2, H10. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: C2, H10. Status: Review in [PR #94](https://github.com/Protagonist01/my-production-agentic-systems/pull/94), the user-authorized C3/C4 dependent batch. [Operations and evidence](cfpb-triage-operations.md).
 
 Return typed product/issue/priority and evidence; calibrate routing/abstention on a development-only set and compare cheap-first with always-strong.
 
 Acceptance evidence:
 
-- [ ] Invalid taxonomy or budget failure routes safely with audit evidence.
-- [ ] Coverage/error and high-risk recall are reported at a declared review fraction.
-- [ ] Router thresholds never fit the final holdout.
+- [x] Invalid taxonomy or budget failure routes safely with audit evidence.
+- [x] Coverage/error and high-risk recall are reported at a declared review fraction.
+- [x] Router thresholds never fit the final holdout.
 
 ### C4: Integrate scoped review, API, traces and drift monitoring
 
-Priority: P1; provisional size M; prerequisites: C3, H8. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: C3, H8. Status: Review in the same [PR #94](https://github.com/Protagonist01/my-production-agentic-systems/pull/94) dependent batch. [Source study](code-study-cfpb-triage.md).
 
 Expose classification/review workflow with enqueue-only tools; monitor input/output taxonomy mix, masked text and model/provider changes.
 
 Acceptance evidence:
 
-- [ ] Tenant boundaries and no-write scopes are enforced in tools.
-- [ ] Category/length/language shifts trigger documented diagnostic outputs.
-- [ ] API surfaces decision, uncertainty and review evidence accurately.
+- [x] Tenant boundaries and no-write scopes are enforced in tools.
+- [x] Category/length/language shifts trigger documented diagnostic outputs.
+- [x] API surfaces decision, uncertainty and review evidence accurately.
 
 ### C5: Evaluate routing tradeoffs and release the CFPB vertical
 

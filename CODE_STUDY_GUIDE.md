@@ -389,7 +389,7 @@ The [Olist orders chapter](docs/code-study-olist-orders.md) covers three install
 
 ## CFPB source preparation (C1)
 
-The [CFPB source chapter](docs/code-study-cfpb.md) covers fixed official archive acquisition, external-only source/prepared storage, strict narrative-only inputs and separate consumer-selected target storage. The user selected the complete September 2023–March 2024 cohort; normalized exact-text groups spanning development/regression/March holdout are quarantined. [Source operations and aggregate provenance](docs/data/cfpb-source.md) distinguish actual historical ingestion from invented mechanism tests. No classifier, reviewed risk labels, tenant service or harm-reduction result exists. C1 is merged/verified after #82. C2 is the current unmerged extension, preserving the source isolation boundary.
+The [CFPB source chapter](docs/code-study-cfpb.md) covers fixed official archive acquisition, external-only source/prepared storage, strict narrative-only inputs and separate consumer-selected target storage. The user selected the complete September 2023–March 2024 cohort; normalized exact-text groups spanning development/regression/March holdout are quarantined. [Source operations and aggregate provenance](docs/data/cfpb-source.md) distinguish actual historical ingestion from invented mechanism tests. No classifier, reviewed risk labels, tenant service or harm-reduction result exists. C1 is merged/verified after #82. C2 is merged/verified after #84, preserving the source isolation boundary.
 
 
 [Olist policy chapter](docs/code-study-olist-policy.md) covers the three added modules, tests, actual offline evidence and remaining limitations. The current O4 + O5 extension adds controlled SIM writes and a bounded persistent workflow. Real payment operations, authenticated services and independently human-validated labels remain outside this snapshot.
@@ -402,6 +402,9 @@ The [CFPB source chapter](docs/code-study-cfpb.md) covers fixed official archive
 
 ## CFPB provisional review and deterministic baselines (C2)
 
-[Baseline chapter](docs/code-study-cfpb-baselines.md) and [operations](docs/cfpb-risk-baselines.md) trace blind hash selection, separate provisional AI labels, development-only fitting, split/slice denominators and consumer-reference label limits. C2 remains unmerged in #84. Individual source narratives/labels stay private; no independent human review or harm-reduction/model-release result is claimed.
+[Baseline chapter](docs/code-study-cfpb-baselines.md) and [operations](docs/cfpb-risk-baselines.md) trace blind hash selection, separate provisional AI labels, development-only fitting, split/slice denominators and consumer-reference label limits. C2 is merged/verified as95397c4 after #84. Individual source narratives/labels stay private; no independent human review or harm-reduction/model-release result is claimed.
 
 C2 reconciliation coverage: all three C2 review/baseline modules and their tests remain covered by the [C2 chapter](docs/code-study-cfpb-baselines.md). Later main chapters retain their own inspected-source pins and limits. This reconciliation checks source identity and links; it does not repeat source ingestion or constitute a new exhaustive review.
+
+
+CFPB C3/C4: [typed triage and durable reviewer operations](docs/cfpb-triage-operations.md), [source walkthrough](docs/code-study-cfpb-triage.md) and [aggregate pilot evidence](docs/data/cfpb-triage-evidence-v1.json). This is an unmerged implementation with AI-provisional labels and all-review results; no domain release.
