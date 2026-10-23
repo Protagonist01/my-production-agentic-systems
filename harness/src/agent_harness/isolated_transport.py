@@ -131,12 +131,17 @@ class IsolatedTransport:
 class GeminiWorker:
     api_key: str = field(repr=False)
     free_tier_confirmed: bool
+    flash_comparison: bool = False
 
     def generate(self, request: ModelRequest, *, timeout_seconds: float) -> ModelResponse:
         # Base harness imports need no Google SDK. Only a selected live worker imports it.
         from agent_harness.gemini import GeminiTransport
 
-        return GeminiTransport(self.api_key, free_tier_confirmed=self.free_tier_confirmed).generate(
+        return GeminiTransport(
+            self.api_key,
+            free_tier_confirmed=self.free_tier_confirmed,
+            flash_comparison=self.flash_comparison,
+        ).generate(
             request,
             timeout_seconds=timeout_seconds,
         )

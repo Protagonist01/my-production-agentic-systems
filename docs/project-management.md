@@ -191,3 +191,8 @@ The user selected #49/#50 together after #92 merge verification. Branch codex/p4
 ## C2 reconciliation after verified #93
 
 Merge main116d7e5 into existing PR#84 without changing CFPB source, sealed reviews or baselines. Five conflicts are shared documentation; preserve complete Build Book Entries27–36 and every vertical chapter. #49/#50 are completed after identical-tree user merge and main39973654251 acceptance (886tests per qualitycell,94Postgres; clean replay6calls/2timeouts/zero-provider). C2 stays open Review until user merge. Reuse unchanged source/installed/label evidence, run focused C2 composition/link/publication checks and exact-head replay, then verify the final hosted matrix. No provider calls or label promotion are part of this reconciliation.
+
+
+## User-authorized C3 + C4 dependent batch
+
+After user merge of #84 as95397c4 and exact-main40003918806 verification (907 tests per quality cell,94Postgres,nine applicable jobs,clean replay), #35 is complete. User selected #36/#37 together, authorized existing Gemini Free configuration and a new24case mixed keyword/background provisional pilot, then approved narrative inspection for masking and the first rubric draft. Development, regression and holdout remain separate; freeze labels before model output and policy before held-out runs. C3 is verified within the bundle before C4 acceptance. [Operations](cfpb-triage-operations.md), [study](code-study-cfpb-triage.md), Entry37 and aggregate evidence preserve actual results. The all-review outcome misses the50% review objective and establishes no quality, consumer-harm or savings improvement. Keep implementation issues open until user merge and main acceptance. C5/O8 release remains gated; native board unverified.

@@ -34,7 +34,7 @@ Acceptance evidence:
 
 ### C2: Review risk/ambiguity labels and establish deterministic baselines
 
-Priority: P1; provisional size M; prerequisites: C1. Status: Review; exact PR and hosted evidence is maintained on #35. AI-reviewed provisional labels; human validation is not established. [Review operations](cfpb-risk-baselines.md).
+Priority: P1; provisional size M; prerequisites: C1. Status: Done after user merge of #84 as95397c4 and verified main40003918806 (907 tests per quality cell,94Postgres,nine applicable jobs); exact evidence is maintained on #35. AI-reviewed provisional labels; human validation is not established. [Review operations](cfpb-risk-baselines.md).
 
 Write labeling rules, blind-label risk/ambiguous examples in batches and implement majority/rules baselines.
 
@@ -46,7 +46,7 @@ Acceptance evidence:
 
 ### C3: Implement Pydantic AI classifier and calibrated routing
 
-Priority: P1; provisional size M; prerequisites: C2, H10. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: C2, H10. Status: In progress in the user-authorized C3/C4 dependent batch. [Operations and evidence](cfpb-triage-operations.md).
 
 Return typed product/issue/priority and evidence; calibrate routing/abstention on a development-only set and compare cheap-first with always-strong.
 
@@ -58,7 +58,7 @@ Acceptance evidence:
 
 ### C4: Integrate scoped review, API, traces and drift monitoring
 
-Priority: P1; provisional size M; prerequisites: C3, H8. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: C3, H8. Status: In progress in the same dependent batch. [Source study](code-study-cfpb-triage.md).
 
 Expose classification/review workflow with enqueue-only tools; monitor input/output taxonomy mix, masked text and model/provider changes.
 

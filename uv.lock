@@ -937,6 +937,7 @@ dev = [
     { name = "langgraph" },
     { name = "mypy" },
     { name = "pip-audit" },
+    { name = "production-agent-cfpb-triage", extra = ["web"] },
     { name = "production-agent-harness", extra = ["gemini"] },
     { name = "production-agent-olist-support", extra = ["web"] },
     { name = "production-agent-prior-auth", extra = ["web"] },
@@ -958,6 +959,7 @@ dev = [
     { name = "langgraph", specifier = "==1.2.15" },
     { name = "mypy", specifier = "==2.4.0" },
     { name = "pip-audit", specifier = "==2.10.1" },
+    { name = "production-agent-cfpb-triage", extras = ["web"], editable = "projects/cfpb-triage" },
     { name = "production-agent-harness", extras = ["gemini"], editable = "harness" },
     { name = "production-agent-olist-support", extras = ["web"], editable = "projects/olist-support" },
     { name = "production-agent-prior-auth", extras = ["web"], editable = "projects/prior-auth" },
@@ -1281,8 +1283,25 @@ dependencies = [
     { name = "production-agent-harness" },
 ]
 
+[package.optional-dependencies]
+classifier = [
+    { name = "pydantic-ai-slim" },
+]
+web = [
+    { name = "fastapi" },
+    { name = "pydantic-ai-slim" },
+    { name = "uvicorn" },
+]
+
 [package.metadata]
-requires-dist = [{ name = "production-agent-harness", editable = "harness" }]
+requires-dist = [
+    { name = "fastapi", marker = "extra == 'web'", specifier = "==0.150.0" },
+    { name = "production-agent-harness", editable = "harness" },
+    { name = "pydantic-ai-slim", marker = "extra == 'classifier'", specifier = "==2.56.0" },
+    { name = "pydantic-ai-slim", marker = "extra == 'web'", specifier = "==2.56.0" },
+    { name = "uvicorn", marker = "extra == 'web'", specifier = "==0.54.0" },
+]
+provides-extras = ["classifier", "web"]
 
 [[package]]
 name = "production-agent-harness"

@@ -72,6 +72,9 @@ C1 [CFPB source preparation](data/cfpb-source.md) uses a pinned official FOIA ar
 
 O6/O7 are merged and verified through #86: the [scoped local support desk](olist-console.md) provides durable exact-action approval under the unchanged 100.00 SIM cap. The next user-authorized batch adds [offline Olist state reports](olist-release.md) and [original CUAD contract preparation](data/revenue-source.md), implemented in parallel and integrated for one review. Fresh provider/first-release acceptance remains pending by user instruction. C2 remains a separate review in #84.
 
-C2 #84 adds [provisional blind AI review and deterministic CFPB baselines](cfpb-risk-baselines.md), with a [source study](code-study-cfpb-baselines.md). It remains open Review until user merge; human adjudication and fresh provider release evidence are pending.
+C2 #84 adds [provisional blind AI review and deterministic CFPB baselines](cfpb-risk-baselines.md), with a [source study](code-study-cfpb-baselines.md). It is merged/verified as95397c4; human adjudication and domain release evidence remain pending.
 
 Supply-chain S2/S3/S4: [simulator, budgeted SIM actions and waits](supply-chain-operations.md), [source walkthrough](code-study-supply-operations.md). Invented mechanisms remain separate from S1 source observations and S6 release claims.
+
+
+CFPB C3/C4: [typed triage and durable reviewer operations](cfpb-triage-operations.md), [source walkthrough](code-study-cfpb-triage.md) and [aggregate pilot evidence](data/cfpb-triage-evidence-v1.json). This is an unmerged implementation with AI-provisional labels and all-review results; no domain release.

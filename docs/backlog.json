@@ -936,7 +936,7 @@
         "Baseline results and slice denominators are published before tuning."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 35,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/35",
@@ -947,8 +947,9 @@
       "milestone_number": 3,
       "branch": "codex/c2-risk-baselines",
       "review_evidence": "21focusedpassed6.10s;59typed;sixbuilds;installed8modulebytes match and sealed12casepilot reproduced undernetworkdenial/noSDKs. Full260738consumer-reference baseline and separate12caseAIreview/provisionalrisk pilot; no human-validation/harm/modelqualityclaim. Exactheadfull/hostedacceptance maintainedon#35; nativeboardunverified.",
-      "implementation_commit": "087d4703f4ae72cb9aa75b5c68418f76392d8cea",
-      "command_document": "docs/cfpb-risk-baselines.md"
+      "implementation_commit": "95397c46e796768eb788d5eb5c82ba8b0442e02c",
+      "command_document": "docs/cfpb-risk-baselines.md",
+      "completion_evidence": "User merged #84 as95397c4, tree-identical to reviewed305a52c. Main40003918806 passed nine applicable jobs (907 tests per quality cell,94Postgres); clean strict replay6calls/2timeouts/zero-provider. #35 closed completed. Provisional labels remain unvalidated by humans; native board unverified."
     },
     {
       "id": "C3",
@@ -966,7 +967,7 @@
         "Router thresholds never fit the final holdout."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 36,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/36",
@@ -975,7 +976,10 @@
         35,
         24
       ],
-      "milestone_number": 3
+      "milestone_number": 3,
+      "branch": "codex/c3-c4-cfpb-triage",
+      "command_document": "docs/cfpb-triage-operations.md",
+      "review_evidence": "Authorized dependent #36/#37 bundle after verified #84. Typed bounded Gemini routes, development-only frozen policy and scoped SQL review. All-review provisional pilot; no quality/savings/harm claim. Focused16/SQL5/browser denial and layout evidence; final complete checks pending. C5/O8 release remains gated."
     },
     {
       "id": "C4",
@@ -993,7 +997,7 @@
         "API surfaces decision, uncertainty and review evidence accurately."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 37,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/37",
@@ -1002,7 +1006,10 @@
         36,
         22
       ],
-      "milestone_number": 3
+      "milestone_number": 3,
+      "branch": "codex/c3-c4-cfpb-triage",
+      "command_document": "docs/cfpb-triage-operations.md",
+      "review_evidence": "Authorized dependent #36/#37 bundle after verified #84. Typed bounded Gemini routes, development-only frozen policy and scoped SQL review. All-review provisional pilot; no quality/savings/harm claim. Focused16/SQL5/browser denial and layout evidence; final complete checks pending. C5/O8 release remains gated."
     },
     {
       "id": "C5",
