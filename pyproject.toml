@@ -40,7 +40,7 @@ dev = [
     "production-agent-harness[gemini]",
     "production-agent-olist-support[web]",
     "production-agent-revenue-integrity[web,events]",
-    "production-agent-supply-chain[workflow]",
+    "production-agent-supply-chain[workflow,web]",
     "langgraph==1.2.15",
     "pydantic-ai-slim[google]==2.56.0",
     "langfuse==5.0.1",

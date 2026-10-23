@@ -146,3 +146,8 @@ The user selected R5#43/R6#44/S1#52 after verified main5f73fc9 and closure of R2
 ## S2 + S3 + S4 batch
 
 The user selected #53/#54/#55 after merging #89 as main77b98df, identical to reviewed0bdc7eb. Work is isolated on codex/s2-s3-s4-supply-chain. They approved SIM100.00/action,500.00/incident, separate review above25.00,30-minute approval/confirmation limits, two stale supersessions and blocked missing/stale facts. Source choice was delegated with eventual production in mind: use independent invented worlds with unseen holdout families/formulas and a separately labeled S1 observation adapter, without manufacturing historical weather causality. SQL owns budget, approvals, receipts and confirmation outcomes; frameworks provide bounded assessment/wakeups. No paid provider, real carrier effect, deployment or release promotion is authorized. S5/S6 remain later work; keep these issues open until user merge and verified acceptance. Native project-board status unverified.
+
+
+## S5-only follow-up
+
+The user merged #90 and selected S5 #56 only, with durable in-app notices and previews. Main21d3bef matched the reviewed tree and its nine applicable checks passed; #53/#54/#55 are complete. S5 review is #91 on codex/s5-supply-console. Approval policy is unchanged. S6 #57 remains behind O8 fresh-release acceptance. No external message delivery, paid provider or deployment is authorized.
