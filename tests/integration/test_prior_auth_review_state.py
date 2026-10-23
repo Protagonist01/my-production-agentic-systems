@@ -80,6 +80,7 @@ def test_document_receipt_restart_and_only_affected_criteria(app):
     rebuilt = ReviewStore(lambda: server.connect_trial(trial), clock=lambda: now[0])
     row = rebuilt.snapshot(user, key)
     assert row["result"] is None and row["job"]["criteria"] == ["education"]
+    assert row["note"]["provenance"] == "invented"
     seen = []
 
     def assessor(note, policy, keys):

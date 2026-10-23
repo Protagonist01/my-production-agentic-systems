@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "status": "draft_pending_local_recovery",
+  "batch": [
+    "P4",
+    "P5"
+  ],
+  "clinical_validation": false,
+  "release_approval": false,
+  "source_kind": "invented_mechanism_checks",
+  "local": {
+    "focused_tests": 29,
+    "postgres_tests": 7,
+    "postgres_seconds": 124.95,
+    "offline_tests": 886,
+    "offline_seconds": 489.06,
+    "strict_types": 122,
+    "package_builds": 6,
+    "audit": "passed",
+    "installed_web_extra": "passed_without_google_sdk",
+    "installed_resource_byte_comparison": 4,
+    "installed_replay_network": "denied",
+    "browser_asset_ordering_regressions": "passed"
+  },
+  "initial_hosted": {
+    "run_id": 39943225425,
+    "head": "a9b9d442c7cf51ec945d1af24beb073a88324846",
+    "tested_merge": "c31242aa5a7fc1ce45315ff040fd826ea3958492",
+    "jobs_passed": 10,
+    "offline_tests_per_quality_cell": 886,
+    "postgres_tests": 94,
+    "postgres_warning": "one non-failing warning",
+    "note": "Predates invented-parent provenance correction; corrected-head SQL acceptance required"
+  },
+  "fresh_observations": [
+    {
+      "phase": "initial",
+      "workflow": {
+        "claimed": true,
+        "published": true,
+        "expired": 0
+      },
+      "case_status": "qualified_review",
+      "criterion_states": {
+        "adult_osa": "insufficient",
+        "education": "insufficient",
+        "clinical_evaluation": "insufficient",
+        "sleep_test": "insufficient",
+        "physician_order": "insufficient",
+        "severity": "insufficient",
+        "event_count": "insufficient"
+      },
+      "selected_criteria": [
+        [
+          "adult_osa",
+          "education",
+          "clinical_evaluation",
+          "sleep_test",
+          "physician_order",
+          "severity",
+          "event_count"
+        ]
+      ],
+      "requests": 1,
+      "failures": [
+        "timeout"
+      ],
+      "clinical_validation": false,
+      "release_approval": false,
+      "code_revision": "4ee75bc6a7d227b2c5469bfda8f60637d69a78c4+dirty",
+      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d"
+    }
+  ],
+  "replay": {
+    "version": 10,
+    "capture_source": "4ee75bc6a7d227b2c5469bfda8f60637d69a78c4",
+    "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+    "sha256": "c3a6804a93739740a196a44aaed66af31a564faa6c1b9b61600b82386b985f08",
+    "calls": 6,
+    "timeouts": 2,
+    "provider_calls": 0,
+    "all_exchanges_equal_v9": true
+  },
+  "pending": [
+    "Corrected-head hosted SQL acceptance",
+    "Real local SQL/browser document flow after Docker recovery",
+    "Supplemental full-workflow fresh model check"
+  ],
+  "limits": [
+    "AI-provisional illustrative evidence only",
+    "No clinical authorization or denial action",
+    "Explicit reviewed redaction is not general PHI detection",
+    "Provider calls may repeat after a crashed lease",
+    "Initial fresh timeout retained as failure, not successful reasoning",
+    "UI-only fixture checks do not replace database or model acceptance"
+  ]
+}

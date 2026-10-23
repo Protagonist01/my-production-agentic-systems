@@ -1968,3 +1968,15 @@ A focused combined replay run without external-cache write elevation hit26tempor
 Full locked check passed886tests in489.06seconds, strict types122sources,184formatted Python files and both import boundaries. Allsix package builds and dependency audit passed. The shipped Node asset passes private clearing, stalled-load logout and late403after a new sign-in; the latter required binding denied-session clearing to the request's epoch. Seven focused SQL checks remain passed from before the resource interruption.
 
 Local browser sign-in then returned a fixed503 while Docker stopped responding; the host had briefly rejected process creation with disk-full. Do not weaken login timeouts or claim a browser pass. The user is clearing space; continue installed-package/hosted work and preserve initial fresh-timeout evidence. No unrelated services or user files have been stopped/deleted.
+
+
+### Preserve invented provenance on supplemental arrival
+
+Reading the delivery path found a provenance bug before supplemental live acceptance: it unconditionally marked appended notes edited_illustrative, even when the parent was wholly invented. This could misdescribe an invented workflow as an edited published source. Preserve invented for an invented parent; only a published/edited illustrative parent becomes edited_illustrative. Add a state assertion to the actual duplicate-delivery test and rerun hosted SQL acceptance with the correction. No policy or support-grammar tuning follows from this provenance fix.
+
+
+### Initial hosted and installed acceptance
+
+Draft#93 at a9b9d44 passed initial39943225425 alltenjobs. Actual logs886tests per qualitycell and94Postgres (one non-failing warning), types122sources, Node assetordering regressions and strict replay6calls/2timeouts/zero-provider. A provenance correction is still newer than this hosted run and needs corrected-head SQL evidence.
+
+A new external web-only wheel install has49cached packages and no Google SDK. With an outbound-network audit hook installed before imports, API/CLI/workflow imports pass; four packaged schema/web resources match source bytes and installed replay consumes6calls/2timeouts/zero-provider. Source publication scanning found no configured key in332publishable files and verified five new document links. Local Docker remains unavailable while the user clears space. Use an explicitly labeled in-memory UI fixture for layout checks only; do not present it as real SQL or live-model evidence.

@@ -246,7 +246,11 @@ class ReviewStore:
                     update={
                         "text": text,
                         "note_sha256": digest(text),
-                        "provenance": "edited_illustrative",
+                        "provenance": (
+                            "invented"
+                            if previous.provenance == "invented"
+                            else "edited_illustrative"
+                        ),
                     }
                 ).canonical_json()
             )
