@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-Verified main `3601508` includes user-merged CFPB #94; #36/#37 are completed after main acceptance (924tests per matrix cell,99Postgres). The active O8#33 batch adds [fresh Olist experiment and review evidence](docs/olist-fresh-review.md) using the user-authorized Gemini Free project. Labels/baselines/thresholds remain review inputs; downstream releases and production approval remain gated. Native board state is unverified.
+User merged #95 as `4b42d66`, with the reviewed tree unchanged. Its [fresh Olist review evidence](docs/olist-model-card.md) records 30/36 correct Gemini trials and six unresolved timeouts. Main's dependency audits flagged three advisories in locked filelock4.1.2; the current repair updates only that package to4.2.1. Main acceptance and O8#33 release remain pending. Independent labels/baselines/thresholds and representative validation still gate downstream releases. Native board state is unverified.
 
 ## Setup and working commands
 

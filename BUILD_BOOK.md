@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 39 — Repairing a dependency audit after merge](#entry-39--repairing-a-dependency-audit-after-merge)
 - [Entry 37 — Typed CFPB triage and scoped review](#entry-37--typed-cfpb-triage-and-scoped-review)
 
 - [Entry 1 â€” Proposed execution and evidence boundaries](#entry-1--proposed-execution-and-evidence-boundaries)
@@ -2394,3 +2395,48 @@ attempt; zero summed reported output is not zero consumption. The first trials o
 local offline checks, so timing cannot establish isolated provider latency. The model card
 records these limits and the failed proposed criteria. No threshold or label was promoted,
 and #33 remains in progress with downstream releases gated.
+
+## Entry 39 — Repairing a dependency audit after merge
+**Files touched:** `uv.lock`, `docs/code-study-ci.md`, O8 status documentation.
+
+### Context
+
+The user merged #95 as `4b42d661368d2018c770962deff86fb81c11f844`, with the identical
+reviewed tree. Exact-main strict replay passed. Both main dependency-audit jobs reported
+three advisories for locked `filelock 4.1.2`: CVE-2026-112906, CVE-2026-112940 and
+CVE-2026-112914. Their fix-version column lists 4.2.1. The earlier successful audit is historical
+evidence, not a guarantee that future advisory data will stay unchanged.
+
+### Decision and construction
+
+Use a targeted lock update to the reported fixed version, preserving every other package.
+Do not add audit ignores or relabel the failed main run as accepted. From the merged commit,
+run `uv lock --upgrade-package filelock==4.2.1`; inspect the diff to confirm only its version,
+distribution URLs, hashes, sizes and upload times change. The PyPI release page confirms
+the 4.2.1 files and Python >=3.11 compatibility. Locked setup replaced exactly one package.
+Run the strict hashed audit, CI-helper tests and strict replay, then require the full hosted
+platform/Postgres matrix. Actual check results follow after completion.
+
+### Evidence boundary
+
+The historical fresh O8 experiment remains bound to its original candidate and lock. Updating
+the environment does not revalidate those provider results for a new candidate. Preserve all
+old pins and the six-timeout result; no new provider calls are part of this repair. Independent
+label/baseline/threshold requirements still block O8 release.
+
+Locked setup changed exactly one installed package. The repaired strict hashed audit found
+no known vulnerabilities, and 29 existing CI-helper/development-command tests passed in
+0.71 seconds. The local pytest-cache permission warning is non-failing. Full hosted checks
+are still required for this changed lock; no new product tests mirror a version string.
+
+The first clean-fix replay rejected v11 because `ReplayBinding.compatible_context` includes
+the environment lock. This is the expected guard, not a reason to loosen matching. Generate
+invented v12 from clean0719174 with `invented_recording`, compare each of its six canonical
+requests/responses with v11, and publish exclusively with `write_recording`. All six match;
+there are zero provider calls. Change only the trusted fixture resource/digest constants and
+add v11 to the historical-lock rejection cases. Preserve every historical fixture and the
+private O8 evidence. New pin6c8a4d3c identifies this invented transcript, not a fresh model run.
+
+The combined replay/CI-helper suite passed109tests in5.73seconds, including every historical
+fixture's current-lock rejection. Ruff and formatting passed for the changed Python files.
+The clean final commit's standalone replay and full hosted matrix are verified separately.

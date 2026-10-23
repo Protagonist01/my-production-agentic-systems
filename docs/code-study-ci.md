@@ -67,6 +67,19 @@ Local Windows/Python 3.13.4/uv 0.11.1: 77 offline tests including thirteen CI bo
 - Describe the first negative-control lesson: mypy stopped the harness probe before imports. The second control exercised the architecture stage without suppressing types.
 - Add a new required workflow job: add it to needs, result environment, gate validation, tests and these docs together. Do not make it optional merely to turn the gate green.
 
+## Dependency advisory refresh after #95
+
+Inspected on `codex/filelock-audit-fix`, based on merged `4b42d66`. Main run40033151912
+reported three advisories for `filelock 4.1.2`, with fixed version4.2.1. The dependency enters
+through `cachecontrol[filecache]` in audit tooling. [`audit()`](../ci_checks.py) exports the
+actual lock with hashes and runs strict `pip_audit`; current advisory data can therefore
+fail a previously passing unchanged tree. The targeted command
+`uv lock --upgrade-package filelock==4.2.1` changes one package without adding an ignore.
+The [published release](https://pypi.org/project/filelock/4.2.1/) supports the project's Python
+versions. Confirm the new lock through setup/audit and the hosted matrix before accepting it.
+No application source changes or exploit reproduction are claimed. Historical fresh model
+results retain their original lock pins and cannot become new-environment release evidence.
+
 Verified configuration/test sources: [workflow][ci-workflow], [CODEOWNERS][ci-owners], [PR template][ci-template], [CI boundary tests][ci-tests].
 
 [ci-validate-pr]: https://github.com/Protagonist01/my-production-agentic-systems/blob/b9a3d4c148866bef8ee57d92be568cd5c25d3aac/ci_checks.py#L21-L51

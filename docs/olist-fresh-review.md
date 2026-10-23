@@ -93,3 +93,14 @@ or synthetic-only support-policy quality result is claimed.
 Keep #33 in progress. Independent labels, baseline/threshold approval, representative
 validation and H10 release requirements remain pending. Hosted acceptance is recorded on
 the review PR only after actual completion.
+
+## User merge and dependency repair
+
+The user merged #95 as `4b42d661368d2018c770962deff86fb81c11f844`, with the identical
+reviewed tree. Clean exact-main replay passed six calls/two recorded timeouts/zero provider
+calls. Main run40033151912 then failed both dependency audits on filelock4.1.2, reporting
+CVE-2026-112906, CVE-2026-112940 and CVE-2026-112914 with fixed version4.2.1.
+The targeted follow-up changes only this locked package, with no audit suppressions.
+Main acceptance is pending the repair; the successful pre-merge CI remains historical evidence.
+The experiment above retains its original environment pin. This lock update does not produce
+new fresh provider evidence or approve any of #33's remaining release requirements.
