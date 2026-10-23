@@ -377,6 +377,34 @@
         "hierarchy_verified": true,
         "canaries_absent": true
       }
-    }
-  }
+    },
+    "full_locked_check": {
+      "tests_passed": 924,
+      "test_seconds": 460.78,
+      "typed_source_files": 136,
+      "formatted_python_files": 203,
+      "import_contracts_kept": 2,
+      "lock_lint_format_types_imports": true,
+      "nonfailing_warnings": [
+        "pydantic_graph_event_loop_deprecation",
+        "local_pytest_cache_permission"
+      ]
+    },
+    "installed_wheel": {
+      "matching_cfpb_files": 23,
+      "web_only": true,
+      "api_assets_served": true,
+      "signed_out_access": 403,
+      "google_langfuse_sdks_absent": true,
+      "other_verticals_absent": true,
+      "strict_replay_network_disabled": true,
+      "recorded_calls": 6,
+      "provider_calls": 0
+    },
+    "build_packages": 6,
+    "locked_dependency_audit": "no_known_vulnerabilities"
+  },
+  "implementation_commit": "314211e353cfcecad0569efc64b44d11ac139d6a",
+  "replay_maintenance_commit": "30e3b9ff50081007371be226855b5ed0b495ee82",
+  "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/94"
 }

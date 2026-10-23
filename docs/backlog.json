@@ -967,7 +967,7 @@
         "Router thresholds never fit the final holdout."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 36,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/36",
@@ -979,7 +979,9 @@
       "milestone_number": 3,
       "branch": "codex/c3-c4-cfpb-triage",
       "command_document": "docs/cfpb-triage-operations.md",
-      "review_evidence": "Authorized dependent #36/#37 bundle after verified #84. Typed bounded Gemini routes, development-only frozen policy and scoped SQL review. All-review provisional pilot; no quality/savings/harm claim. Focused16/SQL5/browser denial and layout evidence; final complete checks pending. C5/O8 release remains gated."
+      "review_evidence": "PR #94: full locked check924passed460.78s,136typed,203formatted,imports/lock/Ruff; focused16 and SQL5 passed; six builds and locked dependency audit passed. Installed web-only wheel23files match, assets/auth403 and offline replay6calls/zero-provider without Google/Langfuse SDKs. Real SQL-backed Edge reviewer/viewer/logout/390px checks and local four-observation trace read-back passed. Fresh sealed24case AI-provisional pilot all-review;50% review objective missed, no model-quality/savings/harm claim. Exact-head hosted evidence maintained on PR#94/#36/#37; native board unverified. Remain open until user merge and main acceptance.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/94",
+      "implementation_commit": "314211e353cfcecad0569efc64b44d11ac139d6a"
     },
     {
       "id": "C4",
@@ -997,7 +999,7 @@
         "API surfaces decision, uncertainty and review evidence accurately."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Review",
       "blocker": null,
       "issue_number": 37,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/37",
@@ -1009,7 +1011,9 @@
       "milestone_number": 3,
       "branch": "codex/c3-c4-cfpb-triage",
       "command_document": "docs/cfpb-triage-operations.md",
-      "review_evidence": "Authorized dependent #36/#37 bundle after verified #84. Typed bounded Gemini routes, development-only frozen policy and scoped SQL review. All-review provisional pilot; no quality/savings/harm claim. Focused16/SQL5/browser denial and layout evidence; final complete checks pending. C5/O8 release remains gated."
+      "review_evidence": "PR #94: full locked check924passed460.78s,136typed,203formatted,imports/lock/Ruff; focused16 and SQL5 passed; six builds and locked dependency audit passed. Installed web-only wheel23files match, assets/auth403 and offline replay6calls/zero-provider without Google/Langfuse SDKs. Real SQL-backed Edge reviewer/viewer/logout/390px checks and local four-observation trace read-back passed. Fresh sealed24case AI-provisional pilot all-review;50% review objective missed, no model-quality/savings/harm claim. Exact-head hosted evidence maintained on PR#94/#36/#37; native board unverified. Remain open until user merge and main acceptance.",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/94",
+      "implementation_commit": "314211e353cfcecad0569efc64b44d11ac139d6a"
     },
     {
       "id": "C5",

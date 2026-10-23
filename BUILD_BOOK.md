@@ -2269,3 +2269,21 @@ All six canonical requests and responses exactly match v10. Publish exclusively 
 aa68c8598c7306cb6f242a585a98d0e5e4df6d644754b11f4c5031af6c4e04e5, retain v1–v10
 unchanged, and add v10 to historical changed-lock rejection tests. This is invented fixture
 maintenance with zero provider calls, not a fresh CFPB result.
+
+
+### Package the review candidate
+
+The corrected complete locked check passed924tests460.78s,136typed source files,203formatted
+Python files and both import contracts, plus lock/Ruff. Six packages built and dependency
+audit found no known vulnerabilities. A fresh external CFPB web-only wheel environment matched
+all23module/schema/asset bytes, served the API/assets and denied signed-out case reads.
+Google/Langfuse SDKs and other industry packages were absent. The first proof placed the
+strict network audit hook before TestClient; Windows creates an internal socket pair for its
+event loop, so this blocked startup rather than finding a product defect. Separate the phases:
+first exercise in-process API resources, then install the strict network hook and consume all
+six recorded replay calls, with zero provider calls. Both completed after this correction.
+
+The GitHub connector showed an unsubmitted PR form and created nothing. After the user said
+proceed, use the already-authorized repository API client, check for an existing head PR,
+create draft#94 once and attach it to this chat. Final hosted results will be recorded on the
+PR/issues; no source narrative, private per-case label/output or credential entered publication.
