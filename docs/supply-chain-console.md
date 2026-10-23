@@ -6,8 +6,8 @@ There is no freight adapter, external notification sender or production release 
 S6 remains behind the pending Olist release gate.
 
 Install the workspace development dependencies with `uv sync --locked --all-packages`.
-Use an existing isolated local-service workspace with a copy of `compose.yaml`, configured
-using `python dev.py db-config`. Keep its private configuration outside Git.
+Use an existing isolated local-service workspace with a copy of `compose.yaml`, initialized
+by `bootstrap`, which creates its private configuration automatically. Keep that workspace outside Git.
 
 ```powershell
 python -m supply_chain.console_cli --root D:/private/supply --trial supply-demo bootstrap

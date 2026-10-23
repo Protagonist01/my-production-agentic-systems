@@ -129,3 +129,8 @@ The Supply optional workflow extra reuses existing LangGraph/Inngest pins but ch
 ## Supply web extra: explicit invented v8 capture
 
 S5 adds web extra metadata without changing dependency versions. At clean source `733a3d2d6d700d237402f5184bf50637e18d6736`, capture six in-process invented exchanges with lock `cb27dc9b03a7a09967eeba2005abdb6447565cfbe4bbcda7b41d1c1063328f10`. All request/response canonical bytes equal v7, including two timeouts. Preserve v1-v7 bytes and reject their historical locks. New resource `invented-v8.json` has external digest `307a0797021be1cc1804d87f4f4d5bfd2fbb2c937c880b79dfc2b151c321431e`. This is fixture maintenance with zero provider calls, not model-quality evidence.
+
+
+## Supply standalone web dependency correction: invented v9
+
+The web extra now explicitly includes the already-pinned LangGraph assessment dependency. Isolated web-only import reproduced its absence before correction. Capture at clean source `966b196dd4bd07d169e232541e082cd0f93e71f2` uses lock `e9694f444898bc4e06e70080c42634a7e39e91305b1543b5965b884af215f6c1` and digest `f2ee896a12d8a7858c165db559f70b8775d86007a14ee969f8ba97fdc5986fa4` in `invented-v9.json`. Six request/response pairs equal v8; retain v1-v8 bytes and reject their historical locks. No dependency versions, replay matching rules or provider evidence change.

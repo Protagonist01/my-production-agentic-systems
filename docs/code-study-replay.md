@@ -115,3 +115,8 @@ The workflow extra changes uv.lock. The [fixture maintenance record](replay.md#o
 ## S2/S3/S4 optional workflow lock update
 
 The Supply workflow extra changes only workspace dependency metadata while preserving all existing version pins. [The explicit v7 maintenance record](replay.md#supply-workflow-extra-explicit-invented-v7-capture) preserves six request/response pairs and historical v1–v6 resources. No replay matching rule changes, paid calls or fresh provider evidence are introduced.
+
+
+## S5 standalone web metadata
+
+S5 first recorded v8 for the optional web metadata, then preserved it and added v9 after an isolated install revealed the missing LangGraph dependency in web. [The maintenance record](replay.md#supply-standalone-web-dependency-correction-invented-v9) pins the new source, lock and digest. All six request/response pairs remain unchanged; historical v1-v8 are retained. No matching rule or provider evidence changes.
