@@ -251,5 +251,16 @@
     "draft": true,
     "tests_per_quality_cell": 886,
     "postgres_tests": 94
+  },
+  "final_ci_regression": {
+    "run": 39971144131,
+    "head": "b64d3fc512d48508fc09d3d385f6bf91f98331f7",
+    "failed_job": "Windows Python 3.12",
+    "failed_test": "test_deadline_scope_policy_and_source_mismatches_prevent_write",
+    "passed_tests_in_failed_cell": 885,
+    "cause": "one-microsecond real-clock deadline could bind shared event before expiring, masking later snapshot assertion",
+    "controlled_clock_reproduction": true,
+    "correction": "inject deterministic clock and assert expired entry leaves no binding",
+    "application_code_changed": false
   }
 }

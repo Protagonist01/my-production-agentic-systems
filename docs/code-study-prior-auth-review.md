@@ -3,7 +3,7 @@
 Inspected branch `codex/p4-p5-prior-auth-review`, implementation `0d8c1ad`, October 23, 2026.
 Later evidence is recorded in [draft PR #93](https://github.com/Protagonist01/my-production-agentic-systems/pull/93)
 and [operations](prior-auth-review.md). This is an
-unmerged P4/P5 slice; source/criterion logic is covered in [P1â€“P3](code-study-prior-auth.md).
+unmerged P4/P5 slice; source/criterion logic is covered in [P1Ã¢â‚¬â€œP3](code-study-prior-auth.md).
 Clinical validation, production hosting, P6 and O8 release acceptance remain excluded.
 
 Verified source trail at that commit:
@@ -117,6 +117,6 @@ Reviewer routing appended durable history; logout cleared the case. Expanded mob
 citations measured viewport/document 390/390 and table container/content 314/620. These are
 real application checks, separate from the earlier in-memory UI fixture. They demonstrate
 safe failure handling, not clinical validation or successful full-cohort model extraction.
-The one-call education subset remains the successful fresh extraction evidence. No source
-code changed during this continuation; production deployment and clinical utility remain
+The one-call education subset remains the successful fresh extraction evidence. A later Windows CI failure was reproduced as an existing Olist test clock race; the test
+now injects time and asserts no binding after expired entry. Application code stayed unchanged; production deployment and clinical utility remain
 outside this guide's inspected scope.

@@ -131,8 +131,15 @@ def test_checkpointed_completion_is_reverified_and_input_rebinding_refused():
 
 def test_deadline_scope_policy_and_source_mismatches_prevent_write():
     store = StubStore()
-    graph = SupportWorkflow(store, FixedPlanner(IntentPlan(intent="refund")))
     c = context()
+    # A coarse wall clock can admit the one-microsecond deadline at entry, bind
+    # this event, then expire in the graph. Keep this pre-entry deadline check
+    # deterministic so later independent mismatch checks see no prior binding.
+    graph = SupportWorkflow(
+        store,
+        FixedPlanner(IntentPlan(intent="refund")),
+        now=lambda: c.clock + timedelta(seconds=1),
+    )
     with pytest.raises(TimeoutError):
         graph.run(
             c.model_copy(update={"deadline": c.clock + timedelta(microseconds=1)}),
@@ -141,6 +148,7 @@ def test_deadline_scope_policy_and_source_mismatches_prevent_write():
             InMemorySaver(),
             run_limit_minor=10000,
         )
+    assert not store.seen
     with pytest.raises(PermissionError):
         graph.run(
             context(),

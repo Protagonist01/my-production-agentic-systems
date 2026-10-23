@@ -2038,3 +2038,21 @@ mobile citations measure document/viewport390/390 and table content/container620
 This supersedes the pending-Docker status above: actual SQL/browser continuation is verified,
 including the guarded model failure path. Successful full-cohort extraction is not claimed;
 the earlier one-call education subset remains separate positive fresh evidence.
+
+
+### Final CI exposes an existing real-clock test race
+
+Ready-for-review run39971144131 failed only Windows3.12:885tests passed, but the combined
+Olist deadline/scope/policy/snapshot test expected a snapshot error and got event-input mismatch.
+Its first call used a real one-microsecond deadline. A coarse clock could pass the entry check,
+bind the event, then expire inside the graph; later calls reused that StubStore and changing
+the source pin correctly hit the existing event binding before the intended snapshot check.
+Reproduce with an injected clock returning the initial timestamp once, then one second later:
+first call times out after binding, next altered snapshot raises business_event_input_mismatch,
+and zero refunds occur. This is test-state contamination, not a new production decision bug.
+Fix the existing test by injecting a constant time one second after its captured clock and
+assert no binding after the expired-entry call. Keep application deadlines and identity rules
+unchanged; run the entire Olist workflow test file before publishing this narrow CI repair.
+
+The corrected Olist workflow file passed all14tests in7.53s; Ruff lint/format passed. One
+non-failing pytest cache permission warning is retained as environment evidence.
