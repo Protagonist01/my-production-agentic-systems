@@ -48,3 +48,6 @@ Thumbs.db
 
 # Browser acceptance snapshots can contain private form/source data.
 .playwright-cli/
+
+# Local browser verification captures.
+output/playwright/

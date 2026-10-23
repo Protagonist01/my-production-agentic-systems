@@ -94,3 +94,5 @@ C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-o
 O6/O7 are merged and verified through #86: the [scoped local support desk](docs/olist-console.md) provides durable exact-action approval under the unchanged 100.00 SIM cap. The next user-authorized batch adds [offline Olist state reports](docs/olist-release.md) and [original CUAD contract preparation](docs/data/revenue-source.md), implemented in parallel and integrated for one review. Fresh provider/first-release acceptance remains pending by user instruction. C2 remains a separate review in #84.
 
 Supply-chain S2/S3/S4: [simulator, budgeted SIM actions and waits](docs/supply-chain-operations.md), [source walkthrough](docs/code-study-supply-operations.md). Invented mechanisms remain separate from S1 source observations and S6 release claims.
+
+S5 #56 adds the [scoped Supply workbench and durable in-app previews](docs/supply-chain-console.md), with [scope and recovery walkthrough](docs/code-study-supply-console.md). SIM only; S6 remains behind the pending Olist fresh-release gate.

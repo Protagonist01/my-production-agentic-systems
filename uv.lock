@@ -1396,6 +1396,7 @@ dependencies = [
 [package.optional-dependencies]
 web = [
     { name = "fastapi" },
+    { name = "langgraph" },
     { name = "uvicorn" },
 ]
 workflow = [
@@ -1407,6 +1408,7 @@ workflow = [
 requires-dist = [
     { name = "fastapi", marker = "extra == 'web'", specifier = "==0.150.0" },
     { name = "inngest", marker = "extra == 'workflow'", specifier = "==0.5.19" },
+    { name = "langgraph", marker = "extra == 'web'", specifier = "==1.2.15" },
     { name = "langgraph", marker = "extra == 'workflow'", specifier = "==1.2.15" },
     { name = "production-agent-harness", editable = "harness" },
     { name = "uvicorn", marker = "extra == 'web'", specifier = "==0.54.0" },
