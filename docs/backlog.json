@@ -1258,13 +1258,15 @@
         "Diagnosis versus procedure-code validation requirements are explicit."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 46,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/46",
       "parent_issue_number": 7,
       "dependency_issue_numbers": [],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User authorized46/47/48 in one dependent batch from verified main1e59722. Source mix/provisional labels and fresh configured free-tier Gemini use approved. P1 outputs verified before P2/P3 acceptance; no clinical release or authorization.",
+      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92"
     },
     {
       "id": "P2",
@@ -1282,7 +1284,7 @@
         "Redaction/citation mapping and label isolation are verified."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 47,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/47",
@@ -1291,7 +1293,9 @@
         46,
         19
       ],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User authorized46/47/48 in one dependent batch from verified main1e59722. Source mix/provisional labels and fresh configured free-tier Gemini use approved. P1 outputs verified before P2/P3 acceptance; no clinical release or authorization.",
+      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92"
     },
     {
       "id": "P3",
@@ -1309,7 +1313,7 @@
         "Retrieval and criterion-assessment errors can be diagnosed separately."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Review",
       "blocker": null,
       "issue_number": 48,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/48",
@@ -1318,7 +1322,9 @@
         47,
         24
       ],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User authorized46/47/48 in one dependent batch from verified main1e59722. Source mix/provisional labels and fresh configured free-tier Gemini use approved. P1 outputs verified before P2/P3 acceptance; no clinical release or authorization.",
+      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92"
     },
     {
       "id": "P4",
@@ -1541,7 +1547,7 @@
         "Notifications cannot state unconfirmed execution or invented delivery outcomes."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 56,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/56",
@@ -1553,7 +1559,8 @@
       "milestone_number": 6,
       "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/91",
       "implementation_commit": "733a3d2",
-      "review_evidence": "Local full offline855 tests1244.74s; fullSQL87tests1748.60s; corrected-lock focused115tests25.79s;106typed sources; actual-asset Node races; six builds/audit; isolated standaloneweb import11resources and strictreplay; real desktop/mobile separate-review/commit/confirmation flow; clean4389aa8 replay6calls2timeouts0provider. Initial hosted39878331042 alltenpass; final hosted evidence on #56/#91. SIM in-app only; no release claim."
+      "review_evidence": "Local full offline855 tests1244.74s; fullSQL87tests1748.60s; corrected-lock focused115tests25.79s;106typed sources; actual-asset Node races; six builds/audit; isolated standaloneweb import11resources and strictreplay; real desktop/mobile separate-review/commit/confirmation flow; clean4389aa8 replay6calls2timeouts0provider. Initial hosted39878331042 alltenpass; final hosted evidence on #56/#91. SIM in-app only; no release claim.",
+      "completion_evidence": "User merged #91 as1e59722, same tree as43c63ea. Main39881820867 passed nine applicable jobs; actual logs856perquality/87SQL/zero-provider replay; clean exact-main replay passed. #56 closed completed."
     },
     {
       "id": "S6",
