@@ -168,3 +168,15 @@ class Snapshot(Contract):
         "confirmation_failed",
         "confirmation_timeout",
     ]
+
+
+class Portfolio(Contract):
+    """One SQL snapshot; budget covers the incident, rows cover the caller's scope."""
+
+    event_id: Id
+    as_of: AwareDatetime
+    budget_version: Version
+    spent_minor: Minor
+    replans_used: Annotated[int, Field(ge=0, le=2)]
+    shipments: tuple[Shipment, ...]
+    snapshots: tuple[Snapshot, ...]

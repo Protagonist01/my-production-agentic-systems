@@ -45,6 +45,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 32 â€” Approved Revenue effects and independent shipping sources](#entry-32--approved-revenue-effects-and-independent-shipping-sources)
 - [Entry 33 — Independent shipping worlds and durable budgeted intervention](#entry-33--independent-shipping-worlds-and-durable-budgeted-intervention)
 
+- [Entry 34 — Scoped shipping workbench and durable factual notices](#entry-34--scoped-shipping-workbench-and-durable-factual-notices)
 
 ## Entry 1 â€” Proposed execution and evidence boundaries
 
@@ -1788,3 +1789,43 @@ PR review remains the user's gate. No paid provider, production carrier/billing 
 The complete local offline rerun passed846tests666.16seconds using external D-drive TEMP/TMP. One cache-metadata permission warning did not affect assertions. The complete local SQL run passed85of86tests in1026.17seconds: the sole Olist operator CLI failure was its correct private-file guard under C:\.git, not a shipping transaction failure. Rerun only that failed test with external D-drive state/output:1passed32.80seconds. Do not relabel the first run as86passed; hosted SQL supplies a clean single86-test run. All owned test fixtures performed normal teardown. Existing shared Langfuse containers were not stopped or altered.
 
 Documentation-only review head3a40e44 also passed all ten hosted jobs in run39865663854. No new executable, configuration, lock or source data was changed after0406e82. Final documentation records completed evidence and updates merged R5/R6/S1 statuses; the three new issues stay open Review. Prior user-merged #89 issues43/44/52 were explicitly closed completed after verifying main77b98df and successful main run39742751290. Native project-board read-back remains unverified. User review/merge, production carrier/authentication/hosting and S6 fresh release evidence remain separate gates.
+
+
+## Entry 34 — Scoped shipping workbench and durable factual notices
+
+Date: 2026-10-22 (Africa/Lagos). Branch `codex/s5-supply-console`, based on user-merged #90 main `21d3bef`. Work is starting; results follow actual checks.
+
+### Context
+
+The user reviewed/merged #90, then explicitly selected **S5 #56 only**. S6 #57 remains behind the Olist fresh-release gate. They chose durable in-app notices and message previews only. No email/webhook delivery, paid model call, real carrier action or deployment is authorized. The previous SIM policy remains unchanged:100.00/action,500.00/incident,separate review above25.00,30-minute windows,two stale supersessions and blocked missing/conflicting/stale facts.
+
+### Before you read on
+
+How can an operator see budget, approval and committed effects from one consistent snapshot, while a shipment message never turns command acceptance into a delivered-shipment claim? Sketch the authenticated scope, canonical snapshot and durable notice identity before implementing the UI.
+
+### Options considered and chosen
+
+Keep this as a local authenticated Supply application using the established FastAPI/session pattern and its own domain-owned namespace. Importing Revenue console classes would break industry independence; a broad shared-auth redesign would mix unrelated vertical changes into S5. Reuse the reviewed session pattern without changing other verticals. Add only the already pinned FastAPI/Uvicorn optional web metadata and preserve dependency versions.
+
+Add one SQL-owned consistent incident snapshot rather than assembling budget and effect totals from separate transactions. Budget lock comes first, then sorted shipment locks. Terminal expiry reconciliation and receipt reads happen under that same snapshot. Browser JSON carries IDs/fingerprints, never grants, prices or claimed eligibility.
+
+Persist in-app notices by canonical tenant/incident/shipment/status fingerprint. Reconciliation after a missed write/restart reconstructs a committed notice from the receipt and a separate terminal notice from canonical confirmation state. Duplicated refreshes cannot create another notice. Message previews use an explicit fixed vocabulary and known observation timestamps; estimates are labeled estimates and no delivery outcome is invented. Optional alert context must be a separately provisioned S1 public AlertFact; its freshness is shown and it does not establish a weather-shipment causal link.
+
+### How to build it
+
+1. Define server-provisioned principal roles (operator,reviewer,confirmer,viewer) with exact per-incident shipment scopes. Build role grants on the server. Accounts and opaque expiring sessions live in Supply-owned tables; passwords use the established PBKDF2 format, session/CSRF values are stored hashed and sign-in admission is bounded.
+2. Implement the consistent SQL snapshot and derive role-filtered board rows from it. All dates and provenance remain explicit, all money uses exact integer minor units. Return decimal strings at the browser boundary. A proposed SIM action, a committed command and a confirmed modeled action must remain separate.
+3. Store deterministic notices after canonical reconciliation. A notice insertion failure cannot roll back or duplicate a committed action: the next read recovers from the permanent receipt. Acknowledge read state per authenticated account after checking its tenant/incident/shipment scope. Never expose another user's notice or allow caller JSON to choose authority.
+4. Expose loopback-only API/session routes with same-origin/Host checks, CSRF on mutations, bounded bodies and private error responses. Provision accounts/scenarios through trusted CLI commands; never add public registration or a client-supplied Grant endpoint.
+5. Build an industrial operations interface: an incident rail, budget summary, scoped shipment table and exact-payload review panel, plus a persistent notice tray. Use packaged assets without external fonts/scripts, textContent for fact rendering, request epochs for session/incident changes and immediate private-DOM clearing on sign-out. Keep mobile layouts and keyboard focus usable.
+6. Verify API role/tenant scope, exact review binding, durable notice recovery, confirmation wording, stale-response/session races and real desktop/mobile browser flows. Extend meaningful Node regressions against the actual browser asset. Preserve the existing S4 schema bytes and record a new invented replay capture only because the optional web lock metadata changes.
+
+### Checks pending
+
+Main merge tree is identical to reviewed63d4691 and exact-main strict replay passed six calls/two timeouts/zero-provider. Main CI is being checked before implementation issues are closed. No S5 check is yet claimed as passed. Original untracked root documents remain untouched; reuse the existing isolated D-drive checkout and external D-drive temporary paths because C:\.git correctly triggers raw/private-file guards.
+
+### Implementation checks and debugging
+
+The focused eight offline checks passed and repository-wide mypy passed 106 source files. The first SQL attempt could not start because Docker was stopped; the verified Docker executable is on D:, not the standard C: installation path. Start that installed Desktop hidden and rerun the isolated trial. A fixture import was initially removed by lint as unused; retain the explicit fixture import with a narrow F401 annotation and avoid the duplicate offline/integration test module name.
+
+The actual-asset Node regression found that serializing login together with its initial workbench load could delay logout indefinitely. Extract signIn/signOut, serialize only the login/logout request, then load incident data outside that queue. The regression now proves immediate private clearing, rejection of late refresh responses, logout during stalled initial workbench, and exact signed-64 money formatting. SQL, real-browser, full regression, packaging and replay checks are still pending; no release acceptance is claimed.

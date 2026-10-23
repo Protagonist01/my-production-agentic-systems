@@ -16,6 +16,7 @@ from supply_chain.action_contracts import (
     POLICY,
     Command,
     Grant,
+    Portfolio,
     Proposal,
     Receipt,
     ReviewRequired,
@@ -405,8 +406,9 @@ class OperationStore:
         receipt: Receipt,
         *,
         success: bool | None = None,
+        as_of: datetime | None = None,
     ) -> None:
-        now = self.now()
+        now = as_of or self.now()
         status = (
             "confirmation_timeout"
             if now >= receipt.confirmation_deadline
@@ -480,3 +482,59 @@ class OperationStore:
         )
         with self._connection() as connection:
             return self._proposal(connection, grant.tenant_id, identity.operation_id)
+
+    def workbench(self, grant: Grant, event: str) -> Portfolio:
+        """Consistent scoped UI projection, preserving the established lock order."""
+        grant = self._grant(grant)
+        grant.require_event(event)
+        if not 1 <= len(grant.shipment_ids) <= 100:
+            raise PermissionError("bounded shipment scope required")
+        with self._connection() as connection, connection.transaction():
+            budget = self._budget(connection, grant.tenant_id, event, lock=True)
+            now = self.now()
+            shipments, snapshots = [], []
+            for key in sorted(set(grant.shipment_ids)):
+                shipment = self._shipment(connection, grant, key, "read", lock=True)
+                shipments.append(shipment)
+                identity = Command(
+                    tenant_id=grant.tenant_id,
+                    event_id=event,
+                    shipment_id=key,
+                    expected_shipment_version=0,
+                    expected_budget_version=0,
+                    action="wait",
+                )
+                proposal = self._proposal(connection, grant.tenant_id, identity.operation_id)
+                if proposal is None:
+                    continue
+                receipt = self._receipt(connection, grant.tenant_id, identity.operation_id)
+                if receipt:
+                    self._terminal(connection, grant, proposal, receipt, as_of=now)
+                    confirmation = connection.execute(
+                        "SELECT outcome FROM supply.confirmations WHERE tenant_id=%s "
+                        "AND operation_id=%s",
+                        (grant.tenant_id, identity.operation_id),
+                    ).fetchone()
+                    snapshots.append(
+                        Snapshot(
+                            proposal=proposal,
+                            receipt=receipt,
+                            outcome=confirmation["outcome"]
+                            if confirmation
+                            else "awaiting_confirmation",
+                        )
+                    )
+                else:
+                    if now >= proposal.expires_at and proposal.status in ("pending", "approved"):
+                        proposal = proposal.model_copy(update={"status": "expired"})
+                        self._save(connection, proposal)
+                    snapshots.append(Snapshot(proposal=proposal, outcome=proposal.status))
+            return Portfolio(
+                event_id=event,
+                as_of=now,
+                budget_version=budget["version"],
+                spent_minor=budget["spent_minor"],
+                replans_used=budget["replans"],
+                shipments=tuple(shipments),
+                snapshots=tuple(snapshots),
+            )

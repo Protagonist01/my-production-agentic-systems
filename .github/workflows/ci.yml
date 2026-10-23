@@ -46,7 +46,9 @@ jobs:
       - name: Shared offline checks
         run: python dev.py check
       - name: Revenue browser session regressions
-        run: node tests/revenue_console_session_test.cjs
+        run: |
+          node tests/revenue_console_session_test.cjs
+          node tests/supply_console_session_test.cjs
       - name: Invented offline example
         run: python dev.py example
       - name: Pinned invented strict replay
