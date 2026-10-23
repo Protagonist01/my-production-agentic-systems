@@ -151,3 +151,8 @@ The user selected #53/#54/#55 after merging #89 as main77b98df, identical to rev
 ## S5-only follow-up
 
 The user merged #90 and selected S5 #56 only, with durable in-app notices and previews. Main21d3bef matched the reviewed tree and its nine applicable checks passed; #53/#54/#55 are complete. S5 review is #91 on codex/s5-supply-console. Approval policy is unchanged. S6 #57 remains behind O8 fresh-release acceptance. No external message delivery, paid provider or deployment is authorized.
+
+
+## Authorized P1/P2/P3 batch
+
+User merged #91, verified main1e59722/CI39881820867; S5#56 is complete. The user selected the next independent batch and approved #46/#47/#48 together, with prerequisites delivered/verified inside the bundle. Source mix: CMS national initial-CPAP policy, published Synthea illustrative records, explicit edits and invented edges. Labels remain AI-provisional; no qualified review is invented. User superseded offline-only for this batch and explicitly authorized reuse of existing Gemini free-project settings. Fresh candidate assessment uses the shared bounded gateway; no paid fallback, real patient data, authorization effect, deployment or release promotion. S6/O8 gates and separate unmerged C2#84 remain unchanged. Build Book Entry35 and the prior-auth evidence chapter track actual results.

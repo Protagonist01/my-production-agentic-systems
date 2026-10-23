@@ -46,6 +46,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 33 — Independent shipping worlds and durable budgeted intervention](#entry-33--independent-shipping-worlds-and-durable-budgeted-intervention)
 
 - [Entry 34 — Scoped shipping workbench and durable factual notices](#entry-34--scoped-shipping-workbench-and-durable-factual-notices)
+- [Entry 35 — Source-grounded prior-auth evidence with fresh model evaluation](#entry-35--source-grounded-prior-auth-evidence-with-fresh-model-evaluation)
 
 ## Entry 1 â€” Proposed execution and evidence boundaries
 
@@ -1843,3 +1844,68 @@ The isolated web-only wheel import reproduced ModuleNotFoundError for langgraph 
 ### Local acceptance completed
 
 Full isolated SQL regression passed87 tests in1748.60seconds, with two non-failing warnings recorded in the private log. The full offline run passed855 tests before the metadata-only standalone correction; corrected-lock focused replay/Supply checks passed115 tests. Clean4389aa8 strict replay consumed six calls/two timeouts/zero provider with current locke9694f44 and v9digestf2ee896a. Six rebuilt packages, standalone web import/resources/installed replay, dependency audit, lint/format and real desktop/mobile role flows passed. Initial hosted39878331042 passed allten jobs with855per qualitycell and87SQL. Final hosted acceptance will be attached to #56/#91 after the last documentation commit rather than creating an endless documentation/CI commit cycle. S5 stays Review until user merge and post-merge verification; S6 remains gated.
+
+
+## Entry 35 — Source-grounded prior-auth evidence with fresh model evaluation
+
+Date: 2026-10-23 (Africa/Lagos). Branch codex/p1-p2-p3-prior-auth, based on verified main1e59722. Work has started; implementation/evaluation results follow actual execution.
+
+### Context
+
+User merged #91 (called it #55 in the message; actual GitHub merge verified). Main39881820867 passed nine applicable jobs: actual logs856tests per qualitycell,87Postgres and zero-provider strict replay. Clean exact-main replay passed; #56 closed completed. User selected the next eligible independent batch, then explicitly approved #46/#47/#48 with prerequisites delivered and verified inside one review. #57 remains gated by #33; CFPB #36/#37 remain behind unmerged #84.
+
+The user challenged carrying the earlier offline-only instruction into every batch and now requests use of the configured model where appropriate. This supersedes the offline-only limit for this batch. Use the existing Gemini Developer API gemini-3.5-flash-lite through shared bounded admission with the previously confirmed billing-disabled Free project; no paid route or fallback is authorized. Fresh candidate evidence and deterministic mechanism checks serve different purposes. Model labels remain AI-provisional unless qualified review actually occurs. Reviewer availability is unanswered, not presumed.
+
+### Before you read on
+
+How do you prove a quoted span supports a coverage criterion, rather than merely existing in the note? Sketch separate retrieval, extracted facts, criterion validation and evaluator labels, including negation, conflict, missing data and policy-version changes.
+
+### Options being investigated
+
+CMS national CPAP coverage policy240.4 version3 offers checkable criteria with explicit effective date2008-03-13. It is not the same as contractor-specific LCD33718; keep national and local rules distinct and exclude ongoing coverage/CED from the initial scope unless represented explicitly. CMS code content can contain licensed AMA/ADA material; public access is not blanket redistribution permission. Prefer code-free government policy prose with exact source pins and separately typed code validation.
+
+MTSamples direct access returned403 and use rights have not been established. Do not bypass access controls or relabel an arbitrary mirror as an original source. Research alternatives with explicit source/license evidence before choosing illustrative notes. Existing note corpora with credentialed DUAs or research-only restrictions cannot silently become production-ready data. Invented mechanism notes remain useful but do not substitute for the required authentic source preparation.
+
+### How to build it
+
+1. Pin selected policy/source versions, effective dates, use constraints and reviewer status before writing the criterion compiler. Keep raw source externally and publish only safe provenance/aggregate reports.
+2. Define closed redacted input, source-span mapping and evaluator-only label contracts. Group original notes and every edit/counterfactual into one split. Expected decisions are authored independently of the production aggregator; disputed labels remain provisional.
+3. Retrieve policy evidence and obtain typed model extractions via shared ModelGateway with bounded calls, deadlines and token reservations. Validate actual note spans plus criterion meaning, units, temporality and conflict before accepting met. Missing or unsupported output becomes insufficient/review.
+4. Separate development prompt work from a frozen held-out fresh candidate run. Record source/split/code/prompt/model/scorer pins, completed/error/abstention denominators and incorrect-approval recommendation risk. Do not call this clinical validation or real authorization.
+5. Run deterministic privacy/injection/label-isolation tests, independent source checks, fresh model evaluation and package/hosted verification. Preserve gateway controls and previous replay fixtures; no model calls in CI.
+
+### Current checks
+
+No P1/P2/P3 acceptance result is yet claimed. Google model/pricing docs were rechecked on2026-10-23; the route/token ceiling remains compatible with existing admission. Free-tier content-use conditions mean no real patient/private notes are sent. Source selection and reviewer availability remain open.
+
+### Restoring live model execution
+
+The first bounded probe stopped at configuration validation, before provider dispatch: current/root checkouts have no Gemini key. A presence-only check of registered repository worktrees found the original confirmed Free configuration in f3-command-entrypoints. Automatic approval review rejected copying credentials because reuse from that specific checkout had not been explicitly authorized. No copy/provider call occurred. Asked the user to authorize that exact source or configure the current checkout; continue source/contracts work while waiting. Do not bypass the rejection.
+
+### Live gateway restored
+
+User explicitly authorized reuse of the existing Gemini configuration from f3-command-entrypoints. Restored only the two approved Gemini values into ignored .env.local without displaying credentials. git check-ignore confirms exclusion. The bounded two-request live gateway probe passed through the existing shared controls on2026-10-23. This is live integration evidence, not yet P3 model-quality evidence.
+
+### Source mix approved
+
+The user approved CMS national initial-CPAP policy plus published Synthea illustrative records, explicitly marked edits and invented edge cases, with provisional labels. This replaces MTSamples as the first note source: direct access/use rights remain unresolved. Synthea published records are synthetic, never described as real-patient evidence. Draft12 grouped cases and keep parent/edits in one split; freeze held-out cases before candidate prompt evaluation. User approved provisional labels, not clinical adjudication.
+
+### First live domain extraction
+
+The first invented development case completed seven fresh criterion requests through the bounded shared Gemini gateway, all with reported modelversiongemini-3.5-flash-lite. Exact spans and the independent narrow support checks accepted allseven criteria; disposition evidence_complete_for_review. No timeout, provider error, authorization or clinical-validation claim. Private full exchanges/results live outside Git. This development case is not held-out release evidence and must not be counted as such.
+
+Official source preparation verified111C-CDA archive members and produced110bounded narrative records; one oversized narrative was omitted, so coverage is not described as all111. Three bounded records contain sleep-related material. The selected code-free national policy prose is2618characters, normalizedtextSHA4327d66a45efd038a19f9cfd690db3872b4a20df96e806f544eaeb5a9d6a5b8b. Raw sources/narratives stay on external Ddrive. First15privacy/citation/unit/threshold tests passed.
+
+The support validator deliberately recognizes a small transparent grammar rather than pretending exact citation existence proves medical entailment. Unknown paraphrases stay insufficient. Scan uncited visible negative evidence in the supported grammar so choosing a positive quote cannot hide a known contradiction. Retain model errors and conservative false abstentions in the fresh report. No broad medical entailment, full coding validation or production approval is implemented.
+
+### Development error analysis before holdout
+
+Frozen cohort v1 has12cases/4families,6development and6holdout. v1development completed36fresh requests:5/6model results usable and5/6cases correct against provisional labels;0unsupported met/incorrect evidence-complete bundles. One original record failed typed citation validation because the model's offset range did not equal quote length. No provider failures were reported. Keep this failed case in the denominator. The run was exploratory on dirty source, not immutable release evidence.
+
+Fix the failure class by asking the candidate for exact quotes and constructing half-open offsets independently on the server via unique substring matching. Preserve exact text validation and refuse ambiguous/nonexistent quotes. This is candidatev2, not silently repairing arbitrary model offsets. Rerun development before freezing source for holdout; do not tune against held-out errors. Preserve the originalv1 exchanges and report.
+
+### Repeated-quote correction and candidate freeze
+
+The v2development rerun used38fresh requests and produced2/6usable/correct results. Structural analysis found the same error class in allfour missing results: the correct literal AHI quote occurred twice in the note, and the unique-match guard rejected it. These are checker abstentions, not invented evidence or provider failure. Preserve v2results; do not claim the offset change automatically improved quality.
+
+Candidatev3 maps each quote to every exact occurrence (maximumfour), retaining each context rather than choosing an arbitrary position. Each span is still byte-for-text exact and checked for omitted negatives; absent/over-repeated quotes fail closed. The policy compiler continues requiring unique source anchors. Focused25tests passed0.58seconds. The actual preparation CLI verified110bounded narratives/three sleep-related records and the same policy digest. Source subject identifiers were checked privately: the three selected records belong to three distinct subjects. Freeze candidate source before the first held-out run; no tuning on those results.
