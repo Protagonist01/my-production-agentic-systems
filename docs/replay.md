@@ -143,3 +143,16 @@ The P4/P5 extras reuse pinned LangGraph/FastAPI/Uvicorn versions but change the 
 ### C3/C4 extras: invented v11
 
 The CFPB classifier/web extras reuse existing pinned dependencies but change lock metadata to `9c055070aa57eeaf2294066684db73e31a960b81f9c559360e9f7f0419f1bd26`. Capture v11 from clean implementation `314211e353cfcecad0569efc64b44d11ac139d6a` with the existing maintenance helper and exclusive writer. Its digest is `aa68c8598c7306cb6f242a585a98d0e5e4df6d644754b11f4c5031af6c4e04e5`. All six canonical requests/responses exactly match v10, including two invented timeouts. Preserve v1–v10 and add v10 to historical lock rejection tests. There are zero provider calls; this is fixture maintenance, separate from the fresh private CFPB pilot. The normal replay command never updates this fixture.
+
+## Filelock security-fix fixture v12
+
+After #95, the targeted filelock4.2.1 fix changes the lock to
+`c8c15295dd5372f12f860a60f00a8b3e98a2e308c1acddb42fdac70187cb0e87`.
+Strict replay correctly rejects v11 under this new environment. Capture invented v12 from
+clean fix commit `07191744020da75c65fbef4aaf23aef79c77e521`, using the maintenance helper
+and exclusive writer. Digest:
+`6c8a4d3c6e9566392072c0dd9fac94f97a9b137e137827257ad285e134b858c0`.
+All six canonical requests/responses exactly match v11, including two invented timeouts.
+Preserve v1–v11 and add v11 to historical-lock rejection tests; no replay matching rule is
+weakened. This is synthetic fixture maintenance with zero provider calls. The private fresh
+O8 experiment remains unchanged at its original lock and cannot certify the repaired environment.

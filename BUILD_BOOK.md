@@ -2428,3 +2428,15 @@ Locked setup changed exactly one installed package. The repaired strict hashed a
 no known vulnerabilities, and 29 existing CI-helper/development-command tests passed in
 0.71 seconds. The local pytest-cache permission warning is non-failing. Full hosted checks
 are still required for this changed lock; no new product tests mirror a version string.
+
+The first clean-fix replay rejected v11 because `ReplayBinding.compatible_context` includes
+the environment lock. This is the expected guard, not a reason to loosen matching. Generate
+invented v12 from clean0719174 with `invented_recording`, compare each of its six canonical
+requests/responses with v11, and publish exclusively with `write_recording`. All six match;
+there are zero provider calls. Change only the trusted fixture resource/digest constants and
+add v11 to the historical-lock rejection cases. Preserve every historical fixture and the
+private O8 evidence. New pin6c8a4d3c identifies this invented transcript, not a fresh model run.
+
+The combined replay/CI-helper suite passed109tests in5.73seconds, including every historical
+fixture's current-lock rejection. Ruff and formatting passed for the changed Python files.
+The clean final commit's standalone replay and full hosted matrix are verified separately.
