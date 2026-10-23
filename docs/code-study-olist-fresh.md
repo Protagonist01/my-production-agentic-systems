@@ -1,0 +1,61 @@
+# Code study — fresh Olist state experiments
+
+Inspected2026-10-23 on unmerged `codex/o8-fresh-release-evidence`, based on verified #94 main `3601508`. Coverage: all three new experiment modules, seeded/excluded case preparation, focused tests, real SQL collector tests and the existing planner/scorer calls they compose. Broader deployment/security/load are unassessed. [Operations and criteria](olist-fresh-review.md), [historical scorer study](code-study-olist-release.md) and [Build Book Entry38](../BUILD_BOOK.md#entry-38--fresh-olist-review-evidence-after-the-offline-pilot) separate implemented mechanisms from release claims.
+
+## Follow one constructed request
+
+A private case contains a source-grounded canceled order, fictional SIM proofs and a literal expected full50.00SIM refund. Its constructed request says to refund the full paid amount. Expected amount/reason, split and source metadata stay outside the planner. [`GatewayPlanner.plan`](../projects/olist-support/src/olist_support/workflow.py) sends only request text through the bounded gateway; trusted policy and scoped SQL determine the actual allowable effect. A model proposal cannot raise the100.00SIM cap or establish facts by assertion.
+
+```mermaid
+flowchart LR
+  C[Pinned source and provisional cases] --> P[Clean source experiment plan]
+  P --> B[Separate baseline trials]
+  P --> G[Fresh bounded Gemini trials]
+  G --> R[Receipt persisted before planner sees output]
+  B --> DB[Owned SQL workflow state]
+  R --> DB
+  DB --> D[New-store duplicate delivery]
+  D --> S[Independent all-tenant state scoring]
+  S --> O[Complete split and mode comparison]
+  O --> H[Human baseline and release review still required]
+```
+
+## Selection and immutable inputs
+
+[`policy_case_cli.prepare`](../projects/olist-support/src/olist_support/policy_case_cli.py) now accepts a bounded seed and excluded exact order groups. Defaults preserve O3 selection. Filtering precedes coverage selection, so an excluded group cannot reenter under another split or edit. Tests build an invented larger source, prepare an old pilot, exclude all its groups, obtain twelve new cases and verify old bytes unchanged. This does not establish consumer/near-duplicate independence.
+
+New request text is authored from the intended input request, not from expected policy outputs. It separates one primary request from quoted injection text. The private packet's case ID is used for routing/evaluation, not sent to Gemini. All labels stay provisional; new model behavior cannot retrospectively determine their truth.
+
+## Plans, budgets and receipts
+
+[`ExperimentPlan`](../projects/olist-support/src/olist_support/fresh_release.py) requires exactly three distinct trial IDs per case, unique task/run identities, a36call ceiling, one attempt per call and enough reserved full-ceiling tokens for every scheduled attempt. Free-only cost/currency admission remains explicit. `validate_population` checks canonical case and text pins, complete membership, duplicate IDs and exact reviewed text equality. Changing or omitting an input fails before execution.
+
+[`make_plan`](../projects/olist-support/src/olist_support/fresh_cli.py) refuses dirty Git source and inventories every harness/Olist Python/SQL file plus `uv.lock`. It pins the existing planner source, model template, policy, scorer, environment and run budgets. `verify_runtime` checks both reviewed paths and actually executing installed package bytes. `verify_original_source` rederives each original view from the byte-pinned SQLite source and rejects undeclared changes. Private literal expected commands are built only for the independent scorer; the planner never receives them.
+
+`context_for` creates fresh-candidate contexts with exact case/trial/run/source/policy identity and a90second outer deadline. `run_experiment` allocates separate controlled databases for rules, always-review and Gemini. Only the explicit live flag loads the Free configuration and creates `ReceiptGateway` plus `BoundedGateway` over `IsolatedTransport(GeminiWorker)`. No fallback or cached-response input exists. The existing H10 receipt primitive persists its detached exchange before returning output. Attempt timeouts and unknown usage are preserved, not converted to zero consumption or successful completion.
+
+## Persisted state and recovery
+
+[`execute_trial`](../projects/olist-support/src/olist_support/fresh_execution.py) bootstraps business/checkpoint schemas, enrolls a scoped view and collects an independent before snapshot. `ObservedPlanner` records the actual returned typed intent for separate intent scoring. `SupportWorkflow` reads trusted facts, applies policy and commits a scoped receipt. The collector then opens a new store/checkpointer and repeats delivery with `NoSecondDispatch`; calling that planner fails the recovery check. It compares both the result and final all-tenant state to the first committed result, so returning a receipt with another effect is not idempotent success.
+
+The `finally` block drops only the owned trial; cleanup failure is explicit. A timeout/exception triggers another independent final-state read. Missing final state stays unknown. Fixed error codes avoid leaking SQL, credentials or source text. Before state unavailable means an unresolved observation, not a fabricated empty database. Four real Postgres tests exercise successful rules/model paths, a model timeout and a private exception, including actual database removal.
+
+## Compare without hiding failed trials
+
+`experiment_report` iterates scheduled tasks, not only supplied successful rows. Duplicate/unexpected rows fail; absent rows become missing. It uses the existing independent `score` implementation to compare exact ledger/order/version/budget deltas and truthful receipts/text. Errors or unverified cleanup/recovery prevent counting a trial as correct. Three-trial correctness requires every scheduled repetition; one successful row cannot erase two missing ones.
+
+Attempt receipt checks bind run/case/trial/tenant/candidate/code/lock, approved route and exact provider text. Reused nonces or mixed execution identities fail. Input/output token sums explicitly retain unknown-attempt counts; cost per completion stays null when complete cost is unavailable. Metrics are separate by mode and development/regression/holdout; template-aware rules and always-review are disclosed baselines. Eligible completion and required-review correctness have distinct denominators. The report always refuses release and lists independent label/baseline/threshold/production validation blockers.
+
+## Tests and limits
+
+Initial13focused tests and4actual Postgres collector tests passed;139source files passed typing. The tests use invented data/responses, not provider-quality evidence. The frozen live experiment is a separate artifact. No new dependency/lock change is required. Historical O8 offline reports and the original O3 pilot remain unchanged.
+
+**Design limits:** twelve coverage-selected hybrid cases do not represent support traffic. Literal AI labels need independent review. Template-aware rules have a deliberate grammar advantage. The local operator/database owner is trusted and can forge evidence; file pins provide integrity/reproducibility, not hardware attestation. Provider dispatch can consume quota before a process crashes; fenced business publication is not exactly-once billing. Public deployment, load, production identity and migration readiness remain outside this inspection.
+
+## Interview exercises
+
+1. Why can all-review be safe yet fail the comparison? Explain eligible denominators and the rules baseline.
+2. A request times out after commit. Describe the independent final snapshot, receipt binding and new-store retry; never infer rollback from a missing response.
+3. Copy one receipt into another case row. Trace which case/trial/input/nonce checks reject it.
+4. Why does a36call cap reserve36full token ceilings? Contrast conservative admission with incomplete observed token accounting.
+5. Change one prompt line after the first holdout response. Explain why the source inventory invalidates sealing and why a new experiment version is required.

@@ -78,3 +78,6 @@ Supply-chain S2/S3/S4: [simulator, budgeted SIM actions and waits](supply-chain-
 
 
 CFPB C3/C4: [typed triage and durable reviewer operations](cfpb-triage-operations.md), [source walkthrough](code-study-cfpb-triage.md) and [aggregate pilot evidence](data/cfpb-triage-evidence-v1.json). This is an unmerged implementation with AI-provisional labels and all-review results; no domain release.
+
+
+O8 fresh review extension: [operator package](olist-fresh-review.md) and [execution/source study](code-study-olist-fresh.md). User authorized Gemini Free after verified #94; final release approval and independent labels/baseline review remain separate.

@@ -12,17 +12,18 @@ from olist_support.policy_cases import PolicyCases, digest, group_id
 from olist_support.source import import_snapshot
 
 
-def source(tmp_path):
+def source(tmp_path, *, extra_population=False):
     raw = dataset(tmp_path)
     orders, payments = [], []
-    for i, value in enumerate(("10.00", "20.00", "30.00", "40.00", "101.00", "50.00")):
+    values = ("10.00", "20.00", "30.00", "40.00", "101.00", "50.00")
+    for i, value in enumerate(values * (2 if extra_population else 1)):
         orders.append(
             dict(
                 order_id=f"invented-order-{i}",
                 customer_id="customer-1",
-                order_status="delivered" if i == 5 else "canceled",
+                order_status="delivered" if i % 6 == 5 else "canceled",
                 order_purchase_timestamp="2020-01-01 09:00:00",
-                order_delivered_customer_date="2020-01-05 10:00:00" if i == 5 else "",
+                order_delivered_customer_date="2020-01-05 10:00:00" if i % 6 == 5 else "",
             )
         )
         payments.append(
@@ -108,3 +109,25 @@ def test_duplicate_or_cross_split_order_edits_cannot_change_population(tmp_path)
     )
     with pytest.raises(ValueError, match="crosses"):
         PolicyCases.model_validate_json(json.dumps(payload))
+
+
+def test_new_seed_and_group_exclusion_preserve_old_pilot_and_source_labels(tmp_path):
+    database, pin = source(tmp_path, extra_population=True)
+    first, second = tmp_path / "first", tmp_path / "second"
+    prepare(database, pin, first, as_of=datetime(2026, 10, 19))
+    original = (first / "evaluator.json").read_bytes()
+    old = PolicyCases.model_validate_json(original)
+    excluded = frozenset(e.group_id for e in old.entries)
+    result = prepare(
+        database,
+        pin,
+        second,
+        as_of=datetime(2026, 10, 19),
+        selection_seed="invented-new-cohort",
+        excluded_groups=excluded,
+    )
+    new = PolicyCases.model_validate_json((second / "evaluator.json").read_bytes())
+    assert len(new.entries) == 12 and result["excluded_group_count"] == 6
+    assert not excluded & {e.group_id for e in new.entries}
+    assert (first / "evaluator.json").read_bytes() == original
+    assert result["expected_action_counts"] == {"propose_full_refund": 3, "review": 9}

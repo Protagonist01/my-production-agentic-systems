@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-Verified main `95397c4` includes user-merged CFPB baselines #84 and Prior Auth review #93. The current authorized batch implements CFPB #36/#37 together: [typed classification, conservative routing and protected review](docs/cfpb-triage-operations.md). The provisional Gemini pilot routes all cases to review and establishes no useful automation or model-quality claim. C5 and O8 release gates remain pending; the [backlog](docs/backlog.json) records per-task evidence. Native project-board state is unverified.
+Verified main `3601508` includes user-merged CFPB #94; #36/#37 are completed after main acceptance (924tests per matrix cell,99Postgres). The active O8#33 batch adds [fresh Olist experiment and review evidence](docs/olist-fresh-review.md) using the user-authorized Gemini Free project. Labels/baselines/thresholds remain review inputs; downstream releases and production approval remain gated. Native board state is unverified.
 
 ## Setup and working commands
 

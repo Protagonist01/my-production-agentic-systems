@@ -51,6 +51,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 34 — Scoped shipping workbench and durable factual notices](#entry-34--scoped-shipping-workbench-and-durable-factual-notices)
 - [Entry 35 — Source-grounded prior-auth evidence with fresh model evaluation](#entry-35--source-grounded-prior-auth-evidence-with-fresh-model-evaluation)
 - [Entry 36 — Durable prior-auth document review](#entry-36--durable-prior-auth-document-review)
+- [Entry 38 — Fresh Olist review evidence after the offline pilot](#entry-38--fresh-olist-review-evidence-after-the-offline-pilot)
 
 ## Entry 1 â€” Proposed execution and evidence boundaries
 
@@ -2298,3 +2299,70 @@ material. Preserve the evidence and scanner rules. Follow the repository's exist
 historical-fingerprint pattern: add only these six exact commit/file/rule/line fingerprints
 to .gitleaksignore, leaving every other location and future value subject to scanning.
 No runtime source changed; rerun exact-head hosted acceptance after this metadata-only fix.
+
+## Entry 38 — Fresh Olist review evidence after the offline pilot
+
+**Files touched:** Olist case preparation, fresh evaluation/report modules, tests and release guides.
+
+### Context
+
+User merged#94 as3601508ea5bf974c9bd0bfc3279815d293cc903c, identical reviewed tree.
+Main40022445942 passed nine applicable jobs, actual924tests per quality cell/99Postgres,
+and clean exact-main replay6calls/2timeouts/zero-provider. Close#36/#37 completed.
+Every remaining batch depends on O8#33. User explicitly superseded its prior offline-only
+instruction: resume with existing Gemini Free and prepare labels/baseline/thresholds for review.
+This does not authorize inventing human adjudication or silently promoting a release.
+
+### Before you read on
+
+How can a fresh model intent be evaluated against durable SIM effects without giving the
+planner expected labels or turning a timeout into a claim of rollback?
+
+### Options considered
+
+- Reuse the old exposed holdout as new evidence: preserve it as a historical mechanism pilot,
+  but reject any claim that it is an unseen fresh holdout. Its adversarial text also leaves
+  multiple primary intents ambiguous despite a fixed caller-selected plan.
+- Chosen: select new source order groups under a new fixed seed, exclude every old pilot
+  group, retain the approved constructed policy/scenarios, and write explicit primary requests
+  with separately marked untrusted injection text. Seal those inputs and literal AI-provisional
+  labels before candidate output. No original review text, source identifiers or order fields
+  need to reach the provider: the existing GatewayPlanner receives request text only.
+
+### Why
+
+The12case/6group first pilot is small enough to inspect completely: four cases per split,
+three eligible full refunds and nine required reviews. This is a coverage-selected hybrid
+stress sample, not representative Olist traffic or observed refund ground truth. Three fresh
+trials per case preserve36scheduled opportunities including failures. Fixed text rules and
+always-review provide explicit baselines; state correctness still comes from independent SQL.
+
+### How to build it
+
+Extend case preparation with explicit selection seed and excluded exact order groups while
+keeping the default O3 selection unchanged. Preserve original O3 bytes. Render new request
+text from the agent-visible intended request, never from expected action/reason/split. Keep
+the evaluator's literal policy-table labels outside the provider input. Bind code/lock/scorer/
+source/input pins before execution, use one owned database per trial, capture complete state
+before and after, and preserve every attempt receipt before returning model output. Score
+with the existing independent exact-delta scorer. Record unknown usage/cost, source kind,
+split, faults and three-trial reliability separately. Keep final release false until reviewed
+labels/baseline/thresholds and all required evidence actually support it.
+
+### What went wrong
+
+Inspection found that the old generic adversarial message says reship or refund for several
+different recorded intents, including an exact partial amount absent from the text. It was
+valid for caller-selected offline mechanism checks, but would confound a text-intent comparison.
+Prepare a new disclosed request version; do not rewrite historical cases or fit to held-out
+candidate output. No new provider call has occurred at this design checkpoint.
+
+### Mechanism verification before freezing the candidate
+
+The focused suite passed 14 tests, including fresh receipt capture, hidden-label isolation,
+source-group exclusion and independent evidence read-back. Four real Postgres collector
+tests passed in 112.88 seconds. Their invented planners exercise exact SIM state effects,
+zero-dispatch duplicate delivery, timeout and exception handling, and owned database cleanup.
+Strict typing passed for 139 source files. The offline reader checks the separately retained
+inventory pin, persisted receipts and recomputed report; changing and re-pinning a verdict
+alone does not hide the discrepancy. These are mechanism checks, not provider-quality results.

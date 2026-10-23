@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-23. User-merged #93 is verified as main116d7e5 with an identical reviewed tree, nine applicable main CI jobs, actual886tests per quality cell/94Postgres and clean exact-main replay. P4#49/P5#50 are closed completed. The user selected reconciliation of existing CFPB C2 PR#84; C3/C4 wait for its user merge and verified main. O8 and all dependent domain/operations release gates remain pending; native project-board state remains unverified.
+Updated:2026-10-23. User-merged #94 is verified as main3601508 with identical reviewed tree, nine applicable main jobs, actual924tests per quality cell/99Postgres and clean exact-main replay. C3#36/C4#37 are closed completed. User explicitly resumed O8#33 with Gemini Free and a labels/baseline/threshold review package, superseding its earlier offline-only instruction. Final release and downstream release tasks remain gated; native board unverified.
 
 ## Scope and source of truth
 
@@ -196,3 +196,8 @@ Merge main116d7e5 into existing PR#84 without changing CFPB source, sealed revie
 ## User-authorized C3 + C4 dependent batch
 
 After user merge of #84 as95397c4 and exact-main40003918806 verification (907 tests per quality cell,94Postgres,nine applicable jobs,clean replay), #35 is complete. User selected #36/#37 together, authorized existing Gemini Free configuration and a new24case mixed keyword/background provisional pilot, then approved narrative inspection for masking and the first rubric draft. Development, regression and holdout remain separate; freeze labels before model output and policy before held-out runs. C3 is verified within the bundle before C4 acceptance. [Operations](cfpb-triage-operations.md), [study](code-study-cfpb-triage.md), Entry37 and aggregate evidence preserve actual results. The all-review outcome misses the50% review objective and establishes no quality, consumer-harm or savings improvement. Keep implementation issues open until user merge and main acceptance. C5/O8 release remains gated; native board unverified.
+
+
+## O8 fresh review package after #94
+
+On verified main3601508, user authorized fresh Gemini Free evaluation and preparation of labels/baselines/thresholds for review, then delegated the first12case draft choice. New exact source groups exclude the old pilot; request text is explicitly constructed and provider input contains no original order/review fields. Three trials per case cap live attempts at36; template-aware rules and always-review run independently. Labels remain AI-provisional, missing/failure cases remain scheduled and final release stays false pending actual evidence and review. [Operations](olist-fresh-review.md), [source study](code-study-olist-fresh.md) and Entry38 record implementation and actual results. No new parallel-agent authorization, real payment, public deployment or release promotion is inferred.

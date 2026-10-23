@@ -22,9 +22,19 @@ from olist_support.policy_cases import (
 from olist_support.views import OrderScope, OrderStore, OrderView
 
 
-def prepare(database: Path, pin: str, output: Path, *, as_of: datetime) -> dict[str, Any]:
+def prepare(
+    database: Path,
+    pin: str,
+    output: Path,
+    *,
+    as_of: datetime,
+    selection_seed: str = "olist-o3-pilot-v1",
+    excluded_groups: frozenset[str] = frozenset(),
+) -> dict[str, Any]:
     if as_of.tzinfo is not None:
         raise ValueError("case clock must retain the source-local timezone limitation")
+    if not selection_seed or len(selection_seed) > 96:
+        raise ValueError("bounded explicit selection seed required")
     output = external(output)
     store = OrderStore(database, expected_sha256=pin)
     try:
@@ -37,6 +47,7 @@ def prepare(database: Path, pin: str, output: Path, *, as_of: datetime) -> dict[
                 "FROM orders o JOIN orders_360 a USING(order_id)"
             )
         )
+        rows = [r for r in rows if group_id(r["order_id"]) not in excluded_groups]
         eligible = sorted(
             [
                 r
@@ -48,7 +59,7 @@ def prepare(database: Path, pin: str, output: Path, *, as_of: datetime) -> dict[
                 and r["payment_value_known_minor"] is not None
                 and r["payment_value_known_minor"] > 0
             ],
-            key=lambda r: digest("olist-o3-pilot-v1|" + r["order_id"]),
+            key=lambda r: digest(selection_seed + "|" + r["order_id"]),
         )
         low = [r for r in eligible if r["payment_value_known_minor"] <= 10000]
         high = [r for r in eligible if r["payment_value_known_minor"] > 10000]
@@ -59,7 +70,7 @@ def prepare(database: Path, pin: str, output: Path, *, as_of: datetime) -> dict[
                 if r["order_status"] == "delivered"
                 and r["order_delivered_customer_date"] is not None
             ],
-            key=lambda r: digest("olist-o3-pilot-v1|" + r["order_id"]),
+            key=lambda r: digest(selection_seed + "|" + r["order_id"]),
         )
         if len(low) < 4 or not high or not delivered:
             raise ValueError("source lacks the declared six-group pilot coverage")
@@ -213,6 +224,8 @@ def prepare(database: Path, pin: str, output: Path, *, as_of: datetime) -> dict[
         "source_manifest_sha256": cases.source_manifest_sha256,
         "quality_evaluation": False,
         "outbound_provider_calls": 0,
+        "selection_seed": selection_seed,
+        "excluded_group_count": len(excluded_groups),
     }
 
 
