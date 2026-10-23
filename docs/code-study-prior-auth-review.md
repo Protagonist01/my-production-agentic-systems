@@ -1,9 +1,21 @@
 # Prior Auth: durable documents and protected review
 
-Inspected branch `codex/p4-p5-prior-auth-review`, implementation `4ee75bc`, October 23, 2026.
-Later fixes/evidence are recorded in the PR and [operations](prior-auth-review.md). This is an
+Inspected branch `codex/p4-p5-prior-auth-review`, implementation `0d8c1ad`, October 23, 2026.
+Later evidence is recorded in [draft PR #93](https://github.com/Protagonist01/my-production-agentic-systems/pull/93)
+and [operations](prior-auth-review.md). This is an
 unmerged P4/P5 slice; source/criterion logic is covered in [P1–P3](code-study-prior-auth.md).
 Clinical validation, production hosting, P6 and O8 release acceptance remain excluded.
+
+Verified source trail at that commit:
+
+- [`ReviewStore.deliver`](https://github.com/Protagonist01/my-production-agentic-systems/blob/0d8c1ad4695ba01c4b38b67130fb1ce623e03829/projects/prior-auth/src/prior_auth/review_store.py#L224)
+  validates the current wait, receipt, redacted append and affected-criterion invalidation.
+- [`ReviewStore.finish`](https://github.com/Protagonist01/my-production-agentic-systems/blob/0d8c1ad4695ba01c4b38b67130fb1ce623e03829/projects/prior-auth/src/prior_auth/review_store.py#L387)
+  binds publication to the current version and unexpired lease.
+- [`ReviewWorkflow.step`](https://github.com/Protagonist01/my-production-agentic-systems/blob/0d8c1ad4695ba01c4b38b67130fb1ce623e03829/projects/prior-auth/src/prior_auth/review_workflow.py#L28)
+  composes the bounded reconcile/assess/publish graph.
+- [`create_app`](https://github.com/Protagonist01/my-production-agentic-systems/blob/0d8c1ad4695ba01c4b38b67130fb1ce623e03829/projects/prior-auth/src/prior_auth/review_api.py#L62)
+  defines the loopback/session/CSRF boundary.
 
 ## Follow a document arrival
 

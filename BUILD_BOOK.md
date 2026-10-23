@@ -2000,3 +2000,13 @@ The real Edge browser signed into the explicitly labeled in-memory fixture, rend
 ### Corrected UI fixture acceptance and cleanup
 
 Actual Edge UI-only flow passed document request, qualified-review routing, Dismiss, logout and read-only viewer rendering. Corrected mobile measurement: viewport390/document390/tablecontainer314/tablecontent620, with expanded policy provenance. Desktop1440 and mobile screenshots remain ignored. The fixture uses explicitly invented in-memory responses, not SQL; keep that boundary in the aggregate. Close only the task browser session and fixture process23732 after verification. The real local SQL browser/supplement path remains pending Docker restoration; do not call this UI fixture full application acceptance.
+
+
+### Current wheel and remaining external-state dependency
+
+After provenance and mobile corrections, rebuild/reinstall the PriorAuth web wheel in the isolated49-package environment. All21source/resource files match current0d8c1ad bytes; imports and installed replay pass with outbound networking denied before import. A bounded five-second Docker status probe still hangs and is stopped without touching the daemon/other services. The user is clearing host space. Keep#93draft and#49/#50Inprogress; remaining real SQL/browser/supplemental workflow checks are pending external Docker restoration, not silently marked passed by the UI fixture or the successful one-call subset check.
+
+
+### Corrected implementation hosted acceptance
+
+Corrected0d8c1ad passed39945068035 alltenjobs. Actual logs verify886tests per each Ubuntu/Windows Python3.12/3.13 cell,94Postgres withone non-failing warning,122typed sourcefiles, shipped Node session regressions and strict replay6calls/2timeouts/zero-provider. API tree comparison proves testedmerge3f2477689c2ea83fcc5c15cffe03aa8fa930dacc equals reviewhead0d8c1ad (tree81e5d3a28ab85a504e0df14b9c71305943ef091d). Only documentation follows that implementation. Final documentation-head status is recorded by PR checks; no self-referential CI commit loop. #93 remains draft until the explicitly pending real local SQL/browser/supplement path is resumed after Docker restoration. No clinical release claim.

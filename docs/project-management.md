@@ -160,10 +160,10 @@ User merged #91, verified main1e59722/CI39881820867; S5#56 is complete. The user
 P1/P2/P3 review is [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92).
 Frozen v3 matched all six held-out cases and all six development cases against provisional
 labels in separate 42-request fresh runs. Local 881-test regression and initial ten-job hosted
-acceptance passed. Keep all three implementation issues open through user review, merge and
-exact-main verification; this does not satisfy P6 clinical/domain release acceptance.
+acceptance passed. That review is now merged/verified and all three issues are closed completed; this does not
+satisfy P6 clinical/domain release acceptance.
 
 
 ## Authorized P4/P5 document-review batch
 
-The user selected #49/#50 together after #92 merge verification. Branch codex/p4-p5-prior-auth-review reuses the isolated D-drive checkout. Postgres owns document receipts, exact note/policy versions, waits, lease recovery and fixed review events; the protected loopback desk serves explicitly reviewed redacted evidence. Fresh model checks use the previously approved Free Gemini configuration through shared controls, without paid fallback. P4 verification occurs inside the authorized bundle before P5 acceptance. First29focused/7Postgres checks and full886-test regression passed. The initial fresh illustrative workflow request timed out and is retained as qualified review; real-browser/local SQL continuation was interrupted by host disk pressure/Docker unresponsiveness. The user is clearing space while packaging/hosted checks continue. No release promotion or real clinical action.
+The user selected #49/#50 together after #92 merge verification. Branch codex/p4-p5-prior-auth-review reuses the isolated D-drive checkout. Postgres owns document receipts, exact note/policy versions, waits, lease recovery and fixed review events; the protected loopback desk serves explicitly reviewed redacted evidence. Fresh model checks use the previously approved Free Gemini configuration through shared controls, without paid fallback. P4 verification occurs inside the authorized bundle before P5 acceptance. First29focused/7Postgres checks and full886-test regression passed. Temporary probe scripts initially lacked Windows main guards; their startup failures do not establish provider dispatch. A corrected one-request redacted education-only Gemini check passed, separately from the earlier P3 holdout. An actual Edge UI-only fixture passed document/routing/viewer and390px layout checks; real local SQL/browser continuation remains interrupted by host disk pressure/Docker unresponsiveness. The user is clearing space while packaging/hosted checks continue. No release promotion or real clinical action.

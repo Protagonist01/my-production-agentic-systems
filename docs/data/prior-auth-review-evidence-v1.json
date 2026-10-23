@@ -20,7 +20,9 @@
     "installed_web_extra": "passed_without_google_sdk",
     "installed_resource_byte_comparison": 4,
     "installed_replay_network": "denied",
-    "browser_asset_ordering_regressions": "passed"
+    "browser_asset_ordering_regressions": "passed",
+    "installed_source_resource_byte_comparison": 21,
+    "installed_source_revision": "0d8c1ad4695ba01c4b38b67130fb1ce623e03829"
   },
   "initial_hosted": {
     "run_id": 39943225425,
@@ -43,7 +45,6 @@
     "all_exchanges_equal_v9": true
   },
   "pending": [
-    "Corrected-head hosted SQL acceptance",
     "Real local SQL/browser document flow after Docker recovery",
     "Supplemental full-workflow fresh model check"
   ],
@@ -148,5 +149,16 @@
     "mobile_table_scroll_width": 620,
     "raw_patient_data": false,
     "provider_calls": 0
+  },
+  "corrected_hosted": {
+    "run_id": 39945068035,
+    "head": "0d8c1ad4695ba01c4b38b67130fb1ce623e03829",
+    "tested_merge": "3f2477689c2ea83fcc5c15cffe03aa8fa930dacc",
+    "identical_tree": true,
+    "tree_sha": "81e5d3a28ab85a504e0df14b9c71305943ef091d",
+    "jobs_passed": 10,
+    "offline_tests_per_quality_cell": 886,
+    "postgres_tests": 94,
+    "non_failing_postgres_warnings": 1
   }
 }

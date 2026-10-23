@@ -116,11 +116,19 @@ The production CLI already has the correct guard. A corrected standalone educati
 check completed one actual Gemini request with no failure, exact accepted evidence and no
 identifier canary in its captured exchange. It is not a full workflow or held-out quality run. Local browser continuation is pending restoration of Docker after
 a host disk-space interruption; no full browser pass is claimed. Installed wheel and final
-hosted results are added after actual execution. An explicitly labeled in-memory UI fixture
+hosted results are added after actual execution. The rebuilt current web wheel matches all
+21 source/resource files and imports/replays under network denial. An explicitly labeled
+in-memory UI fixture
 passed actual Edge document-request/routing/viewer checks and desktop/mobile visual inspection.
 At 390px the document stays 390px wide; the 620px evidence table scrolls in a 314px container.
 These UI-only checks do not replace the pending real local SQL/browser flow.
 The [aggregate evidence](data/prior-auth-review-evidence-v1.json) keeps each evidence kind separate.
+Initial hosted run39943225425 passed ten jobs, including886tests per quality cell and94Postgres
+tests. Corrected implementation0d8c1ad then passed hosted39945068035 alltenjobs: actual logs
+886tests per qualitycell and94Postgres, with identical tested/reviewed Git trees.
+Later documentation-only checks remain visible on the draft PR.
+The implementation remains in [draft PR #93](https://github.com/Protagonist01/my-production-agentic-systems/pull/93)
+until local database-backed continuation is completed or explicitly resolved.
 
 The lock metadata changed to `e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d`.
 Explicit invented replay v10, captured at clean `4ee75bc`, has digest
