@@ -46,9 +46,13 @@ The `finally` block drops only the owned trial; cleanup failure is explicit. A t
 
 Attempt receipt checks bind run/case/trial/tenant/candidate/code/lock, approved route and exact provider text. Reused nonces or mixed execution identities fail. Input/output token sums explicitly retain unknown-attempt counts; cost per completion stays null when complete cost is unavailable. Metrics are separate by mode and development/regression/holdout; template-aware rules and always-review are disclosed baselines. Eligible completion and required-review correctness have distinct denominators. The report always refuses release and lists independent label/baseline/threshold/production validation blockers.
 
+[`read_experiment`](../projects/olist-support/src/olist_support/fresh_cli.py) verifies a separately retained evidence byte pin, the complete JSON inventory, detached receipt files and the plan pin. It independently recomputes every verdict and rejects a different stored report. The focused tamper test shows that changing a row and re-pinning only its inventory does not preserve an old successful verdict.
+
+The [actual model card](olist-model-card.md) records 30/36 correct Gemini trials, six unresolved timeouts and zero observed unsafe effects, against 36/36 template-aware rules. Only seven of twelve Gemini cases passed all three repetitions. The proposed criteria were not met. The [aggregate](data/olist-fresh-evidence-v1.json) preserves mode/split/source-type/treatment denominators; unknown output usage and cost remain unknown. This result does not grant release.
+
 ## Tests and limits
 
-Initial13focused tests and4actual Postgres collector tests passed;139source files passed typing. The tests use invented data/responses, not provider-quality evidence. The frozen live experiment is a separate artifact. No new dependency/lock change is required. Historical O8 offline reports and the original O3 pilot remain unchanged.
+The focused suite passed 14 tests, and four actual Postgres collector tests passed. The full offline suite passed 935 tests in 667.01 seconds; strict typing passed for 139 source files. The tests use invented data/responses, not provider-quality evidence. The frozen live experiment is a separate artifact. No dependency or lock change was required. Historical O8 offline reports and the original O3 pilot remain unchanged.
 
 **Design limits:** twelve coverage-selected hybrid cases do not represent support traffic. Literal AI labels need independent review. Template-aware rules have a deliberate grammar advantage. The local operator/database owner is trusted and can forge evidence; file pins provide integrity/reproducibility, not hardware attestation. Provider dispatch can consume quota before a process crashes; fenced business publication is not exactly-once billing. Public deployment, load, production identity and migration readiness remain outside this inspection.
 

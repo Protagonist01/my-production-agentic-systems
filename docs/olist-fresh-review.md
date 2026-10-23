@@ -63,4 +63,33 @@ recomputed verdicts. Replacing only a stored verdict or an embedded receipt is r
 
 ## Verification boundary
 
-Focused checks passed14tests including new-group exclusion, fresh receipt capture, wrong-scope rejection, hidden-label isolation, accounting and offline inventory/verdict tamper rejection. Four actual Postgres collector tests passed in112.88s using invented rules/model responses: exact committed effect, zero-dispatch duplicate delivery, timeout-safe review, exception privacy and owned database cleanup.139source files passed strict typing; Ruff/format passed. These checks establish mechanisms, not fresh Gemini quality. Actual experiment counts/results, final package/CI evidence and remaining release blockers will be recorded separately after execution.
+Focused checks passed 14 tests including new-group exclusion, fresh receipt capture, wrong-scope rejection, hidden-label isolation, accounting and offline inventory/verdict tamper rejection. Four actual Postgres collector tests passed in 112.88 seconds using invented rules/model responses. The complete local offline suite passed 935 tests in 667.01 seconds; 139 source files passed typing, and Ruff/format/import/lock checks passed. Six wheel/sdist pairs built and the dependency audit found no known vulnerabilities. A separate installed workflow environment matched all 27 Olist resources and passed six strict replay calls with network disabled, provider SDKs and other verticals absent.
+
+## Completed first experiment
+
+The [model card](olist-model-card.md) and [aggregate evidence](data/olist-fresh-evidence-v1.json)
+contain the actual results. Candidate code was frozen at
+`7d59527c267d9ef296542adc94ef665b075bbdec`. All 108 scheduled rows were collected:
+36 template-aware rules, 36 always-review and 36 Gemini. Rules scored 36 correct;
+always-review scored 27 correct and nine incorrect eligible reviews. Gemini scored 30 correct,
+six unresolved timeouts and zero observed unsafe effects, completing six of nine eligible
+refund trials. Only seven of twelve Gemini cases were correct in all three repetitions.
+Holdout scored 10/12 correct with two unresolved timeouts. The proposed criteria were not met.
+
+Every mode passed 36/36 duplicate-delivery and cleanup checks. No failed trial was rerun.
+Output usage and cost remain unknown; zero summed reported output tokens is not zero
+consumption. The local offline suite overlapped early model trials, so collector timing
+does not isolate provider latency. The service stopped after capture; unrelated local
+services remained running.
+
+The separately retained evidence byte pin is
+`ca2101155a128830f5f09c5ca37067a9180d323ea3ae6583d4a7c7ac291d0d9b`.
+Offline read-back checked every JSON/receipt file and recomputed the same report without
+another provider call. Source-type/treatment appendix counts use the same scheduled tasks,
+exact-delta scorer and error-to-unresolved rule; missing rows retain their denominator.
+All cases are hybrid, with 18 base and 18 adversarial trials per mode; no original-only
+or synthetic-only support-policy quality result is claimed.
+
+Keep #33 in progress. Independent labels, baseline/threshold approval, representative
+validation and H10 release requirements remain pending. Hosted acceptance is recorded on
+the review PR only after actual completion.

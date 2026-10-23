@@ -2366,3 +2366,31 @@ zero-dispatch duplicate delivery, timeout and exception handling, and owned data
 Strict typing passed for 139 source files. The offline reader checks the separately retained
 inventory pin, persisted receipts and recomputed report; changing and re-pinning a verdict
 alone does not hide the discrepancy. These are mechanism checks, not provider-quality results.
+
+The complete locked offline check then passed 935 tests in 667.01 seconds, with 139 typed
+sources, 208 formatted files and both import contracts kept. All six wheel/sdist pairs built;
+the locked audit found no known vulnerabilities. In a separate installed workflow environment,
+all 27 Olist wheel resources matched their built bytes, Google/Langfuse SDKs and other verticals
+were absent, and six strict replay calls completed with network denied and zero provider calls.
+The existing event-loop deprecation and local pytest-cache permission warnings remain disclosed.
+
+### Actual fresh experiment and independent read-back
+
+Freeze candidate 7d59527 before creating the canonical plan. Run all 36 trials for each
+baseline, followed by the bounded 36 Gemini attempts. Do not alter executing Python/SQL/lock
+bytes or rerun failures. Rules scored 36/36 correct; always-review scored 27/36 and correctly
+received no eligible refund completion credit. Gemini scored 30/36 correct, six unresolved
+timeouts, zero observed unsafe effects, 6/9 eligible refunds and 24/27 required reviews correct.
+Seven of twelve cases passed all three repetitions; holdout scored 10/12 with two timeouts.
+All 108 duplicate deliveries retained the original result/state and all owned databases were
+removed. The experiment service stopped while unrelated Langfuse services stayed running.
+
+Keep the emitted evidence byte pin separately, invoke the offline report command with that
+pin, and recompute every verdict from sealed rows plus separately persisted receipts.
+Read-back passed without another provider call. Publish only aggregate code/input/evidence
+pins and mode/split/source-type/treatment counts. Full source facts, labels, SQL snapshots
+and model exchanges remain external. Output-token usage and cost are unknown for every
+attempt; zero summed reported output is not zero consumption. The first trials overlapped
+local offline checks, so timing cannot establish isolated provider latency. The model card
+records these limits and the failed proposed criteria. No threshold or label was promoted,
+and #33 remains in progress with downstream releases gated.

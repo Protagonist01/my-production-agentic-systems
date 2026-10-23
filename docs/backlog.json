@@ -884,7 +884,7 @@
       ],
       "milestone_number": 2,
       "branch": "codex/o8-fresh-release-evidence",
-      "review_evidence": "Historical offline evidence remains unchanged. New12case/6disjoint-group hybrid draft and36call cap prepared before model output; user said do what is best. Labels AI-provisional. New independent receipt/state/recovery accounting: initial13focused/4realPostgres/139types passed. Fresh provider experiment and final full acceptance pending.",
+      "review_evidence": "Frozen candidate7d59527; complete108rows and offline receipt/inventory readback. Rules36/36, always-review27/36, Gemini30/36 correct with6unresolvedtimeouts/0unsafe/6of9eligible/7of12all-three. All108duplicate/cleanup checks passed. Local935tests667.01s/14focused/4Postgres/139types/sixbuildpairs/audit/installed27resources+zero-provider replay. Proposed criteria not met; labels provisional, output usage/cost unknown, release false. Hosted review acceptance pending.",
       "implementation_commit": "54953b22c5944a43b377987fcaa837d5369e9ccc",
       "command_document": "docs/olist-fresh-review.md"
     },
