@@ -1,14 +1,14 @@
 # Prior authorization evidence assessment
 
-Accepted scope, updated 2026-10-23. P1–P3 are merged/verified through [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92), with pinned source preparation and bounded fresh Gemini assessment. [Source, operation and evaluation evidence](prior-auth-evidence.md) records the provisional cohort and results. The user-selected [P4/P5 document workflow and reviewer desk](prior-auth-review.md) is in progress. P6 clinical/domain release remains pending.
+Accepted scope, updated 2026-10-23. P1â€“P3 are merged/verified through [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92), with pinned source preparation and bounded fresh Gemini assessment. [Source, operation and evaluation evidence](prior-auth-evidence.md) records the provisional cohort and results. The user-selected [P4/P5 document workflow and reviewer desk](prior-auth-review.md) is ready for review in PR #93. P6 clinical/domain release remains pending.
 
 ## Application direction
 
-The target is an educational evidence-assessment application for selected policies, with reviewed criteria, isolated labels and durable document waits. P1–P3 currently deliver source preparation, provisional labels and criterion checks; document waits remain P4 work.
+The target is an educational evidence-assessment application for selected policies, with reviewed criteria, isolated labels and durable document waits. P1â€“P3 currently deliver source preparation, provisional labels and criterion checks; P4/P5 add durable waits and a protected reviewer desk in PR #93.
 
-Framework direction for the future durable workflow: LangGraph, using the merged H1 integration. The delivered P1–P3 slice provides source/evaluation CLIs and an injected shared model gateway. API/operator workflow, scoped reviewer access and durable waits belong to P4/P5.
+The P4/P5 durable workflow uses LangGraph and the merged H1 integration. The delivered P1â€“P3 slice provides source/evaluation CLIs and an injected shared model gateway. PR #93 implements the API/operator workflow, scoped reviewer access and durable waits.
 
-Redacted note + selected policy → retrieval → met/not_met/insufficient criterion assessments with evidence → deterministic aggregation → recommendation/review/request information → durable document wait and affected-criterion reassessment.
+Redacted note + selected policy â†’ retrieval â†’ met/not_met/insufficient criterion assessments with evidence â†’ deterministic aggregation â†’ recommendation/review/request information â†’ durable document wait and affected-criterion reassessment.
 
 ## Data and boundary
 
@@ -58,7 +58,7 @@ Acceptance evidence:
 
 ### P4: Implement recommendation-only policy flow and durable document waits
 
-Priority: P1; provisional size M; prerequisites: P3, F4. Status: In progress, user-authorized dependent P4/P5 batch.
+Priority: P1; provisional size M; prerequisites: P3, F4. Status: Review in PR #93, user-authorized dependent P4/P5 batch.
 
 Aggregate criteria, request information or route to qualified review; persist exact policy/version/document state and re-evaluate affected criteria.
 
@@ -70,7 +70,7 @@ Acceptance evidence:
 
 ### P5: Build reviewer interface and protected evidence access
 
-Priority: P1; provisional size M; prerequisites: P4, H8. Status: In progress, user-authorized dependent P4/P5 batch.
+Priority: P1; provisional size M; prerequisites: P4, H8. Status: Review in PR #93, user-authorized dependent P4/P5 batch.
 
 Show criterion/evidence/rationale table, missing information, review events and policy provenance under tenant/role access.
 
@@ -101,4 +101,4 @@ Gate: No denial or real authorization tool; incorrect approval recommendation me
 
 Use the shared strict-replay/fresh-evaluation/monitoring boundaries. Release requires merged implementation, independent case/state checks, complete fresh evidence and required fault cases. No critical observed violation can be hidden by improved averages.
 
-[Architecture](README.md) · [Delivery plan](project-management.md) · [Backlog](backlog.json)
+[Architecture](README.md) Â· [Delivery plan](project-management.md) Â· [Backlog](backlog.json)

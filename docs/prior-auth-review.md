@@ -2,7 +2,7 @@
 
 P4 #49 and P5 #50 are one user-authorized dependent batch on
 `codex/p4-p5-prior-auth-review`, based on verified main `6c2b7d9` (merged #92).
-The [P1–P3 source and evaluation limits](prior-auth-evidence.md) still apply. This is a
+The [P1â€“P3 source and evaluation limits](prior-auth-evidence.md) still apply. This is a
 local illustrative evidence-review system. It has no authorization, denial, treatment,
 email or external document-provider tool. P6 clinical/domain release is not completed.
 
@@ -42,7 +42,7 @@ after recovery; canonical publication/events are deduplicated, provider executio
 exactly once. After three claimed assessment attempts, another step publishes qualified review
 without calling the provider. Invalid/missing provider output also routes to qualified review.
 
-LangGraph composes reconcile → assess → publish. SQL remains the durable state; no graph memory
+LangGraph composes reconcile â†’ assess â†’ publish. SQL remains the durable state; no graph memory
 is trusted as a persistent checkpoint. Automatic LangSmith tracing is explicitly disabled around
 the graph. Domain events contain fixed reasons, states, criterion IDs and times, not note text,
 model rationales or credentials. The same shared bounded Gemini gateway is used for explicit
@@ -63,7 +63,7 @@ python -m prior_auth.review_cli --root . --trial prior-auth-review worker --live
 python -m prior_auth.review_cli --root . --trial prior-auth-review serve --port 8881
 ```
 
-Account provisioning prompts privately for a 15–128 character password. A principal has
+Account provisioning prompts privately for a 15â€“128 character password. A principal has
 `username`, `tenant_id`, `actor_id`, `role` (`reviewer` or `viewer`) and exact `case_ids`.
 No wildcard grant exists. A viewer reads assigned evidence but cannot request documents or
 record a review route. There is no public registration endpoint. Serve binds to loopback only,
@@ -114,26 +114,35 @@ guards in the temporary scripts: child setup repeated before provider dispatch c
 established. These are preserved probe-startup failures, not provider/model-quality results.
 The production CLI already has the correct guard. A corrected standalone education-only
 check completed one actual Gemini request with no failure, exact accepted evidence and no
-identifier canary in its captured exchange. It is not a full workflow or held-out quality run. Local browser continuation is pending restoration of Docker after
-a host disk-space interruption; no full browser pass is claimed. Installed wheel and final
-hosted results are added after actual execution. The rebuilt current web wheel matches all
-21 source/resource files and imports/replays under network denial. An explicitly labeled
-in-memory UI fixture
-passed actual Edge document-request/routing/viewer checks and desktop/mobile visual inspection.
-At 390px the document stays 390px wide; the 620px evidence table scrolls in a 314px container.
-These UI-only checks do not replace the pending real local SQL/browser flow.
-The [aggregate evidence](data/prior-auth-review-evidence-v1.json) keeps each evidence kind separate.
-Initial hosted run39943225425 passed ten jobs, including886tests per quality cell and94Postgres
-tests. Corrected implementation0d8c1ad then passed hosted39945068035 alltenjobs: actual logs
-886tests per qualitycell and94Postgres, with identical tested/reviewed Git trees.
-Later documentation-only checks remain visible on the draft PR.
-The implementation remains in [draft PR #93](https://github.com/Protagonist01/my-production-agentic-systems/pull/93)
-until local database-backed continuation is completed or explicitly resolved.
+identifier canary in its captured exchange. It is not a held-out quality run.
+
+After the user authorized a Docker Desktop restart, the real Postgres-backed Edge flow
+passed: reviewer document request at version 2, reviewed redacted supplement at version 3,
+duplicate delivery returning receipt 3 with zero extra events, preserved invented provenance,
+cleared wait, durable review route and private-state clearing on logout. Viewer access showed
+one assigned case, no review controls, and HTTP 403 for mutation and an unassigned case.
+At 390px with expanded policy citations the document remains 390px wide; the 620px table
+scrolls within 314px. Desktop 1440px and mobile screenshots were inspected locally.
+
+The guarded full-workflow attempt on clean 098a075 exhausted its isolated Gemini attempt
+deadline after one attempt, with provider usage unknown. Available metadata does not establish
+provider dispatch. The workflow correctly published qualified review, all seven findings
+insufficient and a terminal job. This verifies failure handling through the real workflow;
+it is not successful full-cohort extraction or model-quality evidence. No deadline, retry,
+support check or billing guard was relaxed to force success. The separate successful one-call
+education probe remains the positive fresh subset evidence.
+
+The rebuilt web wheel matches all 21 source/resource files and imports/replays under network
+denial. Hosted runs 39945068035 and 39945986070 passed all ten jobs: actual logs show 886 tests
+per quality cell and 94 Postgres tests, with identical tested and reviewed Git trees.
+The [aggregate evidence](data/prior-auth-review-evidence-v1.json) separates fixture, SQL,
+browser, startup-failure and guarded fresh-attempt evidence. [PR #93](https://github.com/Protagonist01/my-production-agentic-systems/pull/93)
+is prepared for user review; #49/#50 remain open until merge and exact-main verification.
 
 The lock metadata changed to `e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d`.
 Explicit invented replay v10, captured at clean `4ee75bc`, has digest
 `c3a6804a93739740a196a44aaed66af31a564faa6c1b9b61600b82386b985f08`.
-All six request/response pairs equal v9, including two typed timeouts. V1–v9 remain immutable
+All six request/response pairs equal v9, including two typed timeouts. V1â€“v9 remain immutable
 and reject this lock. This fixture contains no source notes or provider-quality evidence.
 
 See [the construction journal](../BUILD_BOOK.md#entry-36--durable-prior-auth-document-review)

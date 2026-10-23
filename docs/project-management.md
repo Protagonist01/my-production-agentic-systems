@@ -22,7 +22,7 @@ Data selection/label preparation may overlap earlier work. Task dependencies, ra
 
 ## Task workflow
 
-Backlog → Ready → In progress → Review → Done. Use a separate blocker field/section for blocked work.
+Backlog â†’ Ready â†’ In progress â†’ Review â†’ Done. Use a separate blocker field/section for blocked work.
 
 - **Ready:** prerequisites merged and verified, scope understood, acceptance evidence defined, owner/paths agreed.
 - **In progress:** one task owner and branch, linked issue and bounded implementation.
@@ -34,7 +34,7 @@ Backlog → Ready → In progress → Review → Done. Use a separate blocker fi
 
 ## Capacity and planning
 
-The user's 40 hours/week includes pairing, implementation, review, integration, labeling and documentation. Plan no more than three active implementation tasks/worktrees and no more than two verticals under integration. Size estimates are provisional: S 2–4 hours, M 4–8, L 8–16. Split a task that grows beyond two working days. Track actual hours and blocked time before committing calendar dates.
+The user's 40 hours/week includes pairing, implementation, review, integration, labeling and documentation. Plan no more than three active implementation tasks/worktrees and no more than two verticals under integration. Size estimates are provisional: S 2â€“4 hours, M 4â€“8, L 8â€“16. Split a task that grows beyond two working days. Track actual hours and blocked time before committing calendar dates.
 
 Plan weekly: review acceptance evidence and blockers; select Ready work within available capacity; reserve time for integration/data review. Reforecast from completed work, rather than dividing total scope by nominal parallel workers. At each stage gate, inspect newly failing required cases and open defects before scheduling expansion.
 
@@ -83,19 +83,19 @@ Report denominator, source category, slice and mode for every result. Quality fl
 
 ## GitHub administration
 
-Use a root delivery tracker → eight epic sub-issues → 53 task sub-issues. Task bodies contain ID, priority, size, scope, dependency links, acceptance checks and completion evidence. Native hierarchy is distinct from dependency edges; record prerequisites explicitly.
+Use a root delivery tracker â†’ eight epic sub-issues â†’ 53 task sub-issues. Task bodies contain ID, priority, size, scope, dependency links, acceptance checks and completion evidence. Native hierarchy is distinct from dependency edges; record prerequisites explicitly.
 
-The native Project has Status, Area, Priority, Size, Iteration and Blocker fields; Backlog, Board, Current iteration, Roadmap, My items, By workstream and Blocked views. All 53 tasks have Area, Priority and Size. Epics have Area and Priority but no aggregate size. Board stages are Backlog → Ready → In progress → Review → Done, with an In progress limit of three. The Blocked view uses `has:Blocker`; ordinary dependency waits stay Backlog. Iterations and dates remain unassigned until capacity is planned from observed throughput.
+The native Project has Status, Area, Priority, Size, Iteration and Blocker fields; Backlog, Board, Current iteration, Roadmap, My items, By workstream and Blocked views. All 53 tasks have Area, Priority and Size. Epics have Area and Priority but no aggregate size. Board stages are Backlog â†’ Ready â†’ In progress â†’ Review â†’ Done, with an In progress limit of three. The Blocked view uses `has:Blocker`; ordinary dependency waits stay Backlog. Iterations and dates remain unassigned until capacity is planned from observed throughput.
 
 | Milestone | Scope |
 |---|---|
-| [M1 — Verified foundation](https://github.com/Protagonist01/my-production-agentic-systems/milestone/1) | Foundation epic and F1–F5 |
-| [M2 — Complete Olist release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/2) | Harness/Olist epics, H1–H10 and O1–O8 |
-| [M3 — CFPB release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/3) | CFPB epic and C1–C5 |
-| [M4 — Revenue integrity release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/4) | Revenue epic and R1–R7 |
-| [M5 — Prior auth release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/5) | Prior auth epic and P1–P6 |
-| [M6 — Supply chain release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/6) | Supply chain epic and S1–S6 |
-| [M7 — Operations and portfolio release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/7) | Operations epic, L1–L5 and H11 |
+| [M1 â€” Verified foundation](https://github.com/Protagonist01/my-production-agentic-systems/milestone/1) | Foundation epic and F1â€“F5 |
+| [M2 â€” Complete Olist release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/2) | Harness/Olist epics, H1â€“H10 and O1â€“O8 |
+| [M3 â€” CFPB release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/3) | CFPB epic and C1â€“C5 |
+| [M4 â€” Revenue integrity release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/4) | Revenue epic and R1â€“R7 |
+| [M5 â€” Prior auth release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/5) | Prior auth epic and P1â€“P6 |
+| [M6 â€” Supply chain release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/6) | Supply chain epic and S1â€“S6 |
+| [M7 â€” Operations and portfolio release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/7) | Operations epic, L1â€“L5 and H11 |
 
 Five workflows are enabled: add matching open repository issues, add sub-issues, initialize new items in Backlog, set explicitly closed issues to Done, and return reopened items to Backlog. Auto-close from a board move, automatic Done on PR merge, and automatic status changes on PR linkage are disabled. Review and acceptance remain explicit. Close implementation issues only after checking their evidence; avoid PR closing keywords when acceptance must be checked after merge. Archive and review automations stay off.
 
@@ -166,4 +166,4 @@ satisfy P6 clinical/domain release acceptance.
 
 ## Authorized P4/P5 document-review batch
 
-The user selected #49/#50 together after #92 merge verification. Branch codex/p4-p5-prior-auth-review reuses the isolated D-drive checkout. Postgres owns document receipts, exact note/policy versions, waits, lease recovery and fixed review events; the protected loopback desk serves explicitly reviewed redacted evidence. Fresh model checks use the previously approved Free Gemini configuration through shared controls, without paid fallback. P4 verification occurs inside the authorized bundle before P5 acceptance. First29focused/7Postgres checks and full886-test regression passed. Temporary probe scripts initially lacked Windows main guards; their startup failures do not establish provider dispatch. A corrected one-request redacted education-only Gemini check passed, separately from the earlier P3 holdout. An actual Edge UI-only fixture passed document/routing/viewer and390px layout checks; real local SQL/browser continuation remains interrupted by host disk pressure/Docker unresponsiveness. The user is clearing space while packaging/hosted checks continue. No release promotion or real clinical action.
+The user selected #49/#50 together after #92 merge verification. Branch codex/p4-p5-prior-auth-review reuses the isolated D-drive checkout. Postgres owns document receipts, exact note/policy versions, waits, lease recovery and fixed review events; the protected loopback desk serves explicitly reviewed redacted evidence. Fresh model checks use the previously approved Free Gemini configuration through shared controls, without paid fallback. P4 verification occurs inside the authorized bundle before P5 acceptance. First29focused/7Postgres checks and full886-test regression passed. Temporary probe scripts initially lacked Windows main guards; their startup failures do not establish provider dispatch. A corrected one-request redacted education-only Gemini check passed, separately from the earlier P3 holdout. An actual Edge UI-only fixture passed document/routing/viewer and390px layout checks; After authorized Docker recovery, the real SQL-backed Edge flow passed document wait/import, duplicate receipt with zero extra events, reviewer routing, viewer write/unassigned-case 403, logout clearing and mobile390px layout. The guarded full-workflow model attempt timed out with unknown usage; it safely published qualified review with no supported findings, without establishing provider dispatch from available metadata. Hosted checks passed all ten jobs (886 per quality cell,94Postgres). PR #93 and #49/#50 move to Review, remaining open pending user merge and exact-main verification. No release promotion or real clinical action.

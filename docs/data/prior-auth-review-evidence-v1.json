@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "draft_pending_local_recovery",
+  "status": "review_pending_user_merge",
   "batch": [
     "P4",
     "P5"
@@ -44,10 +44,7 @@
     "provider_calls": 0,
     "all_exchanges_equal_v9": true
   },
-  "pending": [
-    "Real local SQL/browser document flow after Docker recovery",
-    "Supplemental full-workflow fresh model check"
-  ],
+  "pending": [],
   "limits": [
     "AI-provisional illustrative evidence only",
     "No clinical authorization or denial action",
@@ -133,6 +130,48 @@
       "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
       "clinical_validation": false,
       "release_approval": false
+    },
+    {
+      "phase": "supplement",
+      "workflow": {
+        "claimed": true,
+        "expired": 0,
+        "published": true
+      },
+      "case_status": "qualified_review",
+      "criterion_states": {
+        "adult_osa": "insufficient",
+        "education": "insufficient",
+        "clinical_evaluation": "insufficient",
+        "sleep_test": "insufficient",
+        "physician_order": "insufficient",
+        "severity": "insufficient",
+        "event_count": "insufficient"
+      },
+      "selected_criteria": [
+        [
+          "adult_osa",
+          "education",
+          "clinical_evaluation",
+          "sleep_test",
+          "physician_order",
+          "severity",
+          "event_count"
+        ]
+      ],
+      "requests": 1,
+      "failures": [
+        "timeout"
+      ],
+      "clinical_validation": false,
+      "release_approval": false,
+      "code_revision": "098a075112ec3a09d5863803de4b0435c16fce42",
+      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+      "mode": "guarded_full_workflow_attempt",
+      "provider_usage": "unknown",
+      "provider_dispatch": "not_established_by_available_metadata",
+      "quality_success": false,
+      "interpretation": "one isolated attempt timed out; canonical failed assessment published safely; no supported findings"
     }
   ],
   "ui_fixture_browser": {
@@ -160,5 +199,57 @@
     "offline_tests_per_quality_cell": 886,
     "postgres_tests": 94,
     "non_failing_postgres_warnings": 1
+  },
+  "real_workflow_browser": {
+    "version": 3,
+    "status": "qualified_review",
+    "duplicate_receipt": 3,
+    "duplicate_new_events": 0,
+    "canary_absent": true,
+    "provenance": "invented",
+    "event_kinds": [
+      "case_enrolled",
+      "assessment_completed",
+      "documents_requested",
+      "document_received",
+      "assessment_completed"
+    ],
+    "job": {
+      "state": "done",
+      "attempts": 1,
+      "criteria": [
+        "adult_osa",
+        "education",
+        "clinical_evaluation",
+        "sleep_test",
+        "physician_order",
+        "severity",
+        "event_count"
+      ]
+    },
+    "browser": "Edge",
+    "backend": "real_postgres",
+    "document_request": "passed",
+    "reviewer_route": "passed",
+    "viewer_read_only": "passed",
+    "viewer_write_status": 403,
+    "unassigned_case_status": 403,
+    "logout_clears_private_state": true,
+    "mobile_viewport": 390,
+    "mobile_document_width": 390,
+    "mobile_table_client_width": 314,
+    "mobile_table_scroll_width": 620,
+    "desktop_width": 1440,
+    "code_revision": "098a075112ec3a09d5863803de4b0435c16fce42"
+  },
+  "documentation_hosted": {
+    "run": 39945986070,
+    "head": "098a075112ec3a09d5863803de4b0435c16fce42",
+    "tested_merge": "eedf162c620dceb9724fa379f60f3bbc10d3249e",
+    "identical_tree": true,
+    "clean_checkout": true,
+    "draft": true,
+    "tests_per_quality_cell": 886,
+    "postgres_tests": 94
   }
 }

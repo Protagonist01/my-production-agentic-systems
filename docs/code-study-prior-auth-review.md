@@ -3,7 +3,7 @@
 Inspected branch `codex/p4-p5-prior-auth-review`, implementation `0d8c1ad`, October 23, 2026.
 Later evidence is recorded in [draft PR #93](https://github.com/Protagonist01/my-production-agentic-systems/pull/93)
 and [operations](prior-auth-review.md). This is an
-unmerged P4/P5 slice; source/criterion logic is covered in [P1–P3](code-study-prior-auth.md).
+unmerged P4/P5 slice; source/criterion logic is covered in [P1â€“P3](code-study-prior-auth.md).
 Clinical validation, production hosting, P6 and O8 release acceptance remain excluded.
 
 Verified source trail at that commit:
@@ -77,8 +77,7 @@ including logout during a stalled initial load and session expiry.
 
 - **Verified mechanism evidence:** 29 focused tests and seven isolated Postgres tests passed.
   The SQL suite includes a child process terminating after claim and a later lease recovery,
-  concurrent document retries and a policy update before stale publication. Full/hosted counts
-  belong in the PR after they actually finish.
+  concurrent document retries and a policy update before stale publication. Full locked regression passed 886 tests; hosted checks passed 886 per quality cell and 94 Postgres checks.
 - **Observed probe-startup failure:** temporary scripts lacked the Windows main guard; spawned
   child setup repeated, producing timeout/unavailable attempts before provider dispatch was
   established. Production CLI is guarded. These failed attempts remain separate from guarded
@@ -102,3 +101,22 @@ replacement changes the case version and obsoletes the old job. Then compare an 
 and duplicate document delivery: one refuses publication while the other returns a receipt.
 For a scale change, discuss tenant scheduling fairness, bounded queues, lease renewal and
 independently reviewed medical dependency rules without weakening current version checks.
+
+### Real workflow acceptance after Docker recovery
+
+On clean 098a075, Edge submitted an all-seven-criterion document wait to the real SQL-backed
+API (version 2). Trusted redacted import appended the supplement and queued version 3.
+The guarded isolated model attempt timed out with usage unknown; available metadata does
+not establish dispatch. `ReviewWorkflow.step` still published exactly one failed assessment,
+qualified review, and no supported findings. Repeating the same delivery with original
+expected version 2 returned receipt 3 and added zero events. The identifier canary was absent
+from stored redacted case/events and invented provenance stayed invented.
+
+The actual viewer received 403 for a write and an unassigned case, with no reviewer controls.
+Reviewer routing appended durable history; logout cleared the case. Expanded mobile policy
+citations measured viewport/document 390/390 and table container/content 314/620. These are
+real application checks, separate from the earlier in-memory UI fixture. They demonstrate
+safe failure handling, not clinical validation or successful full-cohort model extraction.
+The one-call education subset remains the successful fresh extraction evidence. No source
+code changed during this continuation; production deployment and clinical utility remain
+outside this guide's inspected scope.

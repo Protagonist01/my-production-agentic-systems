@@ -2010,3 +2010,31 @@ After provenance and mobile corrections, rebuild/reinstall the PriorAuth web whe
 ### Corrected implementation hosted acceptance
 
 Corrected0d8c1ad passed39945068035 alltenjobs. Actual logs verify886tests per each Ubuntu/Windows Python3.12/3.13 cell,94Postgres withone non-failing warning,122typed sourcefiles, shipped Node session regressions and strict replay6calls/2timeouts/zero-provider. API tree comparison proves testedmerge3f2477689c2ea83fcc5c15cffe03aa8fa930dacc equals reviewhead0d8c1ad (tree81e5d3a28ab85a504e0df14b9c71305943ef091d). Only documentation follows that implementation. Final documentation-head status is recorded by PR checks; no self-referential CI commit loop. #93 remains draft until the explicitly pending real local SQL/browser/supplement path is resumed after Docker restoration. No clinical release claim.
+
+
+### Restore Docker and verify the actual failure path
+
+The user authorized restarting Docker Desktop after freeing disk space. A sandboxed Docker
+probe also had configuration-access denial, so repeat diagnostics with authorized local access
+before attributing every timeout to the engine. `docker desktop restart --timeout 45` could
+not stop Desktop; inspect process executable paths, stop only processes under the verified
+Docker installation, then relaunch Desktop hidden. Do not shut down unrelated WSL distributions.
+The engine reported running after about 53 seconds; restore only the named demo Workspace.
+
+Resume the saved version-1 case in Edge. Request all seven criteria with an explicit future
+deadline, producing version 2. Run the guarded supplement script once: trusted import masks
+the identifier, commits version 3, and the worker claims that version. Its isolated Gemini
+attempt exhausted the deadline with usage unknown; available metadata does not establish
+provider dispatch. Preserve the private fresh-supplement output, do not retry it as though the
+delivery had never committed, and do not weaken timeouts to obtain a green model result.
+
+Reconstruct ReviewStore from the saved Workspace and resubmit identical delivery ID/text with
+the original expected version 2. Receipt 3 and an unchanged event count prove idempotency even
+though the canonical case advanced. The job is done, invented provenance remains invented,
+and stored case/events exclude the identifier canary. Edge renders seven insufficient findings,
+the assessment-failure banner and cleared wait. Viewer write/unassigned-case requests both
+return 403; reviewer routing adds one durable event and logout clears private DOM. Expanded
+mobile citations measure document/viewport390/390 and table content/container620/314.
+This supersedes the pending-Docker status above: actual SQL/browser continuation is verified,
+including the guarded model failure path. Successful full-cohort extraction is not claimed;
+the earlier one-call education subset remains separate positive fresh evidence.
