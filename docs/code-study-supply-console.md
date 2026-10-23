@@ -46,8 +46,9 @@ notice IDs, exact JSON amounts and the API perimeter. The actual browser asset N
 checks late refreshes, private clearing, stalled login/logout and signed-64 formatting.
 The SQL acceptance test covers exact review, post-commit notice failure/reconstruction,
 single-debit retry, confirmation wording, per-account read state, tenant denial, session expiry
-and runtime deletion denial. Test presence is distinct from a successful run; see the Build Book
-for completed results and remaining verification.
+and runtime deletion denial. The SQL acceptance and full 87-test SQL suite passed locally. The full offline run passed
+855 tests; corrected-lock focused tests passed 115. Actual Edge desktop/mobile role flows also
+passed. See the Build Book and PR #91 for exact source, lock and hosted-run evidence.
 
 Tradeoff to explain in an interview: notices are eventually reconstructed from canonical state,
 so a failure can delay the preview while preserving exactly-once SIM effects. This avoids an
