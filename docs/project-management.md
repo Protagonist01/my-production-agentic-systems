@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-23. User-merged #92 is verified as main6c2b7d9 with an identical reviewed tree, nine applicable main CI jobs, actual881tests per qualitycell/87Postgres and clean exact-main replay. P1#46/P2#47/P3#48 are closed completed; provisional source/clinical limits remain. The user selected P4#49/P5#50 as the next dependent batch. P6 and S6 remain behind the pending O8 release gate. C2#84 is a separate review. Native project-board state remains unverified.
+Updated: 2026-10-23. User-merged #93 is verified as main116d7e5 with an identical reviewed tree, nine applicable main CI jobs, actual886tests per quality cell/94Postgres and clean exact-main replay. P4#49/P5#50 are closed completed. The user selected reconciliation of existing CFPB C2 PR#84; C3/C4 wait for its user merge and verified main. O8 and all dependent domain/operations release gates remain pending; native project-board state remains unverified.
 
 ## Scope and source of truth
 
@@ -106,14 +106,24 @@ The Project is private and linked to this public repository. Creation and update
 
 The user selected O3+C2 after verified main2988428. Root owns both issue-sized branches: O3 reuses the existing c1-cfpb-import checkout on codex/o3-refund-policy; C2 uses the separate managed c2-risk-baselines checkout. O3 owns Olist policy, case preparation, tests and chapter; C2 owns CFPB review/baselines, tests and chapter. Shared planning/index/Build Book appends require reconciliation after the first reviewed merge. Entry26 is O3; Entry27 is C2. Retain complete journal history. Raw/private source records and per-case labels stay external.
 
-The user accepted a constructed full-refund-only SIM policy capped at100.00; missing/conflicting facts, over-cap and reship require review. Olist's actual currency stays unknown. The user asked Codex to label the twelve-case CFPB blind batch. Those judgments are explicitly AI-reviewed/provisional; no human/adjudicated labels or agreement evidence is invented. Baselines use development-only fitting, show split/slice denominators and preserve uncertain cases. Neither task authorizes live provider calls, business writes or release promotion. O4/C3 stay Backlog until prerequisite user merge and verification. Native project-board state remains unverified.
+The user accepted a constructed full-refund-only SIM policy capped at100.00; missing/conflicting facts, over-cap and reship require review. Olist's actual currency stays unknown. The user asked Codex to label the twelve-case CFPB blind batch. Those judgments are explicitly AI-reviewed/provisional; no human/adjudicated labels or agreement evidence is invented. Baselines use development-only fitting, show split/slice denominators and preserve uncertain cases. Neither task authorizes live provider calls, business writes or release promotion. O4 subsequently completed in #85; C3 remains Backlog until C2 user merge and verification. Native project-board state remains unverified.
 
 
 ## Authorized O4 + O5 delivery bundle
 
-The user approved one PR for scoped transactional refund tools (#29) and the dependent LangGraph workflow (#30). Both use `codex/o4-o5-refund-workflow` in the existing managed c1-cfpb-import checkout, based on verified O3 main `de04a96`. O4 is verified inside the same review bundle before the O5 delivery rather than requiring an intermediate user merge. One primary `Refs #29` satisfies contribution metadata; the body also links #30. Both issues remain open in Review until user merge and post-merge acceptance. C2 #84 remains independent; preserve Entry27 when reconciling journal/planning appends.
+The user approved one PR for scoped transactional refund tools (#29) and the dependent LangGraph workflow (#30). Both use `codex/o4-o5-refund-workflow` in the existing managed c1-cfpb-import checkout, based on verified O3 main `de04a96`. O4 is verified inside the same review bundle before the O5 delivery rather than requiring an intermediate user merge. One primary `Refs #29` satisfies contribution metadata; the body also links #30. Both issues completed after the user merged #85 and exact-main acceptance passed. C2 #84 remains independent; preserve Entry27 when reconciling journal/planning appends.
 
-Reuse unchanged pinned source stores and previous exact-source evidence. Perform one final complete integrated offline check, the required database suite, package checks and one hosted matrix at the final head; repeat only checks affected by new failures/changes. No live provider calls, real payment writes or release promotion are authorized. Source-backed tests use declared hybrid SIM facts and explicit offline intent. O6 reviewer approvals, O7 authentication/API/UI and O8 complete release acceptance remain Backlog. Native project-board transitions are unverified.
+Reuse unchanged pinned source stores and previous exact-source evidence. Perform one final complete integrated offline check, the required database suite, package checks and one hosted matrix at the final head; repeat only checks affected by new failures/changes. No live provider calls, real payment writes or release promotion are authorized. Source-backed tests use declared hybrid SIM facts and explicit offline intent. O6 reviewer approvals and O7 local authentication/API/UI subsequently merged in #86; O8 fresh release acceptance remains pending. Native project-board transitions are unverified.
+
+
+## After O3 merge and faster reconciliation
+
+The user reviewed/merged #83 asde04a96 and requested a faster pace. Main's tree exactly matches reviewed e65b866; hosted mainrun39330860614 passed. Integrate it into existing C2 #84 and resolve five shared documentation/planning conflicts while retaining Entry26 and Entry27 in full. No executable/test/config/lock bytes change from the already verified combined snapshot1dd54e7. Reuse original source imports, sealed reviews, consumer-reference reports and installed-wheel evidence. Run one focused combined check/link audit/replay and rely on final exact-head required hosted CI for the full merged population; do not repeat identical full local suites or regenerate source artifacts after documentation-only reconciliation. Record actual final results on#35 after completion. O3 is Done; C2 stays open Review. Native project-board state remains unverified.
+
+
+## C2 reconciliation after O4 + O5 merge
+
+The user merged#85 as e11290a. Keep still-open C2#84 current by merging this main and resolving six shared-documentation conflicts. Preserve complete Entries27/28 and both vertical studies. Source/test bytes are unchanged in each vertical; use focused C2 checks and final hosted matrix instead of redundant local full suites or ingestion. C2 stays Review; final exact-head evidence is recorded on#35. Native board unverified. The user separately authorized a combined O6+O7 delivery, retaining the100.00SIM cap/eligibility and local pre-provisioned operator/reviewer accounts.
 
 
 ## Authorized O6 + O7 delivery bundle
@@ -130,6 +140,11 @@ Main job timings show the slowest quality cell took213seconds, including16second
 O8 fresh held-out provider results, baseline/threshold review and first-release acceptance remain pending by explicit user choice to stay offline. An offline report or three repeated fake-planner executions cannot satisfy that gate. R1 source-family/label coverage must disclose inference and unsupported billing fields. No live provider/payment/deployment is authorized.
 
 
+## C2 reconciliation after #87
+
+Keep existing #84 current with verified058d1c7. Six conflicts are shared documentation/planning only. Preserve full Entries27–30, C2 baselines and merged Olist/Revenue studies. Focused C2, immutable-source/link audit and clean replay validate this reconciliation; final exact-head hosted checks cover734offline tests and43Postgres (counts require actual logs). No repeated ingestion, label generation or unchanged full local suite/build. #35 stays open Review pending user merge; fresh/domain/human quality limits remain.
+
+
 ## Three-issue Revenue delivery
 
 R2/R3/R4 share `codex/r2-r3-r4-revenue-engine` from verified058d1c7. Two isolated Revenue workers own fixture contracts and reconciliation/extraction; the shared access worker preserves Olist wire/policy behavior and adds only the demonstrated common exact-scope mechanism. Root integrates shared planning, journal, navigation and final acceptance once. The user-approved SIM billing policy and safe unsupported cases are documented in Build Book Entry31. Prerequisite R2 verification occurs inside the explicitly authorized bundle before R3/R4 acceptance; source R1 is merged/verified. No actual invoice mutation or release promotion is included.
@@ -137,6 +152,10 @@ R2/R3/R4 share `codex/r2-r3-r4-revenue-engine` from verified058d1c7. Two isolate
 
 The combined R2/R3/R4 candidate is ready for final acceptance and user review. Its current source and offline aggregate are linked from the Revenue runbooks; final local/database/hosted results are maintained on #40/#41/#42. Keep all three issues open until user merge and exact-main verification. Provisional fixture agreement, scripted original extraction and strict replay do not satisfy fresh domain release gates. Certifi's new advisory was repaired before acceptance, with an explicit reviewed-content v5 invented replay capture for the changed environment lock.
 
+
+## C2 reconciliation after #88
+
+Keep #84 current with verified main5f73fc9. Three conflicts are shared documentation only; preserve full Entries27–31, C2 baseline chapter and all merged Revenue studies. Source/config/lock bytes inherit reviewed main; C2 code/tests remain unchanged. Focused C2 and clean replay verify composition; hosted exact-head evidence is required before acceptance. The new certifi fix and v5 replay arrive unchanged from main, with no source reingestion or relabeling. Issue35 remains open Review pending user merge.
 
 ## Authorized R5 + R6 + S1 batch
 
@@ -167,3 +186,8 @@ satisfy P6 clinical/domain release acceptance.
 ## Authorized P4/P5 document-review batch
 
 The user selected #49/#50 together after #92 merge verification. Branch codex/p4-p5-prior-auth-review reuses the isolated D-drive checkout. Postgres owns document receipts, exact note/policy versions, waits, lease recovery and fixed review events; the protected loopback desk serves explicitly reviewed redacted evidence. Fresh model checks use the previously approved Free Gemini configuration through shared controls, without paid fallback. P4 verification occurs inside the authorized bundle before P5 acceptance. First29focused/7Postgres checks and full886-test regression passed. Temporary probe scripts initially lacked Windows main guards; their startup failures do not establish provider dispatch. A corrected one-request redacted education-only Gemini check passed, separately from the earlier P3 holdout. An actual Edge UI-only fixture passed document/routing/viewer and390px layout checks; After authorized Docker recovery, the real SQL-backed Edge flow passed document wait/import, duplicate receipt with zero extra events, reviewer routing, viewer write/unassigned-case 403, logout clearing and mobile390px layout. The guarded full-workflow model attempt timed out with unknown usage; it safely published qualified review with no supported findings, without establishing provider dispatch from available metadata. Hosted checks passed all ten jobs (886 per quality cell,94Postgres). PR #93 and #49/#50 move to Review, remaining open pending user merge and exact-main verification. No release promotion or real clinical action.
+
+
+## C2 reconciliation after verified #93
+
+Merge main116d7e5 into existing PR#84 without changing CFPB source, sealed reviews or baselines. Five conflicts are shared documentation; preserve complete Build Book Entries27–36 and every vertical chapter. #49/#50 are completed after identical-tree user merge and main39973654251 acceptance (886tests per qualitycell,94Postgres; clean replay6calls/2timeouts/zero-provider). C2 stays open Review until user merge. Reuse unchanged source/installed/label evidence, run focused C2 composition/link/publication checks and exact-head replay, then verify the final hosted matrix. No provider calls or label promotion are part of this reconciliation.

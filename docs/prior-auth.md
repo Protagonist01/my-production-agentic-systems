@@ -1,6 +1,6 @@
 # Prior authorization evidence assessment
 
-Accepted scope, updated 2026-10-23. P1â€“P3 are merged/verified through [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92), with pinned source preparation and bounded fresh Gemini assessment. [Source, operation and evaluation evidence](prior-auth-evidence.md) records the provisional cohort and results. The user-selected [P4/P5 document workflow and reviewer desk](prior-auth-review.md) is ready for review in PR #93. P6 clinical/domain release remains pending.
+Accepted scope, updated 2026-10-23. P1â€“P3 are merged/verified through [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92), with pinned source preparation and bounded fresh Gemini assessment. [Source, operation and evaluation evidence](prior-auth-evidence.md) records the provisional cohort and results. The user-selected [P4/P5 document workflow and reviewer desk](prior-auth-review.md) is merged and verified through PR #93. P6 clinical/domain release remains pending.
 
 ## Application direction
 
@@ -58,27 +58,27 @@ Acceptance evidence:
 
 ### P4: Implement recommendation-only policy flow and durable document waits
 
-Priority: P1; provisional size M; prerequisites: P3, F4. Status: Review in PR #93, user-authorized dependent P4/P5 batch.
+Priority: P1; provisional size M; prerequisites: P3, F4. Status: Done, merged/verified PR #93.
 
 Aggregate criteria, request information or route to qualified review; persist exact policy/version/document state and re-evaluate affected criteria.
 
 Acceptance evidence:
 
-- [ ] There is no deny_request or real authorization tool/API route.
-- [ ] Document arrivals/timeouts and restarts resume without duplicate queue effects.
-- [ ] Policy version change invalidates obsolete candidate decisions.
+- [x] There is no deny_request or real authorization tool/API route.
+- [x] Document arrivals/timeouts and restarts resume without duplicate queue effects.
+- [x] Policy version change invalidates obsolete candidate decisions.
 
 ### P5: Build reviewer interface and protected evidence access
 
-Priority: P1; provisional size M; prerequisites: P4, H8. Status: Review in PR #93, user-authorized dependent P4/P5 batch.
+Priority: P1; provisional size M; prerequisites: P4, H8. Status: Done, merged/verified PR #93.
 
 Show criterion/evidence/rationale table, missing information, review events and policy provenance under tenant/role access.
 
 Acceptance evidence:
 
-- [ ] Only redacted views are model-visible; identifier canaries do not leak to traces.
-- [ ] Unauthorized reviewer cannot inspect/change another case.
-- [ ] Reviewer can identify uncertainty, conflicts and pending document waits.
+- [x] Only redacted views are model-visible; identifier canaries do not leak to traces.
+- [x] Unauthorized reviewer cannot inspect/change another case.
+- [x] Reviewer can identify uncertainty, conflicts and pending document waits.
 
 ### P6: Release criterion, recommendation-risk and abstention evidence
 

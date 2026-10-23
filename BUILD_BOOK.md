@@ -37,7 +37,9 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 26 â€” Constructed policy and review evidence before domain baselines](#entry-26--constructed-policy-and-review-evidence-before-domain-baselines)
 
-- [Entry 28 â€” Transactional refunds and a bounded LangGraph workflow](#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow)
+- [Entry 27 — Blind provisional risk review before deterministic baselines](#entry-27--blind-provisional-risk-review-before-deterministic-baselines)
+
+- [Entry 28 — Transactional refunds and a bounded LangGraph workflow](#entry-28--transactional-refunds-and-a-bounded-langgraph-workflow)
 
 - [Entry 29 â€” Exact-action approval behind a scoped local console](#entry-29--exact-action-approval-behind-a-scoped-local-console)
 - [Entry 30 â€” Parallel release evidence and original contract preparation](#entry-30--parallel-release-evidence-and-original-contract-preparation)
@@ -1382,7 +1384,67 @@ Executable source15908425fa0735317a9e5ec281e7948c9aaa9bba passed the full locked
 Allsixpackages built. A base-only installed Olist wheel matched all7modulebytes and read the independently pinned private evaluator file under network denial, with optionalSDKs andpytestabsent; all12proposals matched. This validates installed mechanism behavior, not human adjudication or a transaction. Documentation audit checked329immutable source ranges and242local links. Raw/private literal scans and final exact-head hosted checks are recorded on#28 after completion. Keep issue open in Review until user merge and post-merge acceptance. No O4 work starts on an unmerged prerequisite.
 
 
-## Entry 28 â€” Transactional refunds and a bounded LangGraph workflow
+## Entry 27 — Blind provisional risk review before deterministic baselines
+
+**Files touched:** `projects/cfpb-triage/src/cfpb_triage/review.py`, baseline/review tools and tests, `docs/cfpb-risk-guideline.md`. Started 2026-10-19 on verified main `2988428`, independently of the O3 branch's reserved Entry26.
+
+### Context
+
+The user selected O3+C2 after merging #82, then asked Codex to perform the first risk-label review. The agreed proposal is twelve real narratives, four from each existing split, selected by a fixed hash before inspecting labels. No qualified human reviewer is established. The resulting judgments must be AI-reviewed and provisional, not promoted to human ground truth.
+
+### Before you read on
+
+If a rules baseline generates its own risk labels, what would a perfect score actually mean? How do you keep the review evidence separate from candidate outputs and prevent a small convenience batch from becoming a claimed release benchmark?
+
+### Options considered and why
+
+Using consumer product/issue labels as risk truth would answer a different question. Generating risk labels with the baseline itself would measure self-consistency. Instead, freeze a written rubric, select distinct exact-text groups with a fixed hash, expose full narrative text alone, record the review before calculating baseline outputs and pin its bytes. One AI reviewer cannot establish human validation or inter-reviewer agreement; record those limits as missing evidence rather than zero disagreements.
+
+### How to build it
+
+1. Verify C1's externally stored prepared manifest against its reviewed digest. Read only group/split/case identifiers for selection; never use product/issue labels, keywords or predictions in the sampling function.
+2. Rank groups by SHA-256 of a fixed seed/domain/group ID, choose four in each split, choose one fixed representative per group and shuffle presentation with another domain. Write narrative-only `blind.json` and separate evaluator-only `selection.json` outside every Git checkout. Recheck source pins after reading.
+3. Write a versioned rubric for elevated/routine/uncertain risk and clear/ambiguous interpretation. Record reviewer identity/kind/time, source text digest, exact Unicode evidence offsets and rationale for each entire narrative. Elevated judgments require a concrete supporting span. Preserve all twelve rows; no silent exclusion of difficult cases.
+4. Reject missing/extra/duplicate reviews, wrong narrative digests, invalid evidence and false prediction-blindness claims in the schema. Keep reviewer identity/truthfulness an explicit trusted assertion; software cannot authenticate an independent judgment.
+5. Seal the review byte digest before running majority or fixed rules. Fit any majority using development only, freeze tie handling, and report each split's actual denominator. Keep provisional risk agreement separate from consumer-label reference agreement and from actual harm.
+6. Test invented cases and source/label-isolation boundaries offline. Preserve any additional reviewer disagreement without silently choosing a preferred label. No live Langfuse dataset or provider call is required.
+
+### What went wrong
+
+No results are claimed at design time. A planning clarification mattered: the user asked the agent to label the cases, so waiting indefinitely for an unspecified human reviewer would not satisfy the request. Proceed with honest AI-review provenance and leave human/adjudicated validation unestablished.
+
+
+### Review and first baseline evidence
+
+Read all twelve complete narratives in the shuffled blind packet before writing/running a baseline. Record one AI reviewer, guideline bytes, exact Unicode spans and separate rationale, then seal reviews6f7dd5a0603aa7326d9b2ab9e28e74a6b4f5a92b5028d11ca8ad456865a3b9b3. Judgments:9routine/1elevated/2uncertain and10clear/2ambiguous. Zero human reviews and no comparable reviewer pairs mean disagreement is null/unassessed, not zero.
+
+The first packet's metadata exposed the Windows intended-text versus actual-byte pin bug also caught in O3. Preserve original blind/review bytes and original selection metadata. Create selection-v2.json correcting only the packet byte pin and adding the rubric digest. Membership, narratives, splits and judgments are unchanged. Current generation writes UTF-8/LF; an invented pipeline test now checks actual file bytes.
+
+Twenty focused invented checks passed1.08s. Strict types passed59sources after a heterogeneous per-class dictionary caused mypy to infer the F1 sum as object: accumulate float F1 values separately instead of suppressing the error. The first pilot finds majority risk matches9/12 but misses the only elevated holdout case; rules match5/12 and send7/12 to review including that positive, with false positives from legal/negated/unauthorized wording. Preserve these failures without tuning on the reviewed holdout. Fixed rules were authored by the same agent after blind labels were sealed; do not claim independent model-development or human validation.
+
+The complete consumer-reference baseline remains a separate report across260738records. Majority product and conditional issue choices fit development only; keyword product rules take narrative alone. Static review clarified the distinction between most frequent joint label and most frequent product followed by conditional issue; the final implementation uses the latter and reruns the complete report. This is a deterministic development specification correction before candidate tuning, not an improved-risk claim.
+
+
+### Bounds review before publication
+
+Static review found that Python slicing clamps an oversized end offset: a reviewer could supply an end past the narrative length while the selected suffix text still matches. Reject end offsets beyond the actual Unicode text length and add an invented witness with a matching tail plus oversized end. This is evidence-integrity correctness, not a claimed remote vulnerability. Preserve the original complete-suite result's source boundary and run the repaired evidence tests/current hosted suite before publication acceptance.
+
+
+### Repaired package and publication evidence
+
+Repaired source087d4703f4ae72cb9aa75b5c68418f76392d8cea passed21focused cases6.10seconds and strict59source types. The complete consumer-reference report rerun exactly reproduced all initial counts/metrics after majority-fitting clarification; no observed-metric improvement is claimed. Allsixpackages built. The rebuilt base-only CFPB wheel matched8modulebytes and exactly reproduced the sealed12caseprovisional-risk aggregate report undernetworkdenial with optionalSDKs/pytestabsent. Existing C1 source/ingestion bytes remain unchanged.
+
+Documentation verification passed331immutable source ranges/250local links. Literal publication scans checked all260738preparednarratives (complete strings at least40characters) and99441OlistorderIDs against20intendedfiles with zero matches. This is a limited literal check, not a privacy certification. Combined O3source1590842 and repairedC2source087d470 focused verification passed54new tests9.44seconds. Full/current-head hosted results remain on#35 after actual completion; no pending result counts as a pass. Keep C2 open in Review until user merge and verified main, with human validation explicitly unestablished. Shared Entry26/27 planning appends must be reconciled after the first user merge.
+
+
+### Reconcile after O3 merge without repeating identical source work
+
+2026-10-19: user merged#83 asde04a96 and said the pace was too slow. Exact Git tree comparison proves main equals reviewed e65b866. Main hosted run39330860614 passed; verify applicable job statuses and clean-main replay before closing#28. Merge main into C2 and preserve complete Entries26/27 plus both code chapters. Five shared documentation/planning conflicts require edits; executable/test bytes do not conflict.
+
+Keep source/test/config bytes identical to combined snapshot1dd54e7, whose54focused tests,62typed sources, imports, clean replay and six builds already passed. Reuse fixed artifact pins and installed proofs; rerunning real-source ingestion or every full local suite after a documentation-only merge adds time without new evidence. Run one focused check plus documentation validation, and accept the final required hosted matrix for the full679-test integrated population only after it succeeds. Results are maintained on#35 rather than committing a new metadata change that restarts CI. No source behavior, label or baseline changes here.
+
+
+## Entry 28 — Transactional refunds and a bounded LangGraph workflow
 
 **Files touched:** Olist backend/schema/workflow modules, their integration tests, optional workflow dependencies and operations. Started2026-10-20 from verified O3 mainde04a96. Entry27 is reserved in C2#84 and will be preserved when that reviewed branch integrates. The user explicitly approved combining O4#29 and O5#30 in one PR to reduce review cycles; O5's O4 prerequisite is satisfied inside this reviewed bundle rather than requiring a separate intermediate merge. O3 is already merged/verified.
 
@@ -1433,12 +1495,18 @@ The new v3 invented capture was published exclusively from clean source `8d10f3a
 Affected controls/replay acceptance now passes128tests80.50seconds. Ruff/format and the documentation audit pass354immutable source ranges/261local links;30intended publication files contain no configured secret values. Allsixwheel/sdist pairs rebuilt with the v3 fixture included. Freeze the executable changes, run clean exact-source replay and repeat the complete local suite because the first integrated run had real failures. Required database27test evidence is reused locally because no business/workflow/DB source changed; final hosted Postgres repeats it at the published head. Record final full/hosted outcomes on#29/#30 without a documentation-only CI rerun.
 
 
+### Reconcile C2 after O4 + O5 merge
+
+2026-10-20: user merged#85 as `e11290a92f22588aa7c1c6d799a7b649097dc2fa`. Its tree is identical to reviewed41a2b19; clean-main replay passed. Reconcile still-open C2#84 with this main, preserving complete Entries27/28, both source chapters, accepted policy and the optional workflow lock/explicit v3 fixture. Six conflicts are shared documentation only. CFPB source/test bytes retain reviewed618b6c6; Olist/backend/workflow/config/lock/test bytes retain merged e11290a. Run focused C2 checks and final exact-head hosted matrix over the combined population; do not reingest unchanged data or repeat the unchanged complete local O4/O5 acceptance. Main/post-merge verification is pending until the actual run completes. Both O4/O5 remain open until then; C2 remains in Review.
+
+
 ### O4 + O5 verified main acceptance
 
 User merged#85 as `e11290a92f22588aa7c1c6d799a7b649097dc2fa`; Git tree is identical to reviewed41a2b19. Main run39348205740 passed nine applicable jobs; PR-only metadata intentionally skipped. All actual job logs inspected:673tests perfourqualitycells,27Postgres,6call/2timeout/zero-provider replay and6wheel/sdist pairs each. Clean local main replay passed. Reuse exact-tree local673tests438.95s/64types/27DB/installed/source-drill evidence; avoid redundant source ingestion/full local rebuilds. Close#29/#30completed only now and update both active planning copies. Native board remains unverified.
 
 
-## Entry 29 â€” Exact-action approval behind a scoped local console
+C2 reconciliation focused acceptance passed21tests2.94seconds; the combined source audit passed363immutable ranges/271local links and18publication files, configuredsecretvaluesabsent. Clean strict replay consumed6calls/reproduced2timeouts withzero providercalls. CFPB source/tests byte-identical to reviewed618b6c6, Olist/backend/config/lock bytes identical to merged e11290a. No source acquisition/label generation/baseline recomputation was repeated. Final combined full population and Postgres acceptance run in hosted CI at the published C2 head; record actual counts on#35.
+## Entry 29 — Exact-action approval behind a scoped local console
 
 **Files touched:** Olist review/auth/API/console modules, private schema, optional web dependencies and acceptance tests. Started2026-10-20 on `codex/o6-o7-review-console` from verified main `e11290a`. Entry27 remains preserved in pending C2#84. The user explicitly authorized combining O6#31 and O7#32, retaining the existing100.00SIM cap/eligibility and pre-provisioned local operator/reviewer accounts with server-side sessions.
 
@@ -1498,7 +1566,13 @@ All six packages built as wheels and source distributions; the harness was rebui
 The source walkthrough audit verified 380 immutable source ranges and 288 local links. All 32 publication files contain no null bytes, configured secret values or the private O3 source identifiers checked. Strict replay at clean ec56534 consumed six recordings, reproduced two typed timeouts and made zero provider calls, preserving all historical fixture bytes. Documentation-only acceptance updates reuse unchanged executable evidence. Final exact-head replay and hosted job logs are retained on #31/#32; user merge remains pending.
 
 
-## Entry 30 â€” Parallel release evidence and original contract preparation
+### C2 reconciliation after O6 + O7 verified merge
+
+2026-10-20: user merged#86 as `67e0349baa848ba329b027dd6948f0e64046f94b`, identical in tree to reviewed661badc. Actual main39447892854 logs passed nine applicable jobs:681tests perqualitycell,36Postgres,6call/2timeout/zero-provider replay and6wheel/sdist pairs each. Retain exact-tree local681tests368.12s/69types/36DB470.72s and installed/browser/source-drill evidence. Merge this main into still-open C2#84, resolving five shared-documentation conflicts while preserving complete Entries27/28/29 and each vertical’s executable bytes. Run only focused C2 checks, immutable-source/link audit and strict replay locally, then one final hosted matrix; do not reacquire source or regenerate sealed provisional reviews. C2 remains Review, not human-adjudicated; native board remains unverified.
+
+Focused C2 acceptance passed21tests1.08seconds. Source identity checks matched82merged-main executable/test/configuration files and10reviewedCFPBsource/test files (Git-normalized LF). The documentation audit passed389immutable source ranges/287local links across18publicationfiles with configuredsecretvaluesabsent. No executable C2 or Olist change was needed. Final exact-head replay and hosted matrix evidence will be recorded on#35 without another docs-only push.
+
+## Entry 30 — Parallel release evidence and original contract preparation
 
 Date: 2026-10-20 (Africa/Lagos). Status: implementation in progress; no final batch or first-release acceptance is claimed.
 
@@ -2056,3 +2130,10 @@ unchanged; run the entire Olist workflow test file before publishing this narrow
 
 The corrected Olist workflow file passed all14tests in7.53s; Ruff lint/format passed. One
 non-failing pytest cache permission warning is retained as environment evidence.
+
+
+### Reconcile C2 after verified Prior Auth #93
+
+User selected updating still-open PR#84 after merging #93. Verify main116d7e5 tree54bafbe equals reviewed5acb634, main39973654251 nine applicable jobs, actual886tests per qualitycell/94Postgres, and clean replay6calls/2timeouts/zero-provider. Close #49/#50 completed. In the clean existing C2 checkout merge origin/main with --no-commit --no-ff. All five conflicts are shared documents, with no executable conflict. Retain C2 Entry27 and all later merged entries; combine README/planning sections and use current main study navigation plus the C2 chapter. Before committing, compare Git-normalized executable/config/lock bytes to main and all C2 source/tests to old reviewheadf5195b3. Check focused C2 behavior and links, then final clean replay and hosted matrix. Do not regenerate sealed source reviews or confuse provisional labels with human validation.
+
+Reconciliation checks passed:218main executable/config files and5C2Pythonfiles match parent blob IDs; all36journal entries preserved. Focused21C2tests passed2.88s. Documentation check passed453local links/170immutable source ranges/19publication files with configured credentials absent. The first task-local audit used a Windows default decoder on UTF-8 journal text and failed after source comparisons; rerun with explicit UTF-8 confirmed preservation. No source data, sealed review, baseline or application behavior changed. Final clean replay and hosted checks follow at the committed head.

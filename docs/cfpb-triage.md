@@ -34,15 +34,15 @@ Acceptance evidence:
 
 ### C2: Review risk/ambiguity labels and establish deterministic baselines
 
-Priority: P1; provisional size M; prerequisites: C1. Status: Backlog.
+Priority: P1; provisional size M; prerequisites: C1. Status: Review; exact PR and hosted evidence is maintained on #35. AI-reviewed provisional labels; human validation is not established. [Review operations](cfpb-risk-baselines.md).
 
 Write labeling rules, blind-label risk/ambiguous examples in batches and implement majority/rules baselines.
 
 Acceptance evidence:
 
-- [ ] Labels include reviewer/guideline/version evidence and disagreements.
-- [ ] Risk labels are not derived from candidate predictions.
-- [ ] Baseline results and slice denominators are published before tuning.
+- [x] Labels include reviewer/guideline/version evidence and disagreements.
+- [x] Risk labels are not derived from candidate predictions.
+- [x] Baseline results and slice denominators are published before tuning.
 
 ### C3: Implement Pydantic AI classifier and calibrated routing
 

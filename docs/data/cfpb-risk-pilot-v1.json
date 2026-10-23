@@ -1,0 +1,407 @@
+{
+  "mode": "offline_deterministic",
+  "rules_version": "cfpb-keyword-baselines-v1",
+  "label_status": "AI/human provisional reviewer judgments; not adjudicated truth",
+  "review": {
+    "cases": 12,
+    "reviews": 12,
+    "reviewers": 1,
+    "human_reviews": 0,
+    "status": "provisional",
+    "comparable_cases": 0,
+    "disagreement_cases": null,
+    "human_validation_established": false
+  },
+  "fit_split": "development",
+  "fit_cases": 4,
+  "majority_risk": "routine",
+  "majority_ambiguity": "clear",
+  "outbound_provider_calls": 0,
+  "splits": {
+    "development": {
+      "majority": {
+        "risk": {
+          "denominator": 4,
+          "correct": 4,
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "routine",
+              "support": 4,
+              "predicted": 4,
+              "correct": 4,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            }
+          ]
+        },
+        "ambiguity": {
+          "denominator": 4,
+          "correct": 4,
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "clear",
+              "support": 4,
+              "predicted": 4,
+              "correct": 4,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            }
+          ]
+        },
+        "review_count": 0,
+        "review_denominator": 4,
+        "review_fraction": 0.0,
+        "provisional_elevated_support": 0,
+        "provisional_elevated_routed_to_review": 0,
+        "provisional_elevated_review_recall": null
+      },
+      "rules": {
+        "risk": {
+          "denominator": 4,
+          "correct": 1,
+          "accuracy": 0.25,
+          "macro_f1": 0.2,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "elevated",
+              "support": 0,
+              "predicted": 3,
+              "correct": 0,
+              "recall": null,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            {
+              "label": "routine",
+              "support": 4,
+              "predicted": 1,
+              "correct": 1,
+              "recall": 0.25,
+              "precision": 1.0,
+              "f1": 0.4
+            }
+          ]
+        },
+        "ambiguity": {
+          "denominator": 4,
+          "correct": 4,
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "clear",
+              "support": 4,
+              "predicted": 4,
+              "correct": 4,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            }
+          ]
+        },
+        "review_count": 3,
+        "review_denominator": 4,
+        "review_fraction": 0.75,
+        "provisional_elevated_support": 0,
+        "provisional_elevated_routed_to_review": 0,
+        "provisional_elevated_review_recall": null
+      }
+    },
+    "regression": {
+      "majority": {
+        "risk": {
+          "denominator": 4,
+          "correct": 3,
+          "accuracy": 0.75,
+          "macro_f1": 0.42857142857142855,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "routine",
+              "support": 3,
+              "predicted": 4,
+              "correct": 3,
+              "recall": 1.0,
+              "precision": 0.75,
+              "f1": 0.8571428571428571
+            },
+            {
+              "label": "uncertain",
+              "support": 1,
+              "predicted": 0,
+              "correct": 0,
+              "recall": 0.0,
+              "precision": null,
+              "f1": 0.0
+            }
+          ]
+        },
+        "ambiguity": {
+          "denominator": 4,
+          "correct": 3,
+          "accuracy": 0.75,
+          "macro_f1": 0.42857142857142855,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "ambiguous",
+              "support": 1,
+              "predicted": 0,
+              "correct": 0,
+              "recall": 0.0,
+              "precision": null,
+              "f1": 0.0
+            },
+            {
+              "label": "clear",
+              "support": 3,
+              "predicted": 4,
+              "correct": 3,
+              "recall": 1.0,
+              "precision": 0.75,
+              "f1": 0.8571428571428571
+            }
+          ]
+        },
+        "review_count": 0,
+        "review_denominator": 4,
+        "review_fraction": 0.0,
+        "provisional_elevated_support": 0,
+        "provisional_elevated_routed_to_review": 0,
+        "provisional_elevated_review_recall": null
+      },
+      "rules": {
+        "risk": {
+          "denominator": 4,
+          "correct": 2,
+          "accuracy": 0.5,
+          "macro_f1": 0.26666666666666666,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "elevated",
+              "support": 0,
+              "predicted": 2,
+              "correct": 0,
+              "recall": null,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            {
+              "label": "routine",
+              "support": 3,
+              "predicted": 2,
+              "correct": 2,
+              "recall": 0.6666666666666666,
+              "precision": 1.0,
+              "f1": 0.8
+            },
+            {
+              "label": "uncertain",
+              "support": 1,
+              "predicted": 0,
+              "correct": 0,
+              "recall": 0.0,
+              "precision": null,
+              "f1": 0.0
+            }
+          ]
+        },
+        "ambiguity": {
+          "denominator": 4,
+          "correct": 3,
+          "accuracy": 0.75,
+          "macro_f1": 0.42857142857142855,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "ambiguous",
+              "support": 1,
+              "predicted": 0,
+              "correct": 0,
+              "recall": 0.0,
+              "precision": null,
+              "f1": 0.0
+            },
+            {
+              "label": "clear",
+              "support": 3,
+              "predicted": 4,
+              "correct": 3,
+              "recall": 1.0,
+              "precision": 0.75,
+              "f1": 0.8571428571428571
+            }
+          ]
+        },
+        "review_count": 2,
+        "review_denominator": 4,
+        "review_fraction": 0.5,
+        "provisional_elevated_support": 0,
+        "provisional_elevated_routed_to_review": 0,
+        "provisional_elevated_review_recall": null
+      }
+    },
+    "holdout": {
+      "majority": {
+        "risk": {
+          "denominator": 4,
+          "correct": 2,
+          "accuracy": 0.5,
+          "macro_f1": 0.2222222222222222,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "elevated",
+              "support": 1,
+              "predicted": 0,
+              "correct": 0,
+              "recall": 0.0,
+              "precision": null,
+              "f1": 0.0
+            },
+            {
+              "label": "routine",
+              "support": 2,
+              "predicted": 4,
+              "correct": 2,
+              "recall": 1.0,
+              "precision": 0.5,
+              "f1": 0.6666666666666666
+            },
+            {
+              "label": "uncertain",
+              "support": 1,
+              "predicted": 0,
+              "correct": 0,
+              "recall": 0.0,
+              "precision": null,
+              "f1": 0.0
+            }
+          ]
+        },
+        "ambiguity": {
+          "denominator": 4,
+          "correct": 3,
+          "accuracy": 0.75,
+          "macro_f1": 0.42857142857142855,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "ambiguous",
+              "support": 1,
+              "predicted": 0,
+              "correct": 0,
+              "recall": 0.0,
+              "precision": null,
+              "f1": 0.0
+            },
+            {
+              "label": "clear",
+              "support": 3,
+              "predicted": 4,
+              "correct": 3,
+              "recall": 1.0,
+              "precision": 0.75,
+              "f1": 0.8571428571428571
+            }
+          ]
+        },
+        "review_count": 0,
+        "review_denominator": 4,
+        "review_fraction": 0.0,
+        "provisional_elevated_support": 1,
+        "provisional_elevated_routed_to_review": 0,
+        "provisional_elevated_review_recall": 0.0
+      },
+      "rules": {
+        "risk": {
+          "denominator": 4,
+          "correct": 2,
+          "accuracy": 0.5,
+          "macro_f1": 0.38888888888888884,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "elevated",
+              "support": 1,
+              "predicted": 2,
+              "correct": 1,
+              "recall": 1.0,
+              "precision": 0.5,
+              "f1": 0.6666666666666666
+            },
+            {
+              "label": "routine",
+              "support": 2,
+              "predicted": 2,
+              "correct": 1,
+              "recall": 0.5,
+              "precision": 0.5,
+              "f1": 0.5
+            },
+            {
+              "label": "uncertain",
+              "support": 1,
+              "predicted": 0,
+              "correct": 0,
+              "recall": 0.0,
+              "precision": null,
+              "f1": 0.0
+            }
+          ]
+        },
+        "ambiguity": {
+          "denominator": 4,
+          "correct": 3,
+          "accuracy": 0.75,
+          "macro_f1": 0.42857142857142855,
+          "macro_class_policy": "union-of-reference-and-predicted-classes-zero-f1",
+          "classes": [
+            {
+              "label": "ambiguous",
+              "support": 1,
+              "predicted": 0,
+              "correct": 0,
+              "recall": 0.0,
+              "precision": null,
+              "f1": 0.0
+            },
+            {
+              "label": "clear",
+              "support": 3,
+              "predicted": 4,
+              "correct": 3,
+              "recall": 1.0,
+              "precision": 0.75,
+              "f1": 0.8571428571428571
+            }
+          ]
+        },
+        "review_count": 2,
+        "review_denominator": 4,
+        "review_fraction": 0.5,
+        "provisional_elevated_support": 1,
+        "provisional_elevated_routed_to_review": 1,
+        "provisional_elevated_review_recall": 1.0
+      }
+    }
+  },
+  "pins": {
+    "packet": "074101adfd67c4e0098a1ef5632e0f6a06cebe9d92dcfe2e8d0798e9d2b19b86",
+    "selection": "24afa9a7bb864cccbca27d0c18cbce9a2b0d44bebba757661b09ec61e5444c3c",
+    "reviews": "6f7dd5a0603aa7326d9b2ab9e28e74a6b4f5a92b5028d11ca8ad456865a3b9b3",
+    "source_manifest": "48c74ce291e0be372118ad8de2c29688004c54fc43ebd8fd2b2e3eda58c24f18",
+    "guideline": "b736ecb47c1f8b167909066b4f345774811fb3e94ce10d68c79498612678bf1c"
+  }
+}

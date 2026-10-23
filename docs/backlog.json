@@ -719,7 +719,9 @@
       "branch": "codex/o3-refund-policy",
       "review_evidence": "User merged #83 as de04a96; reviewed tree identical. Main run39330860614 nine applicable jobs success; clean strict replay6calls/2timeouts/zero provider. Prior exact-tree658tests/59types/sixbuilds/installed proof retained. #28 closed completed; native board unverified.",
       "implementation_commit": "15908425fa0735317a9e5ec281e7948c9aaa9bba",
-      "command_document": "docs/olist-policy.md"
+      "command_document": "docs/olist-policy.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/83",
+      "completion_evidence": "User merged #83 asde04a96; exact tree equals reviewed e65b866; mainrun39330860614 passed all nine applicable jobs, PR-onlymetadata skipped. Prior exact-tree658tests perqualitycell and installed/fullsource evidence reused; clean-main replay recorded on#28. Nativeboardunverified."
     },
     {
       "id": "O4",
@@ -944,7 +946,9 @@
       ],
       "milestone_number": 3,
       "branch": "codex/c2-risk-baselines",
-      "review_evidence": "User-selected O3+C2 batch from verified main2988428. Offline-only; provisional AI label evidence explicitly separated from human validation. Native board unverified."
+      "review_evidence": "21focusedpassed6.10s;59typed;sixbuilds;installed8modulebytes match and sealed12casepilot reproduced undernetworkdenial/noSDKs. Full260738consumer-reference baseline and separate12caseAIreview/provisionalrisk pilot; no human-validation/harm/modelqualityclaim. Exactheadfull/hostedacceptance maintainedon#35; nativeboardunverified.",
+      "implementation_commit": "087d4703f4ae72cb9aa75b5c68418f76392d8cea",
+      "command_document": "docs/cfpb-risk-baselines.md"
     },
     {
       "id": "C3",
@@ -1345,7 +1349,7 @@
         "Policy version change invalidates obsolete candidate decisions."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Done",
       "blocker": null,
       "issue_number": 49,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/49",
@@ -1373,7 +1377,7 @@
         "Reviewer can identify uncertainty, conflicts and pending document waits."
       ],
       "priority": "P1",
-      "status": "In progress",
+      "status": "Done",
       "blocker": null,
       "issue_number": 50,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/50",
