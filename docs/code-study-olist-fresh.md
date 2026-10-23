@@ -52,6 +52,17 @@ The [actual model card](olist-model-card.md) records 30/36 correct Gemini trials
 
 ## Tests and limits
 
+The unmerged `codex/o8-attempt-diagnostics` follow-up adds optional `FreshRow.attempt_timing`
+from the actual isolated transport. Shared-memory phase timestamps distinguish worker entry,
+generation return and a completed response frame; the parent records its elapsed bound and
+exit status after cleanup. A timeout before entry means the worker entry was not observed,
+not proof that no provider dispatch occurred. A timeout after entry still includes SDK work,
+provider waiting and result handling. Timing never supplies authority or correctness credit.
+`make_plan(..., attempt_timeout_seconds=...)` records an explicit shared execution policy;
+the CLI's optional flag defaults to30seconds, with the new proposed plan using60seconds.
+No runtime override can change the serialized plan's policy. [Follow-up operations](olist-followup-review.md)
+retain the new source/input pins, conditions and historical evidence boundary.
+
 The focused suite passed 14 tests, and four actual Postgres collector tests passed. The full offline suite passed 935 tests in 667.01 seconds; strict typing passed for 139 source files. The tests use invented data/responses, not provider-quality evidence. The frozen live experiment is a separate artifact. No dependency or lock change was required. Historical O8 offline reports and the original O3 pilot remain unchanged.
 
 **Design limits:** twelve coverage-selected hybrid cases do not represent support traffic. Literal AI labels need independent review. Template-aware rules have a deliberate grammar advantage. The local operator/database owner is trusted and can forge evidence; file pins provide integrity/reproducibility, not hardware attestation. Provider dispatch can consume quota before a process crashes; fenced business publication is not exactly-once billing. Public deployment, load, production identity and migration readiness remain outside this inspection.

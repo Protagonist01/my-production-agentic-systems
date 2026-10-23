@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 40 — Measuring Olist attempt startup and reconciling usage](#entry-40--measuring-olist-attempt-startup-and-reconciling-usage)
 - [Entry 39 — Repairing a dependency audit after merge](#entry-39--repairing-a-dependency-audit-after-merge)
 - [Entry 37 — Typed CFPB triage and scoped review](#entry-37--typed-cfpb-triage-and-scoped-review)
 
@@ -2440,3 +2441,52 @@ private O8 evidence. New pin6c8a4d3c identifies this invented transcript, not a 
 The combined replay/CI-helper suite passed109tests in5.73seconds, including every historical
 fixture's current-lock rejection. Ruff and formatting passed for the changed Python files.
 The clean final commit's standalone replay and full hosted matrix are verified separately.
+
+## Entry 40 — Measuring Olist attempt startup and reconciling usage
+**Files touched:** shared Gemini accounting/isolated transport, Olist fresh runner and tests.
+
+### Context
+
+User merged #96 as6bcac649, with identical reviewed tree. Main audits now pass. Every remaining
+implementation issue depends on O8#33. The user explicitly authorized a separate experiment
+with at most36GeminiFree calls to investigate the previous six timeouts and missing usage;
+the original captures/holdout remain unchanged and independent release review stays required.
+
+### Diagnosis before changing behavior
+
+All30successful original responses retained provider prompt/candidate/total counts, but omitted
+the optional thinking count. Each reported total equals prompt plus candidates. The adapter
+required both candidate and thinking counts, discarding usable output accounting. Google's
+UsageMetadata documents total as prompt plus tool-use prompt plus thoughts plus candidates.
+Recover output only when known counts reconcile with no residual; an absent field alone must
+not become zero. Keep provider raw counts and cost unknown. Six timed-out responses have no
+metadata and remain unknown, with collector durations31.13–34.38seconds under30second attempts.
+Those durations alone cannot identify provider delay, SDK import or process startup.
+
+### Construction plan
+
+Capture bounded parent/child phase timestamps with shared memory: worker entered, generation
+returned and response frame ready. Persist aggregate-safe diagnostics beside the fresh row,
+never infer provider dispatch/billing from child startup. Keep owned-process deadlines and
+cleanup intact. Allow an explicitly pinned attempt timeout in the experiment plan (existing
+default30seconds; proposed follow-up60seconds within shared controls). Keep the prompt/policy
+unchanged and use separate frozen source groups/labels for new quality evidence; no holdout
+tuning or historical rewriting. Confirm counts with wire-level tests and phase behavior with
+invented spawned workers before any live call. Actual results follow after execution.
+
+### Pre-capture verification and draft
+
+The first combined SDK/controls/fresh suite passed126tests and exposed one test-double indexing
+error: adding phase arguments moved the buffer/size away from the final two arguments. Read
+their explicit positions in the fake process; do not weaken the late-frame assertion. The
+corrected regression and fresh-report suite passed11tests in2.60seconds. Strict typing passed
+139sources. Main#96 acceptance independently confirmed936tests per four quality cells,
+103Postgres, clean audits and replay with no main rerun.
+
+Prepare the follow-up using seedolist-o8-followup-v2, excluding all12previous exact groups.
+Twelve cases from six new groups retain four cases/split, six base/six adversarial and
+three eligible/nine required reviews. Freeze evaluator/text/selection bytes before model output.
+A draft-rendering helper initially referenced a nonexistent payment_total_minor field; the
+actual contract stores payment.total_minor. Correct only the review table from already frozen
+files; byte pins remain unchanged. Review all12policy labels against the source facts and
+explicit constructed confirmations. They remain AI-provisional, with no independent validation.

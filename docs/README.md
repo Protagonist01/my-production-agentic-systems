@@ -81,3 +81,7 @@ CFPB C3/C4: [typed triage and durable reviewer operations](cfpb-triage-operation
 
 
 O8 fresh review extension: [model card](olist-model-card.md), [aggregate evidence](data/olist-fresh-evidence-v1.json), [operator package](olist-fresh-review.md) and [execution/source study](code-study-olist-fresh.md). Gemini scored 30/36 correct with six unresolved timeouts and no observed unsafe effects. Proposed criteria were not met; final release approval and independent labels/baseline review remain separate.
+
+The [separate diagnostic follow-up](olist-followup-review.md) investigates startup phases and
+usage reconciliation under a newly authorized 36-call cap after verified #96. Original pilot
+captures, labels and holdout are preserved; no release approval is inferred.
