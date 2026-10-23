@@ -124,3 +124,8 @@ All six request/response pairs were compared directly with v5 and are identical,
 ## Supply workflow extra: explicit invented v7 capture
 
 The Supply optional workflow extra reuses existing LangGraph/Inngest pins but changes workspace lock identity to `b0d264aeb155915511202ced1338d6840546ae6cfe8c1b18e1553f2683edf266`. At clean capture source `ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e`, explicitly execute the in-process maintenance helper and exclusively publish `resources/replay/invented-v7.json`, reviewed-content pin **175fdcc50359cb5471bf292e15034fc250bf5ac724d05582b3d69bf429ac548d**, synthetic source `invented-supply-workflow-lock-v7`, proposed review `review:proposed-supply-workflow-invented-v7`. This proposed content is part of user PR review, not a claim of prior approval. All six requests/responses match v6 exactly, including two typed timeouts. Historical v1–v6 resources remain immutable and reject the current lock; replay itself never writes/rebinds a recording. Zero provider calls and no original source content enter this fixture.
+
+
+## Supply web extra: explicit invented v8 capture
+
+S5 adds web extra metadata without changing dependency versions. At clean source `733a3d2d6d700d237402f5184bf50637e18d6736`, capture six in-process invented exchanges with lock `cb27dc9b03a7a09967eeba2005abdb6447565cfbe4bbcda7b41d1c1063328f10`. All request/response canonical bytes equal v7, including two timeouts. Preserve v1-v7 bytes and reject their historical locks. New resource `invented-v8.json` has external digest `307a0797021be1cc1804d87f4f4d5bfd2fbb2c937c880b79dfc2b151c321431e`. This is fixture maintenance with zero provider calls, not model-quality evidence.
