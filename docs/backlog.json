@@ -1258,7 +1258,7 @@
         "Diagnosis versus procedure-code validation requirements are explicit."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 46,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/46",
@@ -1266,7 +1266,8 @@
       "dependency_issue_numbers": [],
       "milestone_number": 5,
       "batch_note": "User authorized46/47/48 in one dependent batch from verified main1e59722. Source mix/provisional labels and fresh configured free-tier Gemini use approved. P1 outputs verified before P2/P3 acceptance; no clinical release or authorization.",
-      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92"
+      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92",
+      "completion_note": "User merged #92 as6c2b7d9; identical review tree, main39938575348 nine applicable jobs and exact-main replay verified."
     },
     {
       "id": "P2",
@@ -1284,7 +1285,7 @@
         "Redaction/citation mapping and label isolation are verified."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 47,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/47",
@@ -1295,7 +1296,8 @@
       ],
       "milestone_number": 5,
       "batch_note": "User authorized46/47/48 in one dependent batch from verified main1e59722. Source mix/provisional labels and fresh configured free-tier Gemini use approved. P1 outputs verified before P2/P3 acceptance; no clinical release or authorization.",
-      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92"
+      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92",
+      "completion_note": "User merged #92 as6c2b7d9; identical review tree, main39938575348 nine applicable jobs and exact-main replay verified."
     },
     {
       "id": "P3",
@@ -1313,7 +1315,7 @@
         "Retrieval and criterion-assessment errors can be diagnosed separately."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 48,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/48",
@@ -1324,7 +1326,8 @@
       ],
       "milestone_number": 5,
       "batch_note": "User authorized46/47/48 in one dependent batch from verified main1e59722. Source mix/provisional labels and fresh configured free-tier Gemini use approved. P1 outputs verified before P2/P3 acceptance; no clinical release or authorization.",
-      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92"
+      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92",
+      "completion_note": "User merged #92 as6c2b7d9; identical review tree, main39938575348 nine applicable jobs and exact-main replay verified."
     },
     {
       "id": "P4",
@@ -1342,7 +1345,7 @@
         "Policy version change invalidates obsolete candidate decisions."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 49,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/49",
@@ -1351,7 +1354,8 @@
         48,
         13
       ],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User selected #49/#50 together after verified #92 merge; P4 verified inside the dependent review batch before P5 acceptance."
     },
     {
       "id": "P5",
@@ -1369,7 +1373,7 @@
         "Reviewer can identify uncertainty, conflicts and pending document waits."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "In progress",
       "blocker": null,
       "issue_number": 50,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/50",
@@ -1378,7 +1382,8 @@
         49,
         22
       ],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User selected #49/#50 together after verified #92 merge; P4 verified inside the dependent review batch before P5 acceptance."
     },
     {
       "id": "P6",

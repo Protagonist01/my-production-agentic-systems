@@ -46,6 +46,7 @@ def extract(
     policy: Policy,
     *,
     diagnostics: list[dict[str, str]] | None = None,
+    criteria_subset: tuple[CriterionId, ...] | None = None,
 ) -> CandidateAssessment | None:
     """One bounded request per criterion under one shared run budget/deadline."""
     note = NoteInput.model_validate_json(note.canonical_json())
@@ -58,7 +59,10 @@ def extract(
         raise PermissionError("candidate input/context/policy scope differs")
     claims = []
     criteria = {c.criterion_id: c for c in policy.criteria}
-    for key in CRITERIA:
+    selected = CRITERIA if criteria_subset is None else criteria_subset
+    if not selected or len(set(selected)) != len(selected) or set(selected) - set(CRITERIA):
+        raise ValueError("unique known criterion subset required")
+    for key in selected:
         found = retrieve(note, key)
         if not found:
             claims.append(

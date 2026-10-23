@@ -47,6 +47,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 - [Entry 34 — Scoped shipping workbench and durable factual notices](#entry-34--scoped-shipping-workbench-and-durable-factual-notices)
 - [Entry 35 — Source-grounded prior-auth evidence with fresh model evaluation](#entry-35--source-grounded-prior-auth-evidence-with-fresh-model-evaluation)
+- [Entry 36 — Durable prior-auth document review](#entry-36--durable-prior-auth-document-review)
 
 ## Entry 1 â€” Proposed execution and evidence boundaries
 
@@ -1921,3 +1922,35 @@ Local locked python dev.py check passed881tests in365.14seconds, Ruff/format and
 The unchanged0e5953c candidate completed the six development cases after holdout:42fresh requests,6/6case and42/42criterion labels matched, including allthree invented missing/negative-education/short-study edges. No provider/terminal errors or unsupported met states. Keep this development result separate from the first unseen holdout. Preserve failedv1/v2runs and their dirty-source metadata in the aggregate; do not overwrite them with the successfulv3result.
 
 Initial hosted39935230394 passed allten jobs; actual logs show881tests in each Linux/Windows/Python3.12/3.13 cell,87Postgres tests withone non-failing warning, strict types116files and replay6calls/2timeouts/zero-provider. API tree comparison proves testedmerge9a9692ac equals evaluatedhead0e5953c (treedad1fd5065f88b10e3e747df86dd91e4050d59a8). Only documentation changes follow that candidate. Final review metadata and exact-head CI are recorded on#92 after the documentation commit, avoiding an endless commit-to-record-its-own-CI loop. P1/P2/P3 move to Review, stay open until user merge and post-merge verification. Clinical labels, P4/P5 application and P6 release remain outstanding.
+
+
+## Entry 36 — Durable prior-auth document review
+
+Date: 2026-10-23. User selected #49/#50 together after merging #92. Start codex/p4-p5-prior-auth-review from main6c2b7d9; the merge tree equals reviewed6e016c6 and exact-main replay passed. Main hosted acceptance is still running; do not close prerequisites before it passes.
+
+### Context and construction decision
+
+A new document must invalidate the exact previous evidence state without duplicating work after a worker crash. Keep Postgres as canonical owner of versioned redacted notes, pinned policies, document receipts, wait deadlines, assessment jobs and review events. LangGraph drives bounded job steps; its in-memory state does not substitute for durable state. A leased job may execute its model calls again after a crash; only the current case version/lease can publish one canonical result/event. Do not promise exactly-once provider calls.
+
+Before reading on: if a policy update commits while the model is assessing a newly appended document, which versions must the result bind to, and what should the stale worker be allowed to publish?
+
+Use optimistic case versions and transaction locks. Separate trusted raw-document redaction/import from the reviewer browser: store/serve only explicitly reviewed redacted input. The reviewer sees criterion/source citations, uncertainty, missing items, waits and immutable events, with provisioned tenant/case scope and server-resolved capabilities. There is no authorization/denial action. Select a quiet editorial case-file design: warm paper, dark ink, teal status accents and compact evidence tables, with no external fonts or assets.
+
+### How to build it
+
+1. Define closed principal/wait/document/review contracts and an immutable SQL schema under prior_auth_app. Runtime can read provisioned accounts, update session counters and mutate only this domain state.
+2. Insert initial case plus pending assessment atomically. Document delivery uses stable IDs and payload digests; append redacted text without shifting earlier offsets, invalidate affected criteria, cancel obsolete work and enqueue one new version. Policy replacement invalidates every claim. Timeouts create one review event and never synthesize missing evidence.
+3. Claim jobs with skip-locked bounded leases, assess outside transactions through injected gateway controls, then compare version/lease before publishing. Retain unaffected exact evidence only when earlier text remains the identical prefix. Reconcile after restart from SQL.
+4. Provision accounts through a trusted CLI. Add scoped local sessions, CSRF/origin checks and a browser with criterion/evidence/source panels, durable requests/review notes and prompt private-state clearing on logout. Raw notes and expected labels have no browser upload route.
+5. Verify duplicate delivery, lease recovery, stale-worker/policy conflicts, waits/timeouts, tenant/role scope, redaction canaries, actual UI flows and installed resources. Model evidence remains provisional; P6/O8 release gates remain pending.
+
+No P4/P5 checks are claimed before execution. Reuse the approved ignored Free Gemini configuration for bounded illustrative checks; no paid fallback. Source/label constraints from Entry35 persist.
+
+
+### First mechanism evidence
+
+Merged #92 main39938575348 passed nine applicable jobs; metadata skipped intentionally. Actual logs881tests per qualitycell,87Postgres, strict6call/2timeout/zero-provider replay. Closed#46/#47/#48 completed after exact-main replay and identical tree verification.
+
+P4/P5 first focused checks passed29tests, strict types122sources and actual browser-asset Node session regressions. Required isolated Postgres suite passed7tests in124.95seconds: concurrent duplicate document receipt, selective criterion reassessment, persisted wait expiration/renewal, in-flight policy supersession, hard-process-exit lease recovery, bounded repeated leases, tenant/role/session restrictions and redaction-canary absence from model input/events. Source test failure found that FastAPI validates strict datetime/tuple fields in Python mode; authenticate first, then revalidate the bounded JSON payload with the closed contract's JSON mode. No broad coercion or exception-detail echo was added.
+
+PriorAuth now declares optional workflow/web extras using existing pinned versions. The first uv lock refused the missing explicit workspace source; add prior-auth to tool.uv.sources before locking. The lock metadata changes despite no library-version update, so preserve published replayv9 and create an explicit inventedv10capture. Full checks, real browser, installed extras and fresh model workflow check are still pending.
