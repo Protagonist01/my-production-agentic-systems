@@ -697,6 +697,7 @@ def test_replay_cli_runs_without_credentials_or_services(tmp_path):
         ("invented-v7.json", "175fdcc50359cb5471bf292e15034fc250bf5ac724d05582b3d69bf429ac548d"),
         ("invented-v8.json", "307a0797021be1cc1804d87f4f4d5bfd2fbb2c937c880b79dfc2b151c321431e"),
         ("invented-v9.json", "f2ee896a12d8a7858c165db559f70b8775d86007a14ee969f8ba97fdc5986fa4"),
+        ("invented-v10.json", "c3a6804a93739740a196a44aaed66af31a564faa6c1b9b61600b82386b985f08"),
     ],
 )
 def test_historical_fixture_is_unchanged_and_refuses_current_dependency_lock(filename, pin):

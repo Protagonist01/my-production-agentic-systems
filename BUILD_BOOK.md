@@ -2262,3 +2262,10 @@ hierarchy, no raw invented narrative/credential canaries, and healthy export/flu
 This was an invented mechanism trace with zero outbound model calls, separate from the live
 provisional pilot. Shared H8 intentionally uses HMAC model references, so backend model-name
 pricing inference is unavailable; do not claim automatic complete cost analytics.
+
+Capture invented replay v11 from clean implementation314211e353cfcecad0569efc64b44d11ac139d6a
+and lock9c055070aa57eeaf2294066684db73e31a960b81f9c559360e9f7f0419f1bd26.
+All six canonical requests and responses exactly match v10. Publish exclusively with digest
+aa68c8598c7306cb6f242a585a98d0e5e4df6d644754b11f4c5031af6c4e04e5, retain v1–v10
+unchanged, and add v10 to historical changed-lock rejection tests. This is invented fixture
+maintenance with zero provider calls, not a fresh CFPB result.
