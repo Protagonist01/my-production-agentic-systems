@@ -77,6 +77,16 @@ prepare private policy/narrative artifacts. Source and evaluator paths must be o
 The command refuses an existing output directory. Supply the manifest-file digest separately
 from its contents. Source custody verifies size and SHA256 on the same bytes subsequently parsed.
 
+To construct a new cohort, select permitted prepared narratives and record their source digests,
+then provide explicit reviewed identifier spans to `redact`. Build `NoteInput` with a fresh
+case ID, tenant, resulting text digest, service date and compiled-policy digest. Author a
+separate `EvaluationCase` with seven expected states, exact support quotes for every expected
+met state, label rationale and overall disposition. Keep the original and every edit in one
+group/split; `validate_cohort` checks that boundary before any dispatch. Export each closed
+contract's JSON schema with its `model_json_schema()` method when authoring private JSON.
+Freeze the canonical packet and its digest before evaluation. New clinical/policy scope needs
+source and criterion review; do not reuse the reported holdout as a fresh unseen cohort.
+
 Use the workspace environment, or install the base Prior Auth wheel alongside
 `production-agent-harness[gemini]` for live use. The base source/preparation modules do not
 load a provider client. Configure `GEMINI_API_KEY` and `GEMINI_FREE_TIER_CONFIRMED=true` in
@@ -101,7 +111,9 @@ sent. The billing-disabled project is user-confirmed, not independently attested
 
 Retrieval uses visible note text and fixed criterion terms. The candidate receives the full
 redacted note, relevant source criterion and retrieved span candidates, not expected labels.
-The server resolves exact, exactly matching model quotes into offsets; nonexistent or over-repeated quotes fail closed; all bounded repeated occurrences are retained. The output checker verifies citation integrity, policy/date bindings and a deliberately narrow,
+The server resolves exact model quotes into offsets; nonexistent or over-repeated quotes
+fail closed, and every bounded repeated occurrence is retained. The output checker verifies
+citation integrity, policy/date bindings and a deliberately narrow,
 transparent support grammar. Unsupported paraphrases remain insufficient. Contradictory
 visible negatives and multiple reported rates require review. This conservative recognizer
 is not a general medical entailment model.
@@ -116,9 +128,40 @@ production authorization system remain distinct future work.
 The bounded two-request live gateway compatibility probe passed. A separate invented
 development note completed seven fresh criterion calls with exact supporting spans and no
 provider failures. That is development evidence, not a held-out or clinical-quality result.
-The v1 development run used 36 fresh requests: five of six candidate results were usable and five matched all provisional labels; one result failed typed citation validation, with no provider-reported failures. Candidate v2 requested exact quotes and computed offsets on the server, but its uniqueness guard rejected four valid repeated quotes: two of six cases were usable/correct after 38 requests. Candidate v3 retains every bounded exact occurrence and checks each context. The original v1/v2 evidence is preserved. Held-out acceptance is not yet claimed.
+The v1 development run used 36 fresh requests: five of six candidate results were usable and
+five matched all provisional labels; one result failed typed citation validation, with no
+provider-reported failures. Candidate v2 requested exact quotes and computed offsets on the
+server, but its uniqueness guard rejected four valid repeated quotes: two of six cases were
+usable/correct after 38 requests. Candidate v3 retains every bounded exact occurrence and
+checks each context. The original v1/v2 evidence is preserved.
 
-Focused mechanism checks cover Unicode-preserving redaction, exact spans, threshold units,
-short-study events, archive byte pins/entities and contradictions. Full package, regression,
-source-publication and hosted acceptance follow implementation. See
-[the code walkthrough](code-study-prior-auth.md) and Build Book Entry 35 for current evidence.
+The first frozen v3 holdout ran at clean implementation commit
+`0e5953cd4dbb36512452b11d766e769301f2d188`, with no subsequent candidate tuning.
+All six results completed and matched the provisional case labels; all 42 criterion states
+matched. Two published illustrative cases matched 2/2 and four edited cases matched 4/4.
+There were 42 fresh requests, no provider/terminal errors and no unsupported met states.
+Two results were evidence complete for review; none were incorrect against these labels
+(0/2 proposed complete bundles, and 0/4 expected incomplete cases). These are evidence-bundle
+denominators, not clinical approval rates. No invented case belongs to this holdout.
+The unchanged frozen v3 candidate also completed all six development cases in a separate
+post-freeze run: 42 fresh requests, 6/6 case labels and 42/42 criterion labels matched,
+including the three invented missing/negative/short-study edges. Its slices were published
+1/1, edited 2/2 and invented 3/3, with no provider/terminal errors or unsupported met states.
+One evidence-complete bundle was proposed, with zero incorrect bundles against the labels
+(0/1 proposed, 0/5 expected incomplete). This is development evidence, not another holdout.
+
+The [aggregate evidence packet](data/prior-auth-p1-p3-evidence.json) contains pins and counts
+only. Raw records, per-case labels, full exchanges and credentials remain outside Git.
+
+Local `python dev.py check` passed 881 tests in 365.14 seconds, including 25 focused
+Prior Auth tests. Ruff/format, strict mypy over 116 source files, all six package builds and
+the locked dependency audit passed. An isolated base-wheel install with no Google SDK
+reproduced the same source/policy preparation under network denial. Publication scanning
+found no configured Gemini secret in the 315 publishable files; `.env.local` is ignored.
+Initial [hosted run 39935230394](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/39935230394)
+passed all ten jobs: 881 tests per quality cell and 87 Postgres tests (one non-failing warning).
+Its tested merge tree equals the frozen implementation tree. Strict replay reproduced six
+captured calls/two timeouts with zero outbound provider calls. Final documentation acceptance
+is recorded on [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92).
+See [the code walkthrough](code-study-prior-auth.md)
+and Build Book Entry 35 for construction and known limits.

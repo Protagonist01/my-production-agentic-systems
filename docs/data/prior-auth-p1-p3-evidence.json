@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "status": "review_candidate",
+  "clinical_validation": false,
+  "release_approval": false,
+  "label_status": "ai_provisional",
+  "implementation_commit": "0e5953cd4dbb36512452b11d766e769301f2d188",
+  "sources": [
+    {
+      "file": "synthea-ccda.zip",
+      "url": "https://synthetichealth.github.io/synthea-sample-data/downloads/latest/synthea_sample_data_ccda_latest.zip",
+      "bytes": 4064713,
+      "sha256": "18db69308f8aed35aa6b15e390cf9560485af3e04b73562d2a224fc779f18267",
+      "retrieved_at": "2026-10-23T09:12:05.810209+00:00"
+    },
+    {
+      "file": "cms-ncd-240-4-v3.html",
+      "url": "https://www.cms.gov/medicare-coverage-database/view/ncd.aspx?ncdid=226&ncdver=3",
+      "bytes": 136018,
+      "sha256": "a543b0b788efb08f070340f57c5d683fd8c88d23f7b8eeefa35ace738b984e4c",
+      "retrieved_at": "2026-10-23T09:12:07.606255+00:00"
+    },
+    {
+      "file": "synthea-use.html",
+      "url": "https://synthetichealth.github.io/downloads.html",
+      "bytes": 12750,
+      "sha256": "c8f0a7563971eb069639ffa8db642354d45d16fe648e167c6e5de5a01dbf40cb",
+      "retrieved_at": "2026-10-23T09:12:08.285977+00:00"
+    }
+  ],
+  "cohort": {
+    "cases": 12,
+    "families": 4,
+    "development": 6,
+    "holdout": 6,
+    "published_illustrative": 3,
+    "edited_illustrative": 6,
+    "invented": 3,
+    "related_records_grouped": true,
+    "raw_records_published": false,
+    "expected_labels_published": false
+  },
+  "scorer": {
+    "path": "projects/prior-auth/src/prior_auth/evaluation.py",
+    "sha256": "2d2fc50744327981052d2ddd1a5c10633611f114cb8083a9bbfe2b0141f14d5d"
+  },
+  "runs": [
+    {
+      "candidate": "prior-auth-criterion-extraction-v1",
+      "cases": 6,
+      "clinical_validation": false,
+      "code_revision": "1e59722f5267494af5a5db0a5ab1bbf9e81a8f1e+dirty",
+      "correct": 5,
+      "environment_lock": "e9694f444898bc4e06e70080c42634a7e39e91305b1543b5965b884af215f6c1",
+      "failures": [],
+      "incorrect_evidence_complete": 0,
+      "label_status": "ai_provisional",
+      "max_calls": 42,
+      "mode": "fresh_candidate",
+      "model": "gemini-3.5-flash-lite",
+      "model_completed": 5,
+      "policy_sha256": "ab967cf50cd496452cd9a6924afd17b661aec326d18a8310331e0de64df08796",
+      "proposed_evidence_complete": 1,
+      "release_approval": false,
+      "requests": 36,
+      "run_id": "prior-auth-73d511177171484495b26cc8916f0cc5",
+      "source_sha256": "3d48a9951715751a22d8862916b437a2fc08748cac971e3cb8c41123b912cecc",
+      "split": "development",
+      "unsupported_met": 0,
+      "evidence_kind": "exploratory_development"
+    },
+    {
+      "candidate": "prior-auth-criterion-extraction-v2",
+      "cases": 6,
+      "clinical_validation": false,
+      "code_revision": "1e59722f5267494af5a5db0a5ab1bbf9e81a8f1e+dirty",
+      "correct": 2,
+      "environment_lock": "e9694f444898bc4e06e70080c42634a7e39e91305b1543b5965b884af215f6c1",
+      "failures": [],
+      "incorrect_evidence_complete": 0,
+      "label_status": "ai_provisional",
+      "max_calls": 42,
+      "mode": "fresh_candidate",
+      "model": "gemini-3.5-flash-lite",
+      "model_completed": 2,
+      "policy_sha256": "ab967cf50cd496452cd9a6924afd17b661aec326d18a8310331e0de64df08796",
+      "proposed_evidence_complete": 0,
+      "release_approval": false,
+      "requests": 38,
+      "run_id": "prior-auth-3f1a8d46c1b4407eb4ac32b866a49e37",
+      "source_sha256": "3d48a9951715751a22d8862916b437a2fc08748cac971e3cb8c41123b912cecc",
+      "split": "development",
+      "unsupported_met": 0,
+      "evidence_kind": "exploratory_development"
+    },
+    {
+      "by_provenance": {
+        "edited_illustrative": {
+          "candidate_completed": 4,
+          "cases": 4,
+          "correct": 4
+        },
+        "published_illustrative": {
+          "candidate_completed": 2,
+          "cases": 2,
+          "correct": 2
+        }
+      },
+      "candidate": "prior-auth-criterion-extraction-v3",
+      "cases": 6,
+      "clinical_validation": false,
+      "code_revision": "0e5953cd4dbb36512452b11d766e769301f2d188",
+      "correct": 6,
+      "criterion_correct": 42,
+      "criterion_denominator": 42,
+      "environment_lock": "e9694f444898bc4e06e70080c42634a7e39e91305b1543b5965b884af215f6c1",
+      "failures": [],
+      "incorrect_evidence_complete": 0,
+      "label_status": "ai_provisional",
+      "max_calls": 42,
+      "mode": "fresh_candidate",
+      "model": "gemini-3.5-flash-lite",
+      "model_completed": 6,
+      "policy_sha256": "ab967cf50cd496452cd9a6924afd17b661aec326d18a8310331e0de64df08796",
+      "proposed_evidence_complete": 2,
+      "release_approval": false,
+      "requests": 42,
+      "run_id": "prior-auth-7e9c056aaa27479b8fca31e51c64dba4",
+      "source_sha256": "3d48a9951715751a22d8862916b437a2fc08748cac971e3cb8c41123b912cecc",
+      "split": "holdout",
+      "terminal_errors": {},
+      "unsupported_met": 0,
+      "evidence_kind": "first_frozen_holdout"
+    },
+    {
+      "by_provenance": {
+        "edited_illustrative": {
+          "candidate_completed": 2,
+          "cases": 2,
+          "correct": 2
+        },
+        "invented": {
+          "candidate_completed": 3,
+          "cases": 3,
+          "correct": 3
+        },
+        "published_illustrative": {
+          "candidate_completed": 1,
+          "cases": 1,
+          "correct": 1
+        }
+      },
+      "candidate": "prior-auth-criterion-extraction-v3",
+      "cases": 6,
+      "clinical_validation": false,
+      "code_revision": "0e5953cd4dbb36512452b11d766e769301f2d188",
+      "correct": 6,
+      "criterion_correct": 42,
+      "criterion_denominator": 42,
+      "environment_lock": "e9694f444898bc4e06e70080c42634a7e39e91305b1543b5965b884af215f6c1",
+      "failures": [],
+      "incorrect_evidence_complete": 0,
+      "label_status": "ai_provisional",
+      "max_calls": 42,
+      "mode": "fresh_candidate",
+      "model": "gemini-3.5-flash-lite",
+      "model_completed": 6,
+      "policy_sha256": "ab967cf50cd496452cd9a6924afd17b661aec326d18a8310331e0de64df08796",
+      "proposed_evidence_complete": 1,
+      "release_approval": false,
+      "requests": 42,
+      "run_id": "prior-auth-806e9701b0a245f78cc9948d8c4f4fca",
+      "source_sha256": "3d48a9951715751a22d8862916b437a2fc08748cac971e3cb8c41123b912cecc",
+      "split": "development",
+      "terminal_errors": {},
+      "unsupported_met": 0,
+      "evidence_kind": "unchanged_frozen_candidate_development"
+    }
+  ],
+  "local_checks": {
+    "offline_tests": 881,
+    "offline_test_seconds": 365.14,
+    "focused_tests": 25,
+    "strict_type_source_files": 116,
+    "package_builds": 6,
+    "dependency_audit": "passed",
+    "installed_base_source_preparation": "passed_without_google_sdk_under_network_denial",
+    "publication_secret_scan": "passed"
+  },
+  "limits": [
+    "No qualified clinical review",
+    "Published Synthea examples are synthetic records",
+    "Related addendum templates limit generalization",
+    "Narrow support grammar is not general medical entailment",
+    "No authorization or denial action",
+    "No production release approval",
+    "Development v1/v2 were exploratory on dirty source; preserved failures are not silently replaced"
+  ],
+  "initial_hosted_acceptance": {
+    "run_id": 39935230394,
+    "jobs_passed": 10,
+    "tests_per_quality_cell": 881,
+    "postgres_tests": 87,
+    "postgres_non_failing_warnings": 1,
+    "head": "0e5953cd4dbb36512452b11d766e769301f2d188",
+    "tested_merge": "9a9692ac7a4c37670f42d2af1be8909df48de4e8",
+    "identical_tree": true,
+    "tree_sha": "dad1fd5065f88b10e3e747df86dd91e4050d59a8",
+    "strict_replay": {
+      "captured_calls": 6,
+      "reproduced_timeouts": 2,
+      "outbound_provider_calls": 0
+    }
+  }
+}

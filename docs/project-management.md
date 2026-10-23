@@ -156,3 +156,9 @@ The user merged #90 and selected S5 #56 only, with durable in-app notices and pr
 ## Authorized P1/P2/P3 batch
 
 User merged #91, verified main1e59722/CI39881820867; S5#56 is complete. The user selected the next independent batch and approved #46/#47/#48 together, with prerequisites delivered/verified inside the bundle. Source mix: CMS national initial-CPAP policy, published Synthea illustrative records, explicit edits and invented edges. Labels remain AI-provisional; no qualified review is invented. User superseded offline-only for this batch and explicitly authorized reuse of existing Gemini free-project settings. Fresh candidate assessment uses the shared bounded gateway; no paid fallback, real patient data, authorization effect, deployment or release promotion. S6/O8 gates and separate unmerged C2#84 remain unchanged. Build Book Entry35 and the prior-auth evidence chapter track actual results.
+
+P1/P2/P3 review is [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92).
+Frozen v3 matched all six held-out cases and all six development cases against provisional
+labels in separate 42-request fresh runs. Local 881-test regression and initial ten-job hosted
+acceptance passed. Keep all three implementation issues open through user review, merge and
+exact-main verification; this does not satisfy P6 clinical/domain release acceptance.
