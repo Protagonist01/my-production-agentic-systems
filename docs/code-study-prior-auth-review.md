@@ -67,9 +67,10 @@ including logout during a stalled initial load and session expiry.
   The SQL suite includes a child process terminating after claim and a later lease recovery,
   concurrent document retries and a policy update before stale publication. Full/hosted counts
   belong in the PR after they actually finish.
-- **Observed provider failure:** the first invented fresh workflow probe timed out on its first
-  request. It produced qualified review with no supported findings. This is preserved as failed
-  model output, not counted as correct reasoning or folded into P3's prior holdout result.
+- **Observed probe-startup failure:** temporary scripts lacked the Windows main guard; spawned
+  child setup repeated, producing timeout/unavailable attempts before provider dispatch was
+  established. Production CLI is guarded. These failed attempts remain separate from guarded
+  fresh checks and are not model-quality evidence.
 - **Design limitation:** leases deduplicate canonical publication, not provider dispatch. Crashed
   workers can repeat calls. After three attempts, processing routes to qualified review without
   another dispatch. Delayed scheduling can delay timeout events, so a deployment needs an owned

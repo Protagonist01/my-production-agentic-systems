@@ -7,7 +7,7 @@ let epoch = 0, selection = 0, active = null, user = null;
 let authQueue = Promise.resolve();
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 function human(value){return String(value).replaceAll("_"," ");}
-function tell(text){$("message").textContent=text;}
+function tell(text){const box=$("message");box.replaceChildren();if(!text)return;box.append(el("span",text));const close=el("button","Dismiss");close.type="button";close.onclick=()=>box.replaceChildren();box.append(close);}
 function csrf(){const key=document.body.dataset.csrfCookie+"=";return document.cookie.split(";").map(s=>s.trim()).find(s=>s.startsWith(key))?.slice(key.length)||"";}
 async function api(path,body){const requestEpoch=epoch;const response=await fetch(path,{method:body===undefined?"GET":"POST",credentials:"same-origin",cache:"no-store",headers:body===undefined?{}:{"Content-Type":"application/json","X-CSRF-Token":csrf()},body:body===undefined?undefined:JSON.stringify(body)});if(!response.ok){if(response.status===403&&requestEpoch===epoch&&!path.endsWith("/login")){clearPrivate();}throw new Error(response.status===403?"Access or session denied. Sign in again.":response.status===409?"The case changed. Refresh before retrying.":"Request could not complete. Refresh and inspect current state.");}return response.json();}
 function clearPrivate(){epoch++;selection++;active=null;user=null;$("cases").replaceChildren();$("detail").replaceChildren();$("identity").textContent="";$("workspace").hidden=true;$("signin").hidden=false;$("logout").hidden=true;$("password").value="";tell("");}

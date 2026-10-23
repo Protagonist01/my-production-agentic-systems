@@ -1980,3 +1980,23 @@ Reading the delivery path found a provenance bug before supplemental live accept
 Draft#93 at a9b9d44 passed initial39943225425 alltenjobs. Actual logs886tests per qualitycell and94Postgres (one non-failing warning), types122sources, Node assetordering regressions and strict replay6calls/2timeouts/zero-provider. A provenance correction is still newer than this hosted run and needs corrected-head SQL evidence.
 
 A new external web-only wheel install has49cached packages and no Google SDK. With an outbound-network audit hook installed before imports, API/CLI/workflow imports pass; four packaged schema/web resources match source bytes and installed replay consumes6calls/2timeouts/zero-provider. Source publication scanning found no configured key in332publishable files and verified five new document links. Local Docker remains unavailable while the user clears space. Use an explicitly labeled in-memory UI fixture for layout checks only; do not present it as real SQL or live-model evidence.
+
+
+### Correct the probe attribution: missing Windows main guard
+
+The education-only follow-up produced a child FileExistsError at its supposedly exclusive output directory. Inspecting the temporary scripts found the real cause: neither had an if __name__ == '__main__' guard, so Windows spawn re-executed their top-level setup. The initial workflow child could block in workspace/Docker setup; the subset child re-created its existing output folder and exited. Thus those timeout/unavailable exchanges are gateway attempts, not established Gemini provider dispatch. Earlier journal wording attributing the timeout to the provider is superseded here. Production prior_auth.review_cli already has the correct guard; this is a task-local probe bug, not an application correction. Preserve both failed attempts, wrap each script in guarded main, use a fresh v2 output directory and rerun one bounded subset extraction. Never relabel failed startup as model-quality evidence.
+
+
+### Guarded subset result
+
+The corrected education-only script (fresh-education-only-v2) completed one actual Gemini request with no failure or diagnostics; the candidate supplied exact redacted evidence and the checker returned education met. Captured exchange contains no WorkflowIdentifierCanary. This independently checks subset extraction after the main-guard correction, without SQL or a full workflow claim. It ran on19f0580+dirty with the unchanged lock; raw exchange remains external. Aggregate evidence now separates both unguarded startup failures from this successful fresh observation. Do not merge them into quality denominators.
+
+
+### UI-only inspection before claiming full browser evidence
+
+The real Edge browser signed into the explicitly labeled in-memory fixture, rendered seven criteria/rationales/source citations and submitted a document request. Screenshots remain ignored/private and are UI-only, not actual SQL/model evidence. At390px, expanded policy digests caused the full page to reach415px wide; permit arbitrary wrapping only in explanatory/provenance text, keeping the evidence table's own horizontal scroll. The persistent success message also covered source text, so add a keyboard-accessible Dismiss control rather than auto-hiding information. Recheck current CSS/DOM before recording mobile acceptance.
+
+
+### Corrected UI fixture acceptance and cleanup
+
+Actual Edge UI-only flow passed document request, qualified-review routing, Dismiss, logout and read-only viewer rendering. Corrected mobile measurement: viewport390/document390/tablecontainer314/tablecontent620, with expanded policy provenance. Desktop1440 and mobile screenshots remain ignored. The fixture uses explicitly invented in-memory responses, not SQL; keep that boundary in the aggregate. Close only the task browser session and fixture process23732 after verification. The real local SQL browser/supplement path remains pending Docker restoration; do not call this UI fixture full application acceptance.

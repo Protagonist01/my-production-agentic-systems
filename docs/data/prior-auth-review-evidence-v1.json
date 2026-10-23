@@ -32,7 +32,30 @@
     "postgres_warning": "one non-failing warning",
     "note": "Predates invented-parent provenance correction; corrected-head SQL acceptance required"
   },
-  "fresh_observations": [
+  "replay": {
+    "version": 10,
+    "capture_source": "4ee75bc6a7d227b2c5469bfda8f60637d69a78c4",
+    "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+    "sha256": "c3a6804a93739740a196a44aaed66af31a564faa6c1b9b61600b82386b985f08",
+    "calls": 6,
+    "timeouts": 2,
+    "provider_calls": 0,
+    "all_exchanges_equal_v9": true
+  },
+  "pending": [
+    "Corrected-head hosted SQL acceptance",
+    "Real local SQL/browser document flow after Docker recovery",
+    "Supplemental full-workflow fresh model check"
+  ],
+  "limits": [
+    "AI-provisional illustrative evidence only",
+    "No clinical authorization or denial action",
+    "Explicit reviewed redaction is not general PHI detection",
+    "Provider calls may repeat after a crashed lease",
+    "Initial unguarded probe attempts retained as startup failures; provider dispatch not established",
+    "UI-only fixture checks do not replace database or model acceptance"
+  ],
+  "probe_startup_failures": [
     {
       "phase": "initial",
       "workflow": {
@@ -68,30 +91,62 @@
       "clinical_validation": false,
       "release_approval": false,
       "code_revision": "4ee75bc6a7d227b2c5469bfda8f60637d69a78c4+dirty",
-      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d"
+      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+      "provider_dispatch": "not_established",
+      "classification": "temporary_probe_missing_windows_main_guard"
+    },
+    {
+      "mode": "fresh_subset_only",
+      "not_full_workflow": true,
+      "requests": 1,
+      "failures": [
+        "unavailable"
+      ],
+      "diagnostics": [
+        {
+          "criterion": "education",
+          "phase": "gateway",
+          "code": "unavailable"
+        }
+      ],
+      "candidate_completed": false,
+      "education_state": "insufficient",
+      "code_revision": "a9b9d442c7cf51ec945d1af24beb073a88324846+dirty",
+      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+      "clinical_validation": false,
+      "release_approval": false,
+      "provider_dispatch": "not_established",
+      "classification": "temporary_probe_missing_windows_main_guard"
     }
   ],
-  "replay": {
-    "version": 10,
-    "capture_source": "4ee75bc6a7d227b2c5469bfda8f60637d69a78c4",
-    "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
-    "sha256": "c3a6804a93739740a196a44aaed66af31a564faa6c1b9b61600b82386b985f08",
-    "calls": 6,
-    "timeouts": 2,
-    "provider_calls": 0,
-    "all_exchanges_equal_v9": true
-  },
-  "pending": [
-    "Corrected-head hosted SQL acceptance",
-    "Real local SQL/browser document flow after Docker recovery",
-    "Supplemental full-workflow fresh model check"
+  "fresh_observations": [
+    {
+      "mode": "fresh_subset_only",
+      "not_full_workflow": true,
+      "requests": 1,
+      "failures": [],
+      "diagnostics": [],
+      "candidate_completed": true,
+      "education_state": "met",
+      "code_revision": "19f0580fe91777e82a5d22c7afd5758beceeb713+dirty",
+      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+      "clinical_validation": false,
+      "release_approval": false
+    }
   ],
-  "limits": [
-    "AI-provisional illustrative evidence only",
-    "No clinical authorization or denial action",
-    "Explicit reviewed redaction is not general PHI detection",
-    "Provider calls may repeat after a crashed lease",
-    "Initial fresh timeout retained as failure, not successful reasoning",
-    "UI-only fixture checks do not replace database or model acceptance"
-  ]
+  "ui_fixture_browser": {
+    "backend": "explicit_in_memory_fixture_not_sql",
+    "browser": "Edge",
+    "document_request": "passed",
+    "qualified_review_route": "passed",
+    "viewer_read_only": "passed",
+    "logout_and_dismiss": "passed",
+    "desktop_width": 1440,
+    "mobile_viewport": 390,
+    "mobile_document_width": 390,
+    "mobile_table_client_width": 314,
+    "mobile_table_scroll_width": 620,
+    "raw_patient_data": false,
+    "provider_calls": 0
+  }
 }

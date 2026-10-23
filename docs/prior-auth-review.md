@@ -108,11 +108,19 @@ The Node regression executes the shipped browser code with delayed responses and
 private-state clearing on logout/expiry and a late denied response after a new sign-in.
 Full locked regression passed 886 tests in 489.06 seconds, strict types over 122 source files,
 lint/format and import checks. All six package builds and the dependency audit passed.
-The first fresh invented workflow probe used one request, timed out, and stored qualified
-review with failed assessment and no supported findings. That failed run is preserved separately
-from P3 quality evidence. Local browser continuation is pending restoration of Docker after
+The first invented workflow probe recorded one gateway attempt and stored qualified review
+with failed assessment and no supported findings. A later probe exposed missing Windows main
+guards in the temporary scripts: child setup repeated before provider dispatch could be
+established. These are preserved probe-startup failures, not provider/model-quality results.
+The production CLI already has the correct guard. A corrected standalone education-only
+check completed one actual Gemini request with no failure, exact accepted evidence and no
+identifier canary in its captured exchange. It is not a full workflow or held-out quality run. Local browser continuation is pending restoration of Docker after
 a host disk-space interruption; no full browser pass is claimed. Installed wheel and final
-hosted results are added after actual execution.
+hosted results are added after actual execution. An explicitly labeled in-memory UI fixture
+passed actual Edge document-request/routing/viewer checks and desktop/mobile visual inspection.
+At 390px the document stays 390px wide; the 620px evidence table scrolls in a 314px container.
+These UI-only checks do not replace the pending real local SQL/browser flow.
+The [aggregate evidence](data/prior-auth-review-evidence-v1.json) keeps each evidence kind separate.
 
 The lock metadata changed to `e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d`.
 Explicit invented replay v10, captured at clean `4ee75bc`, has digest
