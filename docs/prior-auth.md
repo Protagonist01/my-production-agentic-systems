@@ -2,9 +2,9 @@
 
 Accepted scope, updated 2026-10-23. P1–P3 are implemented in [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92), with pinned source preparation and bounded fresh Gemini assessment. [Source, operation and evaluation evidence](prior-auth-evidence.md) records the provisional cohort and results. P4–P6 remain planned; there is no reviewer application or clinical release.
 
-## Delivered application
+## Application direction
 
-An educational evidence-assessment application for selected policies, with verified criteria, isolated labels and durable document waits.
+The target is an educational evidence-assessment application for selected policies, with reviewed criteria, isolated labels and durable document waits. P1–P3 currently deliver source preparation, provisional labels and criterion checks; document waits remain P4 work.
 
 Framework direction for the future durable workflow: LangGraph, using the merged H1 integration. The delivered P1–P3 slice provides source/evaluation CLIs and an injected shared model gateway. API/operator workflow, scoped reviewer access and durable waits belong to P4/P5.
 
