@@ -45,6 +45,11 @@ jobs:
         run: uv run --locked --all-packages --link-mode copy python -c "import os,sys; assert '.'.join(map(str,sys.version_info[:2])) == os.environ['UV_PYTHON']; print(sys.version)"
       - name: Shared offline checks
         run: python dev.py check
+      - name: Revenue browser session regressions
+        run: |
+          node tests/revenue_console_session_test.cjs
+          node tests/supply_console_session_test.cjs
+          node tests/prior_auth_session_test.cjs
       - name: Invented offline example
         run: python dev.py example
       - name: Pinned invented strict replay

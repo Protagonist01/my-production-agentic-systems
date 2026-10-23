@@ -5,6 +5,10 @@ description = "Package boundary for supply_chain; runtime implementation follows
 requires-python = ">=3.12,<3.14"
 dependencies = ["production-agent-harness"]
 
+[project.optional-dependencies]
+workflow = ["langgraph==1.2.15", "inngest==0.5.19"]
+web = ["fastapi==0.150.0", "uvicorn==0.54.0", "langgraph==1.2.15"]
+
 [build-system]
 requires = ["uv_build==0.11.1"]
 build-backend = "uv_build"

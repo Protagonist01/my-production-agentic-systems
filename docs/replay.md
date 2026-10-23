@@ -112,3 +112,30 @@ On 2026-10-21 the locked dependency audit reported `PYSEC-2026-4320` against cer
 At clean committed capture source `8e25d2e02d7cf5d8ef788f762b912056cdde1936`, execute the existing in-process `invented_recording` helper and exclusively publish `resources/replay/invented-v5.json`. Its separately reviewed content pin is **da8f943e0c0c1af861bda3a6a6a08960e6870c09a1080207083cc681557dc1dd**; provenance is synthetic / invented-revenue-certifi-lock-v5 with review reference review:proposed-revenue-certifi-invented-v5. This identifies the proposed review, not prior user approval. Direct comparison confirms all six requests/responses equal v4, including the two typed timeouts. No provider dispatch or original contract data enters this capture.
 
 The normal replay command uses v5 without generating fixtures. All four historical files retain their independently pinned bytes and tests require them to reject the new lock. This update establishes software replay under the corrected dependency conditions; it does not establish fresh model quality or domain release acceptance.
+
+
+## R6 explicit event-adapter lock update
+
+The optional Revenue events adapter adds pinned Inngest 0.5.19 and jcs 0.2.1, without changing existing dependency versions. Lock `f1d00addeaefbbd946abea7b25b0e039473109bd6f146515e35ab9b20e7609e5` requires a separate invented capture. At clean source `28cdf485ed7cac4e1d5460b555baafea1bf9cbc4`, the maintenance helper exclusively published `resources/replay/invented-v6.json`, content pin **4224a610495d5bc657240e5a4dc6c44c08318149fc0f4534b8716763da603883**, synthetic provenance `invented-revenue-events-lock-v6` and proposed content review `review:proposed-revenue-events-invented-v6`. This is a proposal for user review, not a claim of prior approval.
+
+All six request/response pairs were compared directly with v5 and are identical, including two typed timeouts. All five historical resources/pins remain packaged and explicitly reject the new environment lock. Normal replay never captures or learns a trusted pin; no provider call or source-domain record enters this fixture. The fixed-lock audit found no known vulnerabilities before integrated acceptance.
+
+
+## Supply workflow extra: explicit invented v7 capture
+
+The Supply optional workflow extra reuses existing LangGraph/Inngest pins but changes workspace lock identity to `b0d264aeb155915511202ced1338d6840546ae6cfe8c1b18e1553f2683edf266`. At clean capture source `ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e`, explicitly execute the in-process maintenance helper and exclusively publish `resources/replay/invented-v7.json`, reviewed-content pin **175fdcc50359cb5471bf292e15034fc250bf5ac724d05582b3d69bf429ac548d**, synthetic source `invented-supply-workflow-lock-v7`, proposed review `review:proposed-supply-workflow-invented-v7`. This proposed content is part of user PR review, not a claim of prior approval. All six requests/responses match v6 exactly, including two typed timeouts. Historical v1–v6 resources remain immutable and reject the current lock; replay itself never writes/rebinds a recording. Zero provider calls and no original source content enter this fixture.
+
+
+## Supply web extra: explicit invented v8 capture
+
+S5 adds web extra metadata without changing dependency versions. At clean source `733a3d2d6d700d237402f5184bf50637e18d6736`, capture six in-process invented exchanges with lock `cb27dc9b03a7a09967eeba2005abdb6447565cfbe4bbcda7b41d1c1063328f10`. All request/response canonical bytes equal v7, including two timeouts. Preserve v1-v7 bytes and reject their historical locks. New resource `invented-v8.json` has external digest `307a0797021be1cc1804d87f4f4d5bfd2fbb2c937c880b79dfc2b151c321431e`. This is fixture maintenance with zero provider calls, not model-quality evidence.
+
+
+## Supply standalone web dependency correction: invented v9
+
+The web extra now explicitly includes the already-pinned LangGraph assessment dependency. Isolated web-only import reproduced its absence before correction. Capture at clean source `966b196dd4bd07d169e232541e082cd0f93e71f2` uses lock `e9694f444898bc4e06e70080c42634a7e39e91305b1543b5965b884af215f6c1` and digest `f2ee896a12d8a7858c165db559f70b8775d86007a14ee969f8ba97fdc5986fa4` in `invented-v9.json`. Six request/response pairs equal v8; retain v1-v8 bytes and reject their historical locks. No dependency versions, replay matching rules or provider evidence change.
+
+
+## Prior Auth web/workflow extras: explicit invented v10
+
+The P4/P5 extras reuse pinned LangGraph/FastAPI/Uvicorn versions but change the lock to e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d. At clean source4ee75bc6a7d227b2c5469bfda8f60637d69a78c4, explicitly run the existing in-process capture helper and exclusively publish invented-v10.json with digest c3a6804a93739740a196a44aaed66af31a564faa6c1b9b61600b82386b985f08. The generic invented-h3-v1 provenance remains declared synthetic; this proposed content is part of user PR review, not prior user approval. All six request/response pairs equal v9, including two timeouts. Preserve v1–v9 and test historical-lock rejection. Zero provider calls and no source notes enter fixture maintenance; normal replay never captures or rebinds it.

@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "capacity_hours_per_week": 40,
   "issue_creation_status": "verified",
   "epics": [
@@ -9,7 +9,7 @@
       "id": "F",
       "title": "Foundation: repository, contracts and development workflow",
       "outcome": "A locked Python monorepo with agreed runtime/evaluation contracts, isolated development services and honest offline CI.",
-      "gate": "Fresh checkout installs successfully; one fake case traverses agent → gateway → scorer → report; labels stay outside agent input; CI does not claim unimplemented evaluation passed.",
+      "gate": "Fresh checkout installs successfully; one fake case traverses agent â†’ gateway â†’ scorer â†’ report; labels stay outside agent input; CI does not claim unimplemented evaluation passed.",
       "deps": [],
       "issue_number": 2,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/2",
@@ -1077,7 +1077,7 @@
         "Hidden should-be schedules and leakage labels cannot be read by the agent."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 40,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/40",
@@ -1088,7 +1088,9 @@
       "milestone_number": 4,
       "branch": "codex/r2-r3-r4-revenue-engine",
       "review_evidence": "Combined R2/R3/R4 implementation and focused checks complete: 29 literal cases in nine groups; both gold and invented grammar paths match 29/29, two scoped CLI outputs verified; twelve original development inputs use scripted abstention only. R3 actual consumer migration passed 39 focused checks; final R4 passed 41; new-lock replay passed 73 focused checks and strict six-call/two-timeout replay. Certifi advisory fixed to 2026.10.19. Final integrated local/database/hosted evidence is recorded on issues #40/#41/#42 after actual completion. User merge pending; AI labels remain provisional, no live providers or billing mutations.",
-      "command_document": "docs/revenue-billing-worlds.md"
+      "command_document": "docs/revenue-billing-worlds.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/88",
+      "completion_evidence": "User merged #88 as5f73fc9, identical reviewed dc76e5c. Main39532518481 passed nine applicable jobs with actual773 tests per quality/43 Postgres/replay6calls2timeouts0provider/12builds per quality; clean exact-main replay passed. Issues40/41/42 closed completed. Offline and AI-provisional label limits retained; native board unverified."
     },
     {
       "id": "R3",
@@ -1107,7 +1109,7 @@
         "In-process tools remain testable; MCP adapter exposes the same contracts when added."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 41,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/41",
@@ -1120,7 +1122,9 @@
       "milestone_number": 4,
       "branch": "codex/r2-r3-r4-revenue-engine",
       "review_evidence": "Combined R2/R3/R4 implementation and focused checks complete: 29 literal cases in nine groups; both gold and invented grammar paths match 29/29, two scoped CLI outputs verified; twelve original development inputs use scripted abstention only. R3 actual consumer migration passed 39 focused checks; final R4 passed 41; new-lock replay passed 73 focused checks and strict six-call/two-timeout replay. Certifi advisory fixed to 2026.10.19. Final integrated local/database/hosted evidence is recorded on issues #40/#41/#42 after actual completion. User merge pending; AI labels remain provisional, no live providers or billing mutations.",
-      "command_document": "docs/code-study-access.md"
+      "command_document": "docs/code-study-access.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/88",
+      "completion_evidence": "User merged #88 as5f73fc9, identical reviewed dc76e5c. Main39532518481 passed nine applicable jobs with actual773 tests per quality/43 Postgres/replay6calls2timeouts0provider/12builds per quality; clean exact-main replay passed. Issues40/41/42 closed completed. Offline and AI-provisional label limits retained; native board unverified."
     },
     {
       "id": "R4",
@@ -1139,7 +1143,7 @@
         "Original extraction and hybrid end-to-end errors are separated in reports."
       ],
       "priority": "P1",
-      "status": "Review",
+      "status": "Done",
       "blocker": null,
       "issue_number": 42,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/42",
@@ -1152,7 +1156,9 @@
       "milestone_number": 4,
       "branch": "codex/r2-r3-r4-revenue-engine",
       "review_evidence": "Combined R2/R3/R4 implementation and focused checks complete: 29 literal cases in nine groups; both gold and invented grammar paths match 29/29, two scoped CLI outputs verified; twelve original development inputs use scripted abstention only. R3 actual consumer migration passed 39 focused checks; final R4 passed 41; new-lock replay passed 73 focused checks and strict six-call/two-timeout replay. Certifi advisory fixed to 2026.10.19. Final integrated local/database/hosted evidence is recorded on issues #40/#41/#42 after actual completion. User merge pending; AI labels remain provisional, no live providers or billing mutations.",
-      "command_document": "docs/revenue-reconciliation.md"
+      "command_document": "docs/revenue-reconciliation.md",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/88",
+      "completion_evidence": "User merged #88 as5f73fc9, identical reviewed dc76e5c. Main39532518481 passed nine applicable jobs with actual773 tests per quality/43 Postgres/replay6calls2timeouts0provider/12builds per quality; clean exact-main replay passed. Issues40/41/42 closed completed. Offline and AI-provisional label limits retained; native board unverified."
     },
     {
       "id": "R5",
@@ -1171,7 +1177,7 @@
         "Compensation appends a ledger entry and refuses to overwrite an intervening legitimate change."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 43,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/43",
@@ -1181,7 +1187,10 @@
         42,
         13
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "branch": "codex/r5-r6-s1-operations",
+      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim.",
+      "completion_evidence": "User reviewed/merged PR89 as main77b98df, identical to reviewed0bdc7eb. Main run39742751290 succeeded. Prior acceptance/source evidence retained; implementation issue explicitly closed completed. Release/source/human/hosted-service limitations unchanged; native board unverified."
     },
     {
       "id": "R6",
@@ -1199,7 +1208,7 @@
         "API/UI handles review rejection, stale data and long waits visibly."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 44,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/44",
@@ -1208,7 +1217,10 @@
         43,
         22
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "branch": "codex/r5-r6-s1-operations",
+      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim.",
+      "completion_evidence": "User reviewed/merged PR89 as main77b98df, identical to reviewed0bdc7eb. Main run39742751290 succeeded. Prior acceptance/source evidence retained; implementation issue explicitly closed completed. Release/source/human/hosted-service limitations unchanged; native board unverified."
     },
     {
       "id": "R7",
@@ -1250,13 +1262,16 @@
         "Diagnosis versus procedure-code validation requirements are explicit."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 46,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/46",
       "parent_issue_number": 7,
       "dependency_issue_numbers": [],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User authorized46/47/48 in one dependent batch from verified main1e59722. Source mix/provisional labels and fresh configured free-tier Gemini use approved. P1 outputs verified before P2/P3 acceptance; no clinical release or authorization.",
+      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92",
+      "completion_note": "User merged #92 as6c2b7d9; identical review tree, main39938575348 nine applicable jobs and exact-main replay verified."
     },
     {
       "id": "P2",
@@ -1274,7 +1289,7 @@
         "Redaction/citation mapping and label isolation are verified."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 47,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/47",
@@ -1283,7 +1298,10 @@
         46,
         19
       ],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User authorized46/47/48 in one dependent batch from verified main1e59722. Source mix/provisional labels and fresh configured free-tier Gemini use approved. P1 outputs verified before P2/P3 acceptance; no clinical release or authorization.",
+      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92",
+      "completion_note": "User merged #92 as6c2b7d9; identical review tree, main39938575348 nine applicable jobs and exact-main replay verified."
     },
     {
       "id": "P3",
@@ -1301,7 +1319,7 @@
         "Retrieval and criterion-assessment errors can be diagnosed separately."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 48,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/48",
@@ -1310,7 +1328,10 @@
         47,
         24
       ],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User authorized46/47/48 in one dependent batch from verified main1e59722. Source mix/provisional labels and fresh configured free-tier Gemini use approved. P1 outputs verified before P2/P3 acceptance; no clinical release or authorization.",
+      "review_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/92",
+      "completion_note": "User merged #92 as6c2b7d9; identical review tree, main39938575348 nine applicable jobs and exact-main replay verified."
     },
     {
       "id": "P4",
@@ -1328,7 +1349,7 @@
         "Policy version change invalidates obsolete candidate decisions."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 49,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/49",
@@ -1337,7 +1358,8 @@
         48,
         13
       ],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User selected #49/#50 together after verified #92 merge; P4 verified inside the dependent review batch before P5 acceptance."
     },
     {
       "id": "P5",
@@ -1355,7 +1377,7 @@
         "Reviewer can identify uncertainty, conflicts and pending document waits."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 50,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/50",
@@ -1364,7 +1386,8 @@
         49,
         22
       ],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "batch_note": "User selected #49/#50 together after verified #92 merge; P4 verified inside the dependent review batch before P5 acceptance."
     },
     {
       "id": "P6",
@@ -1408,7 +1431,7 @@
         "Agent-visible facts respect the scenario clock and available source coverage."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 52,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/52",
@@ -1416,7 +1439,10 @@
       "dependency_issue_numbers": [
         19
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "branch": "codex/r5-r6-s1-operations",
+      "review_evidence": "Combined R5/R6/S1 candidate integrates approval-bound source-backed SIM effects, authenticated exact-payload review and event recovery, and independently pinned DataCo/NWS sources. Focused R5 30 plus2SQL regressions, R6 10offline+4SQL, S1 20offline and complete180519-row/306-alert source verification passed. Final integrated local/database/browser/hosted evidence is recorded on issues43/44/52 after actual completion. User merge pending; no live providers, real billing or causal shipment/weather claim.",
+      "completion_evidence": "User reviewed/merged PR89 as main77b98df, identical to reviewed0bdc7eb. Main run39742751290 succeeded. Prior acceptance/source evidence retained; implementation issue explicitly closed completed. Release/source/human/hosted-service limitations unchanged; native board unverified."
     },
     {
       "id": "S2",
@@ -1433,7 +1459,7 @@
         "Total realized simulated cost and absolute/normalized baseline differences are defined."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 53,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/53",
@@ -1441,7 +1467,12 @@
       "dependency_issue_numbers": [
         52
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "branch": "codex/s2-s3-s4-supply-chain",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/90",
+      "review_evidence": "PR90 source0406e82; hosted run39864242079 all10jobs passed,846offline per quality cell/86Postgres/100types/six-call zero-provider replay/packages/audits/secret scan. Local full846passed666.16s; local DB85/86 then sole external-path failure passed separately32.80s. New focused30simulator/18Postgres passed. Installed52harness/11Supply files under network denial. Keep open Review pending user merge/main acceptance; invented outcomes, shared2replans, no carrier/fresh-release claim.",
+      "command_document": "docs/supply-chain-operations.md",
+      "completion_evidence": "User merged #90 as21d3bef, identical to reviewed63d4691; main39867933494 passed nine applicable checks, exact-main replay six calls/two timeouts/zero provider. Issues53/54/55 closed completed. Native project board unverified."
     },
     {
       "id": "S3",
@@ -1460,7 +1491,7 @@
         "Failure after commit returns the original effect on retry."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 54,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/54",
@@ -1470,7 +1501,12 @@
         41,
         13
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "branch": "codex/s2-s3-s4-supply-chain",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/90",
+      "review_evidence": "PR90 source0406e82; hosted run39864242079 all10jobs passed,846offline per quality cell/86Postgres/100types/six-call zero-provider replay/packages/audits/secret scan. Local full846passed666.16s; local DB85/86 then sole external-path failure passed separately32.80s. New focused30simulator/18Postgres passed. Installed52harness/11Supply files under network denial. Keep open Review pending user merge/main acceptance; invented outcomes, shared2replans, no carrier/fresh-release claim.",
+      "command_document": "docs/supply-chain-operations.md",
+      "completion_evidence": "User merged #90 as21d3bef, identical to reviewed63d4691; main39867933494 passed nine applicable checks, exact-main replay six calls/two timeouts/zero provider. Issues53/54/55 closed completed. Native project board unverified."
     },
     {
       "id": "S4",
@@ -1488,7 +1524,7 @@
         "Region bursts and duplicate/out-of-order events have deterministic tests."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 55,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/55",
@@ -1497,7 +1533,12 @@
         54,
         24
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "branch": "codex/s2-s3-s4-supply-chain",
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/90",
+      "review_evidence": "PR90 source0406e82; hosted run39864242079 all10jobs passed,846offline per quality cell/86Postgres/100types/six-call zero-provider replay/packages/audits/secret scan. Local full846passed666.16s; local DB85/86 then sole external-path failure passed separately32.80s. New focused30simulator/18Postgres passed. Installed52harness/11Supply files under network denial. Keep open Review pending user merge/main acceptance; invented outcomes, shared2replans, no carrier/fresh-release claim.",
+      "command_document": "docs/supply-chain-operations.md",
+      "completion_evidence": "User merged #90 as21d3bef, identical to reviewed63d4691; main39867933494 passed nine applicable checks, exact-main replay six calls/two timeouts/zero provider. Issues53/54/55 closed completed. Native project board unverified."
     },
     {
       "id": "S5",
@@ -1515,7 +1556,7 @@
         "Notifications cannot state unconfirmed execution or invented delivery outcomes."
       ],
       "priority": "P1",
-      "status": "Backlog",
+      "status": "Done",
       "blocker": null,
       "issue_number": 56,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/56",
@@ -1524,7 +1565,11 @@
         55,
         22
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "pr_url": "https://github.com/Protagonist01/my-production-agentic-systems/pull/91",
+      "implementation_commit": "733a3d2",
+      "review_evidence": "Local full offline855 tests1244.74s; fullSQL87tests1748.60s; corrected-lock focused115tests25.79s;106typed sources; actual-asset Node races; six builds/audit; isolated standaloneweb import11resources and strictreplay; real desktop/mobile separate-review/commit/confirmation flow; clean4389aa8 replay6calls2timeouts0provider. Initial hosted39878331042 alltenpass; final hosted evidence on #56/#91. SIM in-app only; no release claim.",
+      "completion_evidence": "User merged #91 as1e59722, same tree as43c63ea. Main39881820867 passed nine applicable jobs; actual logs856perquality/87SQL/zero-provider replay; clean exact-main replay passed. #56 closed completed."
     },
     {
       "id": "S6",
@@ -1723,37 +1768,37 @@
   "milestones": [
     {
       "number": 1,
-      "title": "M1 — Verified foundation",
+      "title": "M1 â€” Verified foundation",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/1"
     },
     {
       "number": 2,
-      "title": "M2 — Complete Olist release",
+      "title": "M2 â€” Complete Olist release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/2"
     },
     {
       "number": 3,
-      "title": "M3 — CFPB release",
+      "title": "M3 â€” CFPB release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/3"
     },
     {
       "number": 4,
-      "title": "M4 — Revenue integrity release",
+      "title": "M4 â€” Revenue integrity release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/4"
     },
     {
       "number": 5,
-      "title": "M5 — Prior auth release",
+      "title": "M5 â€” Prior auth release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/5"
     },
     {
       "number": 6,
-      "title": "M6 — Supply chain release",
+      "title": "M6 â€” Supply chain release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/6"
     },
     {
       "number": 7,
-      "title": "M7 — Operations and portfolio release",
+      "title": "M7 â€” Operations and portfolio release",
       "url": "https://github.com/Protagonist01/my-production-agentic-systems/milestone/7"
     }
   ]

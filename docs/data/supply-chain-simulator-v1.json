@@ -1,0 +1,2264 @@
+{
+  "cohort": "supply-world-v1",
+  "kind": "invented-simulation-mechanism",
+  "known_limitations": [
+    "Constructed costs and realized outcomes; no causal freight savings.",
+    "No paid provider calls, carrier integration or production release evidence.",
+    "No human-reviewed outcome gold; unseen-family/formula stress only."
+  ],
+  "policy_version": "supply-sim-v1",
+  "reports": [
+    {
+      "limitations": "Constructed costs/outcomes. No causal freight savings or model quality claim.",
+      "policy_version": "supply-sim-v1",
+      "rows": [
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 4000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 4000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 1500,
+              "intervention_minor": 4000,
+              "shipments": 3,
+              "total_minor": 5500,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 1000,
+              "intervention_minor": 6000,
+              "shipments": 3,
+              "total_minor": 7000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-routine-11",
+          "seed": 11,
+          "solver_difference_minor": 1500,
+          "solver_difference_normalized": 0.375,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 3000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 3000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 1000,
+              "intervention_minor": 6000,
+              "shipments": 3,
+              "total_minor": 7000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 1000,
+              "intervention_minor": 6000,
+              "shipments": 3,
+              "total_minor": 7000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-routine-23",
+          "seed": 23,
+          "solver_difference_minor": 4000,
+          "solver_difference_normalized": 1.3333333333333333,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 18500,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 18500,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 7000,
+              "intervention_minor": 18000,
+              "shipments": 3,
+              "total_minor": 25000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 7000,
+              "intervention_minor": 18000,
+              "shipments": 3,
+              "total_minor": 25000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-regional_disruption-11",
+          "seed": 11,
+          "solver_difference_minor": 6500,
+          "solver_difference_normalized": 0.35135135135135137,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 17500,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 17500,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 6000,
+              "intervention_minor": 18000,
+              "shipments": 3,
+              "total_minor": 24000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 9500,
+              "intervention_minor": 12000,
+              "shipments": 3,
+              "total_minor": 21500,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-regional_disruption-23",
+          "seed": 23,
+          "solver_difference_minor": 6500,
+          "solver_difference_normalized": 0.37142857142857144,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 24000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 24000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 19000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 27000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 19000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 27000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-scarce_capacity-11",
+          "seed": 11,
+          "solver_difference_minor": 3000,
+          "solver_difference_normalized": 0.125,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 26000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 26000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 21000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 29000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 21000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 29000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-scarce_capacity-23",
+          "seed": 23,
+          "solver_difference_minor": 3000,
+          "solver_difference_normalized": 0.11538461538461539,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 21500,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 21500,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 21500,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 21500,
+              "unresolved": 3,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 21500,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 21500,
+              "unresolved": 3,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-conflicting_alerts-11",
+          "seed": 11,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 20000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 20000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 20000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 20000,
+              "unresolved": 3,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 20000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 20000,
+              "unresolved": 3,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-conflicting_alerts-23",
+          "seed": 23,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 5000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 5000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 3000,
+              "intervention_minor": 4000,
+              "shipments": 4,
+              "total_minor": 7000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 2000,
+              "intervention_minor": 8000,
+              "shipments": 4,
+              "total_minor": 10000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-routine-97",
+          "seed": 97,
+          "solver_difference_minor": 2000,
+          "solver_difference_normalized": 0.4,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 6000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 6000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 3000,
+              "intervention_minor": 6000,
+              "shipments": 4,
+              "total_minor": 9000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 3000,
+              "intervention_minor": 8000,
+              "shipments": 4,
+              "total_minor": 11000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-routine-193",
+          "seed": 193,
+          "solver_difference_minor": 3000,
+          "solver_difference_normalized": 0.5,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 28000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 28000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 22000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 48000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 23000,
+              "intervention_minor": 20000,
+              "shipments": 4,
+              "total_minor": 43000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-regional_disruption-97",
+          "seed": 97,
+          "solver_difference_minor": 20000,
+          "solver_difference_normalized": 0.7142857142857143,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 28000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 28000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 19000,
+              "intervention_minor": 32000,
+              "shipments": 4,
+              "total_minor": 51000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 19000,
+              "intervention_minor": 32000,
+              "shipments": 4,
+              "total_minor": 51000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-regional_disruption-193",
+          "seed": 193,
+          "solver_difference_minor": 23000,
+          "solver_difference_normalized": 0.8214285714285714,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 32000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 32000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 28000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 38000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 28000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 38000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-scarce_capacity-97",
+          "seed": 97,
+          "solver_difference_minor": 6000,
+          "solver_difference_normalized": 0.1875,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 25500,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 25500,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 21500,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 31500,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 21500,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 31500,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-scarce_capacity-193",
+          "seed": 193,
+          "solver_difference_minor": 6000,
+          "solver_difference_normalized": 0.23529411764705882,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 20500,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 20500,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 20500,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 20500,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 20500,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 20500,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-conflicting_alerts-97",
+          "seed": 97,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 21000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 21000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 21000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 21000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 21000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 21000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-conflicting_alerts-193",
+          "seed": 193,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "expired_alerts",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 25000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 25000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 25000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 25000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 25000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 25000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-expired_alerts-97",
+          "seed": 97,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "expired_alerts",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 32500,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 32500,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 32500,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 32500,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 32500,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 32500,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-expired_alerts-193",
+          "seed": 193,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "correlated_delays",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 34000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 34000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 27500,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 53500,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 30500,
+              "intervention_minor": 20000,
+              "shipments": 4,
+              "total_minor": 50500,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-correlated_delays-97",
+          "seed": 97,
+          "solver_difference_minor": 19500,
+          "solver_difference_normalized": 0.5735294117647058,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "correlated_delays",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 30000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 30000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 23000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 49000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 23000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 49000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-correlated_delays-193",
+          "seed": 193,
+          "solver_difference_minor": 19000,
+          "solver_difference_normalized": 0.6333333333333333,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        }
+      ],
+      "scenarios": 20,
+      "sensitivity_percent": 50,
+      "simulator_version": "supply-world-v1",
+      "source_kind": "invented"
+    },
+    {
+      "limitations": "Constructed costs/outcomes. No causal freight savings or model quality claim.",
+      "policy_version": "supply-sim-v1",
+      "rows": [
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 8000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 8000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 3000,
+              "intervention_minor": 4000,
+              "shipments": 3,
+              "total_minor": 7000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 2000,
+              "intervention_minor": 6000,
+              "shipments": 3,
+              "total_minor": 8000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-routine-11",
+          "seed": 11,
+          "solver_difference_minor": -1000,
+          "solver_difference_normalized": -0.125,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 6000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 6000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 2000,
+              "intervention_minor": 6000,
+              "shipments": 3,
+              "total_minor": 8000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 2000,
+              "intervention_minor": 6000,
+              "shipments": 3,
+              "total_minor": 8000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-routine-23",
+          "seed": 23,
+          "solver_difference_minor": 2000,
+          "solver_difference_normalized": 0.3333333333333333,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 37000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 37000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 14000,
+              "intervention_minor": 18000,
+              "shipments": 3,
+              "total_minor": 32000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 14000,
+              "intervention_minor": 18000,
+              "shipments": 3,
+              "total_minor": 32000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-regional_disruption-11",
+          "seed": 11,
+          "solver_difference_minor": -5000,
+          "solver_difference_normalized": -0.13513513513513514,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 35000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 35000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 12000,
+              "intervention_minor": 18000,
+              "shipments": 3,
+              "total_minor": 30000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 19000,
+              "intervention_minor": 12000,
+              "shipments": 3,
+              "total_minor": 31000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-regional_disruption-23",
+          "seed": 23,
+          "solver_difference_minor": -5000,
+          "solver_difference_normalized": -0.14285714285714285,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 48000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 48000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 38000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 46000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 38000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 46000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-scarce_capacity-11",
+          "seed": 11,
+          "solver_difference_minor": -2000,
+          "solver_difference_normalized": -0.041666666666666664,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 52000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 52000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 42000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 50000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 42000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 50000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-scarce_capacity-23",
+          "seed": 23,
+          "solver_difference_minor": -2000,
+          "solver_difference_normalized": -0.038461538461538464,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 43000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 43000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 43000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 43000,
+              "unresolved": 3,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 43000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 43000,
+              "unresolved": 3,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-conflicting_alerts-11",
+          "seed": 11,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 40000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 40000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 40000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 40000,
+              "unresolved": 3,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 40000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 40000,
+              "unresolved": 3,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-conflicting_alerts-23",
+          "seed": 23,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 10000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 10000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 6000,
+              "intervention_minor": 4000,
+              "shipments": 4,
+              "total_minor": 10000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 4000,
+              "intervention_minor": 8000,
+              "shipments": 4,
+              "total_minor": 12000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-routine-97",
+          "seed": 97,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 12000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 12000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 6000,
+              "intervention_minor": 6000,
+              "shipments": 4,
+              "total_minor": 12000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 6000,
+              "intervention_minor": 8000,
+              "shipments": 4,
+              "total_minor": 14000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-routine-193",
+          "seed": 193,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 56000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 56000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 44000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 70000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 46000,
+              "intervention_minor": 20000,
+              "shipments": 4,
+              "total_minor": 66000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-regional_disruption-97",
+          "seed": 97,
+          "solver_difference_minor": 14000,
+          "solver_difference_normalized": 0.25,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 56000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 56000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 38000,
+              "intervention_minor": 32000,
+              "shipments": 4,
+              "total_minor": 70000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 38000,
+              "intervention_minor": 32000,
+              "shipments": 4,
+              "total_minor": 70000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-regional_disruption-193",
+          "seed": 193,
+          "solver_difference_minor": 14000,
+          "solver_difference_normalized": 0.25,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 64000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 64000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 56000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 66000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 56000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 66000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-scarce_capacity-97",
+          "seed": 97,
+          "solver_difference_minor": 2000,
+          "solver_difference_normalized": 0.03125,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 51000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 51000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 43000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 53000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 43000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 53000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-scarce_capacity-193",
+          "seed": 193,
+          "solver_difference_minor": 2000,
+          "solver_difference_normalized": 0.0392156862745098,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 41000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 41000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 41000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 41000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 41000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 41000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-conflicting_alerts-97",
+          "seed": 97,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 42000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 42000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 42000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 42000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 42000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 42000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-conflicting_alerts-193",
+          "seed": 193,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "expired_alerts",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 50000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 50000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 50000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 50000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 50000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 50000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-expired_alerts-97",
+          "seed": 97,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "expired_alerts",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 65000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 65000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 65000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 65000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 65000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 65000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-expired_alerts-193",
+          "seed": 193,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "correlated_delays",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 68000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 68000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 55000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 81000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 61000,
+              "intervention_minor": 20000,
+              "shipments": 4,
+              "total_minor": 81000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-correlated_delays-97",
+          "seed": 97,
+          "solver_difference_minor": 13000,
+          "solver_difference_normalized": 0.19117647058823528,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "correlated_delays",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 60000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 60000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 46000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 72000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 46000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 72000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-correlated_delays-193",
+          "seed": 193,
+          "solver_difference_minor": 12000,
+          "solver_difference_normalized": 0.2,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        }
+      ],
+      "scenarios": 20,
+      "sensitivity_percent": 100,
+      "simulator_version": "supply-world-v1",
+      "source_kind": "invented"
+    },
+    {
+      "limitations": "Constructed costs/outcomes. No causal freight savings or model quality claim.",
+      "policy_version": "supply-sim-v1",
+      "rows": [
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 16000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 16000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 6000,
+              "intervention_minor": 4000,
+              "shipments": 3,
+              "total_minor": 10000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 4000,
+              "intervention_minor": 6000,
+              "shipments": 3,
+              "total_minor": 10000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-routine-11",
+          "seed": 11,
+          "solver_difference_minor": -6000,
+          "solver_difference_normalized": -0.375,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 12000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 12000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 4000,
+              "intervention_minor": 6000,
+              "shipments": 3,
+              "total_minor": 10000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 4000,
+              "intervention_minor": 6000,
+              "shipments": 3,
+              "total_minor": 10000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-routine-23",
+          "seed": 23,
+          "solver_difference_minor": -2000,
+          "solver_difference_normalized": -0.16666666666666666,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 74000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 74000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 28000,
+              "intervention_minor": 18000,
+              "shipments": 3,
+              "total_minor": 46000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 28000,
+              "intervention_minor": 18000,
+              "shipments": 3,
+              "total_minor": 46000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-regional_disruption-11",
+          "seed": 11,
+          "solver_difference_minor": -28000,
+          "solver_difference_normalized": -0.3783783783783784,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 70000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 70000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 24000,
+              "intervention_minor": 18000,
+              "shipments": 3,
+              "total_minor": 42000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 38000,
+              "intervention_minor": 12000,
+              "shipments": 3,
+              "total_minor": 50000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-regional_disruption-23",
+          "seed": 23,
+          "solver_difference_minor": -28000,
+          "solver_difference_normalized": -0.4,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 96000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 96000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 76000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 84000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 76000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 84000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-scarce_capacity-11",
+          "seed": 11,
+          "solver_difference_minor": -12000,
+          "solver_difference_normalized": -0.125,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 104000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 104000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 84000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 92000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 84000,
+              "intervention_minor": 8000,
+              "shipments": 3,
+              "total_minor": 92000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-scarce_capacity-23",
+          "seed": 23,
+          "solver_difference_minor": -12000,
+          "solver_difference_normalized": -0.11538461538461539,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 86000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 86000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 86000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 86000,
+              "unresolved": 3,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 86000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 86000,
+              "unresolved": 3,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-conflicting_alerts-11",
+          "seed": 11,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "linear-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 80000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 80000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 80000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 80000,
+              "unresolved": 3,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 80000,
+              "intervention_minor": 0,
+              "shipments": 3,
+              "total_minor": 80000,
+              "unresolved": 3,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "development-conflicting_alerts-23",
+          "seed": 23,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "development",
+          "template": "dev-three-v1"
+        },
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 20000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 20000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 12000,
+              "intervention_minor": 4000,
+              "shipments": 4,
+              "total_minor": 16000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 8000,
+              "intervention_minor": 8000,
+              "shipments": 4,
+              "total_minor": 16000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-routine-97",
+          "seed": 97,
+          "solver_difference_minor": -4000,
+          "solver_difference_normalized": -0.2,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "routine",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 24000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 24000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 12000,
+              "intervention_minor": 6000,
+              "shipments": 4,
+              "total_minor": 18000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 12000,
+              "intervention_minor": 8000,
+              "shipments": 4,
+              "total_minor": 20000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-routine-193",
+          "seed": 193,
+          "solver_difference_minor": -6000,
+          "solver_difference_normalized": -0.25,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 112000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 112000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 88000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 114000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 92000,
+              "intervention_minor": 20000,
+              "shipments": 4,
+              "total_minor": 112000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-regional_disruption-97",
+          "seed": 97,
+          "solver_difference_minor": 2000,
+          "solver_difference_normalized": 0.017857142857142856,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "regional_disruption",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 112000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 112000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 76000,
+              "intervention_minor": 32000,
+              "shipments": 4,
+              "total_minor": 108000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 76000,
+              "intervention_minor": 32000,
+              "shipments": 4,
+              "total_minor": 108000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-regional_disruption-193",
+          "seed": 193,
+          "solver_difference_minor": -4000,
+          "solver_difference_normalized": -0.03571428571428571,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 128000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 128000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 112000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 122000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 112000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 122000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-scarce_capacity-97",
+          "seed": 97,
+          "solver_difference_minor": -6000,
+          "solver_difference_normalized": -0.046875,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "scarce_capacity",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 102000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 102000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 86000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 96000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 86000,
+              "intervention_minor": 10000,
+              "shipments": 4,
+              "total_minor": 96000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-scarce_capacity-193",
+          "seed": 193,
+          "solver_difference_minor": -6000,
+          "solver_difference_normalized": -0.058823529411764705,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 82000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 82000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 82000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 82000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 82000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 82000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-conflicting_alerts-97",
+          "seed": 97,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "conflicting_alerts",
+          "family_seen_in_development": true,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 84000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 84000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 84000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 84000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 84000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 84000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-conflicting_alerts-193",
+          "seed": 193,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "expired_alerts",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 100000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 100000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 100000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 100000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 100000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 100000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-expired_alerts-97",
+          "seed": 97,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "expired_alerts",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 130000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 130000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 130000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 130000,
+              "unresolved": 4,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 130000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 130000,
+              "unresolved": 4,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-expired_alerts-193",
+          "seed": 193,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "correlated_delays",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 136000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 136000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 110000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 136000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 122000,
+              "intervention_minor": 20000,
+              "shipments": 4,
+              "total_minor": 142000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-correlated_delays-97",
+          "seed": 97,
+          "solver_difference_minor": 0,
+          "solver_difference_normalized": 0.0,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        },
+        {
+          "family": "correlated_delays",
+          "family_seen_in_development": false,
+          "outcome_model": "congestion-v1",
+          "results": {
+            "do_nothing": {
+              "delay_minor": 120000,
+              "intervention_minor": 0,
+              "shipments": 4,
+              "total_minor": 120000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "estimate_solver": {
+              "delay_minor": 92000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 118000,
+              "unresolved": 0,
+              "unsafe": 0
+            },
+            "rules": {
+              "delay_minor": 92000,
+              "intervention_minor": 26000,
+              "shipments": 4,
+              "total_minor": 118000,
+              "unresolved": 0,
+              "unsafe": 0
+            }
+          },
+          "scenario_id": "holdout-correlated_delays-193",
+          "seed": 193,
+          "solver_difference_minor": -2000,
+          "solver_difference_normalized": -0.016666666666666666,
+          "split": "holdout",
+          "template": "holdout-four-v1"
+        }
+      ],
+      "scenarios": 20,
+      "sensitivity_percent": 200,
+      "simulator_version": "supply-world-v1",
+      "source_kind": "invented"
+    }
+  ],
+  "schema_version": 1,
+  "source_commit": "ba962c6cdec3a7f7f694a2eaf92d705c324e7e3e"
+}

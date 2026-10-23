@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="csrf-cookie" content="__CSRF_COOKIE__">
+  <title>Supply operations</title><link rel="stylesheet" href="/assets/console.css">
+  <script src="/assets/console.js" defer></script>
+</head>
+<body>
+<header><a href="/" class="brand"><span class="mark">S/</span> SUPPLY OPERATIONS</a><span class="mode">SIMULATION ONLY</span>
+  <div id="identity" hidden><span id="who"></span><button id="logout" class="quiet">Sign out</button></div>
+</header>
+<div id="notice" role="status" aria-live="polite" hidden></div>
+<main>
+  <section id="login-panel" class="login">
+    <p class="eyebrow">OPERATOR WORKBENCH / S5</p><h1>Keep the next<br>move accountable.</h1>
+    <p class="intro">Review shipment facts, exact SIM proposals and durable notices in one place.</p>
+    <form id="login"><label for="username">Account</label><input id="username" autocomplete="username" required maxlength="64">
+      <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required maxlength="128">
+      <button type="submit">Sign in to workbench <span aria-hidden="true">↗</span></button>
+    </form><p class="small">Provisioned accounts only. This console records simulated actions and in-app previews.</p>
+  </section>
+  <section id="workspace" hidden>
+    <div class="workspace-head"><div><p class="eyebrow">INCIDENT CONTROL</p><h1 id="title">Shipments</h1></div><button id="refresh" class="secondary">Refresh facts</button></div>
+    <div class="layout"><aside class="rail"><h2>Incidents</h2><nav id="incidents" aria-label="Incidents"></nav><p class="small">Only incidents assigned to your account appear here.</p></aside>
+      <div class="work-area"><div id="budget" class="metrics"></div>
+        <div class="section-head"><div><h2>Affected shipments</h2><p id="updated" class="small"></p></div><button id="assess" hidden>Assess &amp; apply eligible SIM actions</button></div>
+        <p class="policy">Policy: 100.00 SIM per action · 500.00 SIM per incident · above 25.00 SIM requires a different reviewer · approval and confirmation expire in 30 minutes · two replans maximum.</p>
+        <div class="table-wrap"><table><thead><tr><th>Shipment / facts</th><th>Estimated delay</th><th>SIM action / cost</th><th>State</th><th>Details</th></tr></thead><tbody id="shipments"></tbody></table></div>
+        <div id="context" class="context"></div>
+        <div class="section-head"><div><p class="eyebrow">DURABLE IN-APP NOTICES</p><h2>Message previews</h2></div><span class="small">Latest 100 in your shipment scope</span></div>
+        <p class="small">Each preview reflects stored facts at its capture time. A SIM commitment or confirmation does not establish delivery.</p><div id="notices" class="notices"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<dialog id="detail"><div class="dialog-head"><h2>Exact SIM proposal</h2><button id="close-detail" class="quiet" aria-label="Close proposal">Close ✕</button></div><div id="details"></div><div id="decisions" class="decisions"></div></dialog>
+<footer>SIM ledger · No carrier integration · No external notification delivery</footer>
+</body></html>

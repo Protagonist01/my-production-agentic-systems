@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-20. Usermerged#87as058d1c7, identicalreviewede536c96. Main39457223872passednineapplicablejobs actual713testsperqualitycell/43Postgres; exactmainreplay6/2/zero-provider passed. R1#39complete with source/family/numericbilling limits, O8freshreleasegatepending. Userexplicitlyauthorizedatleastthreeissues: R2#40+R3#41+R4#42 inoneparallelbatchunderapprovedconstructedbillingrules. C2#84remainsindependentunmergedreview. Nativeboardunverified.
+Updated: 2026-10-23. User-merged #93 is verified as main116d7e5 with an identical reviewed tree, nine applicable main CI jobs, actual886tests per quality cell/94Postgres and clean exact-main replay. P4#49/P5#50 are closed completed. The user selected reconciliation of existing CFPB C2 PR#84; C3/C4 wait for its user merge and verified main. O8 and all dependent domain/operations release gates remain pending; native project-board state remains unverified.
 
 ## Scope and source of truth
 
@@ -22,7 +22,7 @@ Data selection/label preparation may overlap earlier work. Task dependencies, ra
 
 ## Task workflow
 
-Backlog → Ready → In progress → Review → Done. Use a separate blocker field/section for blocked work.
+Backlog â†’ Ready â†’ In progress â†’ Review â†’ Done. Use a separate blocker field/section for blocked work.
 
 - **Ready:** prerequisites merged and verified, scope understood, acceptance evidence defined, owner/paths agreed.
 - **In progress:** one task owner and branch, linked issue and bounded implementation.
@@ -34,7 +34,7 @@ Backlog → Ready → In progress → Review → Done. Use a separate blocker fi
 
 ## Capacity and planning
 
-The user's 40 hours/week includes pairing, implementation, review, integration, labeling and documentation. Plan no more than three active implementation tasks/worktrees and no more than two verticals under integration. Size estimates are provisional: S 2–4 hours, M 4–8, L 8–16. Split a task that grows beyond two working days. Track actual hours and blocked time before committing calendar dates.
+The user's 40 hours/week includes pairing, implementation, review, integration, labeling and documentation. Plan no more than three active implementation tasks/worktrees and no more than two verticals under integration. Size estimates are provisional: S 2â€“4 hours, M 4â€“8, L 8â€“16. Split a task that grows beyond two working days. Track actual hours and blocked time before committing calendar dates.
 
 Plan weekly: review acceptance evidence and blockers; select Ready work within available capacity; reserve time for integration/data review. Reforecast from completed work, rather than dividing total scope by nominal parallel workers. At each stage gate, inspect newly failing required cases and open defects before scheduling expansion.
 
@@ -83,19 +83,19 @@ Report denominator, source category, slice and mode for every result. Quality fl
 
 ## GitHub administration
 
-Use a root delivery tracker → eight epic sub-issues → 53 task sub-issues. Task bodies contain ID, priority, size, scope, dependency links, acceptance checks and completion evidence. Native hierarchy is distinct from dependency edges; record prerequisites explicitly.
+Use a root delivery tracker â†’ eight epic sub-issues â†’ 53 task sub-issues. Task bodies contain ID, priority, size, scope, dependency links, acceptance checks and completion evidence. Native hierarchy is distinct from dependency edges; record prerequisites explicitly.
 
-The native Project has Status, Area, Priority, Size, Iteration and Blocker fields; Backlog, Board, Current iteration, Roadmap, My items, By workstream and Blocked views. All 53 tasks have Area, Priority and Size. Epics have Area and Priority but no aggregate size. Board stages are Backlog → Ready → In progress → Review → Done, with an In progress limit of three. The Blocked view uses `has:Blocker`; ordinary dependency waits stay Backlog. Iterations and dates remain unassigned until capacity is planned from observed throughput.
+The native Project has Status, Area, Priority, Size, Iteration and Blocker fields; Backlog, Board, Current iteration, Roadmap, My items, By workstream and Blocked views. All 53 tasks have Area, Priority and Size. Epics have Area and Priority but no aggregate size. Board stages are Backlog â†’ Ready â†’ In progress â†’ Review â†’ Done, with an In progress limit of three. The Blocked view uses `has:Blocker`; ordinary dependency waits stay Backlog. Iterations and dates remain unassigned until capacity is planned from observed throughput.
 
 | Milestone | Scope |
 |---|---|
-| [M1 — Verified foundation](https://github.com/Protagonist01/my-production-agentic-systems/milestone/1) | Foundation epic and F1–F5 |
-| [M2 — Complete Olist release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/2) | Harness/Olist epics, H1–H10 and O1–O8 |
-| [M3 — CFPB release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/3) | CFPB epic and C1–C5 |
-| [M4 — Revenue integrity release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/4) | Revenue epic and R1–R7 |
-| [M5 — Prior auth release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/5) | Prior auth epic and P1–P6 |
-| [M6 — Supply chain release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/6) | Supply chain epic and S1–S6 |
-| [M7 — Operations and portfolio release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/7) | Operations epic, L1–L5 and H11 |
+| [M1 â€” Verified foundation](https://github.com/Protagonist01/my-production-agentic-systems/milestone/1) | Foundation epic and F1â€“F5 |
+| [M2 â€” Complete Olist release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/2) | Harness/Olist epics, H1â€“H10 and O1â€“O8 |
+| [M3 â€” CFPB release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/3) | CFPB epic and C1â€“C5 |
+| [M4 â€” Revenue integrity release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/4) | Revenue epic and R1â€“R7 |
+| [M5 â€” Prior auth release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/5) | Prior auth epic and P1â€“P6 |
+| [M6 â€” Supply chain release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/6) | Supply chain epic and S1â€“S6 |
+| [M7 â€” Operations and portfolio release](https://github.com/Protagonist01/my-production-agentic-systems/milestone/7) | Operations epic, L1â€“L5 and H11 |
 
 Five workflows are enabled: add matching open repository issues, add sub-issues, initialize new items in Backlog, set explicitly closed issues to Done, and return reopened items to Backlog. Auto-close from a board move, automatic Done on PR merge, and automatic status changes on PR linkage are disabled. Review and acceptance remain explicit. Close implementation issues only after checking their evidence; avoid PR closing keywords when acceptance must be checked after merge. Archive and review automations stay off.
 
@@ -156,3 +156,38 @@ The combined R2/R3/R4 candidate is ready for final acceptance and user review. I
 ## C2 reconciliation after #88
 
 Keep #84 current with verified main5f73fc9. Three conflicts are shared documentation only; preserve full Entries27–31, C2 baseline chapter and all merged Revenue studies. Source/config/lock bytes inherit reviewed main; C2 code/tests remain unchanged. Focused C2 and clean replay verify composition; hosted exact-head evidence is required before acceptance. The new certifi fix and v5 replay arrive unchanged from main, with no source reingestion or relabeling. Issue35 remains open Review pending user merge.
+
+## Authorized R5 + R6 + S1 batch
+
+The user selected R5#43/R6#44/S1#52 after verified main5f73fc9 and closure of R2/R3/R4. Revenue transactions and the dependent review UI/events are verified inside one bundle; independent shipping/weather source preparation runs in parallel. Root integrates on codex/r5-r6-s1-operations. The approved absolute correction cap is100.00SIM with no approval override, separate reviewer, automatic outer-whitespace CRM-note trimming only and approved conflict-safe compensation. Build Book Entry32 records construction decisions and source/privacy limits. R7 remains pending offline release prerequisites; no live provider, real billing operation or release promotion is authorized. C2#84 remains a separate unmerged review.
+
+
+## S2 + S3 + S4 batch
+
+The user selected #53/#54/#55 after merging #89 as main77b98df, identical to reviewed0bdc7eb. Work is isolated on codex/s2-s3-s4-supply-chain. They approved SIM100.00/action,500.00/incident, separate review above25.00,30-minute approval/confirmation limits, two stale supersessions and blocked missing/stale facts. Source choice was delegated with eventual production in mind: use independent invented worlds with unseen holdout families/formulas and a separately labeled S1 observation adapter, without manufacturing historical weather causality. SQL owns budget, approvals, receipts and confirmation outcomes; frameworks provide bounded assessment/wakeups. No paid provider, real carrier effect, deployment or release promotion is authorized. S5/S6 remain later work; keep these issues open until user merge and verified acceptance. Native project-board status unverified.
+
+
+## S5-only follow-up
+
+The user merged #90 and selected S5 #56 only, with durable in-app notices and previews. Main21d3bef matched the reviewed tree and its nine applicable checks passed; #53/#54/#55 are complete. S5 review is #91 on codex/s5-supply-console. Approval policy is unchanged. S6 #57 remains behind O8 fresh-release acceptance. No external message delivery, paid provider or deployment is authorized.
+
+
+## Authorized P1/P2/P3 batch
+
+User merged #91, verified main1e59722/CI39881820867; S5#56 is complete. The user selected the next independent batch and approved #46/#47/#48 together, with prerequisites delivered/verified inside the bundle. Source mix: CMS national initial-CPAP policy, published Synthea illustrative records, explicit edits and invented edges. Labels remain AI-provisional; no qualified review is invented. User superseded offline-only for this batch and explicitly authorized reuse of existing Gemini free-project settings. Fresh candidate assessment uses the shared bounded gateway; no paid fallback, real patient data, authorization effect, deployment or release promotion. S6/O8 gates and separate unmerged C2#84 remain unchanged. Build Book Entry35 and the prior-auth evidence chapter track actual results.
+
+P1/P2/P3 review is [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92).
+Frozen v3 matched all six held-out cases and all six development cases against provisional
+labels in separate 42-request fresh runs. Local 881-test regression and initial ten-job hosted
+acceptance passed. That review is now merged/verified and all three issues are closed completed; this does not
+satisfy P6 clinical/domain release acceptance.
+
+
+## Authorized P4/P5 document-review batch
+
+The user selected #49/#50 together after #92 merge verification. Branch codex/p4-p5-prior-auth-review reuses the isolated D-drive checkout. Postgres owns document receipts, exact note/policy versions, waits, lease recovery and fixed review events; the protected loopback desk serves explicitly reviewed redacted evidence. Fresh model checks use the previously approved Free Gemini configuration through shared controls, without paid fallback. P4 verification occurs inside the authorized bundle before P5 acceptance. First29focused/7Postgres checks and full886-test regression passed. Temporary probe scripts initially lacked Windows main guards; their startup failures do not establish provider dispatch. A corrected one-request redacted education-only Gemini check passed, separately from the earlier P3 holdout. An actual Edge UI-only fixture passed document/routing/viewer and390px layout checks; After authorized Docker recovery, the real SQL-backed Edge flow passed document wait/import, duplicate receipt with zero extra events, reviewer routing, viewer write/unassigned-case 403, logout clearing and mobile390px layout. The guarded full-workflow model attempt timed out with unknown usage; it safely published qualified review with no supported findings, without establishing provider dispatch from available metadata. Hosted checks passed all ten jobs (886 per quality cell,94Postgres). PR #93 and #49/#50 move to Review, remaining open pending user merge and exact-main verification. No release promotion or real clinical action.
+
+
+## C2 reconciliation after verified #93
+
+Merge main116d7e5 into existing PR#84 without changing CFPB source, sealed reviews or baselines. Five conflicts are shared documentation; preserve complete Build Book Entries27–36 and every vertical chapter. #49/#50 are completed after identical-tree user merge and main39973654251 acceptance (886tests per qualitycell,94Postgres; clean replay6calls/2timeouts/zero-provider). C2 stays open Review until user merge. Reuse unchanged source/installed/label evidence, run focused C2 composition/link/publication checks and exact-head replay, then verify the final hosted matrix. No provider calls or label promotion are part of this reconciliation.

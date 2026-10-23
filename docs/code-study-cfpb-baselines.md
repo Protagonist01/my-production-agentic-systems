@@ -57,3 +57,7 @@ Reverse the selection input and explain why membership stays fixed. Introduce a 
 
 
 Reconciled2026-10-20 with user-merged O4+O5 main `e11290a`; C2source/tests remain unchanged from618b6c6. Shared planning/journal/index conflicts only; preserve Olist transaction/workflow study and optional workflow lock/v3 replay fixture. Focused21checks and clean replay pass; final complete hosted population is recorded on#35. CFPB has no authenticated application service in this task.
+
+## Reconciled composition — 2026-10-23
+
+PR #84 now incorporates verified #93 main116d7e5. The three C2 source modules and C2 tests remain unchanged from reviewedf5195b3; main source/config/lock bytes are inherited unchanged. This refresh checks composition, links and focused behavior, without new labels, source acquisition, baseline fitting, human adjudication or provider-quality claims. Existing source permalinks remain authoritative for the unchanged implementation.

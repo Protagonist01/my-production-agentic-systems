@@ -100,7 +100,7 @@ To extend a supported request field, first change its versioned contract/seriali
 [probe]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/harness/src/agent_harness/replay_example.py#L91-L143
 [main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/eaae533731730ed360bcc189aa85f552904a4e69/harness/src/agent_harness/replay_example.py#L147-L169
 [dev]: https://github.com/Protagonist01/my-production-agentic-systems/blob/6b20fb959e5f54a71495aeac97f5c6b9b54ca182/dev.py#L111-L293
-[workflow]: https://github.com/Protagonist01/my-production-agentic-systems/blob/0f3e75681cbd08206a0435a40ce805470edeebe0/.github/workflows/ci.yml#L1-L155
+[workflow]: https://github.com/Protagonist01/my-production-agentic-systems/blob/7e72cab5df8bae96facc4896dd8fe8a286750ab8/.github/workflows/ci.yml#L1-L157
 [attributes]: https://github.com/Protagonist01/my-production-agentic-systems/blob/fbf0d80a4d450ab9de27b325108613b9fdc497c5/.gitattributes#L1-L3
 [tests]: https://github.com/Protagonist01/my-production-agentic-systems/blob/eaae533731730ed360bcc189aa85f552904a4e69/tests/test_replay.py#L37-L685
 
@@ -110,3 +110,13 @@ H8 adds an optional telemetry dependency group, changing the actual lock hash. P
 ## O4 + O5 dependency-lock maintenance
 
 The workflow extra changes uv.lock. The [fixture maintenance record](replay.md#o4--o5-explicit-workflow-lock-fixture-update) documents an explicit invented-v3 resource and external digest, captured at clean source `8d10f3a6161c008d4e27c4c9ba11496c443f2fc3`. All six request/response objects equal v2; only capture context/provenance changes. Historical v1/v2 bytes remain unchanged and both reject the new lock. The normal replay path, ReplayBinding compatibility and matching behavior are unchanged. Final exact-source replay and hosted checks are recorded on #29/#30.
+
+
+## S2/S3/S4 optional workflow lock update
+
+The Supply workflow extra changes only workspace dependency metadata while preserving all existing version pins. [The explicit v7 maintenance record](replay.md#supply-workflow-extra-explicit-invented-v7-capture) preserves six request/response pairs and historical v1–v6 resources. No replay matching rule changes, paid calls or fresh provider evidence are introduced.
+
+
+## S5 standalone web metadata
+
+S5 first recorded v8 for the optional web metadata, then preserved it and added v9 after an isolated install revealed the missing LangGraph dependency in web. [The maintenance record](replay.md#supply-standalone-web-dependency-correction-invented-v9) pins the new source, lock and digest. All six request/response pairs remain unchanged; historical v1-v8 are retained. No matching rule or provider evidence changes.

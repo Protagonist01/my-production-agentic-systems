@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "status": "review_pending_user_merge",
+  "batch": [
+    "P4",
+    "P5"
+  ],
+  "clinical_validation": false,
+  "release_approval": false,
+  "source_kind": "invented_mechanism_checks",
+  "local": {
+    "focused_tests": 29,
+    "postgres_tests": 7,
+    "postgres_seconds": 124.95,
+    "offline_tests": 886,
+    "offline_seconds": 489.06,
+    "strict_types": 122,
+    "package_builds": 6,
+    "audit": "passed",
+    "installed_web_extra": "passed_without_google_sdk",
+    "installed_resource_byte_comparison": 4,
+    "installed_replay_network": "denied",
+    "browser_asset_ordering_regressions": "passed",
+    "installed_source_resource_byte_comparison": 21,
+    "installed_source_revision": "0d8c1ad4695ba01c4b38b67130fb1ce623e03829"
+  },
+  "initial_hosted": {
+    "run_id": 39943225425,
+    "head": "a9b9d442c7cf51ec945d1af24beb073a88324846",
+    "tested_merge": "c31242aa5a7fc1ce45315ff040fd826ea3958492",
+    "jobs_passed": 10,
+    "offline_tests_per_quality_cell": 886,
+    "postgres_tests": 94,
+    "postgres_warning": "one non-failing warning",
+    "note": "Predates invented-parent provenance correction; corrected-head SQL acceptance required"
+  },
+  "replay": {
+    "version": 10,
+    "capture_source": "4ee75bc6a7d227b2c5469bfda8f60637d69a78c4",
+    "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+    "sha256": "c3a6804a93739740a196a44aaed66af31a564faa6c1b9b61600b82386b985f08",
+    "calls": 6,
+    "timeouts": 2,
+    "provider_calls": 0,
+    "all_exchanges_equal_v9": true
+  },
+  "pending": [],
+  "limits": [
+    "AI-provisional illustrative evidence only",
+    "No clinical authorization or denial action",
+    "Explicit reviewed redaction is not general PHI detection",
+    "Provider calls may repeat after a crashed lease",
+    "Initial unguarded probe attempts retained as startup failures; provider dispatch not established",
+    "UI-only fixture checks do not replace database or model acceptance"
+  ],
+  "probe_startup_failures": [
+    {
+      "phase": "initial",
+      "workflow": {
+        "claimed": true,
+        "published": true,
+        "expired": 0
+      },
+      "case_status": "qualified_review",
+      "criterion_states": {
+        "adult_osa": "insufficient",
+        "education": "insufficient",
+        "clinical_evaluation": "insufficient",
+        "sleep_test": "insufficient",
+        "physician_order": "insufficient",
+        "severity": "insufficient",
+        "event_count": "insufficient"
+      },
+      "selected_criteria": [
+        [
+          "adult_osa",
+          "education",
+          "clinical_evaluation",
+          "sleep_test",
+          "physician_order",
+          "severity",
+          "event_count"
+        ]
+      ],
+      "requests": 1,
+      "failures": [
+        "timeout"
+      ],
+      "clinical_validation": false,
+      "release_approval": false,
+      "code_revision": "4ee75bc6a7d227b2c5469bfda8f60637d69a78c4+dirty",
+      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+      "provider_dispatch": "not_established",
+      "classification": "temporary_probe_missing_windows_main_guard"
+    },
+    {
+      "mode": "fresh_subset_only",
+      "not_full_workflow": true,
+      "requests": 1,
+      "failures": [
+        "unavailable"
+      ],
+      "diagnostics": [
+        {
+          "criterion": "education",
+          "phase": "gateway",
+          "code": "unavailable"
+        }
+      ],
+      "candidate_completed": false,
+      "education_state": "insufficient",
+      "code_revision": "a9b9d442c7cf51ec945d1af24beb073a88324846+dirty",
+      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+      "clinical_validation": false,
+      "release_approval": false,
+      "provider_dispatch": "not_established",
+      "classification": "temporary_probe_missing_windows_main_guard"
+    }
+  ],
+  "fresh_observations": [
+    {
+      "mode": "fresh_subset_only",
+      "not_full_workflow": true,
+      "requests": 1,
+      "failures": [],
+      "diagnostics": [],
+      "candidate_completed": true,
+      "education_state": "met",
+      "code_revision": "19f0580fe91777e82a5d22c7afd5758beceeb713+dirty",
+      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+      "clinical_validation": false,
+      "release_approval": false
+    },
+    {
+      "phase": "supplement",
+      "workflow": {
+        "claimed": true,
+        "expired": 0,
+        "published": true
+      },
+      "case_status": "qualified_review",
+      "criterion_states": {
+        "adult_osa": "insufficient",
+        "education": "insufficient",
+        "clinical_evaluation": "insufficient",
+        "sleep_test": "insufficient",
+        "physician_order": "insufficient",
+        "severity": "insufficient",
+        "event_count": "insufficient"
+      },
+      "selected_criteria": [
+        [
+          "adult_osa",
+          "education",
+          "clinical_evaluation",
+          "sleep_test",
+          "physician_order",
+          "severity",
+          "event_count"
+        ]
+      ],
+      "requests": 1,
+      "failures": [
+        "timeout"
+      ],
+      "clinical_validation": false,
+      "release_approval": false,
+      "code_revision": "098a075112ec3a09d5863803de4b0435c16fce42",
+      "lock": "e261f8bcee3a14ab2061b79ea3a43a2ff3793e96607c97c286561b63730e9c4d",
+      "mode": "guarded_full_workflow_attempt",
+      "provider_usage": "unknown",
+      "provider_dispatch": "not_established_by_available_metadata",
+      "quality_success": false,
+      "interpretation": "one isolated attempt timed out; canonical failed assessment published safely; no supported findings"
+    }
+  ],
+  "ui_fixture_browser": {
+    "backend": "explicit_in_memory_fixture_not_sql",
+    "browser": "Edge",
+    "document_request": "passed",
+    "qualified_review_route": "passed",
+    "viewer_read_only": "passed",
+    "logout_and_dismiss": "passed",
+    "desktop_width": 1440,
+    "mobile_viewport": 390,
+    "mobile_document_width": 390,
+    "mobile_table_client_width": 314,
+    "mobile_table_scroll_width": 620,
+    "raw_patient_data": false,
+    "provider_calls": 0
+  },
+  "corrected_hosted": {
+    "run_id": 39945068035,
+    "head": "0d8c1ad4695ba01c4b38b67130fb1ce623e03829",
+    "tested_merge": "3f2477689c2ea83fcc5c15cffe03aa8fa930dacc",
+    "identical_tree": true,
+    "tree_sha": "81e5d3a28ab85a504e0df14b9c71305943ef091d",
+    "jobs_passed": 10,
+    "offline_tests_per_quality_cell": 886,
+    "postgres_tests": 94,
+    "non_failing_postgres_warnings": 1
+  },
+  "real_workflow_browser": {
+    "version": 3,
+    "status": "qualified_review",
+    "duplicate_receipt": 3,
+    "duplicate_new_events": 0,
+    "canary_absent": true,
+    "provenance": "invented",
+    "event_kinds": [
+      "case_enrolled",
+      "assessment_completed",
+      "documents_requested",
+      "document_received",
+      "assessment_completed"
+    ],
+    "job": {
+      "state": "done",
+      "attempts": 1,
+      "criteria": [
+        "adult_osa",
+        "education",
+        "clinical_evaluation",
+        "sleep_test",
+        "physician_order",
+        "severity",
+        "event_count"
+      ]
+    },
+    "browser": "Edge",
+    "backend": "real_postgres",
+    "document_request": "passed",
+    "reviewer_route": "passed",
+    "viewer_read_only": "passed",
+    "viewer_write_status": 403,
+    "unassigned_case_status": 403,
+    "logout_clears_private_state": true,
+    "mobile_viewport": 390,
+    "mobile_document_width": 390,
+    "mobile_table_client_width": 314,
+    "mobile_table_scroll_width": 620,
+    "desktop_width": 1440,
+    "code_revision": "098a075112ec3a09d5863803de4b0435c16fce42"
+  },
+  "documentation_hosted": {
+    "run": 39945986070,
+    "head": "098a075112ec3a09d5863803de4b0435c16fce42",
+    "tested_merge": "eedf162c620dceb9724fa379f60f3bbc10d3249e",
+    "identical_tree": true,
+    "clean_checkout": true,
+    "draft": true,
+    "tests_per_quality_cell": 886,
+    "postgres_tests": 94
+  },
+  "final_ci_regression": {
+    "run": 39971144131,
+    "head": "b64d3fc512d48508fc09d3d385f6bf91f98331f7",
+    "failed_job": "Windows Python 3.12",
+    "failed_test": "test_deadline_scope_policy_and_source_mismatches_prevent_write",
+    "passed_tests_in_failed_cell": 885,
+    "cause": "one-microsecond real-clock deadline could bind shared event before expiring, masking later snapshot assertion",
+    "controlled_clock_reproduction": true,
+    "correction": "inject deterministic clock and assert expired entry leaves no binding",
+    "application_code_changed": false
+  }
+}

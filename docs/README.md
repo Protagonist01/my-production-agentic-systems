@@ -1,6 +1,6 @@
 # Architecture and implementation plan
 
-Delivery state updated 2026-10-21. Verified main `058d1c7` includes F1–F5, H1–H10, O1–O7, O8 offline mechanisms and R1 source preparation. Main passed 713 offline tests and 43 Postgres checks. O8 release acceptance remains pending fresh provider and reviewed baseline/threshold/human evidence. The authorized three-issue Revenue candidate combines [R2 billing worlds](revenue-billing-worlds.md), [R3 shared exact scopes](code-study-access.md) and [R4 cited extraction/reconciliation](revenue-reconciliation.md). C2 #84 remains a separate review; AI-provisional labels are not human adjudication.
+Delivery state updated 2026-10-21. Verified main `5f73fc9` includes the merged R2/R3/R4 Revenue mechanisms; main passed 773 offline tests per matrix cell and 43 Postgres checks. R5/R6/S1 is the current unmerged batch: [approval-bound Revenue effects](revenue-operations.md), authenticated review/event orchestration and independent shipping/weather source preparation. R5 focused transaction/scope/snapshot evidence is integrated; interface/source and final broad acceptance follow. O8/R7 fresh release gates and human-adjudication limits remain pending. C2 #84 is a separate review with AI-provisional labels.
 
 ## Shared platform and vertical boundary
 
@@ -73,3 +73,5 @@ C1 [CFPB source preparation](data/cfpb-source.md) uses a pinned official FOIA ar
 O6/O7 are merged and verified through #86: the [scoped local support desk](olist-console.md) provides durable exact-action approval under the unchanged 100.00 SIM cap. The next user-authorized batch adds [offline Olist state reports](olist-release.md) and [original CUAD contract preparation](data/revenue-source.md), implemented in parallel and integrated for one review. Fresh provider/first-release acceptance remains pending by user instruction. C2 remains a separate review in #84.
 
 C2 #84 adds [provisional blind AI review and deterministic CFPB baselines](cfpb-risk-baselines.md), with a [source study](code-study-cfpb-baselines.md). It remains open Review until user merge; human adjudication and fresh provider release evidence are pending.
+
+Supply-chain S2/S3/S4: [simulator, budgeted SIM actions and waits](supply-chain-operations.md), [source walkthrough](code-study-supply-operations.md). Invented mechanisms remain separate from S1 source observations and S6 release claims.

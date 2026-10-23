@@ -6,9 +6,9 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks. Olist scoped refunds, durable review and the local authenticated console are merged. [PR #87](https://github.com/Protagonist01/my-production-agentic-systems/pull/87) adds offline Olist state evidence and the original CUAD contract corpus; verified main `058d1c7` passed 713 offline and 43 Postgres tests. O8 release acceptance remains pending fresh provider results, reviewed baseline/thresholds and human adjudication under the current offline-only constraint.
+The [GitHub delivery project](https://github.com/users/Protagonist01/projects/2) tracks eight epics and 53 tasks. Verified main `5f73fc9` includes Olist scoped refunds/review, original CUAD preparation and the [R2/R3/R4 Revenue batch](https://github.com/Protagonist01/my-production-agentic-systems/pull/88). Main passed 773 offline tests per matrix cell and 43 Postgres checks; R2/R3/R4 are closed. O8 release acceptance still requires fresh provider results, reviewed baseline/thresholds and human adjudication.
 
-The current three-issue Revenue candidate combines [constructed billing worlds](docs/revenue-billing-worlds.md), [shared exact resource scopes](docs/code-study-access.md) and [cited extraction/read-only reconciliation](docs/revenue-reconciliation.md). Constructed SIM charges and original contract references remain separate. [CFPB #84](https://github.com/Protagonist01/my-production-agentic-systems/pull/84) remains a separate review with AI-provisional labels.
+The current user-approved batch adds [R5 approval-bound SIM effects](docs/revenue-operations.md), [R6 authenticated review/events](docs/revenue-console.md) and [S1 independent DataCo/NWS source preparation](docs/supply-chain-source.md). Focused transaction/API/SDK/source checks are integrated; final broad and browser acceptance are in progress. All invoice corrections require a separate reviewer and an absolute adjustment no larger than 100.00 SIM. [CFPB #84](https://github.com/Protagonist01/my-production-agentic-systems/pull/84) remains a separate review with AI-provisional labels.
 
 ## Setup and working commands
 
@@ -94,3 +94,11 @@ C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-o
 O6/O7 are merged and verified through #86: the [scoped local support desk](docs/olist-console.md) provides durable exact-action approval under the unchanged 100.00 SIM cap. The next user-authorized batch adds [offline Olist state reports](docs/olist-release.md) and [original CUAD contract preparation](docs/data/revenue-source.md), implemented in parallel and integrated for one review. Fresh provider/first-release acceptance remains pending by user instruction. C2 remains a separate review in #84.
 
 C2 #84 adds [provisional blind AI review and deterministic CFPB baselines](docs/cfpb-risk-baselines.md), with a [source study](docs/code-study-cfpb-baselines.md). It remains open Review until user merge; human adjudication and fresh provider release evidence are pending.
+
+Supply-chain S2/S3/S4: [simulator, budgeted SIM actions and waits](docs/supply-chain-operations.md), [source walkthrough](docs/code-study-supply-operations.md). Invented mechanisms remain separate from S1 source observations and S6 release claims.
+
+S5 #56 adds the [scoped Supply workbench and durable in-app previews](docs/supply-chain-console.md), with [scope and recovery walkthrough](docs/code-study-supply-console.md). SIM only; S6 remains behind the pending Olist fresh-release gate.
+
+Prior Auth P1/P2/P3 adds [pinned CMS/Synthea preparation and evidence-checked Gemini assessment](docs/prior-auth-evidence.md), with [a source walkthrough](docs/code-study-prior-auth.md). The frozen six-case illustrative holdout matched all provisional labels; no clinical validation or authorization effect is claimed. P4/P5 extend this merged slice with document waits and a reviewer UI.
+
+The user-selected P4/P5 extension adds [durable document requests and a protected local reviewer desk](docs/prior-auth-review.md), with a [recovery/access walkthrough](docs/code-study-prior-auth-review.md). Model failures remain qualified review, not completed clinical decisions. P6/O8 release gates remain separate.
