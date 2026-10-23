@@ -1954,3 +1954,17 @@ Merged #92 main39938575348 passed nine applicable jobs; metadata skipped intenti
 P4/P5 first focused checks passed29tests, strict types122sources and actual browser-asset Node session regressions. Required isolated Postgres suite passed7tests in124.95seconds: concurrent duplicate document receipt, selective criterion reassessment, persisted wait expiration/renewal, in-flight policy supersession, hard-process-exit lease recovery, bounded repeated leases, tenant/role/session restrictions and redaction-canary absence from model input/events. Source test failure found that FastAPI validates strict datetime/tuple fields in Python mode; authenticate first, then revalidate the bounded JSON payload with the closed contract's JSON mode. No broad coercion or exception-detail echo was added.
 
 PriorAuth now declares optional workflow/web extras using existing pinned versions. The first uv lock refused the missing explicit workspace source; add prior-auth to tool.uv.sources before locking. The lock metadata changes despite no library-version update, so preserve published replayv9 and create an explicit inventedv10capture. Full checks, real browser, installed extras and fresh model workflow check are still pending.
+
+
+### Fresh failure and local resource interruption
+
+The first invented workflow probe dispatched one fresh Gemini request and timed out. SQL stored qualified_review with assessment_failure and no supported findings. Preserve its external exchange/summary; do not count a conservative fallback as successful model reasoning. Continue the reviewer document-request path and a separately bounded supplemental run, with no holdout tuning.
+
+A focused combined replay run without external-cache write elevation hit26temporary-directory setup permission errors (81tests passed). Earlier elevated29focused/7SQL checks passed; the full elevated locked suite is running with external D-drive TEMP. A later shell launch briefly failed with OS112 disk-full; read-only disk inspection found C: subsequently had863MB free and D:50GB. No files were deleted. Resume with D-drive temporary paths, preserve logs and report any persistent resource block rather than altering test expectations.
+
+
+### Full local regression and resource block
+
+Full locked check passed886tests in489.06seconds, strict types122sources,184formatted Python files and both import boundaries. Allsix package builds and dependency audit passed. The shipped Node asset passes private clearing, stalled-load logout and late403after a new sign-in; the latter required binding denied-session clearing to the request's epoch. Seven focused SQL checks remain passed from before the resource interruption.
+
+Local browser sign-in then returned a fixed503 while Docker stopped responding; the host had briefly rejected process creation with disk-full. Do not weaken login timeouts or claim a browser pass. The user is clearing space; continue installed-package/hosted work and preserve initial fresh-timeout evidence. No unrelated services or user files have been stopped/deleted.

@@ -31,5 +31,11 @@ function harness(){
   expired.node("detail").append({textContent:"private evidence"});
   const denied=expired.queue("/api/cases");const refresh=expired.api.loadCases();denied.resolve(response({},403));await refresh;
   assert.equal(expired.node("detail").children.length,0);assert.equal(expired.node("workspace").hidden,true);
+  const switched=harness();await tick();await switched.api.signIn("old-reviewer","invented password");
+  const oldDenied=switched.queue("/api/cases");const oldLoad=switched.api.loadCases();await tick();
+  await switched.api.signIn("new-reviewer","invented password");
+  oldDenied.resolve(response({},403));await oldLoad;
+  assert.equal(switched.api.state().user.username,"new-reviewer");
+  assert.equal(switched.node("workspace").hidden,false);
   console.log("Prior Auth browser asset: stale case/list responses, logout during stalled load and expired-session private clearing passed; zero network calls");
 })().catch(error=>{console.error(error);process.exitCode=1;});

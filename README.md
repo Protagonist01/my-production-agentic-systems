@@ -97,4 +97,6 @@ Supply-chain S2/S3/S4: [simulator, budgeted SIM actions and waits](docs/supply-c
 
 S5 #56 adds the [scoped Supply workbench and durable in-app previews](docs/supply-chain-console.md), with [scope and recovery walkthrough](docs/code-study-supply-console.md). SIM only; S6 remains behind the pending Olist fresh-release gate.
 
-Prior Auth P1/P2/P3 adds [pinned CMS/Synthea preparation and evidence-checked Gemini assessment](docs/prior-auth-evidence.md), with [a source walkthrough](docs/code-study-prior-auth.md). The frozen six-case illustrative holdout matched all provisional labels; no clinical validation or authorization effect is claimed. Durable document waits and reviewer UI remain later work.
+Prior Auth P1/P2/P3 adds [pinned CMS/Synthea preparation and evidence-checked Gemini assessment](docs/prior-auth-evidence.md), with [a source walkthrough](docs/code-study-prior-auth.md). The frozen six-case illustrative holdout matched all provisional labels; no clinical validation or authorization effect is claimed. P4/P5 extend this merged slice with document waits and a reviewer UI.
+
+The user-selected P4/P5 extension adds [durable document requests and a protected local reviewer desk](docs/prior-auth-review.md), with a [recovery/access walkthrough](docs/code-study-prior-auth-review.md). Model failures remain qualified review, not completed clinical decisions. P6/O8 release gates remain separate.

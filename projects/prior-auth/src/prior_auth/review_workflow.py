@@ -1,6 +1,5 @@
 """One bounded graph invocation; SQL leases and compare-and-publish own recovery."""
 
-import json
 from typing import Any, Protocol, TypedDict
 
 from langgraph.graph import END, START, StateGraph
@@ -86,4 +85,8 @@ class ReviewWorkflow:
         # No automatic third-party capture of notes, policy or candidate output.
         with tracing_context(enabled=False):
             result = graph.compile().invoke({}, config={"recursion_limit": 6})
-        return json.loads(json.dumps(result))  # type: ignore[no-any-return]
+        return {
+            "claimed": bool(result["claimed"]),
+            "expired": int(result["expired"]),
+            "published": bool(result["published"]),
+        }

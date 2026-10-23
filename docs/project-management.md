@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-22. User-merged #89 main `77b98df` is verified; R5 #43, R6 #44 and S1 #52 are explicitly closed completed, retaining their source/release limits. The user-selected S2 #53 + S3 #54 + S4 #55 implementation is in [PR #90](https://github.com/Protagonist01/my-production-agentic-systems/pull/90). Hosted source0406e82 passed all ten jobs (846 offline tests per quality cell, 86 Postgres checks); local full846 and focused30/18 checks passed. The approved SIM policy and [shipping operations limits](supply-chain-operations.md) remain explicit. New issues stay open Review until user merge/main acceptance. C2 #84 remains separate/unmerged, O8 fresh release acceptance remains pending under offline-only, and native board state is unverified.
+Updated: 2026-10-23. User-merged #92 is verified as main6c2b7d9 with an identical reviewed tree, nine applicable main CI jobs, actual881tests per qualitycell/87Postgres and clean exact-main replay. P1#46/P2#47/P3#48 are closed completed; provisional source/clinical limits remain. The user selected P4#49/P5#50 as the next dependent batch. P6 and S6 remain behind the pending O8 release gate. C2#84 is a separate review. Native project-board state remains unverified.
 
 ## Scope and source of truth
 
@@ -162,3 +162,8 @@ Frozen v3 matched all six held-out cases and all six development cases against p
 labels in separate 42-request fresh runs. Local 881-test regression and initial ten-job hosted
 acceptance passed. Keep all three implementation issues open through user review, merge and
 exact-main verification; this does not satisfy P6 clinical/domain release acceptance.
+
+
+## Authorized P4/P5 document-review batch
+
+The user selected #49/#50 together after #92 merge verification. Branch codex/p4-p5-prior-auth-review reuses the isolated D-drive checkout. Postgres owns document receipts, exact note/policy versions, waits, lease recovery and fixed review events; the protected loopback desk serves explicitly reviewed redacted evidence. Fresh model checks use the previously approved Free Gemini configuration through shared controls, without paid fallback. P4 verification occurs inside the authorized bundle before P5 acceptance. First29focused/7Postgres checks and full886-test regression passed. The initial fresh illustrative workflow request timed out and is retained as qualified review; real-browser/local SQL continuation was interrupted by host disk pressure/Docker unresponsiveness. The user is clearing space while packaging/hosted checks continue. No release promotion or real clinical action.

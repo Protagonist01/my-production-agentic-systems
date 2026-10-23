@@ -14,3 +14,7 @@ docs/data/revenue-approved-effects-v1.json text eol=lf
 # Supply schema and aggregate bytes are portable acceptance inputs.
 projects/supply-chain-disruption/src/supply_chain/operations.sql text eol=lf
 docs/data/supply-chain-simulator-v1.json text eol=lf
+
+# Prior Auth immutable schema/provenance across development platforms.
+projects/prior-auth/src/prior_auth/review.sql text eol=lf
+docs/data/prior-auth-p1-p3-evidence.json text eol=lf
