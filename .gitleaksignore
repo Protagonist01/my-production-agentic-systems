@@ -3,3 +3,13 @@
 # Keep all generic-api-key rules and all other locations enabled.
 09b2968021d3f325891c5e534002b343886bf465:docs/data/revenue-reconciliation-mechanism-v1.json:generic-api-key:5
 09b2968021d3f325891c5e534002b343886bf465:docs/data/revenue-reconciliation-mechanism-v1.json:generic-api-key:17
+
+# C3/C4 aggregate source inventory: verified desk_api.py digest and reconstructed
+# historical desk_auth.py digest (prior docstring/CRLF), never credentials.
+# Restrict suppression to these six historical commit/file/rule/line fingerprints.
+314211e353cfcecad0569efc64b44d11ac139d6a:docs/data/cfpb-triage-evidence-v1.json:generic-api-key:116
+314211e353cfcecad0569efc64b44d11ac139d6a:docs/data/cfpb-triage-evidence-v1.json:generic-api-key:117
+314211e353cfcecad0569efc64b44d11ac139d6a:docs/data/cfpb-triage-evidence-v1.json:generic-api-key:215
+314211e353cfcecad0569efc64b44d11ac139d6a:docs/data/cfpb-triage-evidence-v1.json:generic-api-key:216
+314211e353cfcecad0569efc64b44d11ac139d6a:docs/data/cfpb-triage-evidence-v1.json:generic-api-key:321
+314211e353cfcecad0569efc64b44d11ac139d6a:docs/data/cfpb-triage-evidence-v1.json:generic-api-key:322

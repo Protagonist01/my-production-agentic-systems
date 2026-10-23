@@ -2287,3 +2287,14 @@ The GitHub connector showed an unsubmitted PR form and created nothing. After th
 proceed, use the already-authorized repository API client, check for an existing head PR,
 create draft#94 once and attach it to this chat. Final hosted results will be recorded on the
 PR/issues; no source narrative, private per-case label/output or credential entered publication.
+
+### Diagnose the hosted secret-scan failure
+
+The hosted scanner found six generic-api-key matches: two source-file digests repeated in
+the three phase inventories, all introduced in314211e. Independently hash current desk_api.py
+to reproduce its published digest. Reconstruct desk_auth.py's historical docstring and CRLF
+bytes to reproduce its second digest. These are file integrity values, not authentication
+material. Preserve the evidence and scanner rules. Follow the repository's existing narrow
+historical-fingerprint pattern: add only these six exact commit/file/rule/line fingerprints
+to .gitleaksignore, leaving every other location and future value subject to scanning.
+No runtime source changed; rerun exact-head hosted acceptance after this metadata-only fix.
