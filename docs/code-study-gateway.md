@@ -111,3 +111,20 @@ The clean live observation used source 9b3af1c, before the later snapshot harden
 [transport]: https://github.com/Protagonist01/my-production-agentic-systems/blob/68e7383939bc0aadd7ef78e5328fdf7bce4a7da3/harness/src/agent_harness/gemini.py#L330-L439
 
 H4 [controls chapter](code-study-controls.md) explains the added deadline-aware transport protocol and the current controlled entrypoint. Old H2 live observations retain their original source; current changed-symbol links above point to the H4 implementation.
+
+## O8 follow-up: reconcile optional thinking usage
+
+Inspected frozen candidate `0be72b2` on the unmerged diagnostic follow-up. In
+[`response_usage`](../harness/src/agent_harness/gemini.py), prompt/candidate/thinking/cache/total
+counts retain their raw optional values. When both candidate and thinking counts are present,
+output remains their sum. When thinking is absent, the adapter recovers output only if known
+prompt plus candidates exactly equals the provider total. Google's total includes tool-use
+prompt and thinking tokens, so equality leaves no residual; it does not treat absence alone
+as zero. Missing totals, missing components, a smaller total or a positive residual remain
+unknown. Cost/currency remain unknown regardless of token reconciliation.
+
+Six wire tests cover exact equality, zero candidates, residual/inconsistent totals and missing
+prompt/candidate fields. Existing malformed-accounting validation remains intact. This is a
+verified accounting omission in the prior adapter, not a claim of observed zero thinking or
+verified billing. Historical reports are preserved under their original code/lock; the new
+[model card](olist-followup-model-card.md) reports complete tokens for 36 fresh attempts.

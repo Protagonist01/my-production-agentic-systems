@@ -63,6 +63,16 @@ the CLI's optional flag defaults to30seconds, with the new proposed plan using60
 No runtime override can change the serialized plan's policy. [Follow-up operations](olist-followup-review.md)
 retain the new source/input pins, conditions and historical evidence boundary.
 
+The frozen follow-up candidate `0be72b2` completed 36/36 correct model trials, with no unsafe
+or unresolved outcomes, 9/9 eligible refunds, 27/27 correct required reviews and 12/12 cases
+correct in every repetition. Timing and token usage were captured for all 36. Median worker
+entry was 8.225 seconds; one entry took 36.348 seconds, beyond the old attempt limit. Median
+generation after entry was 4.831 seconds, including SDK import and response handling. This
+measures lifecycle costs, without identifying the historical timeout causes. The [new card](olist-followup-model-card.md)
+discloses four repeated text templates, unknown cost and the changed cohort/deadline/conditions.
+The [new aggregate](data/olist-followup-evidence-v2.json) preserves mode/split/type/treatment
+denominators, provenance and observed phases. Independent labels and release gates remain pending.
+
 The focused suite passed 14 tests, and four actual Postgres collector tests passed. The full offline suite passed 935 tests in 667.01 seconds; strict typing passed for 139 source files. The tests use invented data/responses, not provider-quality evidence. The frozen live experiment is a separate artifact. No dependency or lock change was required. Historical O8 offline reports and the original O3 pilot remain unchanged.
 
 **Design limits:** twelve coverage-selected hybrid cases do not represent support traffic. Literal AI labels need independent review. Template-aware rules have a deliberate grammar advantage. The local operator/database owner is trusted and can forge evidence; file pins provide integrity/reproducibility, not hardware attestation. Provider dispatch can consume quota before a process crashes; fenced business publication is not exactly-once billing. Public deployment, load, production identity and migration readiness remain outside this inspection.

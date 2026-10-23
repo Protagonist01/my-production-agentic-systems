@@ -74,3 +74,46 @@ process-argument positions; correcting those positions retained the assertion th
 late frame cannot bypass a deadline. Initial focused run:126 passed/one fixture-index failure;
 corrected regression plus fresh-report suite:11 passed. Strict typing passed139source files.
 Actual capture, final regression and hosted acceptance results follow after completion.
+
+## Completed capture and independent verification
+
+Candidate `0be72b2` completed all 108 scheduled trials. Gemini and grammar-aware rules each
+scored 36/36 correct, with zero unsafe, unresolved or missing trials. Always-review scored
+27/36, with no eligible refund completion. Gemini completed 9/9 eligible refunds and correctly
+routed 27/27 required reviews. All 12 cases passed all three model repetitions, including
+12/12 holdout trials. All 108 duplicate-delivery and owned-database cleanup checks passed.
+The [model card](olist-followup-model-card.md) and [aggregate](data/olist-followup-evidence-v2.json)
+record separate denominators and limitations; criteria remain proposals pending review.
+
+All 36 model rows have worker timing and complete token accounting: 2,790 input and 966
+output tokens. Cost remains unknown. Median worker entry was 8.225 seconds, maximum 36.348;
+median generation after entry was 4.831 seconds, including SDK work and provider waiting.
+One worker entered later than the previous 30-second bound. That is direct evidence of
+startup variability on this host; it does not prove the old six timeout causes. No host
+test suite ran during model capture. Other local Langfuse services remained active.
+
+The first startup failed because Docker's Linux engine was not running. It produced only
+`execution-v1/plan.json`, with zero trials/receipts/model calls. Starting the existing Docker
+Desktop restored the engine; `execution-v2` used the same frozen plan and original 36-call cap.
+No completed or failed model trial was rerun. The owned experiment service stopped after capture.
+
+Evidence byte pin:
+`2b8f76ce30ddf0cbec173a66f93873c5f44da9c4db53f4a30707aca504c9060e`.
+Offline read-back checked the complete file/receipt inventory and independently recomputed
+the same report. Old artifacts retain their original pins and results. Four constructed text
+templates repeat across splits, so this source-group holdout is not a language-generalization
+test. Different groups/environment/deadline/conditions prevent a paired causal improvement
+claim against the old pilot. Release remains false.
+
+## Review verification
+
+The restarted full locked check passed 942 tests in 273.88 seconds, with 139 typed source
+files, 208 formatted files and both import contracts kept. Dependency audit found no known
+vulnerabilities. Six wheel/sdist pairs built before capture; the separate installed Olist
+workflow environment matched all 27 resources, excluded provider SDKs/other verticals and
+passed six strict replay calls with network disabled. The first full check was interrupted
+before pytest completed; its partial log is retained, and only the restarted result is a pass.
+The existing event-loop deprecation and local cache-permission warnings remain non-failing.
+Publication checks found no configured credentials or the 12 prior/new source order IDs in
+18 changed files; 226 relative links resolved. Hosted final-head acceptance is recorded on
+the PR after actual completion. #33 remains in progress pending its independent release gates.

@@ -2490,3 +2490,40 @@ A draft-rendering helper initially referenced a nonexistent payment_total_minor 
 actual contract stores payment.total_minor. Correct only the review table from already frozen
 files; byte pins remain unchanged. Review all12policy labels against the source facts and
 explicit constructed confirmations. They remain AI-provisional, with no independent validation.
+
+### Execute and independently read back
+
+Freeze source at0be72b2 and create a plan with60second single attempts, then retain its canonical
+pin separately. The first run stopped during service startup because Docker's Linux engine was
+absent; its external directory contains onlyplan.json, no trial/receipt and zero provider calls.
+Start the existing Docker Desktop in a hidden window, verify engine health, and resume with the
+same plan in a new execution-v2 directory. This does not consume a second call allowance.
+The model prompt, policy, case/input bytes and source stayed frozen throughout all attempts.
+
+All108rows completed: Gemini36/36correct, rules36/36correct, always-review27/36correct with
+zero eligible completions. Gemini completed9/9eligible and27/27required reviews; every case
+passed all three repetitions, and all108duplicate-delivery/cleanup checks passed. There were
+no timeouts. All36model calls report complete input/output usage (2790/966tokens); costs remain
+unknown. Median worker entry8.225seconds, maximum36.348; median generation after entry4.831.
+One startup exceeded the old30second bound, demonstrating local startup variability without
+proving the old timeout causes. No host test suite overlapped model capture; Langfuse services
+remained active. Recompute the report offline against the separately retained evidence pin
+2b8f76ce before publication; every file/receipt and recomputed verdict matched.
+
+The cohort contains only four distinct constructed request texts, repeated across splits.
+Report exact source-group separation without calling this an unseen-language holdout. Different
+groups, environment and deadline prevent a paired causal improvement claim against the old
+pilot. Keep old36trialresults including six timeouts unchanged. Independent labels, baseline/
+threshold review, representative validation and H10 release acceptance still gate O8.
+
+Six package pairs built before the model phase. A separate installed workflow environment
+matched27Olist resources, with provider SDKs/other verticals absent and six replay calls under
+network denial. The first full check was interrupted before pytest completion and left no
+live check process; restart it afterward in a separate log instead of claiming it passed.
+
+The restarted complete locked check passed942tests in273.88seconds,139typed sources,
+208formatted files and both import contracts. The dependency audit found no known
+vulnerabilities. Existing event-loop deprecation and local pytest-cache permission warnings
+were non-failing. Publication checks covered18files with12source order identifiers and
+configured credentials absent;226relative file links resolved. Source remained unchanged
+after the candidate freeze; remaining edits package aggregate evidence and documentation.

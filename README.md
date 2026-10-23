@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-Verified main `6bcac64` includes user-merged #96: nine applicable checks passed,936tests per quality cell and103Postgres, including clean dependency audits. Historical [Olist review evidence](docs/olist-model-card.md) records30/36correct Gemini trials with six unresolved timeouts. The user-authorized [separate O8 follow-up](docs/olist-followup-review.md) adds attempt diagnostics and usage reconciliation under a new36callGeminiFree cap. Independent labels/baselines/thresholds and representative validation still gate downstream releases. Native board state is unverified.
+Verified main `6bcac64` includes user-merged #96: nine applicable checks passed,936tests per quality cell and103Postgres, including clean dependency audits. The [separate O8 follow-up](docs/olist-followup-model-card.md) scored36/36correct Gemini trials with known token usage and local process timing. The [old pilot](docs/olist-model-card.md) retains its six timeouts. Four request templates repeat across splits, so the follow-up does not establish broad language robustness. Independent labels/baselines/thresholds and representative validation still gate downstream releases. Native board state is unverified.
 
 ## Setup and working commands
 
