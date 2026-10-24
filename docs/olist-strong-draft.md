@@ -59,11 +59,17 @@ Private packet contents:
 - `inputs.json`: text-only model projection; `metadata.json`: fault/slice/family assignments.
 - `pins.json`: exact evaluator/input/metadata byte pins, plus zero-call preparation status.
 
+The user accepted all twelve proposed labels on 2026-10-24 and clarified that approval covers
+labels only. The private acceptance sidecar binds that decision to the exact evaluator byte
+pin. It records review of AI propositions, not independent blind annotation; original AI
+label provenance remains intact. PR approval/merge, baseline/threshold decisions, provider
+calls and release are not authorized by that acceptance.
+
 No raw order IDs, original reviews, addresses or source facts belong in a public PR. The
 packet stays outside Git. The draft is not an executed/frozen release study and has only two
 holdout groups. Expand representative coverage and review source/family independence before
-freezing a final study. Label acceptance of this version, baseline selection, thresholds and
-a new bounded provider allowance remain separate decisions. The previous 36-call cap is spent.
+freezing a final study. Baseline selection, thresholds and a new bounded provider allowance
+remain separate decisions. The previous 36-call cap is spent.
 
 ## Verification and remaining work
 

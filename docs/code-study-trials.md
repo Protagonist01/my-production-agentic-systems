@@ -116,3 +116,28 @@ Refresh this chapter when the matrix, private projection, process/lifecycle boun
 [invented-factory]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trial_example.py#L86-L106
 [example-schedule]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trial_example.py#L109-L167
 [example-main]: https://github.com/Protagonist01/my-production-agentic-systems/blob/bbb101332ae8f16f6a3187fefb3ca7d5c5a8e9ff/harness/src/agent_harness/trial_example.py#L170-L200
+
+## Shared process bookkeeping follow-up
+
+Unmerged continuation after `2da004a`, 2026-10-24. Both trial and SDK spawn paths now use
+[OwnedProcess](../harness/src/agent_harness/process_control.py). CPython's `Process.start`
+calls global child cleanup, which can poll a different coordinator's child concurrently
+with that child's `join`. [CPython issue130895](https://github.com/python/cpython/issues/130895)
+documents the resulting reaping/status race. The source exposes our parallel runner to this
+race; the failing CI logs do not prove its precise scheduling interleaving.
+
+One shared lock serializes start, nonblocking join, alive/exit-code checks, signals and close.
+The wrapper waits on the public process sentinel outside the lock, then joins with zero wait
+inside it. Another trial can therefore start or terminate its worker while this one waits.
+Guarding only join would miss the cross-child poll performed by another start. Both harness
+spawn paths must use the same lock. Unrelated third-party direct Process calls are outside
+that boundary, and lock acquisition/OS creation remain dependent on host scheduling.
+
+Execution and cleanup deadlines, late-frame rejection, state retention on failed reaping,
+abort of further work and error denominators are unchanged. A real cleanup failure must still
+block release; it is never relabeled as the expected factory-composition error.
+[Deterministic regressions](../tests/test_process_control.py) stage the actual CPython POSIX
+poll method after a fake waitpid reaps but before returncode assignment. The unprotected
+control reproduces a false alive state; the guarded path preserves the recorded exit code.
+A separate check verifies waiting does not serialize whole worker lifetimes. Existing real
+spawn/fault/timeout/cleanup tests remain required. No provider dispatch is part of these tests.

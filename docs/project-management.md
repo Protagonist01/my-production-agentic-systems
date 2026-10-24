@@ -1,6 +1,6 @@
 # Project management
 
-Current follow-up after merged #98: main2cc25047 has the reviewed tree and passing main CI (993 offline tests / 103 Postgres; strict replay six invented calls, zero provider calls). The shared [evaluation standards](evaluation-standards.md) apply to all five agents. O8 #33 now has an unmerged [independent-field/recovery and stronger draft follow-up](olist-strong-draft.md). The user authorized cohort preparation only; no new provider calls, blind-label claim, baseline/threshold approval or release is inferred. #33 and downstream gates remain open.
+Current follow-up after merged #98: main2cc25047 has the reviewed tree and passing main CI (993 offline tests / 103 Postgres; strict replay six invented calls, zero provider calls). The shared [evaluation standards](evaluation-standards.md) apply to all five agents. O8 #33 now has an unmerged [independent-field/recovery and stronger draft follow-up](olist-strong-draft.md). The user authorized cohort preparation and accepted its twelve AI-proposed labels only; no PR/merge approval, new provider calls, blind-label claim, baseline/threshold approval or release is inferred. The follow-up also adds shared worker bookkeeping protection after a later CI cleanup failure; the source study records its evidence and limits. #33 and downstream gates remain open.
 
 ## Scope and source of truth
 

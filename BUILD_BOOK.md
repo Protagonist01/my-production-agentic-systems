@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 43 — Serializing owned process bookkeeping](#entry-43--serializing-owned-process-bookkeeping)
 - [Entry 42 — Observing domain fields and controlled recovery](#entry-42--observing-domain-fields-and-controlled-recovery)
 - [Entry 40 — Measuring Olist attempt startup and reconciling usage](#entry-40--measuring-olist-attempt-startup-and-reconciling-usage)
 - [Entry 41 — Separating pilot success from evaluation qualification](#entry-41--separating-pilot-success-from-evaluation-qualification)
@@ -2742,3 +2743,66 @@ make that full command pass. Focused standards/domain regressions passed47tests 
 strict typing passed144sources, lint/format/import/lock checks passed. The review PR must obtain
 its final full hosted OS/Python matrix and105Postgres checks before acceptance. There are no
 production policy, schema, dependency or deadline changes. New labels remain AI-provisional.
+
+## Entry 43 — Serializing owned process bookkeeping
+**Files touched:** `process_control.py`, `trial_runner.py`, `isolated_transport.py`, process regression tests.
+
+### Context
+After the first all-green PR99 run, a body-edit-triggered run40088038931 failed Ubuntu3.12
+in test_faults_require_explicit_factory_composition: one worker_cleanup_error aborted the
+remaining rows. The gate then failed; the other quality cells and Postgres passed. Earlier
+fault-matrix cleanup failures were retained as cause-unproven. The user asked us to fix checks.
+
+### Before you read on
+Why can starting a different process cause a joined worker to appear alive? Read CPython's
+BaseProcess.start -> _cleanup -> other_child._popen.poll path before assuming each Process
+object is touched only by its owner thread.
+
+### Options and construction
+Do not rerun until green or accept worker_cleanup_error as an expected composition failure.
+CPython issue130895 documents concurrent waitpid/poll reaping races, including Linux spawn.
+Our ThreadPoolExecutor permits this exact concurrent access: one thread starts a child while
+another joins/checks a previous one. This is a source-confirmed race exposure, not proof of
+the precise interleaving in the failed hosted worker (those logs lack scheduling traces).
+
+Add one shared process-control lock used by both trial and SDK worker paths. Wrap start,
+nonblocking join, is_alive, exitcode, terminate, kill and close. Wait on the public process
+sentinel outside that lock, then join(0) inside it. Holding the lock across the full join
+would serialize trials and prevent another coordinator from terminating its worker; avoid it.
+Keep all existing execution and cleanup limits and fail-closed state preservation unchanged.
+The lock protects harness-owned calls, not unrelated third-party Process operations. Starting
+processes remains a short serialized control operation; no hard OS scheduling guarantee is made.
+
+Add a deterministic regression using the actual CPython POSIX poll implementation with a
+staged fake waitpid: pause after reaping but before assigning returncode, then attempt another
+start's cleanup poll. It must wait until the status is recorded. Separately prove a waiting
+worker does not block another start, and retain actual concurrent spawn/fault/cleanup tests.
+Actual verification results will follow; do not claim the hosted cause fully proven.
+
+The first regression import assumed POSIX WNOHANG exists on Windows and failed collection.
+Load CPython's POSIX poll only inside the test after stubbing that constant, and restore OS
+functions after all test threads join. The test now includes an unprotected control that must
+reproduce the false-alive result, not just a successful guarded path. Initial typing passed
+145sources. Real worker/fault/control regression results remain pending.
+
+The user explicitly approved all12strong-draft-v2 labels only. Save an exclusive private
+acceptance sidecar bound to evaluator SHA8a1ea8d2..., recording review of AI propositions and
+no PR/merge/provider/baseline/threshold/release approval. Do not rewrite the original AI
+provenance or claim independent blind annotation.
+
+The corrected deterministic/real-worker suite passed156tests in198.52seconds. Five actual
+Postgres worker tests passed in149.33seconds, including restricted logins, committed-state
+inspection after reaping and timeout cleanup. All six package pairs built, the locked audit
+found no known vulnerabilities, and publication checks found configured keys/24source IDs
+absent across19publishable files. Frozen source/evaluator/input/metadata pins remain unchanged.
+Installed verification matched61harness resource bytes with no provider SDKs and networking
+disabled, replaying six synthetic calls with zero provider calls. The stable full suite and
+new-head hosted matrix are still pending; preserve the original failed run in the PR record.
+
+The stable-source complete locked check passed1005tests in571.85seconds,145typed sources,
+219formatted Python files, both import contracts, lint and lock validation. The two existing
+event-loop/cache warnings are non-failing. Installed Olist also matched29resource bytes;
+both installed probes replayed six synthetic calls with networking disabled/zero provider
+calls. No assertion, execution/cleanup limit, SQL schema or dependency changed. Publish the
+fix to the existing PR and require the new commit's full hosted matrix/Postgres/secret/audit
+checks; use comments for final acceptance so a body edit does not trigger an unchecked new run.

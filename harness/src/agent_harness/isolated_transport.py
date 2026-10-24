@@ -13,6 +13,7 @@ from pydantic import Field
 
 from agent_harness.contracts import Contract, ModelRequest, ModelResponse
 from agent_harness.gateway import failed_response
+from agent_harness.process_control import OwnedProcess
 
 MAX_RESPONSE_BYTES = 1024 * 1024
 MAX_REQUEST_BYTES = 8 * 1024 * 1024
@@ -108,10 +109,12 @@ class IsolatedTransport:
         buffer = ctx.RawArray(ctypes.c_ubyte, MAX_RESPONSE_BYTES)
         size = ctx.RawValue(ctypes.c_int, 0)
         phases = ctx.RawArray(ctypes.c_double, (-1.0, -1.0, -1.0))
-        process = ctx.Process(
-            target=_run_worker,
-            args=(self._worker, encoded, timeout_seconds, buffer, size, phases, origin),
-            daemon=True,
+        process = OwnedProcess(
+            ctx.Process(
+                target=_run_worker,
+                args=(self._worker, encoded, timeout_seconds, buffer, size, phases, origin),
+                daemon=True,
+            )
         )
         started = False
         timed_out = False

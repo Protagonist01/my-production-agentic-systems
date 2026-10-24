@@ -18,6 +18,7 @@ from agent_harness.cases import LoadedManifest
 from agent_harness.contracts import Agent, Contract, ModelGateway, RunContext
 from agent_harness.fault_contracts import FaultPlan
 from agent_harness.faults import FaultSession
+from agent_harness.process_control import OwnedProcess
 from agent_harness.scorers import ManifestCaseReport, ScorerRegistry
 from agent_harness.telemetry import TraceSession
 from agent_harness.telemetry_contracts import TraceHealth
@@ -147,8 +148,12 @@ def _isolated(
     ctx = multiprocessing.get_context("spawn")
     buffer = ctx.RawArray(ctypes.c_ubyte, MAX_TRIAL_BYTES)
     size = ctx.RawValue(ctypes.c_int, 0)
-    process = ctx.Process(
-        target=_worker, args=(factory, loaded, task.context, lease, buffer, size, plan), daemon=True
+    process = OwnedProcess(
+        ctx.Process(
+            target=_worker,
+            args=(factory, loaded, task.context, lease, buffer, size, plan),
+            daemon=True,
+        )
     )
     started = False
     try:
