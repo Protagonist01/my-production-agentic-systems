@@ -1,5 +1,10 @@
 # H6 code study: isolate execution and retain the denominator
 
+Follow-up inspected on 2026-10-24 from merged base `211defc`: unmerged
+`codex/olist-trial-timing` adds [parent-measured terminal-row timing](trial-timing.md).
+It preserves absent historical fields and binds methodology latency to sealed measurements.
+The original H6/H7 walkthrough and immutable references below retain their historical scope.
+
 H6 was reviewed/merged in PR #76 and verified on main 9c13b2c (380 tests, clean replay and nine applicable hosted jobs). The current changed trial blocks are inspected at H7 source **2982797d6009e2686508fe56fa018a222982381e**, branch `codex/h7-seeded-faults`; H7 merged through PR #77 into verified main 487242f. H8 adds factory-owned trace sessions and safe health to frames/rows; changed trial links pin H8 source 08ba28e. Unchanged H6 example/state links retain their verified implementation. This chapter covers all classes/functions in the four H6 trial modules, the offline acceptance file and two new required Postgres cases. H7 extends dispatch with optional explicit fault sessions; F4 schema/migrations, H4 transport and model wire contracts are unchanged. No domain agent, production authorization, third-party SDK internals or complete security audit is included.
 
 ## Follow one scheduled failure

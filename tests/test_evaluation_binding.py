@@ -1,5 +1,7 @@
 """A methodology audit cannot substitute outcomes for sealed H10 results."""
 
+from dataclasses import replace
+
 import pytest
 from agent_harness.evaluation_binding import verify_binding
 from agent_harness.evaluation_standards import (
@@ -10,6 +12,7 @@ from agent_harness.evaluation_standards import (
     StandardStudy,
 )
 from agent_harness.release_contracts import pin
+from agent_harness.trials import TrialTiming
 from release_fixtures import logical_pair
 
 
@@ -56,7 +59,7 @@ def binding(tmp_path_factory):
                 unsafe=False,
                 fields={"invented_correct": True},
                 baseline_correct=True,
-                elapsed_seconds=1.0,
+                elapsed_seconds=row.timing.elapsed_seconds,
                 input_tokens=usage.input_tokens,
                 output_tokens=usage.output_tokens,
                 model_calls=usage.model_calls,
@@ -82,6 +85,71 @@ def test_binding_checks_actual_scores_not_qualification_status(binding):
     # This one-case toy binds, but cannot qualify methodology: no independent labels,
     # split coverage, sampling or thresholds. Binding is not qualification.
     verify_binding(*binding)
+
+
+@pytest.mark.parametrize("declared", [None, 0.0, 5.9, 6.0, 100.0])
+def test_latency_requires_exact_sealed_parent_measurement(binding, declared):
+    p, protocol, study, loaded, baseline, candidate, required = binding
+    batch = candidate.batch.model_copy(
+        update={
+            "rows": tuple(
+                row.model_copy(
+                    update={
+                        "timing": TrialTiming(
+                            setup_seconds=1.0, execution_seconds=2.0, cleanup_seconds=3.0
+                        )
+                    }
+                )
+                for row in candidate.batch.rows
+            )
+        }
+    )
+    candidate = replace(
+        candidate,
+        batch=batch,
+        manifest=candidate.manifest.model_copy(update={"batch_sha256": pin(batch)}),
+    )
+    study = study.model_copy(
+        update={
+            "candidate_evidence_sha256": pin(candidate.manifest),
+            "rows": tuple(
+                row.model_copy(update={"elapsed_seconds": declared}) for row in study.rows
+            ),
+        }
+    )
+    if declared == 6.0:
+        verify_binding(p, protocol, study, loaded, baseline, candidate, required)
+    else:
+        with pytest.raises(ValueError, match="sealed parent measurement"):
+            verify_binding(p, protocol, study, loaded, baseline, candidate, required)
+
+
+def test_historical_rows_cannot_gain_claimed_latency(binding):
+    p, protocol, study, loaded, baseline, candidate, required = binding
+    batch = candidate.batch.model_copy(
+        update={
+            "rows": tuple(row.model_copy(update={"timing": None}) for row in candidate.batch.rows)
+        }
+    )
+    candidate = replace(
+        candidate,
+        batch=batch,
+        manifest=candidate.manifest.model_copy(update={"batch_sha256": pin(batch)}),
+    )
+    study = study.model_copy(
+        update={
+            "candidate_evidence_sha256": pin(candidate.manifest),
+            "rows": tuple(row.model_copy(update={"elapsed_seconds": None}) for row in study.rows),
+        }
+    )
+    verify_binding(p, protocol, study, loaded, baseline, candidate, required)
+    study = study.model_copy(
+        update={
+            "rows": tuple(row.model_copy(update={"elapsed_seconds": 100.0}) for row in study.rows)
+        }
+    )
+    with pytest.raises(ValueError, match="sealed parent measurement"):
+        verify_binding(p, protocol, study, loaded, baseline, candidate, required)
 
 
 @pytest.mark.parametrize(

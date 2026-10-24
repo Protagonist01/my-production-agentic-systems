@@ -69,6 +69,9 @@ def verify_binding(
     for result in study.rows:
         key = result.case_id, result.trial_id
         row = after[key]
+        measured = row.timing.elapsed_seconds if row.timing is not None else None
+        if result.elapsed_seconds != measured:
+            raise ValueError("methodology latency differs from sealed parent measurement")
         receipts = [
             receipt
             for receipt in candidate.receipts

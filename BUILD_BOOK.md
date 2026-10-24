@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 46 — Sealing parent-measured trial latency](#entry-46--sealing-parent-measured-trial-latency)
 - [Entry 45 — Recording Olist trials through H10](#entry-45--recording-olist-trials-through-h10)
 - [Entry 44 — Waiting for exit status after sentinel readiness](#entry-44--waiting-for-exit-status-after-sentinel-readiness)
 - [Entry 43 — Serializing owned process bookkeeping](#entry-43--serializing-owned-process-bookkeeping)
@@ -2942,3 +2943,65 @@ recomputed unchanged with release still false and zero provider calls. Publish t
 17-file adapter batch for review, require final hosted matrix/full Postgres/audits/secret
 and metadata checks, and record actual acceptance in comments. #33 remains in progress;
 this is not an approved final study, a new provider budget or production release.
+## Entry 46 — Sealing parent-measured trial latency
+**Files touched:** shared trial contracts/runner, methodology binding, timing regression tests.
+
+### Context
+User merged #101 and selected #33. Main 211defc has the identical reviewed tree and run
+40114834940 completed successfully. The Olist adapter records real workflow/state evidence,
+but methodology latency was only a declaration bounded below by dispatch wall-clock span.
+That cannot establish total trial duration. No new provider budget is authorized.
+
+### Before you read on
+Where should a timer live so it survives a worker crash and includes database cleanup?
+How can adding it avoid changing the canonical hashes of historical journals?
+
+### Options, why and construction
+A worker timer misses spawn/startup, parent setup and cleanup, and may disappear on crash.
+A new timing sidecar would need a second inventory/pin mechanism. Put a versioned TrialTiming
+on the parent-owned terminal TrialRow instead; its batch digest already belongs to H10's
+sealed manifest. An absent timing field is omitted from serialization so old canonical
+row/batch bytes stay unchanged. Missing historical timing stays unknown, never zero.
+
+In _coordinate take monotonic boundaries at entry, after setup, after isolated execution
+and after cleanup. Store nonnegative finite setup/execution/cleanup seconds; their sum is
+the measured latency. Execution includes spawn, workflow, scoring and owned worker reaping.
+Setup includes the abort check; already-aborted tasks keep zero execution/cleanup with an
+explicit error. Failed setup, timeout, crash, and failed cleanup retain parent measurements.
+Do not call this user-facing latency: executor queueing, journal writing and evidence sealing
+are outside the interval. The child cannot supply the measurement in its result frame.
+
+Bind StandardRow.elapsed_seconds exactly to the sealed sum, or require None when timing is
+absent. Retain the conservative dispatch-span check too. A larger invented duration must
+fail just as a smaller one does. Trusted parent code/local pins provide consistency, not
+authenticated clock attestation. This shared mechanism applies to all verticals using H6/H10.
+
+### Verification in progress
+Use deterministic parent-clock tests to distinguish each phase, then actual spawned success,
+crash/timeout/setup/cleanup/abort paths. Mutate the saved timing to prove batch-pin rejection.
+Recompute historical private evidence unchanged. Full checks, actual Olist SQL recording,
+installed-package proof and hosted CI remain pending at this construction point.
+
+The focused parent-clock/spawn/binding suite passed 78 checks in 90.96 seconds; strict
+typing passed 151 sources. All six package pairs built, and the locked dependency audit
+found no known vulnerabilities. Installed proof matched 61 harness/35 Olist resources,
+validated frozen composition pins with network denied and provider SDKs/other verticals
+absent, then replayed six calls with zero provider calls. Historical private inventory/report
+recomputed unchanged with release false. Publication scan found all configured credentials
+and 24 source identifiers absent; database/draft pins and disjoint customer groups verified.
+Full locked tests and relevant SQL capture verification remain pending.
+
+Complete locked check passed 1,042 tests in 619.23 seconds, 151 typed sources, 228
+formatted files, lint, both import contracts and lock validation. Existing event-loop/cache
+warnings are non-failing. No source correction or failure rerun was needed. The installed
+TrialTiming JSON roundtrip also passed, with legacy None omitted. Two relevant real SQL/H10
+scenarios (refund and typed model failure) are now under verification; no provider is used.
+
+Both relevant SQL/H10 scenarios passed in 159.78 seconds (three other unchanged scenarios
+were deselected locally). Six new mock dispatches exercised refund and typed failed response;
+all six rows retain measured setup/execution/cleanup after owned database/role removal and
+verified receipt/state read-back. These are mechanism checks, not fresh Gemini observations.
+Publish for review after clean-head replay/publication checks; require the hosted full matrix
+and all 110 database checks. #33 stays open for full crash/restart evidence, complete study
+projection, independent/representative review, approved baselines/limits, cost provenance and
+a separately authorized final provider study. No provider trial was rerun or dispatched.

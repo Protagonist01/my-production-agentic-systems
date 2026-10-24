@@ -64,7 +64,9 @@ projection is not a claim that an interruption occurred in those trials.
 This is trusted Python evaluation code, not an OS sandbox or authenticated SQL attestation.
 H10's evaluator process has private labels; its closed AgentInput projection prevents
 accidental forwarding but cannot contain malicious Python introspection. The adapter does
-not yet produce a complete methodology study or total trial-latency measurement.
+not yet produce a complete methodology study. New shared trial rows retain
+[parent-measured trial timing](trial-timing.md), including setup and cleanup. Historical
+rows without that measurement retain unknown latency.
 If a worker dies before scoring, its missing report/observation remains unverified and
 cannot pass this reader; this adapter does not recover a complete forensic state archive
 from every OS crash.

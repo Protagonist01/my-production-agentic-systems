@@ -33,6 +33,10 @@ def test_olist_uses_owned_h10_receipts_private_scores_and_parent_cleanup(app, tm
     assert manifest.origin == "mock" and len(manifest.receipts) == 3
     batch = TrialJournal(output / "journal").read(loaded)
     assert len(batch.rows) == 3 and not batch.missing
+    assert all(row.timing is not None and row.timing.elapsed_seconds > 0 for row in batch.rows)
+    assert all(
+        row.timing.setup_seconds > 0 and row.timing.cleanup_seconds > 0 for row in batch.rows
+    )
     assert all(not row.errors and row.report is not None for row in batch.rows)
     assert all(row.report.report.result.usage.model_calls == 1 for row in batch.rows)
     with server.connect() as admin:
