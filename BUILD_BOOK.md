@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 45 — Recording Olist trials through H10](#entry-45--recording-olist-trials-through-h10)
 - [Entry 44 — Waiting for exit status after sentinel readiness](#entry-44--waiting-for-exit-status-after-sentinel-readiness)
 - [Entry 43 — Serializing owned process bookkeeping](#entry-43--serializing-owned-process-bookkeeping)
 - [Entry 42 — Observing domain fields and controlled recovery](#entry-42--observing-domain-fields-and-controlled-recovery)
@@ -2868,3 +2869,76 @@ were refreshed for those exact bytes. No behavior, deadline, dependency or SQL c
 made after the focused suite. Publish a separate repair PR, run exact-head strict replay
 and require the complete hosted matrix/Postgres/audit/secret/metadata gate. Hosted results
 will be recorded in comments after actual completion, without a body edit triggering a new run.
+
+## Entry 45 — Recording Olist trials through H10
+**Files touched:** Olist H10 manifest/environment/runtime adapters, independent field scorer, tests.
+
+### Context
+The user merged #100 as 70abcdb. Continue #33: the domain field projection from #99 is not
+an H10 journal. Old private captures must not be converted into newly dispatched evidence.
+The stronger twelve labels were accepted as AI-assisted propositions, not blind annotation.
+No additional provider calls or release have been authorized.
+
+### Before you read on
+How can the same workflow use H10's owned receipt gateway while keeping expected decisions
+out of agent inputs and database administrator credentials out of spawned workers?
+
+### Chosen construction
+Encode the already reviewed PolicyCase as evaluator-only hidden state in a CaseManifest;
+project only its unchanged request text into AgentInput. Preserve source group, original
+split and label provenance. H10 only supports development/holdout: regression stays explicitly
+marked in private metadata and maps to development for this adapter, never to holdout.
+
+The parent environment creates and enrolls a fresh SIM database, records its before-state,
+and passes a restricted TrialDatabaseAccess plus grant to the worker. The runtime composition
+receives no expected labels. Agent/scorer share a private observation slot for the actual
+planner/result and controlled duplicate/recovery observations. The scorer independently
+reads final SQL state and uses the existing independent field/state oracle against labels.
+Parent-owned cleanup stays in H10, after worker reaping; it cannot be claimed by an agent.
+
+Use record_candidate directly for live receipts/journal sealing. Expose no old-row import
+or automatic provider configuration. Mock execution will exercise actual spawned workers,
+restricted SQL, repeated dispatch, read-back/tamper checks and missing-cost rejection without
+contacting Gemini. Production studies still need representative/independent review, approved
+baselines/thresholds, complete accounting and latency evidence. Controlled after-commit
+exception/reopen is not an OS process kill and does not replace H7 fault-plan evidence.
+Tests, full checks and hosted acceptance remain pending while this construction is implemented.
+
+Main #100 run 40109099337 passed all nine applicable jobs (metadata intentionally skipped).
+Actual logs show 1,008 tests in each quality cell, 105 Postgres checks, 145 typed sources
+and twelve package artifacts per cell. Tree 1012dc38 matches the reviewed head. The first
+adapter unit/field suite passed 18 checks; typing passed 150 source files. SQL execution is
+under verification; no live provider has been contacted.
+
+During source review, retaining only field scores proved insufficient: disposable SQL is
+removed after the worker, so a later evaluator could not recompute the state verdict. Add
+private observation sidecars. The trusted scorer independently rereads final SQL, saves the
+canonical FieldCapture exclusively, and puts its SHA-256 in each ScoreResult's state evidence.
+H10 already seals the whole batch, binding those references to its manifest. A domain reader
+must first verify H10 receipts/usage/pins, then check exact sidecar inventory/digests and
+recompute every domain field and shared result. Do not manufacture receipts or infer missing
+costs. This extends the initial implementation; rerun relevant SQL capture tests afterward.
+
+The first five SQL/H10 cases passed in 373.92 seconds before sidecars were added. After
+the extension, all five passed again in 443.76 seconds: fifteen new mock dispatches across
+refund, required review, controlled recovery, failed response and unknown-cost cases.
+The shared reader checks actual receipts and usage; the domain reader recomputes all
+fields after database cleanup. Changed/missing/extra observation files fail without another
+dispatch. Redelivery now saves its before-state and actual result; a boolean alone cannot
+earn duplicate credit. Final focused suite passed 23 checks; strict typing passed 151 sources.
+
+All six package pairs built and the locked audit found no known vulnerabilities. Installed
+verification matched 61 harness and 35 Olist resources, validated composition/source pins
+under network denial with provider SDKs/other verticals absent, and replayed six recorded
+calls with zero provider calls. Publication scanning covered 17 files with configured keys
+and 24 source identifiers absent; source/draft pins remain unchanged. The documentation
+check found 118 resolving relative links and valid JSON. Complete locked suite and hosted
+matrix remain pending. No original/new cohort was dispatched to a provider.
+
+The complete locked check passed 1,025 tests in 695.45 seconds, 151 typed sources,
+228 formatted Python files, lint, both import contracts and lock validation. The existing
+event-loop/cache warnings remain non-failing. Historical sealed Olist inventory/report
+recomputed unchanged with release still false and zero provider calls. Publish this
+17-file adapter batch for review, require final hosted matrix/full Postgres/audits/secret
+and metadata checks, and record actual acceptance in comments. #33 remains in progress;
+this is not an approved final study, a new provider budget or production release.

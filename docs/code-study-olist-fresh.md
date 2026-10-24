@@ -1,5 +1,10 @@
 # Code study — fresh Olist state experiments
 
+The unmerged [H10 adapter chapter](code-study-olist-h10.md) follows the subsequent
+`codex/olist-h10-adapter` work from verified main `70abcdb`. It records new executions and
+private observation read-back through H10; it does not relabel these historical captures
+as fresh evidence or change their holdouts/results.
+
 Inspected2026-10-23 on unmerged `codex/o8-fresh-release-evidence`, based on verified #94 main `3601508`. Coverage: all three new experiment modules, seeded/excluded case preparation, focused tests, real SQL collector tests and the existing planner/scorer calls they compose. Broader deployment/security/load are unassessed. [Operations and criteria](olist-fresh-review.md), [historical scorer study](code-study-olist-release.md) and [Build Book Entry38](../BUILD_BOOK.md#entry-38--fresh-olist-review-evidence-after-the-offline-pilot) separate implemented mechanisms from release claims.
 
 ## Follow one constructed request
