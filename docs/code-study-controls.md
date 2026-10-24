@@ -98,7 +98,7 @@ the assertion that even a valid late response cannot bypass a deadline. Existing
 defaults remain; only the separately pinned O8 plan selects the already permitted 60-second
 attempt limit. The [follow-up runbook](olist-followup-review.md) records explicit conditions.
 
-The unmerged continuation after `2da004a` wraps SDK and trial processes with the same
+Merged #99 (`c1fc040`) wraps SDK and trial processes with the same
 [OwnedProcess](../harness/src/agent_harness/process_control.py) control boundary. It protects
 against cross-thread child-status polling during another process start. Sentinel waiting
 occurs outside the shared lock; only short process operations serialize. See the
@@ -106,3 +106,7 @@ occurs outside the shared lock; only short process operations serialize. See the
 race, deterministic reproduction and limits. Deadline checks, terminate/kill allowances,
 unknown usage accounting and timing attribution remain unchanged. This does not prove the
 precise cause of every historical cleanup failure.
+
+The current worker-exit follow-up also handles sentinel readiness before actual process
+exit status. Both SDK and trial joins use the same bounded recheck, retaining the existing
+deadline and cleanup checks. See the [exit-status loop and tests](code-study-trials.md#sentinel-readiness-and-exit-status).

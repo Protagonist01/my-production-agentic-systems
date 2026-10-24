@@ -6,6 +6,7 @@ Concurrent join/poll on those same children can race when reaping exit status
 """
 
 import threading
+import time
 from multiprocessing.connection import wait
 from multiprocessing.process import BaseProcess
 
@@ -23,11 +24,22 @@ class OwnedProcess:
             self._process.start()
 
     def join(self, timeout: float) -> None:
-        if timeout > 0:
-            wait([self._process.sentinel], timeout=timeout)
-        with _CONTROL:
-            # A blocking join would race other starts, or serialize whole trials.
-            self._process.join(0)
+        end = time.monotonic() + max(0.0, timeout)
+        while True:
+            remaining = max(0.0, end - time.monotonic())
+            if remaining > 0:
+                wait([self._process.sentinel], timeout=remaining)
+            with _CONTROL:
+                # A blocking join would race other starts, or serialize whole trials.
+                self._process.join(0)
+                exited = self._process.exitcode is not None
+            remaining = end - time.monotonic()
+            if exited or remaining <= 0:
+                return
+            # POSIX sentinel EOF can be visible before waitpid exposes exit status.
+            # Recheck until the original bound, without holding the control lock
+            # or spinning on an already-readable sentinel. EOF is not exit status.
+            time.sleep(min(0.001, remaining))
 
     def is_alive(self) -> bool:
         with _CONTROL:

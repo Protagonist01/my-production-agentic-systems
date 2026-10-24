@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 44 — Waiting for exit status after sentinel readiness](#entry-44--waiting-for-exit-status-after-sentinel-readiness)
 - [Entry 43 — Serializing owned process bookkeeping](#entry-43--serializing-owned-process-bookkeeping)
 - [Entry 42 — Observing domain fields and controlled recovery](#entry-42--observing-domain-fields-and-controlled-recovery)
 - [Entry 40 — Measuring Olist attempt startup and reconciling usage](#entry-40--measuring-olist-attempt-startup-and-reconciling-usage)
@@ -2806,3 +2807,64 @@ both installed probes replayed six synthetic calls with networking disabled/zero
 calls. No assertion, execution/cleanup limit, SQL schema or dependency changed. Publish the
 fix to the existing PR and require the new commit's full hosted matrix/Postgres/secret/audit
 checks; use comments for final acceptance so a body edit does not trigger an unchecked new run.
+
+## Entry 44 — Waiting for exit status after sentinel readiness
+**Files touched:** `process_control.py`, process-control and fault-matrix regression tests.
+
+### Context
+User merged #99 as c1fc040. Its main run40106644821 failed the spawned fault matrix on
+Ubuntu/Python3.13 (1004passed/1failed); the other three quality cells and Postgres passed.
+The truncated assertion omitted the failing row/error. Do not describe main as accepted or
+retry that run until green. This interrupts the planned Olist H10 adapter work under #33.
+
+### Before you read on
+Does a readable multiprocessing sentinel prove waitpid(WNOHANG) can already return an exit
+status? Trace POSIX Popen.wait and the spawn pipe lifetime before choosing a blocking join.
+
+### Why and construction
+Entry43's wrapper deliberately waits outside the shared control lock and calls join(0)
+inside it. CPython's POSIX Popen.wait uses a nonblocking poll for timeout0, but a blocking
+poll after a positive-timeout sentinel wait. Our wrapper changed that behavior: EOF followed
+by an empty poll immediately returned to the caller, which then treated is_alive as timeout.
+Pipe closure and kernel exit-status readiness need not be simultaneous. This is a separate
+source-confirmed exposure; the main job's truncated log cannot prove its exact failure cause.
+
+Keep the shared lock and original timeout. Compute one monotonic end, wait outside the lock,
+then join(0) and inspect exitcode inside it. If still running and time remains, pause at most
+1ms outside the lock and repeat. An already-readable sentinel must not spin. A zero timeout
+stays one nonblocking poll. Do not use blocking waitpid inside the global lock: a child can
+close its pipe and keep running, starving other workers' termination/cleanup.
+
+Test with an always-ready sentinel and a fake monotonic clock: status appears after3ms or
+never appears before the5ms bound. Verify both delayed success and bounded non-exit, plus
+join(0) never waits/sleeps. Preserve the cross-thread reaping control and concurrent-start
+tests. Add compact case/trial/error/category tuples to the invented fault test's assertion
+so another failure supplies evidence without printing source text, secrets or full reports.
+Actual focused/full/hosted results are pending. Execution and cleanup limits are unchanged;
+unknown historical causes remain unknown. No provider call or release approval is implied.
+
+Primary source inspected: CPython3.13 `Lib/multiprocessing/popen_fork.py` (wait/poll), and
+`popen_spawn_posix.py` (pipe sentinel), in the official python/cpython repository.
+
+Focused real-worker/deterministic regression suite passed159tests in209.37seconds. The
+actual restricted Postgres worker module passed5tests in169.24seconds, including committed
+state retained through timeout and cleanup. Types passed145sources. All six wheel/sdist
+pairs built; locked audit found no known vulnerabilities. Installed harness matched61resource
+bytes with provider SDKs absent, networking disabled and six replay calls/zero provider calls.
+The full diff publication scan found configured credentials/24source identifiers absent;
+source and stronger-draft pins remain unchanged. Changed Markdown has112resolving relative
+links and changed JSON parses. Complete locked suite and final hosted matrix remain pending.
+
+A separate negative control loaded the unchanged main wrapper with `git show origin/main:...`
+into an isolated Python namespace, substituted an always-ready sentinel and a child whose
+nonblocking join never produces exit status. Main returned after one poll while exitcode
+was stillNone despite a five-second allowance. This verifies the exposure against reviewed
+bytes without modifying tracked sources or claiming that child existed in the failed CI run.
+
+Complete locked check passed1008tests in664.34seconds,145typed sources,219formatted files,
+lint, both import contracts and lock validation. Existing event-loop/cache warnings are
+non-failing. Subsequent source edits only clarified a comment; wheel/installed-byte checks
+were refreshed for those exact bytes. No behavior, deadline, dependency or SQL change was
+made after the focused suite. Publish a separate repair PR, run exact-head strict replay
+and require the complete hosted matrix/Postgres/audit/secret/metadata gate. Hosted results
+will be recorded in comments after actual completion, without a body edit triggering a new run.

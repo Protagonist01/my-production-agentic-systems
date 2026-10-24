@@ -34,6 +34,10 @@ def test_cross_thread_reaping_requires_shared_control(monkeypatch, guarded):
     monkeypatch.setattr(popen_fork.os, "waitstatus_to_exitcode", status, raising=False)
 
     class Joining:
+        @property
+        def exitcode(self):
+            return popen.returncode
+
         def join(self, timeout):
             assert timeout == 0
             popen.poll()
@@ -92,6 +96,7 @@ def test_waiting_for_exit_does_not_serialize_worker_lifetimes(monkeypatch):
 
     class Waiting:
         sentinel = "invented-sentinel"
+        exitcode = 0
 
         def join(self, timeout):
             assert timeout == 0
@@ -117,3 +122,55 @@ def test_waiting_for_exit_does_not_serialize_worker_lifetimes(monkeypatch):
         release.set()
         thread.join(5)
     assert not thread.is_alive() and not failures
+
+
+@pytest.mark.parametrize("exit_after", [0.003, None])
+def test_ready_sentinel_does_not_end_join_before_exit_or_original_bound(monkeypatch, exit_after):
+    # Deterministically model EOF during child shutdown, before waitpid
+    # returns the status. No OS scheduler luck, worker timeout increase or retry.
+    clock = [0.0]
+    pauses, waits, polls = [], [], []
+
+    def sleep(duration):
+        pauses.append(duration)
+        clock[0] += duration
+
+    def wait(handles, timeout):
+        waits.append(timeout)
+        return handles  # EOF is already readable on every iteration.
+
+    class Closing:
+        sentinel = "invented-closing-pipe"
+        exitcode = None
+
+        def join(self, timeout):
+            assert timeout == 0
+            polls.append(clock[0])
+            if exit_after is not None and clock[0] >= exit_after:
+                self.exitcode = 0
+
+    monkeypatch.setattr(process_control.time, "monotonic", lambda: clock[0])
+    monkeypatch.setattr(process_control.time, "sleep", sleep)
+    monkeypatch.setattr(process_control, "wait", wait)
+    child = Closing()
+    process_control.OwnedProcess(child).join(0.005)
+    assert pauses and all(0 < duration <= 0.001 for duration in pauses)
+    assert all(0 < timeout <= 0.005 for timeout in waits)
+    assert 0.003 <= clock[0] <= 0.005
+    assert child.exitcode == (None if exit_after is None else 0)
+    assert len(polls) > 1
+
+
+def test_zero_join_is_a_single_nonblocking_poll(monkeypatch):
+    calls = []
+
+    class Running:
+        exitcode = None
+
+        def join(self, timeout):
+            calls.append(timeout)
+
+    monkeypatch.setattr(process_control, "wait", lambda *args, **kwargs: pytest.fail("wait"))
+    monkeypatch.setattr(process_control.time, "sleep", lambda _: pytest.fail("sleep"))
+    process_control.OwnedProcess(Running()).join(0)
+    assert calls == [0]

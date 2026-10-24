@@ -347,7 +347,10 @@ def test_spawned_fault_matrix_keeps_all_rows_and_reopens_pinned_evidence(tmp_pat
         report.complete
         and len(report.rows) == 8
         and report.eligible_trials == report.autonomous_completions == 7
-    )
+    ), [
+        (row.task.key, row.errors, assess(row, schedule.outcome_policy).category)
+        for row in report.rows
+    ]
     report.require_release_evidence(loaded, fault_plan=schedule.fault_plan)
     assert TrialJournal(tmp_path / "journal").read(loaded, fault_plan=schedule.fault_plan) == report
     assert not tuple(state.iterdir())

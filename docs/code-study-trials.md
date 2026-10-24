@@ -119,7 +119,7 @@ Refresh this chapter when the matrix, private projection, process/lifecycle boun
 
 ## Shared process bookkeeping follow-up
 
-Unmerged continuation after `2da004a`, 2026-10-24. Both trial and SDK spawn paths now use
+Merged through #99 (`c1fc040`), 2026-10-24. Both trial and SDK spawn paths now use
 [OwnedProcess](../harness/src/agent_harness/process_control.py). CPython's `Process.start`
 calls global child cleanup, which can poll a different coordinator's child concurrently
 with that child's `join`. [CPython issue130895](https://github.com/python/cpython/issues/130895)
@@ -141,3 +141,24 @@ poll method after a fake waitpid reaps but before returncode assignment. The unp
 control reproduces a false alive state; the guarded path preserves the recorded exit code.
 A separate check verifies waiting does not serialize whole worker lifetimes. Existing real
 spawn/fault/timeout/cleanup tests remain required. No provider dispatch is part of these tests.
+
+## Sentinel readiness and exit status
+
+Unmerged follow-up from `c1fc040`, branch `codex/worker-exit-observation`. Main CI run40106644821
+failed the spawned fault-matrix test on Ubuntu/Python3.13. Its truncated assertion does not
+identify the failing row; compact error/category diagnostics now accompany that assertion.
+
+The [owned join loop](../harness/src/agent_harness/process_control.py) retains one monotonic
+deadline. It waits outside the lock, polls/reads status under the lock, and repeats with a
+pause of at most1ms if the sentinel is readable but no exit status exists. POSIX pipe EOF can
+precede kernel exit-status availability. CPython's [Popen.wait](https://github.com/python/cpython/blob/3.13/Lib/multiprocessing/popen_fork.py#L33-L40)
+uses a blocking poll after a positive-timeout wait; our prior single join(0) removed that
+last synchronization. Blocking inside the shared lock could stall another worker's cleanup,
+so bounded nonblocking polls preserve concurrency. This gap is proven in the wrapper's
+behavior; the historic hosted interleaving remains unproven.
+
+The deterministic regressions cover ready-before-exit success, ready-but-still-running at
+the original deadline, and zero-timeout single polls. Original cross-thread status/reaping
+and concurrent-start tests remain. Both trial and SDK paths share this correction; timeouts,
+late-frame rejection, cleanup escalation, state retention and release gates are unchanged.
+These are worker-mechanism checks with invented inputs, not model-quality evaluation.
