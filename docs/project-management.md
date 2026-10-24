@@ -1,6 +1,6 @@
 # Project management
 
-Updated: 2026-10-24. User-merged #97 is verified as main418c917 with identical reviewed tree. Main CI passed on attempt2 after one unchanged fault-matrix test rerun;942tests per quality cell/103Postgres, audits and exact-main replay passed. Original failure/cause-unproven evidence is retained. The user accepted 12Olist labels retrospectively, then authorized [stronger evaluation across all five agents](evaluation-standards.md). The shared audit/CLI/profile implementation is under review on codex/strong-evaluation-standards; no new provider calls, blind-label claim, baseline/threshold approval or release is inferred. #33 and downstream gates remain open.
+Current follow-up after merged #98: main2cc25047 has the reviewed tree and passing main CI (993 offline tests / 103 Postgres; strict replay six invented calls, zero provider calls). The shared [evaluation standards](evaluation-standards.md) apply to all five agents. O8 #33 now has an unmerged [independent-field/recovery and stronger draft follow-up](olist-strong-draft.md). The user authorized cohort preparation only; no new provider calls, blind-label claim, baseline/threshold approval or release is inferred. #33 and downstream gates remain open.
 
 ## Scope and source of truth
 

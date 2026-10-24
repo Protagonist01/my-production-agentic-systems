@@ -22,10 +22,22 @@ from test_olist_release import case_for, task_for
 from test_olist_workflow import context
 
 
-@pytest.mark.parametrize("kind", ["rules", "mock_model", "model_timeout", "planner_exception"])
+@pytest.mark.parametrize(
+    "kind",
+    [
+        "rules",
+        "mock_model",
+        "model_timeout",
+        "planner_exception",
+        "rules_after_commit",
+        "mock_model_after_commit",
+    ],
+)
 def test_collector_scores_actual_state_recovers_without_redispatch_and_drops_owned_trial(
     app, tmp_path, kind
 ):
+    interrupted = kind.endswith("_after_commit")
+    kind = kind.removesuffix("_after_commit")
     server, parent, _ = app
     trial = Trial(parent.workspace_key, "fresh-" + uuid.uuid4().hex[:16], secrets.token_hex(32))
     create_trial(server, trial)
@@ -107,6 +119,7 @@ def test_collector_scores_actual_state_recovers_without_redispatch_and_drops_own
         planner,
         mode="gemini" if kind in ("mock_model", "model_timeout") else "rules",
         receipt_root=receipts if kind in ("mock_model", "model_timeout") else None,
+        interrupt_after_commit=interrupted,
     )
     assert row.cleanup_ok
     assert "private-invented-exception-canary" not in row.canonical_json()
@@ -117,6 +130,13 @@ def test_collector_scores_actual_state_recovers_without_redispatch_and_drops_own
         assert row.duplicate_delivery_unchanged and not row.errors
         assert score(case, task, row.observation).category == "correct"
         assert len(row.observation.after.ledger) == 1
+        assert row.workflow_result.reason == "ledger_and_state_verified"
+        if interrupted:
+            assert row.recovery_observation is not None
+            assert row.recovery_observation.committed == row.observation.after
+            assert row.recovery_observation.resumed == row.observation.after
+        else:
+            assert row.recovery_observation is None
     else:
         assert row.observation.after == row.observation.before and row.errors
         assert score(case, task, row.observation).category == "unresolved"

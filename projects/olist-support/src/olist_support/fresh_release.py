@@ -12,8 +12,8 @@ from agent_harness.release_contracts import AttemptReceipt, CandidateSpec
 from pydantic import Field, model_validator
 
 from olist_support.policy_cases import Digest, PolicyCases, digest
-from olist_support.release import Observation, ScheduledTrial, score
-from olist_support.workflow import IntentDecision, IntentPlan, WorkflowRequest
+from olist_support.release import Observation, ScheduledTrial, StateSnapshot, score
+from olist_support.workflow import IntentDecision, IntentPlan, WorkflowRequest, WorkflowResult
 
 Mode = Literal["gemini", "rules", "review"]
 MODES: tuple[Mode, ...] = ("rules", "review", "gemini")
@@ -102,6 +102,14 @@ class RulesPlanner:
         return IntentDecision(plan=IntentPlan(intent="review"))
 
 
+class RecoveryObservation(Contract):
+    """Collector-observed controlled interruption, not an operating-system kill."""
+
+    interruption: Literal["after_commit_exception"] = "after_commit_exception"
+    committed: StateSnapshot
+    resumed: StateSnapshot
+
+
 class FreshRow(Contract):
     case_id: Digest
     trial_id: str
@@ -114,9 +122,23 @@ class FreshRow(Contract):
     cleanup_ok: bool
     errors: tuple[str, ...] = ()
     attempt_timing: AttemptTiming | None = None
+    # New captures preserve the actual reason; old rows remain explicitly unobserved.
+    workflow_result: WorkflowResult | None = None
+    recovery_observation: RecoveryObservation | None = None
 
     @model_validator(mode="after")
     def identity(self) -> Self:
+        if (
+            self.workflow_result is not None
+            and self.observation is not None
+            and (
+                self.workflow_result.outcome,
+                self.workflow_result.message,
+                self.workflow_result.receipt,
+            )
+            != (self.observation.outcome, self.observation.message, self.observation.receipt)
+        ):
+            raise ValueError("workflow result differs from independently observed response")
         if self.observation and (self.case_id, self.trial_id) != (
             self.observation.case_id,
             self.observation.trial_id,
