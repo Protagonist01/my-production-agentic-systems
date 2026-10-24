@@ -3005,3 +3005,24 @@ Publish for review after clean-head replay/publication checks; require the hoste
 and all 110 database checks. #33 stays open for full crash/restart evidence, complete study
 projection, independent/representative review, approved baselines/limits, cost provenance and
 a separately authorized final provider study. No provider trial was rerun or dispatched.
+
+### Clock-resolution failure found by hosted CI
+Run40116936759 passed three quality cells1042tests each, all110Postgres checks, both audits,
+metadata and secret scan. Windows/Python3.12 failed the two new positive-duration assertions
+for immediate setup/pickle failures (1040passed/2failed). Keep that failed run; do not retry it.
+The timer needs a short-duration clock: use time.perf_counter for all four parent boundaries
+and the early abort boundary, retaining the same finite monotonic duration contract. The
+existing worker deadline clock remains unchanged. Python3.13 uses the same underlying
+clock for monotonic/perf_counter, while older Windows versions can differ.
+Strengthen the deterministic test by freezing time.monotonic at zero while advancing only
+perf_counter. This catches accidental use of the coarse clock without relaxing positive
+measurement assertions, inserting sleeps or replacing zero with fabricated epsilon.
+The exact hosted clock implementation was not captured, so its resolution remains an
+inference from the failure and Python clock behavior; no unsupported exact tick is claimed.
+Focused/final checks and a new synchronized-head hosted run must verify this correction.
+
+Clock correction verification: strengthened focused suite78passed99.15s; lint and151typed
+sources passed. Six package pairs rebuilt; corrected installed61harness/35Olistresource
+bytes/composition pins matched with network denied and zero-provider6callreplay. The prior
+full local1042test/2SQL pass is retained as initial-head evidence; final synchronized-head
+CI must rerun the complete matrix/110DB checks. No unchanged-head retry or provider call.

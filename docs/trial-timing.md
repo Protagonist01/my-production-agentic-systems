@@ -14,6 +14,13 @@ isolated execution at 17 and finishes cleanup at 20. `TrialTiming` stores 2 setu
 5 execution seconds and 3 cleanup seconds. `elapsed_seconds` is their sum, 10 seconds.
 These are an explanatory example, not a production benchmark.
 
+The implementation uses `time.perf_counter`, Python's highest-resolution short-duration
+clock, for every phase boundary. Older Windows `monotonic` implementations can give equal
+ticks during a fast failure. Python 3.13 uses the same underlying clock for these two APIs;
+the supported 3.12 interpreter needs the explicit performance-clock choice. See the
+[Python clock documentation](https://docs.python.org/3.12/library/time.html#time.perf_counter).
+Worker timeout/deadline accounting retains its original clock and allowance.
+
 [`TrialTiming`](../harness/src/agent_harness/trials.py#L142) accepts finite nonnegative durations,
 rejects an overflowing total and fixes the measurement version to `parent-trial-monotonic-v1`.
 The parent measures three contiguous intervals in
@@ -80,3 +87,18 @@ built; audit clean. Installed 61 harness/35 Olist resources matched, timing roun
 legacy omission passed, provider SDKs/other verticals absent and network-denied replay made
 zero provider calls. Historical inventory/report and private cohort pins remain unchanged.
 Hosted full matrix and complete database-suite acceptance remain pending at this writing.
+
+The initial hosted run 40116936759 passed three quality cells and all 110 database checks,
+but Windows/Python 3.12 failed two new positive-duration assertions for immediate setup and
+pickle errors (1,040 passed, 2 failed). The corrective change uses `perf_counter`; the
+deterministic regression freezes `monotonic` at zero while advancing only the performance
+clock. Assertions and budgets are unchanged; no sleeps or fabricated minimum durations.
+The preceding local full-suite/SQL results describe the initial head. Focused checks and a
+new synchronized-head hosted matrix must verify the clock correction; the failed run stays
+part of the evidence history, with no unchanged-head rerun.
+
+Clock correction verification: strengthened focused suite78passed99.15s; lint and151typed
+sources passed. Six package pairs rebuilt; corrected installed61harness/35Olistresource
+bytes/composition pins matched with network denied and zero-provider6callreplay. The prior
+full local1042test/2SQL pass is retained as initial-head evidence; final synchronized-head
+CI must rerun the complete matrix/110DB checks. No unchanged-head retry or provider call.

@@ -193,7 +193,7 @@ def _coordinate(
     environment: TrialEnvironment,
     abort: threading.Event,
 ) -> TrialRow:
-    started = time.monotonic()
+    started = time.perf_counter()
     errors: list[TrialError] = []
     report = None
     telemetry = None
@@ -205,7 +205,7 @@ def _coordinate(
             task=task,
             errors=("worker_cleanup_error",),
             timing=TrialTiming(
-                setup_seconds=time.monotonic() - started,
+                setup_seconds=time.perf_counter() - started,
                 execution_seconds=0.0,
                 cleanup_seconds=0.0,
             ),
@@ -217,7 +217,7 @@ def _coordinate(
         state_ref = lease.reference
     except Exception:
         errors.append("setup_error")
-    prepared = time.monotonic()
+    prepared = time.perf_counter()
     try:
         if not errors and lease is not None:
             if abort.is_set():
@@ -248,13 +248,13 @@ def _coordinate(
     except Exception:
         errors.append("execution_error")
     finally:
-        executed = time.monotonic()
+        executed = time.perf_counter()
         if lease is not None and can_release:
             try:
                 environment.release(lease)
             except Exception:
                 errors.append("cleanup_error")
-    finished = time.monotonic()
+    finished = time.perf_counter()
     return TrialRow(
         task=task,
         state_ref=state_ref,

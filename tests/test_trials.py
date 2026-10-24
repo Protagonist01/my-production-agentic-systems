@@ -125,13 +125,14 @@ def test_invalid_or_overflowed_timing_is_rejected(value):
 
 
 @pytest.mark.parametrize("failure", [None, "setup", "cleanup", "worker", "unreaped"])
-def test_parent_measures_setup_execution_and_cleanup_with_monotonic_clock(
+def test_parent_measures_setup_execution_and_cleanup_with_performance_clock(
     tmp_path, monkeypatch, failure
 ):
     from agent_harness import trial_runner
 
     ticks = iter((10.0, 12.0, 17.0, 20.0))
-    monkeypatch.setattr(trial_runner.time, "monotonic", lambda: next(ticks))
+    monkeypatch.setattr(trial_runner.time, "perf_counter", lambda: next(ticks))
+    monkeypatch.setattr(trial_runner.time, "monotonic", lambda: 0.0)
     loaded, schedule = population()
     task = schedule.tasks[0]
     state = tmp_path / "state"
