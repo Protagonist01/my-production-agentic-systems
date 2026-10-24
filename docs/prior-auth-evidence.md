@@ -165,3 +165,8 @@ captured calls/two timeouts with zero outbound provider calls. Final documentati
 is recorded on [PR #92](https://github.com/Protagonist01/my-production-agentic-systems/pull/92).
 See [the code walkthrough](code-study-prior-auth.md)
 and Build Book Entry 35 for construction and known limits.
+
+
+## Stronger evaluation requirements — 2026-10-24
+
+[Shared standards](evaluation-standards.md) and the [five-agent readiness inventory](evaluation/readiness.json) apply to the next release study. P6 needs qualified blind criterion/policy review, unsupported-met and contradiction checks, source-family holdout and document-resume evidence. This does not establish clinical validation. Existing sealed pilots are unchanged. Missing reviews, approved pre-output thresholds, grouped unseen inputs, complete field scores/accounting or H10 evidence block release. No additional provider run or release approval is inferred.

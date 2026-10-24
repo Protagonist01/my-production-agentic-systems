@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "base_commit": "418c9179321ca287dd392b700ecb138c92ff39d4",
+  "status": "review_inventory_not_executed_standard_studies",
+  "release_allowed": false,
+  "agents": {
+    "olist": {
+      "profile": "docs/evaluation/profiles/olist.json",
+      "profile_canonical_sha256": "d365ff018ea6be9c05492eb51090aed5532b818ab692e1933008b7d65ccf5cc6",
+      "historical_evidence_bytes": {
+        "docs/data/olist-followup-evidence-v2.json": "bcf8b209d24387d7d24555c96552e8a08d310a686416198ed12576c8a42c9757",
+        "docs/data/olist-fresh-evidence-v1.json": "f7586d109e4d5cf987afbe693618b2bf2c018f5cc1e34f39b0ddf348c66f8897"
+      },
+      "historical_limitations": [
+        "Only four constructed texts repeat across splits in the follow-up.",
+        "Six follow-up source groups; no representative or unseen-language quality claim.",
+        "User accepted the 12 follow-up labels retrospectively; pre-output blind review is not established.",
+        "Production thresholds/baselines and cost evidence remain unapproved or unknown."
+      ],
+      "standard_study_status": "not_prepared_or_qualified",
+      "remaining_common_requirements": [
+        "reviewed_representative_cohort",
+        "independent_frozen_labels",
+        "reviewed_sample_size_and_group_uncertainty_limits",
+        "approved_baseline_and_thresholds",
+        "domain_field_scorers_and_H10_adapter",
+        "final_candidate_bounded_fresh_evidence",
+        "H10_release_acceptance"
+      ],
+      "release_allowed": false
+    },
+    "cfpb": {
+      "profile": "docs/evaluation/profiles/cfpb.json",
+      "profile_canonical_sha256": "52aacaf17e208a8334c4a04a6310151f6edca33b762d958994bdfabe3294df30",
+      "historical_evidence_bytes": {
+        "docs/data/cfpb-triage-evidence-v1.json": "e2208319388ca7a578aeb48fd69a8eb26adc43445eae8e6d243b5979b4bbcd31"
+      },
+      "historical_limitations": [
+        "24-case pilot mixes keyword-enriched and background hash selection; not representative.",
+        "Risk/ambiguity labels remain AI-provisional and need domain adjudication.",
+        "All-review result failed the pilot review-burden objective; selective-error denominator must remain explicit."
+      ],
+      "standard_study_status": "not_prepared_or_qualified",
+      "remaining_common_requirements": [
+        "reviewed_representative_cohort",
+        "independent_frozen_labels",
+        "reviewed_sample_size_and_group_uncertainty_limits",
+        "approved_baseline_and_thresholds",
+        "domain_field_scorers_and_H10_adapter",
+        "final_candidate_bounded_fresh_evidence",
+        "H10_release_acceptance"
+      ],
+      "release_allowed": false
+    },
+    "revenue": {
+      "profile": "docs/evaluation/profiles/revenue.json",
+      "profile_canonical_sha256": "5f317f5489ddedc62950b229a2a8a62d1d337c2dca96c555c20d15c6aad04ee5",
+      "historical_evidence_bytes": {
+        "docs/data/revenue-source-cuad-v1.json": "b852424ab854c30bd730ccc90a799907e02d3875a3066d203aed36f842f78540",
+        "docs/data/revenue-billing-worlds-v1.json": "97d4193e8339af5164dedc284b6b45d53fce4cb936e809ba76769adc4d104730",
+        "docs/data/revenue-reconciliation-mechanism-v1.json": "8ed5e6875cbf4412d49e0c33e3c08c84c00c4b7f4f922b098ec6a073e4c25b39"
+      },
+      "historical_limitations": [
+        "Published original spans are references, not independently validated numeric billing truth.",
+        "Constructed billing worlds and reconciliation mechanisms are separate from original extraction quality.",
+        "Qualified meaning labels, frozen baseline/thresholds and fresh held-out extraction evaluation remain required."
+      ],
+      "standard_study_status": "not_prepared_or_qualified",
+      "remaining_common_requirements": [
+        "reviewed_representative_cohort",
+        "independent_frozen_labels",
+        "reviewed_sample_size_and_group_uncertainty_limits",
+        "approved_baseline_and_thresholds",
+        "domain_field_scorers_and_H10_adapter",
+        "final_candidate_bounded_fresh_evidence",
+        "H10_release_acceptance"
+      ],
+      "release_allowed": false
+    },
+    "prior-auth": {
+      "profile": "docs/evaluation/profiles/prior-auth.json",
+      "profile_canonical_sha256": "e30806a268f77fb6691390100c89e5dfefd49f59f56213f21cc3bba51d25cea2",
+      "historical_evidence_bytes": {
+        "docs/data/prior-auth-p1-p3-evidence.json": "024538b5128f3d34091af07024b6ff94b48e0db6cd45b8330e54c3f7b565f93b",
+        "docs/data/prior-auth-review-evidence-v1.json": "4505d2d4545703987dd6495d3b9b09d0fb59f5681fe5b32f762f802bde6809a2"
+      },
+      "historical_limitations": [
+        "12 grouped illustrative/edited/invented cases; AI-provisional labels and no clinical validation.",
+        "Qualified pre-evaluation policy/clinical adjudication remains required.",
+        "No unsupported-met finding in this pilot establishes neither clinical safety nor release acceptance."
+      ],
+      "standard_study_status": "not_prepared_or_qualified",
+      "remaining_common_requirements": [
+        "reviewed_representative_cohort",
+        "independent_frozen_labels",
+        "reviewed_sample_size_and_group_uncertainty_limits",
+        "approved_baseline_and_thresholds",
+        "domain_field_scorers_and_H10_adapter",
+        "final_candidate_bounded_fresh_evidence",
+        "H10_release_acceptance"
+      ],
+      "release_allowed": false
+    },
+    "supply": {
+      "profile": "docs/evaluation/profiles/supply.json",
+      "profile_canonical_sha256": "4a8142eb91328e0a35fdaf37fb0f5d8df4fa01eeda7a845170ad0f179a1cf8c5",
+      "historical_evidence_bytes": {
+        "docs/data/supply-chain-simulator-v1.json": "b84a647a9535efe0e19cdb4dc4ed4262c99f5db57ae710bcb9854f57cdf8d3ce"
+      },
+      "historical_limitations": [
+        "Invented scenario families/outcome formulas are stress tests, not a fitted production simulator.",
+        "Sensitivity/model-shift and approval/replanning/recovery evidence must be combined for release qualification.",
+        "No causal freight-savings or provider-model quality claim follows from solver comparisons."
+      ],
+      "standard_study_status": "not_prepared_or_qualified",
+      "remaining_common_requirements": [
+        "reviewed_representative_cohort",
+        "independent_frozen_labels",
+        "reviewed_sample_size_and_group_uncertainty_limits",
+        "approved_baseline_and_thresholds",
+        "domain_field_scorers_and_H10_adapter",
+        "final_candidate_bounded_fresh_evidence",
+        "H10_release_acceptance"
+      ],
+      "release_allowed": false
+    }
+  },
+  "retrospective_label_acceptance": {
+    "agent": "olist",
+    "case_count": 12,
+    "user_statement": "Accept all 12 proposed labels",
+    "date": "2026-10-24",
+    "evaluator_byte_sha256": "cd9709a9f50f7de1ac62ae51e38ed804fa2895b4e2cfaa1df95d1011f3a76294",
+    "scope": "retrospective_label_acceptance_only",
+    "baseline_approval": false,
+    "threshold_approval": false,
+    "blind_annotation_established": false
+  }
+}

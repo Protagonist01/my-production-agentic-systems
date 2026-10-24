@@ -55,3 +55,8 @@ Fresh original-contract provider evaluation, reviewed normalized commercial labe
 
 
 The integrated private [mechanism capture](data/revenue-reconciliation-mechanism-v1.json) ran the pinned 29-case cohort through both provided-terms and invented grammar paths: 29/29 amount/disposition matches in each, two scoped CLI output paths verified, and private world-store bytes unchanged. Twelve original CUAD development inputs exercised the concrete extractor with a scripted abstention gateway: twelve unsupported responses, zero provider calls. This verifies plumbing and isolation, with original extraction accuracy unmeasured. Full source hashes and the clean executing revision are retained in the aggregate; complete per-case results stay outside Git.
+
+
+## Stronger evaluation requirements — 2026-10-24
+
+[Shared standards](evaluation-standards.md) and the [five-agent readiness inventory](evaluation/readiness.json) apply to the next release study. R7 must separate original extraction/span/meaning quality from constructed billing reconciliation and approved effects. Qualified labels and family-held-out extraction remain required. Existing sealed pilots are unchanged. Missing reviews, approved pre-output thresholds, grouped unseen inputs, complete field scores/accounting or H10 evidence block release. No additional provider run or release approval is inferred.

@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "https://github.com/Protagonist01/my-production-agentic-systems",
-  "updated": "2026-10-23",
+  "updated": "2026-10-24",
   "capacity_hours_per_week": 40,
   "issue_creation_status": "verified",
   "epics": [
@@ -868,11 +868,12 @@
       "checks": [
         "State checks show no duplicate/over-limit/unauthorized effects across fault tests.",
         "Report separates source-grounded and synthetic/adversarial cases, review burden and incomplete results.",
-        "Release artifact contains source/split/code/scorer manifests and a reproducible operational walkthrough."
+        "Release artifact contains source/split/code/scorer manifests and a reproducible operational walkthrough.",
+        "Cross-agent evaluation standard: frozen independently reviewed labels/protocol, grouped unseen holdout, per-field/slice and review-error denominators, group uncertainty, complete accounting and bound H10 audit; see docs/evaluation-standards.md."
       ],
       "priority": "P0",
       "status": "In progress",
-      "blocker": "Separate follow-up meets proposed tiny-pilot criteria, but labels remain AI-provisional; independent label/baseline/threshold approval, representative validation and H10 release acceptance remain pending. Four request templates repeat across splits.",
+      "blocker": "User accepted 12 pilot labels retrospectively. New independent frozen labels, unseen/representative cohort, approved baselines/thresholds, known cost and H10/domain field adapters remain required. Four old templates repeat across splits.",
       "issue_number": 33,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/33",
       "parent_issue_number": 4,
@@ -883,10 +884,11 @@
         14
       ],
       "milestone_number": 2,
-      "branch": "codex/o8-attempt-diagnostics",
-      "review_evidence": "Verified user merge#96 main6bcac64: nine applicable jobs passed,936tests per quality cell/103Postgres, clean audits and exact-main replay. User authorized separate36callGeminiFree follow-up. Frozen0be72b2/new6groups excludes12prior groups: Gemini36/36correct/0unsafe/0unresolved/9of9eligible/12of12all-three, rules36/36, always-review27/36; all108duplicate/cleanup checks passed. All36model token counts known2790input966output, costs unknown. Worker entry median8.225s/max36.348s; old timeout causes unproven. Sealed evidence2b8f76ce independently recomputed offline. Original pilot/labels/holdout unchanged. Focused126pass+correctedregression11pass,139types,sixbuildpairs,installed27resources/zero-provider replay,auditclean. Full local942tests273.88s/139types/208formatted/imports passed; hosted final-head acceptance pending.",
+      "branch": "codex/strong-evaluation-standards",
+      "review_evidence": "Verified user merge#96 main6bcac64: nine applicable jobs passed,936tests per quality cell/103Postgres, clean audits and exact-main replay. User authorized separate36callGeminiFree follow-up. Frozen0be72b2/new6groups excludes12prior groups: Gemini36/36correct/0unsafe/0unresolved/9of9eligible/12of12all-three, rules36/36, always-review27/36; all108duplicate/cleanup checks passed. All36model token counts known2790input966output, costs unknown. Worker entry median8.225s/max36.348s; old timeout causes unproven. Sealed evidence2b8f76ce independently recomputed offline. Original pilot/labels/holdout unchanged. Focused126pass+correctedregression11pass,139types,sixbuildpairs,installed27resources/zero-provider replay,auditclean. Full local942tests273.88s/139types/208formatted/imports passed; hosted final-head acceptance pending. User merged#97 as418c917; main942tests per matrix cell/103Postgres and strict replay passed after one unchanged fault-matrix job rerun (cause unproven). User accepted all12proposed labels after results, then authorized stronger standards for all five agents. New shared audit/profiles/readiness inventory under review; no new live calls or completed standard studies.",
       "implementation_commit": "54953b22c5944a43b377987fcaa837d5369e9ccc",
-      "command_document": "docs/olist-fresh-review.md"
+      "command_document": "docs/olist-fresh-review.md",
+      "evaluation_standard": "docs/evaluation/profiles/olist.json"
     },
     {
       "id": "C1",
@@ -1030,7 +1032,8 @@
       "checks": [
         "Macro-F1, minority slices and risk recall/review-load tradeoff are explicit.",
         "No label leakage or unsupported population/harm claim appears in the report.",
-        "Fresh evidence and required-case gates pass; observed failures remain documented."
+        "Fresh evidence and required-case gates pass; observed failures remain documented.",
+        "Cross-agent evaluation standard: frozen independently reviewed labels/protocol, grouped unseen holdout, per-field/slice and review-error denominators, group uncertainty, complete accounting and bound H10 audit; see docs/evaluation-standards.md."
       ],
       "priority": "P1",
       "status": "Backlog",
@@ -1042,7 +1045,8 @@
         37,
         33
       ],
-      "milestone_number": 3
+      "milestone_number": 3,
+      "evaluation_standard": "docs/evaluation/profiles/cfpb.json"
     },
     {
       "id": "R1",
@@ -1248,7 +1252,8 @@
       "checks": [
         "Real-source and synthetic results are separate; no real recovered revenue claim.",
         "Per-category results and completed/incomplete cases are visible.",
-        "Release manifests, threat model, failure log, runbook and fresh evidence satisfy gates."
+        "Release manifests, threat model, failure log, runbook and fresh evidence satisfy gates.",
+        "Cross-agent evaluation standard: frozen independently reviewed labels/protocol, grouped unseen holdout, per-field/slice and review-error denominators, group uncertainty, complete accounting and bound H10 audit; see docs/evaluation-standards.md."
       ],
       "priority": "P1",
       "status": "Backlog",
@@ -1260,7 +1265,8 @@
         44,
         33
       ],
-      "milestone_number": 4
+      "milestone_number": 4,
+      "evaluation_standard": "docs/evaluation/profiles/revenue.json"
     },
     {
       "id": "P1",
@@ -1415,7 +1421,8 @@
       "checks": [
         "Incorrect recommendations/all recommendations and /non-approvable cases are both reported.",
         "Illustrative versus edited examples and clinical-label limitations remain explicit.",
-        "Fresh results, policy manifests, privacy/injection faults and runbook meet gates."
+        "Fresh results, policy manifests, privacy/injection faults and runbook meet gates.",
+        "Cross-agent evaluation standard: frozen independently reviewed labels/protocol, grouped unseen holdout, per-field/slice and review-error denominators, group uncertainty, complete accounting and bound H10 audit; see docs/evaluation-standards.md."
       ],
       "priority": "P1",
       "status": "Backlog",
@@ -1427,7 +1434,8 @@
         50,
         33
       ],
-      "milestone_number": 5
+      "milestone_number": 5,
+      "evaluation_standard": "docs/evaluation/profiles/prior-auth.json"
     },
     {
       "id": "S1",
@@ -1597,7 +1605,8 @@
       "checks": [
         "Completed, unresolved and unsafe outcomes are all counted.",
         "No actual freight savings claim is made from the simulation.",
-        "Spend/duplicate invariants, fresh candidate evidence, model card and runbook meet gates."
+        "Spend/duplicate invariants, fresh candidate evidence, model card and runbook meet gates.",
+        "Cross-agent evaluation standard: frozen independently reviewed labels/protocol, grouped unseen holdout, per-field/slice and review-error denominators, group uncertainty, complete accounting and bound H10 audit; see docs/evaluation-standards.md."
       ],
       "priority": "P1",
       "status": "Backlog",
@@ -1609,7 +1618,8 @@
         56,
         33
       ],
-      "milestone_number": 6
+      "milestone_number": 6,
+      "evaluation_standard": "docs/evaluation/profiles/supply.json"
     },
     {
       "id": "L1",

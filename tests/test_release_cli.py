@@ -118,7 +118,62 @@ def test_mock_release_exits_nonzero_and_keeps_approval_unchanged(cli_inputs):
     assert not decision["allowed"]
     assert "candidate_mock_evidence" in decision["blockers"]
     assert "baseline_mock_evidence" in decision["blockers"]
+    assert "evaluation:evaluation_standard_inputs_missing" in decision["blockers"]
+    from agent_harness.release_contracts import sha256
+
+    assert decision["evaluation_audit_sha256"] == sha256(
+        (output / "evaluation-audit.json").read_bytes()
+    )
     assert approval_path.read_bytes() == before
+
+
+def test_failed_audit_sidecar_write_never_publishes_decision(cli_inputs, monkeypatch):
+    root, args, approval = cli_inputs
+    output = root / "audit-write-failure"
+    original = release_cli._write_exclusive
+
+    def fail_sidecar(path, content):
+        if path.name == "evaluation-audit.json":
+            raise OSError("invented sidecar failure")
+        original(path, content)
+
+    monkeypatch.setattr(release_cli, "_write_exclusive", fail_sidecar)
+    assert (
+        release_cli.main(
+            [
+                "eval-release",
+                *args,
+                "--output",
+                str(output),
+                "--baseline-approval",
+                str(root / "baseline-approval.json"),
+                "--baseline-approval-sha256",
+                pin(approval),
+            ]
+        )
+        == 1
+    )
+    assert not (output / "result.json").exists()
+
+
+def test_partial_methodology_arguments_are_rejected(cli_inputs):
+    root, args, approval = cli_inputs
+    with pytest.raises(SystemExit):
+        release_cli.main(
+            [
+                "eval-release",
+                *args,
+                "--output",
+                str(root / "partial-audit"),
+                "--baseline-approval",
+                str(root / "baseline-approval.json"),
+                "--baseline-approval-sha256",
+                pin(approval),
+                "--evaluation-profile",
+                "missing.json",
+            ]
+        )
+    assert not (root / "partial-audit").exists()
 
 
 def test_missing_or_wrong_pins_fail_before_new_output(cli_inputs):

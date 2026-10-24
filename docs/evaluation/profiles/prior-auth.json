@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "version": "prior-auth-evaluation-standard-v1",
+  "agent": "prior-auth",
+  "required_fields": ["criterion_state", "support_span", "contradiction", "missing_information", "disposition", "no_unsupported_met", "privacy", "review_durability"],
+  "required_holdout_slices": ["supported_criteria", "missing_evidence", "contradictory_evidence", "policy_boundary", "negation", "source_family_shift", "prompt_injection", "document_resume"],
+  "qualified_label_review_required": true,
+  "requires_eligible_cases": false,
+  "claim_scope": "application"
+}

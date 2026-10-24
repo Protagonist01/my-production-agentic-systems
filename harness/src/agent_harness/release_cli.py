@@ -8,6 +8,8 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from agent_harness.cases import ManifestPin, load_manifest
+from agent_harness.evaluation_audit import read_audit
+from agent_harness.evaluation_binding import verify_binding
 from agent_harness.fault_contracts import FaultPlan
 from agent_harness.fresh_example import RecordingConfig, UppercaseFactory
 from agent_harness.fresh_recording import record_candidate
@@ -16,6 +18,7 @@ from agent_harness.release_contracts import (
     CandidateSpec,
     ReleasePolicy,
     pin,
+    sha256,
     verify_sources,
 )
 from agent_harness.release_evidence import compare_evidence, read_evidence, release_candidate
@@ -38,6 +41,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         "release-policy",
         "baseline-approval",
         "fault-plan",
+        "evaluation-profile",
+        "evaluation-protocol",
+        "evaluation-study",
     ):
         parser.add_argument("--" + name, type=Path)
     for name in (
@@ -46,9 +52,22 @@ def main(argv: Sequence[str] | None = None) -> int:
         "baseline-spec-sha256",
         "release-policy-sha256",
         "baseline-approval-sha256",
+        "evaluation-profile-sha256",
+        "evaluation-protocol-sha256",
+        "evaluation-study-sha256",
     ):
         parser.add_argument("--" + name)
     args = parser.parse_args(argv)
+    audit_names = tuple(
+        "evaluation_" + name + suffix
+        for name in ("profile", "protocol", "study")
+        for suffix in ("", "_sha256")
+    )
+    if any(getattr(args, name) is not None for name in audit_names):
+        if args.command != "eval-release" or any(
+            getattr(args, name) is None for name in audit_names
+        ):
+            parser.error("evaluation qualification requires all six explicit release audit inputs")
     required: tuple[str, ...] = (
         ("schedule", "composition", "source_root")
         if args.command == "eval-record"
@@ -184,8 +203,46 @@ def main(argv: Sequence[str] | None = None) -> int:
                 now=datetime.now(UTC),
                 fault_plan=plan,
             )
+            audit_result: dict[str, object] = {
+                "methodology_qualified": False,
+                "release_allowed": False,
+                "blockers": ["evaluation_standard_inputs_missing"],
+            }
+            if args.evaluation_profile is not None:
+                profile, protocol, study, audit_result = read_audit(
+                    args.evaluation_profile,
+                    args.evaluation_protocol,
+                    args.evaluation_study,
+                    args.evaluation_profile_sha256,
+                    args.evaluation_protocol_sha256,
+                    args.evaluation_study_sha256,
+                )
+                verify_binding(
+                    profile,
+                    protocol,
+                    study,
+                    loaded,
+                    baseline,
+                    candidate,
+                    policy.report.required_case_ids,
+                )
+            audit_json = json.dumps(audit_result, sort_keys=True, separators=(",", ":"))
+            audit_blockers = audit_result["blockers"]
+            if not isinstance(audit_blockers, list):
+                raise ValueError("invalid audit blockers")
+            decision = decision.model_copy(
+                update={
+                    "allowed": decision.allowed and audit_result["methodology_qualified"] is True,
+                    "blockers": decision.blockers
+                    + tuple("evaluation:" + str(b) for b in audit_blockers),
+                    "evaluation_audit_sha256": sha256(audit_json.encode()),
+                }
+            )
             result, allowed = decision.canonical_json(), decision.allowed
         args.output.mkdir(mode=0o700)
+        if args.command == "eval-release":
+            _write_exclusive(args.output / "evaluation-audit.json", audit_json)
+        # Publish the decision last: a failed sidecar write must not leave allowed=true.
         _write_exclusive(args.output / "result.json", result)
         print(
             "Private result written; "

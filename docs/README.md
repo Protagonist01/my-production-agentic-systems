@@ -1,5 +1,7 @@
 # Architecture and implementation plan
 
+All five agents now follow the [stronger evaluation standards](evaluation-standards.md): independent frozen labels, unseen grouped holdout, complete per-field/slice results and separately reviewed release limits. Historical pilots remain limited evidence; new methodology qualification and H10 acceptance are required.
+
 Delivery state updated 2026-10-21. Verified main `5f73fc9` includes the merged R2/R3/R4 Revenue mechanisms; main passed 773 offline tests per matrix cell and 43 Postgres checks. R5/R6/S1 is the current unmerged batch: [approval-bound Revenue effects](revenue-operations.md), authenticated review/event orchestration and independent shipping/weather source preparation. R5 focused transaction/scope/snapshot evidence is integrated; interface/source and final broad acceptance follow. O8/R7 fresh release gates and human-adjudication limits remain pending. C2 #84 is a separate review with AI-provisional labels.
 
 ## Shared platform and vertical boundary

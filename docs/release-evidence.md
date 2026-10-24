@@ -61,3 +61,17 @@ The recording tests actually spawn H6 workers with file state and provider mocks
 Hashes/receipts protect against accidental reuse and artifact changes relative to trusted external pins. They do not authenticate a human reviewer or defeat an operator who controls executable code, can forge every pin/approval and can relabel a mock transport. Review permissions and approval storage are external operational controls; no signing service or hostile-code isolation is implemented. Receipt timestamps rely on the trusted host clock. This is an evidence gate, not deployment authorization or proof of population safety.
 
 Raw model inputs/outputs, provider IDs, private labels, state and approvals stay outside Git. New files/directories use 0600/0700 on POSIX; Windows inherits ACLs and needs a restricted parent directory. Results retain private case identities and are not H8's public-safe telemetry projection. Source snapshots, labels, domain scorers and an actual reviewed baseline remain prerequisites for a domain release. The [Langfuse CI/CD guidance](https://langfuse.com/docs/evaluation/experiments/experiments-ci-cd) supports separately reviewed baselines, declared policy and case-level regression checks; this implementation adds no Langfuse service/SDK changes.
+
+
+## Additional methodology gate — 2026-10-24
+
+The [cross-agent evaluation standard](evaluation-standards.md) adds a separately pinned
+profile/protocol/study audit to `eval-release`. Supply all six corresponding file/pin arguments:
+`--evaluation-profile`, `--evaluation-profile-sha256`, `--evaluation-protocol`,
+`--evaluation-protocol-sha256`, `--evaluation-study`, `--evaluation-study-sha256`.
+An omitted audit now adds `evaluation:evaluation_standard_inputs_missing` and refuses release.
+The result pins its exclusive `evaluation-audit.json` sidecar. Baseline/threshold/label reviews,
+split independence, domain field scores, group uncertainty, complete accounting and current
+H10 evidence must all pass. Existing commands/examples above remain useful for exercising
+the evidence mechanism, but cannot by themselves qualify a domain release. Direct
+`release_candidate` is still an evidence-gate-only API. No old artifact is promoted or rewritten.

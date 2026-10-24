@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "version": "revenue-evaluation-standard-v1",
+  "agent": "revenue",
+  "required_fields": ["span_precision_check", "span_recall_check", "supported_terms", "abstention", "reconciliation_amount", "reconciliation_reason", "authorization", "exact_state", "recovery"],
+  "required_holdout_slices": ["original_contract", "no_answer", "ambiguous_clause", "document_family_shift", "simulated_billing", "missing_billing_facts", "approval_replay", "crash_restart"],
+  "qualified_label_review_required": true,
+  "claim_scope": "application"
+}

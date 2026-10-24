@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "version": "supply-evaluation-standard-v1",
+  "agent": "supply",
+  "required_fields": ["fact_freshness", "action", "per_action_budget", "cumulative_budget", "capacity", "approval", "replanning_bound", "exact_state", "truthful_notice", "recovery"],
+  "required_holdout_slices": ["routine", "regional_disruption", "scarce_capacity", "conflicting_alerts", "expired_alerts", "correlated_delays", "changed_outcome_model", "approval_replay", "crash_restart"],
+  "qualified_label_review_required": false,
+  "claim_scope": "simulation"
+}
