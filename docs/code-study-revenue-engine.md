@@ -1,5 +1,9 @@
 # Study cited extraction and monthly SIM reconciliation
 
+Follow-up inspected 2026-10-24 from merged base `b915f1b`: unmerged
+`codex/three-release-evaluators` adds the [three-issue evaluation preparation](three-release-evaluators.md).
+The original walkthrough below retains its historical implementation/evidence scope.
+
 Inspected 2026-10-21: committed implementation `45ebabb85a8cdbb3142ff32421767d7cff7221c3` on `codex/r4-revenue-engine`, based on merged #87 main `058d1c7c758867546085d16a1224375b0258e6b1`. The source snapshot was committed; these two new documentation files and temporary untracked R2/R3 dependency copies were present locally during documentation work. This unmerged R4 chapter covers three new runtime modules and two invented test modules, with R2 billing DTOs and R3 grants as dependencies. It does not claim a legal extraction benchmark, payment integration or deployed service. Read the [operating guide](revenue-reconciliation.md), [R1 source preparation](code-study-revenue-source.md) and [Build Book](../BUILD_BOOK.md) for context.
 
 ## Follow an invented case

@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 47 — Preparing three release evaluators together](#entry-47--preparing-three-release-evaluators-together)
 - [Entry 46 — Sealing parent-measured trial latency](#entry-46--sealing-parent-measured-trial-latency)
 - [Entry 45 — Recording Olist trials through H10](#entry-45--recording-olist-trials-through-h10)
 - [Entry 44 — Waiting for exit status after sentinel readiness](#entry-44--waiting-for-exit-status-after-sentinel-readiness)
@@ -3026,3 +3027,93 @@ sources passed. Six package pairs rebuilt; corrected installed61harness/35Olistr
 bytes/composition pins matched with network denied and zero-provider6callreplay. The prior
 full local1042test/2SQL pass is retained as initial-head evidence; final synchronized-head
 CI must rerun the complete matrix/110DB checks. No unchanged-head retry or provider call.
+
+## Entry 47 — Preparing three release evaluators together
+**Files touched:** shared study assembly/population accounting, Olist study wrapper, CFPB release report, Revenue extraction/billing reports and tests.
+
+### Context
+The user confirmed the merge was #102 (not nonexistent #103), then explicitly authorized
+preparation for #33/#38/#45 together while downstream release acceptance stays blocked by
+#33. Merged main b915f1b has reviewed tree b7652d2. Its hosted checks are being verified.
+No new provider budget, source sampling, labels or release authorization is inferred.
+
+### Before you read on
+How do you report three repeated trials when one is absent without silently changing the
+population, and how do you assemble a study without authoring reviews or replacing evidence?
+
+### Decisions and construction
+Keep H10 recording distinct from methodology projection. Build StandardRows from already
+verified candidate/baseline journals: use actual domain scores, assessed outcome, observed
+usage and sealed parent timing. Require supplied StandardCases and protocol pins, then run
+the existing binding check. Do not invent slice/family/reviewer metadata, limits or baseline
+receipts. Olist's wrapper must independently read its saved state observations and enforce
+original development/regression splits retained in private labels.
+
+For CFPB, score the actual Decision rather than reconstructing a route from cached cheap/
+strong predictions. Freeze case/trial inventories, reject duplicate/unexpected identities,
+count missing/failed/invalid rows in all denominators, report product/pair macro-F1 and risk
+review recall separately from operational failures. Consumer-selected reference categories
+and AI risk labels retain their original limits. Report source kinds and splits separately;
+no privacy/durable-review or independent-annotation credit comes from classification alone.
+
+For Revenue, original-contract spans and simulated billing remain separate reports and
+populations. Exact literal span precision/recall against published references is not legal
+meaning or numeric-term validation. Match submitted citations to unchanged input before
+scoring. For billing, compare literal independently supplied expectations, never call the
+production reconciler to create expected answers. Report benign false alarms, case-weighted
+and SIM-amount-weighted discrepancy recall with missing outcomes in their denominators.
+These functions measure supplied observations; they do not manufacture H10 receipts or
+assert authorization/recovery/state gates were tested.
+
+### Verification in progress
+Use invented inputs to exercise wrong and missing outputs, abstention, forged spans,
+wrong identities, partial classifications and imbalanced SIM amounts. A successful report
+must keep release_allowed false and identify missing release evidence. Full checks,
+installed-package proofs, exact-head replay and hosted acceptance follow actual execution.
+
+Focused evaluator checks passed27tests10.66s after adding Olist preflight coverage; strict
+typing passed156sources. Review found an additional reporting risk: an invalid classifier
+route must not hide a claimed auto-classification on a required-review case. Preserve both
+claimed and verified classification counts, count missed review even for invalid claims,
+and put all classified claims in the selective-error denominator. Sim billing similarly
+counts unsupported autonomous claims as missed review rather than hiding them as invalid.
+The first local SQL check stopped during Docker setup with zero worker/model dispatches: no
+engine pipe or Docker Desktop processes existed. Start Desktop without stopping any other
+containers; retain this setup failure separately from the actual SQL acceptance result.
+The full locked non-database suite is now running. Main#102run40134019972 completed success
+on attempt1; actual Windows3.12 log1042tests/151types/12artifacts/zero-provider replay and
+Postgres110tests152.05s verified. Merged tree b7652d2 matches reviewed cb86027.
+
+After Desktop startup, the Olist refund SQL/H10/read-back/projection check passed in
+201.84seconds (one case, four unchanged scenarios deselected locally). Three new mock
+trials preserve usage/fields/parent timing; saved-state observations reverify after owned
+database cleanup. The same mock artifact in both baseline/candidate slots tests projection,
+not independent model comparison. Audit remains blocked on missing reviews/limits/coverage.
+Installed proof matched63harness/36Olist/24CFPB/26Revenue resources; all four APIs imported
+without google/langfuse/pydantic_ai SDKs or unrelated verticals, under network denial. A
+missing extraction trial yields exactly0.5spanrecall; replay consumes6recordings with0provider.
+Final field-count additions make priority/ambiguity, abstention and billing amount/reason
+visible separately; final focused checks and package rebuild verify these small additions.
+The first full local suite began before these final count-only additions; retain its actual
+result as such, with final exact-head hosted checks required after the focused verification.
+
+Final focused suite passed27checks33.09seconds, with156typed sources, lint/format and
+rebuilt six package pairs. Documentation flags a design limit found during review: the
+Olist one-process convenience wrapper requires both artifacts to match installed source
+inventories. Mixed-code baseline/candidate artifacts need separate frozen read-back
+environments and a reviewed interchange workflow, not recomputation of old code in the new
+wheel. The shared projector accepts already verified objects but does not replace domain
+readers. No claim of complete cross-version comparison is made. The full suite is still
+running; final installed wheel proof and exact-head hosted acceptance follow.
+
+Local verification completed: full locked check1,069tests718.09seconds,156typed sources,
+236formatted Python files plus lint/import/lock checks. That run began before final
+count-only report additions; final focused27tests33.09seconds, lint/types/format and rebuilt
+packages verify those additions. Olist real SQL/H10/projection1passed201.84seconds,4unchanged
+scenarios deselected locally; initial Docker-closed setup failure retained (zero dispatches).
+Final installed proof matched63harness/36Olist/24CFPB/26Revenue resources, all four APIs,
+provider SDKs/unrelated verticals absent, networking denied, six replay calls/zero provider.
+Six package pairs built; locked audit clean. Historical inventory/report/source/draft pins
+unchanged; publication17files excludes configured credentials and24source identifiers.
+124relative documentation links resolve and changed JSON parses. Require final committed-head
+hosted full matrix/110Postgres checks; no completed release study is inferred.
