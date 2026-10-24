@@ -234,7 +234,14 @@ def test_schema_rejects_duplicate_rows_and_unsafe_success():
         audit(p, protocol, s.model_copy(update={"protocol_sha256": "0" * 64}))
 
 
-def test_cli_requires_external_pins_and_never_overwrites(tmp_path, capsys):
+def test_cli_requires_external_pins_and_never_overwrites(tmp_path, capsys, monkeypatch):
+    class Clock:
+        @staticmethod
+        def now(tz):
+            return NOW + timedelta(seconds=3)
+
+    # The CLI uses wall time; its invented study must not depend on the host date.
+    monkeypatch.setattr("agent_harness.evaluation_audit.datetime", Clock)
     p, protocol, s = sample()
     args = []
     for name, value in (("profile", p), ("protocol", protocol), ("study", s)):

@@ -2,6 +2,8 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 43 — Serializing owned process bookkeeping](#entry-43--serializing-owned-process-bookkeeping)
+- [Entry 42 — Observing domain fields and controlled recovery](#entry-42--observing-domain-fields-and-controlled-recovery)
 - [Entry 40 — Measuring Olist attempt startup and reconciling usage](#entry-40--measuring-olist-attempt-startup-and-reconciling-usage)
 - [Entry 41 — Separating pilot success from evaluation qualification](#entry-41--separating-pilot-success-from-evaluation-qualification)
 - [Entry 39 — Repairing a dependency audit after merge](#entry-39--repairing-a-dependency-audit-after-merge)
@@ -2649,3 +2651,158 @@ rawWindows report hash and theLF-normalized Git-blob hash to prove each reported
 artifact digest, not credentials. Follow the existing repository convention: add only the
 two exact commit/file/rule/line fingerprints to.gitleaksignore, retain the scanner/rules and
 record the initial failure. The corrected final-head hosted scan must pass independently.
+
+## Entry 42 — Observing domain fields and controlled recovery
+**Files touched:** `field_evaluation.py`, `fresh_execution.py`, `fresh_release.py`, `cohort_draft.py` in the Olist package.
+
+### Context
+After #98, a passing shared standard still needs actual domain observations. The old collector
+saved outcome/message/receipt, but omitted the workflow reason. Duplicate delivery was observed;
+an interruption after committing was not. The user authorized preparation of a stronger draft,
+with no provider calls. Preserve the old evidence and do not fill its missing reason from labels.
+
+### Before you read on
+How can you distinguish a correct refund with the wrong reason from a fully correct trial,
+and distinguish duplicate delivery from reopening after an interruption?
+
+### Options considered
+Recomputing the runtime policy for labels would make the scorer agree with its own implementation.
+Instead, compare actual fields against evaluator-only literal labels and independently construct
+expected ledger/order/budget state. Keep the historical aggregate report unchanged. Add separate
+field results so absent older observations remain unknown.
+
+### How to build it
+Add optional workflow_result and recovery_observation fields to FreshRow. Verify the saved result
+matches the independently collected response. In score_fields, compare parsed intent/partial
+amount, actual action/receipt amount, actual reason and fixed truthful message separately. Reuse
+the independent expected-state constructor for orders, ledger and original run budget. An unknown
+field makes qualification unresolved; it cannot become a success by copying the expected label.
+
+At the business after_commit hook raise a dedicated evaluator exception, collect committed state,
+close the checkpoint connection, reopen durable components and resume with a planner that refuses
+a second invocation. Compare committed, resumed and final state. Then perform the ordinary duplicate
+delivery check separately. This is a controlled exception and connection reopen, not an OS process
+kill or a general infrastructure-failure test. Required recovery without this observation is unknown.
+
+Prepare six new source groups by seeded selection after excluding every prior cohort group. Keep
+two related variants per group and all language-family metadata in the same partition. Construct
+payment totals explicitly as 99.99, 100.00 or 100.01 SIM; they are fictional, not converted source
+currency. Save inputs separately from provisional evaluator labels and fault/slice metadata. The
+12-case review draft has two holdout groups and cannot meet representative release evidence alone.
+No existing capture/holdout is reused and no model or Langfuse mutation is part of preparation.
+
+### Verification in progress
+The initial field tests passed; the combined check also hit a Windows temporary-folder permission
+error because TEMP had not been set to the external D drive test cache. Rerun with the established
+TEMP/TMP configuration. A targeted mypy invocation omitted the workspace harness source and reported
+untyped imports; the repository-wide invocation resolves those imports and found one real missing
+Literal annotation on StandardRow.outcome. Fix that annotation and require the full repository check.
+Actual final results and SQL acceptance will be recorded after running them.
+
+The first draft's exported inputs included structured source facts and intended intent. Before
+any dispatch, narrow that export to opaque case_id/text only and retain the initial unreviewed
+v1 folder. Prepare a separate v2 draft with its own pins; neither has model output. Add a
+regression that checks the written provider projection, not only the in-memory case constructor.
+The focused 17 tests passed after using the external D-drive cache with the required filesystem
+permission. Docker started successfully; actual SQL recovery checks are running. Because the
+projection correction came after the first full sweep started, require a stable-source full
+sweep again before opening the PR; do not call the overlapping sweep final acceptance.
+
+The overlapping full sweep finished with999passes and one failure in823.27seconds. The failed
+CLI test used an invented study fixed at2026-10-24UTC but read the real host clock before that
+instant. Its sole blocker was protocol_or_capture_time_order: production correctly refused a
+future capture. Pin the CLI module's clock in that test to the same explicit invented NOW+3s
+used by the direct audit fixtures. Do not relax production time ordering or rewrite evidence.
+The draft/scorer regression suite passed9tests; real SQL collector checks passed6tests in
+133.40seconds. A complete final SQL suite and stable-source offline sweep still follow.
+
+The complete real Postgres suite passed105tests in1204.18seconds, including both new controlled
+recovery cases. The separately installed wheel matched29Olist resources, imported both new
+modules with provider SDKs/other verticals absent and replayed six invented calls with networking
+disabled. All six wheel/sdist pairs built and the locked dependency audit found no known
+vulnerabilities. Offline read-back verified the old108row capture inventory/report unchanged;
+new draft pins and the source DB pin match. Publication checks found24selected source order IDs
+and configured credentials absent in13publishable files. Selected new customer groups are
+also distinct and disjoint from prior cohorts. No provider dispatch or live dataset mutation.
+The user requested AI propositions before their review; retain that assistance provenance and
+do not infer blind annotation or label acceptance. Final offline/hosted acceptance is pending.
+
+The stable-source offline sweep finished1001passes plus one existing recording-test failure in
+1025.16seconds. Its invented capture had three model-stage timeout/Run-deadline-exhausted
+results, zero calls/receipts and no trial errors; read_evidence correctly refused missing
+contiguous dispatch receipts. The scheduled deadline was90seconds, while the capture's UTC
+wall-clock interval was41261.176993seconds (fixture clock to capture start0.01175seconds).
+That interval exceeds the complete monotonic test-run duration and is consistent with a wall
+clock discontinuity; its underlying cause is not proven. Rerun the entire recording regression
+module unchanged, keep all bounds/assertions and retain this failure. Require the final hosted
+full matrix as independent acceptance; do not report this local full command as passing.
+
+The complete recording regression module then passed21tests unchanged in131.35seconds. Keep
+the failed full-run result and its clock discrepancy visible; this rerun does not retroactively
+make that full command pass. Focused standards/domain regressions passed47tests in17.26seconds;
+strict typing passed144sources, lint/format/import/lock checks passed. The review PR must obtain
+its final full hosted OS/Python matrix and105Postgres checks before acceptance. There are no
+production policy, schema, dependency or deadline changes. New labels remain AI-provisional.
+
+## Entry 43 — Serializing owned process bookkeeping
+**Files touched:** `process_control.py`, `trial_runner.py`, `isolated_transport.py`, process regression tests.
+
+### Context
+After the first all-green PR99 run, a body-edit-triggered run40088038931 failed Ubuntu3.12
+in test_faults_require_explicit_factory_composition: one worker_cleanup_error aborted the
+remaining rows. The gate then failed; the other quality cells and Postgres passed. Earlier
+fault-matrix cleanup failures were retained as cause-unproven. The user asked us to fix checks.
+
+### Before you read on
+Why can starting a different process cause a joined worker to appear alive? Read CPython's
+BaseProcess.start -> _cleanup -> other_child._popen.poll path before assuming each Process
+object is touched only by its owner thread.
+
+### Options and construction
+Do not rerun until green or accept worker_cleanup_error as an expected composition failure.
+CPython issue130895 documents concurrent waitpid/poll reaping races, including Linux spawn.
+Our ThreadPoolExecutor permits this exact concurrent access: one thread starts a child while
+another joins/checks a previous one. This is a source-confirmed race exposure, not proof of
+the precise interleaving in the failed hosted worker (those logs lack scheduling traces).
+
+Add one shared process-control lock used by both trial and SDK worker paths. Wrap start,
+nonblocking join, is_alive, exitcode, terminate, kill and close. Wait on the public process
+sentinel outside that lock, then join(0) inside it. Holding the lock across the full join
+would serialize trials and prevent another coordinator from terminating its worker; avoid it.
+Keep all existing execution and cleanup limits and fail-closed state preservation unchanged.
+The lock protects harness-owned calls, not unrelated third-party Process operations. Starting
+processes remains a short serialized control operation; no hard OS scheduling guarantee is made.
+
+Add a deterministic regression using the actual CPython POSIX poll implementation with a
+staged fake waitpid: pause after reaping but before assigning returncode, then attempt another
+start's cleanup poll. It must wait until the status is recorded. Separately prove a waiting
+worker does not block another start, and retain actual concurrent spawn/fault/cleanup tests.
+Actual verification results will follow; do not claim the hosted cause fully proven.
+
+The first regression import assumed POSIX WNOHANG exists on Windows and failed collection.
+Load CPython's POSIX poll only inside the test after stubbing that constant, and restore OS
+functions after all test threads join. The test now includes an unprotected control that must
+reproduce the false-alive result, not just a successful guarded path. Initial typing passed
+145sources. Real worker/fault/control regression results remain pending.
+
+The user explicitly approved all12strong-draft-v2 labels only. Save an exclusive private
+acceptance sidecar bound to evaluator SHA8a1ea8d2..., recording review of AI propositions and
+no PR/merge/provider/baseline/threshold/release approval. Do not rewrite the original AI
+provenance or claim independent blind annotation.
+
+The corrected deterministic/real-worker suite passed156tests in198.52seconds. Five actual
+Postgres worker tests passed in149.33seconds, including restricted logins, committed-state
+inspection after reaping and timeout cleanup. All six package pairs built, the locked audit
+found no known vulnerabilities, and publication checks found configured keys/24source IDs
+absent across19publishable files. Frozen source/evaluator/input/metadata pins remain unchanged.
+Installed verification matched61harness resource bytes with no provider SDKs and networking
+disabled, replaying six synthetic calls with zero provider calls. The stable full suite and
+new-head hosted matrix are still pending; preserve the original failed run in the PR record.
+
+The stable-source complete locked check passed1005tests in571.85seconds,145typed sources,
+219formatted Python files, both import contracts, lint and lock validation. The two existing
+event-loop/cache warnings are non-failing. Installed Olist also matched29resource bytes;
+both installed probes replayed six synthetic calls with networking disabled/zero provider
+calls. No assertion, execution/cleanup limit, SQL schema or dependency changed. Publish the
+fix to the existing PR and require the new commit's full hosted matrix/Postgres/secret/audit
+checks; use comments for final acceptance so a body edit does not trigger an unchecked new run.

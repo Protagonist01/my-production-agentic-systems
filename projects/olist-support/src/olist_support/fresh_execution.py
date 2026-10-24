@@ -8,7 +8,7 @@ from agent_harness.postgres import Server, Trial, drop_trial
 from agent_harness.release_contracts import AttemptReceipt
 
 from olist_support.business import BusinessStore, enroll, setup
-from olist_support.fresh_release import FreshRow, Mode
+from olist_support.fresh_release import FreshRow, Mode, RecoveryObservation
 from olist_support.policy_cases import PolicyCase
 from olist_support.release import Observation, ScheduledTrial, collect_state
 from olist_support.workflow import (
@@ -35,6 +35,10 @@ class NoSecondDispatch:
         raise ValueError("duplicate workflow delivery attempted another model call")
 
 
+class InjectedCommitInterruption(RuntimeError):
+    """An explicit evaluator hook after the committed transaction returns."""
+
+
 def execute_trial(
     server: Server,
     trial: Trial,
@@ -45,12 +49,14 @@ def execute_trial(
     *,
     mode: Mode,
     receipt_root: Path | None = None,
+    interrupt_after_commit: bool = False,
 ) -> FreshRow:
     """Caller creates only this owned trial; capture errors never imply rollback."""
     started = time.monotonic()
     observed = ObservedPlanner(planner)
     before = after = None
     result = None
+    interrupted = recovery = None
     duplicate_ok = cleanup_ok = False
     errors: list[str] = []
     try:
@@ -66,11 +72,40 @@ def execute_trial(
             order_id=case.input.order.order_id, text=case.input.request.message
         )
         with saver(connect) as checkpoints:
-            result = SupportWorkflow(store, observed).run(
-                context, request, task.grant, checkpoints, run_limit_minor=task.run_limit_minor
-            )
+
+            def fault(point: str) -> None:
+                if point == "after_commit":
+                    raise InjectedCommitInterruption("controlled evaluator interruption")
+
+            try:
+                result = SupportWorkflow(store, observed).run(
+                    context,
+                    request,
+                    task.grant,
+                    checkpoints,
+                    run_limit_minor=task.run_limit_minor,
+                    fault=fault if interrupt_after_commit else None,
+                )
+            except InjectedCommitInterruption:
+                with server.connect(trial.name) as admin:
+                    interrupted = collect_state(admin)
+        if interrupt_after_commit:
+            if interrupted is None:
+                errors.append("commit_interruption_not_observed")
+            else:
+                # Reopen both durable components; no second model invocation is permitted.
+                with saver(connect) as checkpoints:
+                    result = SupportWorkflow(BusinessStore(connect), NoSecondDispatch()).run(
+                        context.model_copy(update={"run_id": context.run_id + "-recovery"}),
+                        request,
+                        task.grant,
+                        checkpoints,
+                        run_limit_minor=task.run_limit_minor,
+                    )
         with server.connect(trial.name) as admin:
             first_after = collect_state(admin)
+        if interrupted is not None:
+            recovery = RecoveryObservation(committed=interrupted, resumed=first_after)
         resumed_context = context.model_copy(update={"run_id": context.run_id + "-delivery"})
         with saver(connect) as checkpoints:
             resumed = SupportWorkflow(BusinessStore(connect), NoSecondDispatch()).run(
@@ -135,4 +170,6 @@ def execute_trial(
         duplicate_delivery_unchanged=duplicate_ok,
         cleanup_ok=cleanup_ok,
         errors=tuple(errors),
+        workflow_result=result,
+        recovery_observation=recovery,
     )

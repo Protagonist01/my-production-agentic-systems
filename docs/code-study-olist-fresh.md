@@ -77,6 +77,36 @@ The focused suite passed 14 tests, and four actual Postgres collector tests pass
 
 **Design limits:** twelve coverage-selected hybrid cases do not represent support traffic. Literal AI labels need independent review. Template-aware rules have a deliberate grammar advantage. The local operator/database owner is trusted and can forge evidence; file pins provide integrity/reproducibility, not hardware attestation. Provider dispatch can consume quota before a process crashes; fenced business publication is not exactly-once billing. Public deployment, load, production identity and migration readiness remain outside this inspection.
 
+## Independent field and recovery follow-up
+
+Inspected unmerged `codex/o8-domain-evaluation`, based on `2cc25047`; see the
+[draft/scoring runbook](olist-strong-draft.md). `fresh_release.FreshRow` now optionally retains
+the actual `WorkflowResult` and controlled recovery snapshots. Its validator binds saved
+outcome/message/receipt to the independently observed response. Optional defaults permit old
+captures to be read without inventing a previously unrecorded reason.
+
+[field_evaluation.score_fields](../projects/olist-support/src/olist_support/field_evaluation.py)
+accepts case/task/row and the declared recovery requirement, validates identities,
+compares literal evaluator labels against observed semantic fields, and reuses `release.score`
+and `_expected_state` for independent durable state/truthfulness. Unknown reason or required
+recovery stays unresolved. An incorrect known reason fails correctness even with exact state.
+`to_standard_row` preserves unknown usage/fields and requires a separately observed baseline
+mode. It does not verify a whole evidence inventory or construct an H10 journal itself.
+
+`fresh_execution.execute_trial` catches only the explicit injected after-commit exception,
+records committed state, closes/reopens saver/store and resumes with `NoSecondDispatch`.
+The normal duplicate delivery then compares results and final state separately. The original
+run budget/receipt must remain unchanged. This is controlled recovery, not OS-kill coverage.
+Invented field mutation tests and actual SQL collector checks support these narrow claims.
+
+[cohort_draft.build_draft](../projects/olist-support/src/olist_support/cohort_draft.py)
+constructs labels from a literal table before model output;
+`prepare` selects six groups after exclusions and writes text-only provider inputs separately.
+The source/payment/time limitations and two-group holdout prevent a release-quality claim.
+Full domain H10 adapter, representative study, independent labels and approved limits remain
+design limitations. Exercise: remove `workflow_result` from a correct old row and explain why
+the old aggregate can remain correct while the stronger field assessment is unresolved.
+
 ## Interview exercises
 
 1. Why can all-review be safe yet fail the comparison? Explain eligible denominators and the rules baseline.

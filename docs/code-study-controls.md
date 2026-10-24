@@ -97,3 +97,12 @@ crashes, oversized frames and forced timeout. The fake completed-during-startup 
 the assertion that even a valid late response cannot bypass a deadline. Existing 30-second
 defaults remain; only the separately pinned O8 plan selects the already permitted 60-second
 attempt limit. The [follow-up runbook](olist-followup-review.md) records explicit conditions.
+
+The unmerged continuation after `2da004a` wraps SDK and trial processes with the same
+[OwnedProcess](../harness/src/agent_harness/process_control.py) control boundary. It protects
+against cross-thread child-status polling during another process start. Sentinel waiting
+occurs outside the shared lock; only short process operations serialize. See the
+[trial follow-up](code-study-trials.md#shared-process-bookkeeping-follow-up) for the upstream
+race, deterministic reproduction and limits. Deadline checks, terminate/kill allowances,
+unknown usage accounting and timing attribution remain unchanged. This does not prove the
+precise cause of every historical cleanup failure.
