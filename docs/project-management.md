@@ -201,3 +201,7 @@ After user merge of #84 as95397c4 and exact-main40003918806 verification (907 te
 ## O8 fresh review package after #94
 
 On verified main3601508, user authorized fresh Gemini Free evaluation and preparation of labels/baselines/thresholds for review, then delegated the first12case draft choice. New exact source groups exclude the old pilot; request text is explicitly constructed and provider input contains no original order/review fields. Three trials per case cap live attempts at36; template-aware rules and always-review run independently. Labels remain AI-provisional, missing/failure cases remain scheduled and final release stays false pending actual evidence and review. [Operations](olist-fresh-review.md), [source study](code-study-olist-fresh.md) and Entry38 record implementation and actual results. No new parallel-agent authorization, real payment, public deployment or release promotion is inferred.
+
+## Partial dispatch and process-death preparation
+
+The [adapter and crash walkthrough](domain-dispatch-and-crash.md) covers shared H10 mock recording, CFPB classifier and Revenue extractor adapters, private read-back checks and the zero-model Olist SIM process-death drill. Missing domain evidence remains a scorer error; #33/#38/#45 remain open and release-blocked. Main after #103 failed one timing-tamper test; this batch corrects the test seal without weakening production checks. Final acceptance is recorded on the review PR.

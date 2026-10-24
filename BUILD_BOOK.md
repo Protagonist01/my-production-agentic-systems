@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 48 — Recording domain dispatch and real process-crash evidence](#entry-48--recording-domain-dispatch-and-real-process-crash-evidence)
 - [Entry 47 — Preparing three release evaluators together](#entry-47--preparing-three-release-evaluators-together)
 - [Entry 46 — Sealing parent-measured trial latency](#entry-46--sealing-parent-measured-trial-latency)
 - [Entry 45 — Recording Olist trials through H10](#entry-45--recording-olist-trials-through-h10)
@@ -3117,3 +3118,57 @@ Six package pairs built; locked audit clean. Historical inventory/report/source/
 unchanged; publication17files excludes configured credentials and24source identifiers.
 124relative documentation links resolve and changed JSON parses. Require final committed-head
 hosted full matrix/110Postgres checks; no completed release study is inferred.
+
+## Entry 48 — Recording domain dispatch and real process-crash evidence
+**Files touched:** shared mock domain recorder/read-back, CFPB and Revenue extraction adapters,
+Olist process-crash collector, focused and required SQL tests.
+
+### Context
+User merged #103 and asked to proceed. The authorized #33/#38/#45 preparation batch continues;
+no new provider budget or release approval. Merge fb9bfd0 has reviewed tree9c181de; main CI
+is being verified. #103's reports still consume supplied observations, while Olist's H10
+recovery is a controlled exception/reopen rather than process death.
+
+### Decisions before construction
+For CFPB/Revenue, connect actual typed application calls to the shared H10 receipt gateway,
+with a mock-only composition for this preparation step. Agent input contains only the closed
+public projection. Scorers bind the complete shared result to private saved observations;
+H10 seals their digests in score references, and the reader recomputes them after execution.
+Freeze complete harness/domain Python/SQL inventories. Never load credentials or import old
+outputs as fresh execution. Mock JSON responses have explicitly invented zero token/cost
+usage and remain origin=mock; unknown-cost mock variants must still fail H10 read-back.
+Missing privacy/durable-review/numeric-term/business-state evidence must emit scorer errors,
+not default True. These partial adapters cannot qualify a complete domain release.
+
+For Olist, add an explicitly operator-selected offline SIM drill in the parent, outside
+H10's daemon worker. An owned spawned process hard-exits only at the after-commit callback;
+the parent observes exit code/boundary, independently reads SQL, starts a new workflow/store/
+checkpointer with NoSecondDispatch, and reads all SQL again after restart and redelivery.
+Save private before/committed/resumed/duplicate states and actual result. Recompute exact
+permitted state against supplied private labels after disposable DB cleanup. This drill has
+no model, receipt gateway or quality claim, and cannot be relabeled as fresh H10 evidence.
+Keep timeout/start/crash/cleanup failures visible; never release state under a live worker.
+
+### Verification in progress
+Exercise actual spawned H10 mock calls and receipt nonces, changed/missing/extra sidecars,
+failed calls/unknown cost and unsupported field errors. For Olist use real restricted SQL and
+process death, then mutate saved state/exit/boundary evidence. Full checks and installed/hosted
+acceptance follow actual execution. Keep all historical cohorts/holdouts/labels unchanged.
+
+### Main CI timing-test failure
+Main40141937105 failed Windows/Python3.12 at the new timing-tamper test (1068passed/1failed).
+The other three quality jobs, Postgres, audits and secret scan passed; keep the failed run.
+The test changed all parent phases to0 and then re-sealed the changed batch. The assembler
+correctly uses the sealed duration, so rejection depended solely on a real UTC receipt span
+being positive. A fast receipt can have identical timestamps on Windows. This is an invalid
+test assumption, not evidence that perf_counter regressed. Preserve the original batch pin
+when mutating timing; the existing exact-binding deterministic tests cover altered study
+claims. Do not relax production checks, add sleeps/epsilon, or retry unchanged main. The
+precise receipt timestamp values were not logged; the zero-span explanation is inferred
+from the only passing branch in the inspected binding code.
+
+### Construction feedback
+The first adapter run exposed an omitted required example-context argument; fixing the synthetic fixture yielded14passed58.98seconds. SQL setup first failed with Docker closed. After starting Desktop, the test caught an invalid zero-valued Budget: the shared schema requires positive calls/tokens. Preserve that shared contract. The operator drill requires explicit offline mode and receives no model/gateway; the context budget is unused, not evidence of permitted provider spending. Corrected SQL acceptance is running. Six package pairs build and the locked audit is clean. Preliminary installed proof matches64/37/25/27 resources and offline replay6calls/zero-provider; rebuild Olist after the budget correction before final acceptance.
+
+
+Corrected real SQL drill:2passed113.33seconds. The parent observed exit23, verified exact committed/restarted/redelivered state, original operation receipt and duplicate result, then recomputed saved evidence after disposable DB deletion. Negative changes to boundary, exit, state, result, errors and external byte pin fail. Fourteen mock adapter tests pass; lint and160typed sources pass. Full regression remains running; no unexecuted result is reported as accepted.

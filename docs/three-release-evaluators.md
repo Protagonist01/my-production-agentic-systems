@@ -165,3 +165,7 @@ Six package pairs built; locked audit clean. Historical inventory/report/source/
 unchanged; publication17files excludes configured credentials and24source identifiers.
 124relative documentation links resolve and changed JSON parses. Require final committed-head
 hosted full matrix/110Postgres checks; no completed release study is inferred.
+
+## Partial dispatch and process-death preparation
+
+The [adapter and crash walkthrough](domain-dispatch-and-crash.md) covers shared H10 mock recording, CFPB classifier and Revenue extractor adapters, private read-back checks and the zero-model Olist SIM process-death drill. Missing domain evidence remains a scorer error; #33/#38/#45 remain open and release-blocked. Main after #103 failed one timing-tamper test; this batch corrects the test seal without weakening production checks. Final acceptance is recorded on the review PR.

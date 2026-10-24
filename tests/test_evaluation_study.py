@@ -73,7 +73,10 @@ def test_projection_refuses_unbound_or_unobserved_evidence(binding, change):
         candidate = replace(
             candidate,
             batch=batch,
-            manifest=candidate.manifest.model_copy(update={"batch_sha256": pin(batch)}),
+            # Keep the independently sealed batch pin. An altered duration cannot
+            # be made trusted by re-sealing it inside a tamper test. Real receipt
+            # UTC spans can round to zero on Windows and are not a minimum timer.
+            manifest=candidate.manifest,
         )
     with pytest.raises(ValueError):
         assemble_study(p, protocol, cases, loaded, baseline, candidate, required_case_ids=required)

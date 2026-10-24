@@ -411,3 +411,7 @@ CFPB C3/C4: [typed triage and durable reviewer operations](docs/cfpb-triage-oper
 
 
 O8 fresh review extension: [operator package](docs/olist-fresh-review.md) and [execution/source study](docs/code-study-olist-fresh.md). User authorized Gemini Free after verified #94; final release approval and independent labels/baseline review remain separate.
+
+## Partial dispatch and process-death preparation
+
+The [adapter and crash walkthrough](docs/domain-dispatch-and-crash.md) covers shared H10 mock recording, CFPB classifier and Revenue extractor adapters, private read-back checks and the zero-model Olist SIM process-death drill. Missing domain evidence remains a scorer error; #33/#38/#45 remain open and release-blocked. Main after #103 failed one timing-tamper test; this batch corrects the test seal without weakening production checks. Final acceptance is recorded on the review PR.
