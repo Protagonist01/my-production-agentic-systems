@@ -1,6 +1,6 @@
 # Project management
 
-Updated:2026-10-23. User-merged #96 is verified as main6bcac64 with identical reviewed tree, nine applicable main jobs,936tests per quality cell/103Postgres and clean exact-main replay. Both dependency audits pass. The user authorized a separate O8#33 follow-up with a new36callGeminiFree cap. Frozen0be72b2 scored36/36correct with complete token usage and local attempt diagnostics; the original six-timeout pilot remains unchanged. Four repeated request templates and provisional labels limit the result. Final release and downstream tasks remain gated by independent review, representative validation and H10 acceptance; native board unverified.
+Updated: 2026-10-24. User-merged #97 is verified as main418c917 with identical reviewed tree. Main CI passed on attempt2 after one unchanged fault-matrix test rerun;942tests per quality cell/103Postgres, audits and exact-main replay passed. Original failure/cause-unproven evidence is retained. The user accepted 12Olist labels retrospectively, then authorized [stronger evaluation across all five agents](evaluation-standards.md). The shared audit/CLI/profile implementation is under review on codex/strong-evaluation-standards; no new provider calls, blind-label claim, baseline/threshold approval or release is inferred. #33 and downstream gates remain open.
 
 ## Scope and source of truth
 

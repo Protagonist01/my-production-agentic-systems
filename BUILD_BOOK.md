@@ -3,6 +3,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 - [Entry 40 — Measuring Olist attempt startup and reconciling usage](#entry-40--measuring-olist-attempt-startup-and-reconciling-usage)
+- [Entry 41 — Separating pilot success from evaluation qualification](#entry-41--separating-pilot-success-from-evaluation-qualification)
 - [Entry 39 — Repairing a dependency audit after merge](#entry-39--repairing-a-dependency-audit-after-merge)
 - [Entry 37 — Typed CFPB triage and scoped review](#entry-37--typed-cfpb-triage-and-scoped-review)
 
@@ -2527,3 +2528,124 @@ vulnerabilities. Existing event-loop deprecation and local pytest-cache permissi
 were non-failing. Publication checks covered18files with12source order identifiers and
 configured credentials absent;226relative file links resolved. Source remained unchanged
 after the candidate freeze; remaining edits package aggregate evidence and documentation.
+
+## Entry 41 — Separating pilot success from evaluation qualification
+**Files touched:** shared evaluation contracts/audit/binding/release CLI, five profile files,
+evaluation standards/readiness inventory, release/runbook/study/planning documentation and tests.
+
+### Context
+
+After user merge #97, main418c917 matched the reviewed tree. Main initially failed one
+invented fault-matrix assertion on Ubuntu/Python3.12 (941 passes); the unchanged test passed
+locally and one failed-job rerun passed942tests. Other matrix jobs/103Postgres and strict
+exact-main replay passed. The original failure remains recorded; its cause is unproven.
+
+The user accepted all12proposed Olist labels after viewing results, then asked whether the
+pilot criteria were strong enough. They authorized stronger evaluation for all five agents.
+Record their acceptance retrospectively against the old evaluator pin; do not backdate it or
+rewrite the sealed AI-provisional labels. No additional provider allowance was authorized.
+
+### Before you read on
+
+How can a36/36report still be insufficient? Identify the independent units, the repeated
+language templates, who produced the labels and when thresholds were selected. Decide which
+facts the program can verify and which require a human/domain review reference.
+
+### Options considered and decision
+
+A common75%review ceiling would encode Olist's constructed9/12review mix into unrelated
+domains. A documentation-only checklist would leave `eval-release` able to miss the new
+requirements. Add generic strict study/protocol contracts and a fail-closed methodology
+audit, with independently owned domain profiles. Compose it with the existing H10 CLI;
+preserve the lower-level evidence-gate-only API and historical experiment artifacts.
+
+### How to build it
+
+Define StandardProfile with required Boolean field checks and holdout slices. A separate
+StandardProtocol pins profile/dataset/scorer/baseline and freezes reviewed thresholds,
+sampling/sample-size rationale and reviewer records before candidate capture. StandardStudy
+contains private case inputs, correlated source/template keys, exact trial IDs and domain-
+scored results. Revalidate all DTOs at the audit boundary, including model_copy objects.
+
+Normalize input fingerprints with NFKC/casefold/whitespace and reject cross-partition matches.
+Reject shared source/parent keys or language-family identifiers across partitions. Merge
+overlapping holdout independence-key sets into connected components, so alternate identifiers
+and three repetitions do not inflate source-group counts. Check overall and per-slice group
+floors, and reuse H9's binomial boundary/Wilson envelope to expose uncertainty in any-failed-
+repetition group outcomes. Independence/comparability still require source review.
+
+Build the complete case-by-trial Cartesian schedule before reading results. Missing rows,
+unresolved output, absent fields and unknown latency/tokens/cost remain visible blockers.
+Report fields, partition/source-kind/slice numerators, appropriate/unnecessary/missed review,
+all-repetition case success and paired baseline regressions. Keep critical failures and unsafe
+effects as hard blockers. Require qualified blind label review for clinical/policy/meaning
+profiles; user acceptance of a previously displayed label cannot satisfy that condition.
+
+In eval-release, read the additional profile/protocol/study with separate canonical pins.
+Bind them to the already verified H10 manifest, actual inputs/group IDs/required-review labels,
+candidate/baseline/scorer pins, capture interval, schedule and independently produced binary
+field scores. Verify token/cost counts against sealed outcomes. A summary from another study
+cannot qualify this evidence. Missing inputs produce an explicit blocker, not a permissive
+legacy path. Write the audit sidecar exclusively and include its SHA-256 in result.json;
+retain all existing H10 approval/freshness/regression gates.
+
+Create five profiles and pin the nine existing public evidence files in an honest readiness
+inventory. The inventory is a review of historical limits, not five newly executed studies.
+The shared harness imports no vertical. Actual domain-to-H10 field adapters and new reviewed
+cohorts remain necessary; do not synthesize fake receipts or silently promote pilot results.
+
+### Verification and remaining work
+
+The first audit/CLI suite passed30tests; expanded binding/release regression passed63tests
+in32.59seconds before the final inventory assertion was added. Strict typing passed142sources.
+One type-check caught reuse of a Boolean threshold-direction variable as a floating interval
+bound; rename the interval bound. Formatting addressed the initial long expressions; no
+assertion/deadline was relaxed. Final integrated/hosted checks will follow actual completion.
+
+No provider or Langfuse dataset mutation occurred. Old datasets/captures/holdouts/labels and
+results retain byte pins. Production thresholds, representative quality and qualified label
+reviews remain open requirements; these new mechanisms do not complete #33 or dependent
+release issues. See the evaluation standards and source-study chapters for current behavior.
+
+The first full sweep passed989tests in286.83seconds, but final review identified that
+non-autonomous completions needed their own denominator instead of being counted as eligible.
+Keep eligibility and required-review as separate case fields and bind both to the H10 labels.
+Also apply correctness/field/repetition/latency limits to each required holdout slice, so an
+average cannot hide a failing minority slice. Add group-error intervals per slice and reject
+duplicate JSON keys before canonical pin comparison. The final stable-source full check runs
+after these corrections; the initial sweep is not claimed as final-head acceptance.
+
+Final domain review found a shared-default trap: a mandatory eligible-autonomy denominator
+would force the assistive Prior Auth workflow to invent autonomous clinical decisions. Add
+an explicit profile exception, preserve undefined unnecessary-review rates and still enforce
+qualified labels, criterion/disposition accuracy and missed required review. The other profiles
+continue to require eligible holdout cases. The intermediate992test sweep passed280.24seconds;
+its process overlapped this last change, so a new stable-source full check is required.
+
+The final stable-source locked check passed993tests in348.84seconds,142typed sources,
+213formatted Python files and both import contracts, with lint/lock checks passing. The
+existing event-loop deprecation and local pytest-cache permission warnings are non-failing.
+Sixwheel/sdistpairs built; the locked dependency audit found no known vulnerabilities.
+Separate installed checks matched60harness resources and27Olist resources, refused missing
+private audit inputs and consumed six replay calls with networking disabled, no provider SDKs
+and zero provider calls. Publication checks found configured credentials and12source order IDs
+absent in40files across the checked history;212relative links resolve. All nine historical
+aggregate files retain their pinned bytes. No SQL/schema/lock/dependency changed. Hosted
+final-head matrix/Postgres acceptance follows after actual completion on the PR.
+
+Before publishing, compare inventory bytes with Git blobs: several Windows files haveCRLF,
+while Linux checkout blobs useLF. Pin the historical public text inventory afterCRLF-to-LF
+normalization and make the test use the same explicit rule. Private raw capture/evaluator
+pins remain exact bytes and unchanged. This is a portability correction to the new inventory
+check, not a rewrite of source/evidence. Run the affected audit/binding/CLI tests again and
+require the final hosted Linux/Windows matrix; the production Python source is unchanged.
+
+The portability-corrected audit/binding/CLI suite passed56tests in31.14seconds; Ruff/format
+passed and all nine normalized inventory hashes match the actual committed Git blobs.
+
+Hosted initial40054265366 flagged two generic-api-key matches at the Prior Auth public-report
+checksum in readiness.json:line85, one per implementation/portability commit. Recompute the
+rawWindows report hash and theLF-normalized Git-blob hash to prove each reported value is an
+artifact digest, not credentials. Follow the existing repository convention: add only the
+two exact commit/file/rule/line fingerprints to.gitleaksignore, retain the scanner/rules and
+record the initial failure. The corrected final-head hosted scan must pass independently.

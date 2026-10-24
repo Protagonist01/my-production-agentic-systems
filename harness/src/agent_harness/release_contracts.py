@@ -115,4 +115,5 @@ class ReleaseDecision(Contract):
     allowed: bool
     blockers: tuple[NonEmpty, ...]
     regressed_cases: tuple[NonEmpty, ...]
+    evaluation_audit_sha256: Sha256 | None = None
     decision_kind: Literal["evidence_gate_only"] = "evidence_gate_only"

@@ -104,3 +104,8 @@ The targeted follow-up changes only this locked package, with no audit suppressi
 Main acceptance is pending the repair; the successful pre-merge CI remains historical evidence.
 The experiment above retains its original environment pin. This lock update does not produce
 new fresh provider evidence or approve any of #33's remaining release requirements.
+
+
+## Stronger evaluation requirements — 2026-10-24
+
+[Shared standards](evaluation-standards.md) and the [five-agent readiness inventory](evaluation/readiness.json) apply to the next release study. Olist’s 12 follow-up labels were accepted retrospectively; that does not create a blind fresh holdout. The 75% pilot review ceiling is not a production threshold. Existing sealed pilots are unchanged. Missing reviews, approved pre-output thresholds, grouped unseen inputs, complete field scores/accounting or H10 evidence block release. No additional provider run or release approval is inferred.

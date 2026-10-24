@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "version": "olist-evaluation-standard-v1",
+  "agent": "olist",
+  "required_fields": ["intent", "action", "amount", "review_reason", "truthful_confirmation", "exact_state", "duplicate_delivery", "recovery"],
+  "required_holdout_slices": ["eligible_refund", "required_review", "missing_facts", "conflicting_facts", "cap_boundary", "unseen_wording", "prompt_injection", "crash_restart"],
+  "qualified_label_review_required": false,
+  "claim_scope": "application"
+}

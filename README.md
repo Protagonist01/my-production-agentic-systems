@@ -1,5 +1,7 @@
 # my-production-agentic-systems
 
+All five agents now follow the [stronger evaluation standards](docs/evaluation-standards.md): independent frozen labels, unseen grouped holdout, complete per-field/slice results and separately reviewed release limits. Historical pilots remain limited evidence; new methodology qualification and H10 acceptance are required.
+
 Production-minded AI agents across five industries, with a shared evaluation harness, versioned datasets, regression testing, fault injection, observability and code-enforced action controls.
 
 Build the real platform and usable applications together at 40 hours/week, including integration and data/evidence review. The first complete release is Olist support; all five verticals remain committed scope.

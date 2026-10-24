@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "version": "cfpb-evaluation-standard-v1",
+  "agent": "cfpb",
+  "required_fields": ["product", "issue", "priority", "ambiguity", "evidence_span", "route", "privacy", "review_durability"],
+  "required_holdout_slices": ["routine_clear", "elevated_risk", "ambiguous", "minority_taxonomy", "temporal_shift", "unseen_wording", "prompt_injection", "model_failure"],
+  "qualified_label_review_required": true,
+  "claim_scope": "application"
+}
