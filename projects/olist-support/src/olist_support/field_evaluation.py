@@ -10,9 +10,10 @@ from agent_harness.contracts import Contract
 from agent_harness.controls import combine_usage
 from agent_harness.evaluation_standards import StandardRow
 
-from olist_support.fresh_release import FreshRow
+from olist_support.fresh_release import FreshRow, RecoveryObservation
 from olist_support.policy_cases import PolicyCase
-from olist_support.release import ScheduledTrial, _expected_state, score
+from olist_support.release import Observation, ScheduledTrial, StateSnapshot, _expected_state, score
+from olist_support.workflow import IntentDecision, WorkflowResult
 
 FIELD_SCORER_VERSION = "olist-independent-fields-v1"
 FIELDS = (
@@ -25,6 +26,21 @@ FIELDS = (
     "duplicate_delivery",
     "recovery",
 )
+
+
+class FieldCapture(Contract):
+    """Worker observations; H10 owns receipts/cleanup, with no total-latency claim here."""
+
+    case_id: str
+    trial_id: str
+    observation: Observation | None
+    decision: IntentDecision | None
+    workflow_result: WorkflowResult | None
+    duplicate_delivery_unchanged: bool
+    before_redelivery: StateSnapshot | None = None
+    redelivered_result: WorkflowResult | None = None
+    recovery_observation: RecoveryObservation | None = None
+    errors: tuple[str, ...] = ()
 
 
 class FieldVerdict(Contract):
@@ -40,7 +56,11 @@ class FieldVerdict(Contract):
 
 
 def score_fields(
-    case: PolicyCase, task: ScheduledTrial, row: FreshRow | None, *, recovery_required: bool = False
+    case: PolicyCase,
+    task: ScheduledTrial,
+    row: FreshRow | FieldCapture | None,
+    *,
+    recovery_required: bool = False,
 ) -> FieldVerdict:
     """Compare actual decisions/ledger/response with frozen evaluator-only labels."""
     case = PolicyCase.model_validate_json(case.canonical_json())
@@ -48,9 +68,29 @@ def score_fields(
     if task.case_id != case.input.case_id:
         raise ValueError("field scorer task differs from evaluator label")
     if row is not None:
-        row = FreshRow.model_validate_json(row.canonical_json())
+        row = (
+            FreshRow.model_validate_json(row.canonical_json())
+            if isinstance(row, FreshRow)
+            else FieldCapture.model_validate_json(row.canonical_json())
+        )
         if (row.case_id, row.trial_id) != task.key:
             raise ValueError("field scorer row differs from scheduled trial")
+        if (
+            row.observation is not None
+            and (row.observation.case_id, row.observation.trial_id) != task.key
+        ):
+            raise ValueError("field observation differs from scheduled trial")
+        if (
+            row.workflow_result is not None
+            and row.observation is not None
+            and (
+                row.workflow_result.outcome,
+                row.workflow_result.message,
+                row.workflow_result.receipt,
+            )
+            != (row.observation.outcome, row.observation.message, row.observation.receipt)
+        ):
+            raise ValueError("workflow result differs from independently observed response")
     values: dict[str, bool | None] = dict.fromkeys(FIELDS)
     if not recovery_required:
         values["recovery"] = True  # A declared non-fault trial: retain explicit N/A metadata.
@@ -93,6 +133,14 @@ def score_fields(
                 )
     if row is not None:
         values["duplicate_delivery"] = row.duplicate_delivery_unchanged
+        if isinstance(row, FieldCapture):
+            values["duplicate_delivery"] = (
+                row.duplicate_delivery_unchanged
+                and row.before_redelivery == (observation.after if observation else None)
+                and row.redelivered_result == row.workflow_result
+                if row.before_redelivery is not None and row.redelivered_result is not None
+                else None
+            )
         result = row.workflow_result
         if result is not None:
             expected_reason = (
@@ -104,7 +152,7 @@ def score_fields(
     unresolved = bool(
         row is None
         or row.errors
-        or not row.cleanup_ok
+        or (isinstance(row, FreshRow) and not row.cleanup_ok)
         or verdict.category in ("missing", "unresolved")
         or any(value is None for value in values.values())
     )
