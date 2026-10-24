@@ -413,14 +413,19 @@ def test_actual_owned_process_timeout_leaves_no_background_worker(tmp_path):
     started = time.monotonic()
     # Include cold Windows spawn/import time while still requiring the worker to
     # enter its hanging body and be reaped within the finite attempt bound.
-    result = IsolatedTransport(Worker("hang", str(marker))).generate(
-        request(), timeout_seconds=30.0
-    )
+    transport = IsolatedTransport(Worker("hang", str(marker)))
+    result = transport.generate(request(), timeout_seconds=30.0)
     elapsed = time.monotonic() - started
     assert result.failure.code == "timeout" and result.usage.model_calls == 1
     assert result.usage.cost is None and marker.exists()
     assert elapsed < 33.0
     assert {p.pid for p in multiprocessing.active_children()} == before
+    timing = transport.last_timing
+    assert timing is not None and timing.timed_out
+    assert timing.worker_entered_after_seconds is not None
+    assert timing.generation_returned_after_seconds is None
+    assert timing.frame_ready_after_seconds is None
+    assert timing.elapsed_seconds < 33.0
 
 
 @pytest.mark.parametrize(
@@ -433,9 +438,20 @@ def test_actual_owned_process_timeout_leaves_no_background_worker(tmp_path):
     ],
 )
 def test_worker_success_crash_exception_and_frame_limit(action, code, capsys):
-    result = IsolatedTransport(Worker(action)).generate(request(), timeout_seconds=30.0)
+    transport = IsolatedTransport(Worker(action))
+    result = transport.generate(request(), timeout_seconds=30.0)
     assert (None if result.failure is None else result.failure.code) == code
     assert "private" not in result.canonical_json() and "private" not in capsys.readouterr().err
+    timing = transport.last_timing
+    assert timing is not None and not timing.timed_out
+    assert timing.worker_entered_after_seconds is not None
+    assert (timing.generation_returned_after_seconds is not None) == (
+        action in ("success", "oversize")
+    )
+    assert (timing.frame_ready_after_seconds is not None) == (action != "crash")
+    if timing.frame_ready_after_seconds is not None:
+        assert timing.worker_entered_after_seconds <= timing.frame_ready_after_seconds
+        assert timing.frame_ready_after_seconds <= timing.elapsed_seconds
 
 
 def test_isolated_transport_requires_explicit_finite_deadline():
@@ -590,7 +606,7 @@ def test_completed_frame_after_startup_deadline_cannot_be_returned(monkeypatch):
         exitcode = 0
 
         def __init__(self, *, target, args, daemon):
-            self.buffer, self.size = args[-2:]
+            self.buffer, self.size = args[3:5]
 
         def start(self):
             # Simulate expensive bootstrap followed by a valid, but late, response.

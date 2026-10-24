@@ -1,0 +1,707 @@
+{
+  "schema_version": 1,
+  "experiment": "olist-o8-followup-v2",
+  "base_commit": "6bcac649f9aea9c7d2ab06484784ad711cdafc09",
+  "candidate_code_revision": "0be72b2ae227e81f341353e2478f854fcc8f4b6c",
+  "environment_lock": "c8c15295dd5372f12f860a60f00a8b3e98a2e308c1acddb42fdac70187cb0e87",
+  "source_database_sha256": "3f97471af1ad88653e04fffb9619d190358ba6673a83e8026964aa7ae801d73f",
+  "source_manifest_sha256": "24c1a4b0f6975cb1cff8e87d0674cf91cbccc3766f4f08ba93360f72e55b803f",
+  "policy_sha256": "1320cb51b84b0c47b2decb0803d50ee1ceea6788b38c2cfff5584150b0c0cbd6",
+  "scorer_sha256": "7987551e47c043f36ea3bba82701e413ab5dcd5ac0d7e99c4669e210e7c23717",
+  "prompt_sha256": "be18756fcef0180ad2c81b7faaaa333bdddc17059e56e446075da46c9e96775c",
+  "model_config_sha256": "893d2a5ea09af8d784c13e84a55dc74f5e13f1fcad80948b19cc76cf5fddecec",
+  "source_inventory_sha256": "cc2283edf220355a2ec0d26f0d81028a52b725d8b103e05c6823693e34dba14d",
+  "input_byte_pins": {
+    "fresh-evaluator.json": "cd9709a9f50f7de1ac62ae51e38ed804fa2895b4e2cfaa1df95d1011f3a76294",
+    "fresh-inputs.json": "d08f57480916f02728856f25905c4e8381cec8aa1425fbdd78aca8e1c9c29ec5",
+    "selection.json": "dc652e77ff5997189e4d57b63c757e8928956178802580acd4d77f85e55506c8"
+  },
+  "plan_sha256": "d8717d9cfe03ef2e80eeb34d0b5741c30bc9086e75ae4c08866fca2a7358776c",
+  "evidence_byte_sha256": "2b8f76ce30ddf0cbec173a66f93873c5f44da9c4db53f4a30707aca504c9060e",
+  "recomputed_report_byte_sha256": "e347503642d29751db0aee96c0862122d46616d697496dfa941e1a1e99f24c36",
+  "offline_readback_verified": true,
+  "sample": {
+    "cases": 12,
+    "groups": 6,
+    "excluded_prior_exact_groups": 12,
+    "cases_per_split": 4,
+    "base": 6,
+    "adversarial": 6,
+    "eligible_cases": 3,
+    "required_review_cases": 9,
+    "trials_per_case": 3,
+    "source_kind": "hybrid",
+    "label_status": "ai_provisional",
+    "representative": false
+  },
+  "execution": {
+    "model": "gemini-3.5-flash-lite",
+    "free_project_operator_confirmed": true,
+    "maximum_calls": 36,
+    "max_attempts": 1,
+    "attempt_timeout_seconds": 60.0,
+    "run_deadline_seconds": 90,
+    "provider_input": "constructed_request_text_only",
+    "prompt_tuned_after_holdout": false,
+    "concurrent_host_tests_during_capture": false,
+    "paired_causal_improvement_claim": false
+  },
+  "startup_diagnostics": {
+    "unsealed_attempt": "execution-v1",
+    "reason": "docker_engine_unavailable_before_first_trial",
+    "provider_calls": 0,
+    "retained": true
+  },
+  "failure_codes": {},
+  "comparison": {
+    "version": "olist-fresh-comparison-v1",
+    "release_allowed": false,
+    "label_status": "ai_provisional",
+    "human_validation": false,
+    "candidate_sha256": "fe9a74838e1b5e8d1949ccdbb7ac14adc8084892b851edf9880761dc82856c0e",
+    "plan_sha256": "d8717d9cfe03ef2e80eeb34d0b5741c30bc9086e75ae4c08866fca2a7358776c",
+    "blockers": [
+      "independent_label_review_pending",
+      "baseline_and_threshold_approval_pending",
+      "representative_production_validation_pending"
+    ],
+    "modes": {
+      "rules": {
+        "development": {
+          "scheduled_trials": 12,
+          "categories": {
+            "correct": 12
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 3,
+          "eligible_completion": 1.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 9,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 12,
+          "failed_trials": 0,
+          "all_three_correct_cases": 4,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 19.19545329999937,
+          "max_trial_seconds": 2.569121400000313,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 0,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 0,
+            "frame_ready_rows": 0,
+            "max_worker_entry_seconds": null,
+            "provider_dispatch_proven": false
+          }
+        },
+        "regression": {
+          "scheduled_trials": 12,
+          "categories": {
+            "correct": 12
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 3,
+          "eligible_completion": 1.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 9,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 12,
+          "failed_trials": 0,
+          "all_three_correct_cases": 4,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 32.735699999999724,
+          "max_trial_seconds": 6.019114499999887,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 0,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 0,
+            "frame_ready_rows": 0,
+            "max_worker_entry_seconds": null,
+            "provider_dispatch_proven": false
+          }
+        },
+        "holdout": {
+          "scheduled_trials": 12,
+          "categories": {
+            "correct": 12
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 3,
+          "eligible_completion": 1.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 9,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 12,
+          "failed_trials": 0,
+          "all_three_correct_cases": 4,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 19.87476110000034,
+          "max_trial_seconds": 4.1107302000000345,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 0,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 0,
+            "frame_ready_rows": 0,
+            "max_worker_entry_seconds": null,
+            "provider_dispatch_proven": false
+          }
+        },
+        "all": {
+          "scheduled_trials": 36,
+          "categories": {
+            "correct": 36
+          },
+          "eligible_trials": 9,
+          "eligible_completed": 9,
+          "eligible_completion": 1.0,
+          "required_review_trials": 27,
+          "required_review_correct": 27,
+          "review_trials": 27,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 36,
+          "failed_trials": 0,
+          "all_three_correct_cases": 12,
+          "case_denominator": 12,
+          "duplicate_delivery_unchanged": 36,
+          "cleanup_ok": 36,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 71.80591439999944,
+          "max_trial_seconds": 6.019114499999887,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 0,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 0,
+            "frame_ready_rows": 0,
+            "max_worker_entry_seconds": null,
+            "provider_dispatch_proven": false
+          }
+        }
+      },
+      "review": {
+        "development": {
+          "scheduled_trials": 12,
+          "categories": {
+            "incorrect": 3,
+            "correct": 9
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 0,
+          "eligible_completion": 0.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 12,
+          "review_fraction": 1.0,
+          "intent_exact_correct": 0,
+          "failed_trials": 0,
+          "all_three_correct_cases": 3,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 21.569068999999672,
+          "max_trial_seconds": 5.067683299999771,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 0,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 0,
+            "frame_ready_rows": 0,
+            "max_worker_entry_seconds": null,
+            "provider_dispatch_proven": false
+          }
+        },
+        "regression": {
+          "scheduled_trials": 12,
+          "categories": {
+            "incorrect": 3,
+            "correct": 9
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 0,
+          "eligible_completion": 0.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 12,
+          "review_fraction": 1.0,
+          "intent_exact_correct": 0,
+          "failed_trials": 0,
+          "all_three_correct_cases": 3,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 15.083151700001054,
+          "max_trial_seconds": 1.8665799999998853,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 0,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 0,
+            "frame_ready_rows": 0,
+            "max_worker_entry_seconds": null,
+            "provider_dispatch_proven": false
+          }
+        },
+        "holdout": {
+          "scheduled_trials": 12,
+          "categories": {
+            "incorrect": 3,
+            "correct": 9
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 0,
+          "eligible_completion": 0.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 12,
+          "review_fraction": 1.0,
+          "intent_exact_correct": 0,
+          "failed_trials": 0,
+          "all_three_correct_cases": 3,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 14.317454699999871,
+          "max_trial_seconds": 1.8741700999999011,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 0,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 0,
+            "frame_ready_rows": 0,
+            "max_worker_entry_seconds": null,
+            "provider_dispatch_proven": false
+          }
+        },
+        "all": {
+          "scheduled_trials": 36,
+          "categories": {
+            "incorrect": 9,
+            "correct": 27
+          },
+          "eligible_trials": 9,
+          "eligible_completed": 0,
+          "eligible_completion": 0.0,
+          "required_review_trials": 27,
+          "required_review_correct": 27,
+          "review_trials": 36,
+          "review_fraction": 1.0,
+          "intent_exact_correct": 0,
+          "failed_trials": 0,
+          "all_three_correct_cases": 9,
+          "case_denominator": 12,
+          "duplicate_delivery_unchanged": 36,
+          "cleanup_ok": 36,
+          "reported_model_calls": 0,
+          "observed_input_tokens": 0,
+          "observed_output_tokens": 0,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 0,
+          "measured_trial_seconds": 50.9696754000006,
+          "max_trial_seconds": 5.067683299999771,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 0,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 0,
+            "frame_ready_rows": 0,
+            "max_worker_entry_seconds": null,
+            "provider_dispatch_proven": false
+          }
+        }
+      },
+      "gemini": {
+        "development": {
+          "scheduled_trials": 12,
+          "categories": {
+            "correct": 12
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 3,
+          "eligible_completion": 1.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 9,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 12,
+          "failed_trials": 0,
+          "all_three_correct_cases": 4,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 12,
+          "observed_input_tokens": 954,
+          "observed_output_tokens": 338,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 12,
+          "measured_trial_seconds": 192.76952440000014,
+          "max_trial_seconds": 20.79400250000026,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 12,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 12,
+            "frame_ready_rows": 12,
+            "max_worker_entry_seconds": 13.322710700000243,
+            "provider_dispatch_proven": false
+          }
+        },
+        "regression": {
+          "scheduled_trials": 12,
+          "categories": {
+            "correct": 12
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 3,
+          "eligible_completion": 1.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 9,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 12,
+          "failed_trials": 0,
+          "all_three_correct_cases": 4,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 12,
+          "observed_input_tokens": 918,
+          "observed_output_tokens": 316,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 12,
+          "measured_trial_seconds": 172.57142860000067,
+          "max_trial_seconds": 17.323607699999684,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 12,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 12,
+            "frame_ready_rows": 12,
+            "max_worker_entry_seconds": 9.728992199999993,
+            "provider_dispatch_proven": false
+          }
+        },
+        "holdout": {
+          "scheduled_trials": 12,
+          "categories": {
+            "correct": 12
+          },
+          "eligible_trials": 3,
+          "eligible_completed": 3,
+          "eligible_completion": 1.0,
+          "required_review_trials": 9,
+          "required_review_correct": 9,
+          "review_trials": 9,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 12,
+          "failed_trials": 0,
+          "all_three_correct_cases": 4,
+          "case_denominator": 4,
+          "duplicate_delivery_unchanged": 12,
+          "cleanup_ok": 12,
+          "reported_model_calls": 12,
+          "observed_input_tokens": 918,
+          "observed_output_tokens": 312,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 12,
+          "measured_trial_seconds": 234.28555629999937,
+          "max_trial_seconds": 50.58177559999967,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 12,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 12,
+            "frame_ready_rows": 12,
+            "max_worker_entry_seconds": 36.34817949999979,
+            "provider_dispatch_proven": false
+          }
+        },
+        "all": {
+          "scheduled_trials": 36,
+          "categories": {
+            "correct": 36
+          },
+          "eligible_trials": 9,
+          "eligible_completed": 9,
+          "eligible_completion": 1.0,
+          "required_review_trials": 27,
+          "required_review_correct": 27,
+          "review_trials": 27,
+          "review_fraction": 0.75,
+          "intent_exact_correct": 36,
+          "failed_trials": 0,
+          "all_three_correct_cases": 12,
+          "case_denominator": 12,
+          "duplicate_delivery_unchanged": 36,
+          "cleanup_ok": 36,
+          "reported_model_calls": 36,
+          "observed_input_tokens": 2790,
+          "observed_output_tokens": 966,
+          "usage_unknown_attempts": 0,
+          "cost_unknown_attempts": 36,
+          "measured_trial_seconds": 599.6265093000002,
+          "max_trial_seconds": 50.58177559999967,
+          "cost_per_safe_completion": null,
+          "attempt_diagnostics": {
+            "rows_with_timing": 36,
+            "timed_out_before_worker_entered": 0,
+            "timed_out_after_worker_entered": 0,
+            "generation_returned_rows": 36,
+            "frame_ready_rows": 36,
+            "max_worker_entry_seconds": 36.34817949999979,
+            "provider_dispatch_proven": false
+          }
+        }
+      }
+    }
+  },
+  "aggregate_breakdowns": {
+    "rules": {
+      "source_kind": {
+        "hybrid": {
+          "scheduled_trials": 36,
+          "observed_rows": 36,
+          "categories": {
+            "correct": 36,
+            "missing": 0
+          },
+          "review_trials": 27
+        },
+        "synthetic": {
+          "scheduled_trials": 0,
+          "observed_rows": 0,
+          "categories": {
+            "missing": 0
+          },
+          "review_trials": 0
+        }
+      },
+      "treatment": {
+        "base": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "correct": 18,
+            "missing": 0
+          },
+          "review_trials": 9
+        },
+        "adversarial": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "correct": 18,
+            "missing": 0
+          },
+          "review_trials": 18
+        }
+      }
+    },
+    "review": {
+      "source_kind": {
+        "hybrid": {
+          "scheduled_trials": 36,
+          "observed_rows": 36,
+          "categories": {
+            "incorrect": 9,
+            "correct": 27,
+            "missing": 0
+          },
+          "review_trials": 36
+        },
+        "synthetic": {
+          "scheduled_trials": 0,
+          "observed_rows": 0,
+          "categories": {
+            "missing": 0
+          },
+          "review_trials": 0
+        }
+      },
+      "treatment": {
+        "base": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "incorrect": 9,
+            "correct": 9,
+            "missing": 0
+          },
+          "review_trials": 18
+        },
+        "adversarial": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "correct": 18,
+            "missing": 0
+          },
+          "review_trials": 18
+        }
+      }
+    },
+    "gemini": {
+      "source_kind": {
+        "hybrid": {
+          "scheduled_trials": 36,
+          "observed_rows": 36,
+          "categories": {
+            "correct": 36,
+            "missing": 0
+          },
+          "review_trials": 27
+        },
+        "synthetic": {
+          "scheduled_trials": 0,
+          "observed_rows": 0,
+          "categories": {
+            "missing": 0
+          },
+          "review_trials": 0
+        }
+      },
+      "treatment": {
+        "base": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "correct": 18,
+            "missing": 0
+          },
+          "review_trials": 9
+        },
+        "adversarial": {
+          "scheduled_trials": 18,
+          "observed_rows": 18,
+          "categories": {
+            "correct": 18,
+            "missing": 0
+          },
+          "review_trials": 18
+        }
+      }
+    }
+  },
+  "release_allowed": false,
+  "human_validation": false,
+  "baseline_threshold_approval": false,
+  "historical_pilot": "docs/data/olist-fresh-evidence-v1.json",
+  "historical_pilot_unchanged": true,
+  "phase_timing_summary": {
+    "worker_entry_seconds": {
+      "observed_rows": 36,
+      "minimum": 6.3289215999998305,
+      "median": 8.224700849999863,
+      "maximum": 36.34817949999979
+    },
+    "generation_after_entry_seconds": {
+      "observed_rows": 36,
+      "minimum": 3.807129999999688,
+      "median": 4.830955750000157,
+      "maximum": 10.58716560000039
+    },
+    "parent_attempt_seconds": {
+      "observed_rows": 36,
+      "minimum": 11.659168000000136,
+      "median": 13.461133299999801,
+      "maximum": 47.927584000000024
+    }
+  },
+  "observed_old_bound_exceedances": {
+    "worker_entry_after_30_seconds": 1,
+    "parent_attempt_over_30_seconds": 1,
+    "old_timeout_cause_proven": false
+  },
+  "phase_timing_limits": "Local worker entry includes spawn/bootstrap; generation after entry includes SDK import/provider waiting/parsing. No provider dispatch, billing or isolated API-latency proof.",
+  "language_coverage": {
+    "unique_constructed_texts": 4,
+    "unique_texts_per_split": {
+      "development": 3,
+      "regression": 2,
+      "holdout": 2
+    },
+    "text_overlap_development_holdout": 1,
+    "text_overlap_regression_holdout": 2,
+    "unseen_language_holdout": false,
+    "limitation": "Exact source groups are disjoint; request templates repeat across splits. This diagnoses lifecycle/intent mechanisms, not general language robustness."
+  },
+  "proposed_criteria_met": true,
+  "verification": {
+    "full_locked_check": {
+      "tests_passed": 942,
+      "seconds": 273.88,
+      "typed_sources": 139,
+      "formatted_python_files": 208,
+      "import_contracts_kept": 2
+    },
+    "package_pairs_built": 6,
+    "installed_workflow": {
+      "matching_olist_resources": 27,
+      "provider_sdks_absent": true,
+      "other_verticals_absent": true,
+      "network_disabled_replay_calls": 6,
+      "provider_calls": 0
+    },
+    "locked_dependency_audit": "no_known_vulnerabilities",
+    "nonfailing_warnings": [
+      "pydantic_graph_event_loop_deprecation",
+      "local_pytest_cache_permission"
+    ],
+    "initial_full_check_interrupted": true
+  }
+}

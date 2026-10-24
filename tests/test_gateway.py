@@ -341,6 +341,27 @@ def test_valid_schema_local_reference_and_unknown_usage():
 
 
 @pytest.mark.parametrize(
+    "counts,expected",
+    [
+        ({"promptTokenCount": 12, "candidatesTokenCount": 3, "totalTokenCount": 15}, 3),
+        ({"promptTokenCount": 12, "candidatesTokenCount": 0, "totalTokenCount": 12}, 0),
+        ({"promptTokenCount": 12, "candidatesTokenCount": 3, "totalTokenCount": 19}, None),
+        ({"promptTokenCount": 12, "candidatesTokenCount": 3, "totalTokenCount": 14}, None),
+        ({"candidatesTokenCount": 3, "totalTokenCount": 15}, None),
+        ({"promptTokenCount": 12, "totalTokenCount": 15}, None),
+    ],
+)
+def test_missing_thinking_usage_requires_exact_reported_total_reconciliation(counts, expected):
+    result = gateway(lambda _: httpx.Response(200, json=wire(usageMetadata=counts))).generate(
+        context(), request()
+    )
+    assert result.failure is None
+    assert result.usage.output_tokens == expected
+    assert result.provider_usage["thinking_tokens"] is None
+    assert result.usage.cost is None  # Token reconciliation never invents billing evidence.
+
+
+@pytest.mark.parametrize(
     "part",
     [
         {"functionCall": {"name": "lookup", "args": {"id": "wrong"}}},

@@ -246,10 +246,20 @@ def response_usage(response: types.GenerateContentResponse) -> tuple[Usage, dict
     ):
         raise ValueError("Invalid provider usage")
     visible, thinking = counts["candidate_tokens"], counts["thinking_tokens"]
+    output = None if visible is None or thinking is None else visible + thinking
+    # The provider total includes prompt, tool-use prompt, thoughts and candidates.
+    # Equality leaves no residual tokens; absent thoughts alone must never imply zero.
+    if (
+        output is None
+        and visible is not None
+        and counts["prompt_tokens"] is not None
+        and counts["total_tokens"] == counts["prompt_tokens"] + visible
+    ):
+        output = visible
     return Usage(
         model_calls=1,
         input_tokens=counts["prompt_tokens"],
-        output_tokens=None if visible is None or thinking is None else visible + thinking,
+        output_tokens=output,
         cost=None,
         cost_currency=None,
     ), counts

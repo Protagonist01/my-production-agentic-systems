@@ -52,6 +52,27 @@ The [actual model card](olist-model-card.md) records 30/36 correct Gemini trials
 
 ## Tests and limits
 
+The unmerged `codex/o8-attempt-diagnostics` follow-up adds optional `FreshRow.attempt_timing`
+from the actual isolated transport. Shared-memory phase timestamps distinguish worker entry,
+generation return and a completed response frame; the parent records its elapsed bound and
+exit status after cleanup. A timeout before entry means the worker entry was not observed,
+not proof that no provider dispatch occurred. A timeout after entry still includes SDK work,
+provider waiting and result handling. Timing never supplies authority or correctness credit.
+`make_plan(..., attempt_timeout_seconds=...)` records an explicit shared execution policy;
+the CLI's optional flag defaults to30seconds, with the new proposed plan using60seconds.
+No runtime override can change the serialized plan's policy. [Follow-up operations](olist-followup-review.md)
+retain the new source/input pins, conditions and historical evidence boundary.
+
+The frozen follow-up candidate `0be72b2` completed 36/36 correct model trials, with no unsafe
+or unresolved outcomes, 9/9 eligible refunds, 27/27 correct required reviews and 12/12 cases
+correct in every repetition. Timing and token usage were captured for all 36. Median worker
+entry was 8.225 seconds; one entry took 36.348 seconds, beyond the old attempt limit. Median
+generation after entry was 4.831 seconds, including SDK import and response handling. This
+measures lifecycle costs, without identifying the historical timeout causes. The [new card](olist-followup-model-card.md)
+discloses four repeated text templates, unknown cost and the changed cohort/deadline/conditions.
+The [new aggregate](data/olist-followup-evidence-v2.json) preserves mode/split/type/treatment
+denominators, provenance and observed phases. Independent labels and release gates remain pending.
+
 The focused suite passed 14 tests, and four actual Postgres collector tests passed. The full offline suite passed 935 tests in 667.01 seconds; strict typing passed for 139 source files. The tests use invented data/responses, not provider-quality evidence. The frozen live experiment is a separate artifact. No dependency or lock change was required. Historical O8 offline reports and the original O3 pilot remain unchanged.
 
 **Design limits:** twelve coverage-selected hybrid cases do not represent support traffic. Literal AI labels need independent review. Template-aware rules have a deliberate grammar advantage. The local operator/database owner is trusted and can forge evidence; file pins provide integrity/reproducibility, not hardware attestation. Provider dispatch can consume quota before a process crashes; fenced business publication is not exactly-once billing. Public deployment, load, production identity and migration readiness remain outside this inspection.

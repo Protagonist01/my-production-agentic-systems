@@ -1,6 +1,6 @@
 # Project management
 
-Updated:2026-10-23. User-merged #94 is verified as main3601508 with identical reviewed tree, nine applicable main jobs, actual924tests per quality cell/99Postgres and clean exact-main replay. C3#36/C4#37 are closed completed. User explicitly resumed O8#33 with Gemini Free and a labels/baseline/threshold review package, superseding its earlier offline-only instruction. Final release and downstream release tasks remain gated; native board unverified.
+Updated:2026-10-23. User-merged #96 is verified as main6bcac64 with identical reviewed tree, nine applicable main jobs,936tests per quality cell/103Postgres and clean exact-main replay. Both dependency audits pass. The user authorized a separate O8#33 follow-up with a new36callGeminiFree cap. Frozen0be72b2 scored36/36correct with complete token usage and local attempt diagnostics; the original six-timeout pilot remains unchanged. Four repeated request templates and provisional labels limit the result. Final release and downstream tasks remain gated by independent review, representative validation and H10 acceptance; native board unverified.
 
 ## Scope and source of truth
 

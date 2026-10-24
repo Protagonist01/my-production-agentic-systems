@@ -89,7 +89,13 @@ def inputs_at(path: Path) -> tuple[TextInput, ...]:
     return TypeAdapter(tuple[TextInput, ...]).validate_json(external(path).read_bytes())
 
 
-def make_plan(root: Path, cases: PolicyCases, inputs: tuple[TextInput, ...]) -> ExperimentPlan:
+def make_plan(
+    root: Path,
+    cases: PolicyCases,
+    inputs: tuple[TextInput, ...],
+    *,
+    attempt_timeout_seconds: float = 30.0,
+) -> ExperimentPlan:
     root = root.resolve(strict=True)
     if subprocess.check_output(["git", "status", "--porcelain"], cwd=root, text=True).strip():
         raise ValueError("freeze an experiment only from clean committed source")
@@ -120,7 +126,7 @@ def make_plan(root: Path, cases: PolicyCases, inputs: tuple[TextInput, ...]) -> 
                 sort_keys=True,
             )
         ),
-        execution=ExecutionPolicy(max_attempts=1),
+        execution=ExecutionPolicy(max_attempts=1, attempt_timeout_seconds=attempt_timeout_seconds),
         recording_budget=Budget(
             max_model_calls=36,
             max_tokens=36 * GEMINI_TOKEN_CEILING,
@@ -275,11 +281,13 @@ def run_experiment(
                 receipts.mkdir()
                 context = context_for(plan, task, cases)
                 planner: Planner
+                transport = None
                 if mode == "gemini":
                     from agent_harness.isolated_transport import GeminiWorker, IsolatedTransport
 
+                    transport = IsolatedTransport(GeminiWorker(values["GEMINI_API_KEY"], True))
                     capture = ReceiptGateway(
-                        IsolatedTransport(GeminiWorker(values["GEMINI_API_KEY"], True)),
+                        transport,
                         context,
                         receipts,
                         execution,
@@ -328,6 +336,8 @@ def run_experiment(
                         mode=mode,
                         receipt_root=receipts if mode == "gemini" else None,
                     )
+                if transport is not None:
+                    row = row.model_copy(update={"attempt_timing": transport.last_timing})
                 write_private(root / "row.json", row.model_dump(mode="json"))
                 rows.append(row)
                 print(
@@ -424,6 +434,7 @@ def main() -> None:
     parser.add_argument("--plan-pin")
     parser.add_argument("--service-root", type=Path)
     parser.add_argument("--live-gemini", action="store_true")
+    parser.add_argument("--attempt-timeout-seconds", type=float, default=30.0)
     parser.add_argument("--evidence-root", type=Path)
     parser.add_argument("--evidence-sha256")
     args = parser.parse_args()
@@ -434,7 +445,9 @@ def main() -> None:
     inputs = inputs_at(inputs_path)
     verify_original_source(args.source_database, cases)
     if args.command == "plan":
-        plan = make_plan(args.code_root, cases, inputs)
+        plan = make_plan(
+            args.code_root, cases, inputs, attempt_timeout_seconds=args.attempt_timeout_seconds
+        )
         write_private(external(args.output), plan.model_dump(mode="json"))
         print(
             json.dumps(

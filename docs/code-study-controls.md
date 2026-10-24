@@ -73,3 +73,27 @@ The independent eight-second hang test still requires its child PID marker and n
 4. A stale success finishes after the circuit opens. Trace ticket epoch versus circuit epoch; explain one half-open probe and tenant/route scope.
 5. Replay consumes only one of two recorded attempts. Explain assert_complete and why ReplayMismatch must remain infrastructure failure. Do not use replay duration as live latency.
 6. Exercise: lower max_model_calls to one in the invented retry test. Expect one observed attempt, one reservation and typed budget_exhausted before the second dispatch; no live key is needed.
+
+## O8 follow-up: local attempt phases without relaxing deadlines
+
+Inspected candidate `0be72b2` adds [`AttemptTiming`](../harness/src/agent_harness/isolated_transport.py)
+and `IsolatedTransport.last_timing`. The parent records a monotonic origin before allocating
+the fixed request/response buffers. A small shared double array starts with three missing
+markers. The child writes elapsed time at entry, after generation returns and after publishing
+the bounded response frame. The parent still joins only until its original deadline, refuses
+late frames, terminates/kills and reaps the owned process. It then records elapsed time,
+observed phases, timeout status and exit code. Missing phases stay null, not zero.
+
+The Olist runner creates a new transport per trial and stores its timing in an optional fresh
+row field. This per-instance last-observation property is not a concurrent trace store; callers
+sharing a transport concurrently must not rely on it to attribute timing to one call. It never
+changes admission, credentials, grants, response correctness or billing evidence. Worker entry
+includes process/bootstrap work; generation after entry includes SDK import, provider waiting
+and parsing. Neither stage proves provider dispatch. Actual follow-up timing included one
+36.348-second entry, but old timeout captures lack phases and their causes remain unproven.
+
+Real spawned-worker tests now assert entry/return/frame observations for success, exceptions,
+crashes, oversized frames and forced timeout. The fake completed-during-startup test retains
+the assertion that even a valid late response cannot bypass a deadline. Existing 30-second
+defaults remain; only the separately pinned O8 plan selects the already permitted 60-second
+attempt limit. The [follow-up runbook](olist-followup-review.md) records explicit conditions.

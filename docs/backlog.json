@@ -872,7 +872,7 @@
       ],
       "priority": "P0",
       "status": "In progress",
-      "blocker": "User authorized fresh Gemini Free and a review package after #94. Independent label review and baseline/threshold release approval remain pending; no release promotion.",
+      "blocker": "Separate follow-up meets proposed tiny-pilot criteria, but labels remain AI-provisional; independent label/baseline/threshold approval, representative validation and H10 release acceptance remain pending. Four request templates repeat across splits.",
       "issue_number": 33,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/33",
       "parent_issue_number": 4,
@@ -883,8 +883,8 @@
         14
       ],
       "milestone_number": 2,
-      "branch": "codex/o8-fresh-release-evidence",
-      "review_evidence": "Frozen candidate7d59527; complete108rows and offline receipt/inventory readback. Rules36/36, always-review27/36, Gemini30/36 correct with6unresolvedtimeouts/0unsafe/6of9eligible/7of12all-three. All108duplicate/cleanup checks passed. Local935tests667.01s/14focused/4Postgres/139types/sixbuildpairs/audit/installed27resources+zero-provider replay. Proposed criteria not met; labels provisional, output usage/cost unknown, release false. Hosted review acceptance pending.",
+      "branch": "codex/o8-attempt-diagnostics",
+      "review_evidence": "Verified user merge#96 main6bcac64: nine applicable jobs passed,936tests per quality cell/103Postgres, clean audits and exact-main replay. User authorized separate36callGeminiFree follow-up. Frozen0be72b2/new6groups excludes12prior groups: Gemini36/36correct/0unsafe/0unresolved/9of9eligible/12of12all-three, rules36/36, always-review27/36; all108duplicate/cleanup checks passed. All36model token counts known2790input966output, costs unknown. Worker entry median8.225s/max36.348s; old timeout causes unproven. Sealed evidence2b8f76ce independently recomputed offline. Original pilot/labels/holdout unchanged. Focused126pass+correctedregression11pass,139types,sixbuildpairs,installed27resources/zero-provider replay,auditclean. Full local942tests273.88s/139types/208formatted/imports passed; hosted final-head acceptance pending.",
       "implementation_commit": "54953b22c5944a43b377987fcaa837d5369e9ccc",
       "command_document": "docs/olist-fresh-review.md"
     },

@@ -6,7 +6,7 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-User merged #95 as `4b42d66`, with the reviewed tree unchanged. Its [fresh Olist review evidence](docs/olist-model-card.md) records 30/36 correct Gemini trials and six unresolved timeouts. Main's dependency audits flagged three advisories in locked filelock4.1.2; the current repair updates only that package to4.2.1. Main acceptance and O8#33 release remain pending. Independent labels/baselines/thresholds and representative validation still gate downstream releases. Native board state is unverified.
+Verified main `6bcac64` includes user-merged #96: nine applicable checks passed,936tests per quality cell and103Postgres, including clean dependency audits. The [separate O8 follow-up](docs/olist-followup-model-card.md) scored36/36correct Gemini trials with known token usage and local process timing. The [old pilot](docs/olist-model-card.md) retains its six timeouts. Four request templates repeat across splits, so the follow-up does not establish broad language robustness. Independent labels/baselines/thresholds and representative validation still gate downstream releases. Native board state is unverified.
 
 ## Setup and working commands
 

@@ -7,6 +7,7 @@ from typing import Annotated, Literal, Self
 
 from agent_harness.admission import GEMINI_TOKEN_CEILING
 from agent_harness.contracts import Contract, RunContext
+from agent_harness.isolated_transport import AttemptTiming
 from agent_harness.release_contracts import AttemptReceipt, CandidateSpec
 from pydantic import Field, model_validator
 
@@ -112,6 +113,7 @@ class FreshRow(Contract):
     duplicate_delivery_unchanged: bool
     cleanup_ok: bool
     errors: tuple[str, ...] = ()
+    attempt_timing: AttemptTiming | None = None
 
     @model_validator(mode="after")
     def identity(self) -> Self:
@@ -122,6 +124,8 @@ class FreshRow(Contract):
             raise ValueError("observation scope mismatch")
         if self.mode != "gemini" and self.receipts:
             raise ValueError("deterministic baseline cannot claim provider receipts")
+        if self.mode != "gemini" and self.attempt_timing is not None:
+            raise ValueError("deterministic baseline cannot claim model worker timing")
         if len(self.receipts) > 1:
             raise ValueError("pilot row exceeded its single-attempt bound")
         if (
@@ -179,6 +183,7 @@ def experiment_report(
             intent_correct = failures = calls = input_tokens = output_tokens = unknown = 0
             cost_unknown = duplicate_ok = cleanup_ok = 0
             elapsed: list[float] = []
+            timings: list[AttemptTiming] = []
             all_correct: dict[str, list[bool]] = {}
             for task in tasks:
                 case = by_case[task.case_id]
@@ -188,6 +193,8 @@ def experiment_report(
                 row = lookup.get((mode, *task.key))
                 category = "missing"
                 if row:
+                    if row.attempt_timing is not None:
+                        timings.append(row.attempt_timing)
                     elapsed.append(row.elapsed_seconds)
                     duplicate_ok += row.duplicate_delivery_unchanged
                     cleanup_ok += row.cleanup_ok
@@ -261,6 +268,30 @@ def experiment_report(
                 "measured_trial_seconds": sum(elapsed),
                 "max_trial_seconds": max(elapsed) if elapsed else None,
                 "cost_per_safe_completion": None,
+                "attempt_diagnostics": {
+                    "rows_with_timing": len(timings),
+                    "timed_out_before_worker_entered": sum(
+                        t.timed_out and t.worker_entered_after_seconds is None for t in timings
+                    ),
+                    "timed_out_after_worker_entered": sum(
+                        t.timed_out and t.worker_entered_after_seconds is not None for t in timings
+                    ),
+                    "generation_returned_rows": sum(
+                        t.generation_returned_after_seconds is not None for t in timings
+                    ),
+                    "frame_ready_rows": sum(
+                        t.frame_ready_after_seconds is not None for t in timings
+                    ),
+                    "max_worker_entry_seconds": max(
+                        (
+                            t.worker_entered_after_seconds
+                            for t in timings
+                            if t.worker_entered_after_seconds is not None
+                        ),
+                        default=None,
+                    ),
+                    "provider_dispatch_proven": False,
+                },
             }
         modes[mode] = splits
     result["modes"] = modes
