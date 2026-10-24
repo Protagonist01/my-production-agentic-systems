@@ -89,8 +89,9 @@ verify cleanup and read-back. Tampering uses saved output without another dispat
 
 All inputs/responses in these checks are invented. Trusted evaluator code and plain local
 hashes provide consistency, not hostile-code containment or authenticated SQL attestation.
-Recovery is controlled exception/reopen; full H7/OS crash evidence and total latency remain
-separate work. The stronger twelve labels are accepted AI-assisted propositions, not blind
+Recovery is controlled exception/reopen; full H7/OS crash evidence remains separate work.
+The follow-up [parent timing change](trial-timing.md) measures new trial setup through cleanup;
+historical timing stays unknown. The stronger twelve labels are accepted AI-assisted propositions, not blind
 ground truth. Representative coverage, independent reviews, approved baselines/limits,
 complete cost accounting, a bound methodology study and final fresh evidence still gate #33.
 Shared profiles for the other four agents remain enforced; none is released by this adapter.

@@ -29,6 +29,7 @@ from agent_harness.trials import (
     TrialRow,
     TrialSchedule,
     TrialTask,
+    TrialTiming,
     validate_schedule,
 )
 
@@ -192,6 +193,7 @@ def _coordinate(
     environment: TrialEnvironment,
     abort: threading.Event,
 ) -> TrialRow:
+    started = time.perf_counter()
     errors: list[TrialError] = []
     report = None
     telemetry = None
@@ -199,7 +201,15 @@ def _coordinate(
     state_ref = None
     can_release = True
     if abort.is_set():
-        return TrialRow(task=task, errors=("worker_cleanup_error",))
+        return TrialRow(
+            task=task,
+            errors=("worker_cleanup_error",),
+            timing=TrialTiming(
+                setup_seconds=time.perf_counter() - started,
+                execution_seconds=0.0,
+                cleanup_seconds=0.0,
+            ),
+        )
     try:
         lease = environment.prepare(schedule.experiment_id, task)
         if not lease.reference.strip() or lease.fixture != schedule.state_fixture:
@@ -207,6 +217,7 @@ def _coordinate(
         state_ref = lease.reference
     except Exception:
         errors.append("setup_error")
+    prepared = time.perf_counter()
     try:
         if not errors and lease is not None:
             if abort.is_set():
@@ -237,13 +248,24 @@ def _coordinate(
     except Exception:
         errors.append("execution_error")
     finally:
+        executed = time.perf_counter()
         if lease is not None and can_release:
             try:
                 environment.release(lease)
             except Exception:
                 errors.append("cleanup_error")
+    finished = time.perf_counter()
     return TrialRow(
-        task=task, state_ref=state_ref, report=report, errors=tuple(errors), telemetry=telemetry
+        task=task,
+        state_ref=state_ref,
+        report=report,
+        errors=tuple(errors),
+        telemetry=telemetry,
+        timing=TrialTiming(
+            setup_seconds=prepared - started,
+            execution_seconds=executed - prepared,
+            cleanup_seconds=finished - executed,
+        ),
     )
 
 

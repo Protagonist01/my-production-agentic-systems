@@ -43,7 +43,9 @@ describe policies and remaining review requirements.
    capture times, exact inputs, source groups, source kinds, required-review labels, agent and
    trial identities. H10 required cases must remain critical. Field results must equal binary
    scores in the sealed domain report; tokens/cost must equal its usage. A human-approved
-   summary cannot replace actual H10 results. The ordinary audit trusts its domain adapter;
+   summary cannot replace actual H10 results. The [timing follow-up](trial-timing.md) requires
+   latency to equal the parent-measured terminal-row sum; historical rows without timing
+   require unknown latency. Receipt span alone is insufficient. The ordinary audit trusts its domain adapter;
    this binding supplies the additional independent-evidence cross-check for release.
 8. [release_cli.main](../harness/src/agent_harness/release_cli.py) composes that result with
    the original H10 decision. Without all required audit inputs, it adds

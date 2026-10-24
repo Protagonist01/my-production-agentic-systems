@@ -1,6 +1,7 @@
 """Private fixed schedules, independent outcome accounting and exclusive journals."""
 
 import hashlib
+import math
 import os
 from pathlib import Path
 from typing import Annotated, Literal, Self
@@ -138,12 +139,33 @@ TrialError = Literal[
 ]
 
 
+class TrialTiming(Contract):
+    """Parent monotonic seconds; excludes executor queueing and journal/sealing I/O."""
+
+    version: Literal["parent-trial-monotonic-v1"] = "parent-trial-monotonic-v1"
+    setup_seconds: Annotated[float, Field(ge=0)]
+    execution_seconds: Annotated[float, Field(ge=0)]
+    cleanup_seconds: Annotated[float, Field(ge=0)]
+
+    @model_validator(mode="after")
+    def finite_total(self) -> Self:
+        if not math.isfinite(self.elapsed_seconds):
+            raise ValueError("trial timing total must be finite")
+        return self
+
+    @property
+    def elapsed_seconds(self) -> float:
+        return self.setup_seconds + self.execution_seconds + self.cleanup_seconds
+
+
 class TrialRow(Contract):
     task: TrialTask
     state_ref: Identifier | None = None
     report: ManifestCaseReport | None = None
     errors: tuple[TrialError, ...] = ()
     telemetry: "TraceHealth | None" = None
+    # Omit absent timing so historical canonical journal pins remain unchanged.
+    timing: TrialTiming | None = Field(default=None, exclude_if=lambda value: value is None)
 
     @model_validator(mode="after")
     def terminal_identity(self) -> Self:

@@ -27,6 +27,7 @@ from agent_harness.trials import (
     TrialJournal,
     TrialRow,
     TrialSchedule,
+    TrialTiming,
     assess,
 )
 from pydantic import ValidationError
@@ -98,6 +99,67 @@ def sample_row(task, *, correct=1, safe=1, review=0, outcome="completed", errors
         report=report,
     )
     return TrialRow(task=task, report=wrapped, state_ref="invented-state", errors=errors)
+
+
+def test_absent_timing_preserves_legacy_canonical_bytes():
+    row = sample_row(population()[1].tasks[0])
+    legacy = row.model_dump(mode="json")
+    legacy.pop("timing", None)
+    wire = json.dumps(legacy, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+    assert row.canonical_json() == wire
+    assert TrialRow.model_validate_json(wire).canonical_json() == wire
+    assert TrialRow.model_validate_json(wire).timing is None
+    timed = row.model_copy(
+        update={
+            "timing": TrialTiming(setup_seconds=1.0, execution_seconds=2.0, cleanup_seconds=3.0)
+        }
+    )
+    assert TrialRow.model_validate_json(timed.canonical_json()).timing.elapsed_seconds == 6.0
+    assert timed.canonical_json() != wire
+
+
+@pytest.mark.parametrize("value", [-1.0, float("nan"), float("inf"), 1e308])
+def test_invalid_or_overflowed_timing_is_rejected(value):
+    with pytest.raises(ValidationError):
+        TrialTiming(setup_seconds=value, execution_seconds=value, cleanup_seconds=value)
+
+
+@pytest.mark.parametrize("failure", [None, "setup", "cleanup", "worker", "unreaped"])
+def test_parent_measures_setup_execution_and_cleanup_with_performance_clock(
+    tmp_path, monkeypatch, failure
+):
+    from agent_harness import trial_runner
+
+    ticks = iter((10.0, 12.0, 17.0, 20.0))
+    monkeypatch.setattr(trial_runner.time, "perf_counter", lambda: next(ticks))
+    monkeypatch.setattr(trial_runner.time, "monotonic", lambda: 0.0)
+    loaded, schedule = population()
+    task = schedule.tasks[0]
+    state = tmp_path / "state"
+    state.mkdir()
+    environment = TrackingEnvironment(
+        state, setup_error=failure == "setup", cleanup_error=failure == "cleanup"
+    )
+
+    def isolated(*args):
+        if failure == "unreaped":
+            raise trial_runner.WorkerCleanupError("invented")
+        return (
+            trial_runner._WorkerResult(error="worker_crash")
+            if failure == "worker"
+            else trial_runner._WorkerResult(report=sample_row(task).report)
+        )
+
+    monkeypatch.setattr(trial_runner, "_isolated", isolated)
+    abort = threading.Event()
+    row = trial_runner._coordinate(task, schedule, loaded, InventedFactory(), environment, abort)
+    assert row.timing == TrialTiming(setup_seconds=2.0, execution_seconds=5.0, cleanup_seconds=3.0)
+    assert row.timing.elapsed_seconds == 10.0
+    assert ("setup_error" in row.errors) == (failure == "setup")
+    assert ("cleanup_error" in row.errors) == (failure == "cleanup")
+    assert ("worker_crash" in row.errors) == (failure == "worker")
+    assert abort.is_set() == (failure == "unreaped")
+    assert len(list(state.iterdir())) == (1 if failure == "unreaped" else 0)
 
 
 @pytest.mark.parametrize(
@@ -451,6 +513,7 @@ def test_real_workers_isolate_state_clock_seed_and_bound_parallelism(tmp_path):
         schedule, loaded, ProbeFactory(str(markers), ("complete",) * 3), env, tmp_path / "journal"
     )
     assert report.complete and report.autonomous_completions == report.eligible_trials == 3
+    assert all(row.timing is not None and row.timing.elapsed_seconds > 0 for row in report.rows)
     assert 1 < env.peak <= schedule.max_parallel and env.active == 0 and len(env.released) == 3
     observed = [
         json.loads((markers / (t.context.trial_id + ".json")).read_text()) for t in schedule.tasks
@@ -526,6 +589,7 @@ def test_crash_timeout_exceptions_and_scorer_failure_all_get_terminal_rows(tmp_p
         tmp_path / "journal",
     )
     assert len(report.rows) == len(behaviors) and not report.missing and not report.complete
+    assert all(row.timing is not None and row.timing.elapsed_seconds > 0 for row in report.rows)
     assert report.eligible_trials == len(behaviors) and report.autonomous_completions == 1
     assert [row.errors for row in report.rows] == [
         (),
@@ -563,6 +627,7 @@ def test_parent_lifecycle_and_worker_start_errors_are_accounted(tmp_path, failur
         failure
     ]
     assert len(report.rows) == 2 and all(error in row.errors for row in report.rows)
+    assert all(row.timing is not None and row.timing.elapsed_seconds > 0 for row in report.rows)
     assert not report.complete and report.eligible_trials == 2
     assert not list(state.iterdir())
 
@@ -582,6 +647,8 @@ def test_failed_worker_cleanup_preserves_state_and_stops_further_dispatch(tmp_pa
     report = run_trials(schedule, loaded, InventedFactory(), environment, tmp_path / "journal")
     assert len(report.rows) == 2 and not report.complete
     assert all(row.errors == ("worker_cleanup_error",) for row in report.rows)
+    assert all(row.timing is not None for row in report.rows)
+    assert report.rows[1].timing.execution_seconds == 0
     assert environment.active == 1 and not environment.released
     assert len(list(state.iterdir())) == 1
 

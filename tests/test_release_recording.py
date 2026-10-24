@@ -8,6 +8,7 @@ from agent_harness.fresh_recording import record_candidate, validate_fresh
 from agent_harness.release_contracts import CandidateSpec, pin, verify_sources
 from agent_harness.release_evidence import read_evidence
 from agent_harness.trial_example import FileTrialEnvironment
+from agent_harness.trials import TrialRow
 from release_fixtures import capture, inputs
 
 
@@ -33,7 +34,7 @@ def test_three_identical_answers_have_three_new_dispatch_receipts(tmp_path):
 
 
 @pytest.mark.parametrize(
-    "mutation", ["missing", "changed", "extra", "journal", "nonce", "identity"]
+    "mutation", ["missing", "changed", "extra", "journal", "timing", "nonce", "identity"]
 )
 def test_receipt_or_journal_tampering_blocks_read(tmp_path, mutation):
     loaded, evidence, output = capture(tmp_path)
@@ -47,6 +48,17 @@ def test_receipt_or_journal_tampering_blocks_read(tmp_path, mutation):
         (output / "receipts" / "extra.txt").write_text("extra", encoding="utf-8")
     elif mutation == "journal":
         next((output / "journal" / "rows").glob("*.json")).unlink()
+    elif mutation == "timing":
+        path = next((output / "journal" / "rows").glob("*.json"))
+        row = TrialRow.model_validate_json(path.read_bytes())
+        altered = row.model_copy(
+            update={
+                "timing": row.timing.model_copy(
+                    update={"execution_seconds": row.timing.execution_seconds + 1.0}
+                )
+            }
+        )
+        path.write_text(altered.canonical_json(), encoding="utf-8")
     else:
         from agent_harness.release_contracts import AttemptReceipt, sha256
 
