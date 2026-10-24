@@ -1,13 +1,21 @@
 """Actual H10 dispatch/journal/SQL checks with invented inputs and a mock transport."""
 
 import pytest
+from agent_harness.evaluation_standards import (
+    StandardCase,
+    StandardProfile,
+    StandardProtocol,
+    audit_study,
+)
 from agent_harness.release_contracts import pin
 from agent_harness.trials import TrialJournal, assess
 from olist_h10_fixtures import ROOT, composition
 from olist_support.field_evaluation import FIELDS
 from olist_support.h10_environment import OlistEnvironment
 from olist_support.h10_evidence import read_olist_evidence as read_evidence
+from olist_support.h10_manifest import private_case
 from olist_support.h10_recording import record_olist
+from olist_support.h10_study import assemble_olist_study
 from test_olist_business import app as app
 
 
@@ -63,6 +71,62 @@ def test_olist_uses_owned_h10_receipts_private_scores_and_parent_cleanup(app, tm
     )
     assert len({r.nonce for r in verified.receipts}) == 3
     assert all(r.exchange.occurrence == 1 for r in verified.receipts)
+    if kind == "refund":
+        label, _ = private_case(loaded.manifest.entries[0].case)
+        profile = StandardProfile(
+            version="invented-olist-study",
+            agent="olist",
+            required_fields=FIELDS,
+            required_holdout_slices=("eligible_refund",),
+        )
+        protocol = StandardProtocol(
+            version="invented",
+            profile_sha256=pin(profile),
+            dataset_sha256=loaded.pin.sha256,
+            scorer_sha256=factory.candidate.scorer_sha256,
+            baseline_sha256=pin(manifest),
+            frozen_at=manifest.started_at,
+            trials_per_case=3,
+        )
+        cases = (
+            StandardCase(
+                case_id=label.input.case_id,
+                independence_keys=(label.group_id,),
+                language_family="invented",
+                input_text=label.input.request.message,
+                split=label.split,
+                source_kind=label.source_kind,
+                slices=("eligible_refund",),
+                eligible_for_autonomy=True,
+                required_review=False,
+                critical=True,
+            ),
+        )
+        # Same mock evidence in both slots tests read-back/projection only, not an
+        # independent baseline comparison or model-quality study.
+        study = assemble_olist_study(
+            profile,
+            protocol,
+            cases,
+            loaded,
+            baseline_root=output,
+            baseline_evidence_sha256=pin(manifest),
+            baseline_candidate_sha256=pin(factory.candidate),
+            candidate_root=output,
+            candidate_evidence_sha256=pin(manifest),
+            candidate_sha256=pin(factory.candidate),
+            required_case_ids=loaded.manifest.case_ids,
+        )
+        assert len(study.rows) == 3 and all(r.correct for r in study.rows)
+        assert all(
+            r.elapsed_seconds == row.timing.elapsed_seconds
+            for r, row in zip(study.rows, batch.rows, strict=True)
+        )
+        assert all(c.label_review is None for c in study.cases)
+        audit = audit_study(profile, protocol, study, now=manifest.finished_at)
+        assert (
+            not audit["release_allowed"] and "labels_not_independently_frozen" in audit["blockers"]
+        )
     if kind == "failure":
         assert all(
             assess(r, schedule.outcome_policy).category == "safe_unresolved" for r in batch.rows

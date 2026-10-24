@@ -1,5 +1,9 @@
 # Code study — typed CFPB triage and durable review
 
+Follow-up inspected 2026-10-24 from merged base `b915f1b`: unmerged
+`codex/three-release-evaluators` adds the [three-issue evaluation preparation](three-release-evaluators.md).
+The original walkthrough below retains its historical implementation/evidence scope.
+
 Inspected 2026-10-23 on unmerged `codex/c3-c4-cfpb-triage`, based on merged #84 `95397c4`, with dirty implementation additions. Coverage: classifier/contracts/calibration, all desk modules and SQL, shipped web assets, diagnostics/tracing, their focused/SQL/session tests and shared Gemini opt-in. This chapter is a source walkthrough, not an exhaustive security review. [Operations and actual pilot](cfpb-triage-operations.md), [aggregate evidence](data/cfpb-triage-evidence-v1.json) and [Build Book Entry37](../BUILD_BOOK.md#entry-37--typed-cfpb-triage-and-scoped-review) preserve the evidence boundary. C1/C2 chapters remain historical source studies.
 
 ## Follow one invented complaint

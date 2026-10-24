@@ -1,5 +1,9 @@
 # Code study — Olist H10 recording and recomputation
 
+Follow-up inspected 2026-10-24 from merged base `b915f1b`: unmerged
+`codex/three-release-evaluators` adds the [three-issue evaluation preparation](three-release-evaluators.md).
+The original walkthrough below retains its historical implementation/evidence scope.
+
 Inspected 2026-10-24 on unmerged `codex/olist-h10-adapter`, from verified main `70abcdb`
 (#100). Coverage: the six adapter modules, FieldCapture extension, focused mutations and
 actual mock/Postgres execution. Full checks and hosted acceptance follow after completion.
