@@ -47,6 +47,12 @@ Call `run_trials(schedule, loaded, factory, environment, new_journal_path)`. The
 
 The worker has a 4 MiB output frame and the runner accepts at most 8 MiB of canonical manifest input. Missing/crashed/oversized/malformed output fails explicitly. Timeout terminates/joins the owned child, then kills/joins if necessary. Cleanup failure stops admission of further queued work and retains the affected state. This does not manage untracked subprocess trees created by a nonconforming factory.
 
+Both trial and SDK workers share serialized process bookkeeping. Waiting occurs outside
+that lock; a readable POSIX exit pipe is rechecked for actual exit status within the original
+monotonic bound. Pipe readiness alone is not proof that the child was reaped. A brief pause
+prevents spinning on EOF. Execution/cleanup limits and fail-closed state retention remain
+unchanged. See the [exit-status walkthrough](code-study-trials.md#sentinel-readiness-and-exit-status).
+
 Read a no-fault interrupted journal with `TrialJournal(path).read(loaded)`. For fault cases, pass `fault_plan=reviewed_plan` to both `read` and `require_release_evidence`; H7 compares this external reviewed treatment with the stored plan/events. The returned `BatchReport` lists missing scheduled identities and keeps the original denominator. The reader and evidence gate revalidate the schedule against the separately loaded, pinned manifest, including eligibility/review flags. The schedule itself retains an exact case inventory and repeated-trial matrix. Duplicate/unexpected/changed rows, mismatched report context/manifest, malformed JSON or wrong identity filenames fail closed. A missing row or scorer error cannot pass `require_release_evidence(loaded)`. Reads during an unfinished write may fail until the writer finishes. Disk errors propagate; a host crash/power loss can leave missing or corrupt evidence. No automatic resume, append to an old execution, tamper authentication or durable distributed lease service is implemented.
 
 ## Run the invented example

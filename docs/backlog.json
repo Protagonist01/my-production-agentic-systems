@@ -873,7 +873,7 @@
       ],
       "priority": "P0",
       "status": "In progress",
-      "blocker": "User accepted 12 pilot labels retrospectively. New independent frozen labels, unseen/representative cohort, approved baselines/thresholds, known cost and H10/domain field adapters remain required. Four old templates repeat across splits.",
+      "blocker": "User accepted the 12 stronger draft-v2 AI proposals before new model outputs; this is assisted review, not independent blind annotation. H10 recording adapter, representative cohort, reviewed baselines/thresholds, known costs and fresh evidence remain required. Post-merge #99 main CI failed one spawned fault-matrix test; worker-exit observation follow-up is in progress. Old repeated templates/captures stay unchanged.",
       "issue_number": 33,
       "issue_url": "https://github.com/Protagonist01/my-production-agentic-systems/issues/33",
       "parent_issue_number": 4,
@@ -884,9 +884,10 @@
         14
       ],
       "milestone_number": 2,
-      "branch": "codex/strong-evaluation-standards",
+      "branch": "codex/worker-exit-observation",
       "review_evidence": "Verified user merge#96 main6bcac64: nine applicable jobs passed,936tests per quality cell/103Postgres, clean audits and exact-main replay. User authorized separate36callGeminiFree follow-up. Frozen0be72b2/new6groups excludes12prior groups: Gemini36/36correct/0unsafe/0unresolved/9of9eligible/12of12all-three, rules36/36, always-review27/36; all108duplicate/cleanup checks passed. All36model token counts known2790input966output, costs unknown. Worker entry median8.225s/max36.348s; old timeout causes unproven. Sealed evidence2b8f76ce independently recomputed offline. Original pilot/labels/holdout unchanged. Focused126pass+correctedregression11pass,139types,sixbuildpairs,installed27resources/zero-provider replay,auditclean. Full local942tests273.88s/139types/208formatted/imports passed; hosted final-head acceptance pending. User merged#97 as418c917; main942tests per matrix cell/103Postgres and strict replay passed after one unchanged fault-matrix job rerun (cause unproven). User accepted all12proposed labels after results, then authorized stronger standards for all five agents. New shared audit/profiles/readiness inventory under review; no new live calls or completed standard studies.",
-      "implementation_commit": "54953b22c5944a43b377987fcaa837d5369e9ccc",
+      "implementation_commit": "8ebdb72525327ea27e032298fac87969050062f1",
+      "postmerge_followup": "User merged #99 as c1fc040 with the exact reviewed tree52269cc. Main run40106644821 passed three quality cells1005tests each/145types/12artifacts and105Postgres, both audits/secret scan. Ubuntu3.13 failed the spawned fault matrix (1004passed/1failed), so main acceptance is incomplete. No rerun used as a fix. Shared join follow-up addresses independently proven ready-sentinel-before-exit-status exposure, without asserting the truncated log proves its cause. Stronger draft12labels accepted via private evaluator-pinned sidecar, review of AI proposals only. No new provider budget or release approval.",
       "command_document": "docs/olist-fresh-review.md",
       "evaluation_standard": "docs/evaluation/profiles/olist.json"
     },
