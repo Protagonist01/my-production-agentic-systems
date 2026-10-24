@@ -8,9 +8,9 @@
     "olist": {
       "profile": "docs/evaluation/profiles/olist.json",
       "profile_canonical_sha256": "d365ff018ea6be9c05492eb51090aed5532b818ab692e1933008b7d65ccf5cc6",
-      "historical_evidence_bytes": {
-        "docs/data/olist-followup-evidence-v2.json": "bcf8b209d24387d7d24555c96552e8a08d310a686416198ed12576c8a42c9757",
-        "docs/data/olist-fresh-evidence-v1.json": "f7586d109e4d5cf987afbe693618b2bf2c018f5cc1e34f39b0ddf348c66f8897"
+      "historical_evidence_lf_sha256": {
+        "docs/data/olist-followup-evidence-v2.json": "f7d3c4f85ac225b9064b68e077794457e6b784b202f03ec71496dcf4ec06f292",
+        "docs/data/olist-fresh-evidence-v1.json": "946bb7e0bdcb28399647669ce64f61473aaaf00563a76d10ebe9e266a630908c"
       },
       "historical_limitations": [
         "Only four constructed texts repeat across splits in the follow-up.",
@@ -33,8 +33,8 @@
     "cfpb": {
       "profile": "docs/evaluation/profiles/cfpb.json",
       "profile_canonical_sha256": "52aacaf17e208a8334c4a04a6310151f6edca33b762d958994bdfabe3294df30",
-      "historical_evidence_bytes": {
-        "docs/data/cfpb-triage-evidence-v1.json": "e2208319388ca7a578aeb48fd69a8eb26adc43445eae8e6d243b5979b4bbcd31"
+      "historical_evidence_lf_sha256": {
+        "docs/data/cfpb-triage-evidence-v1.json": "722b981719273f42d9ddf4eea4f8f4b316e6f0df0065fceb701d8727dbb046e2"
       },
       "historical_limitations": [
         "24-case pilot mixes keyword-enriched and background hash selection; not representative.",
@@ -56,7 +56,7 @@
     "revenue": {
       "profile": "docs/evaluation/profiles/revenue.json",
       "profile_canonical_sha256": "5f317f5489ddedc62950b229a2a8a62d1d337c2dca96c555c20d15c6aad04ee5",
-      "historical_evidence_bytes": {
+      "historical_evidence_lf_sha256": {
         "docs/data/revenue-source-cuad-v1.json": "b852424ab854c30bd730ccc90a799907e02d3875a3066d203aed36f842f78540",
         "docs/data/revenue-billing-worlds-v1.json": "97d4193e8339af5164dedc284b6b45d53fce4cb936e809ba76769adc4d104730",
         "docs/data/revenue-reconciliation-mechanism-v1.json": "8ed5e6875cbf4412d49e0c33e3c08c84c00c4b7f4f922b098ec6a073e4c25b39"
@@ -81,9 +81,9 @@
     "prior-auth": {
       "profile": "docs/evaluation/profiles/prior-auth.json",
       "profile_canonical_sha256": "e30806a268f77fb6691390100c89e5dfefd49f59f56213f21cc3bba51d25cea2",
-      "historical_evidence_bytes": {
-        "docs/data/prior-auth-p1-p3-evidence.json": "024538b5128f3d34091af07024b6ff94b48e0db6cd45b8330e54c3f7b565f93b",
-        "docs/data/prior-auth-review-evidence-v1.json": "4505d2d4545703987dd6495d3b9b09d0fb59f5681fe5b32f762f802bde6809a2"
+      "historical_evidence_lf_sha256": {
+        "docs/data/prior-auth-p1-p3-evidence.json": "490b1d0cfada3c0c16d43613d7442e7126b561108aa07d210783bbebbe93f58e",
+        "docs/data/prior-auth-review-evidence-v1.json": "2a6aa4b816ad8f48c8c69a7a0a1dd73b18356f2e5e052e41ea421645f462df7f"
       },
       "historical_limitations": [
         "12 grouped illustrative/edited/invented cases; AI-provisional labels and no clinical validation.",
@@ -105,8 +105,8 @@
     "supply": {
       "profile": "docs/evaluation/profiles/supply.json",
       "profile_canonical_sha256": "4a8142eb91328e0a35fdaf37fb0f5d8df4fa01eeda7a845170ad0f179a1cf8c5",
-      "historical_evidence_bytes": {
-        "docs/data/supply-chain-simulator-v1.json": "b84a647a9535efe0e19cdb4dc4ed4262c99f5db57ae710bcb9854f57cdf8d3ce"
+      "historical_evidence_lf_sha256": {
+        "docs/data/supply-chain-simulator-v1.json": "993fc7640aec27a23e18fa491ad98223cf171aefce6972fdc2ec8650218abce2"
       },
       "historical_limitations": [
         "Invented scenario families/outcome formulas are stress tests, not a fitted production simulator.",

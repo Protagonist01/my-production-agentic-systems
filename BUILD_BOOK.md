@@ -2632,3 +2632,13 @@ and zero provider calls. Publication checks found configured credentials and12so
 absent in40files across the checked history;212relative links resolve. All nine historical
 aggregate files retain their pinned bytes. No SQL/schema/lock/dependency changed. Hosted
 final-head matrix/Postgres acceptance follows after actual completion on the PR.
+
+Before publishing, compare inventory bytes with Git blobs: several Windows files haveCRLF,
+while Linux checkout blobs useLF. Pin the historical public text inventory afterCRLF-to-LF
+normalization and make the test use the same explicit rule. Private raw capture/evaluator
+pins remain exact bytes and unchanged. This is a portability correction to the new inventory
+check, not a rewrite of source/evidence. Run the affected audit/binding/CLI tests again and
+require the final hosted Linux/Windows matrix; the production Python source is unchanged.
+
+The portability-corrected audit/binding/CLI suite passed56tests in31.14seconds; Ruff/format
+passed and all nine normalized inventory hashes match the actual committed Git blobs.

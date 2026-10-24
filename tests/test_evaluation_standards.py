@@ -272,8 +272,8 @@ def test_inventory_preserves_historical_evidence_and_acceptance_scope():
     for agent, record in inventory["agents"].items():
         profile = StandardProfile.model_validate_json((root / record["profile"]).read_bytes())
         assert profile.agent == agent and pin(profile) == record["profile_canonical_sha256"]
-        for name, digest in record["historical_evidence_bytes"].items():
-            assert sha256((root / name).read_bytes()) == digest
+        for name, digest in record["historical_evidence_lf_sha256"].items():
+            assert sha256((root / name).read_bytes().replace(b"\r\n", b"\n")) == digest
         assert not record["release_allowed"]
     acceptance = inventory["retrospective_label_acceptance"]
     assert acceptance["case_count"] == 12 and not acceptance["blind_annotation_established"]

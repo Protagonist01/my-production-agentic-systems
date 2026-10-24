@@ -61,7 +61,9 @@ comparators, not new approvals.
 | [Supply](evaluation/profiles/supply.json) | Fact freshness, allowed action, per-action/cumulative budgets, capacity, approvals, bounded replanning, exact state/notices and recovery. Compare do-nothing, rules and public-estimate solver. | Changed outcome model, correlated shocks, capacity/scarcity, stale/conflicting alerts and multiple sensitivity settings. Hidden realized outcomes remain evaluator-only. Simulation qualification cannot establish freight savings or production model quality. |
 
 Existing evidence is linked in the [pinned readiness inventory](evaluation/readiness.json).
-No existing report is rewritten or grandfathered into a successful standard audit.
+Historical inventory digests normalize CRLF to LF to match Git checkout text on both OSes;
+private capture byte pins retain their original exact-byte meaning. No existing report is
+rewritten or grandfathered into a successful standard audit.
 
 ## New Olist cohort proposal
 
