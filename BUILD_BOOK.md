@@ -2642,3 +2642,10 @@ require the final hosted Linux/Windows matrix; the production Python source is u
 
 The portability-corrected audit/binding/CLI suite passed56tests in31.14seconds; Ruff/format
 passed and all nine normalized inventory hashes match the actual committed Git blobs.
+
+Hosted initial40054265366 flagged two generic-api-key matches at the Prior Auth public-report
+checksum in readiness.json:line85, one per implementation/portability commit. Recompute the
+rawWindows report hash and theLF-normalized Git-blob hash to prove each reported value is an
+artifact digest, not credentials. Follow the existing repository convention: add only the
+two exact commit/file/rule/line fingerprints to.gitleaksignore, retain the scanner/rules and
+record the initial failure. The corrected final-head hosted scan must pass independently.

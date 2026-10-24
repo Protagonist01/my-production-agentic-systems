@@ -13,3 +13,9 @@
 314211e353cfcecad0569efc64b44d11ac139d6a:docs/data/cfpb-triage-evidence-v1.json:generic-api-key:216
 314211e353cfcecad0569efc64b44d11ac139d6a:docs/data/cfpb-triage-evidence-v1.json:generic-api-key:321
 314211e353cfcecad0569efc64b44d11ac139d6a:docs/data/cfpb-triage-evidence-v1.json:generic-api-key:322
+
+# Evaluation readiness inventory: verified prior-auth-p1-p3 public report SHA256,
+# raw checkout digest in b14f709 and LF-normalized Git-blob digest in 81bbdf3.
+# Exact observed historical fingerprints only; no rule/path-wide exclusion.
+b14f70996b1dd44e0b250158ab57dc9dbc49c8b0:docs/evaluation/readiness.json:generic-api-key:85
+81bbdf3fdf06e02b02041c3af4b2339ae45888c1:docs/evaluation/readiness.json:generic-api-key:85
