@@ -4,13 +4,14 @@ import multiprocessing
 import os
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any, Literal, Self
 
 from agent_harness.contracts import Contract, RunContext
 from agent_harness.process_control import OwnedProcess
 from agent_harness.release_contracts import pin, sha256
 from agent_harness.trial_runner import WorkerCleanupError
 from agent_harness.trials import _write_exclusive
+from pydantic import Field, model_validator
 
 from olist_support.business import BusinessStore
 from olist_support.business_contracts import CallerGrant
@@ -32,7 +33,9 @@ EXIT_CODE = 23
 
 
 class CrashEvidence(Contract):
-    version: Literal["olist-operator-process-crash-v1"] = "olist-operator-process-crash-v1"
+    version: Literal["olist-operator-process-crash-v1", "olist-operator-process-crash-v2"] = (
+        "olist-operator-process-crash-v1"
+    )
     context: RunContext
     request: WorkflowRequest
     grant: CallerGrant
@@ -46,15 +49,30 @@ class CrashEvidence(Contract):
     after_commit_boundary: bool = False
     exit_code: int | None = None
     errors: tuple[str, ...] = ()
+    # Absent in v1 so its canonical bytes and external pins stay unchanged.
+    before_commit_boundary: bool | None = Field(default=None, exclude_if=lambda v: v is None)
+
+    @model_validator(mode="after")
+    def stage_version(self) -> Self:
+        if self.version.endswith("v1"):
+            if self.before_commit_boundary is not None:
+                raise ValueError("v1 cannot claim a before-commit boundary")
+        elif self.before_commit_boundary is None or self.after_commit_boundary:
+            raise ValueError("v2 requires only the before-commit boundary")
+        return self
 
 
 def _crash_worker(
-    context: RunContext, access: OlistAccess, request: WorkflowRequest, boundary: Any
+    context: RunContext,
+    access: OlistAccess,
+    request: WorkflowRequest,
+    boundary: Any,
+    crash_stage: Literal["before_commit", "after_commit"],
 ) -> None:
     with open(os.devnull, "w") as sink, redirect_stdout(sink), redirect_stderr(sink):
 
         def fault(stage: str) -> None:
-            if stage == "after_commit":
+            if stage == crash_stage:
                 # RawValue is shared with the observing parent; no credential/file output.
                 boundary.value = 1
                 os._exit(EXIT_CODE)
@@ -79,6 +97,7 @@ def collect_crash(
     output: Path,
     *,
     timeout_seconds: float = 90.0,
+    crash_stage: Literal["before_commit", "after_commit"] = "after_commit",
 ) -> CrashEvidence:
     """Parent owns state, must release only after this returns or ordinary failure.
 
@@ -91,6 +110,7 @@ def collect_crash(
         context.mode != "offline_fake"
         or context.agent_id != "olist"
         or not 0 < timeout_seconds <= 300
+        or crash_stage not in ("before_commit", "after_commit")
     ):
         raise ValueError("process drill requires explicit offline Olist scope")
     if (
@@ -109,7 +129,11 @@ def collect_crash(
     ctx = multiprocessing.get_context("spawn")
     boundary = ctx.RawValue("b", 0)
     process = OwnedProcess(
-        ctx.Process(target=_crash_worker, args=(context, access, request, boundary), daemon=True)
+        ctx.Process(
+            target=_crash_worker,
+            args=(context, access, request, boundary, crash_stage),
+            daemon=True,
+        )
     )
     started = False
     exit_code = None
@@ -134,7 +158,7 @@ def collect_crash(
                 raise WorkerCleanupError("process drill worker could not be reaped; preserve state")
         process.close()
     if exit_code != EXIT_CODE or not boundary.value:
-        errors.append("after_commit_process_death_unobserved")
+        errors.append(crash_stage + "_process_death_unobserved")
     committed = resumed = duplicate = result = duplicate_result = None
     try:
         with connect() as connection:
@@ -163,6 +187,9 @@ def collect_crash(
     except Exception:
         errors.append("state_read_or_restart_error")
     evidence = CrashEvidence(
+        version="olist-operator-process-crash-v2"
+        if crash_stage == "before_commit"
+        else "olist-operator-process-crash-v1",
         context=context,
         request=request,
         grant=access.grant,
@@ -173,7 +200,8 @@ def collect_crash(
         duplicate=duplicate,
         result=result,
         duplicate_result=duplicate_result,
-        after_commit_boundary=bool(boundary.value),
+        after_commit_boundary=bool(boundary.value) if crash_stage == "after_commit" else False,
+        before_commit_boundary=bool(boundary.value) if crash_stage == "before_commit" else None,
         exit_code=exit_code,
         errors=tuple(errors),
     )
@@ -200,14 +228,23 @@ def assess_crash(
         or evidence.run_limit_minor != 10000
     ):
         raise ValueError("process evidence differs from request/grant/limit")
-    task = domain_task(label, context, evidence.grant, evidence.run_limit_minor)
+    before_commit = evidence.version.endswith("v2")
+    commit_context = (
+        context.model_copy(update={"run_id": context.run_id + "-restart"})
+        if before_commit
+        else context
+    )
+    task = domain_task(label, commit_context, evidence.grant, evidence.run_limit_minor)
     expected = _expected_state(label, task, evidence.before)
     eligible = label.expected.action == "propose_full_refund"
-    process_death = evidence.after_commit_boundary and evidence.exit_code == EXIT_CODE
+    process_death = (
+        bool(evidence.before_commit_boundary if before_commit else evidence.after_commit_boundary)
+        and evidence.exit_code == EXIT_CODE
+    )
     exact = (
         eligible
         and expected is not None
-        and evidence.committed == expected
+        and evidence.committed == (evidence.before if before_commit else expected)
         and evidence.resumed == expected
         and evidence.duplicate == expected
     )
@@ -240,7 +277,7 @@ def assess_crash(
         "passed": not evidence.errors and process_death and exact and truthful,
         "release_allowed": False,
         "limitations": (
-            "Operator-selected SIM refund, one after-commit hard exit; no model "
+            "Operator-selected SIM refund, one selected commit-boundary hard exit; no model "
             "classification, fresh H10 receipt or complete fault matrix."
         ),
     }

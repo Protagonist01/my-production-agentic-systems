@@ -415,3 +415,7 @@ O8 fresh review extension: [operator package](docs/olist-fresh-review.md) and [e
 ## Partial dispatch and process-death preparation
 
 The [adapter and crash walkthrough](docs/domain-dispatch-and-crash.md) covers shared H10 mock recording, CFPB classifier and Revenue extractor adapters, private read-back checks and the zero-model Olist SIM process-death drill. Missing domain evidence remains a scorer error; #33/#38/#45 remain open and release-blocked. Main after #103 failed one timing-tamper test; this batch corrects the test seal without weakening production checks. Final acceptance is recorded on the review PR.
+
+## Independent durable-state extension
+
+[State evidence walkthrough](docs/durable-state-evidence.md) traces the shared private artifact reader, scoped CFPB queue delta, whole-fixture Revenue invoice/ledger oracle and versioned Olist before/after-commit process drill. These remain mechanism evidence; full H10 domain release, privacy and unseen-case quality are not inferred.

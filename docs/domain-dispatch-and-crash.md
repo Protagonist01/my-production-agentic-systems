@@ -74,3 +74,5 @@ batch seal when changing timing. Production duration checks and limits are uncha
 Study exercise: trace public input into the gateway and private reference into the scorer.
 Explain why a verified mock receipt cannot prove model quality, and why a surviving receipt
 after process death proves less than a complete recovery matrix.
+
+The [durable-state extension](durable-state-evidence.md) adds separately saved CFPB queue and Revenue SIM ledger observations and a versioned Olist before-commit hard-exit scenario. Partial H10 adapters retain their unobserved-field errors; these artifacts cannot substitute for a complete bound release study.

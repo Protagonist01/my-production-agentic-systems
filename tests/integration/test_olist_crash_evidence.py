@@ -10,8 +10,9 @@ from olist_support.workflow import WorkflowRequest
 from test_olist_business import app as app
 
 
+@pytest.mark.parametrize("crash_stage", ["before_commit", "after_commit"])
 def test_saved_process_death_restart_and_redelivery_recompute_after_owned_database_cleanup(
-    app, tmp_path
+    app, tmp_path, crash_stage
 ):
     server, parent, _ = app
     label, loaded, schedule, _ = composition()
@@ -31,6 +32,7 @@ def test_saved_process_death_restart_and_redelivery_recompute_after_owned_databa
                     order_id=label.input.order.order_id, text=label.input.request.message
                 ),
                 output,
+                crash_stage=crash_stage,
             )
         except WorkerCleanupError:
             can_release = False
@@ -42,7 +44,13 @@ def test_saved_process_death_restart_and_redelivery_recompute_after_owned_databa
     assert report["passed"] and report["mechanism_only"] and report["provider_calls"] == 0
     assert report["process_death_observed"] and report["exact_state_after_restart_and_duplicate"]
     assert not report["release_allowed"] and evidence.exit_code == 23 and not evidence.errors
-    assert evidence.result.receipt.original_run_id == context.run_id
+    assert evidence.result.receipt.original_run_id == context.run_id + (
+        "-restart" if crash_stage == "before_commit" else ""
+    )
+    if crash_stage == "before_commit":
+        assert evidence.committed == evidence.before
+    else:
+        assert "before_commit_boundary" not in evidence.model_dump(mode="json")
     with server.connect() as admin:
         database = lease.reference.removeprefix("olist-h10:")
         assert (
@@ -51,7 +59,13 @@ def test_saved_process_death_restart_and_redelivery_recompute_after_owned_databa
         )
     for change in ("boundary", "exit", "state", "result", "errors"):
         if change == "boundary":
-            altered = evidence.model_copy(update={"after_commit_boundary": False})
+            altered = evidence.model_copy(
+                update={
+                    "before_commit_boundary"
+                    if crash_stage == "before_commit"
+                    else "after_commit_boundary": False
+                }
+            )
         elif change == "exit":
             altered = evidence.model_copy(update={"exit_code": 0})
         elif change == "state":
