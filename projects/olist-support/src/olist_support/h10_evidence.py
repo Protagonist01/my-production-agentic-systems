@@ -7,7 +7,7 @@ from agent_harness.contracts import EvidenceReference, Failure, RunContext
 from agent_harness.evaluation import EvalCase, ScoreResult
 from agent_harness.release_contracts import pin, sha256
 from agent_harness.release_evidence import VerifiedEvidence, read_evidence
-from agent_harness.trials import _write_exclusive
+from agent_harness.trials import BatchReport, _write_exclusive
 
 from olist_support.field_evaluation import FieldCapture, score_fields
 from olist_support.h10_environment import grant_for
@@ -81,17 +81,23 @@ def read_olist_evidence(
     Use the frozen candidate's installed packages; changed scorer/runtime bytes fail.
     """
     from olist_support.h10_config import verify_runtime
-    from olist_support.h10_runtime import observed_result
 
     verified = read_evidence(
         root, loaded, evidence_sha256=evidence_sha256, candidate_sha256=candidate_sha256
     )
     verify_runtime(verified.manifest.candidate)
+    verify_observations(root, loaded, verified.batch)
+    return verified
+
+
+def verify_observations(root: Path, loaded: LoadedManifest, batch: BatchReport) -> None:
+    from olist_support.h10_runtime import observed_result
+
     directory = root / "observations"
     if directory.is_symlink() or not directory.is_dir():
         raise ValueError("Olist observation directory is missing or invalid")
     expected = set()
-    for row in verified.batch.rows:
+    for row in batch.rows:
         if row.report is None:
             raise ValueError("Olist trial report is missing")
         context = row.task.context
@@ -124,4 +130,3 @@ def read_olist_evidence(
         or {p.name for p in actual} != expected
     ):
         raise ValueError("Olist observation inventory has missing or unexpected files")
-    return verified

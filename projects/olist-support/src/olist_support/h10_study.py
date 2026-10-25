@@ -2,7 +2,9 @@
 
 from pathlib import Path
 
+from agent_harness.baseline_recording import VerifiedBaseline
 from agent_harness.cases import LoadedManifest
+from agent_harness.contracts import ModelRequest
 from agent_harness.evaluation_standards import (
     StandardCase,
     StandardProfile,
@@ -10,6 +12,7 @@ from agent_harness.evaluation_standards import (
     StandardStudy,
 )
 from agent_harness.evaluation_study import assemble_study
+from agent_harness.release_evidence import VerifiedEvidence
 
 from olist_support.field_evaluation import FIELDS
 from olist_support.h10_evidence import read_olist_evidence
@@ -29,6 +32,7 @@ def assemble_olist_study(
     candidate_evidence_sha256: str,
     candidate_sha256: str,
     required_case_ids: tuple[str, ...],
+    baseline_route: ModelRequest | None = None,
 ) -> StandardStudy:
     if profile.agent != "olist" or set(profile.required_fields) != set(FIELDS):
         raise ValueError("Olist study requires its complete field profile")
@@ -38,12 +42,24 @@ def assemble_olist_study(
     for case in cases:
         if case.split != labels[case.case_id].split:
             raise ValueError("Olist original regression/development split must be retained")
-    baseline = read_olist_evidence(
-        baseline_root,
-        loaded,
-        evidence_sha256=baseline_evidence_sha256,
-        candidate_sha256=baseline_candidate_sha256,
-    )
+    baseline: VerifiedEvidence | VerifiedBaseline
+    if baseline_route is None:
+        baseline = read_olist_evidence(
+            baseline_root,
+            loaded,
+            evidence_sha256=baseline_evidence_sha256,
+            candidate_sha256=baseline_candidate_sha256,
+        )
+    else:
+        from olist_support.baseline_recording import read_olist_baseline
+
+        baseline = read_olist_baseline(
+            baseline_root,
+            loaded,
+            route=baseline_route,
+            evidence_sha256=baseline_evidence_sha256,
+            candidate_sha256=baseline_candidate_sha256,
+        )
     candidate = read_olist_evidence(
         candidate_root,
         loaded,

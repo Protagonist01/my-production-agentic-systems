@@ -116,6 +116,8 @@ def compare_evidence(
     fault_plan: FaultPlan | None = None,
 ) -> tuple[str, ...]:
     """Case/trial regressions; wall-clock capture times may differ between fresh runs."""
+    if not isinstance(baseline, VerifiedEvidence) or not isinstance(candidate, VerifiedEvidence):
+        raise ValueError("H10 release comparison requires its reviewed dispatch-evidence format")
     a, b = baseline.batch.schedule, candidate.batch.schedule
     left, right = baseline.manifest.candidate, candidate.manifest.candidate
     if (
@@ -193,6 +195,8 @@ def release_candidate(
     now: datetime,
     fault_plan: FaultPlan | None = None,
 ) -> ReleaseDecision:
+    if not isinstance(baseline, VerifiedEvidence) or not isinstance(candidate, VerifiedEvidence):
+        raise ValueError("H10 release requires its reviewed dispatch-evidence format")
     if now.tzinfo is None:
         raise ValueError("release clock must be timezone aware")
     if pin(approval) != approval_sha256 or pin(policy) != policy_sha256:

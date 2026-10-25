@@ -419,3 +419,7 @@ The [adapter and crash walkthrough](docs/domain-dispatch-and-crash.md) covers sh
 ## Independent durable-state extension
 
 [State evidence walkthrough](docs/durable-state-evidence.md) traces the shared private artifact reader, scoped CFPB queue delta, whole-fixture Revenue invoice/ledger oracle and versioned Olist before/after-commit process drill. These remain mechanism evidence; full H10 domain release, privacy and unseen-case quality are not inferred.
+
+## Deterministic comparison preparation
+
+The [executed baseline walkthrough](docs/deterministic-baselines.md) traces zero-call Olist rules/review, CFPB review and Revenue abstention through separate sealed manifests, owned trials and independent domain read-back. Study comparison accepts the verified comparator without changing fresh-candidate receipts or release approval. #33/#38/#45 remain open.

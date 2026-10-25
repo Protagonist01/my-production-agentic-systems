@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
+from agent_harness.baseline_recording import zero_usage
 from agent_harness.cases import CaseEntry, CaseManifest, SnapshotSpec
 from agent_harness.contracts import (
     AgentInput,
@@ -41,6 +42,27 @@ class CfpbAdapter:
     scorer_id: str = "cfpb-partial-h10"
     version: str = VERSION
     source_prefix: str = "projects/cfpb-triage/src/cfpb_triage/"
+
+    @property
+    def baseline_algorithm(self) -> str:
+        return "cfpb-always-review-v1"
+
+    def baseline(self, context: RunContext, input: AgentInput) -> dict[str, JsonValue]:
+        complaint = ComplaintInput.model_validate_json(input.request)
+        return Payload(
+            decision=Decision(
+                case_id=complaint.case_id,
+                narrative_sha256=digest_text(complaint.narrative),
+                taxonomy_sha256=pin(self.taxonomy),
+                policy_sha256=pin(self.policy),
+                outcome="review_required",
+                reason="below_threshold",
+                prediction=None,
+                attempts=(),
+                mode="cheap_first",
+            ),
+            usage=zero_usage(context.budget.cost_currency),
+        ).model_dump(mode="json")
 
     @property
     def package_root(self) -> Path:
@@ -178,6 +200,18 @@ class CfpbAdapter:
             trial_ids=(context.trial_id,),
         )
         valid = _valid(reference, d, plan) and not any(a.failure for a in d.attempts)
+        if context.mode == "offline_fake":
+            # The explicitly bound always-review comparator has no classifier attempts.
+            # Count its observed review and route, never invent classification credit.
+            self.result(context, payload)
+            valid = (
+                not d.attempts
+                and p is None
+                and d.outcome == "review_required"
+                and d.reason == "below_threshold"
+                and d.mode == "cheap_first"
+                and saved.usage == zero_usage(context.budget.cost_currency)
+            )
         values: dict[str, bool | None] = {
             "product": bool(valid and p and p.product == reference.product),
             "issue": bool(valid and p and p.issue == reference.issue),

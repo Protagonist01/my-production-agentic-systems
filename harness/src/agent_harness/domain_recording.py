@@ -9,6 +9,13 @@ from typing import Literal, Protocol
 from pydantic import JsonValue
 
 import agent_harness
+from agent_harness.baseline_recording import (
+    BaselineManifest,
+    DenyModels,
+    VerifiedBaseline,
+    read_baseline,
+    record_baseline,
+)
 from agent_harness.cases import LoadedManifest
 from agent_harness.contracts import (
     AgentInput,
@@ -35,8 +42,8 @@ from agent_harness.release_contracts import (
 )
 from agent_harness.release_evidence import VerifiedEvidence, read_evidence
 from agent_harness.scorers import ScorerCompatibility, ScorerRegistry, ScorerSpec
-from agent_harness.trial_runner import StateLease
-from agent_harness.trials import TrialSchedule, TrialTask, _write_exclusive
+from agent_harness.trial_runner import StateLease, TrialComponents
+from agent_harness.trials import BatchReport, TrialSchedule, TrialTask, _write_exclusive
 
 ENVIRONMENT = "h10-partial-stateless-v1"
 FIXTURE = "no-business-state-v1"
@@ -55,6 +62,9 @@ class DomainAdapter(Protocol):
     def source_prefix(self) -> str: ...
     @property
     def configuration_sha256(self) -> str: ...
+    @property
+    def baseline_algorithm(self) -> str: ...
+    def baseline(self, context: RunContext, input: AgentInput) -> dict[str, JsonValue]: ...
     def validate_case(self, case: EvalCase) -> None: ...
     def run(
         self, context: RunContext, input: AgentInput, gateway: ModelGateway
@@ -324,11 +334,18 @@ def read_domain(
     verify_runtime(adapter, verified.manifest.candidate)
     if verified.manifest.origin != "mock":
         raise ValueError("partial domain reader accepts only mock preparation evidence")
+    verify_observations(root, loaded, adapter, verified.batch)
+    return verified
+
+
+def verify_observations(
+    root: Path, loaded: LoadedManifest, adapter: DomainAdapter, batch: BatchReport
+) -> None:
     directory = root / "observations"
     if directory.is_symlink() or not directory.is_dir():
         raise ValueError("observation directory missing or invalid")
     expected = set()
-    for row in verified.batch.rows:
+    for row in batch.rows:
         if row.report is None:
             raise ValueError("domain report missing")
         context = row.task.context
@@ -350,4 +367,108 @@ def read_domain(
         not p.is_file() or p.is_symlink() for p in directory.iterdir()
     ):
         raise ValueError("unexpected or missing domain observations")
+
+
+@dataclass(frozen=True)
+class BaselineDomainAgent:
+    adapter: DomainAdapter
+    slot: Slot
+
+    def run(self, context: RunContext, input: AgentInput, gateway: ModelGateway) -> AgentResult:
+        if input.observations or self.slot.observation is not None:
+            raise ValueError("baseline requires closed input and a new observation slot")
+        self.slot.observation = SavedObservation(
+            context_sha256=pin(context), payload=self.adapter.baseline(context, input)
+        )
+        return self.adapter.result(context, self.slot.observation.payload)
+
+
+@dataclass(frozen=True)
+class DomainBaselineFactory:
+    candidate: CandidateSpec
+    loaded: LoadedManifest
+    adapter: DomainAdapter
+    root: Path
+
+    @property
+    def algorithm(self) -> str:
+        return self.adapter.baseline_algorithm
+
+    def validate(self) -> None:
+        verify_runtime(self.adapter, self.candidate)
+        if self.candidate.prompt_sha256 != sha256(self.algorithm.encode()):
+            raise ValueError("baseline algorithm differs from frozen configuration")
+        for entry in self.loaded.manifest.entries:
+            self.adapter.validate_case(entry.case)
+            if entry.scorer_id != self.adapter.scorer_id:
+                raise ValueError("baseline domain scorer identity differs")
+
+    def build(self, context: RunContext, state: StateLease) -> TrialComponents:
+        if (
+            context.agent_id != self.adapter.agent_id
+            or state.fixture != FIXTURE
+            or state.access is not None
+        ):
+            raise ValueError("baseline domain scope/fixture differs")
+        slot = Slot()
+        registry = ScorerRegistry()
+        registry.register(
+            ScorerSpec(
+                scorer_id=self.adapter.scorer_id,
+                version=self.adapter.version,
+                compatible=tuple(
+                    ScorerCompatibility(snapshot_ref=s, policy_version=p)
+                    for s, p in sorted(
+                        {
+                            (e.case.snapshot_ref, e.case.policy_version)
+                            for e in self.loaded.manifest.entries
+                        }
+                    )
+                ),
+            ),
+            DomainScorer(self.adapter, context, slot, self.root),
+        )
+        return TrialComponents(BaselineDomainAgent(self.adapter, slot), DenyModels(), registry)
+
+
+def record_domain_baseline(
+    schedule: TrialSchedule,
+    loaded: LoadedManifest,
+    factory: DomainBaselineFactory,
+    output: Path,
+    *,
+    candidate_sha256: str,
+    source_root: Path,
+) -> BaselineManifest:
+    if loaded.pin != factory.loaded.pin:
+        raise ValueError("baseline manifest differs from factory")
+    return record_baseline(
+        schedule,
+        loaded,
+        replace(factory, root=output / "observations"),
+        StatelessEnvironment(),
+        output,
+        candidate_sha256=candidate_sha256,
+        source_root=source_root,
+    )
+
+
+def read_domain_baseline(
+    root: Path,
+    loaded: LoadedManifest,
+    adapter: DomainAdapter,
+    *,
+    evidence_sha256: str,
+    candidate_sha256: str,
+) -> VerifiedBaseline:
+    verified = read_baseline(
+        root, loaded, evidence_sha256=evidence_sha256, candidate_sha256=candidate_sha256
+    )
+    verify_runtime(adapter, verified.manifest.candidate)
+    if (
+        verified.manifest.algorithm != adapter.baseline_algorithm
+        or verified.manifest.candidate.prompt_sha256 != sha256(adapter.baseline_algorithm.encode())
+    ):
+        raise ValueError("baseline algorithm/configuration differs from executing adapter")
+    verify_observations(root, loaded, adapter, verified.batch)
     return verified
