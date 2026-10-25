@@ -33,7 +33,7 @@ from olist_support.h10_environment import FIXTURE, OlistAccess, grant_for
 from olist_support.h10_manifest import SCORER_ID, SCORER_VERSION, private_case
 from olist_support.policy import POLICY_VERSION
 from olist_support.release import Observation, StateSnapshot, collect_state
-from olist_support.workflow import GatewayPlanner, SupportWorkflow, WorkflowRequest
+from olist_support.workflow import GatewayPlanner, Planner, SupportWorkflow, WorkflowRequest
 from olist_support.workflow_postgres import saver
 
 
@@ -50,6 +50,9 @@ class OlistAgent:
     route: ModelRequest
     slot: ObservationSlot
 
+    def planner(self, gateway: ModelGateway) -> Planner:
+        return GatewayPlanner(gateway, self.route)
+
     def state(self) -> StateSnapshot:
         with self.access.database.connect() as connection:
             return collect_state(connection)
@@ -59,7 +62,7 @@ class OlistAgent:
             raise ValueError(
                 "Olist recording requires text-only input and a fresh observation slot"
             )
-        planner = ObservedPlanner(GatewayPlanner(gateway, self.route))
+        planner = ObservedPlanner(self.planner(gateway))
         connect = self.access.database.connect
         request = WorkflowRequest(order_id=self.access.order_id, text=input.request)
         interrupted = None

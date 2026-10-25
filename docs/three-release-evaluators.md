@@ -169,3 +169,7 @@ hosted full matrix/110Postgres checks; no completed release study is inferred.
 ## Partial dispatch and process-death preparation
 
 The [adapter and crash walkthrough](domain-dispatch-and-crash.md) covers shared H10 mock recording, CFPB classifier and Revenue extractor adapters, private read-back checks and the zero-model Olist SIM process-death drill. Missing domain evidence remains a scorer error; #33/#38/#45 remain open and release-blocked. Main after #103 failed one timing-tamper test; this batch corrects the test seal without weakening production checks. Final acceptance is recorded on the review PR.
+
+## Deterministic comparison preparation
+
+The [executed baseline walkthrough](deterministic-baselines.md) traces zero-call Olist rules/review, CFPB review and Revenue abstention through separate sealed manifests, owned trials and independent domain read-back. Study comparison accepts the verified comparator without changing fresh-candidate receipts or release approval. #33/#38/#45 remain open.

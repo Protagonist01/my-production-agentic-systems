@@ -1,5 +1,6 @@
 """Project verified H10 evidence; never author reviews, labels, limits or receipts."""
 
+from agent_harness.baseline_recording import VerifiedBaseline
 from agent_harness.cases import LoadedManifest
 from agent_harness.evaluation_binding import verify_binding
 from agent_harness.evaluation_standards import (
@@ -19,7 +20,7 @@ def assemble_study(
     protocol: StandardProtocol,
     cases: tuple[StandardCase, ...],
     loaded: LoadedManifest,
-    baseline: VerifiedEvidence,
+    baseline: VerifiedEvidence | VerifiedBaseline,
     candidate: VerifiedEvidence,
     *,
     required_case_ids: tuple[str, ...],
@@ -29,6 +30,8 @@ def assemble_study(
     Existing H10 binding deliberately requires observed reports and independent
     binary fields. Missing reports/scorer observations cannot be manufactured here.
     """
+    if not isinstance(candidate, VerifiedEvidence):
+        raise ValueError("candidate requires verified fresh dispatch evidence")
     left, right = baseline.manifest.candidate, candidate.manifest.candidate
     if (
         left.scorer_sha256,

@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
+from agent_harness.baseline_recording import zero_usage
 from agent_harness.cases import CaseEntry, CaseManifest, SnapshotSpec
 from agent_harness.contracts import (
     AgentInput,
@@ -20,7 +21,12 @@ from agent_harness.evaluation import EvalCase, ExpectedResult
 from agent_harness.release_contracts import pin, sha256
 from pydantic import JsonValue
 
-from revenue_integrity.extraction import GatewayExtraction, GatewayExtractor
+from revenue_integrity.extraction import (
+    GatewayExtraction,
+    GatewayExtractor,
+    abstain,
+    verify_extraction,
+)
 from revenue_integrity.release_evaluation import (
     ExtractionCase,
     ExtractionObservation,
@@ -40,6 +46,17 @@ class RevenueAdapter:
     scorer_id: str = "revenue-extraction-partial-h10"
     version: str = VERSION
     source_prefix: str = "projects/revenue-integrity/src/revenue_integrity/"
+
+    @property
+    def baseline_algorithm(self) -> str:
+        return "revenue-original-abstain-v1"
+
+    def baseline(self, context: RunContext, input: AgentInput) -> dict[str, JsonValue]:
+        value = ExtractionInput.model_validate_json(input.request)
+        return GatewayExtraction(
+            extraction=verify_extraction(value, abstain(value)),
+            usage=zero_usage(context.budget.cost_currency),
+        ).model_dump(mode="json")
 
     @property
     def package_root(self) -> Path:

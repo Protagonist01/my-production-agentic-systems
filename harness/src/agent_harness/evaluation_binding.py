@@ -1,5 +1,6 @@
 """Bind an additional methodology audit to H10's already verified evidence."""
 
+from agent_harness.baseline_recording import VerifiedBaseline
 from agent_harness.cases import LoadedManifest
 from agent_harness.evaluation_standards import StandardProfile, StandardProtocol, StandardStudy
 from agent_harness.release_contracts import pin
@@ -7,7 +8,7 @@ from agent_harness.release_evidence import VerifiedEvidence
 from agent_harness.trials import TrialRow, assess
 
 
-def _correct(row: TrialRow, evidence: VerifiedEvidence) -> bool:
+def _correct(row: TrialRow, evidence: VerifiedEvidence | VerifiedBaseline) -> bool:
     return assess(row, evidence.batch.schedule.outcome_policy).category in (
         "autonomous_completion",
         "verified_completion",
@@ -20,11 +21,35 @@ def verify_binding(
     protocol: StandardProtocol,
     study: StandardStudy,
     loaded: LoadedManifest,
-    baseline: VerifiedEvidence,
+    baseline: VerifiedEvidence | VerifiedBaseline,
     candidate: VerifiedEvidence,
     required_case_ids: tuple[str, ...],
 ) -> None:
     """A successful audit from another population/candidate cannot qualify this release."""
+    if not isinstance(candidate, VerifiedEvidence):
+        raise ValueError("candidate requires verified fresh dispatch evidence")
+    before_tasks = {t.key: t.context for t in baseline.batch.schedule.tasks}
+    after_tasks = {t.key: t.context for t in candidate.batch.schedule.tasks}
+    if before_tasks.keys() != after_tasks.keys():
+        raise ValueError("baseline and candidate trial conditions differ")
+    for key, left in before_tasks.items():
+        right = after_tasks[key]
+        if (
+            left.seed,
+            left.budget,
+            left.tenant_id,
+            left.agent_id,
+            left.business_event_id,
+            left.deadline - left.clock,
+        ) != (
+            right.seed,
+            right.budget,
+            right.tenant_id,
+            right.agent_id,
+            right.business_event_id,
+            right.deadline - right.clock,
+        ):
+            raise ValueError("baseline and candidate trial conditions differ")
     profile = StandardProfile.model_validate_json(profile.canonical_json())
     protocol = StandardProtocol.model_validate_json(protocol.canonical_json())
     study = StandardStudy.model_validate_json(study.canonical_json())

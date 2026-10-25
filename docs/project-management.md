@@ -209,3 +209,7 @@ The [adapter and crash walkthrough](domain-dispatch-and-crash.md) covers shared 
 ## Durable-state preparation after #104
 
 User merged #104 as437e762 with identical reviewed treef7a0194; main40144098067 passed all applicable checks. Continue the authorized #33/#38/#45 preparatory batch with [independent durable-state evidence](durable-state-evidence.md). Preserve dependency/status fields and all release/review/provider boundaries. No downstream release is accepted by these mechanism drills.
+
+## Deterministic comparison preparation
+
+The [executed baseline walkthrough](deterministic-baselines.md) traces zero-call Olist rules/review, CFPB review and Revenue abstention through separate sealed manifests, owned trials and independent domain read-back. Study comparison accepts the verified comparator without changing fresh-candidate receipts or release approval. #33/#38/#45 remain open.

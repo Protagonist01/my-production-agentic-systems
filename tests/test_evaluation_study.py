@@ -82,6 +82,30 @@ def test_projection_refuses_unbound_or_unobserved_evidence(binding, change):
         assemble_study(p, protocol, cases, loaded, baseline, candidate, required_case_ids=required)
 
 
+def test_projection_rejects_paired_condition_changes_even_with_updated_baseline_seals(binding):
+    p, protocol, expected, loaded, baseline, candidate, required = binding
+    first = baseline.batch.schedule.tasks[0]
+    altered = first.model_copy(update={"context": first.context.model_copy(update={"seed": 9876})})
+    schedule = baseline.batch.schedule.model_copy(
+        update={"tasks": (altered, *baseline.batch.schedule.tasks[1:])}
+    )
+    rows = tuple(
+        row.model_copy(update={"task": altered}) if row.task.key == first.key else row
+        for row in baseline.batch.rows
+    )
+    batch = baseline.batch.model_copy(update={"schedule": schedule, "rows": rows})
+    baseline = replace(
+        baseline,
+        batch=batch,
+        manifest=baseline.manifest.model_copy(update={"batch_sha256": pin(batch)}),
+    )
+    protocol = protocol.model_copy(update={"baseline_sha256": pin(baseline.manifest)})
+    with pytest.raises(ValueError, match="trial conditions differ"):
+        assemble_study(
+            p, protocol, expected.cases, loaded, baseline, candidate, required_case_ids=required
+        )
+
+
 @pytest.mark.parametrize("change", ["profile", "split", "population"])
 def test_olist_projection_preserves_original_partition_before_reading_evidence(
     tmp_path, monkeypatch, change

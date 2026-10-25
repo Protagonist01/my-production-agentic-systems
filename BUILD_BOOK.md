@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 50 — Deterministic baselines without invented dispatch receipts](#entry-50--deterministic-baselines-without-invented-dispatch-receipts)
 - [Entry 49 — Independent durable-state evidence across three release issues](#entry-49--independent-durable-state-evidence-across-three-release-issues)
 - [Entry 48 — Recording domain dispatch and real process-crash evidence](#entry-48--recording-domain-dispatch-and-real-process-crash-evidence)
 - [Entry 47 — Preparing three release evaluators together](#entry-47--preparing-three-release-evaluators-together)
@@ -3197,3 +3198,29 @@ Five shared artifact mutation tests pass. First SQL collection run stopped befor
 Required real SQL batch completed:5passed118.64seconds. It includes the new CFPB queue/Revenue invoice cases, both Olist crash boundaries and fresh-mode rejection. Before-commit rollback equals original state; restarted receipt/budget uses the restart run, then duplicate delivery preserves it. Missing/wrong queue rows, unrelated account changes, mismatched receipt identities and mismatched indexed SQL/document versions are rejected. Nine artifact/version unit cases are included in the focused run still in progress; final full acceptance will use the exact-tree hosted matrix. Local static checks cover163typed sources,249formatted files and both import boundaries; lock is unchanged.
 
 Focused final run:23passed169.68seconds (nine new artifact/version cases and14existing dispatch cases). All six wheel/archive pairs built. Installed resource verification matches65harness/37Olist/26CFPB/28Revenue bytes; new APIs import with networking denied and provider SDKs absent; replay consumes6calls with0provider. Historical inventory/report and source/draft pins remain unchanged. Full regression acceptance is reserved for the committed-head hosted matrix; dependency audit is still running locally.
+
+## Entry 50 — Deterministic baselines without invented dispatch receipts
+**Files touched:** separate shared baseline recording/read-back, Olist/CFPB/Revenue baseline compositions and comparison binding.
+
+### Context
+User merged #105 as1f7c3ef with the reviewed tree1f16049; main CI is running. Continue authorized #33/#38/#45 preparation. Inspection found the shared study assembler only accepts H10 evidence, whose reader requires at least one actual dispatch per trial. A real rules/always-review/abstain baseline cannot satisfy that requirement without fabricating a model call.
+
+### Before you read on
+How should a deterministic comparator prove it ran, without pretending it called a provider or weakening the candidate's freshness requirement?
+
+### Decision before implementation
+Add a distinct deterministic-baseline manifest and reader. Run actual isolated H6 trials with the same population/scorers/environment and parent timing. Replace the supplied gateway with a denying gateway, remember any attempted use even if the algorithm catches the exception, and require exact zero-call/token/cost result usage. Pin full candidate/source/batch/algorithm identities and retain domain observations. The trusted factory remains trusted code, not an OS network sandbox. Fresh candidate validation/dispatch receipt requirements remain unchanged.
+
+Use existing Olist grammar-aware RulesPlanner and always-review behavior, actual CFPB always-review typed output, and Revenue's declared original-span abstention baseline. No hidden labels enter algorithm inputs. Teach the shared methodology projection to accept the separately verified deterministic comparator only in the baseline position. Keep H10 release promotion unchanged until its reviewed approval format explicitly supports this evidence; no baseline is auto-approved.
+
+### Verification plan
+Execute real spawned zero-call baselines, reject attempted gateway use (including caught errors), forged usage/source/algorithm/pins and changed observations. Run actual Olist SQL workflow/scorer/duplicate/recovery paths. Verify fresh model captures still reject missing receipts and cannot use deterministic evidence as candidate. Freeze source, build/install, run full hosted checks, and retain all prior labels/holdouts/experiments.
+
+### Early verification feedback
+Strict types pass165sources. First19focused tests pass after correcting the caught-call test fixture: its initial ModelRequest lacked required parameters, so validation failed before reaching the denying gateway. Adding the empty parameters object and asserting the attempted flag proves the intended denial path. Initial real SQL setup stopped because Docker was closed; no trial ran. Desktop is now started and SQL acceptance is running. The study API accepts the deterministic comparator only as baseline; release comparison/promotion explicitly rejects the unsupported format rather than failing later on a missing receipts attribute.
+
+### Paired-condition and SQL feedback
+The corrected focused baseline/binding/release-gate run passed58tests123.49seconds. The first SQL run executed three real zero-call baseline workflows and three receipted mock candidate workflows, then failed constructing the test's methodology DTO (missing language family, an unsupported literal source kind and a nonexistent label-pin field). Preserve the strict DTO and fix only the invented fixture. The rerun is active. Inspection also found that methodology binding did not compare paired seed/budget/tenant/agent/event/deadline duration; add this check for both fresh and deterministic comparators, with a deliberately resealed incompatible baseline test. This is an analysis precondition, not a relaxed release limit.
+
+### Resume after approval-review interruption
+Automatic approval review exhausted its usage window before the final baseline test command ran; it was a review failure, not an unsafe-action decision. User requested continue. Resumed focused comparison/binding/gate run passes60tests72.07seconds. CFPB always-review now counts the observed review and expected route without claiming absent product/issue/risk predictions; fresh mode still refuses the zero-attempt classifier path. Missing scheduled baseline rows reject even if the partial batch is resealed. Docker had closed again, producing only fixture-setup failure; restarted Desktop and reran required SQL. Installed bytes match66harness/38Olist/26CFPB/28Revenue resources with provider SDKs absent, network denied and6callzero-provider replay. Final SQL and added missing-row test acceptance are pending actual completion.
