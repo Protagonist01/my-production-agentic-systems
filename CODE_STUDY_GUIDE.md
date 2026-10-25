@@ -423,3 +423,7 @@ The [adapter and crash walkthrough](docs/domain-dispatch-and-crash.md) covers sh
 ## Deterministic comparison preparation
 
 The [executed baseline walkthrough](docs/deterministic-baselines.md) traces zero-call Olist rules/review, CFPB review and Revenue abstention through separate sealed manifests, owned trials and independent domain read-back. Study comparison accepts the verified comparator without changing fresh-candidate receipts or release approval. #33/#38/#45 remain open.
+
+## Release closure workstream
+
+The [closure plan](docs/release-closure-plan.md) maps #33/#38/#45 acceptance to remaining engineering, independent review, population coverage and actual fresh evidence. Four private blind packets contain77reviewitems; current studies are not promoted. A newly authorized shared180attemptGeminiFree cap remains unused pending freezes/reviews. This is a handoff plan, not implemented release acceptance.

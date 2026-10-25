@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 51 — Closure work and blind reviewer handoff](#entry-51--closure-work-and-blind-reviewer-handoff)
 - [Entry 50 — Deterministic baselines without invented dispatch receipts](#entry-50--deterministic-baselines-without-invented-dispatch-receipts)
 - [Entry 49 — Independent durable-state evidence across three release issues](#entry-49--independent-durable-state-evidence-across-three-release-issues)
 - [Entry 48 — Recording domain dispatch and real process-crash evidence](#entry-48--recording-domain-dispatch-and-real-process-crash-evidence)
@@ -3224,3 +3225,21 @@ The corrected focused baseline/binding/release-gate run passed58tests123.49secon
 
 ### Resume after approval-review interruption
 Automatic approval review exhausted its usage window before the final baseline test command ran; it was a review failure, not an unsafe-action decision. User requested continue. Resumed focused comparison/binding/gate run passes60tests72.07seconds. CFPB always-review now counts the observed review and expected route without claiming absent product/issue/risk predictions; fresh mode still refuses the zero-attempt classifier path. Missing scheduled baseline rows reject even if the partial batch is resealed. Docker had closed again, producing only fixture-setup failure; restarted Desktop and reran required SQL. Installed bytes match66harness/38Olist/26CFPB/28Revenue resources with provider SDKs absent, network denied and6callzero-provider replay. Final SQL and added missing-row test acceptance are pending actual completion.
+
+## Entry 51 — Closure work and blind reviewer handoff
+**Files touched:** closure plan and private review packets, authorization ledger.
+
+### Context
+User explicitly requested whatever is needed to close #33/#38/#45, authorized a new shared maximum180GeminiFree attempts with no paid fallback, and asked for reviewer packets while they identify independent reviewers. Existing labels/reviews/thresholds are not promoted. Base is verified main21cfea9, identical reviewed #106 treea5390d0.
+
+### Decision before execution
+Stop treating incremental mechanism merges as release completion. Map each acceptance check to a concrete missing artifact, prepare blind reviewer-only packets separate from existing proposals/outputs, and reserve the authorized calls for frozen studies. Existing CFPB24case pilot and Revenue29SIM worlds have historical outputs and cannot become unseen holdout. Olist12case draft has no provider outputs but only two holdout groups; it needs independent review and expanded coverage before qualification. A small new Revenue original-span selection can be reviewed without exposing publisher answers; preserve original document-family split and inventory selection provenance.
+
+### How to reproduce the handoff
+Verify source/input/evaluator byte pins first; export only facts/question/request and opaque review IDs. Do not export expected/provisional/model answers, original split or selection stratum to reviewers. Keep a separate administrator mapping with source identity, family/split, provenance and prior-exposure flags. Supply blank answer forms and reviewer identity/qualification/conflict declarations; never fill those on behalf of a reviewer. Return files do not become label approval until inventory, offsets, scope, exposure and disagreements are checked. Save a shared180attempt authorization ledger with zero attempts consumed. No output is published or sent to a reviewer automatically.
+
+### Release blockers to resolve
+Olist needs independent pre-capture labels, adequate holdout/slice source groups, reviewed protocol/baseline, deterministic-baseline release approval support, complete cost evidence and final H10/fault capture. CFPB needs provider-capable recording plus complete privacy/durable publication and evaluated routing, qualified labels and population coverage. Revenue needs separate original-span and SIM billing/effects studies with qualified interpretation review, applicable-field denominators and complete authorization/compensation/recovery. Current full-profile field contract forces unrelated original/SIM fields together and zero-denominator span checks into errors; resolve applicability explicitly, never mark unobserved checks True. A provider allowance alone supplies none of these approvals.
+
+### Packet verification
+Prepared77items (12Olist/24CFPB/12originalRevenue/29SIMRevenue) in four reviewer-only folders. All answer statuses and reviewer declarations are blank; Olist structured intent/expected labels and CFPB consumer/AI labels are withheld, original publisher spans withheld. Original Revenue store/manifest pins verified before selecting12differentfamilies with disclosed answerability strata. Existing cohort exposure is retained only in administrator mapping and disclosed as a limitation. Current Revenue profile requires qualified review for SIM as well; final reviewer instructions retain that requirement rather than silently relax it. Final packet inventory9ed2ec5765b7022915cae72840b0220c2d496a635cb45ea064e65b0718734231 includes readable worksheets and source provenance; initial inventory preserved. No files sent, provider attempts0/180. Verified existing95%zero-failure bounds:2groups84.19%,12groups26.46%,20groups16.84%,36groups9.74%,72groups4.99%; repetition cannot substitute for groups. The reviewer-identity handoff is pending the user; no review or release state is invented.
