@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 49 — Independent durable-state evidence across three release issues](#entry-49--independent-durable-state-evidence-across-three-release-issues)
 - [Entry 48 — Recording domain dispatch and real process-crash evidence](#entry-48--recording-domain-dispatch-and-real-process-crash-evidence)
 - [Entry 47 — Preparing three release evaluators together](#entry-47--preparing-three-release-evaluators-together)
 - [Entry 46 — Sealing parent-measured trial latency](#entry-46--sealing-parent-measured-trial-latency)
@@ -3172,3 +3173,27 @@ The first adapter run exposed an omitted required example-context argument; fixi
 
 
 Corrected real SQL drill:2passed113.33seconds. The parent observed exit23, verified exact committed/restarted/redelivered state, original operation receipt and duplicate result, then recomputed saved evidence after disposable DB deletion. Negative changes to boundary, exit, state, result, errors and external byte pin fail. Fourteen mock adapter tests pass; lint and160typed sources pass. Full regression remains running; no unexecuted result is reported as accepted.
+
+## Entry 49 — Independent durable-state evidence across three release issues
+**Files touched:** Olist crash evidence, CFPB durable queue evidence, Revenue SIM ledger evidence, tests and study walkthrough.
+
+### Context
+User merged #104 as437e762, treef7a0194 identical to reviewed390cc71. Main CI is still running. All remaining implementation issues depend on #33, so continue the explicitly authorized #33/#38/#45 preparation rather than opening gated work. #104's partial stateless H10 adapters deliberately have missing durability/state fields. Existing review labels, provider cap and release gates do not change.
+
+### Before you read on
+How can a scorer distinguish a durable queue/ledger effect from an application saying it succeeded? Sketch the before/after data it must read independently and what must remain unchanged.
+
+### Decision and construction plan
+Keep mechanism evidence separate from model-quality receipts. Add read-only, repeatable-read SQL collectors and independent exact-delta checks for one CFPB review command and one approved Revenue SIM invoice correction. Bind saved canonical bytes to an externally retained pin and supplied expectations; do not call enqueue/apply/reconcile to construct expected state. Keep source text, sessions, database credentials and administrator access out of artifacts. Scope claims explicitly: scoped rows do not prove tenant-wide privacy or a full safety profile.
+
+Extend the Olist collector to hard-exit before commit as well as after commit. Preserve the v1 canonical representation for existing after-commit artifacts; a new version distinguishes rollback observation from committed state. Before-commit restart must charge the restart run and return that run's original receipt; the independent state oracle must use the correct run identity. Repeated delivery must preserve it without a second planner dispatch.
+
+### Verification plan
+Use only invented fixtures in disposable Postgres databases. After actual writes/reconstruction, collect independent SQL snapshots, save evidence, then recompute without a database. Mutate command, expected state, reviewer, receipt and external pins to show false claims fail. Run focused/unit/type/import checks, package/installed verification and full hosted regression before review submission. No model call or release decision is authorized by this work.
+
+### Initial feedback
+Five shared artifact mutation tests pass. First SQL collection run stopped before DB setup because Ruff removed aliased fixture imports as unused; register fixture objects explicitly at module scope. The corrected CFPB and Revenue positive/mutation SQL scenarios pass; Olist boundary scenarios are still running. Strict types pass163sources. V1 compatibility uses the same exclude-if-absent pattern already used for historical trial timing, so old canonical pins are not rewritten. No observed quality or release success is inferred.
+
+Required real SQL batch completed:5passed118.64seconds. It includes the new CFPB queue/Revenue invoice cases, both Olist crash boundaries and fresh-mode rejection. Before-commit rollback equals original state; restarted receipt/budget uses the restart run, then duplicate delivery preserves it. Missing/wrong queue rows, unrelated account changes, mismatched receipt identities and mismatched indexed SQL/document versions are rejected. Nine artifact/version unit cases are included in the focused run still in progress; final full acceptance will use the exact-tree hosted matrix. Local static checks cover163typed sources,249formatted files and both import boundaries; lock is unchanged.
+
+Focused final run:23passed169.68seconds (nine new artifact/version cases and14existing dispatch cases). All six wheel/archive pairs built. Installed resource verification matches65harness/37Olist/26CFPB/28Revenue bytes; new APIs import with networking denied and provider SDKs absent; replay consumes6calls with0provider. Historical inventory/report and source/draft pins remain unchanged. Full regression acceptance is reserved for the committed-head hosted matrix; dependency audit is still running locally.

@@ -205,3 +205,7 @@ On verified main3601508, user authorized fresh Gemini Free evaluation and prepar
 ## Partial dispatch and process-death preparation
 
 The [adapter and crash walkthrough](domain-dispatch-and-crash.md) covers shared H10 mock recording, CFPB classifier and Revenue extractor adapters, private read-back checks and the zero-model Olist SIM process-death drill. Missing domain evidence remains a scorer error; #33/#38/#45 remain open and release-blocked. Main after #103 failed one timing-tamper test; this batch corrects the test seal without weakening production checks. Final acceptance is recorded on the review PR.
+
+## Durable-state preparation after #104
+
+User merged #104 as437e762 with identical reviewed treef7a0194; main40144098067 passed all applicable checks. Continue the authorized #33/#38/#45 preparatory batch with [independent durable-state evidence](durable-state-evidence.md). Preserve dependency/status fields and all release/review/provider boundaries. No downstream release is accepted by these mechanism drills.
