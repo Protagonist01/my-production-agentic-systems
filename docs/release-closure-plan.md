@@ -45,6 +45,12 @@ not representative release evidence. No old exposed pilot becomes an unseen hold
 
 ## Engineering and evidence needed for closure
 
+The unmerged [engineering chapter](closure-engineering.md) now documents the executable
+shared allowance/derived-cost controls, explicit deterministic approval, bound Olist crash
+companion, CFPB durable provider composition and Revenue scoped/effect readers. Invented tests
+exercise these paths. They do not supply the human judgments or final studies listed below;
+the original table records the starting gaps and is not an issue-completion checklist.
+
 | Issue | Present implementation | Remaining closure deliverables |
 | --- | --- | --- |
 | #33 Olist | Provider-capable H10 composition, independent SQL fields, zero-call comparator, before/after-commit process drills | Independently reviewed expanded cohort; adequate source/slice coverage; reviewed baseline/protocol; explicit deterministic-baseline release approval support; authoritative resource accounting; final paired fresh capture and bound fault evidence; reproducible report/model card/runbook |

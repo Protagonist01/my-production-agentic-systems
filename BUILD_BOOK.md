@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 52 — Release paths, scoped observations and durable provider accounting](#entry-52--release-paths-scoped-observations-and-durable-provider-accounting)
 - [Entry 51 — Closure work and blind reviewer handoff](#entry-51--closure-work-and-blind-reviewer-handoff)
 - [Entry 50 — Deterministic baselines without invented dispatch receipts](#entry-50--deterministic-baselines-without-invented-dispatch-receipts)
 - [Entry 49 — Independent durable-state evidence across three release issues](#entry-49--independent-durable-state-evidence-across-three-release-issues)
@@ -3243,3 +3244,34 @@ Olist needs independent pre-capture labels, adequate holdout/slice source groups
 
 ### Packet verification
 Prepared77items (12Olist/24CFPB/12originalRevenue/29SIMRevenue) in four reviewer-only folders. All answer statuses and reviewer declarations are blank; Olist structured intent/expected labels and CFPB consumer/AI labels are withheld, original publisher spans withheld. Original Revenue store/manifest pins verified before selecting12differentfamilies with disclosed answerability strata. Existing cohort exposure is retained only in administrator mapping and disclosed as a limitation. Current Revenue profile requires qualified review for SIM as well; final reviewer instructions retain that requirement rather than silently relax it. Final packet inventory9ed2ec5765b7022915cae72840b0220c2d496a635cb45ea064e65b0718734231 includes readable worksheets and source provenance; initial inventory preserved. No files sent, provider attempts0/180. Verified existing95%zero-failure bounds:2groups84.19%,12groups26.46%,20groups16.84%,36groups9.74%,72groups4.99%; repetition cannot substitute for groups. The reviewer-identity handoff is pending the user; no review or release state is invented.
+
+## Entry 52 — Release paths, scoped observations and durable provider accounting
+**Files touched:** shared attempt ledger/cost evidence and release contracts, Olist fault binding, CFPB provider/desk capture, Revenue study applicability/effects capture, tests and operator guide.
+
+### Context
+User explicitly authorized completing the engineering while independent reviewers respond, including cost gaps and the shared180attempt control. No new provider execution: invented transports and isolated SIM SQL prove mechanisms first. Closure branch already contains the reviewed handoff plan; last verified main21cfea9.
+
+### Decisions before construction
+Use a separately initialized SQLite allowance with one pinned authorization shared across all three agents. BEGIN IMMEDIATE allocates each attempt before transport, never refunds unknown/crashed work, and permits no paid fallback. Success/failure settlement stores only request/response digests and typed accounting; source text and keys never enter the ledger. Guard transport wraps each actual attempt, so internal retry/circuit behavior cannot bypass the shared cap.
+
+Retain provider raw Usage and provider_usage. An optional canonical accounting attachment records an explicitly reviewed, expiring, model/endpoint/project-bound Free tariff; derived cost is labeled tariff-derived rather than provider-reported. Historical responses omit absent attachments so old byte pins remain unchanged. Missing token counts or mismatched tariff/attestation cannot be repaired by treating unknown as zero. Verify derived usage when reading sealed receipts.
+
+Add an explicit deterministic-baseline approval format and release path rather than weakening existing provider-only APIs. Bind algorithm/source/evidence/protocol and observation readers before admission; retain candidate fresh receipts, case/paired-regression/approval order and methodological gates. Bind supplementary crash/authorization/effects evidence to exact candidate/case identities. CFPB provider composition must publish/read durable SQL with narrative-only gateway input and scoped privacy canaries. Revenue original-span and SIM reconciliation study applicability must be explicit; unobserved applicable checks fail, while undefined or unrelated fields receive no fabricated success credit.
+
+### Verification plan
+Exercise allowance races/reopen/exhaustion and crash reservation retention; cost raw-vs-derived separation and tamper/missing/mismatched policies; release approval wrong kind/algorithm/pins/reuse; actual SQL publication/redelivery and wrong scope; original/SIM denominator separation and effects/compensation/recovery evidence. Keep all180live attempts unused. Run full hosted regression and required SQL before the review handoff, with no claim that code tests satisfy reviewer or final-study gates.
+
+### First verification and diagnosis
+The first actual CFPB run produced setup-error rows and therefore correctly failed missing fresh receipts. Direct inspection found the synthetic canary tenant used a character forbidden by the identity contract. Use a valid separate tenant and explicitly mark its job obsolete: privacy input should not rely on lexical job ordering. The corrected normal capture publishes/reconstructs all three actual trial decisions and passes read-back. The failure variant then exposed a test assumption: routing intentionally stops after a timeout, so three trials have three dispatches, not six. Correct the invented expectation, retaining the no-retry policy. Static typing passes172sources;42accounting/approval/gate and23accounting/applicability tests passed before the final composition/SQL rerun. Live calls remain0.
+
+### Actual state and package acceptance
+All8targeted real SQL/process tests pass514.45seconds: CFPB normal/failure publication and preflight, Revenue bound denial/correction/reconstruction/compensation, and Olist before/after hard exits plus exact candidate-bound two-stage companion. The corrected provider preflight/accounting/CLI run passes23tests30.29seconds; one assertion initially matched a particular rejection message although the earlier transport check correctly refused dispatch. Test the refusal rather than implementation ordering. No provider calls. All six wheel/sdist pairs build; installed69harness/39Olist/27CFPB/30Revenue resources match bytes, historical APIs/baselines import without provider SDKs, and network-denied strict replay consumes6recordings with0provider. Historical Olist inventory/results, source/draft and reviewer-packet pins are unchanged. The final all-new-feature suite and hosted full regressions remain pending at this log point. A last applicability review rejects empty/all-unrelated check inventories rather than allowing vacuous completion; applicable unknown qualified support still blocks.
+
+### Resume with explicit merge authority, 2026-10-26
+The user authorized proceeding through remaining issues and merging tested PRs autonomously,
+with attention requests for decisions/access they must supply. Record that authority in
+AGENTS.md so later turns do not unnecessarily hand PR submission/merging back. Independent
+reviews and final-study requirements remain factual prerequisites, not something merge
+authority can fabricate. Interrupted shell sessions have no retrievable completion result;
+restart the full locked check with a saved log rather than claiming its earlier partial run
+passed. Preserve the completed targeted SQL/package evidence above.

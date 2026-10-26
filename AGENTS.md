@@ -14,3 +14,17 @@ verify the created PR URL and checks and attach it to the chat.
 Keep user review and merging separate: submitting a review PR does not authorize merging,
 deployment, new provider spending or release approval. If a mandatory permission or access
 restriction prevents submission, explain the concrete blocker and the required next step.
+
+## Current delivery authorization (2026-10-26)
+
+The user explicitly authorized continuing through remaining issues and merging PRs after
+required checks pass. Submit and merge authorized implementation PRs using available GitHub
+access; verify the exact head, unresolved reviews, required checks and post-merge main state.
+Do not repeatedly ask the user to submit or merge those PRs. Report actions requiring their
+judgment or access. This supersedes the earlier separate user-merge requirement for this work.
+
+Keep issue acceptance truthful: code merges do not supply missing independent/qualified
+review judgments, frozen study approvals or production release evidence. Preserve pending
+review packets and historical failures. The provider authorization remains one shared maximum
+180 Gemini Free attempts across Olist, CFPB and Revenue, including failures/retries, with no
+paid fallback. Do not infer additional spending, other provider access or expert reviews.

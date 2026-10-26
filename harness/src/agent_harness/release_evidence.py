@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
+from agent_harness.baseline_recording import VerifiedBaseline
 from agent_harness.cases import LoadedManifest
 from agent_harness.controls import combine_usage
 from agent_harness.fault_contracts import FaultPlan
@@ -11,6 +12,7 @@ from agent_harness.fresh_recording import validate_fresh
 from agent_harness.release_contracts import (
     AttemptReceipt,
     BaselineApproval,
+    DeterministicBaselineApproval,
     EvidenceManifest,
     ReleaseDecision,
     ReleasePolicy,
@@ -63,6 +65,18 @@ def read_evidence(
                 raise ValueError("receipt differs from sealed digest")
             receipt = AttemptReceipt.model_validate_json(payload)
             exchange = receipt.exchange
+            from agent_harness.cost_accounting import verify_accounting
+
+            if (
+                exchange.response.accounting is not None
+                and manifest.candidate.provider_control_sha256 is None
+            ):
+                raise ValueError("derived cost requires externally pinned provider controls")
+            verify_accounting(
+                exchange.request,
+                exchange.response,
+                expected_control_sha256=manifest.candidate.provider_control_sha256,
+            )
             if (
                 receipt.execution_id != manifest.execution_id
                 or receipt.nonce in nonces
@@ -118,6 +132,17 @@ def compare_evidence(
     """Case/trial regressions; wall-clock capture times may differ between fresh runs."""
     if not isinstance(baseline, VerifiedEvidence) or not isinstance(candidate, VerifiedEvidence):
         raise ValueError("H10 release comparison requires its reviewed dispatch-evidence format")
+    return _compare(baseline, candidate, loaded, policy, fault_plan=fault_plan)
+
+
+def _compare(
+    baseline: VerifiedEvidence | VerifiedBaseline,
+    candidate: VerifiedEvidence,
+    loaded: LoadedManifest,
+    policy: ReleasePolicy,
+    *,
+    fault_plan: FaultPlan | None = None,
+) -> tuple[str, ...]:
     a, b = baseline.batch.schedule, candidate.batch.schedule
     left, right = baseline.manifest.candidate, candidate.manifest.candidate
     if (
@@ -183,11 +208,11 @@ def compare_evidence(
 
 
 def release_candidate(
-    baseline: VerifiedEvidence,
+    baseline: VerifiedEvidence | VerifiedBaseline,
     candidate: VerifiedEvidence,
     loaded: LoadedManifest,
     policy: ReleasePolicy,
-    approval: BaselineApproval,
+    approval: BaselineApproval | DeterministicBaselineApproval,
     *,
     approval_sha256: str,
     policy_sha256: str,
@@ -195,8 +220,21 @@ def release_candidate(
     now: datetime,
     fault_plan: FaultPlan | None = None,
 ) -> ReleaseDecision:
-    if not isinstance(baseline, VerifiedEvidence) or not isinstance(candidate, VerifiedEvidence):
+    deterministic = isinstance(baseline, VerifiedBaseline)
+    if not isinstance(candidate, VerifiedEvidence) or (
+        not isinstance(baseline, (VerifiedEvidence, VerifiedBaseline))
+        or deterministic != isinstance(approval, DeterministicBaselineApproval)
+    ):
         raise ValueError("H10 release requires its reviewed dispatch-evidence format")
+    if isinstance(baseline, VerifiedBaseline) and isinstance(
+        approval, DeterministicBaselineApproval
+    ):
+        if (
+            approval.algorithm != baseline.manifest.algorithm
+            or approval.dataset_sha256 != loaded.pin.sha256
+            or approval.baseline_spec_sha256 != pin(baseline.manifest.candidate)
+        ):
+            raise ValueError("deterministic approval algorithm/dataset/spec differs")
     if now.tzinfo is None:
         raise ValueError("release clock must be timezone aware")
     if pin(approval) != approval_sha256 or pin(policy) != policy_sha256:
@@ -207,7 +245,7 @@ def release_candidate(
         approval.release_policy_sha256 != pin(policy)
     ):
         raise ValueError("approval does not bind this baseline and release policy")
-    regressions = compare_evidence(baseline, candidate, loaded, policy, fault_plan=fault_plan)
+    regressions = _compare(baseline, candidate, loaded, policy, fault_plan=fault_plan)
     blockers = []
     if not approval.approved_at <= now < approval.expires_at:
         blockers.append("baseline_approval_expired_or_future")
@@ -220,12 +258,15 @@ def release_candidate(
     if (
         baseline.manifest.execution_id == candidate.manifest.execution_id
         or baseline_runs & candidate_runs
-        or {r.nonce for r in baseline.receipts} & {r.nonce for r in candidate.receipts}
+        or (
+            isinstance(baseline, VerifiedEvidence)
+            and {r.nonce for r in baseline.receipts} & {r.nonce for r in candidate.receipts}
+        )
     ):
         blockers.append("candidate_reuses_baseline_execution")
     for label, evidence in (("baseline", baseline), ("candidate", candidate)):
         manifest = evidence.manifest
-        if manifest.origin != "provider":
+        if manifest.origin != "provider" and not (label == "baseline" and deterministic):
             blockers.append(label + "_mock_evidence")
         age = (now - manifest.started_at).total_seconds()
         if age < 0 or age > policy.max_age_seconds or manifest.finished_at > now:

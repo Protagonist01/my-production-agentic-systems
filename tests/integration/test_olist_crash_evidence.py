@@ -100,3 +100,87 @@ def test_process_drill_rejects_fresh_mode_before_state_or_output(app, tmp_path):
         assert not (tmp_path / "forbidden").exists()
     finally:
         environment.release(lease)
+
+
+def test_two_boundaries_are_bound_to_exact_receipted_candidate_and_external_protocol(app, tmp_path):
+    from olist_h10_fixtures import ROOT
+    from olist_support.fault_binding import FaultBundle, FaultEntry, read_fault_bundle
+    from olist_support.h10_evidence import read_olist_evidence
+    from olist_support.h10_recording import record_olist
+
+    server, parent, _ = app
+    label, loaded, schedule, factory = composition()
+    environment = OlistEnvironment(server, parent.workspace_key, loaded)
+    output = tmp_path / "candidate"
+    manifest = record_olist(
+        schedule,
+        loaded,
+        factory,
+        environment,
+        output,
+        candidate_sha256=pin(factory.candidate),
+        source_root=ROOT,
+    )
+    candidate = read_olist_evidence(
+        output, loaded, evidence_sha256=pin(manifest), candidate_sha256=pin(factory.candidate)
+    )
+    task = schedule.tasks[0]
+    context = task.context
+    scope = pin(context)
+    root = tmp_path / "faults"
+    (root / scope).mkdir(parents=True)
+    entries = []
+    for stage in ("before_commit", "after_commit"):
+        drill = context.model_copy(
+            update={"mode": "offline_fake", "run_id": context.run_id + "-" + stage}
+        )
+        lease = environment.prepare("bound-" + stage, task.model_copy(update={"context": drill}))
+        can_release = True
+        try:
+            try:
+                saved = collect_crash(
+                    drill,
+                    lease.access,
+                    WorkflowRequest(
+                        order_id=label.input.order.order_id, text=label.input.request.message
+                    ),
+                    root / scope / stage,
+                    crash_stage=stage,
+                )
+            except WorkerCleanupError:
+                can_release = False
+                raise
+        finally:
+            if can_release:
+                environment.release(lease)
+        entries.append(FaultEntry(context_sha256=scope, stage=stage, evidence_sha256=pin(saved)))
+    bundle = FaultBundle(
+        candidate_sha256=pin(factory.candidate),
+        candidate_evidence_sha256=pin(manifest),
+        dataset_sha256=loaded.pin.sha256,
+        entries=tuple(entries),
+    )
+    path = root / "bundle.json"
+    path.write_text(bundle.canonical_json(), encoding="utf-8")
+    report = read_fault_bundle(
+        root, loaded, candidate, bundle_sha256=pin(bundle), required_contexts=(scope,)
+    )
+    assert (
+        report["passed"] and report["boundary_observations"] == 2 and not report["release_allowed"]
+    )
+    assert not report["full_fault_matrix_complete"]
+    with pytest.raises(ValueError, match="boundaries"):
+        read_fault_bundle(
+            root,
+            loaded,
+            candidate,
+            bundle_sha256=pin(bundle),
+            required_contexts=tuple(pin(t.context) for t in schedule.tasks),
+        )
+    for field in ("candidate_sha256", "candidate_evidence_sha256", "dataset_sha256"):
+        altered = bundle.model_copy(update={field: "0" * 64})
+        path.write_text(altered.canonical_json(), encoding="utf-8")
+        with pytest.raises(ValueError, match="scope differs"):
+            read_fault_bundle(
+                root, loaded, candidate, bundle_sha256=pin(altered), required_contexts=(scope,)
+            )

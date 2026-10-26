@@ -1,6 +1,14 @@
 # Project management
 
-Current follow-up after user merge #102: main `b915f1b` has the reviewed tree and run40134019972 passed nine applicable jobs; metadata intentionally skipped. Actual Windows3.12 log1042tests/151types/12artifacts/zero-provider replay and Postgres110tests152.05s verified. User explicitly authorized preparatory implementation for #33, #38 and #45 together while downstream releases remain blocked by #33. The unmerged [three-issue evaluator batch](three-release-evaluators.md) adds H10-to-study assembly, CFPB fixed-denominator routing/classification reports and separate Revenue original-span/SIM-billing reports. Domain H10 adapters/fault evidence, independent/representative review, approved baselines/limits, complete costs and final fresh studies remain pending. Twelve stronger Olist labels remain accepted AI-assisted propositions. No new provider budget or release is authorized; all three issues and downstream gates remain open.
+Current work, 2026-10-26: verified merged base `21cfea9` (#106), followed by unmerged
+`codex/release-closure`. The user authorized working through remaining issues and merging
+tested implementation PRs autonomously; the reviewer handoff is explicitly pending. See the
+[closure plan](release-closure-plan.md) and [engineering walkthrough](closure-engineering.md)
+for the shared 180 Gemini Free attempt ceiling, cost accounting, domain recording and exact
+remaining evidence. No new allowance attempts have been used. Independent/qualified judgments,
+representative coverage, frozen baseline/protocol/limits and final fresh release studies remain
+pending. Implementation merges do not satisfy these gates; downstream release acceptance
+remains blocked by #33. No production deployment or additional provider budget is inferred.
 
 ## Scope and source of truth
 

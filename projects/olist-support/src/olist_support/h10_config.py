@@ -81,6 +81,7 @@ def validate_composition(
     route: ModelRequest,
     transport: ModelTransport,
     origin: Literal["provider", "mock"],
+    provider_control_sha256: str | None = None,
 ) -> None:
     candidate = CandidateSpec.model_validate_json(candidate.canonical_json())
     route = ModelRequest.model_validate_json(route.canonical_json())
@@ -98,6 +99,15 @@ def validate_composition(
         if (route.provider, route.endpoint) != ("mock", "in-process"):
             raise ValueError("mock Olist capture requires an explicit mock route")
     else:
+        if provider_control_sha256 is not None:
+            if (
+                candidate.provider_control_sha256 != provider_control_sha256
+                or route.provider != "google-gemini-developer-api"
+            ):
+                raise ValueError(
+                    "Olist provider accounting/allowance differs from pinned composition"
+                )
+            return
         # SDK is optional and imported only for an explicitly selected provider composition.
         from agent_harness.gemini import GeminiTransport
 
