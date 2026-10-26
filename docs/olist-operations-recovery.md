@@ -158,3 +158,29 @@ The local aggregate follows explicit finalization/minimal-content principles; im
 uses the locked Uvicorn0.54.0lifecycle verified against installed code. It does not add a new
 SDK or remote export. Source-grounded demonstrations, invented SQL fixtures and final domain
 release acceptance remain distinct evidence.
+
+## Actual source-grounded local demonstration, 2026-10-26
+
+[Aggregate evidence](data/olist-source-operations-v1.json) records executable candidate
+`875406e` and exact lock/source/draft/private-report pins. A new owned local database enrolled
+an unchanged view reread through the pinned O2 source store and a separately constructed SIM
+confirmation. Distinct constructed operator/reviewer accounts used the real listening HTTP
+application to submit a refund and pending reship review, approve the exact refund, execute
+it, and redeliver the same request. Shutdown flushed the aggregate with no active/interrupted
+responses. New-target restore reproduced the pending review and original receipt; independent
+SQL found exactly one matching refund. Both owned databases were removed after verification;
+the source store, draft/reviewer packets and shared checkout service remain intact.
+
+Snapshot capture measured0.296seconds; restore/verification/readiness measured1.338seconds
+against an explicit60-second **local exercise** limit. This single small local measurement
+is not a production recovery guarantee. Source records, passwords, IDs, sessions, backup and
+full telemetry stay private outside Git. Public output is aggregate/version pins only.
+Operator intent and reviewer consent were constructed for a SIM demonstration, not model
+inference, independent label review or final source-grounded release. No provider calls.
+
+To reproduce, follow the console enrollment/account/request/review instructions with an
+unchanged pinned source view and explicit SIM confirmation; use a new trial and distinct
+constructed accounts. Submit a second review, verify duplicate execution returns the first
+receipt, stop normally, run `exercise` to another new trial, then reopen pending/completed
+cases and query the ledger with trusted administration. Retain private pins and record the
+actual new results; do not copy this demonstration's booleans into a later report.

@@ -3419,3 +3419,16 @@ Pass an explicit cookie name/value mapping between them, not one library's cooki
 The corrected focused21tests pass11.22seconds and actual4HTTP/Postgres/CLI tests pass84.37s.
 Strict typing covers180sources. An intentionally impossible recovery limit produces exit2
 and a real verified restored database/report, never a false SLA pass. Live provider calls0.
+
+### Source-grounded deployment/recovery demonstration
+Freeze executable commit875406e before the private demonstration. Re-read an unchanged O2
+view from the externally pinned SQLite source, use the existing constructed SIM confirmation,
+enroll a new owned SQL trial, provision distinct constructed operator/reviewer accounts and
+exercise the actual listening HTTP submit/approve/execute/duplicate paths. Leave another
+case pending, stop normally and run the new measured restore into another owned trial.
+The reconstructed store preserves pending review and exact original receipt; independent
+SQL sees one matching refund. Capture0.2957769seconds, restore/verify1.3379511seconds against
+the explicit local60-second objective. Both owned databases removed; no shared service reset.
+Private report/telemetry byte pins and safe aggregate are in docs/data/olist-source-operations-v1.json.
+No provider or independent reviewer was involved. Source/draft/review packets are unchanged.
+All six wheel/sdist pairs and both package import contracts pass; hosted full checks pending.
