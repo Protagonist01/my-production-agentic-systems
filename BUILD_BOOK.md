@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 61 — Budget safety does not guarantee writer availability](#entry-61--budget-safety-does-not-guarantee-writer-availability)
 - [Entry 60 — Test the evaluator without hiding abstentions or weak references](#entry-60--test-the-evaluator-without-hiding-abstentions-or-weak-references)
 - [Entry 59 — Make evidence and attempt plans executable without granting approval](#entry-59--make-evidence-and-attempt-plans-executable-without-granting-approval)
 - [Entry 58 — Evidence alternatives without inventing expert approval](#entry-58--evidence-alternatives-without-inventing-expert-approval)
@@ -3771,3 +3772,39 @@ fingerprints for verified aggregate hashes; append only these four commit/file/r
 findings. Do not add rule-wide, hash-wide or path-wide exclusions, rewrite branch history,
 alter the scanner workflow or suppress future findings. Repaired exact-head CI remains
 required. The diagnostic reports, original plan/data/results/pins and executable stay intact.
+
+## Entry 61 — Budget safety does not guarantee writer availability
+**Files touched:** budget-accounting tests and this journal; ledger/transport code unchanged.
+
+### Context and diagnosis
+The user explicitly approved the four exact historical hash findings after automatic review
+required specific security-setting authorization. Repaired head2917949passes secret scanning
+and dependency audits. Windows3.12then reports1failed/1253passed: the shared180attempt test
+raises SQLiteBUSYat BEGIN IMMEDIATEafter the existing10second writer wait. Other quality
+cells pass. Inspect the actual failure before rerunning; do not assume a harmless flake.
+
+### Before you read on
+Does a durable180attempt ceiling guarantee that200simultaneous callers can fill every slot
+under bounded storage-lock waits? Which condition must block actual provider dispatch?
+
+### Why and how to correct it
+The production transport already catches SQLite reservation errors and returns budget denial
+before delegate dispatch. The safety requirement is no overspending or unrecorded dispatch,
+not successful admission of every request under arbitrary disk contention. In the direct
+ledger race test, recognize only SQLiteBUSY/LOCKEDas bounded denials; propagate all other
+database errors. Assert received unique tickets equal actual consumed records and never
+exceed180. After concurrent workers finish, sequentially fill the remaining invented slots,
+then retain exhausted/reopen/unsettled/settle/no-refund/no-reset assertions.
+
+Add a real-file lock test: hold BEGIN IMMEDIATEon a separate connection, shorten only the
+test connection's busy wait, and attempt dispatch through BudgetedTransportwith a counting
+fake delegate. The lock must produce budget denial, zero calls and zero consumed rows.
+After releasing the lock, one allowed attempt may dispatch/settle; the next must deny at
+the cap. This verifies availability failure remains safe without changing production waits,
+adding retry loops or broad exception suppression. Original citation studies/source pins
+stay atc6c65ca; no executable/scorer/lock changes or provider calls are needed.
+
+### Local verification before pushing the test repair
+The budget/Groq/qualification/reference suite passes77tests24.19seconds. Lint and format
+checks pass. All91captured harness/Revenue source digests still match the v2study inventory;
+only tests and journal changed. The repaired full hosted matrix must pass before merge.
