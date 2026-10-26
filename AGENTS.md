@@ -36,3 +36,12 @@ invented-only smoke scope. Keep it in ignored private configuration and never re
 the key. Use a separate durable capped allowance with no paid fallback; do not consume or
 enlarge the shared180Gemini allowance. Source narratives, notes, contracts and final
 cross-provider domain quality are not authorized by an invented smoke test.
+
+## Evidence strategy direction (2026-10-26)
+
+The user requested and authorized execution of a production-oriented alternative to a
+standing human reviewer team. Follow docs/automated-review-execution-plan.md: map each
+required claim to applicable external reference evidence, independent executable checks or
+tested model assessment. Preserve the production goal, historical judgments and active
+gates until a concrete replacement evidence policy is accepted and implemented. Do not
+represent model agreement as qualified human review or assume additional provider scope.

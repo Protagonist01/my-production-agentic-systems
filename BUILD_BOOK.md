@@ -2,6 +2,8 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 59 — Make evidence and attempt plans executable without granting approval](#entry-59--make-evidence-and-attempt-plans-executable-without-granting-approval)
+- [Entry 58 — Evidence alternatives without inventing expert approval](#entry-58--evidence-alternatives-without-inventing-expert-approval)
 - [Entry 57 — Explicit Groq routes without disguising a provider change](#entry-57--explicit-groq-routes-without-disguising-a-provider-change)
 - [Entry 56 — Zero elapsed time is a valid coarse-clock observation](#entry-56--zero-elapsed-time-is-a-valid-coarse-clock-observation)
 - [Entry 55 — Shutdown evidence without collecting request identities](#entry-55--shutdown-evidence-without-collecting-request-identities)
@@ -3539,3 +3541,118 @@ clean. The automatic Groq-pattern test supplies no configured deny value; public
 refuses that invented pattern. v12retains its exact old digest and rejects the new lock.
 Push the explicit v13repair for full exact-head CI; do not rerun provider calls or claim the
 earlier CI passed.
+
+## Entry 58 — Evidence alternatives without inventing expert approval
+**Files touched:** `docs/automated-review-execution-plan.md`, closure-plan navigation and this journal.
+
+### Context
+The user has no standing reviewer team and requested a detailed alternative that preserves
+the production goal. This proposes a successor evidence strategy to Entry51's reviewer
+handoff; the original packets, judgments, profiles and release failures stay intact. No
+replacement evaluator is implemented or qualified by this planning change.
+
+### Before you read on
+Which fields can an independent program prove, which have suitable external reference
+labels, and which still need a reliable interpretation? A single reviewer Boolean hides
+those three different problems.
+
+### Options considered and why
+A demo-only scope was suggested earlier; the user wants the production target retained.
+Replacing a human name with a model in the existing review record would falsely satisfy a
+provenance requirement. The proposed path instead binds evidence to individual claims,
+tests model reviewers against external answers, and preserves unresolved requirements.
+
+### How to build it
+Read the existing `StandardProfile.required_fields`, `Review.kind` and `_reviewed` checks.
+The code presently distinguishes provisional AI from blind human/qualified review; preserve
+that legacy path. First inventory each field and map it to reference, independent executable
+or model evidence with an applicability range. For example, compute an Olist SIM amount with
+a separate decimal oracle, but assess unseen intent wording against suitable reference
+examples. Do not derive expected amounts using the candidate's own policy function.
+
+Before model execution, seal evaluator prompts/configurations, prepare known-good and
+known-wrong calibration inputs, split by source/error family, and measure false acceptance
+and abstention on separate test examples. A future versioned evidence record must bind
+qualification, exact sources, case/input and result hashes; two agreeing models without an
+external basis remain provisional. Negative tests must refuse wrong scopes, unsupported
+spans, changed prompts and missing rows. The policy owner accepts the concrete replacement
+method before it becomes an active release path; no skip-review flag is proposed.
+
+Count every drafting, judge, comparator, candidate and live fault call before capture. The
+plan proposes tranche ceilings summing to the existing180Gemini maximum, not a new grant.
+The current Groq invented-smoke budget cannot pay for domain judging. Sample-size targets
+can exceed these allowances; report that before spending rather than weakening uncertainty.
+
+### Verification and limits
+Inspected actual main95691bde profiles, audit types, H10 rules, allowance documentation and
+the current gate inventory. Consulted primary judge-bias papers and current Langfuse judge
+documentation. This is a planning artifact; no code behavior, active acceptance, provider
+ledger, reviewer packet or issue state changes. Validate local links and whitespace; no
+production-model test result is implied by a documentation check.
+
+### What went wrong
+The initial direction treated absent reviewers as a reason to suggest a smaller release
+scope. The user clarified that the goal must remain. The revised plan addresses evidence
+methods and evaluator reliability while keeping irreducible gaps visible. It cannot promise
+that every domain has enough suitable reference labels or that consensus replaces expertise.
+
+## Entry 59 — Make evidence and attempt plans executable without granting approval
+**Files touched:** shared planning contracts/CLI, Olist evaluation oracle,43-field matrix,
+focused tests and the evidence-foundation study chapter.
+
+### Context and design
+The user approved executing Entry58's direction. Start with offline #33/#25/#60 preparation,
+preserving human-review gates until a separately validated evidence method can be accepted.
+The first implementation must detect missing requirements and unaffordable studies, without
+mistaking an offline budget spreadsheet for permission to dispatch.
+
+### Before you read on
+How do you prevent a forecast that fits180calls from being used as a new180call grant,
+especially if two agents share the same provider allowance?
+
+### Options considered and why
+Do not add an `allow_ai_review` Boolean to the old audit. Keep proposals separate and make
+dispatch/release authority literalFalse. Bind each domain matrix section to its actual
+profile hash; compare exact field and slice sets so a forgotten requirement fails. Count
+all schedule dimensions against one snapshot per provider, not a new cap for each agent.
+
+### How to build it
+Implement `RequirementEvidence` rows with proposed methods/checks, existing evidence and
+remaining work. Validate all43fields across the five current profiles, retaining `pending`
+for every row. `AssessmentProposal` binds source/input/evaluator hashes and exact text spans,
+but deliberately cannot deserialize as `Review`. Verify span hashes/Unicode offsets against
+actual supplied sources; literal existence alone is not support meaning.
+
+For attempts, multiply cases, trials, calls, orderings and reserved retry factor; aggregate
+by provider and agent. Require one authoritative provider snapshot, subtract consumed from
+maximum, and report missing provider/scope or exceeded cap. Revalidate copied objects at
+boundaries. The pinned CLI rejects duplicate JSON keys and limits input bytes; module entry
+denies network. It neither writes an allowance nor reserves an attempt.
+
+Write an Olist oracle from the accepted SIM decision table with its own ten predicates and
+separate fact/request types. Import source view types, not runtime policy/functions/constants.
+Return all failed predicates rather than copying first-error wording. Keep structured intent
+an external input so this program cannot pretend to label natural language. Verify exact cap,
+partial/reship requests, unknown facts, contradictory delivery, future facts and scope/time
+refusals with invented witnesses. Final candidate binding and semantic qualification remain.
+
+### Feedback during construction
+Initial focused run passed68checks but two existing temp-file tests could not access the
+default sandbox temp directory. Use the existing private D-drive temp parent for the rerun;
+this is an environment error, not evidence that those two tests passed. Ruff requested Python
+3.12generic syntax for the CLI reader; update the declaration rather than suppressing it.
+The first oracle/planning source-only mypy run passed. Final focused and hosted results follow
+only after execution. No provider dispatch, source export, label promotion or gate edit.
+
+### Focused and installed verification before submission
+Corrected focused suite passes102tests2.77seconds, with only a local pytest cache warning.
+The full quality run has reached187typed sources and both import contracts; full pytest
+is still running. Sixwheel/sdistpairs build successfully. The installed harness wheel in
+the existing isolated environment matches77package resources exactly; no provider SDKs or
+industry packages are installed there. Its network-denied planning module reports43pending
+fields and no release permission. The first manual CLI invocation supplied an incorrect
+matrix pin and correctly refused; the corrected inspected matrix pin is
+3dbf1d5b5a6d6053a589320148480f35e49522c17635d339a7ff5f8a79eaf9d9.
+All41required slices are inventoried. Legacy gate/profile/lock/backlog bytes are unchanged.
+Publication scan checks both configured credentials and24source IDs without printing them;
+source/customer/draft pins are unchanged. Full and hosted results remain pending.
