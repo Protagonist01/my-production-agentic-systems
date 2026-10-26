@@ -3838,3 +3838,43 @@ Use shared durable180ledger with an additional fixed24pilot stop, reserve before
 spawned workers, no retry/fallback. Reconcile raw versus derived token/cost evidence and
 preserve missing/failed rows. A tiny balanced public-source pilot cannot meet production
 uncertainty or prove unseen model-training data. Qualification remains explicitly diagnostic.
+
+### Preflight and actual capture start
+Local fixtures initially reused identical context/question inputs with conflicting labels
+and omitted the response usage contract. Correct fixture inputs and supply explicit invented
+usage;27focused checks pass3.30seconds. A one-file mypy invocation could not resolve editable
+harness type metadata; the configured whole-repository check passes191sources. Ruff297files,
+import boundaries and sixbuildpairs pass. Freeze executable1fd39f5before capture.
+
+Prepared12cases have12distinct inferred families, six answerable/six no-answer, four
+calibration/eight validation, ten nontrivial clause categories, contexts<=11,930characters.
+Exclude108families from both previous integrity studies and leave original source holdout
+unchanged. Recheck original store/manifest pins; the prepared bundle canonical pin is
+777b1ec8fc8b5fc3e10bd9b7bff582c8e5bd8c025dfa8d74b5cad3200a0534a3.
+
+Initialize one exclusive shared180ledger after verifying no existing live closure allowance;
+the user explicitly approved24of that same total, not another allowance. Bind the private
+scope to the authorized local credential association, documenting that it is not an actual
+provider-verified project ID. Reserve in the parent before an owned Gemini worker;60second
+wall bounds, shared controls, one attempt per row and no fallback. Freeze the entire24row
+schedule, references, protocol and source inventory before dispatch. First observed attempts
+complete without parser/transport errors; actual label correctness/accounting remains for
+the sealed offline audit after capture. Do not overlap full suites with live calls or tune
+the prompt using observed answers. Final results follow without rewriting this history.
+
+### Actual semantic results and independent accounting
+All24scheduled attempts complete and settle; the authoritative shared180ledger has24used,
+156remaining,0unsettled. No retries/fallback/paid route. Independent raw readback binds every
+context/request/response to its ledger reservation/settlement and gateway/controlled record;
+source inventory remains unchanged. Recomputed calibration6/8matches; validation13/16matches
+with2failed judgments,14decisions and92.86%conditionalversus81.25%scheduled accuracy. No
+missing/abstained rows or observed false accepts. Reference-relative false rejects remain
+2calibration/1validation. Two failed validation quotes only match after whitespace
+normalization; frozen literal validation correctly refuses them. Keep those failures and
+the Minimum Commitment/Expiration Date reference disagreements; no label/prompt revision.
+
+All24raw token components known:39,716input/842output. Raw monetary cost unknown for all24,
+not zero billing. The eightvalidation groups include two failed groups; upper uncertainty
+59.07%, and declared diagnostic qualification fails. No production/clinical/legal or
+model-judge approval follows. Private raw records, exact grant/credential association and
+provider IDs remain outside Git; safe aggregate retains complete denominators/pins/limits.

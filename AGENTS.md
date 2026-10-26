@@ -45,3 +45,16 @@ required claim to applicable external reference evidence, independent executable
 tested model assessment. Preserve the production goal, historical judgments and active
 gates until a concrete replacement evidence policy is accepted and implemented. Do not
 represent model agreement as qualified human review or assume additional provider scope.
+
+## Shared Gemini allowance activated (2026-10-27)
+
+The user explicitly authorized up to24of the existing180GeminiFreeattempts for a12case
+publisher-reference CUAD answerability pilot, including failures, no paid fallback. The
+single authoritative live closure ledger is outside Git at
+`D:/document/.cache/production-agents/gemini-closure-180-v1/attempts.sqlite`, with its
+separate `external-pin.json`. Never recreate/reset it or treat180as a new allowance.
+Recheck consumed/unsettled status before future work. Its private scope binds the approved
+local credential association, not a provider-verified cloud-project identity. The pilot's
+plan/rows live in the existing private Revenue semantic-answerability directory; preserve
+all rows/failures and its additional24attempt ceiling. Raw monetary cost remains unknown
+without billing evidence. No permission for Groq domain use or other agent scopes follows.
