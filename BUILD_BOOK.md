@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 63 — Map whitespace changes back to exact source spans](#entry-63--map-whitespace-changes-back-to-exact-source-spans)
 - [Entry 62 — Test semantic answerability against publisher references](#entry-62--test-semantic-answerability-against-publisher-references)
 - [Entry 61 — Budget safety does not guarantee writer availability](#entry-61--budget-safety-does-not-guarantee-writer-availability)
 - [Entry 60 — Test the evaluator without hiding abstentions or weak references](#entry-60--test-the-evaluator-without-hiding-abstentions-or-weak-references)
@@ -3878,3 +3879,33 @@ not zero billing. The eightvalidation groups include two failed groups; upper un
 59.07%, and declared diagnostic qualification fails. No production/clinical/legal or
 model-judge approval follows. Private raw records, exact grant/credential association and
 provider IDs remain outside Git; safe aggregate retains complete denominators/pins/limits.
+
+## Entry 63 — Map whitespace changes back to exact source spans
+**Files planned:** shared citation alignment, separate Revenue parser v2, adversarial tests
+and an offline diagnostic report; legacy parser/capture/reference files remain untouched.
+
+### Context and decision before implementation
+PR115merged3d72610with1259quality/128SQLchecks and green main. The semantic pilot failed;
+two quotations were nonliteral only because model output changed whitespace. User requested
+proceeding with offline error analysis and a separate improvement. Do not rerun provider rows
+or relabel old failures. Shared Gemini consumption remains24/180.
+
+### Before you read on
+Can a quotation with collapsed line breaks yield a byte-verifiable original source span
+without accepting changed punctuation, negation or an arbitrary repeated occurrence?
+
+### Options considered and construction plan
+Simply allowing normalized substring presence would discard the original offset/evidence.
+Fuzzy matching would risk accepting changed meaning. Instead normalize Unicode whitespace
+runs only, retaining each normalized character's original start/end offsets. Require exactly
+one match across the source; repeated/ambiguous matches refuse. Preserve case, punctuation,
+digits and every non-whitespace character. Return the exact original substring and source
+hash, plus input-quotation hash and an explicit semantic-support-not-assessed marker.
+
+Build a shared deterministic function and a separate versioned parser; leave v1literal
+validation and its saved outputs/results unchanged. Test tabs/CRLF/Unicode whitespace,
+overlapping/repeated occurrences, word/digit/negation changes, zero-width characters,
+source/offset/quote tampering and source-size bounds using invented text. Only after freezing
+the new code, apply it offline to saved responses as an exposed diagnostic—not a fresh trial,
+independent holdout or retroactive qualification. Preserve all hashes and account for the
+remaining semantic disagreements separately. No additional provider spending is authorized.

@@ -1,5 +1,10 @@
 # Code Study Guide — Production Agentic Systems
 
+The [citation alignment chapter](docs/citation-alignment.md) describes the offline parser
+improvement against base3d72610: whitespace-only unique matches map to exact original spans,
+ambiguity/changed characters refuse, and a separate Revenue parser preserves v1capture
+failures. This checks citation integrity, not meaning or retrospective model qualification.
+
 The [semantic answerability pilot](docs/semantic-answerability-pilot.md) follows the
 2026-10-27preparation against basea714b65: publisher-relative labels stay separate from the
 context/question model projection; accept/reject/abstain outputs require consistent literal
