@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 53 — Fixed release denominators for prior auth and shipment simulation](#entry-53--fixed-release-denominators-for-prior-auth-and-shipment-simulation)
 - [Entry 52 — Release paths, scoped observations and durable provider accounting](#entry-52--release-paths-scoped-observations-and-durable-provider-accounting)
 - [Entry 51 — Closure work and blind reviewer handoff](#entry-51--closure-work-and-blind-reviewer-handoff)
 - [Entry 50 — Deterministic baselines without invented dispatch receipts](#entry-50--deterministic-baselines-without-invented-dispatch-receipts)
@@ -3275,3 +3276,52 @@ reviews and final-study requirements remain factual prerequisites, not something
 authority can fabricate. Interrupted shell sessions have no retrievable completion result;
 restart the full locked check with a saved log rather than claiming its earlier partial run
 passed. Preserve the completed targeted SQL/package evidence above.
+
+## Entry 53 — Fixed release denominators for prior auth and shipment simulation
+**Files touched:** separate P6/S6 report modules, shared aggregate catalog, tests and walkthrough.
+
+### Context and decision before implementation
+User authorized proceeding through all remaining issues and tested PR merges; independent
+review responses are explicitly pending. While #107 checks its frozen head, prepare #51/#57
+and the #61 handoff on a separate branch. This does not accept their #33 prerequisite or
+authorize calls for these two agents under the three-agent180attempt allowance.
+
+### How to build it
+Reuse the existing complete cohort/label validators and independent domain scorers. Freeze
+the case/trial inventory separately from observations. Preserve every missing/failed row,
+split/source/group denominators, all-three reliability and false-complete recommendation
+denominators. For shipment simulation, compare recorded candidate action maps with the actual
+do-nothing/rules/estimate solver on the same hidden worlds and each frozen sensitivity;
+do not call a policy with hidden outcomes or treat an omitted action as a completed wait.
+Keep candidate origin explicit, raw inputs private and release authorization false.
+
+### Alternatives and verification plan
+Extending old one-pass CLI summaries would not account for missing repeated trials; keep a
+separate versioned report API rather than reinterpret historical outputs. A shared catalog
+should publish only report byte pins and fixed aggregate counts, never arbitrary nested
+payloads or clinical/source text. Test deliberately missing/wrong/unsafe observations,
+unknown identities/duplicates, edited-parent split leakage and changed hidden outcomes.
+Neither code tests nor AI-provisional references provide qualified review or final release.
+
+### Early feedback and verified predecessor
+The first three invented report tests pass10.74seconds. A missing candidate action map stays
+missing, while an empty observed map stays unresolved. The catalog canary test confirms no
+arbitrary source text/private path escapes. Strict types found an unannotated dictionary of
+Counters; specify dict[str, Counter[str]], preserving exact arithmetic. Initial construction
+also used reserved keyword `all` in a dict call; use the explicit string key instead. The
+report keys remain compatible with the other domain reports.
+
+PR#107 merged autonomously as a30ebc4 after exact-head all10checks passed: hosted1135tests
+per quality cell and124Postgres tests; actual Windows3.12/database logs checked. Local full
+1135tests698.58seconds and final4CFPBSQL261.10seconds pass. Merged/reviewed trees match;
+mainrun40328852820 is still running at this log point. Provider attempts0/180, reviewer
+packets unchanged. Subsequent P6/S6/catalog work stays on its own branch/PR.
+
+### Focused report acceptance
+Final67report/PriorAuth/simulator tests pass2.54seconds; strict typing175sources, Ruff and
+sixwheel/sdistpairs pass. Added a stale/conflicting-facts witness: explicit wait remains
+unresolved even though it spends zero. Otherwise a no-op could incorrectly inflate completion.
+Catalog CLI tests verify external inventory/report pins, exclusive new output, canary suppression
+and refusal of overwrite/unknown versions/invalid counts.344relative documentation links resolve;
+backlog dependencies/statuses unchanged. Main40328852820 now passes all9applicable jobs for
+PR#107; metadata intentionally skipped and reviewed/merged tree equality verified. No live calls.
