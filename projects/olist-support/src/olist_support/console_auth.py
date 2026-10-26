@@ -61,6 +61,7 @@ def setup_console(admin: Connection[Any], runtime_role: str) -> None:
             sql.SQL("GRANT USAGE ON SCHEMA olist_app TO {}").format(sql.Identifier(runtime_role))
         )
         for tables, privileges in (
+            ("schema_pin", "SELECT"),
             ("accounts", "SELECT"),
             ("sessions", "SELECT,INSERT,DELETE"),
             ("login_attempts", "SELECT,INSERT,UPDATE,DELETE"),

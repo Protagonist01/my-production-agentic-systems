@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 54 — Local service health and restore without overwriting live state](#entry-54--local-service-health-and-restore-without-overwriting-live-state)
 - [Entry 53 — Fixed release denominators for prior auth and shipment simulation](#entry-53--fixed-release-denominators-for-prior-auth-and-shipment-simulation)
 - [Entry 52 — Release paths, scoped observations and durable provider accounting](#entry-52--release-paths-scoped-observations-and-durable-provider-accounting)
 - [Entry 51 — Closure work and blind reviewer handoff](#entry-51--closure-work-and-blind-reviewer-handoff)
@@ -3325,3 +3326,53 @@ Catalog CLI tests verify external inventory/report pins, exclusive new output, c
 and refusal of overwrite/unknown versions/invalid counts.344relative documentation links resolve;
 backlog dependencies/statuses unchanged. Main40328852820 now passes all9applicable jobs for
 PR#107; metadata intentionally skipped and reviewed/merged tree equality verified. No live calls.
+
+## Entry 54 — Local service health and restore without overwriting live state
+**Files touched:** Olist service readiness/backup/restore helpers, operational CLI, integration tests and runbook.
+
+### Context and decision before implementation
+Continue authorized #58/#59 engineering preparation while #108 checks its frozen head. Existing
+loopback console already runs with scoped accounts, resource limits and durable SIM workflows;
+it needs actionable schema/DB readiness and an actual backup/restore exercise. Keep external
+deployment and final release gates pending. Use the existing local Docker host with no paid
+services or new provider attempts.
+
+### How to build it
+Capture one read-only repeatable-read snapshot of the three Olist application schemas, binding
+installed schema/source versions and PostgreSQL major version. Use PostgreSQL binary COPY to
+preserve JSON, checkpoint bytes and receipt types; keep archives private, externally pinned
+and exclusively created. Restore only into a newly created owned trial with the same installed
+schema, never truncate an existing target. Recompute deterministic row digests after restore
+and run the application/review/redelivery paths against the rebuilt database. A failed new
+restore is cleaned up, while the original database and archive remain intact.
+
+### Why and alternatives
+Replacing current business rows from an old application image would silently erase newer
+effects. A separate restored database permits inspection/explicit cutover instead; application
+rollback is a code/config choice, not a business refund reversal. SQL-string dumps would add
+an unnecessary executable restore surface. Binary COPY carries rows, with code-owned DDL
+and exact schema/constraint/index pins. It is PostgreSQL-major/schema specific, deliberately
+not a general cross-version migration or complete disaster-recovery service.
+
+### Verification plan
+Test real pending review, committed ledger and checkpoint state through owned snapshot/restore;
+refuse changed pins/schema/major/existing target, preserve source after new effects, and prove
+duplicate redelivery returns the original receipt. Check liveness without DB access and
+readiness with unavailable/missing/mismatched schemas without exposing credentials or records.
+
+### Actual recovery feedback
+The first integration invocation could not resolve its imported console fixture's `app`
+dependency; explicitly register the existing app fixture. The corrected actual SQL exercise
+passes2tests39.43seconds, then2tests28.89seconds after exact PostgreSQL build/private-path
+guards. Strict types rejected the name `schema` because it shadows BaseModel.schema; use
+`namespace`, and explicitly check optional fetchone results instead of indexing None. Preserve
+binary COPY, quoted identifiers and the existing ownership boundary.
+
+Final3SQLtests55.32seconds include real CLI backup/restore-new/readiness in a separate clean
+invented Git checkout. It persists only the new owned target identity and refuses repeat
+restore; pending review, checkpoint/ledger/result and newer source effects are checked.
+11health/console tests19.18seconds,178typed sources, Ruff/format and sixbuildpairs pass.
+347relative links resolve and publication scan confirms configured secrets/24source order
+IDs absent. Full hosted/local regressions remain pending at this log point. No provider calls.
+PR#108 also merged as b71f7f7 after all10jobs; its post-merge main40331851595 succeeded with
+reviewed-tree equality. Reviewer responses remain explicitly pending; no release issue closed.

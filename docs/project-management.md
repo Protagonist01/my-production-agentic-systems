@@ -1,8 +1,9 @@
 # Project management
 
-Current work, 2026-10-26: verified merged base `21cfea9` (#106), followed by unmerged
-`codex/release-closure`. The user authorized working through remaining issues and merging
-tested implementation PRs autonomously; the reviewer handoff is explicitly pending. See the
+Current work, 2026-10-26: #107 and #108 are merged after their required checks; current
+main is `b71f7f7`. The separate operations branch prepares #58/#59. The user authorized
+working through remaining issues and merging tested implementation PRs autonomously;
+the reviewer handoff is explicitly pending. See the [remaining gate inventory](remaining-delivery-status.md),
 [closure plan](release-closure-plan.md) and [engineering walkthrough](closure-engineering.md)
 for the shared 180 Gemini Free attempt ceiling, cost accounting, domain recording and exact
 remaining evidence. No new allowance attempts have been used. Independent/qualified judgments,

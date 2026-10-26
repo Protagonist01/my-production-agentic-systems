@@ -55,6 +55,9 @@ def setup(connection: Connection[Any], runtime_role: str) -> None:
             sql.SQL("GRANT USAGE ON SCHEMA olist TO {}").format(sql.Identifier(runtime_role))
         )
         connection.execute(
+            sql.SQL("GRANT SELECT ON olist.schema_pin TO {}").format(sql.Identifier(runtime_role))
+        )
+        connection.execute(
             sql.SQL(
                 "GRANT SELECT,INSERT,UPDATE ON olist.orders,olist.run_budgets,olist.sessions TO {}"
             ).format(sql.Identifier(runtime_role))
