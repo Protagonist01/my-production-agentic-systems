@@ -19,3 +19,12 @@
 # Exact observed historical fingerprints only; no rule/path-wide exclusion.
 b14f70996b1dd44e0b250158ab57dc9dbc49c8b0:docs/evaluation/readiness.json:generic-api-key:85
 81bbdf3fdf06e02b02041c3af4b2339ae45888c1:docs/evaluation/readiness.json:generic-api-key:85
+
+# V2 deterministic citation-study inventory: each finding is a verified SHA256
+# of access.py, billing_access.py, console_api.py or console_auth.py, not a key.
+# The public projection now separates paths from digests. These four exact
+# historical fingerprints retain full rules for all other commits/locations.
+ef66761db82ba546455a16c2bc4b4ebb8b81f5f3:docs/data/evaluator-integrity-study-v2.json:generic-api-key:205
+ef66761db82ba546455a16c2bc4b4ebb8b81f5f3:docs/data/evaluator-integrity-study-v2.json:generic-api-key:269
+ef66761db82ba546455a16c2bc4b4ebb8b81f5f3:docs/data/evaluator-integrity-study-v2.json:generic-api-key:273
+ef66761db82ba546455a16c2bc4b4ebb8b81f5f3:docs/data/evaluator-integrity-study-v2.json:generic-api-key:274

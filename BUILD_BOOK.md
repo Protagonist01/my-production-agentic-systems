@@ -3756,3 +3756,18 @@ passes; corrected test placement, then reran the focused suite. Production/captu
 never changed and neither study was rerun. Hosted full quality/SQL and postmerge checks
 remain pending. Publication screens original source IDs/context prefixes and configured
 credentials without printing them; no provider allowance has been consumed by this batch.
+
+### Hosted scan found inventory hashes beside access/API/auth filenames
+Initial PR114run40412901602fails the generic-api-key scan at four v2inventory entries.
+Read only rule/file/line/fingerprint diagnostics; compare every flagged value to its actual
+source file bytes. All four match SHA256of access.py, billing_access.py, console_api.py and
+console_auth.py. Configured credential scans remain clear. Keep the failed run, do not rerun
+the verifier or change the frozen study to repair a publication false positive.
+
+Represent public inventory as separate path/hash records and retain the original canonical
+map digest. Reconstruct it and compare to the sealed private plan, unchanged source bytes
+and evaluator identity. The repository already uses exact historical `.gitleaksignore`
+fingerprints for verified aggregate hashes; append only these four commit/file/rule/line
+findings. Do not add rule-wide, hash-wide or path-wide exclusions, rewrite branch history,
+alter the scanner workflow or suppress future findings. Repaired exact-head CI remains
+required. The diagnostic reports, original plan/data/results/pins and executable stay intact.

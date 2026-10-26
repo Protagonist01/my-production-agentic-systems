@@ -168,6 +168,12 @@ claims are designed integrity faults; results do not estimate semantic error on 
 traffic. These diagnostic limits are not an accepted domain release threshold or a license
 to replace qualified interpretation review. No row or prior failure was rerun/overwritten.
 
+The public v2inventory uses separate `path`/`sha256` records plus the original map's
+canonical digest. The private sealed plan retains that exact original map. Four historical
+secret-scan findings were verified file digests beside access/API/auth filenames; exact
+commit/file/rule/line exceptions retain history without disabling a rule or excluding a
+path. The first failed scan remains recorded; corrected final-head acceptance follows.
+
 ## Candidate external references, not acquired cohorts
 
 | Source | Possible use | Why it is not blanket replacement evidence |
