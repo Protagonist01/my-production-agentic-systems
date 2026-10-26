@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 60 — Test the evaluator without hiding abstentions or weak references](#entry-60--test-the-evaluator-without-hiding-abstentions-or-weak-references)
 - [Entry 59 — Make evidence and attempt plans executable without granting approval](#entry-59--make-evidence-and-attempt-plans-executable-without-granting-approval)
 - [Entry 58 — Evidence alternatives without inventing expert approval](#entry-58--evidence-alternatives-without-inventing-expert-approval)
 - [Entry 57 — Explicit Groq routes without disguising a provider change](#entry-57--explicit-groq-routes-without-disguising-a-provider-change)
@@ -3656,3 +3657,53 @@ matrix pin and correctly refused; the corrected inspected matrix pin is
 All41required slices are inventoried. Legacy gate/profile/lock/backlog bytes are unchanged.
 Publication scan checks both configured credentials and24source IDs without printing them;
 source/customer/draft pins are unchanged. Full and hosted results remain pending.
+
+## Entry 60 — Test the evaluator without hiding abstentions or weak references
+**Files planned:** shared evaluator qualification/report CLI, reference applicability audit,
+focused tests and a study chapter.
+
+### Context and decision before implementation
+PR113mergedb909aa7 with green main and all1229quality/128SQLchecks. The user requested the
+next execution batch. Inventory coverage is now executable, but it does not show whether
+an evaluator can recognize wrong answers. Build that measurement before spending calls or
+changing review acceptance. Public source labels require task-specific applicability.
+
+### Before you read on
+If a judge abstains on every unsafe example but accepts every easy example, can its apparent
+conditional accuracy qualify it? Decide which denominators and source groups must remain.
+
+### Options considered and why
+Do not measure agreement alone or drop missing/abstained rows. Use a frozen schedule with
+both acceptable and unacceptable references, fixed repetitions and group-level uncertainty.
+Keep calibration separate from holdout; merge connected source/template keys before checking
+leakage or counting groups. An inherited publisher span is extraction evidence, not a new
+clinical or contract-meaning label. Keep existing release authorization separate.
+
+### Construction plan
+Pin dataset, protocol and evaluator identities. Require explicit coverage/error limits;
+record no default production thresholds. Bind each observation to the exact scheduled case,
+trial, input and evaluator and keep absent rows as failures. Report the complete confusion
+matrix plus abstention/missing counts, class/slice coverage and false-accept/false-reject
+denominators. Every component with a missing/wrong repetition contributes to group-error
+uncertainty. All-abstain and tiny-perfect examples must fail appropriate explicit criteria.
+Do not produce an accepted human review or a deployment permission from these statistics.
+
+Audit existing CUAD source/category metadata against original extraction versus invented
+billing fields without printing source text or changing references. Inspect primary-source
+metadata for ContractNLI/MedNLI applicability and access; no restricted dataset access or
+new provider export follows from a public metadata page. Final implementation/results follow.
+
+### Initial implementation feedback
+Focused qualification/planning/Revenue regressions pass43tests7.40seconds; all three new
+sources pass strict typing. The first Ruff pass flagged long lines/import order; formatting
+and the targeted import fix cleared them. Exact input hashes now participate in source
+components automatically, so renamed duplicate inputs cannot evade split checks. Added
+class-specific coverage and conditional error limits after considering how abstention could
+reduce a scheduled-class error rate without improving decisions.
+
+The read-only CUAD drill reverified the original archive and both stores against existing
+prepared-manifest pinb852424a. All20,910questions/13,823spans/457inferredfamilies match; the
+aggregate finds6,702answerable and14,208no-answer references across41categories. Two rare
+categories have only one answerable holdout family; two have no no-answer holdout examples.
+Expose these limits instead of treating corpus size as evidence for every class/category.
+No raw text/IDs were printed, no reference changed and no provider call was made.

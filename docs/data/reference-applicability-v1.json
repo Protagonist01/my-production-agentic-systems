@@ -1,0 +1,1229 @@
+{
+  "applicable_reference_metrics": [
+    "publisher_relative_span_precision",
+    "answerable_span_recall",
+    "no_answer_agreement"
+  ],
+  "categories": {
+    "Affiliate License-Licensee": {
+      "all": {
+        "answerable": 59,
+        "answerable_families": 56,
+        "families": 457,
+        "no_answer": 451,
+        "no_answer_families": 405,
+        "questions": 510,
+        "spans": 115
+      },
+      "development": {
+        "answerable": 49,
+        "answerable_families": 46,
+        "families": 371,
+        "no_answer": 368,
+        "no_answer_families": 328,
+        "questions": 417,
+        "spans": 92
+      },
+      "holdout": {
+        "answerable": 10,
+        "answerable_families": 10,
+        "families": 86,
+        "no_answer": 83,
+        "no_answer_families": 77,
+        "questions": 93,
+        "spans": 23
+      }
+    },
+    "Affiliate License-Licensor": {
+      "all": {
+        "answerable": 23,
+        "answerable_families": 23,
+        "families": 457,
+        "no_answer": 487,
+        "no_answer_families": 436,
+        "questions": 510,
+        "spans": 69
+      },
+      "development": {
+        "answerable": 16,
+        "answerable_families": 16,
+        "families": 371,
+        "no_answer": 401,
+        "no_answer_families": 356,
+        "questions": 417,
+        "spans": 49
+      },
+      "holdout": {
+        "answerable": 7,
+        "answerable_families": 7,
+        "families": 86,
+        "no_answer": 86,
+        "no_answer_families": 80,
+        "questions": 93,
+        "spans": 20
+      }
+    },
+    "Agreement Date": {
+      "all": {
+        "answerable": 470,
+        "answerable_families": 429,
+        "families": 457,
+        "no_answer": 40,
+        "no_answer_families": 37,
+        "questions": 510,
+        "spans": 476
+      },
+      "development": {
+        "answerable": 383,
+        "answerable_families": 348,
+        "families": 371,
+        "no_answer": 34,
+        "no_answer_families": 31,
+        "questions": 417,
+        "spans": 389
+      },
+      "holdout": {
+        "answerable": 87,
+        "answerable_families": 81,
+        "families": 86,
+        "no_answer": 6,
+        "no_answer_families": 6,
+        "questions": 93,
+        "spans": 87
+      }
+    },
+    "Anti-Assignment": {
+      "all": {
+        "answerable": 374,
+        "answerable_families": 356,
+        "families": 457,
+        "no_answer": 136,
+        "no_answer_families": 123,
+        "questions": 510,
+        "spans": 654
+      },
+      "development": {
+        "answerable": 303,
+        "answerable_families": 289,
+        "families": 371,
+        "no_answer": 114,
+        "no_answer_families": 101,
+        "questions": 417,
+        "spans": 527
+      },
+      "holdout": {
+        "answerable": 71,
+        "answerable_families": 67,
+        "families": 86,
+        "no_answer": 22,
+        "no_answer_families": 22,
+        "questions": 93,
+        "spans": 127
+      }
+    },
+    "Audit Rights": {
+      "all": {
+        "answerable": 214,
+        "answerable_families": 209,
+        "families": 457,
+        "no_answer": 296,
+        "no_answer_families": 265,
+        "questions": 510,
+        "spans": 643
+      },
+      "development": {
+        "answerable": 167,
+        "answerable_families": 163,
+        "families": 371,
+        "no_answer": 250,
+        "no_answer_families": 221,
+        "questions": 417,
+        "spans": 512
+      },
+      "holdout": {
+        "answerable": 47,
+        "answerable_families": 46,
+        "families": 86,
+        "no_answer": 46,
+        "no_answer_families": 44,
+        "questions": 93,
+        "spans": 131
+      }
+    },
+    "Cap On Liability": {
+      "all": {
+        "answerable": 275,
+        "answerable_families": 269,
+        "families": 457,
+        "no_answer": 235,
+        "no_answer_families": 206,
+        "questions": 510,
+        "spans": 672
+      },
+      "development": {
+        "answerable": 225,
+        "answerable_families": 222,
+        "families": 371,
+        "no_answer": 192,
+        "no_answer_families": 165,
+        "questions": 417,
+        "spans": 548
+      },
+      "holdout": {
+        "answerable": 50,
+        "answerable_families": 47,
+        "families": 86,
+        "no_answer": 43,
+        "no_answer_families": 41,
+        "questions": 93,
+        "spans": 124
+      }
+    },
+    "Change Of Control": {
+      "all": {
+        "answerable": 121,
+        "answerable_families": 119,
+        "families": 457,
+        "no_answer": 389,
+        "no_answer_families": 350,
+        "questions": 510,
+        "spans": 253
+      },
+      "development": {
+        "answerable": 99,
+        "answerable_families": 98,
+        "families": 371,
+        "no_answer": 318,
+        "no_answer_families": 283,
+        "questions": 417,
+        "spans": 206
+      },
+      "holdout": {
+        "answerable": 22,
+        "answerable_families": 21,
+        "families": 86,
+        "no_answer": 71,
+        "no_answer_families": 67,
+        "questions": 93,
+        "spans": 47
+      }
+    },
+    "Competitive Restriction Exception": {
+      "all": {
+        "answerable": 76,
+        "answerable_families": 75,
+        "families": 457,
+        "no_answer": 434,
+        "no_answer_families": 387,
+        "questions": 510,
+        "spans": 125
+      },
+      "development": {
+        "answerable": 62,
+        "answerable_families": 62,
+        "families": 371,
+        "no_answer": 355,
+        "no_answer_families": 313,
+        "questions": 417,
+        "spans": 100
+      },
+      "holdout": {
+        "answerable": 14,
+        "answerable_families": 13,
+        "families": 86,
+        "no_answer": 79,
+        "no_answer_families": 74,
+        "questions": 93,
+        "spans": 25
+      }
+    },
+    "Covenant Not To Sue": {
+      "all": {
+        "answerable": 100,
+        "answerable_families": 96,
+        "families": 457,
+        "no_answer": 410,
+        "no_answer_families": 368,
+        "questions": 510,
+        "spans": 173
+      },
+      "development": {
+        "answerable": 87,
+        "answerable_families": 83,
+        "families": 371,
+        "no_answer": 330,
+        "no_answer_families": 295,
+        "questions": 417,
+        "spans": 149
+      },
+      "holdout": {
+        "answerable": 13,
+        "answerable_families": 13,
+        "families": 86,
+        "no_answer": 80,
+        "no_answer_families": 73,
+        "questions": 93,
+        "spans": 24
+      }
+    },
+    "Document Name": {
+      "all": {
+        "answerable": 510,
+        "answerable_families": 457,
+        "families": 457,
+        "no_answer": 0,
+        "no_answer_families": 0,
+        "questions": 510,
+        "spans": 521
+      },
+      "development": {
+        "answerable": 417,
+        "answerable_families": 371,
+        "families": 371,
+        "no_answer": 0,
+        "no_answer_families": 0,
+        "questions": 417,
+        "spans": 428
+      },
+      "holdout": {
+        "answerable": 93,
+        "answerable_families": 86,
+        "families": 86,
+        "no_answer": 0,
+        "no_answer_families": 0,
+        "questions": 93,
+        "spans": 93
+      }
+    },
+    "Effective Date": {
+      "all": {
+        "answerable": 390,
+        "answerable_families": 364,
+        "families": 457,
+        "no_answer": 120,
+        "no_answer_families": 111,
+        "questions": 510,
+        "spans": 447
+      },
+      "development": {
+        "answerable": 318,
+        "answerable_families": 295,
+        "families": 371,
+        "no_answer": 99,
+        "no_answer_families": 92,
+        "questions": 417,
+        "spans": 364
+      },
+      "holdout": {
+        "answerable": 72,
+        "answerable_families": 69,
+        "families": 86,
+        "no_answer": 21,
+        "no_answer_families": 19,
+        "questions": 93,
+        "spans": 83
+      }
+    },
+    "Exclusivity": {
+      "all": {
+        "answerable": 180,
+        "answerable_families": 174,
+        "families": 457,
+        "no_answer": 330,
+        "no_answer_families": 302,
+        "questions": 510,
+        "spans": 410
+      },
+      "development": {
+        "answerable": 142,
+        "answerable_families": 137,
+        "families": 371,
+        "no_answer": 275,
+        "no_answer_families": 249,
+        "questions": 417,
+        "spans": 326
+      },
+      "holdout": {
+        "answerable": 38,
+        "answerable_families": 37,
+        "families": 86,
+        "no_answer": 55,
+        "no_answer_families": 53,
+        "questions": 93,
+        "spans": 84
+      }
+    },
+    "Expiration Date": {
+      "all": {
+        "answerable": 413,
+        "answerable_families": 390,
+        "families": 457,
+        "no_answer": 97,
+        "no_answer_families": 86,
+        "questions": 510,
+        "spans": 467
+      },
+      "development": {
+        "answerable": 338,
+        "answerable_families": 319,
+        "families": 371,
+        "no_answer": 79,
+        "no_answer_families": 69,
+        "questions": 417,
+        "spans": 386
+      },
+      "holdout": {
+        "answerable": 75,
+        "answerable_families": 71,
+        "families": 86,
+        "no_answer": 18,
+        "no_answer_families": 17,
+        "questions": 93,
+        "spans": 81
+      }
+    },
+    "Governing Law": {
+      "all": {
+        "answerable": 437,
+        "answerable_families": 410,
+        "families": 457,
+        "no_answer": 73,
+        "no_answer_families": 63,
+        "questions": 510,
+        "spans": 464
+      },
+      "development": {
+        "answerable": 357,
+        "answerable_families": 334,
+        "families": 371,
+        "no_answer": 60,
+        "no_answer_families": 50,
+        "questions": 417,
+        "spans": 377
+      },
+      "holdout": {
+        "answerable": 80,
+        "answerable_families": 76,
+        "families": 86,
+        "no_answer": 13,
+        "no_answer_families": 13,
+        "questions": 93,
+        "spans": 87
+      }
+    },
+    "Insurance": {
+      "all": {
+        "answerable": 166,
+        "answerable_families": 164,
+        "families": 457,
+        "no_answer": 344,
+        "no_answer_families": 312,
+        "questions": 510,
+        "spans": 560
+      },
+      "development": {
+        "answerable": 137,
+        "answerable_families": 136,
+        "families": 371,
+        "no_answer": 280,
+        "no_answer_families": 253,
+        "questions": 417,
+        "spans": 447
+      },
+      "holdout": {
+        "answerable": 29,
+        "answerable_families": 28,
+        "families": 86,
+        "no_answer": 64,
+        "no_answer_families": 59,
+        "questions": 93,
+        "spans": 113
+      }
+    },
+    "Ip Ownership Assignment": {
+      "all": {
+        "answerable": 124,
+        "answerable_families": 120,
+        "families": 457,
+        "no_answer": 386,
+        "no_answer_families": 347,
+        "questions": 510,
+        "spans": 318
+      },
+      "development": {
+        "answerable": 105,
+        "answerable_families": 102,
+        "families": 371,
+        "no_answer": 312,
+        "no_answer_families": 278,
+        "questions": 417,
+        "spans": 263
+      },
+      "holdout": {
+        "answerable": 19,
+        "answerable_families": 18,
+        "families": 86,
+        "no_answer": 74,
+        "no_answer_families": 69,
+        "questions": 93,
+        "spans": 55
+      }
+    },
+    "Irrevocable Or Perpetual License": {
+      "all": {
+        "answerable": 70,
+        "answerable_families": 68,
+        "families": 457,
+        "no_answer": 440,
+        "no_answer_families": 394,
+        "questions": 510,
+        "spans": 165
+      },
+      "development": {
+        "answerable": 59,
+        "answerable_families": 58,
+        "families": 371,
+        "no_answer": 358,
+        "no_answer_families": 318,
+        "questions": 417,
+        "spans": 138
+      },
+      "holdout": {
+        "answerable": 11,
+        "answerable_families": 10,
+        "families": 86,
+        "no_answer": 82,
+        "no_answer_families": 76,
+        "questions": 93,
+        "spans": 27
+      }
+    },
+    "Joint Ip Ownership": {
+      "all": {
+        "answerable": 46,
+        "answerable_families": 46,
+        "families": 457,
+        "no_answer": 464,
+        "no_answer_families": 415,
+        "questions": 510,
+        "spans": 115
+      },
+      "development": {
+        "answerable": 37,
+        "answerable_families": 37,
+        "families": 371,
+        "no_answer": 380,
+        "no_answer_families": 337,
+        "questions": 417,
+        "spans": 98
+      },
+      "holdout": {
+        "answerable": 9,
+        "answerable_families": 9,
+        "families": 86,
+        "no_answer": 84,
+        "no_answer_families": 78,
+        "questions": 93,
+        "spans": 17
+      }
+    },
+    "License Grant": {
+      "all": {
+        "answerable": 255,
+        "answerable_families": 243,
+        "families": 457,
+        "no_answer": 255,
+        "no_answer_families": 233,
+        "questions": 510,
+        "spans": 777
+      },
+      "development": {
+        "answerable": 204,
+        "answerable_families": 194,
+        "families": 371,
+        "no_answer": 213,
+        "no_answer_families": 192,
+        "questions": 417,
+        "spans": 623
+      },
+      "holdout": {
+        "answerable": 51,
+        "answerable_families": 49,
+        "families": 86,
+        "no_answer": 42,
+        "no_answer_families": 41,
+        "questions": 93,
+        "spans": 154
+      }
+    },
+    "Liquidated Damages": {
+      "all": {
+        "answerable": 61,
+        "answerable_families": 61,
+        "families": 457,
+        "no_answer": 449,
+        "no_answer_families": 400,
+        "questions": 510,
+        "spans": 121
+      },
+      "development": {
+        "answerable": 50,
+        "answerable_families": 50,
+        "families": 371,
+        "no_answer": 367,
+        "no_answer_families": 325,
+        "questions": 417,
+        "spans": 102
+      },
+      "holdout": {
+        "answerable": 11,
+        "answerable_families": 11,
+        "families": 86,
+        "no_answer": 82,
+        "no_answer_families": 75,
+        "questions": 93,
+        "spans": 19
+      }
+    },
+    "Minimum Commitment": {
+      "all": {
+        "answerable": 165,
+        "answerable_families": 160,
+        "families": 457,
+        "no_answer": 345,
+        "no_answer_families": 310,
+        "questions": 510,
+        "spans": 424
+      },
+      "development": {
+        "answerable": 139,
+        "answerable_families": 134,
+        "families": 371,
+        "no_answer": 278,
+        "no_answer_families": 247,
+        "questions": 417,
+        "spans": 365
+      },
+      "holdout": {
+        "answerable": 26,
+        "answerable_families": 26,
+        "families": 86,
+        "no_answer": 67,
+        "no_answer_families": 63,
+        "questions": 93,
+        "spans": 59
+      }
+    },
+    "Most Favored Nation": {
+      "all": {
+        "answerable": 28,
+        "answerable_families": 27,
+        "families": 457,
+        "no_answer": 482,
+        "no_answer_families": 432,
+        "questions": 510,
+        "spans": 38
+      },
+      "development": {
+        "answerable": 23,
+        "answerable_families": 22,
+        "families": 371,
+        "no_answer": 394,
+        "no_answer_families": 351,
+        "questions": 417,
+        "spans": 32
+      },
+      "holdout": {
+        "answerable": 5,
+        "answerable_families": 5,
+        "families": 86,
+        "no_answer": 88,
+        "no_answer_families": 81,
+        "questions": 93,
+        "spans": 6
+      }
+    },
+    "No-Solicit Of Customers": {
+      "all": {
+        "answerable": 34,
+        "answerable_families": 33,
+        "families": 457,
+        "no_answer": 476,
+        "no_answer_families": 428,
+        "questions": 510,
+        "spans": 58
+      },
+      "development": {
+        "answerable": 28,
+        "answerable_families": 27,
+        "families": 371,
+        "no_answer": 389,
+        "no_answer_families": 348,
+        "questions": 417,
+        "spans": 45
+      },
+      "holdout": {
+        "answerable": 6,
+        "answerable_families": 6,
+        "families": 86,
+        "no_answer": 87,
+        "no_answer_families": 80,
+        "questions": 93,
+        "spans": 13
+      }
+    },
+    "No-Solicit Of Employees": {
+      "all": {
+        "answerable": 59,
+        "answerable_families": 57,
+        "families": 457,
+        "no_answer": 451,
+        "no_answer_families": 402,
+        "questions": 510,
+        "spans": 91
+      },
+      "development": {
+        "answerable": 52,
+        "answerable_families": 50,
+        "families": 371,
+        "no_answer": 365,
+        "no_answer_families": 323,
+        "questions": 417,
+        "spans": 78
+      },
+      "holdout": {
+        "answerable": 7,
+        "answerable_families": 7,
+        "families": 86,
+        "no_answer": 86,
+        "no_answer_families": 79,
+        "questions": 93,
+        "spans": 13
+      }
+    },
+    "Non-Compete": {
+      "all": {
+        "answerable": 119,
+        "answerable_families": 116,
+        "families": 457,
+        "no_answer": 391,
+        "no_answer_families": 351,
+        "questions": 510,
+        "spans": 259
+      },
+      "development": {
+        "answerable": 99,
+        "answerable_families": 96,
+        "families": 371,
+        "no_answer": 318,
+        "no_answer_families": 281,
+        "questions": 417,
+        "spans": 218
+      },
+      "holdout": {
+        "answerable": 20,
+        "answerable_families": 20,
+        "families": 86,
+        "no_answer": 73,
+        "no_answer_families": 70,
+        "questions": 93,
+        "spans": 41
+      }
+    },
+    "Non-Disparagement": {
+      "all": {
+        "answerable": 38,
+        "answerable_families": 37,
+        "families": 457,
+        "no_answer": 472,
+        "no_answer_families": 428,
+        "questions": 510,
+        "spans": 65
+      },
+      "development": {
+        "answerable": 33,
+        "answerable_families": 32,
+        "families": 371,
+        "no_answer": 384,
+        "no_answer_families": 346,
+        "questions": 417,
+        "spans": 55
+      },
+      "holdout": {
+        "answerable": 5,
+        "answerable_families": 5,
+        "families": 86,
+        "no_answer": 88,
+        "no_answer_families": 82,
+        "questions": 93,
+        "spans": 10
+      }
+    },
+    "Non-Transferable License": {
+      "all": {
+        "answerable": 138,
+        "answerable_families": 132,
+        "families": 457,
+        "no_answer": 372,
+        "no_answer_families": 337,
+        "questions": 510,
+        "spans": 298
+      },
+      "development": {
+        "answerable": 117,
+        "answerable_families": 111,
+        "families": 371,
+        "no_answer": 300,
+        "no_answer_families": 271,
+        "questions": 417,
+        "spans": 261
+      },
+      "holdout": {
+        "answerable": 21,
+        "answerable_families": 21,
+        "families": 86,
+        "no_answer": 72,
+        "no_answer_families": 66,
+        "questions": 93,
+        "spans": 37
+      }
+    },
+    "Notice Period To Terminate Renewal": {
+      "all": {
+        "answerable": 111,
+        "answerable_families": 109,
+        "families": 457,
+        "no_answer": 399,
+        "no_answer_families": 356,
+        "questions": 510,
+        "spans": 122
+      },
+      "development": {
+        "answerable": 87,
+        "answerable_families": 86,
+        "families": 371,
+        "no_answer": 330,
+        "no_answer_families": 293,
+        "questions": 417,
+        "spans": 94
+      },
+      "holdout": {
+        "answerable": 24,
+        "answerable_families": 23,
+        "families": 86,
+        "no_answer": 69,
+        "no_answer_families": 63,
+        "questions": 93,
+        "spans": 28
+      }
+    },
+    "Parties": {
+      "all": {
+        "answerable": 509,
+        "answerable_families": 457,
+        "families": 457,
+        "no_answer": 1,
+        "no_answer_families": 1,
+        "questions": 510,
+        "spans": 2554
+      },
+      "development": {
+        "answerable": 416,
+        "answerable_families": 371,
+        "families": 371,
+        "no_answer": 1,
+        "no_answer_families": 1,
+        "questions": 417,
+        "spans": 2131
+      },
+      "holdout": {
+        "answerable": 93,
+        "answerable_families": 86,
+        "families": 86,
+        "no_answer": 0,
+        "no_answer_families": 0,
+        "questions": 93,
+        "spans": 423
+      }
+    },
+    "Post-Termination Services": {
+      "all": {
+        "answerable": 182,
+        "answerable_families": 177,
+        "families": 457,
+        "no_answer": 328,
+        "no_answer_families": 294,
+        "questions": 510,
+        "spans": 450
+      },
+      "development": {
+        "answerable": 151,
+        "answerable_families": 147,
+        "families": 371,
+        "no_answer": 266,
+        "no_answer_families": 236,
+        "questions": 417,
+        "spans": 352
+      },
+      "holdout": {
+        "answerable": 31,
+        "answerable_families": 30,
+        "families": 86,
+        "no_answer": 62,
+        "no_answer_families": 58,
+        "questions": 93,
+        "spans": 98
+      }
+    },
+    "Price Restrictions": {
+      "all": {
+        "answerable": 15,
+        "answerable_families": 15,
+        "families": 457,
+        "no_answer": 495,
+        "no_answer_families": 444,
+        "questions": 510,
+        "spans": 27
+      },
+      "development": {
+        "answerable": 14,
+        "answerable_families": 14,
+        "families": 371,
+        "no_answer": 403,
+        "no_answer_families": 359,
+        "questions": 417,
+        "spans": 20
+      },
+      "holdout": {
+        "answerable": 1,
+        "answerable_families": 1,
+        "families": 86,
+        "no_answer": 92,
+        "no_answer_families": 85,
+        "questions": 93,
+        "spans": 7
+      }
+    },
+    "Renewal Term": {
+      "all": {
+        "answerable": 176,
+        "answerable_families": 173,
+        "families": 457,
+        "no_answer": 334,
+        "no_answer_families": 303,
+        "questions": 510,
+        "spans": 210
+      },
+      "development": {
+        "answerable": 143,
+        "answerable_families": 141,
+        "families": 371,
+        "no_answer": 274,
+        "no_answer_families": 247,
+        "questions": 417,
+        "spans": 172
+      },
+      "holdout": {
+        "answerable": 33,
+        "answerable_families": 32,
+        "families": 86,
+        "no_answer": 60,
+        "no_answer_families": 56,
+        "questions": 93,
+        "spans": 38
+      }
+    },
+    "Revenue/Profit Sharing": {
+      "all": {
+        "answerable": 166,
+        "answerable_families": 157,
+        "families": 457,
+        "no_answer": 344,
+        "no_answer_families": 313,
+        "questions": 510,
+        "spans": 418
+      },
+      "development": {
+        "answerable": 132,
+        "answerable_families": 126,
+        "families": 371,
+        "no_answer": 285,
+        "no_answer_families": 256,
+        "questions": 417,
+        "spans": 340
+      },
+      "holdout": {
+        "answerable": 34,
+        "answerable_families": 31,
+        "families": 86,
+        "no_answer": 59,
+        "no_answer_families": 57,
+        "questions": 93,
+        "spans": 78
+      }
+    },
+    "Rofr/Rofo/Rofn": {
+      "all": {
+        "answerable": 85,
+        "answerable_families": 84,
+        "families": 457,
+        "no_answer": 425,
+        "no_answer_families": 383,
+        "questions": 510,
+        "spans": 367
+      },
+      "development": {
+        "answerable": 68,
+        "answerable_families": 68,
+        "families": 371,
+        "no_answer": 349,
+        "no_answer_families": 310,
+        "questions": 417,
+        "spans": 295
+      },
+      "holdout": {
+        "answerable": 17,
+        "answerable_families": 16,
+        "families": 86,
+        "no_answer": 76,
+        "no_answer_families": 73,
+        "questions": 93,
+        "spans": 72
+      }
+    },
+    "Source Code Escrow": {
+      "all": {
+        "answerable": 13,
+        "answerable_families": 12,
+        "families": 457,
+        "no_answer": 497,
+        "no_answer_families": 446,
+        "questions": 510,
+        "spans": 66
+      },
+      "development": {
+        "answerable": 12,
+        "answerable_families": 11,
+        "families": 371,
+        "no_answer": 405,
+        "no_answer_families": 361,
+        "questions": 417,
+        "spans": 63
+      },
+      "holdout": {
+        "answerable": 1,
+        "answerable_families": 1,
+        "families": 86,
+        "no_answer": 92,
+        "no_answer_families": 85,
+        "questions": 93,
+        "spans": 3
+      }
+    },
+    "Termination For Convenience": {
+      "all": {
+        "answerable": 183,
+        "answerable_families": 179,
+        "families": 457,
+        "no_answer": 327,
+        "no_answer_families": 291,
+        "questions": 510,
+        "spans": 246
+      },
+      "development": {
+        "answerable": 153,
+        "answerable_families": 149,
+        "families": 371,
+        "no_answer": 264,
+        "no_answer_families": 234,
+        "questions": 417,
+        "spans": 204
+      },
+      "holdout": {
+        "answerable": 30,
+        "answerable_families": 30,
+        "families": 86,
+        "no_answer": 63,
+        "no_answer_families": 57,
+        "questions": 93,
+        "spans": 42
+      }
+    },
+    "Third Party Beneficiary": {
+      "all": {
+        "answerable": 32,
+        "answerable_families": 32,
+        "families": 457,
+        "no_answer": 478,
+        "no_answer_families": 430,
+        "questions": 510,
+        "spans": 39
+      },
+      "development": {
+        "answerable": 26,
+        "answerable_families": 26,
+        "families": 371,
+        "no_answer": 391,
+        "no_answer_families": 349,
+        "questions": 417,
+        "spans": 31
+      },
+      "holdout": {
+        "answerable": 6,
+        "answerable_families": 6,
+        "families": 86,
+        "no_answer": 87,
+        "no_answer_families": 81,
+        "questions": 93,
+        "spans": 8
+      }
+    },
+    "Uncapped Liability": {
+      "all": {
+        "answerable": 111,
+        "answerable_families": 109,
+        "families": 457,
+        "no_answer": 399,
+        "no_answer_families": 358,
+        "questions": 510,
+        "spans": 167
+      },
+      "development": {
+        "answerable": 93,
+        "answerable_families": 92,
+        "families": 371,
+        "no_answer": 324,
+        "no_answer_families": 287,
+        "questions": 417,
+        "spans": 138
+      },
+      "holdout": {
+        "answerable": 18,
+        "answerable_families": 17,
+        "families": 86,
+        "no_answer": 75,
+        "no_answer_families": 71,
+        "questions": 93,
+        "spans": 29
+      }
+    },
+    "Unlimited/All-You-Can-Eat-License": {
+      "all": {
+        "answerable": 17,
+        "answerable_families": 17,
+        "families": 457,
+        "no_answer": 493,
+        "no_answer_families": 441,
+        "questions": 510,
+        "spans": 32
+      },
+      "development": {
+        "answerable": 11,
+        "answerable_families": 11,
+        "families": 371,
+        "no_answer": 406,
+        "no_answer_families": 360,
+        "questions": 417,
+        "spans": 21
+      },
+      "holdout": {
+        "answerable": 6,
+        "answerable_families": 6,
+        "families": 86,
+        "no_answer": 87,
+        "no_answer_families": 81,
+        "questions": 93,
+        "spans": 11
+      }
+    },
+    "Volume Restriction": {
+      "all": {
+        "answerable": 82,
+        "answerable_families": 80,
+        "families": 457,
+        "no_answer": 428,
+        "no_answer_families": 387,
+        "questions": 510,
+        "spans": 171
+      },
+      "development": {
+        "answerable": 66,
+        "answerable_families": 64,
+        "families": 371,
+        "no_answer": 351,
+        "no_answer_families": 314,
+        "questions": 417,
+        "spans": 142
+      },
+      "holdout": {
+        "answerable": 16,
+        "answerable_families": 16,
+        "families": 86,
+        "no_answer": 77,
+        "no_answer_families": 73,
+        "questions": 93,
+        "spans": 29
+      }
+    },
+    "Warranty Duration": {
+      "all": {
+        "answerable": 75,
+        "answerable_families": 73,
+        "families": 457,
+        "no_answer": 435,
+        "no_answer_families": 389,
+        "questions": 510,
+        "spans": 176
+      },
+      "development": {
+        "answerable": 60,
+        "answerable_families": 58,
+        "families": 371,
+        "no_answer": 357,
+        "no_answer_families": 317,
+        "questions": 417,
+        "spans": 147
+      },
+      "holdout": {
+        "answerable": 15,
+        "answerable_families": 15,
+        "families": 86,
+        "no_answer": 78,
+        "no_answer_families": 72,
+        "questions": 93,
+        "spans": 29
+      }
+    }
+  },
+  "interpretation": "Publisher-relative extraction/answerability references only; no evaluator or release qualified.",
+  "not_established": [
+    "unseen_model_training_data",
+    "general_contract_meaning",
+    "normalized_billing_terms",
+    "sim_invoice_delta",
+    "authorization",
+    "state_recovery",
+    "clinical_validity"
+  ],
+  "release_allowed": false,
+  "source_manifest_sha256": "b852424ab854c30bd730ccc90a799907e02d3875a3066d203aed36f842f78540",
+  "source_to_store_verification": {
+    "answer_spans": 13823,
+    "contracts": 510,
+    "family_count": 457,
+    "manifest_sha256": "b852424ab854c30bd730ccc90a799907e02d3875a3066d203aed36f842f78540",
+    "questions": 20910,
+    "verified": true
+  },
+  "source_verification_performed_by_aggregator": false,
+  "totals": {
+    "answerable": 6702,
+    "answerable_families": 457,
+    "families": 457,
+    "no_answer": 14208,
+    "no_answer_families": 457,
+    "questions": 20910,
+    "spans": 13823
+  },
+  "version": "cuad-reference-applicability-v1"
+}
