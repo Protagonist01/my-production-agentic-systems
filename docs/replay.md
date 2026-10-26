@@ -156,3 +156,17 @@ All six canonical requests/responses exactly match v11, including two invented t
 Preserve v1–v11 and add v11 to historical-lock rejection tests; no replay matching rule is
 weakened. This is synthetic fixture maintenance with zero provider calls. The private fresh
 O8 experiment remains unchanged at its original lock and cannot certify the repaired environment.
+
+## Optional Groq extra fixture v13
+
+The Groq extra reuses already pinned HTTPX/JSONSchema/referencing versions but changes lock
+metadata to `d99ed794cbee87bcb529200f46a878fda26b80af175d180019f6479d4f80163d`.
+The first Groq PR correctly fails the v12CLI compatibility check under this new pin. At clean
+source `30acbdd44721244bac5e8843a9f0be67ab4c579b`, explicitly run invented_recording and the
+exclusive writer to publish v13with digest
+`4c57fdf1ad0228c3e16924750754c037754de2a3446b35c4cf69c1dc100de303`.
+All six canonical requests/responses exactly equal v12, including its two invented timeouts.
+Historical v1–v12bytes stay unchanged; v12joins the historical lock-rejection test. No replay
+rule is relaxed, no real provider is called, and no private Groq/Gemini capture is altered.
+The content guard also rejects Groq credential patterns without echoing them. This is
+synthetic fixture maintenance; it supplies no new provider/domain evaluation evidence.

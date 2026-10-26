@@ -3527,3 +3527,15 @@ then update the externally trusted current fixture pin and add v12to historical-
 Also extend the recording credential guard for Groq's key prefix with a non-key test value.
 No new provider call is needed or justified by this fixture repair; the actual nine Groq
 captures remain sealed at3db69d5. Initial failing runs are retained rather than called passes.
+
+At clean30acbdd, create v13exclusively with digest4c57fdf1ad0228c3e16924750754c037754de2a3446b35c4cf69c1dc100de303.
+Its six canonical request/response pairs equal v12; all v1–v12file bytes match their Git blobs.
+The maintenance process denies outbound network and screens both configured keys. Update the
+trusted constant deliberately, preserve historical-lock rejection, then rerun the full replay
+and Groq controls. Existing live9/12budget/evidence remains untouched.
+
+Corrected133replay/Groq/allowance tests pass13.88seconds,184sources typecheck and Ruff is
+clean. The automatic Groq-pattern test supplies no configured deny value; publication still
+refuses that invented pattern. v12retains its exact old digest and rejects the new lock.
+Push the explicit v13repair for full exact-head CI; do not rerun provider calls or claim the
+earlier CI passed.
