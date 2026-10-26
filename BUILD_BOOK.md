@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 62 — Test semantic answerability against publisher references](#entry-62--test-semantic-answerability-against-publisher-references)
 - [Entry 61 — Budget safety does not guarantee writer availability](#entry-61--budget-safety-does-not-guarantee-writer-availability)
 - [Entry 60 — Test the evaluator without hiding abstentions or weak references](#entry-60--test-the-evaluator-without-hiding-abstentions-or-weak-references)
 - [Entry 59 — Make evidence and attempt plans executable without granting approval](#entry-59--make-evidence-and-attempt-plans-executable-without-granting-approval)
@@ -3808,3 +3809,32 @@ stay atc6c65ca; no executable/scorer/lock changes or provider calls are needed.
 The budget/Groq/qualification/reference suite passes77tests24.19seconds. Lint and format
 checks pass. All91captured harness/Revenue source digests still match the v2study inventory;
 only tests and journal changed. The repaired full hosted matrix must pass before merge.
+
+## Entry 62 — Test semantic answerability against publisher references
+**Files touched:** Revenue semantic pilot preparation/projection/parser, tests and study docs.
+
+### Context and design before capture
+PR114mergeda714b65with1255quality/128SQLchecks and green main. The user authorized up to24
+of the existing shared180GeminiFreeattempts for12short, family-separated original CUAD cases,
+with publisher labels hidden from Gemini. This is semantic answerability, not a model judge
+assessing arbitrary candidate outputs or legal/billing validation. Retain all earlier probes.
+
+### Before you read on
+How do we send complete source context and its question without giving the model publisher
+answers, split identity or expected labels? How do public labels limit an apparent pass?
+
+### How to build it
+Select six answerable/six no-answer cases from existing source development, one per inferred
+family, with context length capped before selection. Exclude trivial document/party/date
+categories and earlier integrity-study families where feasible. The four calibration cases
+and eight validation cases remain grouped; two repeats each cost at most24attempts. The
+model projection accepts only `ExtractionInput` and constructs context/question JSON. Targets
+stay in private preparation and evaluator-only files. Schema requires accept/reject/abstain
+and exact supporting quotations for accept, no quotations for reject/abstain. The parser
+checks literal presence but never calls it semantic proof.
+
+Freeze dataset, route/prompt/schema, source inventory, policy and schedule before dispatch.
+Use shared durable180ledger with an additional fixed24pilot stop, reserve before owned
+spawned workers, no retry/fallback. Reconcile raw versus derived token/cost evidence and
+preserve missing/failed rows. A tiny balanced public-source pilot cannot meet production
+uncertainty or prove unseen model-training data. Qualification remains explicitly diagnostic.

@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [semantic answerability pilot](docs/semantic-answerability-pilot.md) follows the
+2026-10-27preparation against basea714b65: publisher-relative labels stay separate from the
+context/question model projection; accept/reject/abstain outputs require consistent literal
+quotes. The twelve-family live pilot is explicitly bounded within the shared180allowance;
+its preparation is not legal/billing validation or release approval.
+
 The [evaluator qualification chapter](docs/evaluator-qualification.md) follows the next
 offline batch against baseb909aa7: frozen reference-relative schedules, complete confusion
 and abstention denominators, connected-source leakage checks, class/slice uncertainty,
