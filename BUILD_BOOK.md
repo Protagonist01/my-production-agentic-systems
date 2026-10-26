@@ -3432,3 +3432,21 @@ the explicit local60-second objective. Both owned databases removed; no shared s
 Private report/telemetry byte pins and safe aggregate are in docs/data/olist-source-operations-v1.json.
 No provider or independent reviewer was involved. Source/draft/review packets are unchanged.
 All six wheel/sdist pairs and both package import contracts pass; hosted full checks pending.
+
+## Entry 56 — Zero elapsed time is a valid coarse-clock observation
+**Files touched:** service telemetry tests only; production counters are unchanged.
+
+### Context and diagnosis
+PR#110passed all10checks and merged5c85330. Main40382433398then failed only Windows3.12:
+the new ASGI test required total_request_ns>0 although all three requests completed within
+one coarse monotonic clock tick. Other cells and128Postgres tests passed. The real timing
+recorder already preserves max(0,end-start); inflating measured zero would falsify evidence.
+
+### How to reproduce and correct it
+Inspect the actual failed job121781913451:1160passed, one failed assertion at line38of
+test_olist_service_telemetry.py. Accept nonnegative observed durations in the real HTTP test.
+Add a deterministic test holding monotonic_ns at100and another advancing it by50. Both must
+preserve exact elapsed values, one completed request and no active/interrupted work. This
+checks zero-resolution semantics without introducing sleeps, retries or invented nanoseconds.
+Run the focused telemetry/health/console suite and full exact-head hosted checks. A separate
+small correction PR keeps unfinished Groq preparation out of the main repair. No provider calls.

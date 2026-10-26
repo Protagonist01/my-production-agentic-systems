@@ -35,7 +35,8 @@ def test_shutdown_flushes_complete_status_counts_without_request_content(tmp_pat
     assert result["shutdown_finished"] and result["active"] == result["interrupted"] == 0
     assert result["started"] == result["completed"] == 3
     assert result["status_classes"] == {"1xx": 0, "2xx": 1, "3xx": 0, "4xx": 2, "5xx": 0}
-    assert result["total_request_ns"] > 0 and result["uptime_ns"] > 0
+    # Python3.12/Windows can observe the same coarse monotonic tick for fast requests.
+    assert result["total_request_ns"] >= 0 and result["uptime_ns"] >= 0
     assert "canary" not in raw and "invented" not in raw
     telemetry.close()
     assert path.read_text() == raw
@@ -57,6 +58,22 @@ def test_existing_output_or_git_checkout_refuses_startup_without_overwrite(tmp_p
             with TestClient(app):
                 pass
     assert path.read_text() == "private-original-canary"
+
+
+@pytest.mark.parametrize("elapsed", [0, 50])
+def test_coarse_and_advancing_clocks_preserve_actual_duration(elapsed, monkeypatch):
+    current = 100
+    monkeypatch.setattr("olist_support.service_telemetry.time.monotonic_ns", lambda: current)
+    telemetry = ServiceTelemetry(code_revision="invented", environment_lock="a" * 64)
+    telemetry.open()
+    start = telemetry.begin()
+    current += elapsed
+    telemetry.end(start, 200, True)
+    result = telemetry.snapshot()
+    assert result["total_request_ns"] == result["uptime_ns"] == elapsed
+    assert result["active"] == result["interrupted"] == 0
+    assert result["started"] == result["completed"] == 1
+    telemetry.close()
 
 
 def test_failed_send_and_private_exception_count_interrupted_without_text(tmp_path):
