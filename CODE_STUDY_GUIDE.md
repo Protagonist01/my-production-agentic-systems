@@ -436,6 +436,12 @@ The [executed baseline walkthrough](docs/deterministic-baselines.md) traces zero
 
 ## Release closure workstream
 
+The [Groq fallback chapter](docs/groq-fallback.md) traces the explicit two-request route plan,
+local schema/wire adapter, owned deadline worker and separate invented-only maximum12attempt
+SQLite smoke allowance. Shared run controls/circuits and strict replay remain in force; raw
+responses keep their provider identity and unknown costs. Connectivity/schema checks do not
+establish cross-provider domain quality or satisfy the pending first-release dependency.
+
 The [operations chapter](docs/olist-operations-recovery.md#shutdown-and-private-telemetry)
 traces the console's ASGI lifespan, private fixed-cardinality HTTP counters and bounded
 Uvicorn drain. Telemetry sees status/time only, never request identity/content; PostgreSQL

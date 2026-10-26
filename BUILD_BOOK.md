@@ -2,6 +2,9 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 57 — Explicit Groq routes without disguising a provider change](#entry-57--explicit-groq-routes-without-disguising-a-provider-change)
+- [Entry 56 — Zero elapsed time is a valid coarse-clock observation](#entry-56--zero-elapsed-time-is-a-valid-coarse-clock-observation)
+- [Entry 55 — Shutdown evidence without collecting request identities](#entry-55--shutdown-evidence-without-collecting-request-identities)
 - [Entry 54 — Local service health and restore without overwriting live state](#entry-54--local-service-health-and-restore-without-overwriting-live-state)
 - [Entry 53 — Fixed release denominators for prior auth and shipment simulation](#entry-53--fixed-release-denominators-for-prior-auth-and-shipment-simulation)
 - [Entry 52 — Release paths, scoped observations and durable provider accounting](#entry-52--release-paths-scoped-observations-and-durable-provider-accounting)
@@ -3450,3 +3453,54 @@ preserve exact elapsed values, one completed request and no active/interrupted w
 checks zero-resolution semantics without introducing sleeps, retries or invented nanoseconds.
 Run the focused telemetry/health/console suite and full exact-head hosted checks. A separate
 small correction PR keeps unfinished Groq preparation out of the main repair. No provider calls.
+
+## Entry 57 — Explicit Groq routes without disguising a provider change
+**Files touched:** optional Groq adapter, owned worker, route executor, separate smoke allowance and tests.
+
+### Context and decision before implementation
+User selected Groq Free and supplied a key after the proposed12attempt invented-only smoke
+scope. Preserve it only in ignored configuration. Gemini180and reviewer packets stay unchanged.
+Verify mocked controls first, then freeze source and a new invented-only plan before capture.
+
+### Before you read on
+What must be retained when fallback has a different provider/model/parameter vocabulary so
+replay and accounting cannot mistake it for a successful primary exchange?
+
+### Options considered and why
+Do not silently rewrite a Gemini transport request or label Groq output as Gemini. Use two
+frozen requests with identical messages/schema, distinct bounded gateways and shared run
+controls. Return both request/response pairs and aggregate usage explicitly. Each route
+attempts once. Auth/schema/budget failures stop; only timeout/rate/outage permit switching.
+Strict replay matches both exact requests/occurrences; mismatches never fall back to network.
+
+### How to build it
+Pin Groq's HTTPS chat endpoint and initial GPT-OSS120B model. Official deprecation docs rule
+out Llama3.3for Free accounts; schema docs support GPT-OSS120B strict output. Disable ambient
+proxies/redirects/retries; bound HTTP content/time, validate closed schemas locally and retain
+raw counts with unknown monetary cost. Initial support excludes tools, streaming, provider
+parts and immutable revision claims. A lazy importable worker runs in the existing owned
+spawned process so wall deadlines and cleanup apply.
+
+Initialize a separate exclusive SQLite grant with maximum12attempts, request fingerprints,
+credential hash and actual authorization/time references. Reserve under BEGIN IMMEDIATE
+before spawning; exceptions/failures remain consumed. Only groq-invented-smoke contexts and
+frozen invented requests qualify. No reset/retry CLI. Plan three obvious invented prompts
+and two trials each; retain missing rows if a provider failure stops the smoke. Six planned
+calls are below the cap, not retries. Keep plan/receipts private and publish only an aggregate
+that disclaims domain quality, verified billing, reviewer judgments and release permission.
+
+### Early feedback
+The first usage test treated boolTrueas int1 through dictionary equality. Require exact int
+in its test branch; production correctly rejected boolean counts. Initial mocked28tests pass
+2.17seconds and184sources typecheck. Expanded shared-control/Gemini-budget regressions and
+the final invented smoke remain pending at this entry point.
+
+### Freeze before provider execution
+Expanded108mocked route/wire/replay/shared-control/Gemini-budget tests pass96.18seconds;
+184sources typecheck, Ruff/format/import contracts and sixwheel/sdistpairs pass. Publication
+scan12files finds no configured Gemini/Groq credentials or24source IDs;369relative links
+resolve, source/draft pins and backlog dependencies/statuses stay unchanged. The ignored
+Groq key is not printed or tracked. Freeze the executable candidate before six planned
+invented trials, one attempt each, at most12total under a separate persistent grant.
+PR#111 merged990a20eafter all10checks (1163tests per four cells/128SQL); post-merge
+main40385089594succeeds with the identical reviewed tree. Preserve the earlier failed main.
