@@ -3707,3 +3707,52 @@ aggregate finds6,702answerable and14,208no-answer references across41categories.
 categories have only one answerable holdout family; two have no no-answer holdout examples.
 Expose these limits instead of treating corpus size as evidence for every class/category.
 No raw text/IDs were printed, no reference changed and no provider call was made.
+
+### Frozen deterministic probe before model judging
+Freezec6c65caafter190typed sources,295formattedfiles, kept import contracts,43focused tests
+and sixbuildpairs. Select24distinct inferred families from source development only, by
+declared hash convenience ordering. Seal the first12as calibration and next12as validation.
+Each original context contributes one original valid quotation and one shifted-offset
+invalid candidate:48cases, one deterministic trial each. Store raw candidate inputs separate
+from reference labels; invoke only the existing `verify_extraction` with saved public inputs
+and claims. Install the network-denial hook before execution. Preserve original source and
+old holdout bytes; this is literal integrity, not semantic interpretation.
+
+All48decisions match:24calibration/24validation. The new reporter nonetheless rejects
+qualification under the explicitly proposed72group/5%upper-bound objective:12validation
+families have zero observed errors but a26.46%two-sided95%upper bound. This is a diagnostic
+objective, not an approved production risk threshold. The CLI independently recomputes the
+sealed result identically, retaining exit1/no-release. A preliminary deliberate placeholder
+pin invocation refused without output; the actual recomputation used the separately sealed
+plan/public aggregate pins. No provider, effect, failure retry, new label acceptance or
+model-quality claim. Raw source/labels/observations stay in the exclusive private probe
+directory; tracked aggregate contains hashes/counts and limits only.
+
+### Separate larger study with unchanged verifier
+The small probe established correct measurement/refusal, but usable component evidence can
+be gathered without model calls. Freeze a new plan at the same executablec6c65ca, excluding
+all24priorfamilies. Select84different source-development families:12calibration/72validation.
+For each, freeze a literal positive plus shifted-offset, wrong-case, duplicated-span and
+abstention-with-span negative claims. These labels follow construction/literal integrity,
+not semantic/legal judgments. Inventory all harness/Revenue sources and lock; use saved public
+inputs only, keep references separate and deny network before execution.
+
+All420observed decisions match:60calibration/360validation; each variant84/84. There are72
+validation groups for each class and zero failed groups; the4.9944%two-sided95%upper bound
+meets the declared diagnostic5%/72group objective. `criteria_met`true is scoped to this supplied
+literal-integrity protocol, not a model judge, accepted production limit or release. Preserve
+the v1failed qualification and its12group/26.46%result; do not call the larger different
+population a causal improvement. Original corpus/holdout/source pins and provider budgets
+are unchanged. Independent offline/installed recomputation follows before submission.
+
+### Final local verification before hosted submission
+Both v1andv2sealed reports recompute identically through the standalone network-denied CLI
+and the isolated installed harness. Its79package resources match wheel bytes, with no
+provider SDKs or industry packages installed. The v2source inventory is unchanged and its
+families are disjoint from every v1family. All sixwheel/sdistpairs build;190sources typecheck
+and both import contracts hold. Focused46checks pass2.82seconds. While adding the last three
+negative tests, a block was inserted inside another test and caused one NameError after45
+passes; corrected test placement, then reran the focused suite. Production/capture code
+never changed and neither study was rerun. Hosted full quality/SQL and postmerge checks
+remain pending. Publication screens original source IDs/context prefixes and configured
+credentials without printing them; no provider allowance has been consumed by this batch.

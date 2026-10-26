@@ -110,6 +110,64 @@ deltas, general contract meaning, authorization/state recovery or clinical valid
 [official CUAD description](https://www.atticusprojectai.org/cuad/) identifies lawyer-supervised
 clause annotations; our applicability decision must retain that limited annotation purpose.
 
+## Actual zero-provider citation-integrity probe
+
+At clean executable commit `c6c65cadf869fe9c4338e0421bf659a80a8707f3`, freeze a separate
+48-case deterministic probe before observing verifier outputs. Select the first24inferred
+families by hash ordering from the existing **source-development** partition, using each
+family's first answerable case. The first12families form probe calibration; the next12form
+probe holdout. This convenience selection is not representative or an unseen model cohort.
+The original corpus split and original holdout remain unchanged.
+
+For each family supply a correct published quotation and a separately constructed quotation
+with a shifted offset. Validate that the shifted quotation cannot match at that position;
+if a one-character shift still matches, place it beyond the end. The negative label follows
+literal offset construction, not an expert semantic judgment. The existing
+`revenue_integrity.extraction.verify_extraction` receives only saved public input and the
+candidate claim, never the target/reference store. No model, gateway, provider or business
+effect participates. Raw contracts, reference labels and observations stay private.
+
+All48scheduled observations match their expected decisions:24calibration and24holdout.
+However the [sealed aggregate](data/evaluator-integrity-probe-v1.json) correctly reports
+**criteria not met**. There are only12holdout source families; the two-sided95%zero-error
+upper bound is26.46%, above this probe's explicitly proposed5%measurement objective and
+72group floor. These probe settings are not accepted production risk limits. The CLI
+recomputed the sealed report identically offline with network denied and exit1.
+
+This demonstrates real reference-bound component measurement and refusal of an unjustified
+qualification. It does not validate extraction completeness, semantic support, contract
+meaning, billing accuracy or a model judge. The positive quotations and known-invalid
+offset mutations share the literal-equality specification with the verifier; they are
+simple integrity challenges, not independent semantic gold. No failed row was rerun, no
+source/label changed, and no provider allowance was consumed.
+
+## Separate larger literal-integrity study
+
+Retain the insufficient probe unchanged. Freeze a new study of84different inferred families
+from the original source-development partition, excluding all24families used in that probe.
+Use12new families for calibration and72for validation. The verifier implementation remains
+unchanged atc6c65ca; the new plan inventories all harness/Revenue Python sources plus the lock.
+
+Each family contributes five candidate claims: one exact published quotation, a shifted
+offset, a wrong case identity, duplicate spans and an unsupported/abstaining claim carrying
+spans. The four invalid variants have reference rejections by construction, not by new
+expert annotation. Freeze inputs, separate labels, protocol and mutation schedule before
+execution. The original corpus holdout is still untouched and no provider participates.
+
+The [v2 aggregate](data/evaluator-integrity-study-v2.json) records420actual verifier decisions:
+60/60calibration and360/360validation match their references. All72validation families pass
+every variant. Each of the five variant types has84correct decisions. The conditional
+two-sided95%zero-error upper bound is4.9944%, meeting the declared5%diagnostic objective and
+72group/class floors. Criterion checks are met for **literal citation integrity only**;
+the protocol still returns no release/human approval or unseen-model-data claim.
+
+This is stronger component evidence than the small probe, not a paired improvement in the
+verifier: source families, sample size and mutation population differ, and code is unchanged.
+The convenience sampling and inferred-family independence assumptions remain. The invalid
+claims are designed integrity faults; results do not estimate semantic error on production
+traffic. These diagnostic limits are not an accepted domain release threshold or a license
+to replace qualified interpretation review. No row or prior failure was rerun/overwritten.
+
 ## Candidate external references, not acquired cohorts
 
 | Source | Possible use | Why it is not blanket replacement evidence |

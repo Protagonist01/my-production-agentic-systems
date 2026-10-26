@@ -326,3 +326,45 @@ def test_cli_retains_failed_criteria_and_rejects_duplicate_json_keys(tmp_path):
     original = (tmp_path / "dataset.json").read_text()
     (tmp_path / "dataset.json").write_text('{"version":"duplicate",' + original[1:])
     assert main(args) == 1
+
+
+def test_critical_failure_cannot_be_waived_by_loose_numeric_limits():
+    data, protocol, study = sample()
+    protocol = protocol.model_copy(
+        update={
+            "min_scheduled_accuracy": 0.0,
+            "min_decision_coverage": 0.0,
+            "max_false_accept_rate": 1.0,
+            "max_false_reject_rate": 1.0,
+        }
+    )
+    study = study.model_copy(
+        update={
+            "protocol_sha256": pin(protocol),
+            "rows": tuple(
+                r.model_copy(update={"decision": "accept"}) if r.case_id == "invented-3" else r
+                for r in study.rows
+            ),
+        }
+    )
+    result = report(data, protocol, study)
+    assert not result["criteria_met"]
+    assert set(result["blockers"]) == {
+        "holdout:critical_or_invariant_failure",
+        "slice:mixed:critical_or_invariant_failure",
+    }
+
+
+def test_calibration_ai_labels_remain_unqualified_even_with_perfect_decisions():
+    data, protocol, study = sample()
+    cases = (data.cases[0].model_copy(update={"reference_kind": "ai_provisional"}), *data.cases[1:])
+    result = report(*change_data(data, protocol, study, cases))
+    assert "calibration_reference_basis_unqualified" in result["blockers"]
+
+
+def test_public_reference_exposure_is_disclosed_without_claiming_unseen_model_data():
+    data, protocol, study = sample()
+    cases = tuple(c.model_copy(update={"exposure": "public_reference"}) for c in data.cases)
+    result = report(*change_data(data, protocol, study, cases))
+    assert result["criteria_met"] and not result["unseen_model_data_claimed"]
+    assert result["reference_exposure_counts"] == {"public_reference": 4}
