@@ -10,6 +10,11 @@ H8 and its cancellation/test-bootstrap follow-up are merged/verified; Build Book
 
 ## Reading route
 
+The subsequent [Prior Auth/Supply reporting chapter](docs/prior-auth-supply-release-reports.md)
+traces fixed repeated-trial matrices, both recommendation-risk denominators, candidate versus
+baseline hidden-world costs, sensitivity and a publication-safe cross-vertical report catalog.
+It is preparation for #51/#57/#61, with reviewer responses and final release studies pending.
+
 1. Read the implemented architecture and follow the offline execution.
 2. Open the linked code while reading its anatomy; explain each validator and boundary aloud.
 3. Follow the independent Olist acquisition path and its source-integrity checks.
