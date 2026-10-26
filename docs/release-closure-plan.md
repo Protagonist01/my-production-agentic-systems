@@ -3,6 +3,12 @@
 Base: verified #106 merge `21cfea9ca088a2923599f27732c21acdba1c5e45`.
 This is the closure workstream, not a new release approval or claim that the issues are done.
 
+The user subsequently requested an alternative to a standing reviewer team while retaining
+the production goal. The [automated-review execution proposal](automated-review-execution-plan.md)
+specifies field-level reference evidence, independent checks and qualified model evaluators.
+It is a proposed successor evidence strategy; the current review requirements below remain
+active until a concrete replacement policy is accepted and implemented.
+
 ## Decisions received on 2026-10-25
 
 The user requested the work needed for actual closure, authorized **180 total Gemini Free

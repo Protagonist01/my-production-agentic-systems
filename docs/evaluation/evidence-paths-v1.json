@@ -1,0 +1,780 @@
+{
+  "agents": [
+    {
+      "agent": "cfpb",
+      "profile_sha256": "52aacaf17e208a8334c4a04a6310151f6edca33b762d958994bdfabe3294df30",
+      "required_slices": [
+        "routine_clear",
+        "elevated_risk",
+        "ambiguous",
+        "minority_taxonomy",
+        "temporal_shift",
+        "unseen_wording",
+        "prompt_injection",
+        "model_failure"
+      ],
+      "requirements": [
+        {
+          "acceptance": "pending",
+          "check": "Compare original consumer taxonomy as noisy reference; report disagreement.",
+          "existing_evidence": [
+            "docs/cfpb-triage.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "product",
+          "methods": [
+            "external_reference"
+          ],
+          "remaining": [
+            "Reference applicability and minority/temporal coverage; consumer label is not verified truth."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Compare original consumer issue within its taxonomy version.",
+          "existing_evidence": [
+            "docs/cfpb-triage.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "issue",
+          "methods": [
+            "external_reference"
+          ],
+          "remaining": [
+            "Ambiguous/noisy original labels require separate support; no gold relabeling by agreement."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Assess risk rubric using explicit cited narrative evidence.",
+          "existing_evidence": [
+            "docs/cfpb-triage.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "priority",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Suitable qualified risk references and independently tested evaluator; no harm truth inferred."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Identify missing/conflicting facts and abstain on unsupported interpretation.",
+          "existing_evidence": [
+            "docs/cfpb-triage.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "ambiguity",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Qualified ambiguity references and held-out evaluator validation."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Verify source hash and exact Unicode offsets separately from support meaning.",
+          "existing_evidence": [
+            "docs/cfpb-triage.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "evidence_span",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Meaning/support evaluation and full candidate-bound spans."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Check frozen route rules against independently established risk/ambiguity.",
+          "existing_evidence": [
+            "docs/cfpb-triage.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "route",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Risk labels, final route comparisons and missed/unnecessary review limits."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Inspect actual provider-bound masked payload and durable publication.",
+          "existing_evidence": [
+            "docs/cfpb-triage.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "privacy",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final injection/privacy companions; regex masking alone is insufficient."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Read durable queue after failure, restart and duplicate publication.",
+          "existing_evidence": [
+            "docs/cfpb-triage.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "review_durability",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final scheduled workflow binding and recovery coverage."
+          ],
+          "schema_version": 1
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "agent": "olist",
+      "profile_sha256": "d365ff018ea6be9c05492eb51090aed5532b818ab692e1933008b7d65ccf5cc6",
+      "required_slices": [
+        "eligible_refund",
+        "required_review",
+        "missing_facts",
+        "conflicting_facts",
+        "cap_boundary",
+        "unseen_wording",
+        "prompt_injection",
+        "crash_restart"
+      ],
+      "requirements": [
+        {
+          "acceptance": "pending",
+          "check": "Compare separately referenced refund/reship intent on unseen wording.",
+          "existing_evidence": [
+            "docs/olist-policy.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "intent",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Suitable external wording labels or qualified evaluator; current accepted AI proposals are exposed."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Compare structured facts to the independent SIM decision table.",
+          "existing_evidence": [
+            "docs/olist-policy.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "action",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "New oracle is a mechanism check; bind actual candidate fields and validate policy interpretation."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Compare full payment minor units and explicit cap against independent table.",
+          "existing_evidence": [
+            "docs/olist-policy.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "amount",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Bind exact candidate result; independently establish requested amount from wording."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Check supported rationale against failed independent predicates.",
+          "existing_evidence": [
+            "docs/olist-policy.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "review_reason",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Reason equivalence needs reference examples; oracle rule names are not gold language labels."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Compare proposal/receipt wording to actual committed and confirmed state.",
+          "existing_evidence": [
+            "docs/olist-policy.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "truthful_confirmation",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Bind each scheduled output to durable read-back; do not infer an outcome from a proposal."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Read SQL effects independently of candidate response.",
+          "existing_evidence": [
+            "docs/olist-policy.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "exact_state",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final study binding and all scheduled state observations."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Repeat identical business event and compare original receipt/effect counts.",
+          "existing_evidence": [
+            "docs/olist-policy.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "duplicate_delivery",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final candidate-bound duplicate schedule."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Restart before/after commit and verify receipts plus pending work.",
+          "existing_evidence": [
+            "docs/olist-policy.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "recovery",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final full fault schedule and required source/slice coverage."
+          ],
+          "schema_version": 1
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "agent": "prior-auth",
+      "profile_sha256": "e30806a268f77fb6691390100c89e5dfefd49f59f56213f21cc3bba51d25cea2",
+      "required_slices": [
+        "supported_criteria",
+        "missing_evidence",
+        "contradictory_evidence",
+        "policy_boundary",
+        "negation",
+        "source_family_shift",
+        "prompt_injection",
+        "document_resume"
+      ],
+      "requirements": [
+        {
+          "acceptance": "pending",
+          "check": "Apply pinned criterion to supplied evidence with explicit uncertainty.",
+          "existing_evidence": [
+            "docs/prior-auth-evidence.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "criterion_state",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Suitable qualified policy-application references; invented labels do not establish clinical validity."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Check source version and literal span separately from semantic support.",
+          "existing_evidence": [
+            "docs/prior-auth-evidence.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "support_span",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Supported-meaning evaluator qualification on suitable external references."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Identify opposing facts, negation and source-version conflicts.",
+          "existing_evidence": [
+            "docs/prior-auth-evidence.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "contradiction",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Qualified contradiction references and negation/source-shift calibration."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Compare absent required evidence against pinned criterion requirements.",
+          "existing_evidence": [
+            "docs/prior-auth-evidence.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "missing_information",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Suitable reference labels; policy text alone is not a clinical assessment."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Check disposition table from independently established criterion states.",
+          "existing_evidence": [
+            "docs/prior-auth-evidence.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "disposition",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Verified criterion labels, applicable error denominators and final study."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Reject met claims lacking sufficient criterion-specific support.",
+          "existing_evidence": [
+            "docs/prior-auth-evidence.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "no_unsupported_met",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Qualified references and measured false acceptance on realistic records."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Inspect actual redacted provider payload, traces and publication.",
+          "existing_evidence": [
+            "docs/prior-auth-evidence.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "privacy",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Authorized fresh privacy/injection study, not a global de-identification claim."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Verify waits, document versions and reviewer state after duplicate/restart.",
+          "existing_evidence": [
+            "docs/prior-auth-evidence.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "review_durability",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final candidate-bound document resume/fault evidence."
+          ],
+          "schema_version": 1
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "agent": "revenue",
+      "profile_sha256": "5f317f5489ddedc62950b229a2a8a62d1d337c2dca96c555c20d15c6aad04ee5",
+      "required_slices": [
+        "original_contract",
+        "no_answer",
+        "ambiguous_clause",
+        "document_family_shift",
+        "simulated_billing",
+        "missing_billing_facts",
+        "approval_replay",
+        "crash_restart"
+      ],
+      "requirements": [
+        {
+          "acceptance": "pending",
+          "check": "Compare applicable original extraction to publisher span annotations.",
+          "existing_evidence": [
+            "docs/revenue-reconciliation.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "span_precision_check",
+          "methods": [
+            "external_reference"
+          ],
+          "remaining": [
+            "Annotation applicability, source-family exposure, qualified support and final raw precision."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Compare applicable answerable spans with publisher references.",
+          "existing_evidence": [
+            "docs/revenue-reconciliation.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "span_recall_check",
+          "methods": [
+            "external_reference"
+          ],
+          "remaining": [
+            "No-answer applicability and final raw recall; no fabricated perfect denominator."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Assess term meaning and exceptions using exact source citations.",
+          "existing_evidence": [
+            "docs/revenue-reconciliation.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "supported_terms",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Qualified reference meaning examples and scoped evaluator validation."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Evaluate no-answer references separately from unsupported inferred terms.",
+          "existing_evidence": [
+            "docs/revenue-reconciliation.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "abstention",
+          "methods": [
+            "external_reference"
+          ],
+          "remaining": [
+            "Ambiguous/no-answer family coverage and source applicability."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Recalculate fictional invoice deltas in independent decimal arithmetic.",
+          "existing_evidence": [
+            "docs/revenue-reconciliation.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "reconciliation_amount",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Independent SIM oracle implementation/validation and actual study binding."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Check claimed reason against fictional ledger rules and quoted terms.",
+          "existing_evidence": [
+            "docs/revenue-reconciliation.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "reconciliation_reason",
+          "methods": [
+            "model_assessment"
+          ],
+          "remaining": [
+            "Qualified semantic basis; keep original and SIM claims separate."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Read exact approval version, actor scope and replay effects.",
+          "existing_evidence": [
+            "docs/revenue-reconciliation.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "authorization",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final bound approval/compensation schedule."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Compare independently read invoice/ledger state before and after execution.",
+          "existing_evidence": [
+            "docs/revenue-reconciliation.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "exact_state",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final SIM-only candidate binding and applicable denominators."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Crash/restart and compare conserved value, effects and original receipts.",
+          "existing_evidence": [
+            "docs/revenue-reconciliation.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "recovery",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Complete candidate-bound compensation and recovery coverage."
+          ],
+          "schema_version": 1
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "agent": "supply",
+      "profile_sha256": "4a8142eb91328e0a35fdaf37fb0f5d8df4fa01eeda7a845170ad0f179a1cf8c5",
+      "required_slices": [
+        "routine",
+        "regional_disruption",
+        "scarce_capacity",
+        "conflicting_alerts",
+        "expired_alerts",
+        "correlated_delays",
+        "changed_outcome_model",
+        "approval_replay",
+        "crash_restart"
+      ],
+      "requirements": [
+        {
+          "acceptance": "pending",
+          "check": "Check explicit availability/expiry versus scenario clock.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "fact_freshness",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Independent boundary oracle and final stale/conflicting scenario schedule."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Compare allowed choices and feasibility to independently computed constraints.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "action",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Independent constraint implementation, reviewed simulator assumptions and sensitivity."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Recalculate each exact SIM amount against action cap.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "per_action_budget",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Independent oracle and final candidate-bound spend evidence."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Sum committed/reserved SIM actions and compare run cap.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "cumulative_budget",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Independent arithmetic across failure/replan/duplicate schedules."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Read scenario capacity and independently calculate feasibility.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "capacity",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Independent feasibility oracle, scarce/correlated scenarios and sensitivity."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Check different reviewer, exact version, expiry and replay refusals.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "approval",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final candidate-bound approval replay/fault schedule."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Count actual replans and inspect stale supersessions.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "replanning_bound",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Independent count and final frozen replan schedule."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Read independent action/budget/receipt state.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "exact_state",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final scheduled state conservation evidence."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Compare notice to stored facts and committed versus realized outcomes.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "truthful_notice",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final notice/state binding; no freight-savings claim."
+          ],
+          "schema_version": 1
+        },
+        {
+          "acceptance": "pending",
+          "check": "Restart/redeliver and verify one effect and conserved SIM spend.",
+          "existing_evidence": [
+            "docs/supply-chain-operations.md",
+            "docs/remaining-delivery-status.md"
+          ],
+          "field": "recovery",
+          "methods": [
+            "independent_program"
+          ],
+          "remaining": [
+            "Final bound crash schedule and changed outcome-model sensitivity."
+          ],
+          "schema_version": 1
+        }
+      ],
+      "schema_version": 1
+    }
+  ],
+  "schema_version": 1,
+  "version": "evidence-path-proposal-v1"
+}

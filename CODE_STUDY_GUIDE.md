@@ -1,5 +1,12 @@
 # Code Study Guide — Production Agentic Systems
 
+The [offline evidence foundation](docs/evidence-foundation.md) traces the 2026-10-26
+`codex/evidence-foundation` implementation against base95691bde: pinned43-field coverage,
+diagnostic evidence contracts, shared-provider attempt forecasting and the independently
+written Olist SIM predicate table. It does not qualify a model reviewer or change legacy
+release gates. Its chapter separates executable behavior, trusted declarations and remaining
+semantic/reference work.
+
 Updated: 2026-10-25 (Africa/Lagos). Inspected merged base `21cfea9` (#106), reviewed tree `a5390d0`, and unmerged `codex/release-closure`. The [closure engineering walkthrough](docs/closure-engineering.md) traces the durable shared180attempt allowance, explicitly derived costs, deterministic baseline approval, Olist bound crash companions, CFPB SQL publication/privacy read-back and separate Revenue extraction/SIM applicability and effects. The [earlier evaluator walkthrough](docs/three-release-evaluators.md) covers private study projection and domain metrics. Missing/failed observations stay in fixed scheduled denominators. These are engineering mechanisms, not three completed releases. Independent review, representative coverage, approved limits/protocols and final fresh studies remain pending; the new provider allowance is unused.
 
 F1–F5/O1/H1–H10 are merged and verified. H9 adds [private scorecards and paired case regressions](docs/code-study-scorecards.md). H8 supplies [correlated redacted telemetry](docs/code-study-telemetry.md). H7 adds [seeded boundary faults and independent state invariants](docs/code-study-faults.md). H6 adds exact trial schedules, fresh controlled state, bounded spawned execution, exclusive journals and complete outcome accounting. H5 supplies pinned evaluator-only case populations, grouped splits, explicit versioned scorer composition and per-case manifest provenance. H4 supplies shared call/token/cost reservations, monotonic deadlines, bounded retries/circuits, owned SDK workers and controlled replay. H10 adds [fresh dispatch receipts and independently reviewed release gates](docs/code-study-release.md). The H10 verification described here uses invented/replayed data; historical domain live pilots are documented separately and do not establish final-candidate release quality. Domain recording adapters and reviewed final studies remain subsequent work.
