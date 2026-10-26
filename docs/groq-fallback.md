@@ -83,7 +83,24 @@ tests race final reservations, retain failed/unsettled attempts, refuse wrong sc
 and prevent accidental allowance reset. These are trusted-owner/single-ledger controls, not
 protection from a malicious database administrator or a distributed quota system.
 
-Live smoke and final exact-head hosted acceptance are recorded after actual execution.
+## Actual invented-only smoke, 2026-10-26
+
+[Aggregate](data/groq-invented-smoke-v1.json) binds executable3db69d5and exact lock, both
+frozen plans and the one separate allowance. Six direct trials across the three invented
+prompts pass6/6with no missing/failure/retry; raw counts688input/218output. A separate frozen
+three-row routing probe reuses those same request fingerprints and the same ledger. Its
+primary is explicitly constructed in-process outage/circuit denial, with **zero actual
+primary-provider dispatches**; actual Groq fallback succeeds3/3. This verifies routing to
+Groq after a constructed failure, not an observed Gemini outage or primary-quality comparison.
+
+Independent offline readback matches all nine raw request/context/response pins to settled
+ledger rows, recomputes the literal/schema checks and verifies one attempt per actual call.
+The cap is12total,9consumed,3remaining,0unsettled. Do not reset it or treat another output
+directory as another authorization. All nine raw token totals are known:1032input/327output.
+All nine raw costs remain unknown; billing was not independently verified. Gemini remains0/180.
+There are only three invented prompts with repetitions, not nine independent quality cases.
+
+Exact-head hosted acceptance is recorded on the PR after actual completion.
 Private CFPB/Olist/Revenue/PriorAuth/Supply records have not been authorized for this smoke.
 Closing #25 still requires #33 and separately frozen/reviewed domain quality/cost/schema
 comparisons; a smoke pass supplies no clinical or business-accuracy claim.

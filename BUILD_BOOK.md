@@ -3504,3 +3504,15 @@ Groq key is not printed or tracked. Freeze the executable candidate before six p
 invented trials, one attempt each, at most12total under a separate persistent grant.
 PR#111 merged990a20eafter all10checks (1163tests per four cells/128SQL); post-merge
 main40385089594succeeds with the identical reviewed tree. Preserve the earlier failed main.
+
+### Actual Groq evidence, before hosted submission
+Freeze3db69d5/lockd99ed794 and the three invented requests before dispatch. All six direct
+trials pass;688input/218output tokens reported. A separate frozen three-row routing plan
+uses the same allowlisted requests and same ledger: primary outage is constructed/no-network,
+actual Groq fallback passes3/3. No real primary-provider outage or relative quality is claimed.
+Independent offline readback verifies all nine request/context/response settlements, schema/
+literal outcomes, raw token totals1032/327and one attempt per dispatch. The single separate
+Groq budget is9/12consumed,3remaining,0unsettled. Raw cost unknown for all nine, billing unverified;
+Gemini0/180. Three prompts with repetitions are not nine independent domain examples. No
+private domain records exported, no failed rows retried. Public aggregates bind the frozen
+plans/code/lock/allowance; credential/ledger/receipts stay private. Full hosted checks pending.
