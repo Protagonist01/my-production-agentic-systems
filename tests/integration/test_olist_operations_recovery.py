@@ -14,6 +14,7 @@ from olist_support.business import setup
 from olist_support.console_api import create_app
 from olist_support.console_auth import AuthStore, setup_console
 from olist_support.console_cases import CaseStore
+from olist_support.recovery_exercise import RecoveryObjective, RecoveryReport, exercise
 from olist_support.service_health import readiness
 from olist_support.workflow_postgres import setup_checkpoints
 from test_olist_business import app as app
@@ -74,6 +75,36 @@ def test_private_snapshot_restores_review_ledger_checkpoint_and_duplicate_withou
         )
         assert observed(console, pending) == source_after and later is not None
         assert readiness(lambda: server.connect_trial(target))["ready"]
+        # A measured operator exercise uses another new target and preserves both source
+        # effects. The numeric objective is an invented test constraint, not a production SLA.
+        exercised, report = exercise(
+            server,
+            source,
+            "olist-measured-recovery",
+            code_revision="invented-frozen-code",
+            environment_lock="a" * 64,
+            archive_path=tmp_path / "exercise-archive.json",
+            report_path=tmp_path / "exercise-report.json",
+            objective=RecoveryObjective(max_restore_seconds=60.0),
+            bootstrap=bootstrap,
+        )
+        try:
+            assert report.passed and report.rows > 0 and report.restore_verify_ns > 0
+            assert report.source_unchanged and report.restored_ready
+            assert not report.production_rpo_rto_verified and not report.release_allowed
+            assert (
+                RecoveryReport.model_validate_json((tmp_path / "exercise-report.json").read_bytes())
+                == report
+            )
+            assert observed(console, pending) == source_after
+            assert (
+                CaseStore(lambda: server.connect_trial(exercised))
+                .detail(reviewer, pending.case_id)[0]
+                .status
+                == "committed"
+            )
+        finally:
+            drop_trial(server, exercised)
         app = create_app(
             rebuilt,
             AuthStore(lambda: server.connect_trial(target)),
@@ -175,7 +206,7 @@ def test_operator_cli_freezes_backup_and_persists_only_new_owned_restore_identit
     workspace = Workspace(root)
     workspace.up()
     source = workspace.create("operator-source")
-    target = None
+    target = measured = None
     try:
         server = workspace.server()
         bootstrap(server, source)
@@ -221,9 +252,44 @@ def test_operator_cli_freezes_backup_and_persists_only_new_owned_restore_identit
             "sys.argv", ["ops", "--root", str(root), "ready", "--trial", target.trial_id]
         )
         assert main() == 0 and json.loads(capsys.readouterr().out)["ready"]
+        monkeypatch.setattr(
+            "sys.argv",
+            [
+                "ops",
+                "--root",
+                str(root),
+                "exercise",
+                "--trial",
+                source.trial_id,
+                "--new-trial",
+                "operator-measured",
+                "--archive",
+                str(tmp_path / "measured.json"),
+                "--report",
+                str(tmp_path / "measured-report.json"),
+                "--max-restore-seconds",
+                "0.000000001",
+            ],
+        )
+        # An intentionally impossible objective fails explicitly, while preserving the
+        # actual new target/report for inspection. It must not fabricate a passed SLA.
+        assert main() == 2
+        result = json.loads(capsys.readouterr().out)
+        assert not result["exercise_passed"] and not result["production_rpo_rto_verified"]
+        measured = workspace.load_trial("operator-measured")
+        report = RecoveryReport.model_validate_json(
+            (tmp_path / "measured-report.json").read_bytes()
+        )
+        assert result["report_sha256"] == pin(report)
+        assert report.snapshot_verified and report.source_unchanged and report.restored_ready
+        assert not report.within_restore_objective and not report.passed
+        assert main() == 2
+        capsys.readouterr()
     finally:
         server = workspace.server()
         if target:
             drop_trial(server, target)
+        if measured:
+            drop_trial(server, measured)
         drop_trial(server, source)
         workspace.down(destroy=True)

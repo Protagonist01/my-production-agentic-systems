@@ -1,0 +1,28 @@
+{
+  "version": "olist-source-operations-demonstration-v1",
+  "code_revision": "875406e99f3a14bc989f0795a807efd1f3f925cd",
+  "environment_lock": "c8c15295dd5372f12f860a60f00a8b3e98a2e308c1acddb42fdac70187cb0e87",
+  "source_database_sha256": "3f97471af1ad88653e04fffb9619d190358ba6673a83e8026964aa7ae801d73f",
+  "source_manifest_sha256": "24c1a4b0f6975cb1cff8e87d0674cf91cbccc3766f4f08ba93360f72e55b803f",
+  "draft_sha256": "8a1ea8d2fbd656e03f785b56a31c5f1239a802e08abe04ce17398375ddf82ee3",
+  "original_view_unchanged": true,
+  "constructed_sim_confirmation": true,
+  "operator_intent_not_model_inference": true,
+  "independent_reviewer_validation": false,
+  "checks": {
+    "source_grounded_http": true,
+    "distinct_constructed_review": true,
+    "exact_duplicate_receipt": true,
+    "pending_review": true,
+    "normal_shutdown_flushed": true,
+    "restored_pending_and_original_receipt": true
+  },
+  "recovery_report_sha256": "89df43f75a0b467aca213899b346c6058319e7b8d53ec0518b7b971da9f868d2",
+  "telemetry_sha256": "9362cd9394b1dd3c2490bcd3aaa42d1ee8cddb45204db9e22584e0b309cb3c4d",
+  "capture_seconds": 0.2957769,
+  "restore_verify_seconds": 1.3379511,
+  "exercise_restore_limit_seconds": 60,
+  "production_rpo_rto_verified": false,
+  "provider_calls": 0,
+  "release_allowed": false
+}

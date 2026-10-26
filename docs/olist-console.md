@@ -37,12 +37,16 @@ Create a distinct reviewer principal with role `reviewer`, its own username/acto
 ```powershell
 uv run --locked --all-packages python -m olist_support.console_cli --root . --trial olist-desk account --principal <external-operator.json>
 uv run --locked --all-packages python -m olist_support.console_cli --root . --trial olist-desk account --principal <external-reviewer.json>
-uv run --locked --all-packages python -m olist_support.console_cli --root . --trial olist-desk serve --port 8765 --run-limit-minor 10000
+uv run --locked --all-packages python -m olist_support.console_cli --root . --trial olist-desk serve --port 8765 --run-limit-minor 10000 --telemetry-output <new-external-private-summary.json>
 ```
 
 The account command prompts twice with hidden input for a 15–128-character password; never put it in command-line arguments or tracked files. Only a salted PBKDF2-SHA256 hash is stored. No public registration, client-supplied role or tenant selection exists. Accounts/grants are trusted local administration. Disabling an account through trusted administration immediately blocks its sessions; changing a password should also delete that account's session rows. Role/scope changes are read on each authenticated request.
 
 Open [the local desk](http://127.0.0.1:8765). The supported server binds to loopback, ignores proxy identity/address headers and disables automatic access logging. The root and trial identify local F4 state; code/lock metadata comes from the checkout, with `+dirty` when applicable. No remote deployment, TLS termination, SSO, MFA, account recovery or production traffic is claimed.
+
+The required telemetry path has a prepared private parent and must be new and outside Git.
+See [shutdown and recovery](olist-operations-recovery.md#shutdown-and-private-telemetry)
+for drain, flush and failure behavior.
 
 ## Complete a request and decision
 

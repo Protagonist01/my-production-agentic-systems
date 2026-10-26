@@ -436,4 +436,14 @@ The [executed baseline walkthrough](docs/deterministic-baselines.md) traces zero
 
 ## Release closure workstream
 
+The [operations chapter](docs/olist-operations-recovery.md#shutdown-and-private-telemetry)
+traces the console's ASGI lifespan, private fixed-cardinality HTTP counters and bounded
+Uvicorn drain. Telemetry sees status/time only, never request identity/content; PostgreSQL
+remains the receipt/checkpoint authority. The measured new-target recovery command records
+snapshot/restore/readiness evidence against an explicit operator time objective and returns
+failure when it misses that objective. Actual listening-server and SQL/CLI tests include
+an in-flight commit, restored pending review, duplicate receipt, unchanged newer source
+effects, refused existing outputs and a failed timing objective. These mechanisms do not
+provide reviewer judgments, production RPO/RTO or release permission.
+
 The [closure plan](docs/release-closure-plan.md) maps #33/#38/#45 acceptance to remaining engineering, independent review, population coverage and actual fresh evidence. Four private blind packets contain77reviewitems; current studies are not promoted. A newly authorized shared180attemptGeminiFree cap remains unused pending freezes/reviews. This is a handoff plan, not implemented release acceptance.

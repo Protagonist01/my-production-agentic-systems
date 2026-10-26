@@ -2,6 +2,8 @@
 
 import hashlib
 import uuid
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 from importlib.resources import files
@@ -22,6 +24,7 @@ from olist_support.console_auth import SESSION_SECONDS, AuthStore
 from olist_support.console_cases import CaseStore
 from olist_support.console_contracts import Decision, Principal, Resume, Submission
 from olist_support.policy import POLICY_VERSION
+from olist_support.service_telemetry import CountHTTP, ServiceTelemetry
 
 
 class Login(Contract):
@@ -71,6 +74,7 @@ def create_app(
     code_revision: str,
     environment_lock: str,
     run_limit_minor: int,
+    telemetry: ServiceTelemetry | None = None,
 ) -> FastAPI:
     parsed = urlsplit(origin)
     if (
@@ -88,7 +92,31 @@ def create_app(
     origin = origin.rstrip("/")
     suffix = hashlib.sha256(trial_id.encode()).hexdigest()[:12]
     session_cookie, csrf_cookie = "olist_session_" + suffix, "olist_csrf_" + suffix
-    app = FastAPI(title="Olist support desk", docs_url=None, redoc_url=None, openapi_url=None)
+    telemetry = telemetry or ServiceTelemetry(
+        code_revision=code_revision, environment_lock=environment_lock
+    )
+
+    @asynccontextmanager
+    async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+        try:
+            telemetry.open()
+        except (ValueError, OSError):
+            raise RuntimeError("telemetry startup refused: choose a new private output") from None
+        try:
+            yield
+        finally:
+            try:
+                telemetry.close()
+            except OSError:
+                raise RuntimeError("telemetry flush failed: inspect private storage") from None
+
+    app = FastAPI(
+        title="Olist support desk",
+        docs_url=None,
+        redoc_url=None,
+        openapi_url=None,
+        lifespan=lifespan,
+    )
     app.add_middleware(BodyLimit)
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=[parsed.hostname])
 
@@ -316,4 +344,6 @@ def create_app(
     def reevaluate(case_id: str, request: Request) -> dict[str, Any]:
         return cases.reevaluate(principal(request, write=True), case_id).model_dump(mode="json")
 
+    # Last-added middleware wraps body/host/header checks as well as normal routes.
+    app.add_middleware(CountHTTP, telemetry=telemetry)
     return app
