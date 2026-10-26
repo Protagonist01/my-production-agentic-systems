@@ -1,0 +1,39 @@
+{
+  "counts": {
+    "changed_model_decision": 0,
+    "exact_quotes": 7,
+    "legacy_valid": 22,
+    "mapped_previously_invalid": 2,
+    "new_conservative_refusals": 0,
+    "scheduled": 24,
+    "v2_valid": 24,
+    "whitespace_only_quotes": 3
+  },
+  "derived_rows_sha256": "01adc5a2ab4da5f336b93f4d0d269de503f1d4446ee4712e1313c43430bed1c3",
+  "exposed_to_development": true,
+  "fresh_model_evidence": false,
+  "limits": [
+    "Saved outputs motivated this development;this is an exposed offline diagnostic,not an independent validation set.",
+    "No semantic references or provider responses are revised;legacy literal failures remain in original report.",
+    "Mapped exact source spans establish integrity,not support meaning or a new model-quality score.",
+    "Future candidate requires its own version,prospective frozen evidence and applicable accepted policy."
+  ],
+  "original_files_unchanged": true,
+  "original_qualification_passed": false,
+  "original_validation_matches": 13,
+  "original_validation_scheduled": 16,
+  "plan_sha256": "8b17803a4d734a942b4ebd18c5574e5a0c146c85ce65d6da8d4b595863850f4b",
+  "prior_plan_sha256": "7a97e445f2eb2784d14c577d7e65c7a7e4e4d56025d022efb0cd81c8156b7b1e",
+  "prior_report_sha256": "366d834c5c8b758caf955f0119bd9ae6064a4180329fb3805a2878ed0afe8816",
+  "provider_calls": 0,
+  "release_allowed": false,
+  "semantic_support": "not_assessed",
+  "shared_budget_unchanged": {
+    "consumed": 24,
+    "remaining": 156,
+    "unsettled": 0
+  },
+  "source_inventory_sha256": "32181f39a09dc289b4088ce951bc54ee35c21a70cccb9e4d43ec31c9a3432ab4",
+  "source_revision": "869f1c1d9b59bb788907ccc812b8e94a82ce7329",
+  "version": "exposed-citation-alignment-diagnostic-v1"
+}

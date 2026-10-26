@@ -3909,3 +3909,20 @@ source/offset/quote tampering and source-size bounds using invented text. Only a
 the new code, apply it offline to saved responses as an exposed diagnostic—not a fresh trial,
 independent holdout or retroactive qualification. Preserve all hashes and account for the
 remaining semantic disagreements separately. No additional provider spending is authorized.
+
+### Local checks and exposed diagnostic
+First34checks pass but two huge synthetic parameter strings overflow the Windows
+`PYTEST_CURRENT_TEST`environment value during setup. Assign concise explicit IDs rather
+than dropping size-bound tests or changing the product limits. Corrected58focused checks
+pass4.63seconds,193sources typecheck,301files lint/format,import boundaries and sixbuildpairs
+pass. Freeze869f1c1before the actual offline saved-output diagnostic.
+
+Network-denied readback verifies all old source/input/report pins and reproduces every
+v1decision. The separatev2parser maps both old invalid responses uniquely:22oldvalid versus
+24newvalid,three whitespace-only quotations and seven exact quotations. No model decision
+changes and no new ambiguity refusals appear in this exposed sample. Every span is rebuilt
+and verified against exact source and raw quote. Original private files hash-identical
+before/after; shared ledger remains24used/156remaining/0unsettled. Capture new derived rows
+only in an exclusive private directory and publish counts/pins,not source text. This is an
+exposed regression diagnostic,not fresh/heldout semantic evidence or a repaired original
+qualification. Old13/16validation and semantic disagreements remain unchanged.

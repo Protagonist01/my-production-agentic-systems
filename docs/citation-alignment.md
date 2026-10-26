@@ -85,3 +85,28 @@ human/qualified review and other domain gates are not bypassed by this improveme
 records construction and actual checks. Hosted acceptance is recorded on the PR after it
 finishes, not inferred from focused tests. Shared Gemini stays24/180consumed,156remaining;
 separate Groq9/12invented-only unchanged.
+
+## Actual frozen offline diagnostic
+
+Freeze executable `869f1c1d9b59bb788907ccc812b8e94a82ce7329` before readback. A network-denied
+process verifies original plan/dataset/protocol/study/report pins and every old executing
+source file against the sealed capture inventory. It first reproduces every saved v1decision,
+then applies the separate v2parser to exactly the same24recorded responses. Original files
+are hashed before/after; the authoritative shared ledger is read-only and compared unchanged.
+New private plan, source inventory and derived rows use an exclusive directory.
+
+The [safe aggregate](data/citation-alignment-diagnostic-v1.json) reports22legacy-valid and
+24v2-valid responses. Both old invalid rows map uniquely; their three submitted quotations
+produce whitespace-only mappings. Seven other quotations map exactly. No response gets a
+different model decision and no additional conservative refusal occurs on this exposed
+population. Every returned span is independently reconstructed against the exact original
+source and raw quotation. Repeated/ambiguous/overlapping cases are covered by invented tests,
+not newly observed live examples.
+
+These are parser-diagnostic counts, not a new model-quality score. The original pilot stays
+calibration6/8,validation13/16including2invalid outputs,qualificationfalse. No labels, original
+failures, quotes or reports are overwritten. The Minimum Commitment/Expiration Date
+reference disagreements and uncertainty remain unadjudicated. Shared Gemini consumption
+stays24/180,156remaining,0unsettled; no provider call, token usage or cost is generated here.
+Because the old outputs motivated development, this diagnostic is explicitly exposed and
+cannot serve as prospective validation. There is no release or human-review substitution.
