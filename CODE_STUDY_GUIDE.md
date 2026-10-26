@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [evaluator qualification chapter](docs/evaluator-qualification.md) follows the next
+offline batch against baseb909aa7: frozen reference-relative schedules, complete confusion
+and abstention denominators, connected-source leakage checks, class/slice uncertainty,
+exclusive network-denied reporting and a reverified CUAD applicability inventory. This
+measures a supplied evaluator; it does not activate a judge or replace release approval.
+
 The [offline evidence foundation](docs/evidence-foundation.md) traces the 2026-10-26
 `codex/evidence-foundation` implementation against base95691bde: pinned43-field coverage,
 diagnostic evidence contracts, shared-provider attempt forecasting and the independently

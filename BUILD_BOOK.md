@@ -2,6 +2,8 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 61 — Budget safety does not guarantee writer availability](#entry-61--budget-safety-does-not-guarantee-writer-availability)
+- [Entry 60 — Test the evaluator without hiding abstentions or weak references](#entry-60--test-the-evaluator-without-hiding-abstentions-or-weak-references)
 - [Entry 59 — Make evidence and attempt plans executable without granting approval](#entry-59--make-evidence-and-attempt-plans-executable-without-granting-approval)
 - [Entry 58 — Evidence alternatives without inventing expert approval](#entry-58--evidence-alternatives-without-inventing-expert-approval)
 - [Entry 57 — Explicit Groq routes without disguising a provider change](#entry-57--explicit-groq-routes-without-disguising-a-provider-change)
@@ -3656,3 +3658,153 @@ matrix pin and correctly refused; the corrected inspected matrix pin is
 All41required slices are inventoried. Legacy gate/profile/lock/backlog bytes are unchanged.
 Publication scan checks both configured credentials and24source IDs without printing them;
 source/customer/draft pins are unchanged. Full and hosted results remain pending.
+
+## Entry 60 — Test the evaluator without hiding abstentions or weak references
+**Files planned:** shared evaluator qualification/report CLI, reference applicability audit,
+focused tests and a study chapter.
+
+### Context and decision before implementation
+PR113mergedb909aa7 with green main and all1229quality/128SQLchecks. The user requested the
+next execution batch. Inventory coverage is now executable, but it does not show whether
+an evaluator can recognize wrong answers. Build that measurement before spending calls or
+changing review acceptance. Public source labels require task-specific applicability.
+
+### Before you read on
+If a judge abstains on every unsafe example but accepts every easy example, can its apparent
+conditional accuracy qualify it? Decide which denominators and source groups must remain.
+
+### Options considered and why
+Do not measure agreement alone or drop missing/abstained rows. Use a frozen schedule with
+both acceptable and unacceptable references, fixed repetitions and group-level uncertainty.
+Keep calibration separate from holdout; merge connected source/template keys before checking
+leakage or counting groups. An inherited publisher span is extraction evidence, not a new
+clinical or contract-meaning label. Keep existing release authorization separate.
+
+### Construction plan
+Pin dataset, protocol and evaluator identities. Require explicit coverage/error limits;
+record no default production thresholds. Bind each observation to the exact scheduled case,
+trial, input and evaluator and keep absent rows as failures. Report the complete confusion
+matrix plus abstention/missing counts, class/slice coverage and false-accept/false-reject
+denominators. Every component with a missing/wrong repetition contributes to group-error
+uncertainty. All-abstain and tiny-perfect examples must fail appropriate explicit criteria.
+Do not produce an accepted human review or a deployment permission from these statistics.
+
+Audit existing CUAD source/category metadata against original extraction versus invented
+billing fields without printing source text or changing references. Inspect primary-source
+metadata for ContractNLI/MedNLI applicability and access; no restricted dataset access or
+new provider export follows from a public metadata page. Final implementation/results follow.
+
+### Initial implementation feedback
+Focused qualification/planning/Revenue regressions pass43tests7.40seconds; all three new
+sources pass strict typing. The first Ruff pass flagged long lines/import order; formatting
+and the targeted import fix cleared them. Exact input hashes now participate in source
+components automatically, so renamed duplicate inputs cannot evade split checks. Added
+class-specific coverage and conditional error limits after considering how abstention could
+reduce a scheduled-class error rate without improving decisions.
+
+The read-only CUAD drill reverified the original archive and both stores against existing
+prepared-manifest pinb852424a. All20,910questions/13,823spans/457inferredfamilies match; the
+aggregate finds6,702answerable and14,208no-answer references across41categories. Two rare
+categories have only one answerable holdout family; two have no no-answer holdout examples.
+Expose these limits instead of treating corpus size as evidence for every class/category.
+No raw text/IDs were printed, no reference changed and no provider call was made.
+
+### Frozen deterministic probe before model judging
+Freezec6c65caafter190typed sources,295formattedfiles, kept import contracts,43focused tests
+and sixbuildpairs. Select24distinct inferred families from source development only, by
+declared hash convenience ordering. Seal the first12as calibration and next12as validation.
+Each original context contributes one original valid quotation and one shifted-offset
+invalid candidate:48cases, one deterministic trial each. Store raw candidate inputs separate
+from reference labels; invoke only the existing `verify_extraction` with saved public inputs
+and claims. Install the network-denial hook before execution. Preserve original source and
+old holdout bytes; this is literal integrity, not semantic interpretation.
+
+All48decisions match:24calibration/24validation. The new reporter nonetheless rejects
+qualification under the explicitly proposed72group/5%upper-bound objective:12validation
+families have zero observed errors but a26.46%two-sided95%upper bound. This is a diagnostic
+objective, not an approved production risk threshold. The CLI independently recomputes the
+sealed result identically, retaining exit1/no-release. A preliminary deliberate placeholder
+pin invocation refused without output; the actual recomputation used the separately sealed
+plan/public aggregate pins. No provider, effect, failure retry, new label acceptance or
+model-quality claim. Raw source/labels/observations stay in the exclusive private probe
+directory; tracked aggregate contains hashes/counts and limits only.
+
+### Separate larger study with unchanged verifier
+The small probe established correct measurement/refusal, but usable component evidence can
+be gathered without model calls. Freeze a new plan at the same executablec6c65ca, excluding
+all24priorfamilies. Select84different source-development families:12calibration/72validation.
+For each, freeze a literal positive plus shifted-offset, wrong-case, duplicated-span and
+abstention-with-span negative claims. These labels follow construction/literal integrity,
+not semantic/legal judgments. Inventory all harness/Revenue sources and lock; use saved public
+inputs only, keep references separate and deny network before execution.
+
+All420observed decisions match:60calibration/360validation; each variant84/84. There are72
+validation groups for each class and zero failed groups; the4.9944%two-sided95%upper bound
+meets the declared diagnostic5%/72group objective. `criteria_met`true is scoped to this supplied
+literal-integrity protocol, not a model judge, accepted production limit or release. Preserve
+the v1failed qualification and its12group/26.46%result; do not call the larger different
+population a causal improvement. Original corpus/holdout/source pins and provider budgets
+are unchanged. Independent offline/installed recomputation follows before submission.
+
+### Final local verification before hosted submission
+Both v1andv2sealed reports recompute identically through the standalone network-denied CLI
+and the isolated installed harness. Its79package resources match wheel bytes, with no
+provider SDKs or industry packages installed. The v2source inventory is unchanged and its
+families are disjoint from every v1family. All sixwheel/sdistpairs build;190sources typecheck
+and both import contracts hold. Focused46checks pass2.82seconds. While adding the last three
+negative tests, a block was inserted inside another test and caused one NameError after45
+passes; corrected test placement, then reran the focused suite. Production/capture code
+never changed and neither study was rerun. Hosted full quality/SQL and postmerge checks
+remain pending. Publication screens original source IDs/context prefixes and configured
+credentials without printing them; no provider allowance has been consumed by this batch.
+
+### Hosted scan found inventory hashes beside access/API/auth filenames
+Initial PR114run40412901602fails the generic-api-key scan at four v2inventory entries.
+Read only rule/file/line/fingerprint diagnostics; compare every flagged value to its actual
+source file bytes. All four match SHA256of access.py, billing_access.py, console_api.py and
+console_auth.py. Configured credential scans remain clear. Keep the failed run, do not rerun
+the verifier or change the frozen study to repair a publication false positive.
+
+Represent public inventory as separate path/hash records and retain the original canonical
+map digest. Reconstruct it and compare to the sealed private plan, unchanged source bytes
+and evaluator identity. The repository already uses exact historical `.gitleaksignore`
+fingerprints for verified aggregate hashes; append only these four commit/file/rule/line
+findings. Do not add rule-wide, hash-wide or path-wide exclusions, rewrite branch history,
+alter the scanner workflow or suppress future findings. Repaired exact-head CI remains
+required. The diagnostic reports, original plan/data/results/pins and executable stay intact.
+
+## Entry 61 — Budget safety does not guarantee writer availability
+**Files touched:** budget-accounting tests and this journal; ledger/transport code unchanged.
+
+### Context and diagnosis
+The user explicitly approved the four exact historical hash findings after automatic review
+required specific security-setting authorization. Repaired head2917949passes secret scanning
+and dependency audits. Windows3.12then reports1failed/1253passed: the shared180attempt test
+raises SQLiteBUSYat BEGIN IMMEDIATEafter the existing10second writer wait. Other quality
+cells pass. Inspect the actual failure before rerunning; do not assume a harmless flake.
+
+### Before you read on
+Does a durable180attempt ceiling guarantee that200simultaneous callers can fill every slot
+under bounded storage-lock waits? Which condition must block actual provider dispatch?
+
+### Why and how to correct it
+The production transport already catches SQLite reservation errors and returns budget denial
+before delegate dispatch. The safety requirement is no overspending or unrecorded dispatch,
+not successful admission of every request under arbitrary disk contention. In the direct
+ledger race test, recognize only SQLiteBUSY/LOCKEDas bounded denials; propagate all other
+database errors. Assert received unique tickets equal actual consumed records and never
+exceed180. After concurrent workers finish, sequentially fill the remaining invented slots,
+then retain exhausted/reopen/unsettled/settle/no-refund/no-reset assertions.
+
+Add a real-file lock test: hold BEGIN IMMEDIATEon a separate connection, shorten only the
+test connection's busy wait, and attempt dispatch through BudgetedTransportwith a counting
+fake delegate. The lock must produce budget denial, zero calls and zero consumed rows.
+After releasing the lock, one allowed attempt may dispatch/settle; the next must deny at
+the cap. This verifies availability failure remains safe without changing production waits,
+adding retry loops or broad exception suppression. Original citation studies/source pins
+stay atc6c65ca; no executable/scorer/lock changes or provider calls are needed.
+
+### Local verification before pushing the test repair
+The budget/Groq/qualification/reference suite passes77tests24.19seconds. Lint and format
+checks pass. All91captured harness/Revenue source digests still match the v2study inventory;
+only tests and journal changed. The repaired full hosted matrix must pass before merge.

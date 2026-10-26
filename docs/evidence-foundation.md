@@ -121,6 +121,10 @@ exit1. Raw narrative text, labels and credentials do not belong in planning file
 
 ## Next integration and remaining boundaries
 
+The next [qualification/applicability batch](evaluator-qualification.md) implements the
+offline measurement/reporting layer and audits the existing CUAD references. It retains
+the legacy review gates and does not claim a model judge is already qualified.
+
 Implement measured evaluator qualification and a separate accepted evidence policy before
 any promotion path. Prepare Olist text/reference applicability and actual workflow call
 forecasts next; research specific external semantic references for CFPB/Prior Auth and audit

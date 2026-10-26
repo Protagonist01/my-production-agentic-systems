@@ -1,5 +1,6 @@
 """Invented accounting, races and crash reservations; no provider calls."""
 
+import sqlite3
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
@@ -92,16 +93,29 @@ def test_shared_180_allowance_is_atomic_across_agents_reopens_and_never_refunds(
             )
         except ValueError:
             return None
+        except sqlite3.OperationalError as error:
+            # A bounded writer wait may deny availability; never hide other SQL faults.
+            if error.sqlite_errorcode not in (sqlite3.SQLITE_BUSY, sqlite3.SQLITE_LOCKED):
+                raise
+            return None
 
     with ThreadPoolExecutor(max_workers=8) as pool:
         tickets = list(pool.map(reserve, range(200)))
-    assert len({t for t in tickets if t}) == 180
+    received = {t for t in tickets if t}
+    assert 0 < len(received) <= 180
     reopened = AttemptLedger(ledger.path, ledger.allowance_sha256)
+    assert reopened.summary()["consumed"] == len(received)
+    remaining = reopened.summary()["remaining"]
+    assert type(remaining) is int
+    # Safe denials under contention need not fill the allowance; finish after writers exit.
+    for _ in range(remaining):
+        received.add(reopened.reserve(context, request, project_sha256="a" * 64))
+    assert len(received) == 180
     assert reopened.summary()["remaining"] == 0 and reopened.summary()["unsettled"] == 180
-    reopened.settle(next(t for t in tickets if t), response(request))
+    reopened.settle(next(iter(received)), response(request))
     assert reopened.summary()["remaining"] == 0 and reopened.summary()["unsettled"] == 179
     with pytest.raises(ValueError):
-        reopened.settle(next(t for t in tickets if t), response(request))
+        reopened.settle(next(iter(received)), response(request))
     with pytest.raises(FileExistsError):
         initialize(
             ledger.path,
@@ -114,6 +128,41 @@ def test_shared_180_allowance_is_atomic_across_agents_reopens_and_never_refunds(
                 expires_at=datetime.now(UTC) + timedelta(days=1),
             ),
         )
+
+
+def test_real_writer_lock_denies_dispatch_and_does_not_consume(tmp_path, monkeypatch):
+    ledger, context, request = inputs(tmp_path, maximum=1)
+    connect = AttemptLedger.connect
+
+    def short_wait(self):
+        db = connect(self)
+        db.execute("PRAGMA busy_timeout=1")
+        return db
+
+    class Counting:
+        calls = 0
+
+        def generate(self, request, *, timeout_seconds=30):
+            self.calls += 1
+            return response(request)
+
+    monkeypatch.setattr(AttemptLedger, "connect", short_wait)
+    delegate = Counting()
+    transport = BudgetedTransport(delegate, ledger, context, "a" * 64)
+    locker = sqlite3.connect(ledger.path)
+    try:
+        locker.execute("BEGIN IMMEDIATE")
+        denied = transport.generate(request)
+        assert denied.failure.code == "budget_exhausted" and denied.usage.model_calls == 0
+        assert delegate.calls == 0
+    finally:
+        locker.rollback()
+        locker.close()
+    assert ledger.summary()["consumed"] == 0
+    assert transport.generate(request).failure is None
+    assert ledger.summary()["consumed"] == 1 and ledger.summary()["unsettled"] == 0
+    assert transport.generate(request).failure.code == "budget_exhausted"
+    assert delegate.calls == 1
 
 
 @pytest.mark.parametrize(
