@@ -7,6 +7,7 @@ from collections.abc import Sequence
 from datetime import UTC, datetime
 from pathlib import Path
 
+from agent_harness.baseline_recording import read_baseline
 from agent_harness.cases import ManifestPin, load_manifest
 from agent_harness.evaluation_audit import read_audit
 from agent_harness.evaluation_binding import verify_binding
@@ -16,12 +17,18 @@ from agent_harness.fresh_recording import record_candidate
 from agent_harness.release_contracts import (
     BaselineApproval,
     CandidateSpec,
+    DeterministicBaselineApproval,
     ReleasePolicy,
     pin,
     sha256,
     verify_sources,
 )
-from agent_harness.release_evidence import compare_evidence, read_evidence, release_candidate
+from agent_harness.release_evidence import (
+    VerifiedEvidence,
+    compare_evidence,
+    read_evidence,
+    release_candidate,
+)
 from agent_harness.trial_example import FileTrialEnvironment
 from agent_harness.trials import TrialSchedule, _write_exclusive
 
@@ -32,6 +39,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     for name in ("manifest", "manifest-pin", "candidate-spec", "output"):
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--candidate-spec-sha256", required=True)
+    parser.add_argument(
+        "--baseline-kind", choices=("provider", "deterministic"), default="provider"
+    )
     for name in (
         "schedule",
         "composition",
@@ -58,6 +68,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     ):
         parser.add_argument("--" + name)
     args = parser.parse_args(argv)
+    if args.baseline_kind == "deterministic" and args.command != "eval-release":
+        parser.error(
+            "deterministic release baseline requires explicit typed approval at eval-release"
+        )
     audit_names = tuple(
         "evaluation_" + name + suffix
         for name in ("profile", "protocol", "study")
@@ -168,14 +182,16 @@ def main(argv: Sequence[str] | None = None) -> int:
             candidate_sha256=args.candidate_spec_sha256,
             fault_plan=plan,
         )
-        baseline = read_evidence(
+        baseline = (read_baseline if args.baseline_kind == "deterministic" else read_evidence)(
             args.baseline_evidence,
             loaded,
             evidence_sha256=args.baseline_evidence_sha256,
             candidate_sha256=args.baseline_spec_sha256,
-            fault_plan=plan,
+            **({} if args.baseline_kind == "deterministic" else {"fault_plan": plan}),
         )
         if args.command == "eval-compare":
+            if not isinstance(baseline, VerifiedEvidence):
+                raise ValueError("provider comparison requires provider evidence")
             result = json.dumps(
                 {
                     "regressed_cases": compare_evidence(
@@ -190,7 +206,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             )
             allowed = True
         else:
-            approval = BaselineApproval.model_validate_json(args.baseline_approval.read_bytes())
+            approval = (
+                DeterministicBaselineApproval
+                if args.baseline_kind == "deterministic"
+                else BaselineApproval
+            ).model_validate_json(args.baseline_approval.read_bytes())
             decision = release_candidate(
                 baseline,
                 candidate,

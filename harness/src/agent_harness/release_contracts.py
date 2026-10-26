@@ -37,6 +37,7 @@ class CandidateSpec(Contract):
     environment_sha256: Sha256
     execution: ExecutionPolicy
     recording_budget: Budget
+    provider_control_sha256: Sha256 | None = Field(default=None, exclude_if=lambda v: v is None)
 
     @model_validator(mode="after")
     def paths(self) -> Self:
@@ -103,6 +104,15 @@ class BaselineApproval(Contract):
         if self.expires_at <= self.approved_at:
             raise ValueError("approval must expire after approval")
         return self
+
+
+class DeterministicBaselineApproval(BaselineApproval):
+    approval_kind: Literal["executed-deterministic-baseline-v1"] = (
+        "executed-deterministic-baseline-v1"
+    )
+    algorithm: NonEmpty
+    dataset_sha256: Sha256
+    baseline_spec_sha256: Sha256
 
 
 class ReleaseDecision(Contract):

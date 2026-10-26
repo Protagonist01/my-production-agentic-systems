@@ -248,6 +248,8 @@ class ModelResponse(ModelContract):
     finish_reason: NonEmpty | None = None
     usage: Usage
     provider_usage: dict[str, Count | None] = Field(default_factory=dict)
+    # Explicit derived-accounting attachment; absent on historical raw responses.
+    accounting: dict[str, JsonValue] | None = Field(default=None, exclude_if=lambda v: v is None)
     failure: Failure | None = None
 
     @model_validator(mode="after")

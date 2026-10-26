@@ -17,6 +17,7 @@ from agent_harness.controls import AdmissionPolicy
 from agent_harness.evaluation import EvalCase, ScoreResult
 from agent_harness.fresh_recording import FreshComponents
 from agent_harness.gateway import ModelTransport
+from agent_harness.provider_capture import GeminiCaptureControls
 from agent_harness.release_contracts import CandidateSpec
 from agent_harness.scorers import ScorerCompatibility, ScorerRegistry, ScorerSpec
 from agent_harness.trial_runner import StateLease
@@ -232,12 +233,26 @@ class OlistFreshFactory:
     admission: AdmissionPolicy
     origin: Literal["provider", "mock"]
     observation_root: Path | None = None
+    controls: GeminiCaptureControls | None = None
 
     def validate(self) -> None:
         from olist_support.h10_config import validate_composition
 
-        validate_composition(self.candidate, self.route, self.transport, self.origin)
+        if self.origin == "mock" and self.controls is not None:
+            raise ValueError("mock capture cannot carry provider controls")
+        validate_composition(
+            self.candidate,
+            self.route,
+            self.transport,
+            self.origin,
+            self.controls.sha256 if self.controls else None,
+        )
         if self.origin == "provider":
+            if self.controls is None:
+                raise ValueError(
+                    "new Olist provider capture requires shared durable allowance and cost policy"
+                )
+            self.controls.validate()
             from agent_harness.admission import GeminiFreeAdmission
 
             if type(self.admission) is not GeminiFreeAdmission or (
@@ -273,5 +288,8 @@ class OlistFreshFactory:
             OlistScorer(context, state.access, slot, self.observation_root),
         )
         return FreshComponents(
-            OlistAgent(state.access, self.route, slot), self.transport, self.admission, registry
+            OlistAgent(state.access, self.route, slot),
+            self.controls.transport(context) if self.controls else self.transport,
+            self.admission,
+            registry,
         )
