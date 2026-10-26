@@ -90,3 +90,71 @@ echoing the private error canary. Run SQL explicitly with `-o addopts=''`.
 
 These invented records prove a local mechanism, not production disaster recovery, real
 payments, a finished source-grounded deployment or final release.
+
+## Shutdown and private telemetry
+
+The initial supported host remains the existing local Docker workspace with Python bound to
+loopback. `console_cli serve` requires `--telemetry-output <new-external-private-summary.json>`.
+ASGI lifespan exclusively reserves the output before serving; existing files, symlinks and
+Git paths refuse startup. POSIX permissions are0600; Windows inherits the private parent's ACL.
+No remote destination, new secret or paid service is required for this local aggregate.
+
+[`service_telemetry.py`](../projects/olist-support/src/olist_support/service_telemetry.py)
+counts HTTP starts, completed response bodies, interrupted/active requests, five status
+classes, total request nanoseconds and uptime. It binds code/lock through a configuration
+hash. The recorder never receives URLs, queries, bodies, headers, identities, sessions,
+case/order IDs, exception text or response content. HTTP200is not proof of business success.
+
+Uvicorn drains for at most30seconds, then invokes ASGI shutdown. Lifespan writes, flushes,
+fsyncs and closes the aggregate. Storage failure raises a fixed safe error and attempts to
+truncate the snapshot. Inspect both the process outcome and file; empty/missing/corrupt
+output is incomplete telemetry. A finished snapshot with active/interrupted requests does
+not prove a clean drain. Forced kill, disk failure, drain expiry and machine loss can lose
+telemetry. PostgreSQL business/checkpoint durability does not depend on telemetry success.
+Existing evaluation traces/export health are separate; no Langfuse ingestion is claimed.
+
+Stop through Uvicorn's supported normal signal: Ctrl+C, Windows Ctrl+Break or POSIX SIGTERM.
+Wait for exit, inspect the aggregate, reopen the same durable cases and verify receipts
+before retrying. Do not replace the database to hide a timeout. A drain timeout does not
+prove an admitted synchronous business action rolled back; its receipt/state remains primary.
+
+`tests/integration/test_olist_service_shutdown.py` runs a real TCP server/restricted SQL role.
+It holds an authenticated request after commit, requests Uvicorn's normal `should_exit`,
+verifies the server still drains and the output remains unfinalized, then releases it. A
+reconstructed store and second app lifespan observe the original receipt, one refund/event
+and the separate pending review. This tests the normal server drain, not host-specific OS
+signal/power-loss behavior. Unit tests cover private canaries, oversized requests, refused
+output, interrupted sends and flush failure.
+
+## Measured operator recovery exercise
+
+From a clean pinned checkout, explicitly choose a local restore-time objective (finite,
+positive, at most3600seconds). There is no default production SLA:
+
+```powershell
+python -m olist_support.operations_cli --root <clean-checkout> exercise --trial <source-id> --new-trial <new-id> --archive <new-private-archive.json> --report <new-private-report.json> --max-restore-seconds <operator-limit>
+```
+
+[`recovery_exercise.py`](../projects/olist-support/src/olist_support/recovery_exercise.py)
+captures one consistent snapshot, saves pinned bytes, restores and independently verifies
+all rows into a new target, checks runtime readiness, and reads the source again. It records
+capture/restore-plus-verification durations, archive/schema/lock/code pins, table/row counts
+and source/readiness results. A changing source explicitly gives `source_unchanged=false`;
+use a quiescent source to check that invariant. Recovery includes only the snapshot, with
+no WAL replay. Later commits remain excluded; production RPO/RTO is unverified.
+
+Exit0requires all checks and the explicit time objective. Exit2can mean a completed restore
+missed its objective: inspect its saved report/configuration before retrying. New targets
+persist for inspection even when the time objective fails; no cutover occurs. Reusing any
+target/output refuses. Restore/readback/report-write failure removes only the new target;
+archive/partial report may remain as failed evidence. If configuration persistence fails,
+the new target is removed and an existing report is not a live-target claim. Stdout contains
+aggregate results and byte pins only. Keep report/archive/pins private; snapshots are encoded,
+not encrypted. The SQL/CLI suite includes an intentionally impossible time limit and verifies
+that it fails honestly while preserving the source and inspectable restored state.
+
+References: [Langfuse lifecycle and masking guidance](https://langfuse.com/docs/observability/sdk/advanced-features).
+The local aggregate follows explicit finalization/minimal-content principles; implementation
+uses the locked Uvicorn0.54.0lifecycle verified against installed code. It does not add a new
+SDK or remote export. Source-grounded demonstrations, invented SQL fixtures and final domain
+release acceptance remain distinct evidence.

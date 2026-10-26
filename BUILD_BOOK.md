@@ -3376,3 +3376,46 @@ restore; pending review, checkpoint/ledger/result and newer source effects are c
 IDs absent. Full hosted/local regressions remain pending at this log point. No provider calls.
 PR#108 also merged as b71f7f7 after all10jobs; its post-merge main40331851595 succeeded with
 reviewed-tree equality. Reviewer responses remain explicitly pending; no release issue closed.
+
+## Entry 55 — Shutdown evidence without collecting request identities
+**Files touched:** console lifespan, local service telemetry, actual server acceptance and runbook.
+
+### Context and decision before implementation
+The user asked to complete the remaining work while reviewer responses stay pending. Main
+contains merged #107–#109. Issue #58 still needs shutdown telemetry/durable-work evidence;
+the previous health and restore tests alone do not prove a running HTTP server drains work.
+Use the existing loopback deployment and zero provider calls. External host selection and
+release acceptance remain separate from this local engineering check.
+
+### Before you read on
+How can an operator distinguish a completed graceful shutdown from an abruptly killed server
+without storing case URLs, bodies, cookies or account names in telemetry?
+
+### Options considered and why
+Automatic HTTP tracing/access logs would capture sensitive case paths. Instead keep a fixed
+aggregate of started/completed/interrupted HTTP responses and status classes, plus monotonic
+timing totals. Reserve a new private output before serving and write/fsync a final snapshot
+from ASGI lifespan after Uvicorn drains requests. An empty file after process death must not
+look like successful shutdown. This supplements existing evaluation traces; it does not
+claim Langfuse ingestion or model-quality evidence.
+
+### How to build it and verification plan
+Use a lock around counters, keep the middleware's input limited to status and elapsed time,
+and never pass the request scope to the recorder. An exclusive file outside Git prevents
+overwrite and symlink reuse. The CLI requires the output path and a bounded graceful drain.
+Run a real loopback server, pause a request after its SQL commit, begin shutdown, then release
+the request. Verify HTTP completion, the flushed aggregate, and reconstruction/redelivery
+returning the same receipt. Test missing output, storage failure and unexpected exceptions
+without printing sensitive payloads. Extend recovery evidence with measured snapshot/restore
+durations, distinguishing observed timings from production RPO/RTO guarantees.
+
+### Actual feedback before hosted checks
+The first local run could not write the sandbox's temporary directory; rerun with the
+existing private D-drive temp directory and authorized host access. Docker was stopped;
+start the existing Desktop hidden rather than resetting unrelated containers. The real
+server drain/SQL/telemetry checks initially reached the final restart assertion, then failed
+because FastAPI's current TestClient uses httpx2 cookies while the TCP client uses httpx.
+Pass an explicit cookie name/value mapping between them, not one library's cookie object.
+The corrected focused21tests pass11.22seconds and actual4HTTP/Postgres/CLI tests pass84.37s.
+Strict typing covers180sources. An intentionally impossible recovery limit produces exit2
+and a real verified restored database/report, never a false SLA pass. Live provider calls0.

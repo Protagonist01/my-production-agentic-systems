@@ -20,6 +20,7 @@ from olist_support.console_cases import CaseStore
 from olist_support.console_contracts import Principal
 from olist_support.policy_cases import external
 from olist_support.service_health import ServiceNotReady, require_ready
+from olist_support.service_telemetry import ServiceTelemetry
 from olist_support.workflow_postgres import setup_checkpoints
 
 
@@ -34,6 +35,7 @@ def main() -> None:
     serve = commands.add_parser("serve")
     serve.add_argument("--port", type=int, default=8765)
     serve.add_argument("--run-limit-minor", type=int, required=True)
+    serve.add_argument("--telemetry-output", type=Path, required=True)
     args = parser.parse_args()
     try:
         root = args.root.resolve()
@@ -88,6 +90,9 @@ def main() -> None:
             code_revision=revision,
             environment_lock=lock,
             run_limit_minor=args.run_limit_minor,
+            telemetry=ServiceTelemetry(
+                code_revision=revision, environment_lock=lock, output=args.telemetry_output
+            ),
         )
         # Local-only service: do not trust proxy-provided identity/address headers.
         # Request paths contain case identifiers, so disable automatic access logs.
@@ -99,6 +104,7 @@ def main() -> None:
             access_log=False,
             limit_concurrency=16,
             timeout_keep_alive=5,
+            timeout_graceful_shutdown=30,
             log_level="warning",
         )
     except ServiceNotReady as error:
