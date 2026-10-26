@@ -3,9 +3,10 @@
 2026-10-26. The user authorized autonomous tested implementation PR merges and explicitly
 left independent reviewer responses pending. Main includes #107 (`a30ebc4`), #108
 (`b71f7f7`) and #109 (`b4f4cd3`), each merged after all ten PR checks passed and verified
-post-merge main success. No new provider attempts:0/180. The next operations branch prepares
-normal server drain/private aggregate telemetry and a measured recovery CLI; exact-head
-hosted acceptance is recorded on its PR after actual completion.
+post-merge main success. #110added normal drain/private telemetry and measured recovery;
+#111corrected a coarse-clock test assumption after a failed main run. Repaired main990a20e
+passed all nine applicable jobs. Gemini0/180; separate Groq invented smoke9/12, with3remaining.
+Groq exact-head hosted acceptance is recorded on its PR after actual completion.
 This is a gate inventory, not a claim that the remaining issues or epics are closed.
 
 | Issue | Engineering now available | What still prevents acceptance |
@@ -17,7 +18,7 @@ This is a gate inventory, not a claim that the remaining issues or epics are clo
 | #57 Supply release | Fixed recorded-action matrices against all three baselines, sensitivity/model/family splits and unresolved/unsafe counts | #33, reviewed simulation/reference assumptions, final fresh candidate and actual spend/duplicate/recovery study; no real freight-savings claim |
 | #58 Deployment | Loopback console, startup/readiness/resource bounds, normal server drain/private counters and durable receipt acceptance | #33 and final source-grounded release deployment acceptance; external host and host-specific signal behavior are not verified |
 | #59 Backup/rollback | Private pinned same-schema new-target restore; source/newer receipts preserved; measured operator exercise with explicit time objective | #58, final deployment recovery objectives/retention/encryption/cutover requirements; local exercise is not production RPO/RTO |
-| #25 Second provider | Existing provider-specific gateway reservations/circuits remain available | #33, selected second provider/account/access and separately bounded quality/cost/privacy authorization; the Gemini-only allowance does not supply this |
+| #25 Second provider | User selected Groq Free; preparation adds explicit two-provider routes, schema/HTTP adapter, owned worker and separate invented-only smoke cap | #33 and reviewed fresh domain fallback quality/cost/schema comparisons; the Gemini180allowance remains separate |
 | #60 Judges/monitoring | Deterministic business checks and versioned errors remain primary | Finished vertical studies and reviewed subjective judgments for calibration/held-out validation; no judge should be added merely to manufacture a release pass |
 | #61 Final portfolio evidence | Safe byte-pinned six-scope report catalog with no blended accuracy | All vertical releases plus #59; final reports/model cards/threat models/runbooks/fresh manifests must exist and pass their own gates |
 

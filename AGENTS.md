@@ -28,3 +28,11 @@ review judgments, frozen study approvals or production release evidence. Preserv
 review packets and historical failures. The provider authorization remains one shared maximum
 180 Gemini Free attempts across Olist, CFPB and Revenue, including failures/retries, with no
 paid fallback. Do not infer additional spending, other provider access or expert reviews.
+
+## Groq preparation authorization (2026-10-26)
+
+The user selected Groq Free and supplied a credential after the proposed maximum12attempt
+invented-only smoke scope. Keep it in ignored private configuration and never repeat/commit
+the key. Use a separate durable capped allowance with no paid fallback; do not consume or
+enlarge the shared180Gemini allowance. Source narratives, notes, contracts and final
+cross-provider domain quality are not authorized by an invented smoke test.

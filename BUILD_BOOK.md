@@ -2,6 +2,9 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 57 — Explicit Groq routes without disguising a provider change](#entry-57--explicit-groq-routes-without-disguising-a-provider-change)
+- [Entry 56 — Zero elapsed time is a valid coarse-clock observation](#entry-56--zero-elapsed-time-is-a-valid-coarse-clock-observation)
+- [Entry 55 — Shutdown evidence without collecting request identities](#entry-55--shutdown-evidence-without-collecting-request-identities)
 - [Entry 54 — Local service health and restore without overwriting live state](#entry-54--local-service-health-and-restore-without-overwriting-live-state)
 - [Entry 53 — Fixed release denominators for prior auth and shipment simulation](#entry-53--fixed-release-denominators-for-prior-auth-and-shipment-simulation)
 - [Entry 52 — Release paths, scoped observations and durable provider accounting](#entry-52--release-paths-scoped-observations-and-durable-provider-accounting)
@@ -3450,3 +3453,89 @@ preserve exact elapsed values, one completed request and no active/interrupted w
 checks zero-resolution semantics without introducing sleeps, retries or invented nanoseconds.
 Run the focused telemetry/health/console suite and full exact-head hosted checks. A separate
 small correction PR keeps unfinished Groq preparation out of the main repair. No provider calls.
+
+## Entry 57 — Explicit Groq routes without disguising a provider change
+**Files touched:** optional Groq adapter, owned worker, route executor, separate smoke allowance and tests.
+
+### Context and decision before implementation
+User selected Groq Free and supplied a key after the proposed12attempt invented-only smoke
+scope. Preserve it only in ignored configuration. Gemini180and reviewer packets stay unchanged.
+Verify mocked controls first, then freeze source and a new invented-only plan before capture.
+
+### Before you read on
+What must be retained when fallback has a different provider/model/parameter vocabulary so
+replay and accounting cannot mistake it for a successful primary exchange?
+
+### Options considered and why
+Do not silently rewrite a Gemini transport request or label Groq output as Gemini. Use two
+frozen requests with identical messages/schema, distinct bounded gateways and shared run
+controls. Return both request/response pairs and aggregate usage explicitly. Each route
+attempts once. Auth/schema/budget failures stop; only timeout/rate/outage permit switching.
+Strict replay matches both exact requests/occurrences; mismatches never fall back to network.
+
+### How to build it
+Pin Groq's HTTPS chat endpoint and initial GPT-OSS120B model. Official deprecation docs rule
+out Llama3.3for Free accounts; schema docs support GPT-OSS120B strict output. Disable ambient
+proxies/redirects/retries; bound HTTP content/time, validate closed schemas locally and retain
+raw counts with unknown monetary cost. Initial support excludes tools, streaming, provider
+parts and immutable revision claims. A lazy importable worker runs in the existing owned
+spawned process so wall deadlines and cleanup apply.
+
+Initialize a separate exclusive SQLite grant with maximum12attempts, request fingerprints,
+credential hash and actual authorization/time references. Reserve under BEGIN IMMEDIATE
+before spawning; exceptions/failures remain consumed. Only groq-invented-smoke contexts and
+frozen invented requests qualify. No reset/retry CLI. Plan three obvious invented prompts
+and two trials each; retain missing rows if a provider failure stops the smoke. Six planned
+calls are below the cap, not retries. Keep plan/receipts private and publish only an aggregate
+that disclaims domain quality, verified billing, reviewer judgments and release permission.
+
+### Early feedback
+The first usage test treated boolTrueas int1 through dictionary equality. Require exact int
+in its test branch; production correctly rejected boolean counts. Initial mocked28tests pass
+2.17seconds and184sources typecheck. Expanded shared-control/Gemini-budget regressions and
+the final invented smoke remain pending at this entry point.
+
+### Freeze before provider execution
+Expanded108mocked route/wire/replay/shared-control/Gemini-budget tests pass96.18seconds;
+184sources typecheck, Ruff/format/import contracts and sixwheel/sdistpairs pass. Publication
+scan12files finds no configured Gemini/Groq credentials or24source IDs;369relative links
+resolve, source/draft pins and backlog dependencies/statuses stay unchanged. The ignored
+Groq key is not printed or tracked. Freeze the executable candidate before six planned
+invented trials, one attempt each, at most12total under a separate persistent grant.
+PR#111 merged990a20eafter all10checks (1163tests per four cells/128SQL); post-merge
+main40385089594succeeds with the identical reviewed tree. Preserve the earlier failed main.
+
+### Actual Groq evidence, before hosted submission
+Freeze3db69d5/lockd99ed794 and the three invented requests before dispatch. All six direct
+trials pass;688input/218output tokens reported. A separate frozen three-row routing plan
+uses the same allowlisted requests and same ledger: primary outage is constructed/no-network,
+actual Groq fallback passes3/3. No real primary-provider outage or relative quality is claimed.
+Independent offline readback verifies all nine request/context/response settlements, schema/
+literal outcomes, raw token totals1032/327and one attempt per dispatch. The single separate
+Groq budget is9/12consumed,3remaining,0unsettled. Raw cost unknown for all nine, billing unverified;
+Gemini0/180. Three prompts with repetitions are not nine independent domain examples. No
+private domain records exported, no failed rows retried. Public aggregates bind the frozen
+plans/code/lock/allowance; credential/ledger/receipts stay private. Full hosted checks pending.
+
+### Full CI caught the missing fixture envelope update
+The first Groq PR head7953fb0fails strict replay CLI on Linux:1192tests pass, but v12is bound
+to old lockc8c15295while the new optional extra changes metadata to d99ed794. Resolved package
+versions are unchanged. ReplayBinding correctly refuses the new dependency pin; do not bypass
+or rewrite it. Preserve v1–v12, explicitly capture a new synthetic v13with the maintenance
+helper/exclusive writer from a clean source, compare every request/response byte with v12,
+then update the externally trusted current fixture pin and add v12to historical-lock rejection.
+Also extend the recording credential guard for Groq's key prefix with a non-key test value.
+No new provider call is needed or justified by this fixture repair; the actual nine Groq
+captures remain sealed at3db69d5. Initial failing runs are retained rather than called passes.
+
+At clean30acbdd, create v13exclusively with digest4c57fdf1ad0228c3e16924750754c037754de2a3446b35c4cf69c1dc100de303.
+Its six canonical request/response pairs equal v12; all v1–v12file bytes match their Git blobs.
+The maintenance process denies outbound network and screens both configured keys. Update the
+trusted constant deliberately, preserve historical-lock rejection, then rerun the full replay
+and Groq controls. Existing live9/12budget/evidence remains untouched.
+
+Corrected133replay/Groq/allowance tests pass13.88seconds,184sources typecheck and Ruff is
+clean. The automatic Groq-pattern test supplies no configured deny value; publication still
+refuses that invented pattern. v12retains its exact old digest and rejects the new lock.
+Push the explicit v13repair for full exact-head CI; do not rerun provider calls or claim the
+earlier CI passed.
