@@ -1,12 +1,15 @@
 # Remaining delivery gates
 
-2026-10-26. The user authorized autonomous tested implementation PR merges and explicitly
-left independent reviewer responses pending. Main includes #107 (`a30ebc4`), #108
-(`b71f7f7`) and #109 (`b4f4cd3`), each merged after all ten PR checks passed and verified
-post-merge main success. #110added normal drain/private telemetry and measured recovery;
-#111corrected a coarse-clock test assumption after a failed main run. Repaired main990a20e
-passed all nine applicable jobs. Gemini0/180; separate Groq invented smoke9/12, with3remaining.
-Groq exact-head hosted acceptance is recorded on its PR after actual completion.
+2026-10-27. The user authorized autonomous tested implementation PR merges and a
+production-oriented evidence alternative to a standing reviewer team. PRs#107–#114are
+merged; verified maina714b65passed all nine applicable jobs. Latest reviewed logs verify
+1255tests per quality environment/128SQL. Evidence planning, evaluator diagnostics and
+narrow deterministic citation integrity are available; semantic qualification remains open.
+The user separately authorized24of the existing180GeminiFreeattempts for a CUAD answerability
+pilot. [Actual results](semantic-answerability-pilot.md) fail diagnostic qualification:
+calibration6/8,validation13/16including2invalid judgments; no retries or release.
+Shared Gemini now24/180consumed,156remaining,0unsettled. Separate Groq invented smoke9/12,
+three remaining, unchanged. The live authoritative ledger is recorded in AGENTS.md.
 This is a gate inventory, not a claim that the remaining issues or epics are closed.
 
 | Issue | Engineering now available | What still prevents acceptance |
@@ -22,12 +25,14 @@ This is a gate inventory, not a claim that the remaining issues or epics are clo
 | #60 Judges/monitoring | Deterministic business checks and versioned errors remain primary | Finished vertical studies and reviewed subjective judgments for calibration/held-out validation; no judge should be added merely to manufacture a release pass |
 | #61 Final portfolio evidence | Safe byte-pinned six-scope report catalog with no blended accuracy | All vertical releases plus #59; final reports/model cards/threat models/runbooks/fresh manifests must exist and pass their own gates |
 
-The direct external dependency is the deliberately pending reviewer handoff. Preserve the
-blank original packets and return new completed files with actual identity/qualification,
-exposure and judgments when review resumes. AI propositions and PR merge authority cannot
-stand in for these decisions. Do not spend the shared allowance on exposed repeat pilots to
-inflate coverage, silently enlarge it, or backdate approvals. No further review question is
-pending while the user has asked to defer that handoff.
+Preserve original reviewer packets and historical failures. The user approved work on
+field-specific reference evidence, independent checks and tested model assessment; see the
+[execution plan](automated-review-execution-plan.md). This does not silently change active
+human/qualified-review gates. A validated concrete replacement method and explicit acceptance
+remain necessary before promotion. Model agreement, citation existence and implementation
+merges cannot supply semantic truth or risk-owner decisions. Do not inflate coverage with
+exposed repetitions, reset the authoritative allowance or backdate approvals. The24attempt
+semantic pilot is complete; its remaining156shared attempts do not authorize rerunning it.
 
 The [closure plan](release-closure-plan.md), [accounting/domain chapter](closure-engineering.md),
 [P6/S6/catalog chapter](prior-auth-supply-release-reports.md) and

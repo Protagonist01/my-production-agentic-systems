@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 62 — Test semantic answerability against publisher references](#entry-62--test-semantic-answerability-against-publisher-references)
 - [Entry 61 — Budget safety does not guarantee writer availability](#entry-61--budget-safety-does-not-guarantee-writer-availability)
 - [Entry 60 — Test the evaluator without hiding abstentions or weak references](#entry-60--test-the-evaluator-without-hiding-abstentions-or-weak-references)
 - [Entry 59 — Make evidence and attempt plans executable without granting approval](#entry-59--make-evidence-and-attempt-plans-executable-without-granting-approval)
@@ -3808,3 +3809,72 @@ stay atc6c65ca; no executable/scorer/lock changes or provider calls are needed.
 The budget/Groq/qualification/reference suite passes77tests24.19seconds. Lint and format
 checks pass. All91captured harness/Revenue source digests still match the v2study inventory;
 only tests and journal changed. The repaired full hosted matrix must pass before merge.
+
+## Entry 62 — Test semantic answerability against publisher references
+**Files touched:** Revenue semantic pilot preparation/projection/parser, tests and study docs.
+
+### Context and design before capture
+PR114mergeda714b65with1255quality/128SQLchecks and green main. The user authorized up to24
+of the existing shared180GeminiFreeattempts for12short, family-separated original CUAD cases,
+with publisher labels hidden from Gemini. This is semantic answerability, not a model judge
+assessing arbitrary candidate outputs or legal/billing validation. Retain all earlier probes.
+
+### Before you read on
+How do we send complete source context and its question without giving the model publisher
+answers, split identity or expected labels? How do public labels limit an apparent pass?
+
+### How to build it
+Select six answerable/six no-answer cases from existing source development, one per inferred
+family, with context length capped before selection. Exclude trivial document/party/date
+categories and earlier integrity-study families where feasible. The four calibration cases
+and eight validation cases remain grouped; two repeats each cost at most24attempts. The
+model projection accepts only `ExtractionInput` and constructs context/question JSON. Targets
+stay in private preparation and evaluator-only files. Schema requires accept/reject/abstain
+and exact supporting quotations for accept, no quotations for reject/abstain. The parser
+checks literal presence but never calls it semantic proof.
+
+Freeze dataset, route/prompt/schema, source inventory, policy and schedule before dispatch.
+Use shared durable180ledger with an additional fixed24pilot stop, reserve before owned
+spawned workers, no retry/fallback. Reconcile raw versus derived token/cost evidence and
+preserve missing/failed rows. A tiny balanced public-source pilot cannot meet production
+uncertainty or prove unseen model-training data. Qualification remains explicitly diagnostic.
+
+### Preflight and actual capture start
+Local fixtures initially reused identical context/question inputs with conflicting labels
+and omitted the response usage contract. Correct fixture inputs and supply explicit invented
+usage;27focused checks pass3.30seconds. A one-file mypy invocation could not resolve editable
+harness type metadata; the configured whole-repository check passes191sources. Ruff297files,
+import boundaries and sixbuildpairs pass. Freeze executable1fd39f5before capture.
+
+Prepared12cases have12distinct inferred families, six answerable/six no-answer, four
+calibration/eight validation, ten nontrivial clause categories, contexts<=11,930characters.
+Exclude108families from both previous integrity studies and leave original source holdout
+unchanged. Recheck original store/manifest pins; the prepared bundle canonical pin is
+777b1ec8fc8b5fc3e10bd9b7bff582c8e5bd8c025dfa8d74b5cad3200a0534a3.
+
+Initialize one exclusive shared180ledger after verifying no existing live closure allowance;
+the user explicitly approved24of that same total, not another allowance. Bind the private
+scope to the authorized local credential association, documenting that it is not an actual
+provider-verified project ID. Reserve in the parent before an owned Gemini worker;60second
+wall bounds, shared controls, one attempt per row and no fallback. Freeze the entire24row
+schedule, references, protocol and source inventory before dispatch. First observed attempts
+complete without parser/transport errors; actual label correctness/accounting remains for
+the sealed offline audit after capture. Do not overlap full suites with live calls or tune
+the prompt using observed answers. Final results follow without rewriting this history.
+
+### Actual semantic results and independent accounting
+All24scheduled attempts complete and settle; the authoritative shared180ledger has24used,
+156remaining,0unsettled. No retries/fallback/paid route. Independent raw readback binds every
+context/request/response to its ledger reservation/settlement and gateway/controlled record;
+source inventory remains unchanged. Recomputed calibration6/8matches; validation13/16matches
+with2failed judgments,14decisions and92.86%conditionalversus81.25%scheduled accuracy. No
+missing/abstained rows or observed false accepts. Reference-relative false rejects remain
+2calibration/1validation. Two failed validation quotes only match after whitespace
+normalization; frozen literal validation correctly refuses them. Keep those failures and
+the Minimum Commitment/Expiration Date reference disagreements; no label/prompt revision.
+
+All24raw token components known:39,716input/842output. Raw monetary cost unknown for all24,
+not zero billing. The eightvalidation groups include two failed groups; upper uncertainty
+59.07%, and declared diagnostic qualification fails. No production/clinical/legal or
+model-judge approval follows. Private raw records, exact grant/credential association and
+provider IDs remain outside Git; safe aggregate retains complete denominators/pins/limits.
