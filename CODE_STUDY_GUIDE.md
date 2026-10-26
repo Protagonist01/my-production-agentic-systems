@@ -10,6 +10,11 @@ H8 and its cancellation/test-bootstrap follow-up are merged/verified; Build Book
 
 ## Reading route
 
+The [local operations/recovery chapter](docs/olist-operations-recovery.md) follows Olist
+startup/readiness, private schema-bound binary snapshots and restore into a separate new
+owned database. It distinguishes code rollback from overwriting business state and records
+the remaining production recovery/deployment gates.
+
 The subsequent [Prior Auth/Supply reporting chapter](docs/prior-auth-supply-release-reports.md)
 traces fixed repeated-trial matrices, both recommendation-risk denominators, candidate versus
 baseline hidden-world costs, sensitivity and a publication-safe cross-vertical report catalog.

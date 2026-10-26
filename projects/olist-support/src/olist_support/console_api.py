@@ -92,6 +92,21 @@ def create_app(
     app.add_middleware(BodyLimit)
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=[parsed.hostname])
 
+    @app.get("/health/live")
+    def live() -> dict[str, object]:
+        return {"live": True, "business_unit": "SIM"}
+
+    @app.get("/health/ready")
+    def ready() -> JSONResponse:
+        from olist_support.service_health import readiness
+
+        result = (
+            readiness(cases.connect)
+            if cases is not None
+            else {"ready": False, "reason": "database_unconfigured"}
+        )
+        return JSONResponse(result, status_code=200 if result["ready"] else 503)
+
     def same_origin(request: Request) -> None:
         if (
             request.headers.get("origin") != origin

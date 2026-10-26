@@ -19,6 +19,7 @@ from olist_support.console_auth import AuthStore, provision, setup_console
 from olist_support.console_cases import CaseStore
 from olist_support.console_contracts import Principal
 from olist_support.policy_cases import external
+from olist_support.service_health import ServiceNotReady, require_ready
 from olist_support.workflow_postgres import setup_checkpoints
 
 
@@ -78,6 +79,7 @@ def main() -> None:
         def connect() -> psycopg.Connection[Any]:
             return server.connect_trial(trial)
 
+        require_ready(connect)
         app = create_app(
             CaseStore(connect),
             AuthStore(connect),
@@ -99,6 +101,8 @@ def main() -> None:
             timeout_keep_alive=5,
             log_level="warning",
         )
+    except ServiceNotReady as error:
+        parser.error("console startup refused: " + str(error))
     except (
         ValidationError,
         ValueError,
