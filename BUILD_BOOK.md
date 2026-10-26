@@ -3516,3 +3516,14 @@ Groq budget is9/12consumed,3remaining,0unsettled. Raw cost unknown for all nine,
 Gemini0/180. Three prompts with repetitions are not nine independent domain examples. No
 private domain records exported, no failed rows retried. Public aggregates bind the frozen
 plans/code/lock/allowance; credential/ledger/receipts stay private. Full hosted checks pending.
+
+### Full CI caught the missing fixture envelope update
+The first Groq PR head7953fb0fails strict replay CLI on Linux:1192tests pass, but v12is bound
+to old lockc8c15295while the new optional extra changes metadata to d99ed794. Resolved package
+versions are unchanged. ReplayBinding correctly refuses the new dependency pin; do not bypass
+or rewrite it. Preserve v1–v12, explicitly capture a new synthetic v13with the maintenance
+helper/exclusive writer from a clean source, compare every request/response byte with v12,
+then update the externally trusted current fixture pin and add v12to historical-lock rejection.
+Also extend the recording credential guard for Groq's key prefix with a non-key test value.
+No new provider call is needed or justified by this fixture repair; the actual nine Groq
+captures remain sealed at3db69d5. Initial failing runs are retained rather than called passes.

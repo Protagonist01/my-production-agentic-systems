@@ -38,6 +38,7 @@ from pydantic import ValidationError
 def no_provider(monkeypatch):
     for key in (
         "GEMINI_API_KEY",
+        "GROQ_API_KEY",
         "GOOGLE_API_KEY",
         "OPENAI_API_KEY",
         "ANTHROPIC_API_KEY",
@@ -418,6 +419,14 @@ def test_forbidden_content_is_never_written_or_echoed(secret, tmp_path):
     assert secret not in str(caught.value) and list(tmp_path.iterdir()) == []
 
 
+def test_groq_credential_pattern_is_blocked_without_a_configured_deny_value(tmp_path):
+    invented = "gsk_" + "X" * 30
+    row = recording().exchanges[0].model_copy(update={"response": response(invented)})
+    with pytest.raises(RecordingError) as caught:
+        write_recording(tmp_path / "fixture.json", recording([row]))
+    assert invented not in str(caught.value) and list(tmp_path.iterdir()) == []
+
+
 @pytest.mark.parametrize(
     "mutate",
     [
@@ -699,6 +708,7 @@ def test_replay_cli_runs_without_credentials_or_services(tmp_path):
         ("invented-v9.json", "f2ee896a12d8a7858c165db559f70b8775d86007a14ee969f8ba97fdc5986fa4"),
         ("invented-v10.json", "c3a6804a93739740a196a44aaed66af31a564faa6c1b9b61600b82386b985f08"),
         ("invented-v11.json", "aa68c8598c7306cb6f242a585a98d0e5e4df6d644754b11f4c5031af6c4e04e5"),
+        ("invented-v12.json", "6c8a4d3c6e9566392072c0dd9fac94f97a9b137e137827257ad285e134b858c0"),
     ],
 )
 def test_historical_fixture_is_unchanged_and_refuses_current_dependency_lock(filename, pin):

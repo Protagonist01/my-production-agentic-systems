@@ -122,7 +122,8 @@ def _reviewed_bytes(recording: Recording, forbidden_values: tuple[str, ...]) -> 
     if any(not value for value in forbidden_values):
         raise RecordingError("forbidden recording values must be nonempty")
     credential = re.compile(
-        r"AIza[0-9A-Za-z_-]{30,}|(?:sk|pk)-lf-[0-9a-fA-F-]{30,}|Bearer\s+\S+|"
+        r"AIza[0-9A-Za-z_-]{30,}|gsk_[0-9A-Za-z]{20,}|"
+        r"(?:sk|pk)-lf-[0-9a-fA-F-]{30,}|Bearer\s+\S+|"
         r"https?://[^/\s:@]+:[^/\s@]+@",
         re.IGNORECASE,
     )
