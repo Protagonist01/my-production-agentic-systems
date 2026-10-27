@@ -108,3 +108,14 @@ holdsrequesttimeoutfixedacrossall72qualityvariants.
 source/modelinputpins,oldfailedcanaryandcleancommittedcode,then freezesaseparatesource/plan
 inventoryanduntouched73slot schedule. Failedorunsettledrepresentativecannotunlockdomain.
 No automaticresumeorretrycommand. The existingOpenRoutercanaryremains1/12inventedonly.
+
+
+### Continuation construction failure retained
+
+The first continuation operator constructed a specialized110secondpolicy,then shared
+BoundedGatewayrevalidationrefuseditagainstthelegacy60secondcontract. No newreservation or
+request occurred;ledger342/418with0unsettled. The v1plan/sourceinventory and emptyrowsfolder
+remain. A corrected v2operator uses the same approvedoverrideanduntouchedslots after
+explicitlycheckingnoadditionaldispatch. It doesnotretryaconsumedrequestorappendnewbudget.
+The explicitversionedpolicy nowroundtrips throughgatewayadmissionandstoredControlledCall;
+legacyExecutionPolicystillrefuses110. Actualfakegatewayexecutionispartofpreflightregression.

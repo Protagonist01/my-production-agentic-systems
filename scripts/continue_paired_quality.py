@@ -115,7 +115,19 @@ def main():
         http_transport=httpx.MockTransport(handler),
     ).generate(canary_requests()[1], timeout_seconds=110)
     assert len(seen) == 1 and proof.failure is None and proof.usage.input_tokens == 10
-    PairedExecutionPolicy()
+    policy = PairedExecutionPolicy()
+
+    class NeverDispatch:
+        def generate(self, *args, **kwargs):
+            raise AssertionError("preflight must not dispatch")
+
+    bounded = BoundedGateway(
+        NeverDispatch(),
+        SharedControls(),
+        GeminiFreeAdmission(free_tier_confirmed=True),
+        policy=policy,
+    )
+    assert bounded.policy.attempt_timeout_seconds == 110 and bounded.policy.max_attempts == 1
     if args.preflight_only:
         print(
             json.dumps(
@@ -151,33 +163,44 @@ def main():
     )
     b = args.budget_root
     external = json.loads((b / "external-pin.json").read_bytes())
-    assert "availability_override_sha256" not in external
     old = AttemptLedger(
         b / "attempts.sqlite",
         external["allowance_sha256"],
         external["amendment_sha256"],
         external["development_extension_sha256"],
         external["paired_extension_sha256"],
+        external.get("availability_override_sha256"),
     )
     assert old.summary()["consumed"] == 342 and old.summary()["unsettled"] == 0
     with old.connect() as db:
         assert old.authorization(db).project_sha256 == scope
         before_rows = db.execute("SELECT * FROM attempts ORDER BY serial").fetchall()
-        backup = b / "pre-availability-continuation-recovery-only.sqlite"
+        backup = b / "pre-availability-dispatch-recovery-only.sqlite"
         assert not backup.exists()
         with sqlite3.connect(backup) as destination:
             db.backup(destination)
     args.continuation.mkdir(exist_ok=False)
     (args.continuation / "rows").mkdir()
     now = datetime.now(UTC)
-    override = AvailabilityOverride(
-        authorization_ref="owner-2026-10-27-explicit-bounded90HTTP110parent-unused-representativecanary;original72qualitycalls-only-if-pass;no-retry-or-quality-gate-change",
-        paired_extension_sha256=old.paired_extension_sha256,
-        failed_first_response_sha256=pin(failed),
-        failed_report_sha256=sha256((cap / "report.json").read_bytes()),
-        representative_request_sha256=pin(canary_requests()[1]),
-        approved_at=now,
-    )
+    if old.availability_override_sha256 is not None:
+        override = AvailabilityOverride.model_validate_json(
+            (b / "availability-continuation.json").read_bytes()
+        )
+        assert pin(override) == old.availability_override_sha256
+        assert override.failed_first_response_sha256 == pin(failed)
+        assert override.failed_report_sha256 == sha256((cap / "report.json").read_bytes())
+        with old.connect() as db:
+            assert db.execute("SELECT count(*) FROM paired_slots").fetchone()[0] == 1
+            assert db.execute("SELECT count(*) FROM paired_canary_passes").fetchone()[0] == 0
+    else:
+        override = AvailabilityOverride(
+            authorization_ref="owner-2026-10-27-explicit-bounded90HTTP110parent-unused-representativecanary;original72qualitycalls-only-if-pass;no-retry-or-quality-gate-change",
+            paired_extension_sha256=old.paired_extension_sha256,
+            failed_first_response_sha256=pin(failed),
+            failed_report_sha256=sha256((cap / "report.json").read_bytes()),
+            representative_request_sha256=pin(canary_requests()[1]),
+            approved_at=now,
+        )
     files = [
         p
         for folder in (
@@ -237,13 +260,16 @@ def main():
         ("override.json", override.model_dump(mode="json")),
     ]:
         write(args.continuation / name, value)
-    write(b / "availability-continuation.json", override.model_dump(mode="json"))
-    newpin = append_availability(old, override, failed)
-    assert newpin == pin(override)
-    updated = external | {"availability_override_sha256": newpin}
-    tmp = b / "external-pin-availability.tmp"
-    write(tmp, updated)
-    tmp.replace(b / "external-pin.json")
+    if old.availability_override_sha256 is None:
+        write(b / "availability-continuation.json", override.model_dump(mode="json"))
+        newpin = append_availability(old, override, failed)
+        assert newpin == pin(override)
+        updated = external | {"availability_override_sha256": newpin}
+        tmp = b / "external-pin-availability.tmp"
+        write(tmp, updated)
+        tmp.replace(b / "external-pin.json")
+    else:
+        newpin = old.availability_override_sha256
     ledger = AttemptLedger(
         old.path,
         old.allowance_sha256,

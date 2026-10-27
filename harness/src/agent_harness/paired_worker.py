@@ -1,17 +1,9 @@
 """Explicit paired-continuation worker; legacy HTTP30 defaults remain unchanged."""
 
 from dataclasses import dataclass, field
-from typing import Annotated, Literal
-
-from pydantic import Field
 
 from agent_harness.contracts import ModelRequest, ModelResponse
-from agent_harness.controls import ExecutionPolicy
-
-
-class PairedExecutionPolicy(ExecutionPolicy):
-    max_attempts: Literal[1] = 1
-    attempt_timeout_seconds: Annotated[float, Field(gt=0, le=110)] = 110.0
+from agent_harness.controls import PairedExecutionPolicy as PairedExecutionPolicy
 
 
 @dataclass(frozen=True)

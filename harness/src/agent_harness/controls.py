@@ -5,7 +5,7 @@ import time
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from decimal import Decimal, localcontext
-from typing import Annotated, Protocol
+from typing import Annotated, Literal, Protocol
 
 from pydantic import Field
 
@@ -52,6 +52,12 @@ class ExecutionPolicy(Contract):
     circuit_cooldown_seconds: Annotated[float, Field(gt=0, le=300)] = 5.0
 
 
+class PairedExecutionPolicy(ExecutionPolicy):
+    version: Literal["paired-availability-110-v1"] = "paired-availability-110-v1"
+    max_attempts: Literal[1] = 1
+    attempt_timeout_seconds: Annotated[float, Field(gt=0, le=110)] = 110.0
+
+
 class ReservationQuote(Contract):
     """Reviewed upper bounds, not estimates or observed provider charges."""
 
@@ -60,6 +66,13 @@ class ReservationQuote(Contract):
     max_cost: Money
     currency: NonEmpty
     evidence_ref: NonEmpty
+
+
+def validated_policy(value: ExecutionPolicy) -> ExecutionPolicy:
+    """Explicit specialized wire version; legacy policies retain their sixty-second cap."""
+    if value.version == "paired-availability-110-v1":
+        return PairedExecutionPolicy.model_validate_json(value.canonical_json())
+    return ExecutionPolicy.model_validate_json(value.canonical_json())
 
 
 class AdmissionPolicy(Protocol):
@@ -132,7 +145,7 @@ class ControlledCall(Contract):
     context: RunContext
     occurrence: Annotated[int, Field(gt=0)]
     request_fingerprint: NonEmpty
-    policy: ExecutionPolicy
+    policy: ExecutionPolicy | PairedExecutionPolicy
     reservations: tuple[ReservationQuote, ...]
     attempt_usage: tuple[Usage, ...]
     response: ModelResponse
@@ -198,7 +211,7 @@ class SharedControls:
     ) -> _Ticket:
         context = RunContext.model_validate(context)
         quote = ReservationQuote.model_validate(quote)
-        policy = ExecutionPolicy.model_validate(policy)
+        policy = validated_policy(policy)
         key = context.tenant_id, context.run_id
         route = (
             context.tenant_id,
@@ -324,9 +337,7 @@ class BoundedGateway:
         policy: ExecutionPolicy | None = None,
     ) -> None:
         self._attempts, self.controls, self._admission = attempts, controls, admission
-        self.policy = ExecutionPolicy.model_validate_json(
-            ExecutionPolicy.model_validate(policy or ExecutionPolicy()).canonical_json()
-        )
+        self.policy = validated_policy(policy or ExecutionPolicy())
         self._lock = threading.Lock()
         self._counts: dict[tuple[str, ...], int] = {}
         self._calls: list[str] = []

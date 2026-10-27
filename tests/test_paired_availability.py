@@ -126,3 +126,39 @@ def test_actual_sdk_long_window_is_explicit_and_legacy_default_is_still30():
     ).generate(canary_requests()[0].model_copy(update={"model": "gemini-3.8-flash"}))
     assert r.failure and r.usage.model_calls == 0 and timeouts == [30.0, 90.0]
     assert "invented-private" not in repr(PairedWorker("invented-private", True))
+
+
+def test_actual_gateway_and_controlled_call_roundtrip_preserve_explicit110_policy():
+    from datetime import timedelta
+
+    from agent_harness.admission import GeminiFreeAdmission
+    from agent_harness.controls import BoundedGateway, ExecutionPolicy, SharedControls
+    from agent_harness.offline_example import example_context
+    from agent_harness.paired_budget import canary_requests
+    from agent_harness.paired_worker import PairedExecutionPolicy
+
+    class FakeAttempt:
+        def generate(self, context, request, *, timeout_seconds):
+            assert 60 < timeout_seconds <= 110
+            return response(request)
+
+    context = example_context("invented", "a" * 64)
+    context = context.model_copy(
+        update={
+            "mode": "fresh_candidate",
+            "clock": datetime.now(UTC),
+            "deadline": datetime.now(UTC) + timedelta(minutes=4),
+            "budget": context.budget.model_copy(update={"max_tokens": 2000000}),
+        }
+    )
+    gateway = BoundedGateway(
+        FakeAttempt(),
+        SharedControls(),
+        GeminiFreeAdmission(free_tier_confirmed=True),
+        policy=PairedExecutionPolicy(),
+    )
+    result = gateway.generate(context, canary_requests()[0])
+    assert result.failure is None and gateway.calls[0].policy.attempt_timeout_seconds == 110
+    assert gateway.calls[0].policy.max_attempts == 1
+    with pytest.raises(ValueError):
+        ExecutionPolicy(attempt_timeout_seconds=110)
