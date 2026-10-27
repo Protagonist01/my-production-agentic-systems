@@ -100,9 +100,9 @@ def test_duplicate_foreign_and_inconsistent_outcomes_refuse_instead_of_inflating
 
 
 def test_actual_assessment_preserves_trial_and_invalid_quote_raw_decision():
-    from revenue_integrity.paired_quality import assess
     from revenue_integrity.evidence_selection import interpretation_request, selection_request
-    from test_semantic_alignment import value, response
+    from revenue_integrity.paired_quality import assess
+    from test_semantic_alignment import response, value
 
     v = value()
     r = response(quotes=("not in source",))
