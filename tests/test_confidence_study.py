@@ -4,7 +4,12 @@ import sqlite3
 from datetime import UTC, datetime, timedelta
 
 import pytest
-from agent_harness.provider_budget import AllowanceAmendment, AttemptLedger, amend
+from agent_harness.provider_budget import (
+    AllowanceAmendment,
+    AttemptLedger,
+    BudgetedTransport,
+    amend,
+)
 from agent_harness.release_contracts import pin, sha256
 from agent_harness.scorecard_stats import binomial_bounds
 from revenue_integrity.confidence_study import ConfidenceCohort, prepare_confidence
@@ -92,6 +97,14 @@ def test_amendment_preserves_history_stale_clients_deny_and_exact_cap_survives_r
         ledger.summary()
     updated = AttemptLedger(ledger.path, ledger.allowance_sha256, newpin)
     assert updated.summary()["remaining"] == 318
+
+    class ForbiddenDispatch:
+        def generate(self, request, *, timeout_seconds):
+            raise AssertionError("stale authorization reached provider")
+
+    stale = BudgetedTransport(ForbiddenDispatch(), ledger, context, "a" * 64)
+    assert stale.generate(request).failure.code == "budget_exhausted"
+    assert updated.summary()["consumed"] == 2
     for _ in range(318):
         ticket = updated.reserve(context, request, project_sha256="a" * 64)
         updated.settle(ticket, response(request))
@@ -116,3 +129,10 @@ def test_amendment_rejects_wrong_count_unsettled_and_missing_pin(tmp_path):
     with pytest.raises(ValueError):
         amend(ledger.path, ledger.allowance_sha256, amendment(ledger, 1))
     assert ledger.summary()["unsettled"] == 1
+
+
+@pytest.mark.parametrize("maximum", [181, 320])
+def test_initialization_cannot_replace_authorized_amendment_with_a_fresh_pool(tmp_path, maximum):
+    with pytest.raises(ValueError, match="interval/model inventory"):
+        inputs(tmp_path, maximum=maximum)
+    assert not (tmp_path / "allowance.sqlite").exists()

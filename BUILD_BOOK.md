@@ -4065,3 +4065,53 @@ prose stated120; the retained public aggregate and actual selection used128. The
 preparation assertion caught that stale prose before any output; corrected the assertion
 against the pinned evidence. Actual cohort:148unique families/contexts,37categories with
 four cases each, max49,760characters. Original source/database pins remain unchanged.
+
+### Actual execution and installed checks in progress
+Source preparation pins b7f46e3; doc-only correction/capture commit4ab3b01 has the same
+executable source inventory. Actual148family/296row capture begins after all original
+source/DB/exposure pins and credential association match. The in-place amendment preserves
+all24original rows and original authorization; a private recovery snapshot is explicitly
+historical, never another allowance. Current external configuration requires both pins.
+
+All1311localtests pass472.14seconds. Initial exact-head hosted logs verify1311tests in
+four Ubuntu/Windows Python3.12/3.13environments,195typed sources and12buildartifacts each;
+Postgres128passes239.48seconds. Both audits,secret scan and metadata pass. Strict invented
+replay uses6recordings/2timeouts/zero-provider. Installed80harness/35Revenue resources
+match wheels exactly; cohort revalidates with networking denied,no provider SDKs/other
+industries. Configured formatter305sources/import contracts pass. A bare whole-tree Ruff
+format command also scanned Markdown examples and flagged five preexisting documentation
+snippets; use the repository's configured dev.py format-check rather than changing unrelated
+historical examples. Lint itself passes. Hosted checks are for the initial head; final
+result/documentation changes still need their exact final checks.
+
+An early publisher disagreement and subsequent quotation/provider failures already make
+the minimum-size target fail. Continue the fixed diagnostic capture without changing labels,
+prompt,parser or denominators. This is evidence of candidate shortcomings, not a reason to
+lower confidence or treat repeated trials as new groups. Final accounting/audit follow.
+
+
+### Completed study and independent audit
+All296scheduled attempts complete with no retry/paid fallback. Validation
+237/288correct,265decisions,16false accepts,
+12false rejects,23failed observations,0missing.
+30/144families fail. Calibration8/8.
+The target fails; supplementary exact95%upper bounds are
+39.59%answerable/24.06%no-answer.
+No confidence criterion or label is changed. Recompute the frozen report from saved
+observations and revalidate every raw DTO/ledger reservation pair; verify original24rows,
+grant,pilot responses/report,source DB/exposure/executable pins. All match.
+Known tokens1535206/22845;unknown input/output
+0/0,unknown cost
+296. Single ledger320/320,0unsettled.
+
+The final budget-specific regression additions pass45focused tests22.37seconds: fresh181/320
+initialization is refused before file creation and a stale transport cannot invoke its
+provider while the amended ledger still has capacity. These are test-only additions,not
+changes to the running capture. Final full matrix will collect1313tests.
+
+Prepare a separate12family exposed development proposal,6perclass,failures/error kinds/
+categories balanced;model3.8Flash,one unique<=300characterquote,2048outputtokens. Its24
+attempts would require344sharedtotal;no new grant or call occurs. Labels remain private,
+all cases explicitly exposed,no qualification claim. The candidate/parser/operator and
+append-only amendment must be reviewed/tested/frozen before any future authorized dispatch.
+Keep the current320cap and failure evidence intact.

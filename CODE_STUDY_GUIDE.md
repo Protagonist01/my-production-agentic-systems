@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [confidence-target study chapter](docs/confidence-target-study.md) traces the owner-approved
+320-total amendment in the existing shared ledger and the separate148family study against
+source commitb7f46e3/recorded capture commit4ab3b01. It explains why repetitions cannot replace
+independent families, how stale allowance clients fail closed, and why attempted sample size
+does not establish successful qualification. The original pilot and release gates remain.
+
 The [prospective semantic cohort chapter](docs/prospective-semantic-cohort.md) traces the
 next offline preparation against basee432655: pinned prior exposures, source/context/request
 exclusions, balanced publisher references and a24request future schedule. It also exposes
