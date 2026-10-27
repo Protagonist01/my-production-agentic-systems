@@ -1,5 +1,10 @@
 # Code Study Guide — Production Agentic Systems
 
+The [exposed-case development chapter](docs/remediation-development.md) follows the
+344total authorization after failed studyPR118:immutable schedule-bound extension,
+actual prompt/route/projection binding and strict short-quotation parsing. This candidate
+is development only;neither its preparation nor its eventual result supplies fresh confidence.
+
 The [confidence-target study chapter](docs/confidence-target-study.md) traces the owner-approved
 320-total amendment in the existing shared ledger and the separate148family study against
 source commitb7f46e3/recorded capture commit4ab3b01. It explains why repetitions cannot replace

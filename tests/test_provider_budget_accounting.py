@@ -19,14 +19,14 @@ from agent_harness.provider_budget import (
 from agent_harness.release_contracts import pin
 
 
-def inputs(tmp_path, maximum=180):
+def inputs(tmp_path, maximum=180, models=("gemini-3.5-flash-lite",)):
     now = datetime.now(UTC)
     allowance = ProviderAllowance(
         allowance_id="invented-shared",
         authorization_ref="invented-human-authorization",
         project_sha256="a" * 64,
         max_attempts=maximum,
-        models=("gemini-3.5-flash-lite",),
+        models=models,
         approved_at=now - timedelta(minutes=1),
         expires_at=now + timedelta(days=1),
     )

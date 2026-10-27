@@ -20,7 +20,7 @@ class ProviderAllowance(Contract):
     allowance_id: NonEmpty
     authorization_ref: NonEmpty
     project_sha256: Sha256
-    max_attempts: Annotated[int, Field(gt=0, le=320)] = 180
+    max_attempts: Annotated[int, Field(gt=0, le=344)] = 180
     models: tuple[Literal["gemini-3.5-flash-lite", "gemini-3.8-flash"], ...]
     approved_at: AwareDatetime
     expires_at: AwareDatetime
@@ -34,6 +34,67 @@ class AllowanceAmendment(Contract):
     approved_at: AwareDatetime
     expires_at: AwareDatetime
     consumed_before: Annotated[int, Field(ge=0)]
+
+
+class DevelopmentExtension(Contract):
+    version: Literal["gemini-development-extension-v1"] = "gemini-development-extension-v1"
+    original_allowance_sha256: Sha256
+    previous_amendment_sha256: Sha256
+    authorization_ref: NonEmpty
+    maximum: Literal[344] = 344
+    consumed_before: Literal[320] = 320
+    agent: Literal["revenue"] = "revenue"
+    model: Literal["gemini-3.8-flash"] = "gemini-3.8-flash"
+    run_id: NonEmpty
+    request_sha256s: Annotated[tuple[Sha256, ...], Field(min_length=12, max_length=12)]
+    approved_at: AwareDatetime
+    expires_at: AwareDatetime
+
+
+def extend_development(ledger: "AttemptLedger", extension: DevelopmentExtension) -> str:
+    """Append the specific owner-approved 24-attempt development extension in place."""
+    extension = DevelopmentExtension.model_validate_json(extension.canonical_json())
+    with ledger.connect() as db:
+        db.execute("BEGIN IMMEDIATE")
+        grant = ledger.authorization(db)
+        used, unsettled = db.execute(
+            "SELECT count(*),sum(response_pin IS NULL) FROM attempts"
+        ).fetchone()
+        if (
+            grant.max_attempts != 320
+            or extension.model not in grant.models
+            or used != 320
+            or unsettled
+            or extension.original_allowance_sha256 != ledger.allowance_sha256
+            or extension.previous_amendment_sha256 != ledger.amendment_sha256
+            or extension.approved_at < grant.approved_at
+            or extension.expires_at < grant.expires_at
+            or extension.expires_at <= extension.approved_at
+            or len(set(extension.request_sha256s)) != 12
+        ):
+            raise ValueError("development extension scope/count/interval differs")
+        db.execute(
+            "CREATE TABLE development_extensions(pin TEXT PRIMARY KEY, document TEXT NOT NULL)"
+        )
+        db.execute(
+            "INSERT INTO development_extensions VALUES(?,?)",
+            (pin(extension), extension.canonical_json()),
+        )
+        db.execute(
+            "CREATE TABLE development_slots(request_pin TEXT NOT NULL, "
+            "trial_id TEXT NOT NULL, ticket TEXT NOT NULL UNIQUE, "
+            "PRIMARY KEY(request_pin,trial_id))"
+        )
+        for operation in ("UPDATE", "DELETE"):
+            db.execute(
+                f"CREATE TRIGGER immutable_development_{operation} BEFORE {operation} "
+                "ON development_extensions BEGIN SELECT RAISE(ABORT,'immutable extension'); END"
+            )
+            db.execute(
+                f"CREATE TRIGGER immutable_slot_{operation} BEFORE {operation} "
+                "ON development_slots BEGIN SELECT RAISE(ABORT,'immutable slot'); END"
+            )
+    return pin(extension)
 
 
 def amend(path: Path, previous_pin: str, amendment: AllowanceAmendment) -> str:
@@ -111,6 +172,28 @@ class AttemptLedger:
     path: Path
     allowance_sha256: str
     amendment_sha256: str | None = None
+    development_extension_sha256: str | None = None
+
+    def development_extension(self, db: sqlite3.Connection) -> DevelopmentExtension | None:
+        exists = db.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='development_extensions'"
+        ).fetchone()
+        if not exists:
+            if self.development_extension_sha256 is not None:
+                raise ValueError("pinned development extension missing")
+            return None
+        rows = db.execute("SELECT pin,document FROM development_extensions").fetchall()
+        if len(rows) != 1 or rows[0][0] != self.development_extension_sha256:
+            raise ValueError("development extension requires current external pin")
+        value = DevelopmentExtension.model_validate_json(rows[0][1])
+        if (
+            pin(value) != self.development_extension_sha256
+            or value.original_allowance_sha256 != self.allowance_sha256
+            or value.previous_amendment_sha256 != self.amendment_sha256
+            or len(set(value.request_sha256s)) != 12
+        ):
+            raise ValueError("development extension pin/scope differs")
+        return value
 
     def connect(self) -> sqlite3.Connection:
         if self.path.is_symlink():
@@ -154,6 +237,24 @@ class AttemptLedger:
             )
         elif self.amendment_sha256 is not None:
             raise ValueError("pinned allowance amendment is missing")
+        extension = self.development_extension(db)
+        if extension is not None:
+            used = db.execute("SELECT count(*) FROM attempts").fetchone()[0]
+            if (
+                value.max_attempts != 320
+                or used < 320
+                or extension.approved_at < value.approved_at
+                or extension.expires_at < value.expires_at
+                or extension.expires_at <= extension.approved_at
+            ):
+                raise ValueError("development extension interval/history differs")
+            value = value.model_copy(
+                update={
+                    "max_attempts": 344,
+                    "approved_at": extension.approved_at,
+                    "expires_at": extension.expires_at,
+                }
+            )
         return value
 
     def reserve(self, context: RunContext, request: ModelRequest, *, project_sha256: str) -> str:
@@ -175,9 +276,29 @@ class AttemptLedger:
             ):
                 raise ValueError("provider attempt is outside the authorized scope/interval")
             count = db.execute("SELECT count(*) FROM attempts").fetchone()[0]
+            extension = self.development_extension(db)
+            if extension is not None:
+                prior_count = db.execute(
+                    "SELECT count(*) FROM attempts WHERE serial>320 AND request_pin=?",
+                    (pin(request),),
+                ).fetchone()[0]
+                if (
+                    context.agent_id != extension.agent
+                    or context.run_id != extension.run_id
+                    or request.model != extension.model
+                    or pin(request) not in extension.request_sha256s
+                    or context.trial_id not in ("trial-1", "trial-2")
+                    or prior_count >= 2
+                ):
+                    raise ValueError("development request outside authorized frozen schedule")
             if count >= grant.max_attempts:
                 raise ValueError("shared provider-attempt allowance exhausted")
             ticket = uuid4().hex
+            if extension is not None:
+                db.execute(
+                    "INSERT INTO development_slots VALUES(?,?,?)",
+                    (pin(request), context.trial_id, ticket),
+                )
             db.execute(
                 "INSERT INTO attempts VALUES(?,?,?,?,?,NULL,NULL)",
                 (count + 1, ticket, pin(context), pin(request), now.isoformat()),
@@ -245,6 +366,7 @@ def main() -> int:
     parser.add_argument("--ledger", required=True, type=Path)
     parser.add_argument("--allowance-sha256", required=True)
     parser.add_argument("--amendment-sha256")
+    parser.add_argument("--development-extension-sha256")
     parser.add_argument("--allowance", type=Path)
     args = parser.parse_args()
     try:
@@ -259,7 +381,12 @@ def main() -> int:
             raise ValueError("status reads the existing authoritative ledger")
         print(
             json.dumps(
-                AttemptLedger(args.ledger, args.allowance_sha256, args.amendment_sha256).summary(),
+                AttemptLedger(
+                    args.ledger,
+                    args.allowance_sha256,
+                    args.amendment_sha256,
+                    args.development_extension_sha256,
+                ).summary(),
                 sort_keys=True,
             )
         )

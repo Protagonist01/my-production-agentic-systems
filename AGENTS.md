@@ -72,3 +72,14 @@ The target is a proposed two-sided95%per-class5%group-error upper bound, conditi
 independent comparable families and zero errors at72validation families per class, plus
 four calibration families. Results, not attempt count, determine success. This authorizes
 the study, not production release, broader semantic truth, paid fallback or Groq domain use.
+
+## Exposed-case development authorization (2026-10-27)
+
+The user explicitly approved344total shared Gemini Free attempts after the296attempt
+confidence study failed and exhausted320total. Append the specific24attempt development
+extension in the SAME ledger, preserving the original grant,320amendment and320reservations.
+Use the pinned proposal at the private Revenue remediation-development-proposal directory:
+12exposed failure families,twotrials,Gemini3.8Flash,shorter unique quotes,2048outputtokens.
+Failures count,no retries,no paid fallback. Require original,amendment and development
+extension pins from private external-pin.json. Current scope is development only,not new
+holdout qualification or release. Never infer further budget from a development improvement.
