@@ -83,3 +83,19 @@ Use the pinned proposal at the private Revenue remediation-development-proposal 
 Failures count,no retries,no paid fallback. Require original,amendment and development
 extension pins from private external-pin.json. Current scope is development only,not new
 holdout qualification or release. Never infer further budget from a development improvement.
+
+## Failure investigation and OpenRouter canary (2026-10-27)
+
+The owner authorized investigating exposed Revenue failures, separate interpretation and
+source-selection development variants, and detailed engineering documentation. Preserve
+publisher labels and original failed studies. AI diagnostic explanations are proposals,
+not independent human judgments or proof of source-label error. No qualification claim.
+
+The owner separately approved maximum12attempt OpenRouter Free canary, invented data only,
+explicit free model routes, no paid fallback or automatic retries. Its private ledger is
+`D:/document/.cache/production-agents/openrouter/free-canary-2026-10-27-v1/attempts.sqlite`.
+Use the frozen invented inventory and stop on first failure. Never reset this allowance,
+retry consumed requests or export contracts/source data under this scope. The key lives in
+ignored `.agent-local/openrouter-free.env`; never print or commit it. Gemini stays the same
+341/344ledger; Groq stays its separate9/12invented allowance. OpenRouter availability does
+not authorize domain comparison, new spending or release. Recheck actual ledger state.

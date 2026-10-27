@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 67 — Diagnose task mismatch before another model study](#entry-67--diagnose-task-mismatch-before-another-model-study)
 - [Entry 66 — Develop on exposed failures under a schedule-bound extension](#entry-66--develop-on-exposed-failures-under-a-schedule-bound-extension)
 - [Entry 65 — Size and freeze a confidence-target study](#entry-65--size-and-freeze-a-confidence-target-study)
 - [Entry 64 — Freeze a prospective cohort without recycling exposed families](#entry-64--freeze-a-prospective-cohort-without-recycling-exposed-families)
@@ -4209,3 +4210,56 @@ verifying3.8route,2048output,one-quote schema,onefakewireexchange and exact sour
 with no network. This is compatibility evidence,not remoteavailability or semanticquality.
 Installed80harness/36Revenue resources equal wheels and the earlier cohort revalidates
 networkdenied,no provider SDK/otherindustries. Final exact-head hosted checks follow.
+
+
+## Entry 67 — Diagnose task mismatch before another model study
+**Files touched:** revenue failure investigation, source-selection prototype, OpenRouter canary, tests and study guide.
+
+### Context
+The owner asks why the confidence target failed, authorizes following the diagnostic
+recommendation and requests detailed engineering notes. They also approve a separate
+maximum12attempt OpenRouter Free canary using invented data only, no fallback/retries.
+The shared Gemini ledger remains341/344, no authorization to rerun its completed slots.
+
+### Before you read on
+If a question asks whether a restriction exists, does a clause expressly denying that
+restriction count as an answer? Decide whether the model instruction and reference labels
+measure the same thing before deciding that a larger model is the fix.
+
+### Options considered and decision before implementation
+Increasing the final sample cannot repair an error rate above the target. Repeating all
+failed calls would mix development and qualification and consume an unchanged allowance.
+Changing model, prompt and output budget together already failed operationally and could
+not isolate a cause even if it had succeeded. Instead, compute disjoint outcomes and
+trial-pair diagnostics from saved rows, inspect reference-versus-model passages locally,
+then prepare separate task-wording and evidence-interface variants. Keep all proposals
+unqualified until a controlled experiment supplies improvement evidence.
+
+### How to build it
+Read each frozen cohort case and its two raw responses, retaining the publisher target.
+For validation count final correct/wrong/citation-invalid/provider-failed outcomes. Then
+cross-tab raw decision correctness with citation validity; never sum overlapping axes.
+Pair by case and trial, not by row count. Compare length bands descriptively, without
+claiming a causal effect from this convenience sample. Do not publish source passages or
+case identifiers. Inspect repeated disagreements locally to find instruction ambiguity.
+The existing instruction asks for any explicit answer, whereas annotations identify
+category-associated passages: an explicit denial can answer the question without the
+category being marked present. Draft a small task-clarification variant separately.
+
+For the evidence-interface prototype, let the model choose source span IDs and copy text
+locally from the pinned input. Deterministic copying can eliminate rewritten quotations,
+but cannot prove that a selected passage answers the question. Bind catalog and response
+to the exact request/input; refuse foreign IDs and changed contexts. Preserve full text,
+including Unicode and whitespace. Do not enable this prototype in release/runtime paths.
+
+For OpenRouter, freeze invented inputs, explicit free route and a separate capped ledger.
+Preflight the actual HTTP payload and parse a constructed wire response before any live
+reservation. Explicitly disable router fallback and require zero prompt/completion/request
+prices. Keep authentication private. A remote canary proves transport compatibility only;
+it does not authorize sending contracts to a new provider or replacing reference review.
+
+### What went wrong / checks in progress
+The previous18local failures were operator errors: admission accepted a configuration the
+actual worker rejected, and a legacy output ceiling independently rejected the new request.
+Adapter-level preflight now precedes spending. No outcome from the failed run is refunded.
+New implementation, tests and real canary results follow; no improvement claimed yet.
