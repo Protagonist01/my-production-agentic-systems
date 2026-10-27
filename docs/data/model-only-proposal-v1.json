@@ -1,0 +1,49 @@
+{
+  "classes": {
+    "answerable": 6,
+    "no_answer": 6
+  },
+  "current_consumed": 415,
+  "current_lifetime_maximum": 418,
+  "dispatch_authorized": true,
+  "domain_attempts": 48,
+  "families": 12,
+  "input": "same12exposedCUADfamilies,unchangedcontext/question",
+  "limits": [
+    "Exposedselecteddevelopment,noproductionreliabilityornewconfidenceclaim.",
+    "SameLOWsettingdoesnotguaranteeequivalentinternalmodelreasoning.",
+    "512outputbudgetheldfixed;truncationwouldbeafailure,notpermissiontoretrywithmoretokens.",
+    "Freshbaselineandchallengercapturedinonerun;oldbaselineforhistoricalcontextonly.",
+    "NoOpenRouterorGroqdomainexport."
+  ],
+  "maximum_consumed_if_all_new_slots_used": 465,
+  "maximum_new_attempts": 50,
+  "model_only_difference": true,
+  "models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.8-flash"
+  ],
+  "order": "alternatemodelorderbycase/trial",
+  "output_schema": "originaldecision/quotes,unchanged",
+  "paid_fallback": false,
+  "parameters": {
+    "max_output_tokens": 512,
+    "temperature": 0.0,
+    "thinking_level": "LOW"
+  },
+  "previous_evaluator_cases_sha256": "d7af26c8500ca147c54aae78cc6cba5c89d7be6f95e01a009129b0abac05dffe",
+  "prompt": "original baseline,unchanged",
+  "proposed_http_timeout_seconds": 90,
+  "proposed_parent_timeout_seconds": 110,
+  "proposed_same_lifetime_maximum": 468,
+  "provider_calls": 0,
+  "qualification": false,
+  "quality_metrics": "referenceagreement,pairedfamilygains/losses,controls,classerrors,evidencevalidity,tokens,latency,unknowncost",
+  "release_allowed": false,
+  "representative_canaries": 2,
+  "retries": 0,
+  "status": "owner-approved-before-capture",
+  "stop": "bothroutecanariesmustpass;else0domaincalls;auth/quota/budgetor3consecutiveunavailable/timeoutsstopdomain",
+  "three_legacy_unused_slots_unavailable": true,
+  "version": "model-only-development-proposal-v1"
+}

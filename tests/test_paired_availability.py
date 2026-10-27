@@ -123,7 +123,18 @@ def test_actual_sdk_long_window_is_explicit_and_legacy_default_is_still30():
         flash_comparison=True,
         http_timeout_seconds=90,
         http_transport=httpx.MockTransport(handler),
-    ).generate(canary_requests()[0].model_copy(update={"model": "gemini-3.8-flash"}))
+    ).generate(
+        canary_requests()[0].model_copy(
+            update={
+                "model": "gemini-3.8-flash",
+                "parameters": {
+                    "temperature": 0.0,
+                    "max_output_tokens": 2048,
+                    "thinking_level": "LOW",
+                },
+            }
+        )
+    )
     assert r.failure and r.usage.model_calls == 0 and timeouts == [30.0, 90.0]
     assert "invented-private" not in repr(PairedWorker("invented-private", True))
 

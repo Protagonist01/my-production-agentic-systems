@@ -378,8 +378,17 @@ class GeminiTransport:
                 request, "timeout", "No Gemini attempt time remaining", dispatched=False
             )
         try:
-            if self._http_timeout_seconds == 90 and request.model != MODEL:
-                raise ValueError("long HTTP window is only approved for paired FlashLite")
+            if (
+                self._http_timeout_seconds == 90
+                and request.model != MODEL
+                and (
+                    not self._flash_comparison
+                    or request.model != "gemini-3.8-flash"
+                    or request.parameters
+                    != {"temperature": 0.0, "max_output_tokens": 512, "thinking_level": "LOW"}
+                )
+            ):
+                raise ValueError("long Flash window requires explicit model-only512 settings")
             contents, config = request_payload(request, flash_comparison=self._flash_comparison)
         except (ValueError, SchemaError, Unresolvable):
             return failed_response(

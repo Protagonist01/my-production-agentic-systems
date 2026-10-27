@@ -1,0 +1,168 @@
+{
+  "accounting_including_canaries": {
+    "known_input_tokens": 13068,
+    "known_output_tokens": 15,
+    "reported_model_calls": 2,
+    "unknown_cost_rows": 2,
+    "unknown_input_rows": 1,
+    "unknown_output_rows": 1
+  },
+  "all_cases_exposed": true,
+  "all_scheduled_reference_correct": false,
+  "audit": {
+    "all_model_request_pairs_differ_only_in_model": true,
+    "all_previous_artifact_pins_unchanged": true,
+    "frozen_executable_inventory_verified": true,
+    "new_receipt_and_slot_pins_match": true,
+    "old415rows_grants_preserved": true,
+    "old_paired_slots_preserved": true
+  },
+  "budget": {
+    "consumed": 417,
+    "maximum": 468,
+    "remaining": 51,
+    "unsettled": 0
+  },
+  "canaries": [
+    {
+      "elapsed_seconds": 6.665260699999635,
+      "failure": null,
+      "model": "gemini-3.5-flash-lite",
+      "passed": true
+    },
+    {
+      "elapsed_seconds": 94.36317210000198,
+      "failure": "timeout",
+      "model": "gemini-3.8-flash",
+      "passed": false
+    }
+  ],
+  "limits": [
+    "Exposed development cases; no representative reliability or confidence claim.",
+    "Publisher agreement and exact copying do not establish relevant legal support.",
+    "Raw decision and source-integrity metrics overlap; do not add them.",
+    "Missing scheduled rows remain in denominators; no replacement/retry."
+  ],
+  "metadata_diagnostic": {
+    "check": "authenticated_model_metadata",
+    "elapsed_seconds": 1.8,
+    "inference_attempts": 0,
+    "limits": [
+      "Metadata availability does not establish generation capacity or billing."
+    ],
+    "name": "models/gemini-3.8-flash",
+    "status": 200,
+    "supported_methods": [
+      "generateContent",
+      "countTokens",
+      "createCachedContent",
+      "batchGenerateContent"
+    ]
+  },
+  "metrics": {
+    "baseline": {
+      "accepts_with_valid_evidence": 0,
+      "class_results": {
+        "answerable": {
+          "correct": 0,
+          "missing": 12,
+          "observed": 0,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        },
+        "no_answer": {
+          "correct": 0,
+          "missing": 12,
+          "observed": 0,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        }
+      },
+      "consistently_correct_controls": 0,
+      "consistently_correct_families": 0,
+      "correct": 0,
+      "decided": 0,
+      "evidence_valid": 0,
+      "failures": {},
+      "false_accepts": 0,
+      "false_rejects": 0,
+      "known_input_tokens": 0,
+      "known_output_tokens": 0,
+      "missing": 24,
+      "observed": 0,
+      "raw_accepts": 0,
+      "raw_reference_agreement_count": 0,
+      "scheduled": 24,
+      "scheduled_agreement": 0.0,
+      "total_elapsed_seconds": 0,
+      "unknown_cost_rows": 0,
+      "unknown_input_token_rows": 0,
+      "unknown_output_token_rows": 0,
+      "unobserved_family_pairs": 12
+    },
+    "challenger": {
+      "accepts_with_valid_evidence": 0,
+      "class_results": {
+        "answerable": {
+          "correct": 0,
+          "missing": 12,
+          "observed": 0,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        },
+        "no_answer": {
+          "correct": 0,
+          "missing": 12,
+          "observed": 0,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        }
+      },
+      "consistently_correct_controls": 0,
+      "consistently_correct_families": 0,
+      "correct": 0,
+      "decided": 0,
+      "evidence_valid": 0,
+      "failures": {},
+      "false_accepts": 0,
+      "false_rejects": 0,
+      "known_input_tokens": 0,
+      "known_output_tokens": 0,
+      "missing": 24,
+      "observed": 0,
+      "raw_accepts": 0,
+      "raw_reference_agreement_count": 0,
+      "scheduled": 24,
+      "scheduled_agreement": 0.0,
+      "total_elapsed_seconds": 0,
+      "unknown_cost_rows": 0,
+      "unknown_input_token_rows": 0,
+      "unknown_output_token_rows": 0,
+      "unobserved_family_pairs": 12
+    }
+  },
+  "missing": 48,
+  "model_labels": {
+    "baseline": "gemini-3.5-flash-lite",
+    "challenger": "gemini-3.8-flash"
+  },
+  "new_reserved_attempts": 2,
+  "no_quality_result": true,
+  "observed": 0,
+  "paired_vs_fresh_baseline": {
+    "challenger": {
+      "comparable_families": 0,
+      "control_regressions": 0,
+      "gained_consistently_correct_families": 0,
+      "lost_consistently_correct_families": 0,
+      "net_consistently_correct_families": 0,
+      "unobserved_families": 12
+    }
+  },
+  "plan_sha256": "6c0f5890a8eec8fb4f264e50105b05498a414980b78d8a47be063bf9a0619bb1",
+  "qualification_met": false,
+  "release_allowed": false,
+  "scheduled": 48,
+  "stop_reason": "model_canary_failed",
+  "version": "model-only-development-report-v1"
+}

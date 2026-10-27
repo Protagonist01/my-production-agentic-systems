@@ -18,7 +18,7 @@ from revenue_integrity.semantic_alignment import parse_aligned_judgment
 from revenue_integrity.semantic_pilot import SemanticJudgment, model_request
 from revenue_integrity.source_contracts import ExtractionInput
 
-Variant = Literal["baseline", "task_wording", "evidence_selection"]
+Variant = Literal["baseline", "task_wording", "evidence_selection", "challenger"]
 VARIANTS: tuple[Variant, ...] = ("baseline", "task_wording", "evidence_selection")
 
 
@@ -104,8 +104,15 @@ def assess(
 
 
 def summarize(
-    expected: dict[str, bool], controls: frozenset[str], rows: tuple[QualityOutcome, ...]
+    expected: dict[str, bool],
+    controls: frozenset[str],
+    rows: tuple[QualityOutcome, ...],
+    *,
+    comparison: Literal["variants", "models"] = "variants",
 ) -> dict[str, object]:
+    variants: tuple[Variant, ...] = (
+        ("baseline", "challenger") if comparison == "models" else VARIANTS
+    )
     if (
         len(expected) != 12
         or sum(expected.values()) != 6
@@ -115,7 +122,9 @@ def summarize(
         raise ValueError("expected twelve balanced cases and four controls")
     rows = tuple(QualityOutcome.model_validate_json(r.canonical_json()) for r in rows)
     indexed = {(r.case_id, r.variant, r.trial_id): r for r in rows}
-    if len(indexed) != len(rows) or any(r.case_id not in expected for r in rows):
+    if len(indexed) != len(rows) or any(
+        r.case_id not in expected or r.variant not in variants for r in rows
+    ):
         raise ValueError("duplicate or foreign comparison row")
 
     def correct(row: QualityOutcome) -> bool:
@@ -128,7 +137,7 @@ def summarize(
 
     metrics: dict[str, object] = {}
     family: dict[tuple[str, Variant], bool | None] = {}
-    for variant in VARIANTS:
+    for variant in variants:
         members = [r for r in rows if r.variant == variant]
         for case in expected:
             pair = [indexed.get((case, variant, t)) for t in ("trial-1", "trial-2")]
@@ -197,7 +206,7 @@ def summarize(
             "consistently_correct_controls": sum(family[(c, variant)] is True for c in controls),
         }
     paired = {}
-    for variant in ("task_wording", "evidence_selection"):
+    for variant in variants[1:]:
         comparable = [
             c
             for c in expected
@@ -222,13 +231,16 @@ def summarize(
             ),
         }
     return {
-        "version": "paired-quality-development-report-v1",
-        "scheduled": 72,
+        "version": "model-only-development-report-v1"
+        if comparison == "models"
+        else "paired-quality-development-report-v1",
+        "scheduled": len(variants) * 24,
         "observed": len(rows),
-        "missing": 72 - len(rows),
+        "missing": len(variants) * 24 - len(rows),
         "metrics": metrics,
         "paired_vs_fresh_baseline": paired,
-        "all_scheduled_reference_correct": len(rows) == 72 and all(correct(r) for r in rows),
+        "all_scheduled_reference_correct": len(rows) == len(variants) * 24
+        and all(correct(r) for r in rows),
         "all_cases_exposed": True,
         "qualification_met": False,
         "release_allowed": False,
