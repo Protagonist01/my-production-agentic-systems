@@ -45,10 +45,10 @@ class SemanticPilot(Contract):
     trials: tuple[Literal["trial-1"], Literal["trial-2"]] = ("trial-1", "trial-2")
 
 
-def model_request(value: ExtractionInput) -> ModelRequest:
+def model_request(value: ExtractionInput, *, max_context_chars: int = 20000) -> ModelRequest:
     """The only model projection; does not accept a target, family, split or answer label."""
     value = ExtractionInput.model_validate_json(value.canonical_json())
-    if len(value.context) > 20000:
+    if not 0 < max_context_chars <= 50000 or len(value.context) > max_context_chars:
         raise ValueError("semantic pilot context exceeds limit")
     return ModelRequest(
         provider="google-gemini-developer-api",

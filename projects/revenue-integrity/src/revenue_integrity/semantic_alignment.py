@@ -23,12 +23,12 @@ class AlignedSemanticJudgment(Contract):
 
 
 def parse_aligned_judgment(
-    value: ExtractionInput, response: ModelResponse
+    value: ExtractionInput, response: ModelResponse, *, max_context_chars: int = 20000
 ) -> AlignedSemanticJudgment:
     """Preserve model decision and raw quotes; return exact mapped source evidence separately."""
     value = ExtractionInput.model_validate_json(value.canonical_json())
     response = ModelResponse.model_validate_json(response.canonical_json())
-    route = model_request(value)
+    route = model_request(value, max_context_chars=max_context_chars)
     if response.failure or (response.provider, response.model) != (route.provider, route.model):
         raise ValueError("aligned assessment failed or route differs")
     if response.output is None or response.output.content is None or response.output.tool_calls:

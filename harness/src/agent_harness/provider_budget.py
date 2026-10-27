@@ -20,15 +20,68 @@ class ProviderAllowance(Contract):
     allowance_id: NonEmpty
     authorization_ref: NonEmpty
     project_sha256: Sha256
-    max_attempts: Annotated[int, Field(gt=0, le=180)] = 180
+    max_attempts: Annotated[int, Field(gt=0, le=320)] = 180
     models: tuple[Literal["gemini-3.5-flash-lite", "gemini-3.8-flash"], ...]
     approved_at: AwareDatetime
     expires_at: AwareDatetime
 
 
+class AllowanceAmendment(Contract):
+    version: Literal["gemini-allowance-amendment-v1"] = "gemini-allowance-amendment-v1"
+    previous_allowance_sha256: Sha256
+    authorization_ref: NonEmpty
+    maximum: Literal[320] = 320
+    approved_at: AwareDatetime
+    expires_at: AwareDatetime
+    consumed_before: Annotated[int, Field(ge=0)]
+
+
+def amend(path: Path, previous_pin: str, amendment: AllowanceAmendment) -> str:
+    """Append an explicitly pinned amendment in place; never reset attempt history.
+
+    Caller authenticates the owner instruction and publishes the new external pin privately.
+    Old clients fail closed once an amendment exists. No attempt can be outstanding.
+    """
+    amendment = AllowanceAmendment.model_validate_json(amendment.canonical_json())
+    ledger = AttemptLedger(path, previous_pin)
+    with ledger.connect() as db:
+        db.execute("BEGIN IMMEDIATE")
+        grant = ledger.authorization(db)
+        used, unsettled = db.execute(
+            "SELECT count(*),sum(response_pin IS NULL) FROM attempts"
+        ).fetchone()
+        if (
+            amendment.previous_allowance_sha256 != previous_pin
+            or amendment.consumed_before != used
+            or unsettled
+            or amendment.maximum <= grant.max_attempts
+            or amendment.expires_at <= amendment.approved_at
+            or amendment.approved_at < grant.approved_at
+            or amendment.expires_at < grant.expires_at
+        ):
+            raise ValueError("allowance amendment scope/count/interval differs")
+        db.execute("CREATE TABLE amendments(pin TEXT PRIMARY KEY, document TEXT NOT NULL)")
+        db.execute(
+            "INSERT INTO amendments VALUES(?,?)", (pin(amendment), amendment.canonical_json())
+        )
+        db.execute(
+            "CREATE TRIGGER immutable_amendment_update BEFORE UPDATE ON amendments "
+            "BEGIN SELECT RAISE(ABORT,'immutable amendment'); END"
+        )
+        db.execute(
+            "CREATE TRIGGER immutable_amendment_delete BEFORE DELETE ON amendments "
+            "BEGIN SELECT RAISE(ABORT,'immutable amendment'); END"
+        )
+    return pin(amendment)
+
+
 def initialize(path: Path, allowance: ProviderAllowance) -> str:
     allowance = ProviderAllowance.model_validate_json(allowance.canonical_json())
-    if allowance.expires_at <= allowance.approved_at or not allowance.models:
+    if (
+        allowance.expires_at <= allowance.approved_at
+        or not allowance.models
+        or allowance.max_attempts > 180
+    ):
         raise ValueError("allowance interval/model inventory invalid")
     # Exclusive filesystem creation prevents accidental reset of a consumed allowance.
     with path.open("xb"):
@@ -57,6 +110,7 @@ def initialize(path: Path, allowance: ProviderAllowance) -> str:
 class AttemptLedger:
     path: Path
     allowance_sha256: str
+    amendment_sha256: str | None = None
 
     def connect(self) -> sqlite3.Connection:
         if self.path.is_symlink():
@@ -72,6 +126,34 @@ class AttemptLedger:
         value = ProviderAllowance.model_validate_json(rows[0][1])
         if pin(value) != self.allowance_sha256 or value.expires_at <= value.approved_at:
             raise ValueError("shared allowance document differs")
+        exists = db.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='amendments'"
+        ).fetchone()
+        if exists:
+            amendments = db.execute("SELECT pin,document FROM amendments").fetchall()
+            if len(amendments) != 1 or amendments[0][0] != self.amendment_sha256:
+                raise ValueError("allowance amendment requires the current external pin")
+            amendment = AllowanceAmendment.model_validate_json(amendments[0][1])
+            if (
+                pin(amendment) != self.amendment_sha256
+                or amendment.previous_allowance_sha256 != self.allowance_sha256
+                or amendment.maximum <= value.max_attempts
+                or amendment.expires_at <= amendment.approved_at
+                or amendment.approved_at < value.approved_at
+                or amendment.expires_at < value.expires_at
+                or amendment.consumed_before
+                > db.execute("SELECT count(*) FROM attempts").fetchone()[0]
+            ):
+                raise ValueError("allowance amendment differs")
+            value = value.model_copy(
+                update={
+                    "max_attempts": amendment.maximum,
+                    "expires_at": amendment.expires_at,
+                    "approved_at": amendment.approved_at,
+                }
+            )
+        elif self.amendment_sha256 is not None:
+            raise ValueError("pinned allowance amendment is missing")
         return value
 
     def reserve(self, context: RunContext, request: ModelRequest, *, project_sha256: str) -> str:
@@ -162,6 +244,7 @@ def main() -> int:
     parser.add_argument("command", choices=("initialize", "status"))
     parser.add_argument("--ledger", required=True, type=Path)
     parser.add_argument("--allowance-sha256", required=True)
+    parser.add_argument("--amendment-sha256")
     parser.add_argument("--allowance", type=Path)
     args = parser.parse_args()
     try:
@@ -175,7 +258,10 @@ def main() -> int:
         elif args.allowance is not None:
             raise ValueError("status reads the existing authoritative ledger")
         print(
-            json.dumps(AttemptLedger(args.ledger, args.allowance_sha256).summary(), sort_keys=True)
+            json.dumps(
+                AttemptLedger(args.ledger, args.allowance_sha256, args.amendment_sha256).summary(),
+                sort_keys=True,
+            )
         )
         return 0
     except (ValueError, OSError, sqlite3.Error):
