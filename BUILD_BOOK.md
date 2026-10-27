@@ -4297,3 +4297,11 @@ preservev1–v13and addv13historicalrefusaltest;83replaytests pass. Never edit o
 New canary regressions covertimeout/oversize/invalidusage/crashreservation/immutability.
 Finalfullsuite and exact-head CI follow. FirstSDKconnector createdonlyPRform;repository
 instructions/userauthorize authenticatedAPIfallback,which createsverifiedPR120directly.
+
+
+Local fullrun55failed/1310passed427.47s:defaultCtemp is under actualC:/.git marker,
+so sourceexternalpathguards rightly refuse. Do not delete unrelatedmarker or relaxguard.
+VerifyD:/document/.cache/production-agents/s5-temp has noGitancestor;setTEMP/TMPexplicitly
+and rerunfullsuite. FocusedCFPB82passes7.91sunderselectedtemp. Installed82harness/37Revenue
+resourcesmatchwheels;12actualcanarypayloads/exactUnicodecopy revalidate with networkdenied,
+noGoogle/GroqSDKorotherindustries;strictinventedreplay6calls/2timeouts/0provider.

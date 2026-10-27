@@ -313,3 +313,49 @@ claim a source annotation is wrong because an AI explanation sounds plausible. T
 engineering judgment here is the preserved evidence and controlled next experiment, not
 pretending the target was reached. Current concrete results: a reproducible failure
 analysis, tested prototype integrity, durable scope controls and an honestly failed canary.
+
+
+### Local environment failure retained during verification
+
+The first full local run ended55failed/1310passed. The failures shown across the source
+preparation modules reject the default `C:/Users/wolas/AppData/Local/Temp` path because
+this machine has a `C:/.git` marker. This is not permission to weaken source-storage guards
+or delete that unrelated marker. Re-run with both TEMP and TMP set to the verified external
+`D:/document/.cache/production-agents/s5-temp` path. A focused82test CFPB subset passes with
+that setting. Record the corrected full-run outcome separately; do not erase the failed run.
+Installed wheels independently verify82harness/37Revenue resources match the built archives,
+twelve canary payloads and exact Unicode source copying with networking denied and no
+Google/Groq provider SDKs or other industry packages. The synthetic replay consumes6recorded
+calls/reproduces2timeouts/zero provider calls. None of these software checks proves model quality.
+
+
+## Transfer the lesson to the other agents
+
+These are engineering checks to apply, not claims that those agents have passed them:
+
+| Agent | Task/reference mismatch to guard against | Evidence that must stay separate |
+| --- | --- | --- |
+| Olist support | A customer expressing refund intent is different from eligibility or authorization to issue a refund | Intent interpretation, policy predicates, exact SIM amount, distinct approval and committed state |
+| CFPB triage | Product/topic classification does not establish urgency, vulnerability or appropriate resolution | Published taxonomy, separately justified risk labels, routing calibration, redacted evidence and authorized reviewer state |
+| Revenue | A relevant contract passage does not itself establish legal effect or a billing discrepancy | Publisher extraction agreement, semantic applicability, deterministic SIM arithmetic and approved action |
+| Prior Auth | Finding a clinical phrase is different from satisfying every current policy criterion | Source version, literal spans, missing/conflicting facts, criterion logic and qualified recommendation evidence |
+| Supply chain | Estimated improvement and a committed SIM action do not establish realized freight savings | Visible estimates, evaluator-only simulated outcomes, spend/approval state and factual notification wording |
+
+For each new evaluator, write the assertion being tested in one sentence. Identify which
+part of the reference actually supports it, the risky error class, the unit of independence
+and what to do when evidence is missing. Use executable checks for arithmetic, permissions,
+source fidelity and state transitions; use applicable reference-based model evaluation for
+language judgment. Do not let a useful deterministic check stand in for the harder semantic
+claim. Keep failures, unknown usage and unobserved outcomes visible in the shared reporting.
+
+For a new engineer joining the project, start with the failure aggregate and reproduce it
+before editing prompts. Read Entry66to understand how the operator configuration failed;
+read Entry67to understand how the diagnosis changed the experiment design. Run the invented
+integrity tests, then explain which business claims they cannot prove. This gives a new
+teammate a concrete review exercise without access to production personal data or API keys.
+
+
+Final software verification and post-merge acceptance are recorded on
+[PR120](https://github.com/Protagonist01/my-production-agentic-systems/pull/120).
+Use the exact final head/main logs there; earlier failed/cancelled runs remain historical.
+Neither a green matrix nor this investigation closes the outstanding release issues.
