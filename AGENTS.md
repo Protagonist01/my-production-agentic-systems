@@ -136,3 +136,16 @@ Pairedqualitybaseline13/24,taskwording12/24,evidenceselection15/24;neithervarian
 Alllabels/failedstudies/gatespreserved. Any nextmodel-onlycomparison needsconcretescope/budget;
 do not reruncapture/continuationorinterpret418asnewallowance. OpenRouter1/12inventedonly,
 Groq9/12unchanged. Actualresult/audit:docs/paired-quality-evaluation.md anddatareport.
+
+## Model-only comparison authorization (2026-10-27)
+
+Owner explicitlyapproved same sharedGemini lifetimecap468for50newattempts:representative
+inventedcanary eachfor3.5FlashLite/3.8Flash,then48qualitycalls onthe same12exposedfamilies,
+2trials/model onlyifbothcanariespass. Hold originalbaselineprompt/context/question/schema,
+LOW/temp0/512outputfixed;onlymodeldiffers. Use90HTTP/110parentforbothroutes,noautomatic
+retryorpaidfallback. Preserve415priorattempts/allgrants andthreelegacyunusedslots. Append
+ModelExtension pinnedthrough model_extension_sha256 in sameprivateexternalpinfile. No new
+allowance/reset/oldslotreuse. Newmodel-only-trialnamesrecordnewauthorizedobservations.
+Stopfirstcanaryfailure;domainauth/quota/budgetor3consecutive timeout-unavailable stopwith
+missingrowsretained. No relabeling,newholdout,OpenRouter/Groqdomainexportorreleaseapproval.
+Privateproposal:model-only-proposal-2026-10-27-v1;capture:model-only-capture-2026-10-27-v1.

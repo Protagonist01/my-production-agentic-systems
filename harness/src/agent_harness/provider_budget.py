@@ -20,7 +20,7 @@ class ProviderAllowance(Contract):
     allowance_id: NonEmpty
     authorization_ref: NonEmpty
     project_sha256: Sha256
-    max_attempts: Annotated[int, Field(gt=0, le=418)] = 180
+    max_attempts: Annotated[int, Field(gt=0, le=468)] = 180
     models: tuple[Literal["gemini-3.5-flash-lite", "gemini-3.8-flash"], ...]
     approved_at: AwareDatetime
     expires_at: AwareDatetime
@@ -175,6 +175,7 @@ class AttemptLedger:
     development_extension_sha256: str | None = None
     paired_extension_sha256: str | None = None
     availability_override_sha256: str | None = None
+    model_extension_sha256: str | None = None
 
     def development_extension(self, db: sqlite3.Connection) -> DevelopmentExtension | None:
         exists = db.execute(
@@ -257,9 +258,10 @@ class AttemptLedger:
                     "expires_at": extension.expires_at,
                 }
             )
+        from agent_harness.model_budget import model_authorization
         from agent_harness.paired_budget import paired_authorization
 
-        return paired_authorization(db, self, value)
+        return model_authorization(db, self, paired_authorization(db, self, value))
 
     def reserve(self, context: RunContext, request: ModelRequest, *, project_sha256: str) -> str:
         context = RunContext.model_validate_json(context.canonical_json())
@@ -299,7 +301,11 @@ class AttemptLedger:
             if count >= grant.max_attempts:
                 raise ValueError("shared provider-attempt allowance exhausted")
             ticket = uuid4().hex
-            if paired:
+            if self.model_extension_sha256 is not None:
+                from agent_harness.model_budget import reserve_model_slot
+
+                reserve_model_slot(db, self, context, request, ticket)
+            elif paired:
                 from agent_harness.paired_budget import reserve_slot
 
                 reserve_slot(db, self, context, request, ticket)
@@ -378,6 +384,7 @@ def main() -> int:
     parser.add_argument("--development-extension-sha256")
     parser.add_argument("--paired-extension-sha256")
     parser.add_argument("--availability-override-sha256")
+    parser.add_argument("--model-extension-sha256")
     parser.add_argument("--allowance", type=Path)
     args = parser.parse_args()
     try:
@@ -399,6 +406,7 @@ def main() -> int:
                     args.development_extension_sha256,
                     args.paired_extension_sha256,
                     args.availability_override_sha256,
+                    args.model_extension_sha256,
                 ).summary(),
                 sort_keys=True,
             )

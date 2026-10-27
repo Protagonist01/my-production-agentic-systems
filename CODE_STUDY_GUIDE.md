@@ -571,3 +571,24 @@ andControlledCallunion,whilelegacyExecutionPolicystillrefuses110. ActualSDKdefau
 andboundedfakegatewayadmission/callreadbackregressionscoverthis. Initialv1localpolicyfailure
 hasnoreservation andremains;separatev2operatorfreezesoldrequests/newcode/time. Domainonly
 unlocksafterexactsettledrepresentativepass. Final415/418,3legacyboundremaining,0unsettled.
+
+
+## Model-only comparison: isolate model capability from prompt changes
+
+The[model comparison](docs/model-only-evaluation.md) and
+[Build Book Entry69](BUILD_BOOK.md#entry-69--change-only-the-model-and-capture-a-contemporary-control)
+trace a new approved development experiment. comparison_request changes only the model;
+assess_model checks the exact factory,actual response route,strict JSON and existing safe
+quotation alignment without changing rawresponses. QualityOutcome adds challenger as a
+permitted role; summarize defaults to the previous threevariants unchanged,but explicit
+comparison=models uses48scheduled observations and onlybaseline/challenger. Foreignvariant
+rows refuse. Hand-counted tests prevent a phantom thirdvariant or disappearing failures.
+
+model_budget appends50slots at415settledrows and requires allfiveparentgrant/policypins.
+CurrentAttemptLedger needs the newmodelpin. Atomicmodelslot+pairedtracerow+attemptinsertion
+satisfies oldpairedguard and newmodelguard;no oldrow/trigger replaced. Model-only trialnames
+separate contemporarybaseline calls from oldones withidenticalrequestbytes. Twoexact
+modelcanarypasses need matching settled newreceipts. ModelComparisonWorker optsintoFlash,
+HTTP90andunchanged512settings;oldHTTP30/general60limits stay. Original415history,oldslots,
+priorreports andsourceinventoriesmustverifyaftercapture. A goodmodelscoreonexposedcases
+stillcannotqualifyorcloseareleasegate. Readthelinkedplanforactualstatusandlimits.

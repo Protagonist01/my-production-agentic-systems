@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 69 — Change only the model and capture a contemporary control](#entry-69--change-only-the-model-and-capture-a-contemporary-control)
 - [Entry 68 — Isolate development changes behind settled canaries](#entry-68--isolate-development-changes-behind-settled-canaries)
 - [Entry 67 — Diagnose task mismatch before another model study](#entry-67--diagnose-task-mismatch-before-another-model-study)
 - [Entry 66 — Develop on exposed failures under a schedule-bound extension](#entry-66--develop-on-exposed-failures-under-a-schedule-bound-extension)
@@ -4423,3 +4424,58 @@ codeinventoriescheckedagainstGit;initialWindowsbackslashGitpathlookupfailedbefor
 correctpathsyntaxandrerunauditpasses. Alloldlabels/holdout/failureartifactsretained.
 Nostudyclosesgate. Nexttestproposal:modelonlychangeunderfixedbaselineprompt/interface;
 no newdispatchfunded. Detailedresults,tradeoffsandnegativehypothesislessonsrecordedinplan.
+
+
+## Entry 69 — Change only the model and capture a contemporary control
+**Files touched:** model comparison allowance, worker, assessment/report, tests and experiment documentation.
+
+### Context and choice before implementation
+PR121merged4657551 after1377tests/environment,128SQLandallrequiredchecks/main. The
+pairedcomparison findsbaseline13/24,wording12/24,selection15/24;neithervariantpromoted.
+Ownerexplicitlyapproves468total sharedGemini allowance for50newattempts:one representative
+canary each for3.5FlashLiteand3.8Flash,then48qualitycalls onthe same12exposedfamilies,two
+trials/model. Both canaries must pass. No paidfallback,retry,oldslotreuse or releaseapproval.
+
+### Before you read on
+Why recapture a baseline when24baseline responses already exist? Consider provider/model
+updates,availability and order effects. A contemporary pairedcontrol gives a more useful
+comparison than attributing every difference from an older capture to the new model.
+
+### Decision and construction
+Hold originalbaselineprompt,fullcontext/question,decision/quotesschema,temperature0,LOWand
+512outputtokensfixed. Only modelfielddiffers. Alternate modelorder bycase/trial. Keep both
+longrepresentativeinventedcanaries before any contracttext;90HTTP/110parent forboth routes.
+Do not import earlier3.8development prompt/shortquote/2048changes;that would test a bundle.
+Identicalnamedsettings do not guaranteeidenticalinternalreasoning acrossmodelarchitectures.
+Truncation is a failure,not permission to silently enlarge the output budget or retry.
+
+Append immutable50slot extension at415settledattempts,referencing allsixhistoricalpins.
+Require a seventhcurrentpin;oldclientsrefuse. New run uses model-only-trial-1/2 context
+namespaces because identical baseline requests already occurred in priortrial-1/2. This
+records newauthorizedtrials rather than rewriting/reusing them. Mirror newticket/context
+into append-onlypaired_slots to satisfy existing SQLguard;retain all74priorrows. Additional
+SQLguard requires modelslots forserial>415,so unawareoldcodecannot spendthethreeoldslots.
+Slot and attemptinsertionsremainatomic;50unique slots mean atmost465consumedfrom415,
+leavingthreelegacyunusedslotsinaccessibleunder468globalcap. No securityguard is dropped.
+
+Modelspecificcanarypass mustmatch an actualsettledresponse and exactstrictIDoutput.
+Two passes unlockthe48frozendomaincalls. Report24scheduled permodel,pairedfamilygains/losses,
+classerrors,controls,rawdecisionversuscitationvalidity,tokens,latencyandunknowncost.
+No outcome-selected exposedstudy can establish a freshconfidence or legaltruth claim.
+
+### Verification and capture pending
+Prepared26distinctrequests pass actualSDKserialization before budgetchange;no newnetwork
+callorallowancemutation. PublicGooglemodel/pricingdocs list3.8Flash/LOW/structuredoutputs
+andFreeStandardinput/output;accountbillingremainsoperatorattested,notindependentlyverified.
+Actualworkerflag,90secondwindow,strict512cap,fullgateway andpairedreceipt tests must pass
+beforeextension/canaries. Preserveall415priorrows,grants,slots,studiesandreports.
+
+
+### Pre-dispatch proof
+13focused model/pairedreport/availability tests pass41.56seconds;204sources typecheck.
+Actual26requestsserialize;bothactualSDKmockHTTPexchangesverify90readtimeout/512output,
+andsharedgatewaypolicy/callreadbackroundtripspass. No providerdispatchorledgerchange.
+Mypyfindsemptyintervalcollectionneedslist[tuple[int,int]]annotation;addexplicittyping.
+LegacyFlash2048longwindowrefusaltestnowuses2048because512routeisthenewexplicitapproved
+modelcomparison;defaultsandunapprovedwindowrequestsremainblocked. Source/reportparsers
+preserveoriginaloutputs/labels;two-modelreporthas48fixeddenominator,oldreportmodeunchanged.
