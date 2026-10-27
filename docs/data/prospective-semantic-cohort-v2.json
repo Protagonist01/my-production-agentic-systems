@@ -1,0 +1,119 @@
+{
+  "calibration_cases": 4,
+  "categories": {
+    "Affiliate License-Licensee": 2,
+    "Cap On Liability": 1,
+    "Governing Law": 2,
+    "License Grant": 1,
+    "Liquidated Damages": 2,
+    "No-Solicit Of Customers": 1,
+    "Revenue/Profit Sharing": 2,
+    "Source Code Escrow": 1
+  },
+  "class_counts": {
+    "answerable": 6,
+    "no_answer": 6
+  },
+  "cohort_sha256": "58ef05f14588861ed085e88abdf8d4c87352e8234b724109cf72475c17bb80ca",
+  "dataset_sha256": "3de0fd848aedc9efd3ff3d4a9ab02bcb987afc2f6b2f5fc87e0eabd9c8e7ffa0",
+  "dispatch_allowed": false,
+  "exposure_inventory_sha256s": [
+    "d3ca383687d12edabbb4eef734126c638753462dceba9c3637c52467530038f5",
+    "2ad53633b4d49bba2a85fcbd817e0058057ea5ead108e9eeb6d08314acffa249",
+    "6b5fc8546fe5f91095ea6a49bb514888304421091c25d92078c728e0c7fc95f5",
+    "0a9ae6202eeaa563ea386e94d0f46d58b2bfbcc1ec97435f3cde0bf6259af149"
+  ],
+  "families": 12,
+  "feasibility": {
+    "additional_calibration_families": 4,
+    "assumptions": "Declared5percent diagnostic objective,independent comparable groups,zero observed errors;not a risk recommendation.",
+    "forecast": {
+      "blockers": [
+        "google-gemini-developer-api:attempt_cap_exceeded"
+      ],
+      "dispatch_allowed": false,
+      "fits_declared_snapshots": false,
+      "maximum_by_agent": {
+        "revenue": 296
+      },
+      "maximum_by_provider": {
+        "google-gemini-developer-api": 296
+      },
+      "plan_sha256": "f3185facb758968eff55713c0a1123b0fd3389a3e5b06dccb5f96b4cb621ebe1",
+      "release_allowed": false,
+      "remaining_before": {
+        "google-gemini-developer-api": 156
+      },
+      "schema_version": 1,
+      "snapshot_references": [
+        {
+          "provider": "google-gemini-developer-api",
+          "sha256": "cf217b6cbcff0cdcfc20a23a97a4eaf9d17f213fd0cd36ff72e7f4e9a320dc12"
+        }
+      ]
+    },
+    "minimum_attempts_before_other_costs": 296,
+    "minimum_validation_families": 144,
+    "original_forecast_sha256": "bde352ca032c326799330897ec61470b19c172467bcd679bcd4234de95966400",
+    "production_threshold_accepted": false,
+    "reference_classes": 2,
+    "remaining_shared_attempts": 156,
+    "shortfall_before_comparators_judges_failures": 140,
+    "trials_per_case": 2,
+    "zero_error_groups_per_reference_class_at_two_sided95_upper5percent": 72
+  },
+  "forecast": {
+    "blockers": [],
+    "dispatch_allowed": false,
+    "fits_declared_snapshots": true,
+    "maximum_by_agent": {
+      "revenue": 24
+    },
+    "maximum_by_provider": {
+      "google-gemini-developer-api": 24
+    },
+    "plan_sha256": "23645dd674bc3f948cf6ab2c538af77fc7e5f57b57052793ce0fe625423b66c6",
+    "release_allowed": false,
+    "remaining_before": {
+      "google-gemini-developer-api": 156
+    },
+    "schema_version": 1,
+    "snapshot_references": [
+      {
+        "provider": "google-gemini-developer-api",
+        "sha256": "cf217b6cbcff0cdcfc20a23a97a4eaf9d17f213fd0cd36ff72e7f4e9a320dc12"
+      }
+    ]
+  },
+  "forecast_projection_encoding": "provider-sha256-records-v1",
+  "limits": [
+    "Prepared only;no model responses/quality scores or new capture approval.",
+    "Balanced short-context/hash convenience sample,not representative;publisher labels public.",
+    "Family provenance inferred;exact source/input checks do not detect all semantic near-duplicates.",
+    "Original answerability references are not clinical/legal/billing validation.",
+    "Eight validation families cannot establish production uncertainty;repeat count is not group count.",
+    "Forecast fit does not authorize spending the completed prior24attempt pilot allowance."
+  ],
+  "max_context_chars": 11770,
+  "original_corpus_holdout_changed": false,
+  "original_forecast_sha256": "d32d6a54f90b3a3f5495280b615f849d1b88e908a3061f0a6e8313728c5308f2",
+  "parser": "semantic-answerability-parser-v2",
+  "previous_artifact_files_verified_unchanged": 57,
+  "prior_families_excluded": 128,
+  "prompt_changed": false,
+  "provider_calls": 0,
+  "release_allowed": false,
+  "scheduled_attempts": 24,
+  "selected_cases": 12,
+  "selection_sha256": "c52a4271a5d1ca918739d5cbde2cafd7e61a6435252354149ad0db63446d1d9d",
+  "shared_budget": {
+    "consumed": 24,
+    "remaining": 156,
+    "unsettled": 0
+  },
+  "source_inventory_sha256": "3a8955d4aef0c30937a423a68e1d141d842daeb7187d5b05a3de4afa884a42f1",
+  "source_manifest_sha256": "b852424ab854c30bd730ccc90a799907e02d3875a3066d203aed36f842f78540",
+  "source_split": "development",
+  "validation_cases": 8,
+  "version": "prospective-semantic-cohort-v2-prepared"
+}

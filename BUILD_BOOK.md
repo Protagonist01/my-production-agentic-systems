@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 64 — Freeze a prospective cohort without recycling exposed families](#entry-64--freeze-a-prospective-cohort-without-recycling-exposed-families)
 - [Entry 63 — Map whitespace changes back to exact source spans](#entry-63--map-whitespace-changes-back-to-exact-source-spans)
 - [Entry 62 — Test semantic answerability against publisher references](#entry-62--test-semantic-answerability-against-publisher-references)
 - [Entry 61 — Budget safety does not guarantee writer availability](#entry-61--budget-safety-does-not-guarantee-writer-availability)
@@ -3926,3 +3927,81 @@ before/after; shared ledger remains24used/156remaining/0unsettled. Capture new d
 only in an exclusive private directory and publish counts/pins,not source text. This is an
 exposed regression diagnostic,not fresh/heldout semantic evidence or a repaired original
 qualification. Old13/16validation and semantic disagreements remain unchanged.
+
+## Entry 64 — Freeze a prospective cohort without recycling exposed families
+**Files planned:** prospective Revenue preparation contracts, source exclusion validation,
+tests and a zero-call private cohort/aggregate. Current model prompt and old studies stay intact.
+
+### Context and decision before implementation
+PR116mergede432655with1290quality/128SQLchecks and green main. The opt-in parser's exposed
+diagnostic is not fresh evidence. User requested proceeding. Prepare a distinct future
+study rather than replaying old provider rows or claiming the parser repair qualifies it.
+Shared Gemini24/180consumed; the completed24attempt pilot cannot automatically be extended.
+
+### Before you read on
+How do renamed case IDs or imperfect family inference allow an old document back into a
+supposedly new cohort? Which exclusion evidence must travel with the frozen schedule?
+
+### Construction plan
+Record each prior case's source-family key, context hash and exact provider input hash in
+a private pinned exposure inventory; omit all raw text from that inventory. Bind every
+inventory to the original source manifest and the actual prior dataset/report references.
+Selection rejects cross-source inventories, duplicate source cases and invalid publisher
+spans. Exclude declared prior families, exact source contexts and provider inputs, and
+prevent repeated contexts/families within the new cohort. Use source development only,
+retain original labels and old corpus holdout, cap context length before selection and
+limit category concentration. Selection remains a balanced convenience pilot, not a
+representative or unseen-model-data claim. Keep the model prompt unchanged to avoid tuning
+on old validation disagreements. Explicitly bind the prospective parser version to new code
+and define both old/new parser reporting on the same future responses without extra calls.
+
+Freeze dataset, parser/source inventory and24row/twotrial schedule; report the exact shared
+allowance snapshot and proposed24attempt forecast, with dispatch authorization false.
+Verify disjointness and original artifact pins before/after and save private artifacts only
+at a new exclusive path. No provider call or retrospective rescore is part of this batch.
+
+### Actual preparation and feedback
+Initial17focused checks pass3.58seconds; after frozen-bundle tampering coverage,33checks pass
+6.50seconds.194sources typecheck. The first source preparation refuses in the old model-request
+function because historical citation-study documents can exceed20,000characters. Do not relax
+that function: retain context/family exclusions for those records and use an absent optional
+request fingerprint. Add the existing original reviewer packet to the audit, verify its pinned
+inventory, and conservatively exclude its families/contexts too; these overlap the union.
+
+Prepared12new families under fixed12,000character/two-per-category bounds:6answerable/6noanswer,
+4calibration/8validation,8categories,max11,770characters. Four exposure inventories exclude
+120known families;57old private files remain hash-identical. The new directory is exclusive,
+source/target DBs read-only and unchanged. This is a known-exposure inventory,not omniscient
+training/exposure detection. Existing prompt/labels/original corpus holdout remain unchanged.
+
+The exact24attempt forecast fits156remaining but dispatch staysfalse. Separately calculate
+the declared diagnostic5%two-sided95%zero-error objective:72groups/class,144validationgroups,
+plus4calibrationfamilies,twotrials=296attempts. This exceeds remaining156by140before any
+other route/failure. The oversized forecast refuses. Preserve the confidence requirement
+and explicitly call the12familycohort a prospective diagnostic,not a release-completing study.
+No new quota/grant/model request or qualified review is inferred. Final installed/hosted
+checks follow before delivery; provider budget remains24consumed/156remaining/0unsettled.
+
+### Installed and publication verification before submission
+Installed Revenue34resources match the wheel exactly, with no provider SDKs/other industry
+packages. The network-denied installed module reconstructs the selected twelve-case bundle
+identically from its private selection/exposure inventories and timestamp. This validates
+bundle reconstruction,not the completeness of the original candidate population or truth
+of publisher meaning. Recorded executable source inventory still matches every file.
+Ruff303files,194typed sources,kept import contracts and sixbuildpairs pass. Publication scans
+7files against configuredcredentials/24OlistIDs/20,910originalquestion IDs/510contextprefixes;
+all absent,419relative links resolve and source/draft/backlog statuses/dependencies unchanged.
+Final hosted checks and postmerge acceptance remain pending;zero provider calls in this batch.
+
+### Exact snapshot-hash scan findings and explicit approval
+Initial PR117run40425932890flags two generic-api-key findings in the public forecast's
+provider-to-snapshot-hash maps. Compare both to the actual private AllowanceSnapshot
+canonical hash; both match and are not credentials. The user explicitly approved these
+two exact historical exceptions, separate from the earlier four exceptions. Preserve the
+failed run and append only the two observed commit/file/rule/line fingerprints.
+
+Publicly project provider/hash pairs as separate records and retain the original forecast's
+canonical digest. Reconstruct both maps and validate equality with the private forecasts.
+This changes publication formatting only; snapshot,cohort,source inventory,ledger and actual
+forecast arithmetic remain unchanged. No scanner workflow/rule/path exclusion or branch
+history rewrite. Repaired full CI remains required before merge.

@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [prospective semantic cohort chapter](docs/prospective-semantic-cohort.md) traces the
+next offline preparation against basee432655: pinned prior exposures, source/context/request
+exclusions, balanced publisher references and a24request future schedule. It also exposes
+the gap between a24call diagnostic and the declared uncertainty target's296callminimum.
+No new provider execution or release acceptance follows from a forecast that fits.
+
 The [citation alignment chapter](docs/citation-alignment.md) describes the offline parser
 improvement against base3d72610: whitespace-only unique matches map to exact original spans,
 ambiguity/changed characters refuse, and a separate Revenue parser preserves v1capture

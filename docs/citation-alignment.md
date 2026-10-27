@@ -110,3 +110,7 @@ reference disagreements and uncertainty remain unadjudicated. Shared Gemini cons
 stays24/180,156remaining,0unsettled; no provider call, token usage or cost is generated here.
 Because the old outputs motivated development, this diagnostic is explicitly exposed and
 cannot serve as prospective validation. There is no release or human-review substitution.
+
+A [separate prospective cohort](prospective-semantic-cohort.md) now prepares future requests
+with inspected prior families/contexts/inputs excluded. It has no provider results, and its
+forecast explicitly distinguishes a diagnostic pilot from an affordable final qualification.

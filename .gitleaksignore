@@ -28,3 +28,9 @@ ef66761db82ba546455a16c2bc4b4ebb8b81f5f3:docs/data/evaluator-integrity-study-v2.
 ef66761db82ba546455a16c2bc4b4ebb8b81f5f3:docs/data/evaluator-integrity-study-v2.json:generic-api-key:269
 ef66761db82ba546455a16c2bc4b4ebb8b81f5f3:docs/data/evaluator-integrity-study-v2.json:generic-api-key:273
 ef66761db82ba546455a16c2bc4b4ebb8b81f5f3:docs/data/evaluator-integrity-study-v2.json:generic-api-key:274
+
+# User-approved exact historical PR117 findings: verified canonical allowance-
+# snapshot SHA256 values beside the provider identifier, not credentials.
+# Public projection now separates provider and sha256; no rule/path exclusion.
+25159010e66058110fc6ae76767b9f7687bea910:docs/data/prospective-semantic-cohort-v2.json:generic-api-key:49
+25159010e66058110fc6ae76767b9f7687bea910:docs/data/prospective-semantic-cohort-v2.json:generic-api-key:78
