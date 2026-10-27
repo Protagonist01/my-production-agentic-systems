@@ -4163,3 +4163,29 @@ actual approved original model inventory and Revenuecontext;do not weaken produc
 checks. After immutable slot triggers/request tool-and-system message binding are added,
 all14new focused cases pass21.23s.196configured sources typecheck;lint/format pass. Freeze
 and commit executable code before applying any live extension or making the24calls.
+
+### Operator failure retained before correction
+The first18development slots are reserved and settled but never reach the provider. Their
+saved raw responses say Unsupported or invalid Gemini request,model_calls0. Root cause:
+operator enabled Flash in admission but constructed GeminiWorker without flash_comparison,
+whose defaultfalse rejects3.8in request_payload. I should have preflighted the actual worker
+configuration,not only admission/request contracts. Stop the owned parent at a settled
+boundary:338consumed,6remaining,0unsettled. Preserve18rows and all charges;no refund or retry.
+Initial script and source inventory stay pinned in the old plan;the first run cannot pass
+its all24readiness screen. Shell quoting failed on the first attempted stop command,so
+write an exact helper file and stop only the inspected owned PIDs once no reservation is
+unsettled. No unknown attempt is discarded.
+
+Add development_worker factory with explicit Flash opt-in and an actual request_payload
+preflight regression. Mock the selected GeminiTransport to prove worker passes Flashflag
+through,with zero network. Freeze a correction record/source inventory for the six untouched
+original slots only. Do not retry the18failedslots or treat the mixed-operator result as a
+valid fixed-candidate study. Remaining6are all no-answer trial2;they cannot validate positive
+citations or repair this development screen. Further spending would require a new scope.
+
+Actual payload preflight also finds the legacy GenerationParameters max_output_tokens512
+ceiling,independent of the missing workerflag. Keep old512policy and add a separate
+FlashDevelopmentParameters<=2048only for explicitly enabled3.8route;2049andLite2048still
+refuse. Regression15cases now pass19.92seconds,including zero-network SDK payload creation
+and worker propagation through a mocked selected transport. This checks the real adapter
+configuration before consuming any remaining slot. Record both causes,not just the first.

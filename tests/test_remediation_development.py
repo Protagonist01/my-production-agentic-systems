@@ -196,3 +196,36 @@ def test_extension_refuses_wrong_parent_and_unsettled_history(tmp_path):
             ledger, doc.model_copy(update={"request_sha256s": (pin(requests[0]),) * 12})
         )
     assert ledger.summary()["maximum"] == 320
+
+
+def test_actual_worker_payload_preflight_enables_flash_without_any_network(monkeypatch):
+    from agent_harness.gemini import request_payload
+    from revenue_integrity.remediation_development import development_worker
+
+    worker = development_worker("invented-not-a-key", free_tier_confirmed=True)
+    assert worker.flash_comparison
+    request_payload(request(), flash_comparison=worker.flash_comparison)
+    with pytest.raises(ValueError):
+        request_payload(request(), flash_comparison=False)
+    with pytest.raises(ValueError):
+        request_payload(
+            request().model_copy(update={"model": "gemini-3.5-flash-lite"}), flash_comparison=True
+        )
+    with pytest.raises(ValueError):
+        request_payload(
+            request().model_copy(update={"parameters": {"max_output_tokens": 2049}}),
+            flash_comparison=True,
+        )
+    seen = []
+
+    class FakeTransport:
+        def __init__(self, key, *, free_tier_confirmed, flash_comparison):
+            assert key == "invented-not-a-key" and free_tier_confirmed and flash_comparison
+
+        def generate(self, actual, *, timeout_seconds):
+            seen.append(actual)
+            return response(actual)
+
+    monkeypatch.setattr("agent_harness.gemini.GeminiTransport", FakeTransport)
+    worker.generate(request(), timeout_seconds=5)
+    assert seen == [request()]

@@ -6,6 +6,7 @@ from typing import Literal
 from agent_harness.cases import _unique_object
 from agent_harness.citation_alignment import align_quote
 from agent_harness.contracts import ModelMessage, ModelRequest, ModelResponse
+from agent_harness.isolated_transport import GeminiWorker
 from agent_harness.release_contracts import pin, sha256
 
 from revenue_integrity.semantic_alignment import AlignedSemanticJudgment
@@ -81,3 +82,10 @@ def parse_development(
 
 
 DEVELOPMENT_ONLY: Literal[True] = True
+
+
+def development_worker(api_key: str, *, free_tier_confirmed: bool) -> GeminiWorker:
+    """Enable the same explicit Flash route as admission; do not rely on worker defaults."""
+    if not api_key or not free_tier_confirmed:
+        raise ValueError("development worker requires existing Free configuration")
+    return GeminiWorker(api_key, free_tier_confirmed=True, flash_comparison=True)
