@@ -9,7 +9,7 @@ legal advice, Olist, CFPB or production release by itself.
 
 Select148distinct known unexposed source-development families from the existing pinned
 CUAD source, preserving original corpus holdout and all earlier failures. Each family and
-exact context appears once. Exclude four historical exposure inventories (120known families).
+exact context appears once. Exclude four historical exposure inventories (128known families).
 The former12kcharacter cap leaves30families;20kleaves69. A new explicit50kcap provides154
 families before final unique-context/request and category balancing. Existing pilot/default
 request limits remain20k. No truncation, publisher-label edits or outcome-based resampling.

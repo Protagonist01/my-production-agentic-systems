@@ -4058,3 +4058,10 @@ type checking passes195sources before the final CLI amendment pin addition. Ruff
 and lint are clean. Actual preparation, source pin checks and provider capture follow; no
 new provider call has occurred at this point. Shared original authorization and history
 must be reverified immediately before an in-place amendment.
+
+Preparation verified all four original exposure-inventory pins. Their actual union is128
+families (the120from three studies plus eight additional reviewer-packet families). Earlier
+prose stated120; the retained public aggregate and actual selection used128. The first new
+preparation assertion caught that stale prose before any output; corrected the assertion
+against the pinned evidence. Actual cohort:148unique families/contexts,37categories with
+four cases each, max49,760characters. Original source/database pins remain unchanged.
