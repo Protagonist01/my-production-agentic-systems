@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 66 — Develop on exposed failures under a schedule-bound extension](#entry-66--develop-on-exposed-failures-under-a-schedule-bound-extension)
 - [Entry 65 — Size and freeze a confidence-target study](#entry-65--size-and-freeze-a-confidence-target-study)
 - [Entry 64 — Freeze a prospective cohort without recycling exposed families](#entry-64--freeze-a-prospective-cohort-without-recycling-exposed-families)
 - [Entry 63 — Map whitespace changes back to exact source spans](#entry-63--map-whitespace-changes-back-to-exact-source-spans)
@@ -4115,3 +4116,96 @@ attempts would require344sharedtotal;no new grant or call occurs. Labels remain 
 all cases explicitly exposed,no qualification claim. The candidate/parser/operator and
 append-only amendment must be reviewed/tested/frozen before any future authorized dispatch.
 Keep the current320cap and failure evidence intact.
+
+## Entry 66 — Develop on exposed failures under a schedule-bound extension
+**Files touched:** provider_budget.py,remediation_development.py,tests,AGENTS and guide.
+
+### Context and decision before capture
+PR118merged8817c8a after ten final checks and nine applicable main jobs. Actual1313tests
+in four environments plus128SQL. The296attempt study fails:237/288validationcorrect,
+30/144failed families,exactperclassupper39.59%/24.06%. The owner explicitly approves344total
+for the prepared24attempt development test. Do not rerun/replace the failed final study.
+
+### Before you read on
+How can an allowance extension stop a repeated trial or a different model from consuming
+the new24slots while retaining every historical grant and reservation?
+
+### Decision and construction
+Retain original grant and first320amendment canonical schemas to preserve their hashes.
+Add a separate immutable DevelopmentExtension referencing both pins. It binds344maximum,
+320starting count,Revenue,3.8Flash,runID and12unique approved request hashes. Refuse before
+insertion unless all320prior attempts settled. Immediate transaction serializes grant
+extension and reservations. Current clients need all three pins;old code is capped320and
+exhausted. Atomic unique(request,trial)slots map to tickets,so a duplicate trial rolls back
+without consuming or calling the provider. No generic reset or larger fresh grant.
+
+Implement development_request to compare the exact reviewed system-prompt digest,route,
+parameters,schema and original model-only context/question. Parser accepts the actual3.8
+route,refuses duplicate JSON keys,inconsistent decisions,multiple/long quotes and ambiguous
+or non-whitespace changes. Reuse exact source mapping;do not relax historical parsers.
+Frozen private proposal/modelinputs are the source of prompt bytes,not evaluator labels.
+
+The user-approved combined candidate changes model,prompt and output budget together.
+That can test whether the candidate is useful on exposed failures,but cannot attribute
+causality to any one change. The12families are deliberately exposed development,never a
+new holdout. Keep24rowdenominator;bothtrials/allfamilies must match references with valid
+citations for the proposed readiness screen. This is not a confidence/release gate.
+
+### Checks and failures during construction
+Whole-repo196sources typecheck;Ruff lint/format pass on touched code. Invented regression
+checks cover prompt/schema/context/route changes and malformed quotation/JSON cases,plus
+320history preservation,24slots,wrongparent/stalepin/foreignscope/duplicates. Actual test
+results and private capture follow. No provider call or live ledger extension yet.
+
+Focused52checks pass38.65s after correcting the invented fixture:it initially retained
+Olist/FlashLite-only authorization and rightly refused the Revenue/3.8request. Match the
+actual approved original model inventory and Revenuecontext;do not weaken production
+checks. After immutable slot triggers/request tool-and-system message binding are added,
+all14new focused cases pass21.23s.196configured sources typecheck;lint/format pass. Freeze
+and commit executable code before applying any live extension or making the24calls.
+
+### Operator failure retained before correction
+The first18development slots are reserved and settled but never reach the provider. Their
+saved raw responses say Unsupported or invalid Gemini request,model_calls0. Root cause:
+operator enabled Flash in admission but constructed GeminiWorker without flash_comparison,
+whose defaultfalse rejects3.8in request_payload. I should have preflighted the actual worker
+configuration,not only admission/request contracts. Stop the owned parent at a settled
+boundary:338consumed,6remaining,0unsettled. Preserve18rows and all charges;no refund or retry.
+Initial script and source inventory stay pinned in the old plan;the first run cannot pass
+its all24readiness screen. Shell quoting failed on the first attempted stop command,so
+write an exact helper file and stop only the inspected owned PIDs once no reservation is
+unsettled. No unknown attempt is discarded.
+
+Add development_worker factory with explicit Flash opt-in and an actual request_payload
+preflight regression. Mock the selected GeminiTransport to prove worker passes Flashflag
+through,with zero network. Freeze a correction record/source inventory for the six untouched
+original slots only. Do not retry the18failedslots or treat the mixed-operator result as a
+valid fixed-candidate study. Remaining6are all no-answer trial2;they cannot validate positive
+citations or repair this development screen. Further spending would require a new scope.
+
+Actual payload preflight also finds the legacy GenerationParameters max_output_tokens512
+ceiling,independent of the missing workerflag. Keep old512policy and add a separate
+FlashDevelopmentParameters<=2048only for explicitly enabled3.8route;2049andLite2048still
+refuse. Regression15cases now pass19.92seconds,including zero-network SDK payload creation
+and worker propagation through a mocked selected transport. This checks the real adapter
+configuration before consuming any remaining slot. Record both causes,not just the first.
+
+### Completed operationally failed development and audit
+The six untouched rows yield2actualtimeouts,1actualunavailable,then3circuit-open denials
+before reservation. Parent bound60seconds does not change adapter HTTPceiling30seconds;
+keep both timings rather than claiming all attempts ran60seconds. Total21newreservations,
+3actualproviderdispatches,24outcomes,no decisions. Ledger341/344used,3remaining,0unsettled.
+No18failedslotrerun/refund,circuitbypass or new spending occurs. Three unreserved denied
+rows remain failures in the24scheduled denominator. Mixed operator versions cannot score
+model development quality;do not call this a failed model or an improved candidate.
+
+Audit revalidates all21request/context/response pin triples,unique slots and absence of
+reservations for three circuit denials;original320rows/grant/amendment unchanged.312old
+private artifact files remain identical. Historical executable bytes match their pinned
+commit with GitLF/workingCRLF handled explicitly;corrected current inventory matches too.
+Knownreportedcalls3;unknown token/costfields21/24,knownzero3circuitdenials. Rawcost unknown
+is not zero. Constructed actual SDK HTTPtransport/parser regression passes9.99seconds,
+verifying3.8route,2048output,one-quote schema,onefakewireexchange and exact source mapping
+with no network. This is compatibility evidence,not remoteavailability or semanticquality.
+Installed80harness/36Revenue resources equal wheels and the earlier cohort revalidates
+networkdenied,no provider SDK/otherindustries. Final exact-head hosted checks follow.

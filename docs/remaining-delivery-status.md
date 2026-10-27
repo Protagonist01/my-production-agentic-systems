@@ -12,11 +12,13 @@ and 24.06% no-answer against 5%. These are conditional marginal
 reference-relative intervals, not production prevalence or qualified legal/billing truth.
 Original pilot calibration 6/8 and validation 13/16 remain preserved as failures.
 
-Shared Gemini: **320/320 consumed, 0 remaining,
-0 unsettled**, amended in place; original 24 attempts/grant retained. Groq: 9/12 invented-only,
-three remaining. Raw monetary costs remain unknown without billing evidence. A separate
-24-attempt exposed-case development proposal requests a 344-total cap; it is unapproved
-and has made zero calls. Do not consume fresh holdout or infer more spending authority.
+Shared Gemini: **341/344 consumed, 3 remaining, 0 unsettled**, extended in place;
+original320attempts/grant/amendment retained. The owner approved the24attempt exposed-case
+development test. It failed operationally:18local operator-configuration refusals,2remote
+timeouts,1unavailable response,then3circuit-open denials before reservation. No usable model
+decision or retry/refund. See the [development report](remediation-development.md).
+Groq:9/12invented-only,three remaining. Raw monetary costs remain unknown without billing
+evidence. Do not retry denied rows,consume fresh holdout or infer more spending authority.
 
 Legacy gates, profiles and dependencies remain. Ten task issues and their acceptance
 conditions are below; no issue is closed by the failed study.
@@ -41,8 +43,9 @@ human/qualified-review gates. A validated concrete replacement method and explic
 remain necessary before promotion. Model agreement, citation existence and implementation
 merges cannot supply semantic truth or risk-owner decisions. Do not inflate coverage with
 exposed repetitions, reset the authoritative allowance or backdate approvals. The original
-24-attempt pilot and 296-attempt study are complete; the 320-total cap is exhausted.
-Further development needs an explicit new cap/scope; exposed cases cannot supply fresh confidence.
+24-attempt pilot and296-attempt study remain unchanged. The authorized development test
+is operationally failed,with3unreserved attempts remaining under344total. Any new canary/
+development run needs an explicit scope;exposed cases cannot supply fresh confidence.
 
 The [closure plan](release-closure-plan.md), [accounting/domain chapter](closure-engineering.md),
 [P6/S6/catalog chapter](prior-auth-supply-release-reports.md) and

@@ -41,6 +41,11 @@ class GenerationParameters(BaseModel):
     thinking_level: Literal["LOW"] = "LOW"
 
 
+class FlashDevelopmentParameters(GenerationParameters):
+    # Only the separately opted-in Flash route permits the reviewed development limit.
+    max_output_tokens: Annotated[int, Field(gt=0, le=2048)] = 512
+
+
 def json_value(text: str) -> JsonValue:
     def reject_constant(value: str) -> None:
         raise ValueError("Non-finite JSON is unsupported")
@@ -129,9 +134,12 @@ def request_payload(
     allowed = (MODEL, "gemini-3.8-flash") if flash_comparison else (MODEL,)
     if (request.provider, request.endpoint) != (PROVIDER, ENDPOINT) or request.model not in allowed:
         raise ValueError("Only the explicitly selected Gemini route is supported")
-    parameters = GenerationParameters.model_validate(request.parameters).model_dump(
-        exclude_none=True
+    parameter_contract = (
+        FlashDevelopmentParameters
+        if flash_comparison and request.model == "gemini-3.8-flash"
+        else GenerationParameters
     )
+    parameters = parameter_contract.model_validate(request.parameters).model_dump(exclude_none=True)
     level = parameters.pop("thinking_level")
     # Omitted parameters are not invented in the canonical request. SDK defaults
     # are part of this pinned adapter version; callers must pin explicit settings.
