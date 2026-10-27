@@ -4263,3 +4263,37 @@ The previous18local failures were operator errors: admission accepted a configur
 actual worker rejected, and a legacy output ceiling independently rejected the new request.
 Adapter-level preflight now precedes spending. No outcome from the failed run is refunded.
 New implementation, tests and real canary results follow; no improvement claimed yet.
+
+
+### Actual diagnosis, implementation and first remote result
+Reanalysis verifies296saved rows,288validation outcomes and exact schedule/response bindings.
+Disjoint237correct/28wrong/22citation-invalid/1provider;31raw disagreements overlap three
+citation-invalid;19invalid quotes otherwise have correct decisions.142/144pairs repeat raw
+decision;15wrongbothtrials. Long35–50kband13citationinvalid+1provider among60trials;shortband
+still13wrong decisions.16private disagreement notes are AI proposals,not human annotations.
+Full passages/IDs remain private; invented paraphrases explain the public failure classes.
+Do not relabel suspicious positive/negative source references to make benchmark pass.
+
+Two opt-in prototypes added:taskwording-only and evidence-interface-only. Catalog covers
+allsourcecharacters in300character spans. Bound request/input/route and strict ID parsing
+prevent changed-source/fabricated/duplicate selection. Copy exact local source,not model
+text. A deliberate invented test shows wrong semantic selection can still pass integrity;
+semantic_support stays not_assessed. No runtime/release path selects these prototypes.
+
+Selected explicit free OpenRouter Liquid route from public zero-price/structured-output
+metadata;pin actual12invented requests/sourceinventory in separate new ledger. Allpayloads
+and fakewire responses preflight before reserve;owned55second parent/45secondHTTPbound,
+zero-price ceilings,no redirects/retries/routerfallback. First actualcallHTTP429;stop1/12,
+11remaining,0unsettled. Unknown token/costnotzero. LaterreadonlykeymetadataHTTP200Free,
+0used/50limit,so429cause unresolved,not proven quotaexhaustion/outage. No contract export.
+Gemini341/344and Groq9/12rechecked. Initialcrossledgeraudit used incorrect Groq filename
+external-pin.json instead of allowance-pin.json;read failed before changing either ledger.
+Correct name/pin checks confirm unchanged counts. This was an audit-path error,not a reset.
+
+Initial79focusedtests pass30.86s;198types pass. CI catches dependency-lock mismatch after
+adding optionalOpenRouterextra(reusesexistingHTTP/schema versions). Strictreplayv13rightly
+refuses changedlock. Generate separateinventedv14,pin88d688e90b249db3dba90f7dfa630cd66d303a3695c79fdd301bd4d75b1e6745,
+preservev1–v13and addv13historicalrefusaltest;83replaytests pass. Never edit oldcapture bytes.
+New canary regressions covertimeout/oversize/invalidusage/crashreservation/immutability.
+Finalfullsuite and exact-head CI follow. FirstSDKconnector createdonlyPRform;repository
+instructions/userauthorize authenticatedAPIfallback,which createsverifiedPR120directly.

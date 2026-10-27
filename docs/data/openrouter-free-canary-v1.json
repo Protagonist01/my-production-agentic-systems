@@ -1,0 +1,42 @@
+{
+  "all_twelve_passed": false,
+  "budget": {
+    "consumed": 1,
+    "maximum": 12,
+    "remaining": 11,
+    "unsettled": 0
+  },
+  "correct": 0,
+  "domain_data_exported": false,
+  "failures": [
+    "rate_limited"
+  ],
+  "input_tokens_known": 0,
+  "ledger_rows_verified": true,
+  "limits": [
+    "Invented arithmetic transport canary, not contract quality or calibration.",
+    "Explicit free route and zero price ceilings; billing independently unverified.",
+    "One selected model; no domain use, retries, paid route or fallback authorized."
+  ],
+  "model_requested": "liquid/lfm-2.5-2.6b:free",
+  "observed": 1,
+  "output_tokens_known": 0,
+  "read_only_account_metadata": {
+    "free_model_daily_requests": {
+      "limit": 50,
+      "remaining": 50,
+      "used": 0
+    },
+    "inference_calls": 0,
+    "is_free_tier": true,
+    "limits": [
+      "Read-only account metadata; not independent billing or service-availability verification."
+    ],
+    "metadata_http_status": 200
+  },
+  "release_allowed": false,
+  "source_inventory_verified": true,
+  "unknown_cost_rows": 1,
+  "unknown_token_rows": 1,
+  "version": "openrouter-invented-canary-result-v1"
+}

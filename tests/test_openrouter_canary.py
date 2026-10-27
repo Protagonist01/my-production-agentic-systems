@@ -175,3 +175,61 @@ def test_stale_pin_foreign_credential_and_double_settlement_refuse(tmp_path):
     with pytest.raises(ValueError):
         store.settle(ticket, result)
     assert request_payload(requests()[0])["max_tokens"] == 256
+
+
+@pytest.mark.parametrize("timeout", [0, -1, float("nan"), float("inf")])
+def test_invalid_deadline_never_dispatches(timeout):
+    def forbidden(req):
+        raise AssertionError("network forbidden")
+
+    result = generate(
+        "invented",
+        requests()[0],
+        timeout_seconds=timeout,
+        http_transport=httpx.MockTransport(forbidden),
+    )
+    assert result.failure.code == "timeout" and result.usage.model_calls == 0
+
+
+def test_timeout_dispatch_is_not_retried_and_private_exception_is_not_echoed():
+    seen = []
+
+    def handler(req):
+        seen.append(req)
+        raise httpx.ReadTimeout("private-key-and-url", request=req)
+
+    result = generate("invented", requests()[0], http_transport=httpx.MockTransport(handler))
+    assert len(seen) == 1 and result.failure.code == "timeout"
+    assert result.usage.model_calls == 1 and result.usage.input_tokens is None
+    assert "private-key-and-url" not in result.canonical_json()
+
+
+def test_oversized_wire_and_wrong_usage_fail_without_output_or_healing():
+    for payload in (
+        b"x" * 100001,
+        json.dumps(
+            wire(usage={"prompt_tokens": 1, "completion_tokens": 2, "total_tokens": 100})
+        ).encode(),
+    ):
+        result = generate(
+            "invented",
+            requests()[0],
+            http_transport=httpx.MockTransport(
+                lambda req, content=payload: httpx.Response(200, content=content)
+            ),
+        )
+        assert result.failure.code == "invalid_response" and result.output is None
+
+
+def test_crash_reservation_stays_consumed_and_sql_history_cannot_be_deleted(tmp_path):
+    import sqlite3
+
+    store, _ = ledger(tmp_path)
+    store.reserve(requests()[0], "a" * 64)
+    reopened = CanaryLedger(store.path, store.allowance_sha256)
+    assert reopened.summary()["consumed"] == reopened.summary()["unsettled"] == 1
+    with pytest.raises(ValueError):
+        reopened.reserve(requests()[0], "a" * 64)
+    with reopened.base().connect() as db:
+        with pytest.raises(sqlite3.IntegrityError, match="append only"):
+            db.execute("DELETE FROM attempts")
