@@ -592,3 +592,15 @@ modelcanarypasses need matching settled newreceipts. ModelComparisonWorker optsi
 HTTP90andunchanged512settings;oldHTTP30/general60limits stay. Original415history,oldslots,
 priorreports andsourceinventoriesmustverifyaftercapture. A goodmodelscoreonexposedcases
 stillcannotqualifyorcloseareleasegate. Readthelinkedplanforactualstatusandlimits.
+
+
+### Model-only capture stopped before measuring accuracy
+
+The[actualresult](docs/model-only-evaluation.md#actual-result-stopped-before-quality-evaluation)
+isavailability-only:controlcanarypasses,3.8timesout94.36s,0/48contractcalls. At417/468the
+51remaininginclude3legacyboundslotsand48stopped-scheduleslots,notfreeauthoritytoretry.
+Theauditorchecksnewresponse/context/requestreceipts,modelslots,solepass,allold415history,
+priorpairedrows,sourceinventories/previousartifacthashesandunchangedrequestpairs. The
+reportuses48scheduled/48missing;0correctdoesnotmeanobserved0%accuracy. Publicationlabels
+no_quality_result=true. Missingdenominatorsandlackofdecisionevidenceareseparateconcepts.
+Originalpairednegativefindings/largeconfidencefailurestay. No modelpromotedorgateclosed.

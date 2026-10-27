@@ -1,3 +1,13 @@
+## Latest model-only availability probe - 2026-10-27
+
+The[model-onlystudy](model-only-evaluation.md) stoppedatits two-routecanarygate. FlashLite
+passed;3.8timedout94.36sunder90HTTP/110parent. No contractcalls,so no modelqualityresult or
+measured0%accuracy. Bothreceipts,old415history/labels/source/failedreports verifiedunchanged.
+SAMEsharedGemini**417/468consumed,51remaining,0unsettled**. Threeoldslotsremainbound;
+48unattemptedslotsbelongtostoppedfrozenstudy,nogeneralretry/substitutionauthority. Groq9/12
+andOpenRouter1/12invented-onlyunchanged. Furthermodel/provideruserequiresconcreteapproved
+scope. Originalpairedandconfidencefailuresbelowremain;noissueorgateclosed.
+
 ## Latest paired development evidence - 2026-10-27
 
 The [paired quality comparison](paired-quality-evaluation.md) completed all72domaincalls:

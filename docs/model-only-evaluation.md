@@ -111,3 +111,84 @@ CI/postmerge evidence will be appended;none are claimed yet.
 See [Build Book Entry69](../BUILD_BOOK.md#entry-69--change-only-the-model-and-capture-a-contemporary-control)
 for construction choices and the [previous paired result](paired-quality-evaluation.md)
 for the negative findings motivating this comparison.
+
+
+## Actual result: stopped before quality evaluation
+
+The frozen capture at commit `f084783` attempted both representative canaries and stopped
+when the challenger timed out. **No contract call occurred.** There is no model-quality
+comparison, winner, or evidence that either model is more accurate from this run.
+
+| Observation | Result |
+| --- | --- |
+| Flash-Lite representative canary | Passed in6.67seconds |
+| Gemini3.8Flash representative canary | HTTP timeout;94.36seconds total |
+| Parent110second deadline exhausted | No;worker returned a settled timeout |
+| Domain calls observed/scheduled | 0/48 |
+| New reserved attempts | 2/50 |
+| Shared lifetime ledger | 417/468consumed;51remaining;0unsettled |
+| New canary passes | 1;both were required |
+
+The challenger worker entered after2.87seconds and returned after93.97seconds;the parent
+completed cleanup within94.28seconds. This is consistent with the90second HTTP window
+being reached during generation. It is not a parent-process crash or a local preflight
+rejection. We do not know whether upstream congestion,internal processing or another
+provider-side factor caused the timeout. Do not claim a confirmed outage or that simply
+allowing more time will guarantee success.
+
+A subsequent read-only authenticated metadata request returned HTTP200in1.80seconds,
+recognized `models/gemini-3.8-flash`,and listed generateContent support. That establishes
+metadata reachability and recognized access to the model descriptor,not usable generation
+capacity,quota or independently verified billing. The metadata request was not inference
+and consumed no local generation attempt.
+
+Known usage from the successful canary is13,068input and15output tokens. Input/output usage
+for the timeout is unknown;raw monetary cost is unknown for both calls. Unknown is not zero.
+The [safe result](data/model-only-result-v1.json) retains the complete48scheduled denominator
+with48missing observations and0observed model outcomes. Its zero reference-correct count
+is **not a measured0%accuracy**;no contract response exists to score. Both class and family
+comparisons are unassessed. A report may be structurally complete while its evidence is
+insufficient to answer the experiment's question.
+
+## Audit, preservation and decision
+
+Independent read-back reparses the two responses,matches their exact context/request/
+response pins to two settled reservations and model slots,and verifies the sole successful
+canary receipt. It checks all24domain request pairs differ only in model,all50frozen slots,
+original case/target equality,all415prior attempts/grants,and all prior paired slot rows.
+Every recorded prior artifact hash and historical executable inventory matches. Both old
+SQL guards remain;the new guard rejects unaware executables after serial415. No baseline
+or publisher label was rewritten,no contract was exported,and no previous failure removed.
+
+Do not retry either consumed canary,skip the two-pass gate,substitute a model/provider or
+spend the remaining51slots as a general pool. Of those slots,three remain bound to the old
+scope and48belong to the stopped,unchanged model-only schedule. Proceeding with another
+route requires a concrete approved revision;it cannot be inferred from unused capacity.
+The earlier72call paired result remains baseline13/24,wording12/24,selection15/24,with neither
+variant promoted. The original large confidence study remains failed. Release gates stay.
+
+The immediate engineering decision is to stop this route-dependent capture,retain the
+prepared comparison and seek a usable authorized challenger. Another Free provider or model
+might be useful,but a connectivity success is not quality evidence,and switching provider
+also changes delivery behavior. A follow-up needs explicit model/data scope,request and
+budget binding,representative availability checks and a contemporary baseline. No further
+inference dispatch is authorized by this stopped result.
+
+## Engineering discussion: readiness gates can save the study budget
+
+A truthful explanation for an employer or business discussion:
+
+> We prepared a model-only comparison with an unchanged baseline and strict request pins.
+> Before sending contract data,we checked both routes with representative invented inputs.
+> The control route worked;the challenger timed out even with the approved longer window.
+> We stopped before48planned contract calls,kept the timeout and unknown usage in the ledger,
+> and reported that model accuracy had not been measured. We did not convert a provider
+> availability problem into a model-quality claim or spend unused slots on unapproved
+> retries. The next step is an explicitly scoped usable challenger,not another accuracy
+> percentage derived from missing responses.
+
+This also corrects a common misunderstanding:an attempt cap is an upper bound,not a target
+to exhaust. A failed gate can make stopping the correct delivery outcome. Software tests
+prove the gate and accounting work;they cannot make an unavailable remote model answer.
+Final software checks and post-merge evidence are recorded on
+[PR122](https://github.com/Protagonist01/my-production-agentic-systems/pull/122).
