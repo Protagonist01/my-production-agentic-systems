@@ -1,0 +1,137 @@
+{
+  "additional_attempt_ceiling": 74,
+  "authorization_ref": "owner-2026-10-27-authorize418-total-comparison",
+  "cases": [
+    {
+      "category": "Volume Restriction",
+      "context_characters": 24999,
+      "length_band": "middle",
+      "ordinal": 1,
+      "role": "repeated_disagreement"
+    },
+    {
+      "category": "Rofr/Rofo/Rofn",
+      "context_characters": 15113,
+      "length_band": "short",
+      "ordinal": 2,
+      "role": "repeated_disagreement"
+    },
+    {
+      "category": "Exclusivity",
+      "context_characters": 45214,
+      "length_band": "long",
+      "ordinal": 3,
+      "role": "repeated_disagreement"
+    },
+    {
+      "category": "Third Party Beneficiary",
+      "context_characters": 19386,
+      "length_band": "short",
+      "ordinal": 4,
+      "role": "repeated_disagreement"
+    },
+    {
+      "category": "Non-Transferable License",
+      "context_characters": 28932,
+      "length_band": "middle",
+      "ordinal": 5,
+      "role": "repeated_disagreement"
+    },
+    {
+      "category": "Cap On Liability",
+      "context_characters": 10217,
+      "length_band": "short",
+      "ordinal": 6,
+      "role": "repeated_disagreement"
+    },
+    {
+      "category": "Covenant Not To Sue",
+      "context_characters": 45879,
+      "length_band": "long",
+      "ordinal": 7,
+      "role": "citation_failure_raw_correct"
+    },
+    {
+      "category": "Revenue/Profit Sharing",
+      "context_characters": 20791,
+      "length_band": "middle",
+      "ordinal": 8,
+      "role": "citation_failure_raw_correct"
+    },
+    {
+      "category": "Notice Period To Terminate Renewal",
+      "context_characters": 47001,
+      "length_band": "long",
+      "ordinal": 9,
+      "role": "previously_correct_control"
+    },
+    {
+      "category": "Expiration Date",
+      "context_characters": 26346,
+      "length_band": "middle",
+      "ordinal": 10,
+      "role": "previously_correct_control"
+    },
+    {
+      "category": "Non-Disparagement",
+      "context_characters": 17786,
+      "length_band": "short",
+      "ordinal": 11,
+      "role": "previously_correct_control"
+    },
+    {
+      "category": "Non-Compete",
+      "context_characters": 36019,
+      "length_band": "long",
+      "ordinal": 12,
+      "role": "previously_correct_control"
+    }
+  ],
+  "classes": {
+    "answerable": 6,
+    "no_answer": 6
+  },
+  "current_consumed": 341,
+  "current_maximum": 344,
+  "dispatch_authorized": true,
+  "domain_attempts": 72,
+  "expected_labels": "original publisher targets unchanged; isolated in evaluator-only file",
+  "families": 12,
+  "invented_canary_attempts": 2,
+  "legacy_three_unused_slots_not_reassigned": true,
+  "length_bands": {
+    "long": 4,
+    "middle": 4,
+    "short": 4
+  },
+  "limits": [
+    "Development only, not a fresh confidence/release study.",
+    "Outcome-selected exposed convenience cohort; no representative reliability claim.",
+    "Task wording and evidence interface tested separately on unchanged model/settings.",
+    "No paid fallback, automatic retries, relabeling or replacement rows.",
+    "No OpenRouter contract-data export.",
+    "Publisher agreement and source copying do not establish legal relevance or qualified truth."
+  ],
+  "metrics": [
+    "fixed scheduled agreement",
+    "raw decision agreement",
+    "citation/source-copy validity",
+    "coverage",
+    "paired family improvement/regression",
+    "control regressions",
+    "tokens",
+    "latency",
+    "unknown raw cost",
+    "transport failures"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "proposed_same_shared_gemini_lifetime_cap": 418,
+  "provider_calls": 0,
+  "release_allowed": false,
+  "source_cohort_sha256": "89c666be186bbea6d2e97dd848dfa0badf262ef26bd4064643ba889143335034",
+  "source_mix": "existing-exposed-pinned-CUAD-only",
+  "status": "approved-development-proposal-before-capture",
+  "trials_per_variant": 2,
+  "variant_count": 3,
+  "version": "paired-quality-development-proposal-v1"
+}

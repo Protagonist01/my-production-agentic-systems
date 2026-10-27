@@ -20,7 +20,7 @@ class ProviderAllowance(Contract):
     allowance_id: NonEmpty
     authorization_ref: NonEmpty
     project_sha256: Sha256
-    max_attempts: Annotated[int, Field(gt=0, le=344)] = 180
+    max_attempts: Annotated[int, Field(gt=0, le=418)] = 180
     models: tuple[Literal["gemini-3.5-flash-lite", "gemini-3.8-flash"], ...]
     approved_at: AwareDatetime
     expires_at: AwareDatetime
@@ -173,6 +173,8 @@ class AttemptLedger:
     allowance_sha256: str
     amendment_sha256: str | None = None
     development_extension_sha256: str | None = None
+    paired_extension_sha256: str | None = None
+    availability_override_sha256: str | None = None
 
     def development_extension(self, db: sqlite3.Connection) -> DevelopmentExtension | None:
         exists = db.execute(
@@ -255,7 +257,9 @@ class AttemptLedger:
                     "expires_at": extension.expires_at,
                 }
             )
-        return value
+        from agent_harness.paired_budget import paired_authorization
+
+        return paired_authorization(db, self, value)
 
     def reserve(self, context: RunContext, request: ModelRequest, *, project_sha256: str) -> str:
         context = RunContext.model_validate_json(context.canonical_json())
@@ -277,7 +281,8 @@ class AttemptLedger:
                 raise ValueError("provider attempt is outside the authorized scope/interval")
             count = db.execute("SELECT count(*) FROM attempts").fetchone()[0]
             extension = self.development_extension(db)
-            if extension is not None:
+            paired = self.paired_extension_sha256 is not None
+            if extension is not None and not paired:
                 prior_count = db.execute(
                     "SELECT count(*) FROM attempts WHERE serial>320 AND request_pin=?",
                     (pin(request),),
@@ -294,7 +299,11 @@ class AttemptLedger:
             if count >= grant.max_attempts:
                 raise ValueError("shared provider-attempt allowance exhausted")
             ticket = uuid4().hex
-            if extension is not None:
+            if paired:
+                from agent_harness.paired_budget import reserve_slot
+
+                reserve_slot(db, self, context, request, ticket)
+            elif extension is not None:
                 db.execute(
                     "INSERT INTO development_slots VALUES(?,?,?)",
                     (pin(request), context.trial_id, ticket),
@@ -367,6 +376,8 @@ def main() -> int:
     parser.add_argument("--allowance-sha256", required=True)
     parser.add_argument("--amendment-sha256")
     parser.add_argument("--development-extension-sha256")
+    parser.add_argument("--paired-extension-sha256")
+    parser.add_argument("--availability-override-sha256")
     parser.add_argument("--allowance", type=Path)
     args = parser.parse_args()
     try:
@@ -386,6 +397,8 @@ def main() -> int:
                     args.allowance_sha256,
                     args.amendment_sha256,
                     args.development_extension_sha256,
+                    args.paired_extension_sha256,
+                    args.availability_override_sha256,
                 ).summary(),
                 sort_keys=True,
             )

@@ -349,6 +349,11 @@ def parse_response(request: ModelRequest, response: types.GenerateContentRespons
 
 
 class GeminiTransport:
+    _key: str
+    _http_transport: httpx.BaseTransport | None
+    _flash_comparison: bool
+    _http_timeout_seconds: Literal[30, 90]
+
     def __init__(
         self,
         api_key: str,
@@ -356,12 +361,16 @@ class GeminiTransport:
         free_tier_confirmed: bool,
         http_transport: httpx.BaseTransport | None = None,
         flash_comparison: bool = False,
+        http_timeout_seconds: Literal[30, 90] = 30,
     ) -> None:
         if not api_key or not free_tier_confirmed:
             raise ValueError("A key and explicit Free-project attestation are required")
+        if type(http_timeout_seconds) is not int or http_timeout_seconds not in (30, 90):
+            raise ValueError("unsupported HTTP timeout ceiling")
         self._key = api_key
         self._http_transport = http_transport
         self._flash_comparison = flash_comparison
+        self._http_timeout_seconds = http_timeout_seconds
 
     def generate(self, request: ModelRequest, *, timeout_seconds: float = 30.0) -> ModelResponse:
         if not math.isfinite(timeout_seconds) or timeout_seconds <= 0:
@@ -369,6 +378,8 @@ class GeminiTransport:
                 request, "timeout", "No Gemini attempt time remaining", dispatched=False
             )
         try:
+            if self._http_timeout_seconds == 90 and request.model != MODEL:
+                raise ValueError("long HTTP window is only approved for paired FlashLite")
             contents, config = request_payload(request, flash_comparison=self._flash_comparison)
         except (ValueError, SchemaError, Unresolvable):
             return failed_response(
@@ -392,7 +403,9 @@ class GeminiTransport:
                 http_options=types.HttpOptions(
                     base_url=ENDPOINT,
                     api_version="v1beta",
-                    timeout=max(1, min(30_000, int(timeout_seconds * 1000))),
+                    timeout=max(
+                        1, min(self._http_timeout_seconds * 1000, int(timeout_seconds * 1000))
+                    ),
                     retry_options=types.HttpRetryOptions(attempts=1),
                     client_args=arguments,
                 ),

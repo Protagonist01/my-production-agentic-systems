@@ -359,3 +359,22 @@ Final software verification and post-merge acceptance are recorded on
 [PR120](https://github.com/Protagonist01/my-production-agentic-systems/pull/120).
 Use the exact final head/main logs there; earlier failed/cancelled runs remain historical.
 Neither a green matrix nor this investigation closes the outstanding release issues.
+
+
+## Follow-up experiment: recommendations tested, not presumed correct
+
+The[completed paired comparison](paired-quality-evaluation.md#completed-result-neither-variant-is-ready-for-promotion)
+nowmeasures the twohypotheses on12exposedfamilies:baseline13/24correct,wording12/24,selection
+15/24. Pairedconsistentlycorrectfamilies6/6/7of12. Wordinggains1/loses1;selectiongains2/loses1.
+Allfourcontrolsretained,butbothchangesloseoneotherpreviouslybaseline-correctfamily.
+Allbaselinecitationsarevalidinthenewcapture;noobservedcitation-failure-reductionclaim.
+Selectionadds40.88%inputtokens. Neitherchangeispromoted. Theselectedfailure-enrichedscores
+cannotbecomparedtotheoriginalpopulation's82.29%orusedasnewconfidenceevidence.
+
+AninitialGemini30secondgenerationtimeoutstoppedcapturebeforecontracts. Readonlynetwork/model
+checksworked;ownerapproved90HTTP/110parentforunusedrepresentativecanaryonly,followedby
+original72callsonpass. Thelongcatalogcanarypasses38.83s;all72qualitycallscomplete. Firstfailed
+probeandinitiallocalgatewaypolicyvalidationfailureareretained. Historicalallowance415/418,
+threeoldunusedboundslotsnotnewfunding. Operationaltimeoutrepairworksforthisrun;modelquality
+remainsinsufficient. Theevidencechainandnegativehypothesisaretheengineeringstory,notajustified
+claimofproductionreadiness. A separatelyfundedmodel-onlycomparisonisthenextproposal.

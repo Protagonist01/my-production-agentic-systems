@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 68 — Isolate development changes behind settled canaries](#entry-68--isolate-development-changes-behind-settled-canaries)
 - [Entry 67 — Diagnose task mismatch before another model study](#entry-67--diagnose-task-mismatch-before-another-model-study)
 - [Entry 66 — Develop on exposed failures under a schedule-bound extension](#entry-66--develop-on-exposed-failures-under-a-schedule-bound-extension)
 - [Entry 65 — Size and freeze a confidence-target study](#entry-65--size-and-freeze-a-confidence-target-study)
@@ -4305,3 +4306,120 @@ VerifyD:/document/.cache/production-agents/s5-temp has noGitancestor;setTEMP/TMP
 and rerunfullsuite. FocusedCFPB82passes7.91sunderselectedtemp. Installed82harness/37Revenue
 resourcesmatchwheels;12actualcanarypayloads/exactUnicodecopy revalidate with networkdenied,
 noGoogle/GroqSDKorotherindustries;strictinventedreplay6calls/2timeouts/0provider.
+
+
+## Entry 68 — Isolate development changes behind settled canaries
+**Files touched:** paired_budget.py,provider_budget.py,paired capture/report tests and documentation.
+
+### Context and decision before implementation
+PR120merged47be096 with all10checks and nine applicable mainjobs;1365tests/environment,
+128SQL. Owner now approves same shared Gemini lifetimecap418for74newattempts:two invented
+canaries,then72domaincalls on12exposedCUADfamilies,three variants/two trials. Preserve
+three oldunusedbound slots. OpenRouter1/12canary stoppedHTTP429because maximum was a ceiling,
+not required traffic. User asks why and authorizes qualitycomparison;noOpenRouterdomainexport.
+
+### Before you read on
+How do you prevent old code from using three previously unused slots after appending a new
+scope,without resetting the ledger or rewriting prior attempt history?
+
+### Decision and how to build it
+Prepare12sourcefamilies before dispatch:6repeated raw disagreements,2citationfailures with
+correct rawdecisions and4previouslycorrectcontrols. Balance6answerable/6noanswer and4per
+short/middle/longband;onecasepercategory. Selection uses only exposed validation material;
+labels remain publisher-relative and unadjudicated. Keep evaluator-onlycases separate from
+36model-onlyrequests. Baseline/taskwording/evidenceinterface preserve3.5FlashLite,LOW,512,
+temperature0. Rotatevariantorderpercase;reverseintrial2. Freezeall72request/trialpairs.
+
+Append PairedExtension referencing originalgrant,320amendment and344development pins.
+Require341settled rows,74unique slots,12casesx3variantsx2trials plus2specific invented
+requests. New clients require fifth externalpin;staleclients refuse. A SQL BEFOREINSERT
+trigger also requires a matchingnewslot for serial>341,so an old executable cannot consume
+the threeoldslots. Newslotsinsertatomicallywithattempts;allhistory remains. Newglobalcap418,
+but74slots mean atmost415consumedfrom341;threelegacyunusedslotsremaininaccessible.
+
+Gate domainreservations on two immutable canarypassrecords. A passrequires exactinvented
+request,correctstrictJSONinteger,response route and matching settledreservation pin.
+Unsettled/wrong/failedcanary cannotunlockdomaintraffic. Localpayloadpreflight uses actual
+Geminiworkerconfiguration and pinned SDK before live allowancechange. No retry/fallback.
+Any canaryfailure stops before sourceexport. Domainquota/auth/budgetdenial stops;three
+consecutive timeouts/unavailable stop and retain missing scheduled rows. Parser/modelquality
+failures remain failures and are not replaced. Report pervariant and pairedfamily/control
+regressions plus tokens/latency/unknowncost;no confidence/releaseclaim from this small cohort.
+
+### Checks and construction failures in progress
+Implementation is being checked on invented fixtures. Actual extension and capture have
+not occurred at this point. Preserve previous341rows/grants/slots and original source/report
+pins,then independently audit the new response/reservation/schedule pairs after capture.
+
+
+### Pre-dispatch checks
+Initial42budget/development regressions pass101.92s. After longcatalogcanary is added,
+8newbudget/report tests pass54.46s and14report/evidence checks pass0.57s. Existing320/344
+fixtures remain valid. Whole-repo200sources typecheck,318formattedfiles and import contracts
+pass. Actual38requests,including long167IDcatalog,serialize through pinnedGoogleSDK;
+a constructedSDKHTTPexchange passes with zero network/provider calls and no ledger changes.
+Fix strictmypy errors from an untyped sharedkwargsdictionary by explicittyped requestfields;
+do not bypass types. Raw diagnosticJSON now refuses duplicatekeys before extracting decision.
+Freeze executablecommit before liveextension and firstcanary. No paidfallback/retry.
+
+
+### First canary timeout and owner-approved operating-plan change
+ActualfirstprobeHTTPtimeout41.07stotal;workerenters7.86s,returns40.64s,parentdidnottimeout.
+No domaincall;342/418used,76remaining,0unsettled. Revalidatefirst342receipt/old341rows and
+379oldartifactsunchanged. DNSworks,publicHTTPSGoogle404/OpenRouter200,authenticatedmodel
+metadataHTTP200in2.34srecognizesFlashLite/generateContent. This narrows to generationpath/
+30sHTTPwindow,not provenauthentication/DNSoutage. Do not retryconsumedprobe or claimaccuracy.
+
+Ownerexplicitlyapproves90HTTP/110parent for unusedrepresentativecanary and original72only
+ifitpasses,samecap/slots/qualitycriteria. AddimmutableAvailabilityOverridepinnedtofailed
+response/report,pairedextension and secondrequest. Newexternalpinrequired;alloldhistory
+unchanged. Representativepassmustmatchsettledresponse;domainbarrierneeds that exactpass.
+LegacyHTTP30default retained;explicitlongwindowonlyforFlashLite. SeparatePairedWorkerand
+PairedExecutionPolicyhandle110parent,becauselegacyExecutionPolicymax60wouldotherwisefail
+locallybeforeanynetwork. ActualSDKmockverifiesreadtimeouts30versus90,nofallback/retries.
+Initial2availabilityregressions pass19.51s;typecheckerrequiresexplicittransportattribute
+annotations forliteralvalidatedtimeoutpath. Freezecontinuationplan/codebeforeunusedcall.
+
+
+Continuationv1stoppedlocallywithValidationErrorbeforeanyreservation:BoundedGatewayand
+SharedControlsrevalidatepoliciesagainstlegacyExecutionPolicy60. Frozen73slotsunconsumed,
+342/418unchanged,0unsettled. This is anotheroperatorpreflightgap,notremoteproviderfailure.
+Preservev1plan/no-rowartifact. AddexplicitversionedPairedExecutionPolicy110validationand
+ControlledCallunionso110survivesbothdispatchandstoredcallroundtrip;legacyExecutionPolicy
+stillrefuses110. Actualgatewayfakeattemptregressionmustexecuteratherthanonlyconstruct
+policy. Correctedv2operatorreusesexistingimmutableAvailabilityOverrideonlyafterverifying
+exactfirsttimeout/noadditionalpairedslots;neverappendagainorreset. Freezev2inventory/plan.
+
+
+### Representative canary passes; original comparison starts
+Corrected83ed244operatorpreflightsall73remainingrequests,noqueue/sourcechanges. Actual
+representativecanary passes38.83swithcorrectstrictIDs/settledreceipt;firsttimeoutremains.
+Domaincallsbeginunder90HTTP/110parent,samebaseline/variants/settings. Do notinterpret
+partialresponsesasachosenwinner. Freezeexecutableinventoryuntilallresponses/auditcomplete.
+Initialfullgatewayfixtureclockwasstale;fixinventedclock/deadline,andrealboundedfakeattempt
+nowpasses/readbacks110policy. Legacy110refuses.2availabilitytests19.51s,16focusedchecks36.67s,
+5reportchecks1.85s,201typespass. HostedinitialUbuntu1377each/SQL128pass. Obsoletelocalfullrun
+startedbeforelatestfixesstoppedbyverifiedownedPIDs;neverclaimitpassed. Installed84harness/
+38Revenuebytesmatchwheels,existingprojections/networkdeniedchecks andstrictreplaypass.
+
+
+### Completed paired model-quality comparison and decision
+All72domaincallsfinish;24pervariant,no missing/abstain/transport/formatfailure. Representative
+passed38.83s;firsttimeoutretained. Total74newreservations=415/418used,3legacyunusedboundslots,
+0unsettled. Baseline13/24,taskwording12/24,selection15/24. Consistentlycorrectfamilies6/6/7of12;
+allfourcontrolsretained. Pairedwordinggains1loses1;selectiongains2loses1. Bothnewvariantslose
+CovenantNotToSuefamilyoutsidepreselectedcontrols. Wordingfixesfirstoptionbutraisesfalseaccepts;
+selectionfixesfirstoption+CapLiabilitybutstillmissesothersemantic/referencecases. Nopromotion.
+
+Allbaselinecitationsvalidonnewcapture,includingtwopastcitationfailurefamilies;cannotclaim
+reducedcitationfailurefrequency. Selectioninput200846vs142570(+40.88%),output586vs2153;
+costunknownallrows. Taskinput144202/output1355. Continuationtotalincludingrepresentative:
+500686input/4109output,73reportedcalls;firsttimeoutunknownusage/cost. Wrongdecisionsremain
+wrongdespiteexacttext. Source-spanoverlap8/8positiveacceptseachisdiagnostic,notsemantictruth.
+
+Auditreparses73rows,recomputesreport/pairedmetricsandchecksallnewreservation/slotpins,
+old341rows/grants/developmentslots,first342rows/failedreportandpriorartifactpins. Frozen
+codeinventoriescheckedagainstGit;initialWindowsbackslashGitpathlookupfailedbeforeoutput,
+correctpathsyntaxandrerunauditpasses. Alloldlabels/holdout/failureartifactsretained.
+Nostudyclosesgate. Nexttestproposal:modelonlychangeunderfixedbaselineprompt/interface;
+no newdispatchfunded. Detailedresults,tradeoffsandnegativehypothesislessonsrecordedinplan.

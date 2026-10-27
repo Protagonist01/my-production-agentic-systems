@@ -1,0 +1,204 @@
+{
+  "all_cases_exposed": true,
+  "all_scheduled_reference_correct": false,
+  "audit": {
+    "all_response_reservation_slot_pins_match": true,
+    "executable_inventories_match_historical_git": true,
+    "legacy_three_slots_not_reassigned": true,
+    "old341rows_grants_development_slots_unchanged": true,
+    "original_requests_trials_unchanged": true,
+    "prior_artifact_pins_verified": true,
+    "v1_continuation_local_failure_no_dispatch": true
+  },
+  "budget": {
+    "consumed": 415,
+    "maximum": 418,
+    "remaining": 3,
+    "unsettled": 0
+  },
+  "continuation_accounting_including_representative_canary": {
+    "known_input_tokens": 500686,
+    "known_output_tokens": 4109,
+    "reported_model_calls": 73,
+    "unknown_cost_rows": 73,
+    "unknown_input_rows": 0,
+    "unknown_output_rows": 0
+  },
+  "continuation_plan_sha256": "14e613d2399d0aff2014c1f65e1267ec716adbc9c61038446370dd29678ec824",
+  "first_canary_failed": true,
+  "initial_first_canary": {
+    "elapsed_seconds": 41.07,
+    "failure": "timeout",
+    "unknown_tokens_and_cost": true
+  },
+  "limits": [
+    "Exposed development cases; no representative reliability or confidence claim.",
+    "Publisher agreement and exact copying do not establish relevant legal support.",
+    "Raw decision and source-integrity metrics overlap; do not add them.",
+    "Missing scheduled rows remain in denominators; no replacement/retry."
+  ],
+  "metrics": {
+    "baseline": {
+      "accepts_with_valid_evidence": 15,
+      "class_results": {
+        "answerable": {
+          "correct": 8,
+          "missing": 0,
+          "observed": 12,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        },
+        "no_answer": {
+          "correct": 5,
+          "missing": 0,
+          "observed": 12,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        }
+      },
+      "consistently_correct_controls": 4,
+      "consistently_correct_families": 6,
+      "correct": 13,
+      "decided": 24,
+      "evidence_valid": 24,
+      "failures": {},
+      "false_accepts": 7,
+      "false_rejects": 4,
+      "known_input_tokens": 142570,
+      "known_output_tokens": 2153,
+      "missing": 0,
+      "observed": 24,
+      "raw_accepts": 15,
+      "raw_reference_agreement_count": 13,
+      "scheduled": 24,
+      "scheduled_agreement": 0.5416666666666666,
+      "total_elapsed_seconds": 395.93594089999715,
+      "unknown_cost_rows": 24,
+      "unknown_input_token_rows": 0,
+      "unknown_output_token_rows": 0,
+      "unobserved_family_pairs": 0
+    },
+    "evidence_selection": {
+      "accepts_with_valid_evidence": 13,
+      "class_results": {
+        "answerable": {
+          "correct": 8,
+          "missing": 0,
+          "observed": 12,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        },
+        "no_answer": {
+          "correct": 7,
+          "missing": 0,
+          "observed": 12,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        }
+      },
+      "consistently_correct_controls": 4,
+      "consistently_correct_families": 7,
+      "correct": 15,
+      "decided": 24,
+      "evidence_valid": 24,
+      "failures": {},
+      "false_accepts": 5,
+      "false_rejects": 4,
+      "known_input_tokens": 200846,
+      "known_output_tokens": 586,
+      "missing": 0,
+      "observed": 24,
+      "raw_accepts": 13,
+      "raw_reference_agreement_count": 15,
+      "scheduled": 24,
+      "scheduled_agreement": 0.625,
+      "total_elapsed_seconds": 419.18574409999746,
+      "unknown_cost_rows": 24,
+      "unknown_input_token_rows": 0,
+      "unknown_output_token_rows": 0,
+      "unobserved_family_pairs": 0
+    },
+    "task_wording": {
+      "accepts_with_valid_evidence": 16,
+      "class_results": {
+        "answerable": {
+          "correct": 8,
+          "missing": 0,
+          "observed": 12,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        },
+        "no_answer": {
+          "correct": 4,
+          "missing": 0,
+          "observed": 12,
+          "scheduled": 12,
+          "unresolved_observed": 0
+        }
+      },
+      "consistently_correct_controls": 4,
+      "consistently_correct_families": 6,
+      "correct": 12,
+      "decided": 24,
+      "evidence_valid": 24,
+      "failures": {},
+      "false_accepts": 8,
+      "false_rejects": 4,
+      "known_input_tokens": 144202,
+      "known_output_tokens": 1355,
+      "missing": 0,
+      "observed": 24,
+      "raw_accepts": 16,
+      "raw_reference_agreement_count": 12,
+      "scheduled": 24,
+      "scheduled_agreement": 0.5,
+      "total_elapsed_seconds": 370.32463559999087,
+      "unknown_cost_rows": 24,
+      "unknown_input_token_rows": 0,
+      "unknown_output_token_rows": 0,
+      "unobserved_family_pairs": 0
+    }
+  },
+  "missing": 0,
+  "new_reserved_attempts_including_first_timeout": 74,
+  "observed": 72,
+  "operating_plan_amended_with_owner_approval": true,
+  "operational_deviation": "Owner approved sole representative pass after preserved first timeout;90HTTP110parent;qualitycriteria unchanged.",
+  "overlap_limit": "Source-span overlap is diagnostic;not independent semantic relevance,correctness or legal support.",
+  "paired_vs_fresh_baseline": {
+    "evidence_selection": {
+      "comparable_families": 12,
+      "control_regressions": 0,
+      "gained_consistently_correct_families": 2,
+      "lost_consistently_correct_families": 1,
+      "net_consistently_correct_families": 1,
+      "unobserved_families": 0
+    },
+    "task_wording": {
+      "comparable_families": 12,
+      "control_regressions": 0,
+      "gained_consistently_correct_families": 1,
+      "lost_consistently_correct_families": 1,
+      "net_consistently_correct_families": 0,
+      "unobserved_families": 0
+    }
+  },
+  "positive_evidence_reference_span_overlap_diagnostic": {
+    "baseline_overlaps_published_span": 8,
+    "baseline_reference_positive_accepts": 8,
+    "evidence_selection_overlaps_published_span": 8,
+    "evidence_selection_reference_positive_accepts": 8,
+    "task_wording_overlaps_published_span": 8,
+    "task_wording_reference_positive_accepts": 8
+  },
+  "qualification_met": false,
+  "release_allowed": false,
+  "representative_canary": {
+    "elapsed_seconds": 38.829417800001465,
+    "failure": null,
+    "passed": true
+  },
+  "scheduled": 72,
+  "stop_reason": null,
+  "version": "paired-quality-development-report-v1"
+}

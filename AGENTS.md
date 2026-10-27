@@ -99,3 +99,40 @@ retry consumed requests or export contracts/source data under this scope. The ke
 ignored `.agent-local/openrouter-free.env`; never print or commit it. Gemini stays the same
 341/344ledger; Groq stays its separate9/12invented allowance. OpenRouter availability does
 not authorize domain comparison, new spending or release. Recheck actual ledger state.
+
+## Paired model-quality development authorization (2026-10-27)
+
+The owner approved increasing the SAME Gemini lifetime allowance to418for74newattempts:
+two invented canaries then72calls on12exposedCUADfamilies,baseline/taskwording/evidence
+selection with2trials each,Gemini3.5FlashLite. Preserve all341prior attempts and prior grant
+pins. The three oldunusedslots remainbound and must not be reassigned/replayed. Append a
+pinned74slot PairedExtension; do not initialize/resetanotherpool. Currentclients require
+paired_extension_sha256 in the same private external-pin.json. The SQL insertion guard
+must reject oldbinary reservations outside the new slots. Both canaries must pass with
+matching settled receipts before domain dispatch. Failurescount,no automaticretries or
+paidfallback,no relabeling,newholdout or releaseapproval. Stop firstcanaryfailure; domain
+quota/auth/budgetdenial or three consecutive timeout/unavailable responses stop and retain
+missing scheduled rows. OpenRouter remains1/12invented-only; no contract export authorized.
+
+## Approved paired availability continuation (2026-10-27)
+
+After first Gemini inventedcanary timed out,owner explicitly approved using only the unused
+original representativecanary with90secondHTTP/110secondparent window,then original72calls
+onlyif it passes. This supersedes the two-pass availability gate for this exact run only.
+Preserve firstfailedresponse/report,all oldslots and cap418;no consumedrequestretry,
+paidfallback,qualitycriterionchange or new source scope. Append immutable AvailabilityOverride
+referencing pairedextension,failedresponse/report and representative requestpins;require
+availability_override_sha256 in current privateexternalpins. Exactsettled representative
+pass unlocks domain;wrong/failed/unsettled doesnot. Continuation freezes separate code/plan
+and keeps original requests/model/settings/trials. Stop representativefailure or domain
+quota/auth/budgetdenial/3consecutive timeout-unavailable. Old90window never becomes legacy
+adapterdefault. No inference from remaining76allowance about replaying completed slots.
+
+## Paired evaluation completed (2026-10-27)
+
+All74newslotsconsumed:failedfirstcanary+passedrepresentative+72qualitycalls. Currentshared
+Gemini415/418,3remaininglegacyboundslots,0unsettled. No oldslotreuse/newdispatchauthority.
+Pairedqualitybaseline13/24,taskwording12/24,evidenceselection15/24;neithervariantpromoted.
+Alllabels/failedstudies/gatespreserved. Any nextmodel-onlycomparison needsconcretescope/budget;
+do not reruncapture/continuationorinterpret418asnewallowance. OpenRouter1/12inventedonly,
+Groq9/12unchanged. Actualresult/audit:docs/paired-quality-evaluation.md anddatareport.
