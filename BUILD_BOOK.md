@@ -4361,3 +4361,21 @@ a constructedSDKHTTPexchange passes with zero network/provider calls and no ledg
 Fix strictmypy errors from an untyped sharedkwargsdictionary by explicittyped requestfields;
 do not bypass types. Raw diagnosticJSON now refuses duplicatekeys before extracting decision.
 Freeze executablecommit before liveextension and firstcanary. No paidfallback/retry.
+
+
+### First canary timeout and owner-approved operating-plan change
+ActualfirstprobeHTTPtimeout41.07stotal;workerenters7.86s,returns40.64s,parentdidnottimeout.
+No domaincall;342/418used,76remaining,0unsettled. Revalidatefirst342receipt/old341rows and
+379oldartifactsunchanged. DNSworks,publicHTTPSGoogle404/OpenRouter200,authenticatedmodel
+metadataHTTP200in2.34srecognizesFlashLite/generateContent. This narrows to generationpath/
+30sHTTPwindow,not provenauthentication/DNSoutage. Do not retryconsumedprobe or claimaccuracy.
+
+Ownerexplicitlyapproves90HTTP/110parent for unusedrepresentativecanary and original72only
+ifitpasses,samecap/slots/qualitycriteria. AddimmutableAvailabilityOverridepinnedtofailed
+response/report,pairedextension and secondrequest. Newexternalpinrequired;alloldhistory
+unchanged. Representativepassmustmatchsettledresponse;domainbarrierneeds that exactpass.
+LegacyHTTP30default retained;explicitlongwindowonlyforFlashLite. SeparatePairedWorkerand
+PairedExecutionPolicyhandle110parent,becauselegacyExecutionPolicymax60wouldotherwisefail
+locallybeforeanynetwork. ActualSDKmockverifiesreadtimeouts30versus90,nofallback/retries.
+Initial2availabilityregressions pass19.51s;typecheckerrequiresexplicittransportattribute
+annotations forliteralvalidatedtimeoutpath. Freezecontinuationplan/codebeforeunusedcall.

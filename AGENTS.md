@@ -113,3 +113,17 @@ matching settled receipts before domain dispatch. Failurescount,no automaticretr
 paidfallback,no relabeling,newholdout or releaseapproval. Stop firstcanaryfailure; domain
 quota/auth/budgetdenial or three consecutive timeout/unavailable responses stop and retain
 missing scheduled rows. OpenRouter remains1/12invented-only; no contract export authorized.
+
+## Approved paired availability continuation (2026-10-27)
+
+After first Gemini inventedcanary timed out,owner explicitly approved using only the unused
+original representativecanary with90secondHTTP/110secondparent window,then original72calls
+onlyif it passes. This supersedes the two-pass availability gate for this exact run only.
+Preserve firstfailedresponse/report,all oldslots and cap418;no consumedrequestretry,
+paidfallback,qualitycriterionchange or new source scope. Append immutable AvailabilityOverride
+referencing pairedextension,failedresponse/report and representative requestpins;require
+availability_override_sha256 in current privateexternalpins. Exactsettled representative
+pass unlocks domain;wrong/failed/unsettled doesnot. Continuation freezes separate code/plan
+and keeps original requests/model/settings/trials. Stop representativefailure or domain
+quota/auth/budgetdenial/3consecutive timeout-unavailable. Old90window never becomes legacy
+adapterdefault. No inference from remaining76allowance about replaying completed slots.

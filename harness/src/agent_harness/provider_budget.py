@@ -174,6 +174,7 @@ class AttemptLedger:
     amendment_sha256: str | None = None
     development_extension_sha256: str | None = None
     paired_extension_sha256: str | None = None
+    availability_override_sha256: str | None = None
 
     def development_extension(self, db: sqlite3.Connection) -> DevelopmentExtension | None:
         exists = db.execute(
@@ -376,6 +377,7 @@ def main() -> int:
     parser.add_argument("--amendment-sha256")
     parser.add_argument("--development-extension-sha256")
     parser.add_argument("--paired-extension-sha256")
+    parser.add_argument("--availability-override-sha256")
     parser.add_argument("--allowance", type=Path)
     args = parser.parse_args()
     try:
@@ -396,6 +398,7 @@ def main() -> int:
                     args.amendment_sha256,
                     args.development_extension_sha256,
                     args.paired_extension_sha256,
+                    args.availability_override_sha256,
                 ).summary(),
                 sort_keys=True,
             )

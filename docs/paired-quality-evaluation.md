@@ -83,3 +83,28 @@ Private proposal/capture roots live outside Git under the Revenue paired-quality
 Raw inputs,source IDs,labels,credentials and provider bodies stay private. Summary results
 will be published after independent response/ledger/source-pin audit. See
 [Build Book Entry68](../BUILD_BOOK.md#entry-68--isolate-development-changes-behind-settled-canaries).
+
+
+## First availability result and approved continuation
+
+The initial30secondHTTPcanary timed out after41.07seconds including7.86secondworkerstartup.
+Workerreturnednormally;55secondparentdeadlinewasnotexhausted. No domainrequest occurred.
+All341priorrows/grants/slots and379oldartifactfilesverifiedunchanged;ledger342/418,76remaining,
+0unsettled. DNS,publicHTTPS andauthenticatedmodelmetadata succeed;generationpath timeout
+cause unresolved. The report remains immutable and cannotbeusedasmodel-qualityevidence.
+
+The owner explicitly approved a separate continuation:only originalunusedrepresentative
+canary,90secondHTTP/110secondparent,thenoriginal72domaincalls onlyifitpasses. No firstprobe
+retry,paidfallback,qualitycriterionchange or capincrease. Allmodelrequests/settings/trials
+remainexact;contextsusefrozennewoperatorrevision/time/deadline. ImmutableAvailabilityOverride
+bindsfailedresponse/report,pairedextensionandrepresentativehash;currentclientsneedsixthpin.
+Domainreservations requireexactsettledrepresentativepass. Historicaltwo-passgate/failed
+capturepreserved;this is a disclosed owner-approved operationalprotocoldeviation,not a
+retrospectivepassingqualityresult. LegacyHTTP30andgeneralExecutionPolicy60remainunchanged;
+explicitPairedWorker90andPairedExecutionPolicy110areonlyusedhere. The longerHTTPwindow
+holdsrequesttimeoutfixedacrossall72qualityvariants.
+
+[Continuation operator](../scripts/continue_paired_quality.py) verifiesoriginalschedule,
+source/modelinputpins,oldfailedcanaryandcleancommittedcode,then freezesaseparatesource/plan
+inventoryanduntouched73slot schedule. Failedorunsettledrepresentativecannotunlockdomain.
+No automaticresumeorretrycommand. The existingOpenRoutercanaryremains1/12inventedonly.

@@ -97,3 +97,30 @@ def test_duplicate_foreign_and_inconsistent_outcomes_refuse_instead_of_inflating
     ):
         with pytest.raises(ValueError):
             summarize(labels, controls, bad)
+
+
+def test_actual_assessment_preserves_trial_and_invalid_quote_raw_decision():
+    from revenue_integrity.paired_quality import assess
+    from revenue_integrity.evidence_selection import interpretation_request, selection_request
+    from test_semantic_alignment import value, response
+
+    v = value()
+    r = response(quotes=("not in source",))
+    out, proof = assess(v, interpretation_request(v), r, "task_wording", "trial-2", 1.0)
+    assert out.trial_id == "trial-2" and out.raw_decision == "accept"
+    assert out.decision is None and not out.evidence_valid and proof is None
+    selected = response().model_copy(
+        update={
+            "output": __import__("agent_harness.contracts", fromlist=["ModelMessage"]).ModelMessage(
+                role="assistant", content='{"decision":"accept","evidence_ids":["s0"]}'
+            )
+        }
+    )
+    out, proof = assess(v, selection_request(v), selected, "evidence_selection", "trial-1", 1.0)
+    assert (
+        out.decision == "accept"
+        and out.evidence_valid
+        and proof["semantic_support"] == "not_assessed"
+    )
+    with pytest.raises(ValueError):
+        assess(v, selection_request(v), selected, "baseline", "trial-1", 1.0)

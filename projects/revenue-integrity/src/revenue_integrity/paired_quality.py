@@ -1,10 +1,22 @@
 """Fixed-denominator exposed-development reporting; no model or source mutation."""
 
+import json
 from collections import Counter
 from typing import Annotated, Literal, Self
 
-from agent_harness.contracts import Contract, NonEmpty
+from agent_harness.cases import _unique_object
+from agent_harness.contracts import Contract, ModelRequest, ModelResponse, NonEmpty
 from pydantic import Field, model_validator
+
+from revenue_integrity.evidence_selection import (
+    Selection,
+    copy_selection,
+    interpretation_request,
+    selection_request,
+)
+from revenue_integrity.semantic_alignment import parse_aligned_judgment
+from revenue_integrity.semantic_pilot import SemanticJudgment, model_request
+from revenue_integrity.source_contracts import ExtractionInput
 
 Variant = Literal["baseline", "task_wording", "evidence_selection"]
 VARIANTS: tuple[Variant, ...] = ("baseline", "task_wording", "evidence_selection")
@@ -32,6 +44,63 @@ class QualityOutcome(Contract):
         ):
             raise ValueError("outcome decision/integrity/failure differs")
         return self
+
+
+def assess(
+    value: ExtractionInput,
+    request: ModelRequest,
+    response: ModelResponse,
+    variant: Variant,
+    trial_id: Literal["trial-1", "trial-2"],
+    elapsed_seconds: float,
+) -> tuple[QualityOutcome, dict[str, object] | None]:
+    """Label-free response assessment; reference agreement happens only in summarize."""
+    factories = {
+        "baseline": lambda v: model_request(v, max_context_chars=50000),
+        "task_wording": interpretation_request,
+        "evidence_selection": selection_request,
+    }
+    if request != factories[variant](value):
+        raise ValueError("paired request differs from frozen variant/input")
+    response = ModelResponse.model_validate_json(response.canonical_json())
+    raw = None
+    if response.output and response.output.content:
+        try:
+            json.loads(response.output.content, object_pairs_hook=_unique_object)
+            raw = (
+                Selection.model_validate_json(response.output.content).decision
+                if variant == "evidence_selection"
+                else SemanticJudgment.model_validate_json(response.output.content).decision
+            )
+        except ValueError:
+            pass
+    failure: str | None = response.failure.code if response.failure else None
+    parsed = None
+    decision = None
+    try:
+        if variant == "evidence_selection":
+            selected = copy_selection(value, request, response)
+            decision = selected.selection.decision
+            parsed = selected.model_dump(mode="json")
+        else:
+            aligned = parse_aligned_judgment(value, response, max_context_chars=50000)
+            decision = aligned.judgment.decision
+            parsed = aligned.model_dump(mode="json")
+    except ValueError:
+        failure = failure or "invalid_evidence_or_judgment"
+    return QualityOutcome(
+        case_id=value.case_id,
+        variant=variant,
+        trial_id=trial_id,
+        decision=decision,
+        raw_decision=raw,
+        evidence_valid=parsed is not None,
+        failure=failure,
+        input_tokens=response.usage.input_tokens,
+        output_tokens=response.usage.output_tokens,
+        cost_known=response.usage.cost is not None,
+        elapsed_seconds=elapsed_seconds,
+    ), parsed
 
 
 def summarize(
