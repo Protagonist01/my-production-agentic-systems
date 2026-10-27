@@ -58,3 +58,17 @@ local credential association, not a provider-verified cloud-project identity. Th
 plan/rows live in the existing private Revenue semantic-answerability directory; preserve
 all rows/failures and its additional24attempt ceiling. Raw monetary cost remains unknown
 without billing evidence. No permission for Groq domain use or other agent scopes follows.
+
+## Confidence study authorization (2026-10-27)
+
+The user explicitly approved increasing the **same** shared Gemini Free allowance to320
+total attempts:24already consumed plus a new296attempt Revenue CUAD answerability study.
+Use148distinct families, two trials each, including failures, no automatic retries or paid
+fallback. This supersedes the180maximum only; preserve the original authorization and all
+reservations in the existing authoritative ledger. Apply a pinned append-only amendment,
+with the current amendment pin in private external-pin.json; stale clients must refuse.
+Do not initialize another allowance or represent the additional140as a separate pool.
+The target is a proposed two-sided95%per-class5%group-error upper bound, conditional on
+independent comparable families and zero errors at72validation families per class, plus
+four calibration families. Results, not attempt count, determine success. This authorizes
+the study, not production release, broader semantic truth, paid fallback or Groq domain use.

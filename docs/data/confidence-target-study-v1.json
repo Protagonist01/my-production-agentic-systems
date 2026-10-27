@@ -1,0 +1,458 @@
+{
+  "accounting": {
+    "citation_refusal_non_whitespace_change": 21,
+    "citation_refusal_overlap_or_other": 1,
+    "failure_invalid_response": 1,
+    "failure_invalid_semantic_judgment": 22,
+    "input_tokens": 1535206,
+    "literal_invalid": 39,
+    "literal_valid": 257,
+    "output_tokens": 22845,
+    "quote_exact": 169,
+    "quote_whitespace_only": 23,
+    "raw_schema_valid_decisions": 295,
+    "raw_schema_valid_reference_correct": 264,
+    "transport_failure": 1,
+    "unknown_cost": 296,
+    "unknown_input_tokens": 0,
+    "unknown_output_tokens": 0
+  },
+  "billing_verified": false,
+  "blockers": [
+    "holdout:acceptable_decision_coverage",
+    "holdout:acceptable_group_error_upper_bound",
+    "holdout:conditional_false_accept_rate",
+    "holdout:conditional_false_reject_rate",
+    "holdout:decision_coverage",
+    "holdout:false_accept_rate",
+    "holdout:false_reject_rate",
+    "holdout:group_error_upper_bound",
+    "holdout:scheduled_accuracy",
+    "holdout:unacceptable_decision_coverage",
+    "holdout:unacceptable_group_error_upper_bound",
+    "slice:answerability:acceptable_decision_coverage",
+    "slice:answerability:acceptable_group_error_upper_bound",
+    "slice:answerability:conditional_false_accept_rate",
+    "slice:answerability:conditional_false_reject_rate",
+    "slice:answerability:decision_coverage",
+    "slice:answerability:false_accept_rate",
+    "slice:answerability:false_reject_rate",
+    "slice:answerability:group_error_upper_bound",
+    "slice:answerability:scheduled_accuracy",
+    "slice:answerability:unacceptable_decision_coverage",
+    "slice:answerability:unacceptable_group_error_upper_bound"
+  ],
+  "calibration": {
+    "abstained": 0,
+    "acceptable_decision_coverage": 1.0,
+    "acceptable_group_error_upper_bound": 0.841886116991581,
+    "acceptable_groups": 2,
+    "acceptable_scheduled": 4,
+    "acceptable_unresolved": 0,
+    "conditional_accuracy": 1.0,
+    "conditional_false_accept_rate": 0.0,
+    "conditional_false_reject_rate": 0.0,
+    "correct": 8,
+    "critical_not_rejected": 0,
+    "decided": 8,
+    "decision_coverage": 1.0,
+    "failed": 0,
+    "failed_groups": 0,
+    "false_accept": 0,
+    "false_accept_rate": 0.0,
+    "false_reject": 0,
+    "false_reject_rate": 0.0,
+    "group_error_lower_bound": 0.0,
+    "group_error_upper_bound": 0.6023646356164747,
+    "groups": 4,
+    "invariant_overridden": 0,
+    "missing": 0,
+    "scheduled": 8,
+    "scheduled_accuracy": 1.0,
+    "true_accept": 4,
+    "true_reject": 4,
+    "unacceptable_decision_coverage": 1.0,
+    "unacceptable_group_error_upper_bound": 0.841886116991581,
+    "unacceptable_groups": 2,
+    "unacceptable_scheduled": 4,
+    "unacceptable_unresolved": 0
+  },
+  "category_results": [
+    {
+      "category": "Affiliate License-Licensee",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Affiliate License-Licensor",
+      "correct": 5,
+      "failed": 3
+    },
+    {
+      "category": "Anti-Assignment",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Audit Rights",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Cap On Liability",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Change Of Control",
+      "correct": 5,
+      "failed": 3
+    },
+    {
+      "category": "Competitive Restriction Exception",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Covenant Not To Sue",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Exclusivity",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Expiration Date",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Governing Law",
+      "correct": 7,
+      "failed": 1
+    },
+    {
+      "category": "Insurance",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Ip Ownership Assignment",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Irrevocable Or Perpetual License",
+      "correct": 7,
+      "failed": 1
+    },
+    {
+      "category": "Joint Ip Ownership",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "License Grant",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Liquidated Damages",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Minimum Commitment",
+      "correct": 4,
+      "failed": 4
+    },
+    {
+      "category": "Most Favored Nation",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "No-Solicit Of Customers",
+      "correct": 7,
+      "failed": 1
+    },
+    {
+      "category": "No-Solicit Of Employees",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Non-Compete",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Non-Disparagement",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Non-Transferable License",
+      "correct": 5,
+      "failed": 3
+    },
+    {
+      "category": "Notice Period To Terminate Renewal",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Post-Termination Services",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Price Restrictions",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Renewal Term",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Revenue/Profit Sharing",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Rofr/Rofo/Rofn",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Source Code Escrow",
+      "correct": 6,
+      "failed": 2
+    },
+    {
+      "category": "Termination For Convenience",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Third Party Beneficiary",
+      "correct": 4,
+      "failed": 4
+    },
+    {
+      "category": "Uncapped Liability",
+      "correct": 7,
+      "failed": 1
+    },
+    {
+      "category": "Unlimited/All-You-Can-Eat-License",
+      "correct": 8,
+      "failed": 0
+    },
+    {
+      "category": "Volume Restriction",
+      "correct": 4,
+      "failed": 4
+    },
+    {
+      "category": "Warranty Duration",
+      "correct": 8,
+      "failed": 0
+    }
+  ],
+  "criteria_met": false,
+  "deterministic_baselines": {
+    "always_accept": {
+      "correct": 144,
+      "criteria_met": false,
+      "false_accept_rate": 1.0,
+      "false_reject_rate": 0.0,
+      "provider_calls": 0,
+      "scheduled_accuracy": 0.5,
+      "validation_scheduled": 288
+    },
+    "always_reject": {
+      "correct": 144,
+      "criteria_met": false,
+      "false_accept_rate": 0.0,
+      "false_reject_rate": 1.0,
+      "provider_calls": 0,
+      "scheduled_accuracy": 0.5,
+      "validation_scheduled": 288
+    }
+  },
+  "human_review_supplied": false,
+  "interval_method_note": "Frozen qualification reporter uses exact binomial boundary for zero/all events and Wilson otherwise. Supplementary exact Clopper-Pearson intervals are post-capture descriptive checks, not altered primary criteria or a simultaneous confidence claim.",
+  "limits": [
+    "Publisher-relative answerability only, not legal/billing/clinical truth.",
+    "Inferred independent comparable families not authenticated; public-reference training exposure unknown.",
+    "Convenience class/category distribution, not production prevalence.",
+    "Marginal per-class bounds, not simultaneous confidence across endpoints.",
+    "Failures and missing rows count; no retries, relabeling or replacements.",
+    "Always-accept/reject are analytical diagnostics, not approved business baselines."
+  ],
+  "metrics": {
+    "holdout": {
+      "abstained": 0,
+      "acceptable_decision_coverage": 0.8611111111111112,
+      "acceptable_group_error_upper_bound": 0.3904643292523542,
+      "acceptable_groups": 72,
+      "acceptable_scheduled": 144,
+      "acceptable_unresolved": 20,
+      "conditional_accuracy": 0.8943396226415095,
+      "conditional_false_accept_rate": 0.11347517730496454,
+      "conditional_false_reject_rate": 0.0967741935483871,
+      "correct": 237,
+      "critical_not_rejected": 0,
+      "decided": 265,
+      "decision_coverage": 0.9201388888888888,
+      "failed": 23,
+      "failed_groups": 30,
+      "false_accept": 16,
+      "false_accept_rate": 0.1111111111111111,
+      "false_reject": 12,
+      "false_reject_rate": 0.08333333333333333,
+      "group_error_lower_bound": 0.1500109814745541,
+      "group_error_upper_bound": 0.281812806858884,
+      "groups": 144,
+      "invariant_overridden": 0,
+      "missing": 0,
+      "scheduled": 288,
+      "scheduled_accuracy": 0.8229166666666666,
+      "true_accept": 112,
+      "true_reject": 125,
+      "unacceptable_decision_coverage": 0.9791666666666666,
+      "unacceptable_group_error_upper_bound": 0.237131872505563,
+      "unacceptable_groups": 72,
+      "unacceptable_scheduled": 144,
+      "unacceptable_unresolved": 3
+    },
+    "slice:answerability": {
+      "abstained": 0,
+      "acceptable_decision_coverage": 0.8611111111111112,
+      "acceptable_group_error_upper_bound": 0.3904643292523542,
+      "acceptable_groups": 72,
+      "acceptable_scheduled": 144,
+      "acceptable_unresolved": 20,
+      "conditional_accuracy": 0.8943396226415095,
+      "conditional_false_accept_rate": 0.11347517730496454,
+      "conditional_false_reject_rate": 0.0967741935483871,
+      "correct": 237,
+      "critical_not_rejected": 0,
+      "decided": 265,
+      "decision_coverage": 0.9201388888888888,
+      "failed": 23,
+      "failed_groups": 30,
+      "false_accept": 16,
+      "false_accept_rate": 0.1111111111111111,
+      "false_reject": 12,
+      "false_reject_rate": 0.08333333333333333,
+      "group_error_lower_bound": 0.1500109814745541,
+      "group_error_upper_bound": 0.281812806858884,
+      "groups": 144,
+      "invariant_overridden": 0,
+      "missing": 0,
+      "scheduled": 288,
+      "scheduled_accuracy": 0.8229166666666666,
+      "true_accept": 112,
+      "true_reject": 125,
+      "unacceptable_decision_coverage": 0.9791666666666666,
+      "unacceptable_group_error_upper_bound": 0.237131872505563,
+      "unacceptable_groups": 72,
+      "unacceptable_scheduled": 144,
+      "unacceptable_unresolved": 3
+    }
+  },
+  "observed_attempts": 296,
+  "old24attempts_and_original_grant_unchanged": true,
+  "original_corpus_holdout_changed": false,
+  "plan_sha256": "7066954deb1844f8501c584d8d626186fd06cd0fd779c9cdbe5ebd69be80ec15",
+  "preparation": {
+    "calibration_families": 4,
+    "categories": {
+      "Affiliate License-Licensee": 4,
+      "Affiliate License-Licensor": 4,
+      "Anti-Assignment": 4,
+      "Audit Rights": 4,
+      "Cap On Liability": 4,
+      "Change Of Control": 4,
+      "Competitive Restriction Exception": 4,
+      "Covenant Not To Sue": 4,
+      "Exclusivity": 4,
+      "Expiration Date": 4,
+      "Governing Law": 4,
+      "Insurance": 4,
+      "Ip Ownership Assignment": 4,
+      "Irrevocable Or Perpetual License": 4,
+      "Joint Ip Ownership": 4,
+      "License Grant": 4,
+      "Liquidated Damages": 4,
+      "Minimum Commitment": 4,
+      "Most Favored Nation": 4,
+      "No-Solicit Of Customers": 4,
+      "No-Solicit Of Employees": 4,
+      "Non-Compete": 4,
+      "Non-Disparagement": 4,
+      "Non-Transferable License": 4,
+      "Notice Period To Terminate Renewal": 4,
+      "Post-Termination Services": 4,
+      "Price Restrictions": 4,
+      "Renewal Term": 4,
+      "Revenue/Profit Sharing": 4,
+      "Rofr/Rofo/Rofn": 4,
+      "Source Code Escrow": 4,
+      "Termination For Convenience": 4,
+      "Third Party Beneficiary": 4,
+      "Uncapped Liability": 4,
+      "Unlimited/All-You-Can-Eat-License": 4,
+      "Volume Restriction": 4,
+      "Warranty Duration": 4
+    },
+    "cohort_sha256": "89c666be186bbea6d2e97dd848dfa0badf262ef26bd4064643ba889143335034",
+    "dataset_sha256": "95000bb19445bb9eeb586cf67ad831ef64420e4571618482600547453634672d",
+    "eligible_questions": 6290,
+    "known_exposed_families_excluded": 128,
+    "max_context_chars": 49760,
+    "provider_calls": 0,
+    "release_allowed": false,
+    "scheduled_attempts": 296,
+    "selected_families": 148,
+    "source_inventory_sha256": "b1c6c904d06c7d49c0293eea3052ef91bea81b320f43e02a2dd637173bcbab65",
+    "source_manifest_sha256": "b852424ab854c30bd730ccc90a799907e02d3875a3066d203aed36f842f78540",
+    "source_revision": "b7f46e35483083c1313391b194e048171c1c73de",
+    "validation_per_class": 72,
+    "version": "confidence-study-preparation-v1"
+  },
+  "protocol_sha256": "1fcf5ca84e9d21ac177180f9f76ea0a03d4ca316daea85eba616dbfc3d6431e5",
+  "release_allowed": false,
+  "report_sha256": "50a38cf27673cf9268afe0780b2e5b6f8525a9adf9d35ce6c734f6cd6ab8e7d8",
+  "scheduled_attempts": 296,
+  "shared_budget": {
+    "consumed": 320,
+    "maximum": 320,
+    "remaining": 0,
+    "unsettled": 0
+  },
+  "study_sha256": "d5a1a11b1d4543bfd8485a01abda99046566535e920d2351a1238e60a1d336da",
+  "supplementary_exact_clopper_pearson_95_per_class": {
+    "answerable": {
+      "failed_families": 20,
+      "families": 72,
+      "lower": 0.17864288115227983,
+      "target_met": false,
+      "upper": 0.39590581823203597
+    },
+    "no_answer": {
+      "failed_families": 10,
+      "families": 72,
+      "lower": 0.06866420769681664,
+      "target_met": false,
+      "upper": 0.2406259325030244
+    }
+  },
+  "version": "cuad-confidence-study-v1-result"
+}

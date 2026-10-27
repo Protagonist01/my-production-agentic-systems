@@ -1,16 +1,25 @@
 # Remaining delivery gates
 
-2026-10-27. The user authorized autonomous tested implementation PR merges and a
-production-oriented evidence alternative to a standing reviewer team. PRs#107–#114are
-merged; verified maina714b65passed all nine applicable jobs. Latest reviewed logs verify
-1255tests per quality environment/128SQL. Evidence planning, evaluator diagnostics and
-narrow deterministic citation integrity are available; semantic qualification remains open.
-The user separately authorized24of the existing180GeminiFreeattempts for a CUAD answerability
-pilot. [Actual results](semantic-answerability-pilot.md) fail diagnostic qualification:
-calibration6/8,validation13/16including2invalid judgments; no retries or release.
-Shared Gemini now24/180consumed,156remaining,0unsettled. Separate Groq invented smoke9/12,
-three remaining, unchanged. The live authoritative ledger is recorded in AGENTS.md.
-This is a gate inventory, not a claim that the remaining issues or epics are closed.
+2026-10-27. The owner authorized autonomous tested implementation merges and a production
+evidence alternative to a standing reviewer team. PR #118 packages the shared-budget
+amendment and [completed confidence-target study](confidence-target-study.md). Final exact-head
+hosted and postmerge evidence is recorded on the PR; the study does not authorize release.
+
+**Target not met:** 296/296 attempts completed on 148 distinct CUAD families;
+validation 237/288 correct, 30/144 failed families.
+Supplementary exact 95% per-class upper bounds are 39.59% answerable
+and 24.06% no-answer against 5%. These are conditional marginal
+reference-relative intervals, not production prevalence or qualified legal/billing truth.
+Original pilot calibration 6/8 and validation 13/16 remain preserved as failures.
+
+Shared Gemini: **320/320 consumed, 0 remaining,
+0 unsettled**, amended in place; original 24 attempts/grant retained. Groq: 9/12 invented-only,
+three remaining. Raw monetary costs remain unknown without billing evidence. A separate
+24-attempt exposed-case development proposal requests a 344-total cap; it is unapproved
+and has made zero calls. Do not consume fresh holdout or infer more spending authority.
+
+Legacy gates, profiles and dependencies remain. Ten task issues and their acceptance
+conditions are below; no issue is closed by the failed study.
 
 | Issue | Engineering now available | What still prevents acceptance |
 | --- | --- | --- |
@@ -21,7 +30,7 @@ This is a gate inventory, not a claim that the remaining issues or epics are clo
 | #57 Supply release | Fixed recorded-action matrices against all three baselines, sensitivity/model/family splits and unresolved/unsafe counts | #33, reviewed simulation/reference assumptions, final fresh candidate and actual spend/duplicate/recovery study; no real freight-savings claim |
 | #58 Deployment | Loopback console, startup/readiness/resource bounds, normal server drain/private counters and durable receipt acceptance | #33 and final source-grounded release deployment acceptance; external host and host-specific signal behavior are not verified |
 | #59 Backup/rollback | Private pinned same-schema new-target restore; source/newer receipts preserved; measured operator exercise with explicit time objective | #58, final deployment recovery objectives/retention/encryption/cutover requirements; local exercise is not production RPO/RTO |
-| #25 Second provider | User selected Groq Free; preparation adds explicit two-provider routes, schema/HTTP adapter, owned worker and separate invented-only smoke cap | #33 and reviewed fresh domain fallback quality/cost/schema comparisons; the Gemini180allowance remains separate |
+| #25 Second provider | User selected Groq Free; preparation adds explicit two-provider routes, schema/HTTP adapter, owned worker and separate invented-only smoke cap | #33 and reviewed fresh domain fallback quality/cost/schema comparisons; the shared Gemini allowance remains separate |
 | #60 Judges/monitoring | Deterministic business checks and versioned errors remain primary | Finished vertical studies and reviewed subjective judgments for calibration/held-out validation; no judge should be added merely to manufacture a release pass |
 | #61 Final portfolio evidence | Safe byte-pinned six-scope report catalog with no blended accuracy | All vertical releases plus #59; final reports/model cards/threat models/runbooks/fresh manifests must exist and pass their own gates |
 
@@ -31,8 +40,9 @@ field-specific reference evidence, independent checks and tested model assessmen
 human/qualified-review gates. A validated concrete replacement method and explicit acceptance
 remain necessary before promotion. Model agreement, citation existence and implementation
 merges cannot supply semantic truth or risk-owner decisions. Do not inflate coverage with
-exposed repetitions, reset the authoritative allowance or backdate approvals. The24attempt
-semantic pilot is complete; its remaining156shared attempts do not authorize rerunning it.
+exposed repetitions, reset the authoritative allowance or backdate approvals. The original
+24-attempt pilot and 296-attempt study are complete; the 320-total cap is exhausted.
+Further development needs an explicit new cap/scope; exposed cases cannot supply fresh confidence.
 
 The [closure plan](release-closure-plan.md), [accounting/domain chapter](closure-engineering.md),
 [P6/S6/catalog chapter](prior-auth-supply-release-reports.md) and

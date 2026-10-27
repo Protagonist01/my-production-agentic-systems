@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 65 — Size and freeze a confidence-target study](#entry-65--size-and-freeze-a-confidence-target-study)
 - [Entry 64 — Freeze a prospective cohort without recycling exposed families](#entry-64--freeze-a-prospective-cohort-without-recycling-exposed-families)
 - [Entry 63 — Map whitespace changes back to exact source spans](#entry-63--map-whitespace-changes-back-to-exact-source-spans)
 - [Entry 62 — Test semantic answerability against publisher references](#entry-62--test-semantic-answerability-against-publisher-references)
@@ -4005,3 +4006,112 @@ canonical digest. Reconstruct both maps and validate equality with the private f
 This changes publication formatting only; snapshot,cohort,source inventory,ledger and actual
 forecast arithmetic remain unchanged. No scanner workflow/rule/path exclusion or branch
 history rewrite. Repaired full CI remains required before merge.
+
+## Entry 65 — Size and freeze a confidence-target study
+**Files touched:** `provider_budget.py`, `confidence_study.py`, semantic request/parser
+projection, focused tests, AGENTS and study documentation.
+
+### Context and decision before capture
+The user wants to meet the proposed confidence target and explicitly approves320total
+Gemini Free attempts. Preserve the existing24consumed and permit296new attempts in the
+same ledger. Do not multiply calls on the twelve-family cohort: repeats are not independent
+families. At zero errors, the exact two-sided95%boundary needs72families per class; a
+single failure at that size exceeds5%. These are marginal per-class intervals, not a
+simultaneous95%claim across all classes, slices, models or products.
+
+### Before you read on
+How can a budget be increased without letting old clients continue under stale authority,
+and how can a larger study avoid turning a convenience sample into a production claim?
+
+### Options and construction
+Resetting or cloning the ledger would lose shared consumption. Append one pinned amendment
+inside an immediate SQLite transaction instead; require exact prior authorization, settled
+attempts and matching consumption. Keep original grant and all attempt rows unchanged,
+make amendment rows immutable, require both original and amendment pins in every client,
+and reject stale clients. An amendment changes only maximum, effective approval and expiry;
+credential association/model inventory remain bound to the original grant. Initialization
+still refuses a maximum above180. Invented tests fill the amended320cap, reopen it, compare
+all original rows, and verify stale pins, missing pins, wrong counts and outstanding attempts
+are denied. This is an owner-authorized increase, never permission inferred from arithmetic.
+
+The population audit initially exhausts a read_targets generator before checking its second
+length bound; materialize it once and rerun every bound. The corrected audit finds30known
+unexposed families below12kcharacters,69below20k,154below50k. Use a separately frozen50k
+study, keeping existing pilot defaults20k unchanged. Select74answerable families first,
+then74no-answer families, preferring the least-used category then case hash, with maximum16
+per category. Each original publisher span must match the source; each family and exact
+context can appear only once. Exclude all four prior exposure inventories and preserve
+original corpus holdout. This uses the same pinned source-development corpus and public
+publisher references, not new expert labels or a representative sample.
+
+Freeze148cases, four calibration and144validation, with two trials each. Model input has
+only original context and question; expected labels, splits and source metadata are local.
+Use the unchanged model prompt and opt-in whitespace parser. Count invalid quotations,
+abstention, provider failures and missing scheduled rows against the group error objective.
+No prompt tuning, replacement sampling, retries or majority votes after observing outcomes.
+Publish per-class bounds and coverage separately from release acceptance. A296attempt
+study can fail the target; no declaration can guarantee its result in advance.
+
+### Verification before private capture
+43focused invented tests pass, including the earlier budget/exposure contracts. Whole-repo
+type checking passes195sources before the final CLI amendment pin addition. Ruff formatting
+and lint are clean. Actual preparation, source pin checks and provider capture follow; no
+new provider call has occurred at this point. Shared original authorization and history
+must be reverified immediately before an in-place amendment.
+
+Preparation verified all four original exposure-inventory pins. Their actual union is128
+families (the120from three studies plus eight additional reviewer-packet families). Earlier
+prose stated120; the retained public aggregate and actual selection used128. The first new
+preparation assertion caught that stale prose before any output; corrected the assertion
+against the pinned evidence. Actual cohort:148unique families/contexts,37categories with
+four cases each, max49,760characters. Original source/database pins remain unchanged.
+
+### Actual execution and installed checks in progress
+Source preparation pins b7f46e3; doc-only correction/capture commit4ab3b01 has the same
+executable source inventory. Actual148family/296row capture begins after all original
+source/DB/exposure pins and credential association match. The in-place amendment preserves
+all24original rows and original authorization; a private recovery snapshot is explicitly
+historical, never another allowance. Current external configuration requires both pins.
+
+All1311localtests pass472.14seconds. Initial exact-head hosted logs verify1311tests in
+four Ubuntu/Windows Python3.12/3.13environments,195typed sources and12buildartifacts each;
+Postgres128passes239.48seconds. Both audits,secret scan and metadata pass. Strict invented
+replay uses6recordings/2timeouts/zero-provider. Installed80harness/35Revenue resources
+match wheels exactly; cohort revalidates with networking denied,no provider SDKs/other
+industries. Configured formatter305sources/import contracts pass. A bare whole-tree Ruff
+format command also scanned Markdown examples and flagged five preexisting documentation
+snippets; use the repository's configured dev.py format-check rather than changing unrelated
+historical examples. Lint itself passes. Hosted checks are for the initial head; final
+result/documentation changes still need their exact final checks.
+
+An early publisher disagreement and subsequent quotation/provider failures already make
+the minimum-size target fail. Continue the fixed diagnostic capture without changing labels,
+prompt,parser or denominators. This is evidence of candidate shortcomings, not a reason to
+lower confidence or treat repeated trials as new groups. Final accounting/audit follow.
+
+
+### Completed study and independent audit
+All296scheduled attempts complete with no retry/paid fallback. Validation
+237/288correct,265decisions,16false accepts,
+12false rejects,23failed observations,0missing.
+30/144families fail. Calibration8/8.
+The target fails; supplementary exact95%upper bounds are
+39.59%answerable/24.06%no-answer.
+No confidence criterion or label is changed. Recompute the frozen report from saved
+observations and revalidate every raw DTO/ledger reservation pair; verify original24rows,
+grant,pilot responses/report,source DB/exposure/executable pins. All match.
+Known tokens1535206/22845;unknown input/output
+0/0,unknown cost
+296. Single ledger320/320,0unsettled.
+
+The final budget-specific regression additions pass45focused tests22.37seconds: fresh181/320
+initialization is refused before file creation and a stale transport cannot invoke its
+provider while the amended ledger still has capacity. These are test-only additions,not
+changes to the running capture. Final full matrix will collect1313tests.
+
+Prepare a separate12family exposed development proposal,6perclass,failures/error kinds/
+categories balanced;model3.8Flash,one unique<=300characterquote,2048outputtokens. Its24
+attempts would require344sharedtotal;no new grant or call occurs. Labels remain private,
+all cases explicitly exposed,no qualification claim. The candidate/parser/operator and
+append-only amendment must be reviewed/tested/frozen before any future authorized dispatch.
+Keep the current320cap and failure evidence intact.

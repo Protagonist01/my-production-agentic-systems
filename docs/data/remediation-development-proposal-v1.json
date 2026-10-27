@@ -1,0 +1,48 @@
+{
+  "all_cases_exposed": true,
+  "categories": {
+    "Affiliate License-Licensor": 1,
+    "Cap On Liability": 1,
+    "Covenant Not To Sue": 1,
+    "Exclusivity": 1,
+    "Expiration Date": 1,
+    "Irrevocable Or Perpetual License": 1,
+    "Minimum Commitment": 1,
+    "Non-Transferable License": 1,
+    "Post-Termination Services": 1,
+    "Revenue/Profit Sharing": 1,
+    "Third Party Beneficiary": 1,
+    "Volume Restriction": 1
+  },
+  "classes": {
+    "answerable": 6,
+    "no_answer": 6
+  },
+  "development_only": true,
+  "dispatch_allowed": false,
+  "distinct_families": 12,
+  "limits": [
+    "Proposed candidate, not evaluated or promoted.",
+    "Current320cap unchanged; no dispatch permission inferred.",
+    "No fresh holdout consumed; development cannot establish final confidence."
+  ],
+  "max_output_tokens": 2048,
+  "max_quote_chars": 300,
+  "maximum_new_attempts": 24,
+  "model": "gemini-3.8-flash",
+  "proposal_sha256": "b7b046301a550ecb986606ed62ddff034899736f9efa8a1904048a361b649c21",
+  "provider_calls": 0,
+  "provider_input_sha256": "8ebaf42e5d09cb61d5d208ec43a6af867f21a0884d7d7b9e16fc30d9afc5056d",
+  "release_allowed": false,
+  "requested_shared_total": 344,
+  "selected_cases": 12,
+  "selected_error_kinds": {
+    "false_accept": 4,
+    "false_accept+invalid_semantic_judgment": 1,
+    "false_reject": 2,
+    "invalid_response": 1,
+    "invalid_semantic_judgment": 4
+  },
+  "selected_failed_families": 12,
+  "version": "remediation-development-proposal-v1"
+}
