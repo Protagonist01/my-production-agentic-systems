@@ -3992,3 +3992,16 @@ Ruff303files,194typed sources,kept import contracts and sixbuildpairs pass. Publ
 7files against configuredcredentials/24OlistIDs/20,910originalquestion IDs/510contextprefixes;
 all absent,419relative links resolve and source/draft/backlog statuses/dependencies unchanged.
 Final hosted checks and postmerge acceptance remain pending;zero provider calls in this batch.
+
+### Exact snapshot-hash scan findings and explicit approval
+Initial PR117run40425932890flags two generic-api-key findings in the public forecast's
+provider-to-snapshot-hash maps. Compare both to the actual private AllowanceSnapshot
+canonical hash; both match and are not credentials. The user explicitly approved these
+two exact historical exceptions, separate from the earlier four exceptions. Preserve the
+failed run and append only the two observed commit/file/rule/line fingerprints.
+
+Publicly project provider/hash pairs as separate records and retain the original forecast's
+canonical digest. Reconstruct both maps and validate equality with the private forecasts.
+This changes publication formatting only; snapshot,cohort,source inventory,ledger and actual
+forecast arithmetic remain unchanged. No scanner workflow/rule/path exclusion or branch
+history rewrite. Repaired full CI remains required before merge.

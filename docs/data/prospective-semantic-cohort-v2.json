@@ -45,12 +45,16 @@
         "google-gemini-developer-api": 156
       },
       "schema_version": 1,
-      "snapshot_sha256s": {
-        "google-gemini-developer-api": "cf217b6cbcff0cdcfc20a23a97a4eaf9d17f213fd0cd36ff72e7f4e9a320dc12"
-      }
+      "snapshot_references": [
+        {
+          "provider": "google-gemini-developer-api",
+          "sha256": "cf217b6cbcff0cdcfc20a23a97a4eaf9d17f213fd0cd36ff72e7f4e9a320dc12"
+        }
+      ]
     },
     "minimum_attempts_before_other_costs": 296,
     "minimum_validation_families": 144,
+    "original_forecast_sha256": "bde352ca032c326799330897ec61470b19c172467bcd679bcd4234de95966400",
     "production_threshold_accepted": false,
     "reference_classes": 2,
     "remaining_shared_attempts": 156,
@@ -74,10 +78,14 @@
       "google-gemini-developer-api": 156
     },
     "schema_version": 1,
-    "snapshot_sha256s": {
-      "google-gemini-developer-api": "cf217b6cbcff0cdcfc20a23a97a4eaf9d17f213fd0cd36ff72e7f4e9a320dc12"
-    }
+    "snapshot_references": [
+      {
+        "provider": "google-gemini-developer-api",
+        "sha256": "cf217b6cbcff0cdcfc20a23a97a4eaf9d17f213fd0cd36ff72e7f4e9a320dc12"
+      }
+    ]
   },
+  "forecast_projection_encoding": "provider-sha256-records-v1",
   "limits": [
     "Prepared only;no model responses/quality scores or new capture approval.",
     "Balanced short-context/hash convenience sample,not representative;publisher labels public.",
@@ -88,6 +96,7 @@
   ],
   "max_context_chars": 11770,
   "original_corpus_holdout_changed": false,
+  "original_forecast_sha256": "d32d6a54f90b3a3f5495280b615f849d1b88e908a3061f0a6e8313728c5308f2",
   "parser": "semantic-answerability-parser-v2",
   "previous_artifact_files_verified_unchanged": 57,
   "prior_families_excluded": 128,

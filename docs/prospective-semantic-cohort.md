@@ -111,3 +111,11 @@ separate from final release acceptance. Human/qualified legacy gates remain unch
 [Build Book Entry64](../BUILD_BOOK.md#entry-64--freeze-a-prospective-cohort-without-recycling-exposed-families)
 records the actual implementation/debugging sequence. Final exact-head hosted and postmerge
 acceptance is recorded on the PR after it completes.
+
+The public forecast projection separates provider names and snapshot hashes into records,
+retaining each original canonical forecast pin. Reconstructing the map produces the exact
+private `AttemptForecast`; neither allowance, arithmetic nor authority changes. Initial
+PR117secret scan flagged two snapshot digests beside the provider's API-like name. Both
+were verified canonical snapshot hashes, and the user explicitly approved only those two
+historical commit/file/rule/line exceptions. Scanner rules/workflow remain unchanged; the
+failed original run remains recorded. Repaired final-head checks are still required.
