@@ -119,3 +119,152 @@ remain. A corrected v2operator uses the same approvedoverrideanduntouchedslots a
 explicitlycheckingnoadditionaldispatch. It doesnotretryaconsumedrequestorappendnewbudget.
 The explicitversionedpolicy nowroundtrips throughgatewayadmissionandstoredControlledCall;
 legacyExecutionPolicystillrefuses110. Actualfakegatewayexecutionispartofpreflightregression.
+
+
+## Corrected continuation actually underway
+
+Corrected source83ed244 freezes the v2operator;all73untouchedrequests preflight,including
+actualSDK90secondtimeout and gatewaypolicyvalidation. Representativecanarypasses38.83s,
+exactstrictdecision/IDandsettledreceipt;thisunlocks the original72domainrequests. First
+30secondprobe remainsfailedandthev1localpolicyfailureconsumesnothing. Domaincaptureuses
+90HTTP/110parentconsistentlyacrossallvariants. This shows the path works underthiswindow;
+it doesnotproveallgenerationfailureswerecausedsolelybytheoldtimeoutorprovideravailability.
+
+Initialfullgatewayregression usedoldinventedclock andreturneddeadlineexhausted;fixclockto
+currentUTCandretaintestpurpose. Actualfakeattempt nowchecks60<remaining<=110,andstoredcall
+roundtrips110/maxattempts1. LegacyExecutionPolicy110stillrefuses. All201sources typecheck;
+initialhostedUbuntu logs1377tests perPython3.12/3.13,128SQLpass;finalheadresultsfollow.
+Theobsolete localfullrunstartedbeforecorrectionisexplicitlystopped,notreportedpassing.
+Use exactfinalhostedmatrixforfull-suiteacceptance. Installed84harness/38Revenue resources
+matchwheels,12oldermodelrequests/12OpenRouterpayloads revalidatewithoutnetwork orprovider
+SDKs;strictinventedreplay6calls/2timeouts/0provider. Thesearesoftwarechecks,notscores.
+
+
+## Completed result: neither variant is ready for promotion
+
+All 72 domain calls completed: 24 per variant, with no missing rows, abstentions, transport
+failures or evidence-format refusals. Both trials and all 12 families remain in the
+fixed denominators. The [safe result](data/paired-quality-result-v1.json) was independently
+recomputed from saved responses and checked against ledger receipts, slot bindings and
+historical code. This is an exposed, outcome-selected development comparison. Its scores
+cannot be compared directly to the original 82.29% result from a different population.
+
+| Measurement | Freshly captured baseline | Task wording only | Evidence selection only |
+| --- | ---: | ---: | ---: |
+| Reference-correct responses | 13/24 (54.17%) | 12/24 (50.00%) | 15/24 (62.50%) |
+| Answerable correct | 8/12 | 8/12 | 8/12 |
+| No-answer correct | 5/12 | 4/12 | 7/12 |
+| False accepts | 7 | 8 | 5 |
+| False rejects | 4 | 4 | 4 |
+| Valid response/evidence interface | 24/24 | 24/24 | 24/24 |
+| Consistently correct families (both trials) | 6/12 | 6/12 | 7/12 |
+| Consistently correct preselected controls | 4/4 | 4/4 | 4/4 |
+| Paired families gained versus baseline | — | 1 | 2 |
+| Paired families lost versus baseline | — | 1 | 1 |
+| Net consistently correct families | — | 0 | +1 |
+| Known input tokens | 142,570 | 144,202 | 200,846 |
+| Known output tokens | 2,153 | 1,355 | 586 |
+| Sum of call elapsed seconds | 395.94 | 370.32 | 419.19 |
+| Unknown monetary-cost rows | 24 | 24 | 24 |
+
+Source selection uses **40.88% more input tokens** than baseline because the catalog adds
+IDs and schema/input overhead. Lower output-token use does not prove lower monetary cost:
+raw cost remains unknown, and account billing is not independently verified. Elapsed times
+include local process phases; they are descriptive, not throughput or service guarantees.
+
+Token usage is known for all 73 continuation calls, including the representative canary:
+500,686 input and 4,109 output tokens. The first timeout adds one call with unknown token
+usage and cost. All 74 new reservations are consumed, without retry or paid fallback.
+The shared ledger is **415/418 consumed, three legacy slots remaining, zero unsettled**.
+Those three slots are still bound to the old scope, not another experiment allowance.
+Groq remains 9/12 and OpenRouter 1/12, with zero unsettled each. No contract was sent to
+OpenRouter.
+
+### What improved, regressed and stayed unresolved
+
+Task clarification produces no net gain in consistently correct families. It fixes the
+first-option/right-of-first-refusal family in both trials, but loses the Covenant Not To
+Sue family that baseline gets right twice. It also changes a mixed baseline Cap On
+Liability family into two disagreements. False accepts rise from seven to eight. This
+rejects the hypothesis that the tested wording addition is sufficient. It does not prove
+that no better instruction could help. Do not deploy it because it merely sounds clearer.
+
+Source selection gains the first-option and Cap On Liability families, but also loses
+Covenant Not To Sue. Its net gain is only one of 12 families. Exclusivity remains mixed;
+Volume Restriction, Third Party Beneficiary and Non-Transferable License still disagree
+with the reference in both trials. This small result supports investigation, not promotion.
+Changing the evidence interface can itself change decisions; it is not a neutral format fix.
+
+Both new variants preserve the four preselected controls, but regressions also occur
+outside that subset. Report every paired regression, not only control regressions. A
+candidate can preserve all named controls and still damage other previously working cases.
+
+All 24 baseline citations pass in this capture, including the two families selected for
+older citation failures. We therefore cannot claim that source selection reduced observed
+citation failures in this comparison. Exact local copying remains an implementation
+integrity guarantee; a quality gain from that guarantee was not demonstrated here.
+
+Each variant has eight reference-positive accepts, and all eight overlap a published span.
+That location check is diagnostic. Overlap does not independently establish semantic
+relevance or legal meaning. Wrong positive decisions remain wrong despite exact citations.
+No disputed reference is relabeled or silently excluded.
+
+### Narrowed next engineering direction
+
+**Promote neither variant and do not launch another large confidence run.** The remaining
+problem in this comparison is reference-relative interpretation under the current
+model/task pairing, rather than failed JSON or copied-source integrity. Keep baseline and
+all historical failed studies intact.
+
+The next useful comparison would hold the original baseline prompt and evidence interface
+fixed and change only the model, using these exposed families and regression controls.
+It needs a separate concrete model scope and budget; the three legacy slots cannot fund it.
+Separately investigate the applicability of suspicious publisher categories without treating
+new AI explanations as adjudicated labels. A stronger model could share the same ambiguity;
+model agreement would not settle the reference question.
+
+If development identifies a useful candidate, freeze it and an appropriate fresh cohort
+and protocol before testing confidence again. These results authorize neither another
+provider dispatch nor production release.
+
+## Independent audit and verification record
+
+The audit reparses all 73 continuation rows (one representative canary plus 72 domain
+responses), reproduces the outcomes and complete report, and matches every context,
+request and response hash to its reservation and unique slot. It verifies that original
+requests and trials are unchanged and that exactly one approved representative pass exists.
+
+It checks the original 341 rows, grants and old development slots; the first 342 rows
+including the failed canary; and all recorded prior artifact hashes. Historical executable
+inventories match their frozen Git commits, with explicit LF/CRLF handling. The first audit
+lookup used Windows backslashes in a Git path and refused before publishing any result.
+Correcting path syntax made the audit pass; no source bytes or results were changed.
+
+The first continuation remains an empty-row local failure. The corrected continuation uses
+separately frozen commit `83ed244`. The original confidence study remains failed, and this
+small comparison is never scored as qualification. Initial hosted checks pass 1,377 tests
+in each Ubuntu/Windows Python 3.12/3.13 environment, with 201 typed source files, 12 build
+artifacts and 128 SQL tests. Installed checks confirm 84 harness and 38 Revenue resources
+match the wheels; projections run with networking denied and strict replay uses six
+recordings, reproduces two timeouts and makes zero provider calls.
+
+Final documentation-head checks and post-merge verification are recorded on
+[PR #121](https://github.com/Protagonist01/my-production-agentic-systems/pull/121).
+
+## Engineering discussion: the hypothesis failed usefully
+
+A truthful account for an employer or business discussion:
+
+> We suspected wording ambiguity and quote rewriting. We isolated those changes on the
+> same model, captured a contemporary paired baseline, and included previously correct
+> controls. The wording change did not improve family accuracy. Source selection helped
+> two cases, hurt one, and added about 41% input tokens. Because baseline citations all
+> passed in this capture, we could not claim an evidence-format improvement. We kept both
+> changes out of release and narrowed the next test to model capability, with prompt and
+> interface held fixed.
+
+That is evidence of how an attractive hypothesis was tested and rejected without weakening
+criteria or erasing failures. The timeout repair is an operational improvement for this
+run; it does not turn a 62.5% score on selected exposed cases into production reliability.
+See the broader [engineering case study](revenue-failure-investigation.md) for business,
+onboarding and interview questions.

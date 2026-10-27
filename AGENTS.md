@@ -127,3 +127,12 @@ pass unlocks domain;wrong/failed/unsettled doesnot. Continuation freezes separat
 and keeps original requests/model/settings/trials. Stop representativefailure or domain
 quota/auth/budgetdenial/3consecutive timeout-unavailable. Old90window never becomes legacy
 adapterdefault. No inference from remaining76allowance about replaying completed slots.
+
+## Paired evaluation completed (2026-10-27)
+
+All74newslotsconsumed:failedfirstcanary+passedrepresentative+72qualitycalls. Currentshared
+Gemini415/418,3remaininglegacyboundslots,0unsettled. No oldslotreuse/newdispatchauthority.
+Pairedqualitybaseline13/24,taskwording12/24,evidenceselection15/24;neithervariantpromoted.
+Alllabels/failedstudies/gatespreserved. Any nextmodel-onlycomparison needsconcretescope/budget;
+do not reruncapture/continuationorinterpret418asnewallowance. OpenRouter1/12inventedonly,
+Groq9/12unchanged. Actualresult/audit:docs/paired-quality-evaluation.md anddatareport.

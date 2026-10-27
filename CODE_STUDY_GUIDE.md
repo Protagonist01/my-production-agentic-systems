@@ -553,3 +553,21 @@ observations;missingstaysmissing. Perclass results,controlregressions and unknow
 visible. It cannot qualify even perfectdevelopmentresults. Operatorpreflight uses actual
 SDKserialization for38requests,including longinventedcatalogschema;stillnoavailability
 or accuracyclaim untilactualcapture. Read the linked plan for the honest decision boundary.
+
+
+### Measured paired result and continuation boundary
+
+The completed[paired quality report](docs/paired-quality-evaluation.md#completed-result-neither-variant-is-ready-for-promotion)
+rejectsautomaticpromotion:baseline13/24,taskwording12/24,selection15/24on12exposedfamilies,
+all72domaincallscompleted. Pairedfamilygains/losses1/1and2/1;fourcontrolsretainedbutboth
+variantsloseanotherfamily. Allbaselinecitationsvalid,soselection'sintegrityguarantee isnot
+measuredcitationfailureimprovement. Selectioninput+40.88%;rawcostunknown. Existinglarge
+confidencefailure remains. Nextmodel-onlycomparisonisproposal,notfundeddispatch.
+
+Thefirst30sHTTPcanarytimeoutcausesdomainstop;ownerapprovesunusedrepresentativeunder90HTTP/
+110parent. ImmutableAvailabilityOverride bindsfirstfailedreceipt/report andunusedrequest;
+sixthpinrequired. ExplicitPairedExecutionPolicyversion110roundtripsthroughvalidated_policy
+andControlledCallunion,whilelegacyExecutionPolicystillrefuses110. ActualSDKdefault30/optin90
+andboundedfakegatewayadmission/callreadbackregressionscoverthis. Initialv1localpolicyfailure
+hasnoreservation andremains;separatev2operatorfreezesoldrequests/newcode/time. Domainonly
+unlocksafterexactsettledrepresentativepass. Final415/418,3legacyboundremaining,0unsettled.

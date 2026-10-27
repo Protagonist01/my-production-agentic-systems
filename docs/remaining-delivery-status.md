@@ -1,3 +1,15 @@
+## Latest paired development evidence - 2026-10-27
+
+The [paired quality comparison](paired-quality-evaluation.md) completed all72domaincalls:
+baseline13/24,taskwording12/24,selection15/24. Neitherchangeispromoted. Controlsretained,
+pairedregressionsremain;allbaselinecitationsvalid,selectioninput+40.88%. Thesearenewexposed
+convenience-developmentresults,notfreshconfidenceorproductionevidence.
+
+CurrentsharedGemini**415/418consumed,3remaininglegacyboundslots,0unsettled**. No consumedslot
+retry ornewexperimentfunding. Firstfailedcanaryandowner-approved90HTTP/110parentcontinuation
+preserved;representativepassesand72callscomplete. Groq9/12andOpenRouter1/12unchanged. No
+newproviderdomain/releaseauthority. Earlierresultsbelowarehistorical;gates/dependenciesstay.
+
 # Remaining delivery gates
 
 2026-10-27. The owner authorized autonomous tested implementation merges and a production
