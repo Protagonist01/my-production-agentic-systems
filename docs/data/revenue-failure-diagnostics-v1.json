@@ -1,0 +1,192 @@
+{
+  "category_outcomes": {
+    "Affiliate License-Licensee": {
+      "correct": 8
+    },
+    "Affiliate License-Licensor": {
+      "citation_invalid": 2,
+      "correct": 3,
+      "wrong_decision": 1
+    },
+    "Anti-Assignment": {
+      "correct": 8
+    },
+    "Audit Rights": {
+      "correct": 8
+    },
+    "Cap On Liability": {
+      "correct": 6,
+      "wrong_decision": 2
+    },
+    "Change Of Control": {
+      "citation_invalid": 3,
+      "correct": 5
+    },
+    "Competitive Restriction Exception": {
+      "citation_invalid": 2,
+      "correct": 6
+    },
+    "Covenant Not To Sue": {
+      "citation_invalid": 2,
+      "correct": 6
+    },
+    "Exclusivity": {
+      "correct": 6,
+      "wrong_decision": 2
+    },
+    "Expiration Date": {
+      "correct": 6,
+      "wrong_decision": 2
+    },
+    "Governing Law": {
+      "correct": 7,
+      "wrong_decision": 1
+    },
+    "Insurance": {
+      "correct": 8
+    },
+    "Ip Ownership Assignment": {
+      "correct": 8
+    },
+    "Irrevocable Or Perpetual License": {
+      "correct": 7,
+      "provider_failure": 1
+    },
+    "Joint Ip Ownership": {
+      "correct": 8
+    },
+    "License Grant": {
+      "correct": 6,
+      "wrong_decision": 2
+    },
+    "Liquidated Damages": {
+      "correct": 8
+    },
+    "Minimum Commitment": {
+      "citation_invalid": 2,
+      "correct": 2,
+      "wrong_decision": 2
+    },
+    "Most Favored Nation": {
+      "correct": 6,
+      "wrong_decision": 2
+    },
+    "No-Solicit Of Customers": {
+      "citation_invalid": 1,
+      "correct": 7
+    },
+    "No-Solicit Of Employees": {
+      "correct": 8
+    },
+    "Non-Compete": {
+      "correct": 8
+    },
+    "Non-Disparagement": {
+      "citation_invalid": 2,
+      "correct": 6
+    },
+    "Non-Transferable License": {
+      "citation_invalid": 1,
+      "correct": 5,
+      "wrong_decision": 2
+    },
+    "Notice Period To Terminate Renewal": {
+      "correct": 6,
+      "wrong_decision": 2
+    },
+    "Post-Termination Services": {
+      "citation_invalid": 2,
+      "correct": 6
+    },
+    "Price Restrictions": {
+      "correct": 8
+    },
+    "Renewal Term": {
+      "correct": 6
+    },
+    "Revenue/Profit Sharing": {
+      "citation_invalid": 2,
+      "correct": 6
+    },
+    "Rofr/Rofo/Rofn": {
+      "correct": 6,
+      "wrong_decision": 2
+    },
+    "Source Code Escrow": {
+      "citation_invalid": 2,
+      "correct": 6
+    },
+    "Termination For Convenience": {
+      "correct": 8
+    },
+    "Third Party Beneficiary": {
+      "correct": 4,
+      "wrong_decision": 4
+    },
+    "Uncapped Liability": {
+      "citation_invalid": 1,
+      "correct": 7
+    },
+    "Unlimited/All-You-Can-Eat-License": {
+      "correct": 6
+    },
+    "Volume Restriction": {
+      "correct": 4,
+      "wrong_decision": 4
+    },
+    "Warranty Duration": {
+      "correct": 8
+    }
+  },
+  "cohort_sha256": "89c666be186bbea6d2e97dd848dfa0badf262ef26bd4064643ba889143335034",
+  "context_length_bands": {
+    "20001_to_35000": {
+      "citation_invalid": 7,
+      "correct": 88,
+      "scheduled": 108,
+      "wrong_decision": 13
+    },
+    "35001_to_50000": {
+      "citation_invalid": 13,
+      "correct": 44,
+      "provider_failure": 1,
+      "scheduled": 60,
+      "wrong_decision": 2
+    },
+    "up_to_20000": {
+      "citation_invalid": 2,
+      "correct": 105,
+      "scheduled": 120,
+      "wrong_decision": 13
+    }
+  },
+  "disjoint_outcomes": {
+    "citation_invalid": 22,
+    "correct": 237,
+    "provider_failure": 1,
+    "wrong_decision": 28
+  },
+  "limits": [
+    "Descriptive reanalysis of exposed cases, not a new qualification experiment.",
+    "Length/category associations do not establish causes or generalization.",
+    "Publisher disagreement is not independently adjudicated model or label error.",
+    "Checks saved capture bindings, not active allowance or cloud billing."
+  ],
+  "overlapping_raw_decision_diagnostics": {
+    "invalid_and_raw_wrong": 3,
+    "invalid_but_raw_correct": 19,
+    "raw_wrong_decision": 31
+  },
+  "plan_sha256": "7066954deb1844f8501c584d8d626186fd06cd0fd779c9cdbe5ebd69be80ec15",
+  "provider_calls": 0,
+  "release_allowed": false,
+  "trial_pairs": {
+    "both_failed": 21,
+    "both_wrong_raw": 15,
+    "only_one_failed": 9,
+    "same_raw_decision": 142
+  },
+  "validation_families": 144,
+  "validation_observations": 288,
+  "version": "revenue-exposed-failure-diagnostics-v1"
+}

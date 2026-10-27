@@ -51,3 +51,15 @@ The [closure plan](release-closure-plan.md), [accounting/domain chapter](closure
 [P6/S6/catalog chapter](prior-auth-supply-release-reports.md) and
 [operations runbook](olist-operations-recovery.md) give concrete reproduction steps and
 limits. Native Project board state is not asserted by this document.
+
+
+## Exposed failure investigation and separate OpenRouter canary
+
+The [engineering case study](revenue-failure-investigation.md) records reproduced trial-pair,
+length/category diagnostics, the answer-versus-category task ambiguity, unresolved reference
+applicability and separate task-wording/source-selection prototypes. No fresh quality result
+or qualification is claimed. All original references, failures, gates and dependencies stay.
+The owner-approved invented-only OpenRouter canary stopped after first HTTP429:1/12consumed,
+11remaining,0unsettled. Read-only key metadata reports Free and0/50dailyuse, which does not
+explain429or establish remote capacity/billing. No contract export,retry or fallback.
+Gemini341/344and Groq9/12remain separate. See the [safe result](data/openrouter-free-canary-v1.json).

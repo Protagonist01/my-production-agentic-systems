@@ -494,3 +494,44 @@ effects, refused existing outputs and a failed timing objective. These mechanism
 provide reviewer judgments, production RPO/RTO or release permission.
 
 The [closure plan](docs/release-closure-plan.md) maps #33/#38/#45 acceptance to remaining engineering, independent review, population coverage and actual fresh evidence. Four private blind packets contain77reviewitems; current studies are not promoted. A newly authorized shared180attemptGeminiFree cap remains unused pending freezes/reviews. This is a handoff plan, not implemented release acceptance.
+
+
+## Failure investigation: decisions, evidence and execution
+
+See the [engineering case study](docs/revenue-failure-investigation.md) and
+[Build Book Entry67](BUILD_BOOK.md#entry-67--diagnose-task-mismatch-before-another-model-study).
+The former explains measured failures, rival explanations and future employer/business
+claims; the latter records construction chronologically, including our operator mistakes.
+
+`interpretation_request` in [evidence_selection.py](projects/revenue-integrity/src/revenue_integrity/evidence_selection.py)
+keeps the old route, input, output schema and parameters and changes only system wording.
+This allows an eventual paired development comparison of task wording. It is not wired into
+runtime/release. `selection_request` separately changes the evidence interface: partition
+all source characters into named spans, ask for IDs, then `copy_selection` recomputes and
+checks the exact request before copying those spans locally. Input/request/response hashes
+bind the result. Unicode characters and whitespace are retained exactly. Duplicate/foreign
+IDs, wrong route, inconsistent decision/evidence and changed input refuse. A cited passage
+can still be irrelevant or contradictory; `semantic_support=not_assessed` makes that limit
+executable. Fixed300character boundaries and three-span limit need evaluation before use.
+
+The [diagnostic command](scripts/diagnose_revenue_failures.py) loads private frozen artifacts,
+revalidates all296saved rows and emits safe numeric diagnostics. It has no model client.
+It splits final outcomes, then cross-tabulates raw decision correctness and evidence
+validity without adding overlapping counts. Pair trials by case; keep original labels.
+Length-band/category counts describe this exposed convenience cohort, not causal effects.
+
+[openrouter_canary.py](harness/src/agent_harness/openrouter_canary.py) permits exactly twelve
+invented requests to one explicitly free model. It shares strict JSON/schema/token parsers
+with the Groq adapter, not its authorization or allowance. `CanaryLedger.reserve` performs
+an immediate SQLite transaction, pin/credential/interval/inventory checks and duplicate/cap
+checks before inserting. Settlement is one-time and failures are never refunded. Existing
+connection safeguards come from AttemptLedger, but this canary validates its own versioned
+authorization. The selected worker uses IsolatedTransport for parent deadline and cleanup.
+The adapter has no retries/redirects, sends no tools, sets zero-price ceilings and disables
+router fallback. Exact JSON is required, not healed. Raw token usage is distinct from unknown
+monetary cost. The separate openrouter extra uses existing locked HTTP/schema versions.
+
+Interview exercise: why can exact source copying pass while interpretation fails? Use the
+invented regression where the selected source expressly denies the right, yet the model
+says accept. Then explain why switching provider and changing prompt simultaneously would
+make improvement difficult to attribute. A canary is only remote transport evidence.

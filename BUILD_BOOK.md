@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 67 — Diagnose task mismatch before another model study](#entry-67--diagnose-task-mismatch-before-another-model-study)
 - [Entry 66 — Develop on exposed failures under a schedule-bound extension](#entry-66--develop-on-exposed-failures-under-a-schedule-bound-extension)
 - [Entry 65 — Size and freeze a confidence-target study](#entry-65--size-and-freeze-a-confidence-target-study)
 - [Entry 64 — Freeze a prospective cohort without recycling exposed families](#entry-64--freeze-a-prospective-cohort-without-recycling-exposed-families)
@@ -4209,3 +4210,98 @@ verifying3.8route,2048output,one-quote schema,onefakewireexchange and exact sour
 with no network. This is compatibility evidence,not remoteavailability or semanticquality.
 Installed80harness/36Revenue resources equal wheels and the earlier cohort revalidates
 networkdenied,no provider SDK/otherindustries. Final exact-head hosted checks follow.
+
+
+## Entry 67 — Diagnose task mismatch before another model study
+**Files touched:** revenue failure investigation, source-selection prototype, OpenRouter canary, tests and study guide.
+
+### Context
+The owner asks why the confidence target failed, authorizes following the diagnostic
+recommendation and requests detailed engineering notes. They also approve a separate
+maximum12attempt OpenRouter Free canary using invented data only, no fallback/retries.
+The shared Gemini ledger remains341/344, no authorization to rerun its completed slots.
+
+### Before you read on
+If a question asks whether a restriction exists, does a clause expressly denying that
+restriction count as an answer? Decide whether the model instruction and reference labels
+measure the same thing before deciding that a larger model is the fix.
+
+### Options considered and decision before implementation
+Increasing the final sample cannot repair an error rate above the target. Repeating all
+failed calls would mix development and qualification and consume an unchanged allowance.
+Changing model, prompt and output budget together already failed operationally and could
+not isolate a cause even if it had succeeded. Instead, compute disjoint outcomes and
+trial-pair diagnostics from saved rows, inspect reference-versus-model passages locally,
+then prepare separate task-wording and evidence-interface variants. Keep all proposals
+unqualified until a controlled experiment supplies improvement evidence.
+
+### How to build it
+Read each frozen cohort case and its two raw responses, retaining the publisher target.
+For validation count final correct/wrong/citation-invalid/provider-failed outcomes. Then
+cross-tab raw decision correctness with citation validity; never sum overlapping axes.
+Pair by case and trial, not by row count. Compare length bands descriptively, without
+claiming a causal effect from this convenience sample. Do not publish source passages or
+case identifiers. Inspect repeated disagreements locally to find instruction ambiguity.
+The existing instruction asks for any explicit answer, whereas annotations identify
+category-associated passages: an explicit denial can answer the question without the
+category being marked present. Draft a small task-clarification variant separately.
+
+For the evidence-interface prototype, let the model choose source span IDs and copy text
+locally from the pinned input. Deterministic copying can eliminate rewritten quotations,
+but cannot prove that a selected passage answers the question. Bind catalog and response
+to the exact request/input; refuse foreign IDs and changed contexts. Preserve full text,
+including Unicode and whitespace. Do not enable this prototype in release/runtime paths.
+
+For OpenRouter, freeze invented inputs, explicit free route and a separate capped ledger.
+Preflight the actual HTTP payload and parse a constructed wire response before any live
+reservation. Explicitly disable router fallback and require zero prompt/completion/request
+prices. Keep authentication private. A remote canary proves transport compatibility only;
+it does not authorize sending contracts to a new provider or replacing reference review.
+
+### What went wrong / checks in progress
+The previous18local failures were operator errors: admission accepted a configuration the
+actual worker rejected, and a legacy output ceiling independently rejected the new request.
+Adapter-level preflight now precedes spending. No outcome from the failed run is refunded.
+New implementation, tests and real canary results follow; no improvement claimed yet.
+
+
+### Actual diagnosis, implementation and first remote result
+Reanalysis verifies296saved rows,288validation outcomes and exact schedule/response bindings.
+Disjoint237correct/28wrong/22citation-invalid/1provider;31raw disagreements overlap three
+citation-invalid;19invalid quotes otherwise have correct decisions.142/144pairs repeat raw
+decision;15wrongbothtrials. Long35–50kband13citationinvalid+1provider among60trials;shortband
+still13wrong decisions.16private disagreement notes are AI proposals,not human annotations.
+Full passages/IDs remain private; invented paraphrases explain the public failure classes.
+Do not relabel suspicious positive/negative source references to make benchmark pass.
+
+Two opt-in prototypes added:taskwording-only and evidence-interface-only. Catalog covers
+allsourcecharacters in300character spans. Bound request/input/route and strict ID parsing
+prevent changed-source/fabricated/duplicate selection. Copy exact local source,not model
+text. A deliberate invented test shows wrong semantic selection can still pass integrity;
+semantic_support stays not_assessed. No runtime/release path selects these prototypes.
+
+Selected explicit free OpenRouter Liquid route from public zero-price/structured-output
+metadata;pin actual12invented requests/sourceinventory in separate new ledger. Allpayloads
+and fakewire responses preflight before reserve;owned55second parent/45secondHTTPbound,
+zero-price ceilings,no redirects/retries/routerfallback. First actualcallHTTP429;stop1/12,
+11remaining,0unsettled. Unknown token/costnotzero. LaterreadonlykeymetadataHTTP200Free,
+0used/50limit,so429cause unresolved,not proven quotaexhaustion/outage. No contract export.
+Gemini341/344and Groq9/12rechecked. Initialcrossledgeraudit used incorrect Groq filename
+external-pin.json instead of allowance-pin.json;read failed before changing either ledger.
+Correct name/pin checks confirm unchanged counts. This was an audit-path error,not a reset.
+
+Initial79focusedtests pass30.86s;198types pass. CI catches dependency-lock mismatch after
+adding optionalOpenRouterextra(reusesexistingHTTP/schema versions). Strictreplayv13rightly
+refuses changedlock. Generate separateinventedv14,pin88d688e90b249db3dba90f7dfa630cd66d303a3695c79fdd301bd4d75b1e6745,
+preservev1–v13and addv13historicalrefusaltest;83replaytests pass. Never edit oldcapture bytes.
+New canary regressions covertimeout/oversize/invalidusage/crashreservation/immutability.
+Finalfullsuite and exact-head CI follow. FirstSDKconnector createdonlyPRform;repository
+instructions/userauthorize authenticatedAPIfallback,which createsverifiedPR120directly.
+
+
+Local fullrun55failed/1310passed427.47s:defaultCtemp is under actualC:/.git marker,
+so sourceexternalpathguards rightly refuse. Do not delete unrelatedmarker or relaxguard.
+VerifyD:/document/.cache/production-agents/s5-temp has noGitancestor;setTEMP/TMPexplicitly
+and rerunfullsuite. FocusedCFPB82passes7.91sunderselectedtemp. Installed82harness/37Revenue
+resourcesmatchwheels;12actualcanarypayloads/exactUnicodecopy revalidate with networkdenied,
+noGoogle/GroqSDKorotherindustries;strictinventedreplay6calls/2timeouts/0provider.
