@@ -99,3 +99,17 @@ retry consumed requests or export contracts/source data under this scope. The ke
 ignored `.agent-local/openrouter-free.env`; never print or commit it. Gemini stays the same
 341/344ledger; Groq stays its separate9/12invented allowance. OpenRouter availability does
 not authorize domain comparison, new spending or release. Recheck actual ledger state.
+
+## Paired model-quality development authorization (2026-10-27)
+
+The owner approved increasing the SAME Gemini lifetime allowance to418for74newattempts:
+two invented canaries then72calls on12exposedCUADfamilies,baseline/taskwording/evidence
+selection with2trials each,Gemini3.5FlashLite. Preserve all341prior attempts and prior grant
+pins. The three oldunusedslots remainbound and must not be reassigned/replayed. Append a
+pinned74slot PairedExtension; do not initialize/resetanotherpool. Currentclients require
+paired_extension_sha256 in the same private external-pin.json. The SQL insertion guard
+must reject oldbinary reservations outside the new slots. Both canaries must pass with
+matching settled receipts before domain dispatch. Failurescount,no automaticretries or
+paidfallback,no relabeling,newholdout or releaseapproval. Stop firstcanaryfailure; domain
+quota/auth/budgetdenial or three consecutive timeout/unavailable responses stop and retain
+missing scheduled rows. OpenRouter remains1/12invented-only; no contract export authorized.

@@ -535,3 +535,21 @@ Interview exercise: why can exact source copying pass while interpretation fails
 invented regression where the selected source expressly denies the right, yet the model
 says accept. Then explain why switching provider and changing prompt simultaneously would
 make improvement difficult to attribute. A canary is only remote transport evidence.
+
+
+## Paired model-quality development and budget extension
+
+[Paired quality plan](docs/paired-quality-evaluation.md) and
+[Build Book Entry68](BUILD_BOOK.md#entry-68--isolate-development-changes-behind-settled-canaries)
+trace this unmerged development capture. `paired_budget.py` validates74frozen slots and
+references all historical pins;currentAttemptLedgerrequires a fifthpin. Atomicnewslot and
+attempt insertion plus a SQLitetrigger prevent even an unaware oldbinary from using the
+threeoldslots. Canary pass records bind exactfixedinventedrequests,correctstrictoutputs
+and settledresponsepins;domainreservationrefuses untilbothpass. Cap418is not74newfree
+retries:341starting+74unique slots=415maximumconsumed,the threelegacyunusedslots staybound.
+`paired_quality.summarize` retains24scheduled observations pervariant and evaluates
+publisheragreement separately from rawdecisions/sourceintegrity. Pair only completefamily
+observations;missingstaysmissing. Perclass results,controlregressions and unknowncost remain
+visible. It cannot qualify even perfectdevelopmentresults. Operatorpreflight uses actual
+SDKserialization for38requests,including longinventedcatalogschema;stillnoavailability
+or accuracyclaim untilactualcapture. Read the linked plan for the honest decision boundary.

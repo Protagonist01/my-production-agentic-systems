@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 68 — Isolate development changes behind settled canaries](#entry-68--isolate-development-changes-behind-settled-canaries)
 - [Entry 67 — Diagnose task mismatch before another model study](#entry-67--diagnose-task-mismatch-before-another-model-study)
 - [Entry 66 — Develop on exposed failures under a schedule-bound extension](#entry-66--develop-on-exposed-failures-under-a-schedule-bound-extension)
 - [Entry 65 — Size and freeze a confidence-target study](#entry-65--size-and-freeze-a-confidence-target-study)
@@ -4305,3 +4306,58 @@ VerifyD:/document/.cache/production-agents/s5-temp has noGitancestor;setTEMP/TMP
 and rerunfullsuite. FocusedCFPB82passes7.91sunderselectedtemp. Installed82harness/37Revenue
 resourcesmatchwheels;12actualcanarypayloads/exactUnicodecopy revalidate with networkdenied,
 noGoogle/GroqSDKorotherindustries;strictinventedreplay6calls/2timeouts/0provider.
+
+
+## Entry 68 — Isolate development changes behind settled canaries
+**Files touched:** paired_budget.py,provider_budget.py,paired capture/report tests and documentation.
+
+### Context and decision before implementation
+PR120merged47be096 with all10checks and nine applicable mainjobs;1365tests/environment,
+128SQL. Owner now approves same shared Gemini lifetimecap418for74newattempts:two invented
+canaries,then72domaincalls on12exposedCUADfamilies,three variants/two trials. Preserve
+three oldunusedbound slots. OpenRouter1/12canary stoppedHTTP429because maximum was a ceiling,
+not required traffic. User asks why and authorizes qualitycomparison;noOpenRouterdomainexport.
+
+### Before you read on
+How do you prevent old code from using three previously unused slots after appending a new
+scope,without resetting the ledger or rewriting prior attempt history?
+
+### Decision and how to build it
+Prepare12sourcefamilies before dispatch:6repeated raw disagreements,2citationfailures with
+correct rawdecisions and4previouslycorrectcontrols. Balance6answerable/6noanswer and4per
+short/middle/longband;onecasepercategory. Selection uses only exposed validation material;
+labels remain publisher-relative and unadjudicated. Keep evaluator-onlycases separate from
+36model-onlyrequests. Baseline/taskwording/evidenceinterface preserve3.5FlashLite,LOW,512,
+temperature0. Rotatevariantorderpercase;reverseintrial2. Freezeall72request/trialpairs.
+
+Append PairedExtension referencing originalgrant,320amendment and344development pins.
+Require341settled rows,74unique slots,12casesx3variantsx2trials plus2specific invented
+requests. New clients require fifth externalpin;staleclients refuse. A SQL BEFOREINSERT
+trigger also requires a matchingnewslot for serial>341,so an old executable cannot consume
+the threeoldslots. Newslotsinsertatomicallywithattempts;allhistory remains. Newglobalcap418,
+but74slots mean atmost415consumedfrom341;threelegacyunusedslotsremaininaccessible.
+
+Gate domainreservations on two immutable canarypassrecords. A passrequires exactinvented
+request,correctstrictJSONinteger,response route and matching settledreservation pin.
+Unsettled/wrong/failedcanary cannotunlockdomaintraffic. Localpayloadpreflight uses actual
+Geminiworkerconfiguration and pinned SDK before live allowancechange. No retry/fallback.
+Any canaryfailure stops before sourceexport. Domainquota/auth/budgetdenial stops;three
+consecutive timeouts/unavailable stop and retain missing scheduled rows. Parser/modelquality
+failures remain failures and are not replaced. Report pervariant and pairedfamily/control
+regressions plus tokens/latency/unknowncost;no confidence/releaseclaim from this small cohort.
+
+### Checks and construction failures in progress
+Implementation is being checked on invented fixtures. Actual extension and capture have
+not occurred at this point. Preserve previous341rows/grants/slots and original source/report
+pins,then independently audit the new response/reservation/schedule pairs after capture.
+
+
+### Pre-dispatch checks
+Initial42budget/development regressions pass101.92s. After longcatalogcanary is added,
+8newbudget/report tests pass54.46s and14report/evidence checks pass0.57s. Existing320/344
+fixtures remain valid. Whole-repo200sources typecheck,318formattedfiles and import contracts
+pass. Actual38requests,including long167IDcatalog,serialize through pinnedGoogleSDK;
+a constructedSDKHTTPexchange passes with zero network/provider calls and no ledger changes.
+Fix strictmypy errors from an untyped sharedkwargsdictionary by explicittyped requestfields;
+do not bypass types. Raw diagnosticJSON now refuses duplicatekeys before extracting decision.
+Freeze executablecommit before liveextension and firstcanary. No paidfallback/retry.
