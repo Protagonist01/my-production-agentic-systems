@@ -229,3 +229,38 @@ def test_actual_worker_payload_preflight_enables_flash_without_any_network(monke
     monkeypatch.setattr("agent_harness.gemini.GeminiTransport", FakeTransport)
     worker.generate(request(), timeout_seconds=5)
     assert seen == [request()]
+
+
+def test_real_sdk_mock_http_flash_payload_response_and_parser_without_network():
+    import httpx
+    from agent_harness.gemini import GeminiTransport
+    from test_gateway import wire
+
+    seen = []
+
+    def handler(actual):
+        payload = json.loads(actual.content)
+        assert "gemini-3.8-flash" in str(actual.url)
+        assert payload["generationConfig"]["maxOutputTokens"] == 2048
+        assert (
+            payload["generationConfig"]["responseJsonSchema"]["properties"]["quotes"]["maxItems"]
+            == 1
+        )
+        seen.append(payload)
+        data = wire()
+        data["modelVersion"] = "gemini-3.8-flash"
+        data["candidates"][0]["content"]["parts"] = [
+            {"text": json.dumps({"decision": "accept", "quotes": ["Payment is due."]})}
+        ]
+        return httpx.Response(200, json=data)
+
+    transport = GeminiTransport(
+        "invented-not-a-key",
+        free_tier_confirmed=True,
+        flash_comparison=True,
+        http_transport=httpx.MockTransport(handler),
+    )
+    output = transport.generate(request(), timeout_seconds=5)
+    assert output.failure is None
+    assert parse_development(value(), request(), output).judgment.decision == "accept"
+    assert len(seen) == 1

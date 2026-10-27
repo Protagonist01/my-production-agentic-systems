@@ -1,0 +1,61 @@
+{
+  "accounting": {
+    "known_input_tokens": 0,
+    "known_output_tokens": 0,
+    "observed": 24,
+    "reported_provider_calls": 3,
+    "unknown_cost": 21,
+    "unknown_input_tokens": 21,
+    "unknown_output_tokens": 21
+  },
+  "all_cases_exposed": true,
+  "circuit_denied_scheduled_rows_without_reservation": 3,
+  "continuation_plan_sha256": "f332e7598481aebccebcb6c3fb0abd2bdbe9308e6a427060b778037fcf8a6d2c",
+  "correct": 0,
+  "decided": 0,
+  "failures": {
+    "invalid_response": 18,
+    "timeout": 2,
+    "unavailable": 4
+  },
+  "initial_operator_preflight_failures": 18,
+  "initial_operator_provider_calls": 0,
+  "limits": [
+    "Operator error caused first18local refusals;reserved attempts remain consumed;no refunds or retries.",
+    "Six untouched original no-answer trial2rows evaluated after frozen correction:three dispatched failures,three circuit-open denials before reservation. Not a valid two-class development study.",
+    "Model,prompt,output budget changed together;no isolated causal claim.",
+    "All cases exposed;no confidence,reliability or release qualification.",
+    "Raw monetary costs unknown,operator Free attestation not verified cloud billing.",
+    "No further spending beyond344authorized."
+  ],
+  "missing": 0,
+  "mixed_operator_versions": true,
+  "new_reserved_attempts": 21,
+  "observed": 24,
+  "old320attempts_grant_amendment_unchanged": true,
+  "old_artifact_files_verified_unchanged": 312,
+  "plan_sha256": "108ed2ef2f9a73ed38f9ce970a647d19c59c40395b7f16b5233a3d2e3bcb8689",
+  "prior_candidate_on_same_exposed_24observations": {
+    "correct": 2,
+    "not_a_fresh_comparator": true,
+    "scheduled": 24
+  },
+  "proposal_sha256": "b7b046301a550ecb986606ed62ddff034899736f9efa8a1904048a361b649c21",
+  "qualification_met": false,
+  "readiness_met": false,
+  "release_allowed": false,
+  "report_sha256": "d4384d2d7f7384c6c1dd7353ada6c54ab1ea4984a80137a3ecc4e6e2f51140de",
+  "scheduled": 24,
+  "shared_budget": {
+    "consumed": 341,
+    "maximum": 344,
+    "remaining": 3,
+    "unsettled": 0
+  },
+  "untouched_six_after_correction": {
+    "correct": 0,
+    "decided": 0,
+    "observed": 6
+  },
+  "version": "remediation-development-result-v1"
+}

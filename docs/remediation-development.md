@@ -61,3 +61,46 @@ slot and why success on twelve exposed families cannot establish a final confide
 Implementation/checks precede capture. Actual results/accounting and hosted/postmerge
 acceptance will be recorded after completion. No promotion or additional spending beyond
 344follows from this development authorization.
+
+## Actual result and operator correction
+
+The development screen **failed operationally**, with no usable model decision. The
+[audited result](data/remediation-development-result-v1.json) preserves24scheduled outcome
+rows:18local unsupported-request refusals,two dispatched timeouts,one dispatched unavailable
+response and three circuit-open denials. Those last three stop before reservation. The
+same ledger is **341/344consumed,three remaining,zero unsettled**. No failed slot was retried
+or refunded;three remaining attempts are not permission to replay completed denied rows.
+
+The first operator constructed GeminiWorker with default Flashflagfalse while enabling
+Flash in admission. All18local failures reported model_calls0. I stopped at a settled
+boundary after identifying the mistake;these reservations still count. Actual offline
+payload preflight then also detected the legacy512output ceiling. Correct both before
+continuing:use `development_worker` with explicit Flashflagtrue,and a separate
+`FlashDevelopmentParameters` contract permitting<=2048only for opted-in3.8requests. Legacy
+Lite512limit remains. Tests prove2048Flash accepted and2049orLite2048refused without network.
+
+Freeze a separate correction record at9280486with the unchanged original24rowrequest/
+context schedule and a new executable inventory. Only six untouched original no-answer
+trial2rows are eligible. Two actual requests time out at the adapter's existing30second
+HTTPceiling despite the parent's60secondbound,then one reports unavailable. Shared circuit
+protection blocks the finalthree before reservation. Do not bypass the circuit or infer
+that increasing timeout would fix availability. Preserve every failed outcome and both
+operator versions. This is not an intact fixed-operator two-class study or model comparison.
+
+Independent audit matches all21new reservations to context/request/response pins and
+unique slots,checks the three unreserved denials,verifies the original320attempts/grant/
+amendment unchanged,and rechecks312old artifact files. The prior candidate scored2/24on
+these deliberately selected exposed observations;the new run supplies no valid comparison.
+Three provider calls report unknown token usage. The18local refusals also have unknown
+token fields;zero reported calls do not turn those unknowns into measured token counts.
+Across24rows,21token/cost observations are unknown;three pre-reservation circuit denials
+carry known zero usage. No monetary zero-billing claim is made.
+
+The actual pinned Google SDK is also tested through a mock HTTPtransport:its3.8request
+contains2048outputtokens andone-quote schema,a constructed response parses and maps to
+exact source evidence,one request occurs and no network connection is used. This verifies
+local serialization/parsing;it does not verify remote availability or candidate quality.
+
+Further work must begin with a bounded operational canary and an affordable new protocol
+before another24case development run. No new calls are authorized by this document.
+The prior5%confidence target,failed296attempt study and release gates remain unchanged.

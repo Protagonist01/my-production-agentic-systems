@@ -4189,3 +4189,23 @@ FlashDevelopmentParameters<=2048only for explicitly enabled3.8route;2049andLite2
 refuse. Regression15cases now pass19.92seconds,including zero-network SDK payload creation
 and worker propagation through a mocked selected transport. This checks the real adapter
 configuration before consuming any remaining slot. Record both causes,not just the first.
+
+### Completed operationally failed development and audit
+The six untouched rows yield2actualtimeouts,1actualunavailable,then3circuit-open denials
+before reservation. Parent bound60seconds does not change adapter HTTPceiling30seconds;
+keep both timings rather than claiming all attempts ran60seconds. Total21newreservations,
+3actualproviderdispatches,24outcomes,no decisions. Ledger341/344used,3remaining,0unsettled.
+No18failedslotrerun/refund,circuitbypass or new spending occurs. Three unreserved denied
+rows remain failures in the24scheduled denominator. Mixed operator versions cannot score
+model development quality;do not call this a failed model or an improved candidate.
+
+Audit revalidates all21request/context/response pin triples,unique slots and absence of
+reservations for three circuit denials;original320rows/grant/amendment unchanged.312old
+private artifact files remain identical. Historical executable bytes match their pinned
+commit with GitLF/workingCRLF handled explicitly;corrected current inventory matches too.
+Knownreportedcalls3;unknown token/costfields21/24,knownzero3circuitdenials. Rawcost unknown
+is not zero. Constructed actual SDK HTTPtransport/parser regression passes9.99seconds,
+verifying3.8route,2048output,one-quote schema,onefakewireexchange and exact source mapping
+with no network. This is compatibility evidence,not remoteavailability or semanticquality.
+Installed80harness/36Revenue resources equal wheels and the earlier cohort revalidates
+networkdenied,no provider SDK/otherindustries. Final exact-head hosted checks follow.
