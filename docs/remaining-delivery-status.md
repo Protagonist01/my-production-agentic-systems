@@ -1,3 +1,13 @@
+## Wider Olist evaluation adapter - 2026-10-30
+
+The [wider routing/state adapter](olist-routing-evaluation.md) prepares all six routes with
+text-only manifests, owned SQL observations, independent state scoring, canonical read-back
+and complete four-variant comparison denominators. New model factories are mock-only;
+rules/always-review keep zero-call evidence. The owner accepted 12 constructed ABCD/SIM
+development fixture associations, not real customer/order links or independent semantic gold.
+Required reship/amount/recovery/injection coverage and representative fresh holdout are still
+missing from that draft. No provider calls, new allowance or active gate/profile change.
+
 ## Olist versioned routing preparation - 2026-10-30
 
 The [v2routing chapter](olist-routing-v2.md) corrects the earlier schema claim:legacyworkflow
