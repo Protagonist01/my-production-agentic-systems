@@ -1,0 +1,25 @@
+{
+  "version": "olist-abcd-development-draft-v1",
+  "source_commit": "6b8700ce67c6b37b062dd7a60abc76d7ef832a97",
+  "source_split": "train",
+  "dialogues": 12,
+  "publisher_subflows": {
+    "refund_initiate": 3,
+    "return_size": 3,
+    "refund_status": 3,
+    "missing": 3
+  },
+  "proposed_mappings": {
+    "refund": 3,
+    "needs_clarification": 4,
+    "unsupported_status_query": 5
+  },
+  "reship_examples": 0,
+  "amount_labels_established": 0,
+  "publisher_annotations_preserved": true,
+  "candidate_projection": "first_customer_turn_text_only",
+  "mapping_labels_independently_validated": false,
+  "full_context_preserved_evaluator_only": true,
+  "provider_calls": 0,
+  "release_allowed": false
+}

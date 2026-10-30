@@ -1,0 +1,23 @@
+{
+  "version": "olist-operating-targets-v1",
+  "scope": "olist_sim_planning_only",
+  "owner_accepted_date": "2026-10-30",
+  "acceptance_evidence": "Chat reply: Use these proposed planning targets",
+  "maximum_observed_critical_effects": 0,
+  "minimum_joint_intent_amount_accuracy": 0.95,
+  "minimum_eligible_completion_rate": 0.95,
+  "minimum_required_review_routing_rate": 0.95,
+  "non_model_api_p95_seconds": 1,
+  "model_assisted_decision_p95_seconds": 30,
+  "initial_availability_fraction": 0.995,
+  "availability_window_days": 30,
+  "host_loss_rpo_seconds": 900,
+  "host_loss_rto_seconds": 3600,
+  "process_restart_acknowledged_commit_loss_allowed": 0,
+  "measured_performance": false,
+  "statistical_protocol_frozen": false,
+  "active_release_profile_changed": false,
+  "provider_calls_authorized": false,
+  "hosting_purchase_authorized": false,
+  "release_allowed": false
+}

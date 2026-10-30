@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 70 — Audit references without promoting them into truth](#entry-70--audit-references-without-promoting-them-into-truth)
 - [Entry 69 — Change only the model and capture a contemporary control](#entry-69--change-only-the-model-and-capture-a-contemporary-control)
 - [Entry 68 — Isolate development changes behind settled canaries](#entry-68--isolate-development-changes-behind-settled-canaries)
 - [Entry 67 — Diagnose task mismatch before another model study](#entry-67--diagnose-task-mismatch-before-another-model-study)
@@ -4499,3 +4500,108 @@ requestpairsdifferonlymodel;no labels/oldresults changed. Preparedcomparisonreta
 The gate saved48domaincalls without pretending it achieved quality evaluation. Nextusable
 challengerrequiresconcretescopeandbudgetapproval;softwarecompatibilitypassesdonotprove
 remoteservice. Detailed operationalfailure/engineering narrative recorded inmodelplan.
+
+
+## Entry 70 — Audit references without promoting them into truth
+**Files touched:** Olist reference_package.py, focused tests, research package, aggregate and guide.
+
+### Context
+Owner asks to prioritize #33 and prepare deployment/recovery alongside it, with research
+that improves quality. Base ca8bccf has a separate SIM table and owner-accepted12case draft,
+but these cannot establish what customer text means. Provider slots remain bound elsewhere.
+
+### Before you read on
+If all labels agree with an independent policy table, what remains untested? Follow where
+intent and requested amount enter the oracle; neither is extracted by that oracle.
+
+### Options considered
+- Reuse the runtime policy to certify labels: rejected because it makes candidate and oracle
+  share the same policy logic and still does not establish language meaning.
+- Treat retrospective owner acceptance as blind annotation: rejected because provenance
+  would be false. Keep that acceptance as its own pinned sidecar.
+- Chosen: audit exact pinned references with the existing separate table, reporting the
+  unmeasured claims explicitly, then prepare a stronger prospective protocol.
+
+### Why
+Research from NIST, Langfuse, Google SRE, AWS and PostgreSQL supports distinct claim/evidence
+boundaries, explicit uncertainty, user-facing indicators and exercised restoration. None
+supplies a universal95%qualitytarget or automatically approves our business risk. Numerical
+limits are proposals. A successful snapshot restore is not host-loss RPO/RTO evidence.
+
+### How to build it
+Read bytes and compare SHA256 before parsing. Parse PolicyCases and typed CaseMetadata;
+require exact case membership, source manifest equality and one split per declared language
+family. Check recovery flag/kind consistency and required holdout slice declarations.
+Project confirmation facts into OracleFacts, excluding only the SIM provenance field;
+construct OracleRequest from evaluator intent/amount, never from candidate output.
+Call evaluate_policy, count action/amount agreement and oracle errors separately, and emit
+only aggregate counts and artifact pins. No case IDs or source records enter the public
+report. Mark semantics/reason/independence/recovery/candidate/release false even on agreement.
+CLI requires external pins for evaluator, metadata and profile. It prints aggregate JSON
+and returns2for incomplete structural evidence; malformed membership refuses before scoring.
+
+Use the locked environment and private D-drive TEMP/TMP. Focused tests seed wrong amount,
+invalid clock, metadata duplication/omission, family leakage, source mismatch and inconsistent
+recovery declarations. The real accepted packet returns12/12agreement,6sourcegroups,
+2holdoutgroups,8declaredslices,zerooracleerrors and original AI provenance. No providercalls.
+The research chapter specifies separate semantic reference, prospective sample-size and
+baseline work, and host-specific startup/drain/crash/restore/cutover exercises. Active gates
+and profiles are unchanged. RPO15minutes/RTO60minutes are pending proposals, not achieved.
+
+### What went wrong
+The first focused run forgot the established D-drive TEMP override:32passed,oneexisting
+cohort test refused default C-drive private output because an unrelated C:/.git exists.
+The guard was correct. Set TEMP/TMP to the private D-drive path and rerun:33passed12.85s.
+No marker was removed, guard relaxed, label rewritten or failed result hidden. Mypy passes
+205sources. This is reference preparation, not completed #33release acceptance.
+
+
+### Seal the candidate projection as well
+Before finalizing, add exact pinned inputs.json verification: typed rows allow only case_id
+and text; compare every ID/text pair with the evaluator-side original message. Extra target
+labels/source facts, swapped text and duplicate/missing rows refuse. This makes the existing
+v2 text-only boundary executable without changing the original packet. Three added seeded
+leakage/projection tests bring the focused run to36passed5.17seconds;205typed sources,
+323configuredformatted files and both import contracts pass. The initial full local suite
+started on67d8138 before this addition;final hosted checks must cover the final head.
+
+
+### Owner accepts planning limits
+On2026-10-30 owner explicitlyaccepts the proposed SIM targets:zeroobservedcriticaleffects,
+95%jointintent/amount,eligiblecompletionandreviewrouting,p95API1second/model30seconds,
+initial99.5%availabilityover30days,hostlossRPO900seconds/RTO3600seconds. Recordversioned
+olist-operating-targets-v1.json andAGENTS so these are not repeatedly re-requested. This
+accepts planning numbers only;not frozenstatisticalprotocol,activeprofilechange,provider
+spending,hostpurchaseorrelease. Existinglabel provenance and12case audit stayunchanged.
+
+
+### Find an external semantic reference before another self-labeled cohort
+Research the original ABCD repository/paper:published human-to-human support dialogues
+with scenario/intents/policy-constrained actions. Prefer a pinned applicability investigation
+on development examples to trusting AI-generated labels. No corpus ingestion/export yet;
+conversation scenario labels may not describe every utterance or match our refund/reship
+policy. Bitext is explicitly hybrid synthetic/automatically labeled, and its card's refund
+intent list and entity examples differ. Record this taxonomy caveat rather than assuming
+coverage. External/public also does not mean unseen by the model. Candidate source mix and
+first projected draft remain reviewable before freeze;no qualified truth claim is made.
+
+
+### Prepare the approved12dialogue ABCD development draft
+Owner authorizes the private no-provider draft. Pin source commit6b8700ce67c6b37b062dd7a60abc76d7ef832a97,
+LICENSE,README,ontology,guidelines and37MBcompressed archive outsideGit. Source splitcounts:
+train8034/dev1004/test1004. Select training only:3eachrefund_initiate,return_size,refund_status,
+missing;sortwithinlabel bySHA256(olist-abcd-development-v1|conversationid),takefirst3.
+This is deliberate label-stratified coverage,not prevalence sampling. Preserve alloriginal
+annotations/context evaluator-side. Inputs containonlyopaquehashandfirstcustomerturntext.
+Discover that delexedturns still contain targets/candidates,includingpublisherintent on
+everyturn. Exporting those structures would leak labels;explicitlystrip tocase_id/text.
+Delexed text also retains some names;keepfullcontext private and do notinfer anonymization.
+
+Read the12firstcustomerturns before proposing mappings:3newrefundrequests,4needingclarification,
+5statusqueries. No explicitreship andnoestablishedamountlabels. Greeting-onlyfirstturns
+show why conversation scenario is not an utterance label;return-size complaints do not
+choose refund versus replacement. Publishonlyaggregate. Private review.md shows every
+request/publisherlabel/proposedmapping/reason andaccept-correct-unsure space;contextand
+publisherlabels stay separate. No modelcall,sourcepolicytransfer,newholdout or qualification.
+The current two-intent schema cannot express these unsupported/ambiguous mappings. Treat
+this as a pre-freeze coverage/design gap,not evidence to force all12intoexistinglabels.

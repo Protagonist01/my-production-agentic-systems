@@ -1,0 +1,42 @@
+{
+  "cases": 12,
+  "declared_holdout_slices": [
+    "cap_boundary",
+    "conflicting_facts",
+    "crash_restart",
+    "eligible_refund",
+    "missing_facts",
+    "prompt_injection",
+    "required_review",
+    "unseen_wording"
+  ],
+  "declared_language_families": 6,
+  "declared_recovery_cases": 1,
+  "disagreements": {},
+  "evaluator_sha256": "8a1ea8d2fbd656e03f785b56a31c5f1239a802e08abe04ce17398375ddf82ee3",
+  "family_independence_validated": false,
+  "fresh_candidate_evaluated": false,
+  "inputs_sha256": "8edf4ea2d58d0e276277d89f72a5980b04fed5413d89f40835b3d5f9cf6ea85d",
+  "label_provenance": {
+    "ai": 12
+  },
+  "metadata_sha256": "d551b89129d88cce452cd0501668415161033f6843018b94789d49668f01e1b6",
+  "missing_declared_holdout_slices": [],
+  "oracle_errors": 0,
+  "profile_sha256": "26d4e22f00a694c8a1261725732001a1589af00236b1cc6afd7f7cc9def342b8",
+  "provider_calls": 0,
+  "reason_labels_validated": false,
+  "recovery_executed": false,
+  "release_allowed": false,
+  "semantic_labels_validated": false,
+  "source_groups": 6,
+  "source_groups_by_split": {
+    "development": 2,
+    "holdout": 2,
+    "regression": 2
+  },
+  "structural_checks_passed": true,
+  "structured_action_amount_agreement": 12,
+  "text_only_projection_verified": true,
+  "version": "olist-reference-package-audit-v1"
+}

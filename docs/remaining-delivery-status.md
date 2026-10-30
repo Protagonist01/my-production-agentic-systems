@@ -1,3 +1,14 @@
+## Olist reference and recovery preparation - 2026-10-30
+
+The [research and execution package](olist-release-research.md) adds an exact-pin aggregate
+audit of the accepted12case draft:12/12action/amount agreement conditional on supplied
+structured intent/facts,6sourcegroups,2holdoutgroups and8declaredholdoutslices. Labels remain
+AI-provisional with separate retrospective owner acceptance. No semantic/reason/family
+independence qualification, fresh candidate run or recovery execution is inferred. Owner
+accepted the risk/SLO/RPO/RTO planning targets on2026-10-30;activeprofiles/gates/budgets
+remain unchanged. Frozen statistical protocol and new provider scope remain pending.
+No provider calls or hosted deployment. #33/#58/#59 remain open.
+
 ## Latest model-only availability probe - 2026-10-27
 
 The[model-onlystudy](model-only-evaluation.md) stoppedatits two-routecanarygate. FlashLite
