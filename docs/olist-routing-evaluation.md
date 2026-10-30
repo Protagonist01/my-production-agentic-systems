@@ -119,6 +119,15 @@ pins must be prepared on a clean final commit. Provider authorization and durabl
 integration remain separate; the existing 51 unused Gemini slots are bound elsewhere.
 No new provider-capable factory is activated here.
 
+Preparation on clean commit `2e35a9e` produced four actual mock candidate pins and a private
+protocol draft. Its all-missing report contains144scheduled/0observed/144missing, with no
+quality or latency pass. All24v1/v2 request payloads passed the installed Gemini SDK and
+mocked HTTP exchanges using an invented key with socket networking blocked. The first local
+capture stub failed because it omitted the required usage field, before HTTP or any ledger
+reservation; that diagnostic is retained separately. Two invented SDK regression tests
+cover the same wire boundary in CI. This is SDK compatibility proof, not live availability,
+provider-budget integration or a joint provider-capable H10 execution.
+
 Before any live request, the frozen model payloads should pass actual SDK serialization and
 the exact worker/gateway/receipt path under fake HTTP; representative invented canaries must
 pass under an explicitly accepted scope. Preserve failures, count all reservations and stop

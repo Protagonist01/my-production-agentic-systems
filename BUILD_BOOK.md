@@ -4756,3 +4756,20 @@ Local SQL invocation hits nine setup errors at DockerCompose startup before test
 Do not skip or claim local SQL success. Required hosted SQL tests must exercise all six
 routes, recovery, zero-call baselines, legacy comparison, sealed read-back and owned cleanup.
 No live provider call or new spending. Final acceptance will use actual hosted logs.
+
+
+### Clean-commit protocol and SDK preflight
+At clean2e35a9e, prepare actual distinct mock candidate pins and the private three-trial
+protocol against the accepted12case draft. Preserve population semantic pin separately from
+pretty-serialized manifest byte pin. An all-missing readback reports144scheduled/0observed/
+144missing,not an accuracy pass. This is mock preparation,not provider authorization.
+
+Validate all24planned v1/v2 wire requests with the installed Gemini SDK and mocked HTTP,
+using an invented key and blocking socket connection/name resolution. The first local
+capture stub omitted required ModelResponse.usage and failed before any HTTP exchange;
+retain sdk-preflight-initial-failure.json with0requests/0ledgerreservations. Add explicit
+zero-call stub usage, then24SDKpayloads/24mockHTTPexchanges pass with0outboundprovidercalls.
+No key/configuration or allowance was read or changed. Fake responses do not measure quality.
+Add two invented SDK regression tests to CI:both pass6.63seconds,checking exact usertext,
+versioned schema,output budget andno tools with network denied. The final commit must pass
+all hosted checks again;initial runtime/H10 SQL checks passed on2e35a9e.
