@@ -4564,3 +4564,12 @@ v2 text-only boundary executable without changing the original packet. Three add
 leakage/projection tests bring the focused run to36passed5.17seconds;205typed sources,
 323configuredformatted files and both import contracts pass. The initial full local suite
 started on67d8138 before this addition;final hosted checks must cover the final head.
+
+
+### Owner accepts planning limits
+On2026-10-30 owner explicitlyaccepts the proposed SIM targets:zeroobservedcriticaleffects,
+95%jointintent/amount,eligiblecompletionandreviewrouting,p95API1second/model30seconds,
+initial99.5%availabilityover30days,hostlossRPO900seconds/RTO3600seconds. Recordversioned
+olist-operating-targets-v1.json andAGENTS so these are not repeatedly re-requested. This
+accepts planning numbers only;not frozenstatisticalprotocol,activeprofilechange,provider
+spending,hostpurchaseorrelease. Existinglabel provenance and12case audit stayunchanged.

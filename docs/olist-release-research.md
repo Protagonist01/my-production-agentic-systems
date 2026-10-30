@@ -91,7 +91,13 @@ Keep source parents, templates, paraphrases and correction chains together acros
 English constructed requests support an English claim; Portuguese source reviews do not
 make the English intent evaluation multilingual. Add languages only with suitable references.
 
-## Proposed targets: awaiting owner acceptance, not active gate replacements
+## Planning targets accepted by the owner, not active gate replacements
+
+On 2026-10-30 the owner accepted the concrete numerical planning targets below in chat.
+The [versioned target record](data/olist-operating-targets-v1.json) preserves their values
+and authorization boundary. This supersedes their initial pending status only. It does
+not accept a frozen statistical protocol, alter active release profiles, fund provider
+calls or authorize hosting purchases/release. The later99.9%goal remains aspirational.
 
 | Dimension | Proposed initial target | Denominator / qualification |
 | --- | --- | --- |
@@ -185,6 +191,6 @@ artifact guards reject default C-drive paths. Do not delete the marker or weaken
 The first focused run used default TEMP and failed one existing private-path test; the
 corrected D-drive run passed 33 tests. No result or label was changed to obtain that pass.
 
-Next decisions: accept or revise proposed operating limits; validate the concrete semantic
+Next decisions: validate the concrete semantic
 reference method; approve a frozen new cohort and separate bounded provider scope; choose
 host/backup capabilities. Current code work can merge without granting any of these.

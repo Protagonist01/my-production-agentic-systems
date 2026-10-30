@@ -159,3 +159,14 @@ skipboth-passgate,substitutemodel/providerorreassignunusedslotswithoutconcreteap
 No modelqualityclaim;missing0/48isnotmeasured0%accuracy. Labels/failedstudies/gatesunchanged.
 Read-only3.8metadataHTTP200doesnotestablishgenerationcapacityorrootcause. Safeauditreport:
 docs/data/model-only-result-v1.json;construction/limits:docs/model-only-evaluation.md.
+
+## Olist planning targets accepted (2026-10-30)
+
+The owner accepted the concrete Olist SIM planning targets in PR #123: zero observed
+critical effects; at least95% intent/amount agreement, eligible completion and required
+review routing; p95 non-model API at most1second/model-assisted decision30seconds;
+initial hosted availability99.5% over30days; host-loss RPO15minutes/RTO60minutes.
+Versioned values and scope: docs/data/olist-operating-targets-v1.json and
+docs/olist-release-research.md. These are accepted planning targets, not observed
+performance, frozen statistical protocol, active profile replacement, provider spending,
+hosting purchases or production release approval. Preserve existing gates and artifacts.
