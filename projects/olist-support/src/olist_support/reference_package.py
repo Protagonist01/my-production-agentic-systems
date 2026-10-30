@@ -22,6 +22,11 @@ class CaseMetadata(Contract):
     recovery_kind: NonEmpty | None
 
 
+class TextInput(Contract):
+    case_id: Digest
+    text: NonEmpty
+
+
 def pinned(path: Path, expected: str) -> bytes:
     """Check the exact file, not a reserialized approximation of its content."""
     if path.is_symlink():
@@ -35,6 +40,7 @@ def pinned(path: Path, expected: str) -> bytes:
 def audit(
     cases_payload: bytes,
     metadata_payload: bytes,
+    inputs_payload: bytes,
     *,
     required_holdout_slices: frozenset[str],
 ) -> dict[str, object]:
@@ -51,6 +57,10 @@ def audit(
     ids = {entry.input.case_id for entry in cases.entries}
     if len(metadata) != len(ids) or {m.case_id for m in metadata} != ids:
         raise ValueError("metadata must cover every case exactly once")
+    inputs = TypeAdapter(tuple[TextInput, ...]).validate_json(inputs_payload)
+    expected_inputs = {e.input.case_id: e.input.request.message for e in cases.entries}
+    if len(inputs) != len(ids) or {i.case_id: i.text for i in inputs} != expected_inputs:
+        raise ValueError("provider input must be the exact text-only case projection")
     by_id = {m.case_id: m for m in metadata}
     families: dict[str, str] = {}
     source_groups: dict[str, set[str]] = {}
@@ -98,6 +108,8 @@ def audit(
         "version": "olist-reference-package-audit-v1",
         "evaluator_sha256": hashlib.sha256(cases_payload).hexdigest(),
         "metadata_sha256": hashlib.sha256(metadata_payload).hexdigest(),
+        "inputs_sha256": hashlib.sha256(inputs_payload).hexdigest(),
+        "text_only_projection_verified": True,
         "cases": len(cases.entries),
         "source_groups": len({e.group_id for e in cases.entries}),
         "source_groups_by_split": {s: len(g) for s, g in sorted(source_groups.items())},
@@ -126,6 +138,8 @@ def main() -> int:
     parser.add_argument("--cases-sha256", required=True)
     parser.add_argument("--metadata", type=Path, required=True)
     parser.add_argument("--metadata-sha256", required=True)
+    parser.add_argument("--inputs", type=Path, required=True)
+    parser.add_argument("--inputs-sha256", required=True)
     parser.add_argument("--profile", type=Path, required=True)
     parser.add_argument("--profile-sha256", required=True)
     args = parser.parse_args()
@@ -136,6 +150,7 @@ def main() -> int:
     report = audit(
         pinned(args.cases, args.cases_sha256),
         pinned(args.metadata, args.metadata_sha256),
+        pinned(args.inputs, args.inputs_sha256),
         required_holdout_slices=frozenset(required),
     )
     report["profile_sha256"] = args.profile_sha256

@@ -4554,3 +4554,13 @@ cohort test refused default C-drive private output because an unrelated C:/.git 
 The guard was correct. Set TEMP/TMP to the private D-drive path and rerun:33passed12.85s.
 No marker was removed, guard relaxed, label rewritten or failed result hidden. Mypy passes
 205sources. This is reference preparation, not completed #33release acceptance.
+
+
+### Seal the candidate projection as well
+Before finalizing, add exact pinned inputs.json verification: typed rows allow only case_id
+and text; compare every ID/text pair with the evaluator-side original message. Extra target
+labels/source facts, swapped text and duplicate/missing rows refuse. This makes the existing
+v2 text-only boundary executable without changing the original packet. Three added seeded
+leakage/projection tests bring the focused run to36passed5.17seconds;205typed sources,
+323configuredformatted files and both import contracts pass. The initial full local suite
+started on67d8138 before this addition;final hosted checks must cover the final head.

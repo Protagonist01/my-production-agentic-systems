@@ -19,10 +19,16 @@ def packet():
     return cases.model_dump(mode="json"), metadata
 
 
-def run(cases, metadata, required=frozenset({"eligible_refund", "required_review"})):
+def run(cases, metadata, required=frozenset({"eligible_refund", "required_review"}), inputs=None):
+    if inputs is None:
+        inputs = [
+            {"case_id": e["input"]["case_id"], "text": e["input"]["request"]["message"]}
+            for e in cases["entries"]
+        ]
     return audit(
         json.dumps(cases).encode(),
         json.dumps(metadata).encode(),
+        json.dumps(inputs).encode(),
         required_holdout_slices=required,
     )
 
@@ -46,6 +52,7 @@ def test_conditional_agreement_preserves_provenance_and_unmeasured_claims():
     ):
         assert report[field] is False
     assert report["provider_calls"] == 0 and json.dumps(cases) == before
+    assert report["text_only_projection_verified"] is True
     assert "invented-" not in json.dumps(report)
 
 
@@ -89,3 +96,20 @@ def test_exact_pin_and_explicit_requirements(tmp_path):
         pinned(path, sha256(b"{}").hexdigest())
     with pytest.raises(ValueError, match="requirements"):
         run(*packet(), required=frozenset())
+
+
+@pytest.mark.parametrize("change", ["label", "changed_text", "duplicate"])
+def test_provider_projection_refuses_label_leakage_and_wrong_text(change):
+    cases, metadata = packet()
+    inputs = [
+        {"case_id": e["input"]["case_id"], "text": e["input"]["request"]["message"]}
+        for e in cases["entries"]
+    ]
+    if change == "label":
+        inputs[0]["expected_action"] = "propose_full_refund"
+    elif change == "changed_text":
+        inputs[0]["text"] += " substituted input"
+    else:
+        inputs[-1] = inputs[0]
+    with pytest.raises(ValueError):
+        run(cases, metadata, inputs=inputs)

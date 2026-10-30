@@ -2,7 +2,7 @@
 
 The [Olist reference and recovery package](docs/olist-release-research.md) inspects base
 `ca8bccf` and adds `olist_support.reference_package`: exact byte pins -> strict case and
-metadata parsing -> one-to-one membership/source/family checks -> independent SIM oracle
+metadata parsing -> exact text-only provider projection -> membership/source/family checks -> independent SIM oracle
 -> safe aggregate. No runtime policy, provider, SQL effect or secret is accessed. The
 12/12 conditional action/amount agreement does not validate intent, amount interpretation,
 reason text, declared semantic independence or actual recovery. Tests seed amount errors,

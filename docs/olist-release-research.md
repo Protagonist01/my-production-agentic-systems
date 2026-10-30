@@ -40,7 +40,8 @@ refund outcomes. The approved SIM policy supplies constructed business rules. A 
 record cannot supply a missing intent label or prove a real refund was warranted.
 
 `olist_support.reference_package` loads exact externally pinned evaluator/metadata bytes.
-It checks one-to-one case membership, source manifest consistency, declared wording-family
+It verifies the exact text-only provider projection (no extra label/fact fields), then checks
+one-to-one case membership, source manifest consistency, declared wording-family
 split isolation, recovery declarations and required holdout slice declarations. It calls
 `evaluation_oracle.evaluate_policy` for action and amount, conditional on evaluator-supplied
 intent/requested amount/facts. It never calls runtime `policy.propose`, executes business
@@ -174,7 +175,7 @@ Keep #58/#59 acceptance pending until these host-specific results and objectives
 ## Reproduce this audit
 
 ```powershell
-python -m olist_support.reference_package --cases <private-evaluator.json> --cases-sha256 <external-pin> --metadata <private-metadata.json> --metadata-sha256 <external-pin> --profile docs/evaluation/profiles/olist.json --profile-sha256 <external-profile-pin>
+python -m olist_support.reference_package --cases <private-evaluator.json> --cases-sha256 <external-pin> --metadata <private-metadata.json> --metadata-sha256 <external-pin> --inputs <private-inputs.json> --inputs-sha256 <external-pin> --profile docs/evaluation/profiles/olist.json --profile-sha256 <external-profile-pin>
 python -m pytest -q tests/test_olist_reference_package.py tests/test_olist_evaluation_oracle.py tests/test_olist_cohort_draft.py
 ```
 
