@@ -170,3 +170,11 @@ Versioned values and scope: docs/data/olist-operating-targets-v1.json and
 docs/olist-release-research.md. These are accepted planning targets, not observed
 performance, frozen statistical protocol, active profile replacement, provider spending,
 hosting purchases or production release approval. Preserve existing gates and artifacts.
+
+The owner also approved a private no-provider ABCD development draft of up to12dialogues.
+Preparation is at D:/document/.cache/production-agents/olist/abcd-development-draft-2026-10-30-v1.
+Keep publisher annotations, scenario and full context evaluator-only. Delexed source turns
+still include targets/candidates;never pass these to a candidate. The projected first-user
+turn maps provisionally to3refund/4clarification/5status-query,with0explicitreship/amountgold.
+These AI mappings are not independent Olist labels;show review.md before cohort freeze.
+No provider export,spending,newholdout or release authorization follows.

@@ -91,8 +91,33 @@ fully consistent (for example `get_refund` appears in entity examples but not th
 REFUND intent list). Inspect actual pinned labels before claiming refund/reship coverage.
 No assumption that `change_order` means reship or `track_refund` means request a new refund.
 
-Neither corpus has been ingested, relabeled or exported to a provider by this package.
-New source mix/item schema and a first draft require review before cohort freezing. If
+After the owner approved a private12dialogue development draft, ABCD was downloaded at
+commit `6b8700ce67c6b37b062dd7a60abc76d7ef832a97` with pinned license, documentation,
+ontology and guidelines. Only training conversations were selected; source dev/test splits
+were not used for the draft. No Bitext ingestion or provider export occurred.
+
+Actual [draft aggregate](data/olist-abcd-development-draft-v1.json):3training dialogues each
+from `refund_initiate`, `return_size`, `refund_status` and `missing`, selected by a fixed
+case-hash ordering within each subflow. This is label-stratified coverage, not traffic
+prevalence. Inputs project only the first customer turn. Original scenario/labels and full
+dialogue context stay evaluator-side. The12AI-proposed utterance mappings are3refund,
+4needs-clarification and5unsupported-status-query. There are **zero explicit reship examples
+and zero established numeric amount labels**. Greeting-only first turns and size complaints
+demonstrate why a whole-dialogue scenario cannot supply a first-utterance intent label.
+
+Important leakage finding: the source's delexed turn objects still contain `targets` and
+`candidates`, including intent annotations. Only export an allowlisted text projection;
+do not send those objects wholesale. Delexed text also retains some names, so it is not
+automatically anonymous. The private draft preserves context without publishing it.
+
+The current refund/reship-only schema cannot represent all these observed mappings. Before
+freezing a broader study, implement and evaluate explicit clarification/unsupported routing,
+or establish exactly which task inputs are supported with a tested rejection path. Do not
+silently discard these cases or force them into refund/reship. The original SIM policy and
+approved scope remain unchanged. Mapping judgments and source applicability require review.
+The first private review draft is `review.md` in the approved ABCD directory;no cohort frozen.
+
+If
 ABCD's labels transfer only partially, use them for that narrow diagnostic and retain an
 explicit gap for exact amounts, ambiguity and unsupported requests. Do not fill those
 gaps with model consensus and call the result independent reference truth.

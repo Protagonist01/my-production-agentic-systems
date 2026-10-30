@@ -4584,3 +4584,24 @@ policy. Bitext is explicitly hybrid synthetic/automatically labeled, and its car
 intent list and entity examples differ. Record this taxonomy caveat rather than assuming
 coverage. External/public also does not mean unseen by the model. Candidate source mix and
 first projected draft remain reviewable before freeze;no qualified truth claim is made.
+
+
+### Prepare the approved12dialogue ABCD development draft
+Owner authorizes the private no-provider draft. Pin source commit6b8700ce67c6b37b062dd7a60abc76d7ef832a97,
+LICENSE,README,ontology,guidelines and37MBcompressed archive outsideGit. Source splitcounts:
+train8034/dev1004/test1004. Select training only:3eachrefund_initiate,return_size,refund_status,
+missing;sortwithinlabel bySHA256(olist-abcd-development-v1|conversationid),takefirst3.
+This is deliberate label-stratified coverage,not prevalence sampling. Preserve alloriginal
+annotations/context evaluator-side. Inputs containonlyopaquehashandfirstcustomerturntext.
+Discover that delexedturns still contain targets/candidates,includingpublisherintent on
+everyturn. Exporting those structures would leak labels;explicitlystrip tocase_id/text.
+Delexed text also retains some names;keepfullcontext private and do notinfer anonymization.
+
+Read the12firstcustomerturns before proposing mappings:3newrefundrequests,4needingclarification,
+5statusqueries. No explicitreship andnoestablishedamountlabels. Greeting-onlyfirstturns
+show why conversation scenario is not an utterance label;return-size complaints do not
+choose refund versus replacement. Publishonlyaggregate. Private review.md shows every
+request/publisherlabel/proposedmapping/reason andaccept-correct-unsure space;contextand
+publisherlabels stay separate. No modelcall,sourcepolicytransfer,newholdout or qualification.
+The current two-intent schema cannot express these unsupported/ambiguous mappings. Treat
+this as a pre-freeze coverage/design gap,not evidence to force all12intoexistinglabels.
