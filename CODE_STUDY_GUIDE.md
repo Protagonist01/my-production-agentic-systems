@@ -1,5 +1,18 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Olist reference and recovery package](docs/olist-release-research.md) inspects base
+`ca8bccf` and adds `olist_support.reference_package`: exact byte pins -> strict case and
+metadata parsing -> one-to-one membership/source/family checks -> independent SIM oracle
+-> safe aggregate. No runtime policy, provider, SQL effect or secret is accessed. The
+12/12 conditional action/amount agreement does not validate intent, amount interpretation,
+reason text, declared semantic independence or actual recovery. Tests seed amount errors,
+invalid clocks, missing/duplicate metadata, split leakage and mismatched source manifests.
+Recovery planning distinguishes same-database commit durability from host-loss RPO/RTO;
+current `recovery_exercise.exercise` times restore/readiness, not complete service cutover.
+Interview exercise: why can all structural checks pass while release remains blocked?
+Trace the structured request supplied to `OracleRequest` and identify the untested text
+interpretation boundary. No new provider or deployment scope follows from this package.
+
 The [exposed-case development chapter](docs/remediation-development.md) follows the
 344total authorization after failed studyPR118:immutable schedule-bound extension,
 actual prompt/route/projection binding and strict short-quotation parsing. This candidate

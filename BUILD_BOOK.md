@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 70 — Audit references without promoting them into truth](#entry-70--audit-references-without-promoting-them-into-truth)
 - [Entry 69 — Change only the model and capture a contemporary control](#entry-69--change-only-the-model-and-capture-a-contemporary-control)
 - [Entry 68 — Isolate development changes behind settled canaries](#entry-68--isolate-development-changes-behind-settled-canaries)
 - [Entry 67 — Diagnose task mismatch before another model study](#entry-67--diagnose-task-mismatch-before-another-model-study)
@@ -4499,3 +4500,57 @@ requestpairsdifferonlymodel;no labels/oldresults changed. Preparedcomparisonreta
 The gate saved48domaincalls without pretending it achieved quality evaluation. Nextusable
 challengerrequiresconcretescopeandbudgetapproval;softwarecompatibilitypassesdonotprove
 remoteservice. Detailed operationalfailure/engineering narrative recorded inmodelplan.
+
+
+## Entry 70 — Audit references without promoting them into truth
+**Files touched:** Olist reference_package.py, focused tests, research package, aggregate and guide.
+
+### Context
+Owner asks to prioritize #33 and prepare deployment/recovery alongside it, with research
+that improves quality. Base ca8bccf has a separate SIM table and owner-accepted12case draft,
+but these cannot establish what customer text means. Provider slots remain bound elsewhere.
+
+### Before you read on
+If all labels agree with an independent policy table, what remains untested? Follow where
+intent and requested amount enter the oracle; neither is extracted by that oracle.
+
+### Options considered
+- Reuse the runtime policy to certify labels: rejected because it makes candidate and oracle
+  share the same policy logic and still does not establish language meaning.
+- Treat retrospective owner acceptance as blind annotation: rejected because provenance
+  would be false. Keep that acceptance as its own pinned sidecar.
+- Chosen: audit exact pinned references with the existing separate table, reporting the
+  unmeasured claims explicitly, then prepare a stronger prospective protocol.
+
+### Why
+Research from NIST, Langfuse, Google SRE, AWS and PostgreSQL supports distinct claim/evidence
+boundaries, explicit uncertainty, user-facing indicators and exercised restoration. None
+supplies a universal95%qualitytarget or automatically approves our business risk. Numerical
+limits are proposals. A successful snapshot restore is not host-loss RPO/RTO evidence.
+
+### How to build it
+Read bytes and compare SHA256 before parsing. Parse PolicyCases and typed CaseMetadata;
+require exact case membership, source manifest equality and one split per declared language
+family. Check recovery flag/kind consistency and required holdout slice declarations.
+Project confirmation facts into OracleFacts, excluding only the SIM provenance field;
+construct OracleRequest from evaluator intent/amount, never from candidate output.
+Call evaluate_policy, count action/amount agreement and oracle errors separately, and emit
+only aggregate counts and artifact pins. No case IDs or source records enter the public
+report. Mark semantics/reason/independence/recovery/candidate/release false even on agreement.
+CLI requires external pins for evaluator, metadata and profile. It prints aggregate JSON
+and returns2for incomplete structural evidence; malformed membership refuses before scoring.
+
+Use the locked environment and private D-drive TEMP/TMP. Focused tests seed wrong amount,
+invalid clock, metadata duplication/omission, family leakage, source mismatch and inconsistent
+recovery declarations. The real accepted packet returns12/12agreement,6sourcegroups,
+2holdoutgroups,8declaredslices,zerooracleerrors and original AI provenance. No providercalls.
+The research chapter specifies separate semantic reference, prospective sample-size and
+baseline work, and host-specific startup/drain/crash/restore/cutover exercises. Active gates
+and profiles are unchanged. RPO15minutes/RTO60minutes are pending proposals, not achieved.
+
+### What went wrong
+The first focused run forgot the established D-drive TEMP override:32passed,oneexisting
+cohort test refused default C-drive private output because an unrelated C:/.git exists.
+The guard was correct. Set TEMP/TMP to the private D-drive path and rerun:33passed12.85s.
+No marker was removed, guard relaxed, label rewritten or failed result hidden. Mypy passes
+205sources. This is reference preparation, not completed #33release acceptance.
