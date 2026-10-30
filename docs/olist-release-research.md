@@ -4,6 +4,13 @@ Prepared 2026-10-30 against merged main `ca8bccf` for #33, with #58/#59 preparat
 This is a research-backed execution package and a conditional reference audit, not a
 finished release qualification. No provider dispatch, hosted deployment or new spending.
 
+Correction on 2026-10-30 after inspecting actual callers: the workflow already supports
+`refund`, `status`, `reship` and `review`. Only the lower-level SIM policy is refund/reship
+only. The original broad schema-gap claim was wrong. The narrower improvement is explicit
+clarification/unsupported reasons and distinguishing refund-status queries from supported
+recorded-order status. See [versioned routing](olist-routing-v2.md). Original draft labels
+and acceptance remain history; the owner accepted a separate corrected workflow projection.
+
 ## Research findings and resulting decisions
 
 1. **Define the claim before choosing a score.** [NIST AI RMF Measure](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/)
@@ -110,11 +117,12 @@ Important leakage finding: the source's delexed turn objects still contain `targ
 do not send those objects wholesale. Delexed text also retains some names, so it is not
 automatically anonymous. The private draft preserves context without publishing it.
 
-The current refund/reship-only schema cannot represent all these observed mappings. Before
-freezing a broader study, implement and evaluate explicit clarification/unsupported routing,
-or establish exactly which task inputs are supported with a tested rejection path. Do not
-silently discard these cases or force them into refund/reship. The original SIM policy and
-approved scope remain unchanged. Mapping judgments and source applicability require review.
+The existing workflow's status/review routes can already represent safe handling broadly.
+The owner accepted the corrected development projection: cases11–12 are supported `status`,
+cases7–9 are `unsupported` existing-refund-status, cases4–6/10 `clarify`, cases1–3 `refund`.
+Keep the original abstract mappings and their acceptance unchanged. A versioned v2 candidate
+adds distinct non-action reasons; actual language quality still requires a new evaluation.
+Do not discard ambiguous cases or force them into refund/reship. The SIM policy is unchanged.
 The first private review draft is `review.md` in the approved ABCD directory;no cohort frozen.
 
 If

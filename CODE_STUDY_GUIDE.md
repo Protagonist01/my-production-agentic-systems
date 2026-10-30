@@ -1,5 +1,19 @@
 # Code Study Guide — Production Agentic Systems
 
+The [explicit Olist routing chapter](docs/olist-routing-v2.md) corrects the prior diagnosis:
+legacy `IntentPlan` already supports status/review as well as refund/reship. Against base
+`b19e8cb`, opt-in `RoutingGatewayPlanner` -> strict versioned `RoutingPlan` -> existing
+`IntentDecision` checkpoint -> scoped `SupportWorkflow.policy_node` adds distinct clarify
+and unsupported review reasons. Neither reaches commit; old prompt/schema remain the default.
+Numeric reference spans establish exact transcription only, not customer meaning or refund
+eligibility. Tests cover legacy wire equality, duplicate JSON/authority/money rejection,
+saved-result redelivery and independent SQL business-state equality. No model accuracy is
+measured. Interview challenge: why does asking refund status differ from requesting a refund,
+and why can an exact100.01SIM extraction be correct while its automatic action is refused?
+Rollback limit: v1-only readers reject v2 checkpoint plans. A deployed rollback must retain
+a reader compatible with both versions or drain/pin v2 workers; old request compatibility
+does not establish old-binary compatibility with new durable data.
+
 The [Olist reference and recovery package](docs/olist-release-research.md) inspects base
 `ca8bccf` and adds `olist_support.reference_package`: exact byte pins -> strict case and
 metadata parsing -> exact text-only provider projection -> membership/source/family checks -> independent SIM oracle
