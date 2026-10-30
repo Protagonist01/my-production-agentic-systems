@@ -4839,3 +4839,12 @@ strings automatically, so split source literals without changing their rendered 
 Private draft preparation writes an exclusive new directory, exact-byte pins, cases and
 proposed labels, population/manifest and a zero-observation inventory. The12case meanings
 remain proposals, not owner accepted. The original accepted12ABCD/SIMcases are untouched.
+
+### Hosted schedule guard caught a real test defect
+The first hostedSQLjob124168689076 reports12failed/139passed266.40s. Everynewcase was
+refused before recording because my proposed one-trial test schedule violates H10's
+three-trial requirement (fresh_recording.validate_fresh). This was not a Docker problem.
+Retain the failure; correct the test to preserve all three sequential tasks/IDs and inspect
+all three receipts/state/cleanup results per case. Do not change the production recorder
+or its budget partitions. Twelve tests now schedule36mock mechanism trials; this still
+supplies zero provider quality observations. Require a fresh final-head fullmatrix/SQLpass.

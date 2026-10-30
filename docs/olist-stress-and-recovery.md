@@ -69,7 +69,7 @@ trials, external semantic gold, validated unseen wording, actual process crashes
 trials and provider calls. It cannot consume arbitrary result rows to manufacture qualification.
 Do not update these zero observation counts from successful unit tests.
 
-Twelve new SQL/H10 checks each execute one authored case with a canned planner answer,
+Twelve new SQL/H10 checks each execute three isolated trials of an authored case with a canned answer,
 the real workflow and an owned database. Independent state/receipt/duplicate scoring,
 observation read-back and database/role cleanup must pass. The resume case additionally
 requires the controlled after-commit exception/reopen path. These are mechanism tests:
@@ -112,6 +112,12 @@ imported `ManifestPin` from the wrong module and failed collection. After fixing
 local SQL still failed at Docker Compose startup before the first test body. No local SQL
 pass is claimed. Hosted SQL must execute all twelve new cases before merge. Focused checks,
 typing and final hosted outcomes are recorded on the PR after actual completion.
+
+The first hosted SQL run retained139passing checks and rejected all12new cases before
+recording: the test schedule requested one trial but H10 requires three sequential trials.
+Correct the tests to retain the original three-trial schedule, verify all three observations
+and receipts, and keep the H10 guard unchanged. This schedules36mock mechanism trials;
+it grants no provider attempts or qualification observations. Final hosted proof is pending.
 
 #33 remains open for applicable independent reference evidence, representative heldout
 coverage and reviewed uncertainty/resource limits, a frozen protocol with separately

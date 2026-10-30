@@ -1,4 +1,4 @@
-"""One real SQL/H10 mechanism trial per authored stress case, with canned model output."""
+"""Three real SQL/H10 trials per authored stress case, with canned model output."""
 
 from dataclasses import dataclass, replace
 from decimal import Decimal
@@ -46,29 +46,30 @@ def test_constructed_stress_decision_reaches_expected_sql_state_without_replanni
     loaded = LoadedManifest(
         raw, ManifestPin(manifest_id=manifest.manifest_id, version="v1", sha256=sha256(raw))
     )
-    original = old_schedule.tasks[0]
-    task = original.model_copy(
-        update={
-            "context": original.context.model_copy(
-                update={
-                    "tenant_id": case.order.tenant_id,
-                    "case_id": case.case_id,
-                    "versions": original.context.versions.model_copy(
-                        update={"data_snapshot": case.order.source_manifest_sha256}
-                    ),
-                }
-            ),
-            "eligible_for_autonomy": case.expected.outcome == "refunded",
-            "required_review": case.expected.outcome == "review_required",
-        }
+    tasks = tuple(
+        original.model_copy(
+            update={
+                "context": original.context.model_copy(
+                    update={
+                        "tenant_id": case.order.tenant_id,
+                        "case_id": case.case_id,
+                        "versions": original.context.versions.model_copy(
+                            update={"data_snapshot": case.order.source_manifest_sha256}
+                        ),
+                    }
+                ),
+                "eligible_for_autonomy": case.expected.outcome == "refunded",
+                "required_review": case.expected.outcome == "review_required",
+            }
+        )
+        for original in old_schedule.tasks
     )
     schedule = TrialSchedule.model_validate_json(
         old_schedule.model_copy(
             update={
                 "manifest": loaded.pin,
                 "case_ids": (case.case_id,),
-                "trial_ids": (task.context.trial_id,),
-                "tasks": (task,),
+                "tasks": tasks,
             }
         ).canonical_json()
     )
@@ -94,20 +95,23 @@ def test_constructed_stress_decision_reaches_expected_sql_state_without_replanni
         candidate_sha256=pin(factory.candidate),
     )
     assert evidence.origin == "mock" and verified.batch.complete
-    (row,) = verified.batch.rows
-    assert not row.errors and row.report is not None
-    result = row.report.report.result
-    scores = {s.metric: s.value for s in row.report.report.scores}
-    assert scores["correct"] == scores["exact_state"] == scores["duplicate_delivery"] == 1
-    assert scores["routing_safe"] == scores["truthful_confirmation"] == 1
-    assert result.usage.model_calls == 1
-    if case.recovery_required:
-        assert scores["recovery"] == 1
-    else:
-        assert "recovery" not in scores
-    with server.connect() as admin:
-        database = row.state_ref.removeprefix("olist-routing:")
-        assert not admin.execute(
-            "SELECT 1 FROM pg_database WHERE datname=%s", (database,)
-        ).fetchone()
-        assert not admin.execute("SELECT 1 FROM pg_roles WHERE rolname=%s", (database,)).fetchone()
+    assert len(verified.batch.rows) == len(verified.receipts) == 3
+    for row in verified.batch.rows:
+        assert not row.errors and row.report is not None
+        result = row.report.report.result
+        scores = {s.metric: s.value for s in row.report.report.scores}
+        assert scores["correct"] == scores["exact_state"] == scores["duplicate_delivery"] == 1
+        assert scores["routing_safe"] == scores["truthful_confirmation"] == 1
+        assert result.usage.model_calls == 1
+        if case.recovery_required:
+            assert scores["recovery"] == 1
+        else:
+            assert "recovery" not in scores
+        with server.connect() as admin:
+            database = row.state_ref.removeprefix("olist-routing:")
+            assert not admin.execute(
+                "SELECT 1 FROM pg_database WHERE datname=%s", (database,)
+            ).fetchone()
+            assert not admin.execute(
+                "SELECT 1 FROM pg_roles WHERE rolname=%s", (database,)
+            ).fetchone()
