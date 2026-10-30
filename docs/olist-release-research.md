@@ -68,6 +68,35 @@ as a fresh blind holdout. Preserve their original split fields and acceptance si
 
 ## Finish the reference package
 
+### External reference candidates investigated
+
+The strongest next research lead is [ASAPP's ABCD repository](https://github.com/asappresearch/abcd)
+and its [original NAACL paper](https://aclanthology.org/2021.naacl-main.239/): labeled
+human-to-human support dialogues with policy-constrained action sequences. The repository
+lists an MIT license and preserves scenario, original/delexicalized conversation and split
+information. This offers external annotation provenance, unlike having our candidate label
+its own tests. **Recommendation:** investigate an unmapped development subset first, pin
+the archive/license, inspect its policy and intent taxonomy, then prove which labels apply
+to our refund/reship distinction. Do not equate conversation-level scenario intent with
+every individual utterance or import the source's refund policy into the Olist SIM policy.
+The source's scenarios and dialogue context must stay evaluator-side unless the task
+explicitly requires that context. Published test exposure/pretraining contamination is an
+unresolved limitation; an external public benchmark is not automatically a fresh holdout.
+
+The [Bitext dataset card](https://huggingface.co/datasets/bitext/Bitext-customer-support-llm-chatbot-training-dataset/blob/main/README.md)
+describes hybrid synthetic customer-support text, automated labeling and linguist curation;
+it lists CDLA-Sharing-1.0. It is a possible linguistic stress source, not independent natural
+traffic or business-outcome evidence. Its card's intent list and entity examples are not
+fully consistent (for example `get_refund` appears in entity examples but not the displayed
+REFUND intent list). Inspect actual pinned labels before claiming refund/reship coverage.
+No assumption that `change_order` means reship or `track_refund` means request a new refund.
+
+Neither corpus has been ingested, relabeled or exported to a provider by this package.
+New source mix/item schema and a first draft require review before cohort freezing. If
+ABCD's labels transfer only partially, use them for that narrow diagnostic and retain an
+explicit gap for exact amounts, ambiguity and unsupported requests. Do not fill those
+gaps with model consensus and call the result independent reference truth.
+
 Maintain three separate reference layers, with versioned provenance and applicability:
 
 | Layer | Reference and check | Remaining boundary |

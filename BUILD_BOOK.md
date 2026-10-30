@@ -4573,3 +4573,14 @@ initial99.5%availabilityover30days,hostlossRPO900seconds/RTO3600seconds. Recordv
 olist-operating-targets-v1.json andAGENTS so these are not repeatedly re-requested. This
 accepts planning numbers only;not frozenstatisticalprotocol,activeprofilechange,provider
 spending,hostpurchaseorrelease. Existinglabel provenance and12case audit stayunchanged.
+
+
+### Find an external semantic reference before another self-labeled cohort
+Research the original ABCD repository/paper:published human-to-human support dialogues
+with scenario/intents/policy-constrained actions. Prefer a pinned applicability investigation
+on development examples to trusting AI-generated labels. No corpus ingestion/export yet;
+conversation scenario labels may not describe every utterance or match our refund/reship
+policy. Bitext is explicitly hybrid synthetic/automatically labeled, and its card's refund
+intent list and entity examples differ. Record this taxonomy caveat rather than assuming
+coverage. External/public also does not mean unseen by the model. Candidate source mix and
+first projected draft remain reviewable before freeze;no qualified truth claim is made.
