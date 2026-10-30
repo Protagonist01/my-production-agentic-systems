@@ -188,3 +188,15 @@ onlythelowerlevelSIMpolicyisrefund/reship-only. Preserve originaldraft/acceptanc
 workflow-projection-v2.json in the same privateABCDdirectory. These are owner-reviewed AI
 development projections,not independentlycertifiedgold,frozenstudy orprovider/exportauthority.
 Explicit v2 routing is an opt-in candidate;oldGatewayPlanner/CLIs/H10 remainlegacybydefault.
+
+## Wider routing development fixtures (2026-10-30)
+
+The owner accepted pairing the 12 existing ABCD texts/corrected projections with explicitly
+fictional Olist/SIM fixtures for development-only end-to-end evaluation. Private packet:
+D:/document/.cache/production-agents/olist/routing-evaluation-draft-2026-10-30-v1.
+These are arbitrary test associations, not actual customer/order links. Preserve original
+source, labels, inputs and acceptance records. All cases are development: six reused order
+groups, four declared families, no fresh holdout or independence claim. The packet lacks
+explicit reship, numeric-request, recovery and injection cases; unit witnesses do not fill
+those release requirements. This accepts fixture preparation only, not a frozen provider
+study, new calls/budget, live dataset upload or release. Wider H10 factories remain mock-only.

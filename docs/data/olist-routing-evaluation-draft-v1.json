@@ -1,0 +1,25 @@
+{
+  "version": "olist-routing-evaluation-draft-v1",
+  "cases": 12,
+  "source_order_groups": 6,
+  "declared_language_families": 4,
+  "split": "development_only",
+  "routes": {
+    "refund": 3,
+    "status": 2,
+    "clarify": 4,
+    "unsupported": 3
+  },
+  "expected_refunds": 3,
+  "expected_status": 2,
+  "expected_reviews": 7,
+  "recovery_cases": 0,
+  "explicit_reship_references": 0,
+  "numeric_amount_references": 0,
+  "source_association": "constructed_not_actual_customer_order_link",
+  "candidate_pins_status": "pending_clean_candidate_commit",
+  "provider_calls": 0,
+  "protocol_frozen": false,
+  "release_allowed": false,
+  "owner_accepted_development_fixture_associations": true
+}

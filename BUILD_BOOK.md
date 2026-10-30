@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 72 — Evaluate wider routes without inventing policy labels](#entry-72--evaluate-wider-routes-without-inventing-policy-labels)
 - [Entry 71 — Separate unsupported intent from a generic review](#entry-71--separate-unsupported-intent-from-a-generic-review)
 - [Entry 70 — Audit references without promoting them into truth](#entry-70--audit-references-without-promoting-them-into-truth)
 - [Entry 69 — Change only the model and capture a contemporary control](#entry-69--change-only-the-model-and-capture-a-contemporary-control)
@@ -4676,3 +4677,82 @@ cannot read v2's marker. Addexplicitold-parser refusalassertion anddocumentrollb
 preservecompatible reader/worker ordrainv2events before rollback;neverstripmarkers orrestore
 oldbusinessdataovernew. This is a deployment constraint,not a claimed migration. Source
 runtimebehavior staysunchanged;finalhostedchecks must coverthis finaltest/documentationhead.
+
+
+## Entry 72 — Evaluate wider routes without inventing policy labels
+**Files touched:** routing evaluation contracts, H10 adapter, independent state checker, tests and protocol.
+
+### Context
+Continue #33 after verified main69b6a3f (PR124). The owner accepted existing evaluation
+fields/planning targets and corrected12ABCDdevelopment mappings, not a fresh provider run.
+The legacy H10 adapter accepts refund/reship PolicyCases only; translating clarification
+into a fake reship label would hide the meaning of the wider evaluation.
+
+### Before you read on
+How can a wider reference case share a proven SQL state checker without manufacturing a
+legacy intent label? Separate expected state delta from interpretation and outcome labels.
+
+### Decision before construction
+Extract the existing independent state-delta constructor behind a policy-neutral interface,
+keeping its old wrapper unchanged. Add wider cases with explicit references, trusted SIM
+fixture and literal expected workflow outcome/reason. H10 exports customer text only.
+Score the accepted fields separately; preserve missing outcomes and unsafe state changes.
+Compare fine routing separately from coarse business outcome so v1's safe review is not
+misrepresented as model ignorance or an eligible refund completion. Old artifacts stay intact.
+No provider composition or grant is activated by preparing or testing this adapter.
+
+
+### Construction walkthrough
+Define RoutingCase with separate interpretation reference, frozen order/confirmation,
+expected workflow outcome/reason/effect, group/family/split and source pin. Validate scope,
+status disposition and recovery applicability; check intended refund/reship effects against
+the independent structured policy table. RoutingPopulation refuses duplicate or split-leaking
+orders/groups/families. Build EvalCase with AgentInput(text) only; bind all private metadata
+by reconstructing the whole EvalCase before scoring.
+
+Factor release.expected_state(view, facts, refund_minor, task, before) from the old helper.
+Keep _expected_state as an old PolicyCase wrapper. The delta remains exact over order,
+receipt, payload, actor, original-run budget and unaffected rows. Wider no-effect routes use
+before as expected state; they never masquerade as a reship reference.
+
+The new RoutingEnvironment owns SQL enrollment/cleanup and a parent-read before snapshot.
+RoutingAgent reuses the real workflow/duplicate/recovery collector. RoutingScorer binds
+worker output to observations, then reads final SQL state independently. Score intent,
+amount, outcome, reason, truthful text, exact state, duplicate and applicable recovery
+separately. In computing correctness, filter by metric name, never by boolean identity:
+filtering None values would accidentally hide unknown fields. Missing/failure stays visible.
+
+Bind private observations with canonical byte hashes. Read shared H10/baseline evidence
+first, then reparse private captures, reconstruct outcomes and every score, and compare
+exact inventory. Candidate fingerprints include variant, actual schema/rules, state/scorer,
+environment and executable source inventory. Mock factories refuse live routes, provider
+origin overrides and grant pins. Zero-call comparators use shared baseline recording and
+DenyModels; no fake provider receipts. A v1 generic review can be a safe coarse business
+outcome while remaining wrong against the fine clarification reference.
+
+RoutingProtocol binds canonical population plus actual serialized manifest byte pins,
+four distinct candidate pins and three trial IDs. These pins differ when a pretty JSON
+file has the same meaning as canonical serialization: do not assume byte equality. The
+summary keeps missing variants/trials/fields, required recovery denominators and partial
+latency. Parent trial timing includes setup/cleanup and cannot assess the client SLO.
+
+### Draft and approval
+Prepare twelve accepted ABCD texts with corrected routes and the frozen old Olist/SIM views,
+paired by index. Record the association as explicitly fictional, not an actual customer/order
+link. Preserve original inputs/source/labels/acceptances. All cases are development, six
+reused order groups/four declared subflow families; no independent groups or fresh holdout.
+The owner accepts these constructed fixtures for development; a sidecar binds population
+and lineage bytes. Three expected conditional SIM refunds, two status replies and seven
+reviews; zero explicit reship/numeric/recovery/injection cases. Leave these release gaps open.
+
+### Verification and failures so far
+51 focused new/legacy state/field/H10 tests pass10.35seconds. Initial seeded legacy-review
+unit fixture used an unrelated fake agent_id; the new scorer correctly refused its identity.
+Correct the fixture to olist, not the identity guard. Strict typing needs an explicit
+nullable-bool dictionary for projected unknown scores; do not coerce unknown into false/true.
+210sources typecheck,334formatted files and both import contracts pass.
+
+Local SQL invocation hits nine setup errors at DockerCompose startup before test bodies.
+Do not skip or claim local SQL success. Required hosted SQL tests must exercise all six
+routes, recovery, zero-call baselines, legacy comparison, sealed read-back and owned cleanup.
+No live provider call or new spending. Final acceptance will use actual hosted logs.

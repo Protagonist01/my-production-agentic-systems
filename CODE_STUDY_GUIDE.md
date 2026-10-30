@@ -1,5 +1,16 @@
 # Code Study Guide — Production Agentic Systems
 
+The [wider routing/state evaluation chapter](docs/olist-routing-evaluation.md) traces base
+`69b6a3f`: `RoutingPopulation` -> text-only `EvalCase` -> owned SQL `RoutingEnvironment` ->
+real workflow/observations -> independent `RoutingScorer` -> sealed H10 read-back -> full
+scheduled comparison. A policy-neutral state-delta helper preserves the old scorer wrapper
+while avoiding fake refund/reship labels for wider routes. Exact state, truth, fine intent,
+coarse outcome and required recovery remain distinct; unknown evidence cannot become a pass.
+Factories pin variant/schema/rules/scorer/environment and refuse live model routes. Baselines
+use zero-call recording and `DenyModels`, not fabricated provider receipts. The accepted
+12-case development fixture has arbitrary SIM associations, no fresh holdout and missing
+release slices. Parent trial timing is not a client-facing latency SLO. No release claim.
+
 The [explicit Olist routing chapter](docs/olist-routing-v2.md) corrects the prior diagnosis:
 legacy `IntentPlan` already supports status/review as well as refund/reship. Against base
 `b19e8cb`, opt-in `RoutingGatewayPlanner` -> strict versioned `RoutingPlan` -> existing

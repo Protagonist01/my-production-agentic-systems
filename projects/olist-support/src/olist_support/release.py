@@ -12,7 +12,9 @@ from psycopg.rows import tuple_row
 from pydantic import Field, model_validator
 
 from olist_support.business_contracts import CallerGrant, RefundCommand, RefundReceipt
+from olist_support.policy import ScenarioConfirmation
 from olist_support.policy_cases import Digest, PolicyCase, PolicyCases
+from olist_support.views import OrderView
 
 SCORER_VERSION = "olist-state-scorer-v1"
 
@@ -183,16 +185,42 @@ class TrialVerdict(Contract):
 def _expected_state(
     case: PolicyCase, task: ScheduledTrial, before: StateSnapshot
 ) -> StateSnapshot | None:
+    return expected_state(
+        case.input.order,
+        case.input.confirmation,
+        case.expected.amount_minor,
+        task,
+        before,
+    )
+
+
+def expected_state(
+    view: OrderView,
+    facts: ScenarioConfirmation | None,
+    refund_minor: int | None,
+    task: ScheduledTrial,
+    before: StateSnapshot,
+) -> StateSnapshot | None:
     """Construct the exact permitted delta from private labels, never runtime propose()."""
-    command, expected = task.command, case.expected
-    view = case.input.order
+    command = task.command
+    record_pin = hashlib.sha256(
+        json.dumps(
+            [
+                view.model_dump(mode="json"),
+                facts.model_dump(mode="json") if facts else None,
+                hashlib.sha256(view.canonical_json().encode()).hexdigest(),
+            ],
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode()
+    ).hexdigest()
     target = next(
         (r for r in before.orders if (r.tenant_id, r.order_id) == (view.tenant_id, view.order_id)),
         None,
     )
-    if target is None or target.record_sha256 != enrollment_pin(case):
+    if target is None or target.record_sha256 != record_pin:
         return None
-    if expected.action == "review":
+    if refund_minor is None:
         return before
     if command is None:
         return None
@@ -204,7 +232,7 @@ def _expected_state(
     if (command.tenant_id, command.order_id, command.amount_minor) != (
         view.tenant_id,
         view.order_id,
-        expected.amount_minor,
+        refund_minor,
     ):
         return None
     if target.version != command.expected_version or target.refunded_minor:
