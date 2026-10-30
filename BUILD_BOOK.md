@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 71 — Separate unsupported intent from a generic review](#entry-71--separate-unsupported-intent-from-a-generic-review)
 - [Entry 70 — Audit references without promoting them into truth](#entry-70--audit-references-without-promoting-them-into-truth)
 - [Entry 69 — Change only the model and capture a contemporary control](#entry-69--change-only-the-model-and-capture-a-contemporary-control)
 - [Entry 68 — Isolate development changes behind settled canaries](#entry-68--isolate-development-changes-behind-settled-canaries)
@@ -4605,3 +4606,65 @@ request/publisherlabel/proposedmapping/reason andaccept-correct-unsure space;con
 publisherlabels stay separate. No modelcall,sourcepolicytransfer,newholdout or qualification.
 The current two-intent schema cannot express these unsupported/ambiguous mappings. Treat
 this as a pre-freeze coverage/design gap,not evidence to force all12intoexistinglabels.
+
+
+## Entry 71 — Separate unsupported intent from a generic review
+**Files touched:** versioned routing contracts/planner, workflow review branches, tests and guide.
+
+### Context
+Owner says proceed after PR123 and accepts12ABCD mappings fordevelopment only. Inspecting
+actual workflow before changes disproves Entry70's broad two-intent statement:IntentPlan
+already supports refund/status/reship/review;only SIM SupportRequest has two intents.
+Correct the research/guide and issue record rather than inventing missing functionality.
+The narrower gap is distinct clarification/unsupported reasons. Existing status reports order
+status,which cannot answer an existing-refund-status query. No measured model failure yet.
+
+### Before you read on
+How can a new routing schema preserve old captured planner requests and default behavior?
+Keep the legacy planner/schema as the default;make the new contract and prompt explicit.
+
+### Options and decision before implementation
+Changing the existing enum/prompt would silently change legacy comparisons. Instead add an
+opt-in versioned RoutingPlan and RoutingGatewayPlanner,keeping v1bytes/behavior unchanged.
+Route clarification and unsupported to durable review with fixed distinct reasons;neither
+can reach refund commit. Validate that non-refund routes cannot carry money. Preserve SIM
+refund policy and all original datasets. Test actual graph and SQL persistence without any
+live provider call;do not interpret invented output routing as measured language accuracy.
+
+
+### Build the version boundary and exact numeric references
+Add RoutingPlan with requiredrouting_version,6routes andnon-refundamountrefusal. Widen
+IntentDecision tolegacy-or-v2 without changing IntentPlan;FixedPlannerroundtrips either.
+GatewayPlannerextracts its existingprompt into an unchangedclassattribute andsameparse
+method;RoutingGatewayPlanneropts into newprompt/schema andduplicate-key-rejectingJSON.
+Newgraphbranchesreturn fixedreview_required reasons/messages beforepolicyproposal/commit.
+V2refund/status/reship preserveexistingbusinesspaths. Genericinvalidoutput/transportfailure
+still uses safelegacyreview withfailurecode,noadditionaldispatch. Defaults/oldstudies stayv1.
+
+Read the private12inputs against actualcapabilities:twoorder/shippingstatusqueriesalready
+supported;threeexistingrefundstatusqueriesunsupported. Owneraccepts correctedprojection
+3refund/2status/4clarify/3unsupported. Saveappend-onlyworkflow-projection-v2.json withold
+input/mappingpins. Neverrewritepublisherannotations/originalproposals/earlieracceptance.
+
+RoutingReferenceholds authoredtext/route/provenance andexplicitnumericspan. Validatewhole
+2decimalSIMtoken andexactintegerminorunits independentlyfromcandidateparser/actionpolicy.
+Zeroand100.01SIMcanbevalidextractionreferencesbutineligibleautomaticactions. Invented
+reshipphrases/numericboundariesremainconstructeddevelopment,notindependentsemanticgold.
+No model measured. Source's12dialoguesstillcontainnoreship/amountgold.
+
+### Verification during implementation
+Initialfocusedroutingtestexpects512tokens despiteinventedcontextbudget100. Adaptercorrectly
+usesmin(budget,512);fixassertion,notbudget. Then56focusedrouting/reference/workflow/fresh
+tests pass3.38s and207sources typecheck. Addall6routesroundtripcoverage andrealSQLclose/reopen
+checks:compare completeorders/ledger/runbudgetstate before/after eachnewreviewroute and
+forbidsecondplanningonredelivery. SQL/checkpointstate evidence is separatefrompureunitproof.
+
+
+### Focused proof and local infrastructure failure
+All62focused tests pass3.06seconds after adding everyv2routecheckpoint roundtrip. Lint,
+328formatted files andbothimportcontracts pass;207sources typecheck. LocalnewSQLtest
+attempt produces2fixtureerrors becauseDockerComposeexit1duringworkspace.up,beforeeither
+assertion/bodyruns. Keepthatfailure,do notskiptests orclaimdurability. Requiredhosted
+Postgres job mustexecute the actualnewchecks beforemerge. No daemonrestart/globalcontainer
+cleanup,no providercalls. Revised privateworkflowprojection is separatelypinned andowner
+accepted;old12input/mapping/acceptancefiles remainunchanged.

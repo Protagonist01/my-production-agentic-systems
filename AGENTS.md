@@ -178,3 +178,13 @@ still include targets/candidates;never pass these to a candidate. The projected 
 turn maps provisionally to3refund/4clarification/5status-query,with0explicitreship/amountgold.
 These AI mappings are not independent Olist labels;show review.md before cohort freeze.
 No provider export,spending,newholdout or release authorization follows.
+
+## Corrected Olist workflow projection (2026-10-30)
+
+Owner accepted all12ABCD draft mappings fordevelopment,then explicitly accepted a corrected
+workflow projection after code inspection:cases1–3refund,4–6/10clarify,7–9unsupported existing
+refundstatus,11–12supported recordedorderstatus. The workflow already hadstatus/review;
+onlythelowerlevelSIMpolicyisrefund/reship-only. Preserve originaldraft/acceptances andnew
+workflow-projection-v2.json in the same privateABCDdirectory. These are owner-reviewed AI
+development projections,not independentlycertifiedgold,frozenstudy orprovider/exportauthority.
+Explicit v2 routing is an opt-in candidate;oldGatewayPlanner/CLIs/H10 remainlegacybydefault.

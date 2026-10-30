@@ -1,3 +1,13 @@
+## Olist versioned routing preparation - 2026-10-30
+
+The [v2routing chapter](olist-routing-v2.md) corrects the earlier schema claim:legacyworkflow
+already supportsstatus/review;onlySIMpolicyhasrefund/reship-onlyinputs. Newopt-inv2candidate
+separatesclarify/unsupported reviewreasons,strictlyrejectsnon-refundmoney/duplicateJSONand
+preserveslegacywire. Owneraccepts corrected12ABCDdevelopmentprojection:3refund/2status/
+4clarify/3unsupported;originalfiles/acceptancesretained. Inventedreship/numericspanwitnesses
+aredevelopmentchecks,notsemanticgold or freshmodelquality. Versionedwiderstudy/protocol,
+applicablereferences,newboundedprovider scope andfinalrelease/deploymentevidence remain.
+
 ## Olist reference and recovery preparation - 2026-10-30
 
 The [research and execution package](olist-release-research.md) adds an exact-pin aggregate
