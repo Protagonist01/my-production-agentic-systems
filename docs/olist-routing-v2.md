@@ -54,6 +54,13 @@ The old H10 evaluator's PolicyCases remain refund/reship-specific; this candidat
 silently wired into those old studies or their field denominators. A versioned wider study
 adapter still needs reference membership, state observations and H10 binding before capture.
 
+Rollback boundary: a v1-only binary cannot parse a saved v2 plan with its required version
+marker. Preserving legacy requests is not bidirectional checkpoint compatibility. Before
+enabling v2 in a deployment, verify rollback using a build that can read both contracts, or
+keep v2 events on a separately pinned compatible worker and drain them before reverting.
+Do not strip the marker, reinterpret completed events or restore older data over new state.
+An old-parser refusal test makes this limit explicit; no cross-version migration is claimed.
+
 ## Strengthen numeric and reship references without manufacturing truth
 
 `routing_reference.RoutingReference` stores authored development text, expected v2 route,

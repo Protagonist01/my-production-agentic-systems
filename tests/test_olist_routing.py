@@ -115,6 +115,9 @@ def test_versioned_projection_preserves_legacy_prompt_schema_and_decision_roundt
     assert (
         json.loads(decision.plan.canonical_json())["routing_version"] == "olist-intent-routing-v2"
     )
+    # Old request compatibility does not promise old readers can parse new checkpoints.
+    with pytest.raises(ValidationError):
+        IntentPlan.model_validate_json(decision.plan.canonical_json())
 
 
 @pytest.mark.parametrize(

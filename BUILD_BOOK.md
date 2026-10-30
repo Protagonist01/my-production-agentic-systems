@@ -4668,3 +4668,11 @@ assertion/bodyruns. Keepthatfailure,do notskiptests orclaimdurability. Requiredh
 Postgres job mustexecute the actualnewchecks beforemerge. No daemonrestart/globalcontainer
 cleanup,no providercalls. Revised privateworkflowprojection is separatelypinned andowner
 accepted;old12input/mapping/acceptancefiles remainunchanged.
+
+
+### Verify rollback compatibility rather than infer it
+Before finalmerge,notice the additive reader accepts old/new plans but a v1-only binary
+cannot read v2's marker. Addexplicitold-parser refusalassertion anddocumentrollbackboundary:
+preservecompatible reader/worker ordrainv2events before rollback;neverstripmarkers orrestore
+oldbusinessdataovernew. This is a deployment constraint,not a claimed migration. Source
+runtimebehavior staysunchanged;finalhostedchecks must coverthis finaltest/documentationhead.

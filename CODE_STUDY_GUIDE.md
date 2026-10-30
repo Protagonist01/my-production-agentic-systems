@@ -10,6 +10,9 @@ eligibility. Tests cover legacy wire equality, duplicate JSON/authority/money re
 saved-result redelivery and independent SQL business-state equality. No model accuracy is
 measured. Interview challenge: why does asking refund status differ from requesting a refund,
 and why can an exact100.01SIM extraction be correct while its automatic action is refused?
+Rollback limit: v1-only readers reject v2 checkpoint plans. A deployed rollback must retain
+a reader compatible with both versions or drain/pin v2 workers; old request compatibility
+does not establish old-binary compatibility with new durable data.
 
 The [Olist reference and recovery package](docs/olist-release-research.md) inspects base
 `ca8bccf` and adds `olist_support.reference_package`: exact byte pins -> strict case and
