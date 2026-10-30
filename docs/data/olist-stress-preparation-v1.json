@@ -1,0 +1,38 @@
+{
+  "version": "olist-stress-preparation-inventory-v1",
+  "draft_sha256": "3d4d3f02afedbf38fc916e65c01d22212b47259c932d7bfe0a378f84cd877cc1",
+  "cases": 12,
+  "authored_groups": 10,
+  "parent_variants": 2,
+  "challenges": {
+    "replacement": 1,
+    "partial_amount": 1,
+    "zero_amount": 1,
+    "below_cap": 1,
+    "at_cap": 1,
+    "above_cap": 1,
+    "missing_confirmation": 1,
+    "missing_payment": 1,
+    "delivery_conflict": 1,
+    "future_confirmation": 1,
+    "after_commit_resume": 1,
+    "prompt_injection": 1
+  },
+  "expected_outcomes": {
+    "review_required": 8,
+    "refunded": 4
+  },
+  "development_only": true,
+  "representative_traffic": false,
+  "independence_established": false,
+  "external_semantic_gold_cases": 0,
+  "holdout_cases": 0,
+  "unseen_wording_validated_cases": 0,
+  "planned_controlled_resume_cases": 1,
+  "executed_cohort_trials": 0,
+  "actual_process_crash_trials": 0,
+  "host_loss_trials": 0,
+  "provider_calls": 0,
+  "semantic_gold_validated": false,
+  "release_allowed": false
+}

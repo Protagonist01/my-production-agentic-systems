@@ -1,5 +1,16 @@
 # Code Study Guide — Production Agentic Systems
 
+The [constructed stress and recovery chapter](docs/olist-stress-and-recovery.md) continues
+from merged `ab8e300`. `routing_stress.build_draft` -> authored references/fixtures ->
+`StressDraft` parent/challenge checks -> text-only manifest/private packet -> preparation
+inventory. Parent variants preserve the trusted fixture, requested amount and expected
+effect; ten authored groups are not a statistical independence claim. Numeric span checks
+and the independent SIM table establish conditional facts, not semantic gold. SQL/H10 tests
+use canned planner answers to verify state, review, duplicate and controlled resume mechanics.
+No model quality, unseen holdout or process-death claim follows. Interview exercise: why
+can exact100.01SIM extraction pass while the permitted action is review, and why does a
+successful exception/reopen test not establish host-loss RPO/RTO?
+
 The [wider routing/state evaluation chapter](docs/olist-routing-evaluation.md) traces base
 `69b6a3f`: `RoutingPopulation` -> text-only `EvalCase` -> owned SQL `RoutingEnvironment` ->
 real workflow/observations -> independent `RoutingScorer` -> sealed H10 read-back -> full

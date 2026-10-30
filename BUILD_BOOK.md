@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 73 — Distinguish authored risk coverage from observed recovery](#entry-73--distinguish-authored-risk-coverage-from-observed-recovery)
 - [Entry 72 — Evaluate wider routes without inventing policy labels](#entry-72--evaluate-wider-routes-without-inventing-policy-labels)
 - [Entry 71 — Separate unsupported intent from a generic review](#entry-71--separate-unsupported-intent-from-a-generic-review)
 - [Entry 70 — Audit references without promoting them into truth](#entry-70--audit-references-without-promoting-them-into-truth)
@@ -4773,3 +4774,77 @@ No key/configuration or allowance was read or changed. Fake responses do not mea
 Add two invented SDK regression tests to CI:both pass6.63seconds,checking exact usertext,
 versioned schema,output budget andno tools with network denied. The final commit must pass
 all hosted checks again;initial runtime/H10 SQL checks passed on2e35a9e.
+
+## Entry 73 — Distinguish authored risk coverage from observed recovery
+**Files touched:** `routing_stress.py`, constructed reference tests, stress/recovery chapter.
+
+### Context
+PR125 is merged as ab8e300; all nine applicable main jobs passed, with actual 1,447 tests
+per quality environment and139Postgres checks. Its accepted ABCD/SIM draft still lacks
+explicit reship, numeric, recovery and injection cases. The user asked to proceed on #33.
+Keep the original source-derived packet unchanged and prepare a separate authored draft.
+
+### Before you read on
+If we add a case tagged crash_restart, have we tested a process crash? No. A tag is a
+planned challenge. A controlled exception, a killed process and a lost host need different
+observations. The inventory must expose those distinctions before anyone reads a pass rate.
+
+### Options and decision
+Extending the original ABCD packet would mix publisher projections with newly authored
+text and invalidate accepted pins. Choose a separate development-only stress artifact.
+Retain parent links for recovery and injection variants so case count cannot become a
+claim about independent customers. Do not assign fresh holdout or unseen-wording status.
+
+### Construction before execution
+Build literal text, intent/amount, SIM fixture, outcome/reason and rationale independently
+of the runtime planner/policy. RoutingCase invokes the separate conditional SIM oracle
+only to validate authored effects. Exact numeric spans identify the requested amount,
+including a partial request beside a different payment amount. No semantic truth follows
+from correctly reading digits. Stamp all references constructed_development.
+
+StressDraft validates declared challenge against structured facts. Parent variants retain
+family/group/order/facts, interpretation and expected effect. A resume variant retains text;
+an injection appends an explicitly untrusted quoted note. The exported manifest contains
+customer text only; parent/rationale/reference facts remain evaluator-side. The coverage
+report says preparation, with zero executed cohort trials, external semantic gold, validated
+unseen wording, process crashes or host-loss trials. A required after-commit resume stays
+planned until an actual recording supplies it. It is not a process-kill measurement.
+
+### Verification being prepared
+Check literal boundary/partial labels, seeded mislabels, parent inflation and input
+projection. Then run the actual SQL/H10 workflow with canned planner decisions on selected
+stress cases to verify effect/review/receipt/duplicate/resume plumbing. Canned outputs are
+mechanism tests, not model quality. Preserve any local setup failures and require hosted
+SQL checks before merge. No provider calls, allowance reassignment or release change.
+
+### Retained CI diagnosis from PR125
+Final-head Windows3.12 first hit the15minute limit after841passes, interrupted at SQLite
+connection entry in AttemptLedger.reserve. Several earlier groups also slowed. Four paired
+budget tests passed locally47.53s (pytest cache-write warning retained). One unchanged
+bounded retry passed1,447tests278.46s; main also passed1,447in331.52s. No timeout, test or
+gate was relaxed. This does not prove a runner root cause. Logs and acceptance comments
+remain inspectable; don't rewrite the failure as a clean first pass.
+
+### First checks and concrete failures
+The input-projection assertion initially forgot AgentInput's existing empty observations
+field. Correct the assertion to require that empty field, without widening the candidate
+input. Fix a ManifestPin import before SQL test collection. Then39focused tests pass7.52s;
+211sources typecheck andbothimportcontracts pass. First correctedSQLattempt stops at
+DockerCompose startup before anynewbody; keep this failure and require hosted acceptance.
+The local pytest cache also reports access denied; it doesnot invalidate the executed
+assertions or justify changing data. Literal version constant needs a Literal annotation
+under strict typing; don't relax the typechecker. Formatter doesnot split long literal
+strings automatically, so split source literals without changing their rendered content.
+
+Private draft preparation writes an exclusive new directory, exact-byte pins, cases and
+proposed labels, population/manifest and a zero-observation inventory. The12case meanings
+remain proposals, not owner accepted. The original accepted12ABCD/SIMcases are untouched.
+
+### Hosted schedule guard caught a real test defect
+The first hostedSQLjob124168689076 reports12failed/139passed266.40s. Everynewcase was
+refused before recording because my proposed one-trial test schedule violates H10's
+three-trial requirement (fresh_recording.validate_fresh). This was not a Docker problem.
+Retain the failure; correct the test to preserve all three sequential tasks/IDs and inspect
+all three receipts/state/cleanup results per case. Do not change the production recorder
+or its budget partitions. Twelve tests now schedule36mock mechanism trials; this still
+supplies zero provider quality observations. Require a fresh final-head fullmatrix/SQLpass.

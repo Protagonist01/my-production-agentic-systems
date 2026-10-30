@@ -1,3 +1,13 @@
+## Constructed stress and recovery preparation - 2026-10-30
+
+The [separate stress draft](olist-stress-and-recovery.md) adds twelve entirely invented
+development cases covering replacement, partial/zero/exact-cap amounts, missing/conflicting/
+future facts, controlled resume and injection. Two parent variants share the at-cap root's
+group and fixture. The preparation report cannot claim execution, independent gold, unseen
+holdout or host-loss recovery. SQL/H10 tests use canned decisions, not actual model inference.
+An evidence ladder identifies current process-death/drain/restore mechanisms and the final
+candidate/host-specific checks still needed for #33/#58/#59. No provider or release authority.
+
 ## Wider Olist evaluation adapter - 2026-10-30
 
 The [wider routing/state adapter](olist-routing-evaluation.md) prepares all six routes with

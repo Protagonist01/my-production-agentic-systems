@@ -200,3 +200,13 @@ groups, four declared families, no fresh holdout or independence claim. The pack
 explicit reship, numeric-request, recovery and injection cases; unit witnesses do not fill
 those release requirements. This accepts fixture preparation only, not a frozen provider
 study, new calls/budget, live dataset upload or release. Wider H10 factories remain mock-only.
+
+## Constructed stress preparation (2026-10-30)
+
+The separate private `olist/routing-stress-draft-2026-10-30-v1` packet contains twelve
+entirely authored development cases and two parent-linked variants, not extra ABCD source
+records or independently certified labels. Keep it separate from accepted ABCD/SIM packets.
+Its preparation inventory does not certify model quality, independent groups, unseen wording,
+process death, host-loss recovery or release. New SQL/H10 canned-decision tests establish
+mechanics only. Owner label review, frozen provider scope and final operational acceptance
+remain separate; no shared Gemini slot may be reused to run these cases implicitly.
