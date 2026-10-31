@@ -245,3 +245,61 @@ must bind the final verified merged follow-up source, not the earlier proposal o
 Local owned after-action process-death SQL test passes; full local run-host readiness is
 still pending because an existing SDK child can hit its60second startup bound. Preserve
 failed runs, keep60/90/300second limits and obtain actual study/account authorization.
+
+
+## Olist controlled development study authorized (2026-10-31)
+
+The owner explicitly answered "Approve this scope; the project is still Free" for the
+pinned routing-comparison-proposal-2026-10-31-v2 review packet. This supersedes earlier
+pending Olist export/budget statements for this exact study only. Private receipt:
+D:/document/.cache/production-agents/olist/routing-comparison-execution-2026-10-31-v2/owner-approval.json.
+Approval first observed 2026-10-31T01:37:23Z, expiry 2026-11-07T01:37:23Z. At most 146 new
+Gemini Free attempts (2 invented canaries then 144 domain), same lifetime cap 614, 417 old consumed
+preserved andall 51 old unused bound. Use ONLY the existing ledger; no reset/new pool/old slot reuse.
+Export only 12 accepted ABCD first-user texts and 12 authored stress texts with fixed prompts/schemas,
+Gemini 3.5 Flash-Lite, temp 0/LOW/output 512, HTTP 30/worker 90/batch 300, oneconcurrenttrial, no automatic
+retries/paid fallback/modelsubstitution. BOTH canaries need matching successful scoped receipts.
+Full selected-host fake SDK/SQL readiness precedes any actual dispatch. Parent death stops
+study; no implicit continuation. Preserve failures/missing rows and all original packets.
+
+Frozen execution source remains clean ec42e1228a3d4e652b0a3fead108b67aab6e82a6, even if a
+later documentation PR records approval/results. Do not rebase/modify that execution checkout
+or silently change candidate behavior/order/resources. Preserve the pending 25-file proposal;
+append actual authorization/control envelopes in a separate execution directory. Confirm
+read-only 417 consumed/0 unsettled and all historical/external pins before applying the 614 extension.
+This approves development evaluation and Free-project attestation, not independent gold,
+representative holdout, confidence qualification, hosting purchases or production release.
+
+## Linux-only environment amendment and activation (2026-10-31)
+
+The owner explicitly approved the Linux environment-only amendment after all four actual
+fake-SDK/SQL readiness checks passed in 603.60 seconds on Linux/Python 3.12.14. Only
+`environment_sha256` changed for each comparator. Source ec42e12, raw bytes, code, prompts,
+requests, labels, order, HTTP 30/worker 90/batch 300 limits, 146 new attempts, 614 lifetime cap and
+expiry 2026-11-07T01:37:23Z remain fixed. Private environment-owner-amendment.json binds
+the actual reply and readiness report. Preserve Windows authorization/proposal as history;
+active files are authorized-linux-components plus active-authorization-bundle.json in the
+same execution directory. Never silently change OS/interpreter or resume a stopped run.
+
+The 614 extension was appended to the SAME authoritative ledger at 2026-10-31T02:22:29Z.
+All 417 historical attempts/rows were preserved; 51 old unused slots stay bound. Original external
+pins and a recovery-only backup were preserved; never dispatch from that backup or reapply
+another extension. Both actual canaries passed with matching accounted receipt acknowledgment:
+new consumed 418 then 419. Live execution marker/events are in the private execution directory;
+check actual current status before any action. The parent study has a single run-started
+marker and NO automatic resume/retry. Failures consume slots. No paid fallback or release.
+
+## Controlled Olist study stopped (2026-10-31)
+
+Actual scope stopped 02:54:30 UTC on unsafe_or_unknown_state after 2 canaries+28 domain attempts.
+Current same ledger 447/614, 0 unsettled; 51 old unused bound+116 new unattempted bound. DO NOT resume,
+restart the parent, reuse slots, remove the stop or initialize a replacement allowance.
+Legacy case 5 trial 1 refunded 100.00 SIM despite accepted clarify/review reference. Independent
+state and dispatched receipt/settlement readback confirm the effect; later 2 trial denials
+made 0 provider calls. Strict fresh reader rejects that three-trial recording; 51 verified rows
+and 237 missing/unverified stay unchanged, with incident separately reported, never hidden.
+All 417 historical attempts/old rows preserved; new-scope compatibility traces are appended,
+not old unused slots reused. Complete 30-response usage 3946 input/825 output; derived Free 0 USD
+is not provider billing proof. Source ec42e12/labels/protocol/expiry unchanged. Preserve all
+private artifacts/reports; docs/olist-controlled-study-v2.md and its public aggregate explain
+scope and results. No model promotion, confidence qualification or release; #33/#58/#59 open.
