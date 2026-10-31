@@ -11,6 +11,16 @@ control hashes stay stable when the optional scope field is absent. Interview ex
 why must a settled canary still wait for receipt acknowledgment, and why would a4096token
 budget be denied by the conservative provider admission quote before SDK dispatch?
 
+The parent observation follow-up traces `run_trials` -> persisted raw row -> optional
+sequential `after_trial` -> `RoutingParentFence` -> independent prefix read-back -> known
+SQL safety or durable ledger stop -> next task. A model response can settle before a worker
+returns its SQL report; settlement alone cannot establish safe action/state. The controlled
+recorder installs this fence, while ordinary shared recorders keep their default behavior.
+Parent death itself is not resumable authority: preserve partial evidence and investigate.
+See [parent observation limits](docs/olist-controlled-provider.md#parent-observation-fence-before-the-next-trial)
+and Build Book Entry75. Interview exercise: why does a post-batch receipt check fail to
+prevent the next dispatch after an after-action worker death?
+
 The [constructed stress and recovery chapter](docs/olist-stress-and-recovery.md) continues
 from merged `ab8e300`. `routing_stress.build_draft` -> authored references/fixtures ->
 `StressDraft` parent/challenge checks -> text-only manifest/private packet -> preparation

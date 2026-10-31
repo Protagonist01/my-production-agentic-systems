@@ -42,7 +42,7 @@ from agent_harness.routing_budget import (
 )
 from agent_harness.scorers import ScorerCompatibility, ScorerRegistry, ScorerSpec
 from agent_harness.trial_runner import StateLease, WorkerCleanupError
-from agent_harness.trials import TrialSchedule, TrialTask, _write_exclusive
+from agent_harness.trials import BatchReport, TrialRow, TrialSchedule, TrialTask, _write_exclusive
 
 from olist_support.h10_config import verify_runtime
 from olist_support.h10_runtime import ObservationSlot
@@ -262,6 +262,39 @@ class RoutingProviderFactory:
         )
 
 
+@dataclass
+class RoutingParentFence:
+    """Observe persisted rows in the parent before any next sequential SDK dispatch."""
+
+    ledger: AttemptLedger
+    loaded: LoadedManifest
+    schedule: TrialSchedule
+    root: Path
+    rows: list[TrialRow] = field(default_factory=list, init=False)
+    halted: bool = field(default=False, init=False)
+
+    def __call__(self, row: TrialRow) -> None:
+        if self.halted:
+            return
+        self.rows.append(row)
+        try:
+            if row.errors or row.report is None:
+                raise ValueError("controlled parent lacks a complete trial observation")
+            batch = BatchReport(schedule=self.schedule, rows=tuple(self.rows))
+            verify_observations(self.root, self.loaded, batch)
+            scores = {s.metric: s for s in row.report.report.scores}
+            if any(
+                metric not in scores
+                or scores[metric].value != 1.0
+                or scores[metric].failure is not None
+                for metric in ("state_safety", "routing_safe")
+            ):
+                raise ValueError("controlled parent state safety is unknown or unsafe")
+        except Exception:
+            stop(self.ledger, "unsafe_or_unknown_state")
+            self.halted = True
+
+
 @dataclass(frozen=True)
 class ControlledEnvironment:
     base: RoutingEnvironment
@@ -462,6 +495,7 @@ def record_controlled(
             candidate=factory.candidate,
             candidate_sha256=candidate_sha256,
             source_root=source_root,
+            after_trial=RoutingParentFence(factory.controls.ledger, loaded, schedule, output),
         )
     except WorkerCleanupError:
         stop(factory.controls.ledger, "owned_cleanup_failed")

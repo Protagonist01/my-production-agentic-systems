@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 75 — Require parent observation before the next controlled trial](#entry-75--require-parent-observation-before-the-next-controlled-trial)
 - [Entry 74 — Bind wider provider execution to an unspent prospective scope](#entry-74--bind-wider-provider-execution-to-an-unspent-prospective-scope)
 - [Entry 73 — Distinguish authored risk coverage from observed recovery](#entry-73--distinguish-authored-risk-coverage-from-observed-recovery)
 - [Entry 72 — Evaluate wider routes without inventing policy labels](#entry-72--evaluate-wider-routes-without-inventing-policy-labels)
@@ -4961,3 +4962,58 @@ small routing_sdk_fake.py (json/httpx only), re-export from the old helper for e
 callers, and retest actual owned spawn. This removes unnecessary test-child imports;
 it does not increase90/300second limits, alter assertions or establish that all host
 capacity problems are solved. Preserve pytest-159/161 and the captured failure log.
+
+## Entry 75 — Require parent observation before the next controlled trial
+**Files:** harness trial_runner/fresh_recording/baseline_recording and Olist routing_provider.
+
+### Context and question
+PR127 is merged at9088cbf with hosted mechanism evidence. Inspecting the retained local
+worker timeout exposed a distinct path: the SDK response can be settled before SQL/state
+scoring returns. If that child dies, the row has an error but the sequential runner schedules
+the next row. Child-side safety stops alone cannot certify that missing observation.
+How can the parent prevent the next dispatch without weakening process isolation or
+changing historical recorders by default?
+
+### Chosen construction
+Add an optional parent after_trial callback to the shared runner, allowed only with
+max_parallel=1. Persist the raw journal row before invoking it, and invoke it before that
+worker thread can dequeue the next task. A callback exception sets the shared abort event
+before propagation; queued tasks must not start work after that failure. Forward the
+optional callback through fresh and deterministic recorders, leaving default behavior and
+legacy canonical contracts intact.
+
+The controlled Olist callback accumulates parent rows, recomputes the canonical independent
+SQL observation for the completed prefix, and requires known state_safety/routing_safe=1.
+Any timeout, missing frame/report, cleanup error, missing/corrupt observation or unknown
+safety persists an unsafe/unknown stop in the SAME ledger before the next trial. Later
+scheduled rows remain visible; the stop prevents SDK reservation even if the prior response
+was already settled. The controlled recorder always supplies this fence; future controlled
+baseline orchestration must supply it too. Do not treat post-batch strict readback as a
+pre-dispatch safety barrier.
+
+### Verification to build
+Use an invented settled first domain response plus an errored parent row to prove the
+next-slot refusal. Exercise journal-before-callback ordering, parallel rejection and callback
+exception abort. Add an actual SQL worker that completes its SDK/SIM action then exits
+before scorer/frame return; require one domain attempt only and retention of the failed
+and later scheduled rows. No real source export, key, provider call or allowance amendment.
+The current private v1 proposal remains history; final v2 components wait for this follow-up.
+
+First follow-up focused run:89passed/1failed in474.59seconds. The existing child canary
+test's60second parent wait expired; no new assertion failed. Its spawn target sdk_child
+also lived in the full history fixture module. Move that unchanged helper beside the small
+fake SDK callback and preserve its re-export. Recheck the exact test; do not enlarge60seconds.
+All four new parent fence/ordering tests passed in the first run. Local cache ACL warnings
+remain unrelated to the test result and are not suppressed or repaired by changing ACLs.
+
+### Actual follow-up verification before final checks
+Targeted recheck passed all four new parent-control tests but the existing owned SDK child
+still hit its60second local wait:4passed/1failed/85deselected in191.80seconds. Moving the
+helper did not establish local readiness; retain that failure and do not repeat unchanged
+startup probes or enlarge bounds. The actual new SQL after-action exit37test passed locally:
+1passed/2deselected in299.29seconds. It verifies settled SDK usage, first committed SIM
+ledger effect, no later effects/reservations, all three raw rows, denied later receipts,
+strict-readback refusal and owned database/role cleanup. All105guide/chapter links resolve;
+120harness/Olist sources typecheck, affected lint/format pass. Hosted final-head checks
+must still validate the entire matrix; neither this narrow SQL pass nor hosted runs turn
+this Windows host into a complete live-evaluation readiness pass.

@@ -1,6 +1,7 @@
 """Owned uncached dispatch inside H6 workers; no prior-response or resume input."""
 
 import threading
+from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -27,7 +28,7 @@ from agent_harness.trial_runner import (
     TrialEnvironment,
     run_trials,
 )
-from agent_harness.trials import TrialSchedule, _write_exclusive, validate_schedule
+from agent_harness.trials import TrialRow, TrialSchedule, _write_exclusive, validate_schedule
 
 
 @dataclass(frozen=True)
@@ -149,6 +150,7 @@ def record_candidate(
     candidate: CandidateSpec,
     candidate_sha256: str,
     source_root: Path,
+    after_trial: Callable[[TrialRow], None] | None = None,
 ) -> EvidenceManifest:
     spec = CandidateSpec.model_validate_json(candidate.canonical_json())
     if pin(spec) != candidate_sha256 or factory.candidate != spec:
@@ -171,6 +173,7 @@ def record_candidate(
         CaptureFactory(factory, captures, execution_id, spec),
         environment,
         output / "journal",
+        after_trial=after_trial,
     )
     # Source changes during execution cannot be sealed as the reviewed candidate.
     verify_sources(source_root, spec)

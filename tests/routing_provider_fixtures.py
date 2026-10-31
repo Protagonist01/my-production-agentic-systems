@@ -27,6 +27,7 @@ from olist_support.routing_evaluation import RoutingPopulation
 from olist_support.routing_provider import RoutingCaptureControls, controlled_fingerprints
 from olist_support.workflow import GatewayPlanner, RoutingGatewayPlanner, WorkflowRequest
 from routing_sdk_fake import fake_sdk as fake_sdk
+from routing_sdk_fake import sdk_child as sdk_child
 from test_model_comparison import history
 from test_provider_budget_accounting import tariff
 
@@ -367,11 +368,3 @@ def batch_for(scope, first_ordinal):
         specs[slots[0].variant], route, slots[0].variant, controls, Path("unused")
     )
     return loaded, schedule, factory
-
-
-def sdk_child(controls, context, request, connection):
-    try:
-        result = controls.transport(context).generate(request)
-        connection.send(result.canonical_json())
-    finally:
-        connection.close()

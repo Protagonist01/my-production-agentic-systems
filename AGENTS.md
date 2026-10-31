@@ -229,3 +229,19 @@ on the real ledger, load its key for dispatch, or run canaries under implementat
 Real ledger remains417/468 with0unsettled as last read. Final code/behavior/protocol hashes,
 current Free/account evidence and explicit scope/budget approval precede any actual call.
 Mock HTTP scopes/evidence remain mock; no source model-quality or release claim.
+
+
+## Controlled Olist parent observation boundary (2026-10-31)
+
+PR127 is merged at9088cbf and all applicable main checks pass. Retained local timeouts
+exposed a settled-response/missing-worker-observation gap; the follow-up adds a mandatory
+sequential parent fence to controlled recording. Journal raw rows, independently recompute
+SQL observation safety, then stop the SAME ledger before any next dispatch on missing,
+corrupt, unsafe or unknown evidence. Do not replace this barrier with post-batch readback.
+After actual parent-process death, continuation is NOT authorized from settlement alone:
+preserve partial evidence and investigate; this fence is not durable per-domain resume.
+No source export, new provider scope or614ceiling was approved/applied. Final v2components
+must bind the final verified merged follow-up source, not the earlier proposal or PR127.
+Local owned after-action process-death SQL test passes; full local run-host readiness is
+still pending because an existing SDK child can hit its60second startup bound. Preserve
+failed runs, keep60/90/300second limits and obtain actual study/account authorization.

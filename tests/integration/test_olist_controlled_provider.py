@@ -121,3 +121,85 @@ def test_independent_scorer_stops_after_unsafe_effect_and_retains_later_missing_
         )
     with pytest.raises(ValueError):
         store.reserve(context_for(scope, 4), scope[4][4], project_sha256="a" * 64)
+
+
+def test_parent_fence_stops_after_sdk_settlement_and_committed_action_without_worker_frame(
+    app, tmp_path, settled_history
+):
+    from olist_support.release import collect_state
+    from routing_worker_fault import CrashAfterActionFactory
+
+    server, parent, _ = app
+    scope = setup_scope(settled_history, tmp_path / "invented-after-action-crash.sqlite")
+    _, store, *_ = scope
+    pass_canaries(scope)
+    loaded, schedule, factory = batch_for(scope, 3)
+    captured = []
+
+    class InspectBeforeDrop(RoutingEnvironment):
+        def release(self, lease):
+            with self.server.connect(lease.access.database.trial.name) as admin:
+                captured.append(collect_state(admin))
+            super().release(lease)
+
+    crash = CrashAfterActionFactory(
+        factory.candidate,
+        factory.route,
+        factory.variant,
+        factory.controls,
+        factory.observation_root,
+    )
+    output = tmp_path / "mock-after-action-crash"
+    evidence = record_controlled(
+        schedule,
+        loaded,
+        crash,
+        InspectBeforeDrop(server, parent.workspace_key, loaded),
+        output,
+        candidate_sha256=pin(factory.candidate),
+        source_root=ROOT,
+    )
+    batch = TrialJournal(output / "journal").read(loaded)
+    assert evidence.origin == "mock" and len(batch.rows) == len(captured) == 3
+    assert all(row.report is None and "worker_crash" in row.errors for row in batch.rows)
+    # Independent parent SQL read proves an actual committed effect precedes lost scoring/frame.
+    assert len(captured[0].ledger) == 1
+    assert not captured[1].ledger and not captured[2].ledger
+    assert store.summary()["consumed"] == 420 and store.summary()["unsettled"] == 0
+    from agent_harness.release_contracts import AttemptReceipt
+
+    receipts = {
+        r.exchange.context.trial_id: r
+        for r in (
+            AttemptReceipt.model_validate_json((output / "receipts" / name).read_bytes())
+            for name in evidence.receipts
+        )
+    }
+    assert len(receipts) == 3
+    assert receipts["trial-1"].exchange.response.failure is None
+    assert receipts["trial-1"].exchange.response.usage.model_calls == 1
+    for trial in ("trial-2", "trial-3"):
+        assert receipts[trial].exchange.response.failure.code == "budget_exhausted"
+        assert receipts[trial].exchange.response.usage.model_calls == 0
+    with store.connect() as db:
+        assert db.execute("SELECT reason FROM routing_stops").fetchone() == (
+            "unsafe_or_unknown_state",
+        )
+    for row in batch.rows:
+        with server.connect() as admin:
+            name = row.state_ref.removeprefix("olist-routing:")
+            assert not admin.execute(
+                "SELECT 1 FROM pg_database WHERE datname=%s", (name,)
+            ).fetchone()
+            assert not admin.execute("SELECT 1 FROM pg_roles WHERE rolname=%s", (name,)).fetchone()
+    with pytest.raises(ValueError):
+        read_controlled(
+            output,
+            loaded,
+            route=factory.route,
+            variant=factory.variant,
+            expected_origin="mock",
+            control_sha256=factory.controls.sha256,
+            evidence_sha256=pin(evidence),
+            candidate_sha256=pin(factory.candidate),
+        )

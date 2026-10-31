@@ -29,3 +29,11 @@ def fake_sdk(request):
             },
         },
     )
+
+
+def sdk_child(controls, context, request, connection):
+    try:
+        result = controls.transport(context).generate(request)
+        connection.send(result.canonical_json())
+    finally:
+        connection.close()
