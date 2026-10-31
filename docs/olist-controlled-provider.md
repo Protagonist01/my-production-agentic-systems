@@ -180,3 +180,9 @@ historical refusal tests. No runtime dependency-equality check or fixture trust 
 weakened. The repaired-head failed quality job is retained along with the initial audits.
 Local Windows SQL artifacts also retain a90second worker timeout; hosted PostgreSQL passes
 are separate evidence. Real execution still needs readiness on its selected run host.
+
+The retained local fake canary also exposed a test spawn dependency: its HTTP callback
+imported the full history fixture module before worker entry. The unchanged callback now
+lives in the small json/httpx-only `tests/routing_sdk_fake.py` helper. Owned startup limits
+stay90seconds; the callback's old import path is re-exported for existing parent callers.
+This removes unnecessary test imports, not evidence of real provider/model availability.

@@ -26,6 +26,7 @@ from olist_support.policy import POLICY_VERSION
 from olist_support.routing_evaluation import RoutingPopulation
 from olist_support.routing_provider import RoutingCaptureControls, controlled_fingerprints
 from olist_support.workflow import GatewayPlanner, RoutingGatewayPlanner, WorkflowRequest
+from routing_sdk_fake import fake_sdk as fake_sdk
 from test_model_comparison import history
 from test_provider_budget_accounting import tariff
 
@@ -78,32 +79,6 @@ class Capture:
                 model_calls=0, input_tokens=0, output_tokens=0, cost=None, cost_currency=None
             ),
         )
-
-
-def fake_sdk(request):
-    wire = json.loads(request.content)
-    text = wire["contents"][0]["parts"][0]["text"]
-    assert text.startswith("Invented routing")
-    assert not wire.get("tools") and wire["generationConfig"]["maxOutputTokens"] == 512
-    out = {"intent": "refund", "requested_minor": None}
-    if "routing_version" in wire["generationConfig"]["responseJsonSchema"]["properties"]:
-        out["routing_version"] = "olist-intent-routing-v2"
-    return httpx.Response(
-        200,
-        json={
-            "candidates": [
-                {
-                    "content": {"role": "model", "parts": [{"text": json.dumps(out)}]},
-                    "finishReason": "STOP",
-                }
-            ],
-            "usageMetadata": {
-                "promptTokenCount": 3,
-                "candidatesTokenCount": 5,
-                "totalTokenCount": 8,
-            },
-        },
-    )
 
 
 def setup_scope(base, path, *, first_intent="refund", origin="mock"):

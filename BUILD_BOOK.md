@@ -4951,3 +4951,13 @@ retained pytest-159 journal shows trial1 reached the90second owned-worker timeou
 rows failed to complete; this is a local failure, not an unknown pass. Preserve the artifacts
 and repeat only after the competing local audit/setup commands finish, with captured logs.
 The initial hosted153-test SQL pass remains distinct; no worker/deadline limit is enlarged.
+
+The isolated local rerun failed1test/269.48seconds. Its invented canary report shows
+90.0607seconds, timed_out=true, exit=-15, worker_entered=null and generation_returned=null:
+the bounded child had not entered its body. No real provider request was attempted.
+The fake HTTP callable lived in routing_provider_fixtures.py, whose imports load the
+historical-ledger/test suite graph during spawn unpickling. Move its unchanged body to
+small routing_sdk_fake.py (json/httpx only), re-export from the old helper for existing
+callers, and retest actual owned spawn. This removes unnecessary test-child imports;
+it does not increase90/300second limits, alter assertions or establish that all host
+capacity problems are solved. Preserve pytest-159/161 and the captured failure log.
