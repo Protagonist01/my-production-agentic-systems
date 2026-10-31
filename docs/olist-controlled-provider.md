@@ -223,3 +223,12 @@ imported the full history fixture module before worker entry. The unchanged call
 lives in the small json/httpx-only `tests/routing_sdk_fake.py` helper. Owned startup limits
 stay90seconds; the callback's old import path is re-exported for existing parent callers.
 This removes unnecessary test imports, not evidence of real provider/model availability.
+
+
+The parent-fence SQL process-death test passed locally (1test,2deselected,299.29seconds).
+It proves only that invented after-action death path and denial/cleanup observations.
+A separate targeted rerun passed all four new unit regressions while the existing SDK
+child again timed out at60seconds (4passed/1failed/85deselected,191.80seconds). The helper
+move therefore does not certify local run-host readiness. Preserve both results and use
+final hosted PR/main checks for merge acceptance; live evaluation still needs its own
+complete selected-host readiness and actual scope/account approval.

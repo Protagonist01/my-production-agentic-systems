@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 75 — Require parent observation before the next controlled trial](#entry-75--require-parent-observation-before-the-next-controlled-trial)
 - [Entry 74 — Bind wider provider execution to an unspent prospective scope](#entry-74--bind-wider-provider-execution-to-an-unspent-prospective-scope)
 - [Entry 73 — Distinguish authored risk coverage from observed recovery](#entry-73--distinguish-authored-risk-coverage-from-observed-recovery)
 - [Entry 72 — Evaluate wider routes without inventing policy labels](#entry-72--evaluate-wider-routes-without-inventing-policy-labels)
@@ -5004,3 +5005,15 @@ also lived in the full history fixture module. Move that unchanged helper beside
 fake SDK callback and preserve its re-export. Recheck the exact test; do not enlarge60seconds.
 All four new parent fence/ordering tests passed in the first run. Local cache ACL warnings
 remain unrelated to the test result and are not suppressed or repaired by changing ACLs.
+
+### Actual follow-up verification before final checks
+Targeted recheck passed all four new parent-control tests but the existing owned SDK child
+still hit its60second local wait:4passed/1failed/85deselected in191.80seconds. Moving the
+helper did not establish local readiness; retain that failure and do not repeat unchanged
+startup probes or enlarge bounds. The actual new SQL after-action exit37test passed locally:
+1passed/2deselected in299.29seconds. It verifies settled SDK usage, first committed SIM
+ledger effect, no later effects/reservations, all three raw rows, denied later receipts,
+strict-readback refusal and owned database/role cleanup. All105guide/chapter links resolve;
+120harness/Olist sources typecheck, affected lint/format pass. Hosted final-head checks
+must still validate the entire matrix; neither this narrow SQL pass nor hosted runs turn
+this Windows host into a complete live-evaluation readiness pass.
