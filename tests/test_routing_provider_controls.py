@@ -350,3 +350,34 @@ def test_live_factory_refuses_unpinned_source_before_database_or_output(settled_
             source_root=ROOT,
         )
     assert not output.exists() and prepared[1].summary()["consumed"] == 417
+
+
+def test_parent_timeout_blocks_next_slot_even_after_first_domain_response_settled(scope, tmp_path):
+    from agent_harness.trials import TrialRow
+    from olist_support.routing_provider import RoutingParentFence
+    from routing_provider_fixtures import batch_for
+
+    _, store, _, _, requests, _, controls, *_ = scope
+    pass_canaries(scope)
+    loaded, schedule, _ = batch_for(scope, 3)
+    response = controls.transport(schedule.tasks[0].context).generate(requests[3])
+    assert response.failure is None
+    assert store.summary()["consumed"] == 420 and store.summary()["unsettled"] == 0
+    # Counterfactual invented copy proves settlement alone permits the next SDK slot.
+    copied = tmp_path / "invented-unfenced-copy.sqlite"
+    with store.connect() as src, sqlite3.connect(copied) as dst:
+        src.backup(dst)
+    unfenced = replace(store, path=copied)
+    unfenced.reserve(schedule.tasks[1].context, requests[4], project_sha256="a" * 64)
+    assert unfenced.summary()["consumed"] == 421
+
+    fence = RoutingParentFence(store, loaded, schedule, tmp_path / "missing-observation")
+    fence(TrialRow(task=schedule.tasks[0], errors=("timeout",)))
+    assert fence.halted
+    with pytest.raises(ValueError, match="stopped"):
+        replace(store).reserve(schedule.tasks[1].context, requests[4], project_sha256="a" * 64)
+    assert store.summary()["consumed"] == 420 and store.summary()["unsettled"] == 0
+    with store.connect() as db:
+        assert db.execute("SELECT reason FROM routing_stops").fetchone() == (
+            "unsafe_or_unknown_state",
+        )

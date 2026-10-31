@@ -1,5 +1,6 @@
 """Separate executed deterministic comparators; never fresh-provider evidence."""
 
+from collections.abc import Callable
 from dataclasses import dataclass, replace
 from datetime import UTC, datetime
 from decimal import Decimal
@@ -33,6 +34,7 @@ from agent_harness.trial_runner import (
 from agent_harness.trials import (
     BatchReport,
     TrialJournal,
+    TrialRow,
     TrialSchedule,
     _write_exclusive,
     validate_schedule,
@@ -137,6 +139,7 @@ def record_baseline(
     *,
     candidate_sha256: str,
     source_root: Path,
+    after_trial: Callable[[TrialRow], None] | None = None,
 ) -> BaselineManifest:
     factory.validate()
     validate_baseline(schedule, loaded, factory.candidate)
@@ -145,7 +148,14 @@ def record_baseline(
     verify_sources(source_root, factory.candidate)
     output.mkdir(mode=0o700)
     started = datetime.now(UTC)
-    batch = run_trials(schedule, loaded, GuardFactory(factory), environment, output / "journal")
+    batch = run_trials(
+        schedule,
+        loaded,
+        GuardFactory(factory),
+        environment,
+        output / "journal",
+        after_trial=after_trial,
+    )
     manifest = BaselineManifest(
         execution_id=str(uuid4()),
         algorithm=factory.algorithm,

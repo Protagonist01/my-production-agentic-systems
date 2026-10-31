@@ -1,3 +1,13 @@
+## Controlled Olist parent observation follow-up - 2026-10-31
+
+PR127 is merged and its main checks pass. The next preparation change closes a specific
+parent-side gap found in retained local timeout evidence: SDK settlement can precede a
+missing SQL/scorer frame. Journal the row, recompute known state safety, then persist a
+stop before any next sequential dispatch. An owned after-action process-death test proves
+no second model reservation. Parent death/resume is not authorized by this barrier.
+Final v2 freeze waits for the follow-up's final checks; no actual provider allowance or
+release gate changes. Local run-host readiness remains unresolved despite hosted passes.
+
 ## Controlled Olist provider preparation - 2026-10-31
 
 The [controlled provider composition](olist-controlled-provider.md) adds explicit prospective

@@ -30,6 +30,43 @@ budget and duplicate/recovery observations. `ControlledRoutingScorer` stops late
 on unsafe/unknown state or observation failure. Fixture setup/cleanup failures also stop.
 This is an evidence mechanism, not independent validation of the reference meanings.
 
+## Parent observation fence before the next trial
+
+Follow-up to merged PR127 (`9088cbf`): a response can settle before SQL scoring/frame
+return. The retained local trial timeout had no report; batch read-back rejected the
+missing receipts only after later tasks were scheduled. That is a pre-dispatch control gap,
+not a successful readiness run or proof of an unsafe business effect.
+
+`RoutingParentFence` now runs in the parent after each raw row is durably journaled and
+before the next sequential task. It recomputes the complete prefix of canonical SQL
+observations using `verify_observations`, then requires known `state_safety` and
+`routing_safe` scores of1without scorer failure. Row errors, missing frame/report,
+missing/corrupt observations or unknown/unsafe state persist an immutable ledger stop.
+The next SDK reservation is denied even when the preceding response was already settled.
+Later scheduled rows remain visible, so stopping cannot improve the denominator.
+
+The shared runner's new optional `after_trial` callback requires max_parallel1. Journal
+or callback exceptions set its abort event before queued tasks proceed. Fresh/baseline
+recorders forward the optional callback; legacy callers with no callback retain their
+contracts and behavior. The controlled model recorder always installs the fence. For
+separately executed zero-call baselines, controlled orchestration must supply the same
+fence if an unsafe baseline should stop later provider work. An arbitrary manual caller
+that bypasses this recorder is not an approved study orchestrator.
+
+This is a live parent barrier, not durable per-domain acknowledgment or authorized crash
+resume. If the parent itself dies after settlement but before observation, no continuation
+is authorized: preserve the partial journal/ledger and investigate; never infer safety
+from settlement or simply start the next batch. A future resumable orchestration requires
+its own durable observed-prefix authorization. Canary receipts already have a separate
+durable acknowledgment gate. Real run-host readiness is still pending.
+
+The regression uses a real owned process exiting37after SDK settlement and committed SIM
+action, before scorer/frame. Parent-owned SQL captures before dropping each owned database
+prove the first effect, no later effect and cleanup. The shared ledger must consume exactly
+one domain call, retain the failure/remaining rows and refuse subsequent reservations.
+This is process death in an invented fake-SDK mechanism test, not host-loss recovery or
+production semantics. Actual results belong to the final PR checks.
+
 ## One durable allowance, distinct prospective slots
 
 `agent_harness.routing_budget.RoutingExtension` describes exactly two canaries and144domain

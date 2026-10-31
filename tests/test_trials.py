@@ -666,3 +666,77 @@ def test_recovery_gate_rebinds_labels_to_reviewed_population():
     assert report.complete and report.eligible_trials == 0
     with pytest.raises(ValueError, match="private labels"):
         report.require_release_evidence(loaded)
+
+
+def test_parent_observation_runs_after_persisted_row_before_next_sequential_task(
+    tmp_path, monkeypatch
+):
+    loaded, schedule = population(2)
+    schedule = schedule.model_copy(update={"max_parallel": 1})
+    journal = tmp_path / "journal"
+    observed = []
+    coordinated = []
+
+    def coordinate(task, *args):
+        assert len(observed) == len(coordinated)
+        coordinated.append(task.key)
+        return sample_row(task)
+
+    def observe(row):
+        saved = TrialJournal(journal).read(loaded)
+        assert saved.rows[-1] == row
+        observed.append(row.task.key)
+
+    monkeypatch.setattr("agent_harness.trial_runner._coordinate", coordinate)
+    batch = run_trials(
+        schedule,
+        loaded,
+        InventedFactory(),
+        FileTrialEnvironment(tmp_path),
+        journal,
+        after_trial=observe,
+    )
+    assert observed == coordinated == [t.key for t in schedule.tasks]
+    assert batch.complete
+
+
+def test_parent_observation_refuses_parallel_schedule_before_state_or_journal(tmp_path):
+    loaded, schedule = population(2)
+    schedule = schedule.model_copy(update={"max_parallel": 2})
+    with pytest.raises(ValueError, match="sequential"):
+        run_trials(
+            schedule,
+            loaded,
+            InventedFactory(),
+            FileTrialEnvironment(tmp_path),
+            tmp_path / "journal",
+            after_trial=lambda row: None,
+        )
+    assert not (tmp_path / "journal").exists()
+
+
+def test_parent_observer_failure_sets_abort_before_queued_trial(tmp_path, monkeypatch):
+    loaded, schedule = population(2)
+    schedule = schedule.model_copy(update={"max_parallel": 1})
+    seen_abort = []
+
+    def coordinate(task, schedule, loaded, factory, environment, abort):
+        seen_abort.append(abort.is_set())
+        return TrialRow(task=task, errors=("execution_error",))
+
+    def observe(row):
+        if len(seen_abort) == 1:
+            raise RuntimeError("invented parent observer failure")
+
+    monkeypatch.setattr("agent_harness.trial_runner._coordinate", coordinate)
+    with pytest.raises(RuntimeError, match="parent observer failure"):
+        run_trials(
+            schedule,
+            loaded,
+            InventedFactory(),
+            FileTrialEnvironment(tmp_path),
+            tmp_path / "journal",
+            after_trial=observe,
+        )
+    assert seen_abort == [False, True]
+    assert len(TrialJournal(tmp_path / "journal").read(loaded).rows) == 2

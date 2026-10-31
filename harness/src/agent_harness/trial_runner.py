@@ -5,6 +5,7 @@ import multiprocessing
 import os
 import threading
 import time
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import dataclass, field
@@ -275,6 +276,8 @@ def run_trials(
     factory: TrialFactory,
     environment: TrialEnvironment,
     journal_path: Path,
+    *,
+    after_trial: Callable[[TrialRow], None] | None = None,
 ) -> BatchReport:
     schedule = TrialSchedule.model_validate_json(schedule.canonical_json())
     validate_schedule(schedule, loaded)
@@ -285,13 +288,21 @@ def run_trials(
         raise ValueError("environment version/fixture differs from schedule")
     if len(loaded.manifest.canonical_json().encode()) > MAX_MANIFEST_BYTES:
         raise ValueError("trial manifest exceeds worker input bound")
+    if after_trial is not None and schedule.max_parallel != 1:
+        raise ValueError("parent trial observation requires sequential execution")
     journal = TrialJournal.create(journal_path, schedule)
     abort = threading.Event()
 
     def execute(task: TrialTask) -> None:
         row = _coordinate(task, schedule, loaded, factory, environment, abort)
         # Disk failures propagate. Recovery exposes a missing/corrupt row, never a pass.
-        journal.append(row)
+        try:
+            journal.append(row)
+            if after_trial is not None:
+                after_trial(row)
+        except BaseException:
+            abort.set()
+            raise
 
     with ThreadPoolExecutor(max_workers=schedule.max_parallel) as pool:
         futures = [pool.submit(execute, task) for task in schedule.tasks]
