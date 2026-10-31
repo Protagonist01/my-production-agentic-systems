@@ -688,3 +688,18 @@ dependency lock. `replay_example.py` now selects explicitly pinned invented-v15;
 unchanged and is covered by the historical changed-lock refusal parameterization in
 `tests/test_replay.py`. The six requests/responses are identical; only capture provenance
 and dependency context change. See Build Book Entry74 for the failed hosted check and fix.
+
+The [controlled Olist result](docs/olist-controlled-study-v2.md#actual-result-legacy-interpretation-caused-a-sim-refund)
+is a concrete semantic failure: caps/SQL permissions admit a valid100.00SIM refund when
+the legacy model infers the wrong intent. ControlledRoutingScorer stops later reservations;
+RoutingParentFence independently checks observed state before the next dispatch. Neither
+undoes an effect already committed. Explain why this containment is necessary but cannot
+replace pre-commit action authority. The v2 candidate's15correct exposed observations do
+not qualify it for production. Build Book Entry77 traces the diagnosis and audit correction.
+
+The strict fresh reader refuses a whole recording when later stop-denials have0modelcalls.
+Preserve that boundary and51verified/237missing rows,but separately verify and publish its
+unsafe first trial. Otherwise a correct conservative reader could accidentally conceal the
+most important negative observation. Match the actual response to immutable settlement;
+do not promote blocked local paths into provider evidence. History auditing must also allow
+only exact new compatibility traces while proving every original slot/attempt is unchanged.

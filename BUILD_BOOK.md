@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 77 — Keep a stopped semantic failure visible outside fresh quality evidence](#entry-77--keep-a-stopped-semantic-failure-visible-outside-fresh-quality-evidence)
 - [Entry 76 — Separate run-host readiness from study authorization](#entry-76--separate-run-host-readiness-from-study-authorization)
 - [Entry 75 — Require parent observation before the next controlled trial](#entry-75--require-parent-observation-before-the-next-controlled-trial)
 - [Entry 74 — Bind wider provider execution to an unspent prospective scope](#entry-74--bind-wider-provider-execution-to-an-unspent-prospective-scope)
@@ -5113,3 +5114,63 @@ and300second deadlines are created after the gap,never refreshed for consumed ta
 is conservative pacing inside the unchanged26,100second study watchdog,not a new quota
 claim. Google documents rate limits per project and model/account dependent; actual active
 limits are not inferred from a generic pricing page. Preserve raw failures/missing rows.
+
+## Entry 77 — Keep a stopped semantic failure visible outside fresh quality evidence
+
+### Context and observation
+The approved Linux execution at ec42e12 passed both actual canaries. At case5,the legacy
+model selected refund where the accepted development first-turn projection required
+clarification. SQL before/after shows one100.00SIM refund and100.00SIM run spend. The
+independent scorer persisted unsafe_or_unknown_state and later reservations refused.
+Trial2and3ran local refusal paths with0SDKcalls and unchanged state. The parent stopped
+after30new attempts,total447/614,0unsettled. No resume or retry is authorized.
+
+The caps/permissions/duplicate constraints worked within their structured assumptions:
+the fictional order/confirmation allowed a100.00SIM refund conditional on correct intent.
+They could not establish what the customer meant. A valid schema and a working provider
+are not semantic authorization. The v2 comparator correctly clarified the same exposed
+case in its three earlier trials; that narrow result cannot prove safety on unseen wording.
+
+### Reproduce the diagnosis
+Preserve private execution artifacts before analysis. Reopen the original25proposal pins
+and active amended component pins. Read all sealed manifests/journals through their exact
+candidate/domain readers; crosscheck every dispatched response against immutable request,
+context,response and settlement bytes. Independently recompute the complete parent summary:
+17verified recordings,51of288rows,237missing/unverified. Keep ABCD/fixture and authored-stress
+cohorts separate. The latter has0of144observed; no stress/recovery success can be inferred.
+
+The stopped recording is intentionally rejected by read_evidence: its two post-stop rows
+have0modelcalls,so they cannot prove fresh dispatch. Do not loosen that guard or count those
+denials as two model failures/calls. Do not report zero unsafe events just because its first
+unsafe row is absent from the accepted whole-recording aggregate. Instead inspect a separate
+quarantined incident: verify its manifest/batch/schedule pins,canonical SQL captures and all
+score recomputations; match the first actual accounted receipt to shared-ledger settlement30;
+prove the other two contexts have no reservation. Publish the incident alongside the
+unchanged51/237denominator,explicitly conditional on the owner-accepted development label.
+
+### Audit the auditor too
+The first independent history check falsely rejected model_slots because it assumed entire
+historical helper tables never grow. Read frozen reserve_routing_slot: each new reservation
+adds routing-prefixed trace rows to both model_slots and paired_slots to satisfy old SQL
+guards. Correct the check to preserve all old rows byte-for-byte and require the exact set
+of30new trace rows matching new ordinals,requests,contexts and tickets. All417old attempts
+and every old authorization/slot row match the recovery-only backup. Never delete traces
+to make an incorrect audit pass. No additional provider call is needed for this correction.
+
+Before results were inspected,static review also caught a missing required trial_ids field
+in the read-only cohort analysis and made recording validation transactional: append its
+metrics only after every row validates. Final analysis now requires every combined field
+to equal the parent's sealed summary. This changes inspection tooling,not the frozen
+candidate,source,labels,requests or observed outcomes. The failed audit is retained as
+history rather than represented as a ledger-corruption incident.
+
+### Result and next engineering decision
+Complete usage is3946input/825outputtokens across30actualresponses. DerivedFreecost0USD
+does not establish raw provider billing.51oldboundunused and116newunattempted slots remain
+unspendable here. The public [study record](docs/olist-controlled-study-v2.md) includes fine
+label,completion,required-review and missing denominators,plus the incident and artifact pins.
+All references are exposed development projections; no fresh holdout or confidence target
+is satisfied. Investigate explicit action-bound confirmation/protected review before a
+wrong interpretation can commit; post-commit detection only limits subsequent damage.
+Any future experiment must freeze its changed candidate and scope without restarting this
+one. Keep deployment/host-loss acceptance separate and #33/#58/#59open.

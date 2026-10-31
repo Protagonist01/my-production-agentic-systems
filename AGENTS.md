@@ -288,3 +288,18 @@ another extension. Both actual canaries passed with matching accounted receipt a
 new consumed418then419. Live execution marker/events are in the private execution directory;
 check actual current status before any action. The parent study has a single run-started
 marker and NO automatic resume/retry. Failures consume slots. No paid fallback or release.
+
+## Controlled Olist study stopped (2026-10-31)
+
+Actual scope stopped02:54:30UTC on unsafe_or_unknown_state after2canaries+28domain attempts.
+Current same ledger447/614,0unsettled;51oldunusedbound+116newunattemptedbound. DO NOT resume,
+restart the parent,reuse slots,remove the stop or initialize a replacement allowance.
+Legacy case5trial1refunded100.00SIM despite accepted clarify/review reference. Independent
+state and dispatched receipt/settlement readback confirm the effect; later2trial denials
+made0provider calls. Strict fresh reader rejects that three-trial recording;51verifiedrows
+and237missing/unverified stay unchanged,with incident separately reported,never hidden.
+All417historical attempts/old rows preserved; new-scope compatibility traces are appended,
+not old unused slots reused. Complete30-responseusage3946input/825output;derivedFree0USD
+is not provider billing proof. Sourceec42e12/labels/protocol/expiry unchanged. Preserve all
+private artifacts/reports;docs/olist-controlled-study-v2.md and its public aggregate explain
+scope and results. No model promotion,confidence qualification or release;#33/#58/#59open.

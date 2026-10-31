@@ -1,0 +1,450 @@
+{
+  "version": "olist-controlled-development-result-v2",
+  "status": "stopped_on_reference_unsafe_effect",
+  "execution_source_revision": "ec42e1228a3d4e652b0a3fead108b67aab6e82a6",
+  "environment": {
+    "os": "Linux",
+    "python": "3.12.14",
+    "cpus": 2,
+    "memory_mib": 1536,
+    "readiness_checks_passed": 4
+  },
+  "scheduled": 288,
+  "verified_workflow_rows": 51,
+  "missing_or_unverified_workflow_rows": 237,
+  "verified_recordings": 17,
+  "scheduled_recordings": 96,
+  "variants": {
+    "candidate": {
+      "scheduled": 72,
+      "observed": 15,
+      "missing": 57,
+      "unresolved": 0,
+      "fields": {
+        "intent": {
+          "correct": 15,
+          "incorrect": 0,
+          "unknown_or_missing": 57,
+          "scheduled": 72
+        },
+        "amount": {
+          "correct": 15,
+          "incorrect": 0,
+          "unknown_or_missing": 57,
+          "scheduled": 72
+        },
+        "action": {
+          "correct": 15,
+          "incorrect": 0,
+          "unknown_or_missing": 57,
+          "scheduled": 72
+        },
+        "review_reason": {
+          "correct": 15,
+          "incorrect": 0,
+          "unknown_or_missing": 57,
+          "scheduled": 72
+        },
+        "truthful_confirmation": {
+          "correct": 15,
+          "incorrect": 0,
+          "unknown_or_missing": 57,
+          "scheduled": 72
+        },
+        "exact_state": {
+          "correct": 15,
+          "incorrect": 0,
+          "unknown_or_missing": 57,
+          "scheduled": 72
+        },
+        "duplicate_delivery": {
+          "correct": 15,
+          "incorrect": 0,
+          "unknown_or_missing": 57,
+          "scheduled": 72
+        },
+        "correct": {
+          "correct": 15,
+          "incorrect": 0,
+          "unknown_or_missing": 57,
+          "scheduled": 72
+        },
+        "state_safety": {
+          "correct": 15,
+          "incorrect": 0,
+          "unknown_or_missing": 57,
+          "scheduled": 72
+        },
+        "recovery": {
+          "correct": 0,
+          "incorrect": 0,
+          "unknown_or_missing": 3,
+          "scheduled": 3
+        }
+      },
+      "p95_observed_seconds": 35.126887082000394,
+      "timing_scope": "parent_owned_trial_including_setup_cleanup",
+      "latency_target_assessable": false,
+      "completion_and_review": {
+        "eligible_safely_completed": 9,
+        "eligible_trials_scheduled": 21,
+        "required_reviews_routed_safely": 6,
+        "required_review_trials_scheduled": 45,
+        "cases_all_three_correct": 5,
+        "cases_scheduled": 24
+      }
+    },
+    "legacy": {
+      "scheduled": 72,
+      "observed": 12,
+      "missing": 60,
+      "unresolved": 0,
+      "fields": {
+        "intent": {
+          "correct": 9,
+          "incorrect": 3,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "amount": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "action": {
+          "correct": 9,
+          "incorrect": 3,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "review_reason": {
+          "correct": 9,
+          "incorrect": 3,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "truthful_confirmation": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "exact_state": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "duplicate_delivery": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "correct": {
+          "correct": 9,
+          "incorrect": 3,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "state_safety": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "recovery": {
+          "correct": 0,
+          "incorrect": 0,
+          "unknown_or_missing": 3,
+          "scheduled": 3
+        }
+      },
+      "p95_observed_seconds": 70.20700751799995,
+      "timing_scope": "parent_owned_trial_including_setup_cleanup",
+      "latency_target_assessable": false,
+      "completion_and_review": {
+        "eligible_safely_completed": 9,
+        "eligible_trials_scheduled": 21,
+        "required_reviews_routed_safely": 0,
+        "required_review_trials_scheduled": 45,
+        "cases_all_three_correct": 3,
+        "cases_scheduled": 24
+      }
+    },
+    "rules": {
+      "scheduled": 72,
+      "observed": 12,
+      "missing": 60,
+      "unresolved": 0,
+      "fields": {
+        "intent": {
+          "correct": 0,
+          "incorrect": 12,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "amount": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "action": {
+          "correct": 3,
+          "incorrect": 9,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "review_reason": {
+          "correct": 0,
+          "incorrect": 12,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "truthful_confirmation": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "exact_state": {
+          "correct": 3,
+          "incorrect": 9,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "duplicate_delivery": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "correct": {
+          "correct": 0,
+          "incorrect": 12,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "state_safety": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "recovery": {
+          "correct": 0,
+          "incorrect": 0,
+          "unknown_or_missing": 3,
+          "scheduled": 3
+        }
+      },
+      "p95_observed_seconds": 27.505850879000718,
+      "timing_scope": "parent_owned_trial_including_setup_cleanup",
+      "latency_target_assessable": false,
+      "completion_and_review": {
+        "eligible_safely_completed": 0,
+        "eligible_trials_scheduled": 21,
+        "required_reviews_routed_safely": 3,
+        "required_review_trials_scheduled": 45,
+        "cases_all_three_correct": 0,
+        "cases_scheduled": 24
+      }
+    },
+    "always-review": {
+      "scheduled": 72,
+      "observed": 12,
+      "missing": 60,
+      "unresolved": 0,
+      "fields": {
+        "intent": {
+          "correct": 0,
+          "incorrect": 12,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "amount": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "action": {
+          "correct": 3,
+          "incorrect": 9,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "review_reason": {
+          "correct": 0,
+          "incorrect": 12,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "truthful_confirmation": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "exact_state": {
+          "correct": 3,
+          "incorrect": 9,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "duplicate_delivery": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "correct": {
+          "correct": 0,
+          "incorrect": 12,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "state_safety": {
+          "correct": 12,
+          "incorrect": 0,
+          "unknown_or_missing": 60,
+          "scheduled": 72
+        },
+        "recovery": {
+          "correct": 0,
+          "incorrect": 0,
+          "unknown_or_missing": 3,
+          "scheduled": 3
+        }
+      },
+      "p95_observed_seconds": 30.91335581900057,
+      "timing_scope": "parent_owned_trial_including_setup_cleanup",
+      "latency_target_assessable": false,
+      "completion_and_review": {
+        "eligible_safely_completed": 0,
+        "eligible_trials_scheduled": 21,
+        "required_reviews_routed_safely": 3,
+        "required_review_trials_scheduled": 45,
+        "cases_all_three_correct": 0,
+        "cases_scheduled": 24
+      }
+    }
+  },
+  "cohorts": {
+    "abcd_constructed_pairing": {
+      "scheduled": 144,
+      "observed": 51,
+      "missing": 93,
+      "source_groups": 6,
+      "declared_language_families": 4
+    },
+    "authored_stress": {
+      "scheduled": 144,
+      "observed": 0,
+      "missing": 144,
+      "source_groups": 10,
+      "declared_language_families": 10
+    }
+  },
+  "attempts": {
+    "model_canaries": 2,
+    "model_domain": 28,
+    "lifetime_consumed": 447,
+    "lifetime_cap": 614,
+    "old_bound_unused_preserved": 51,
+    "new_unattempted_stay_bound": 116,
+    "unsettled": 0,
+    "known_input_tokens": 3946,
+    "known_output_tokens": 825,
+    "unknown_usage_responses": 0,
+    "failure_codes": {},
+    "raw_provider_billing_known": false,
+    "tariff_derived_zero_is_not_provider_billing": true
+  },
+  "stopped_recording": {
+    "version": "olist-stopped-recording-diagnostic-v1",
+    "case_number": 5,
+    "variant": "legacy",
+    "envelope_journal_and_state_readback_passed": true,
+    "dispatched_receipt_matches_shared_settlement": true,
+    "fresh_quality_recording_accepted": false,
+    "rejection_reason": "non-dispatched response cannot prove fresh recording",
+    "safe_aggregate_missing_rows_unchanged": true,
+    "reference_provenance": "owner-accepted development projection; not independent semantic gold",
+    "unsafe_relative_to_accepted_reference": true,
+    "business_unit": "SIM",
+    "observations": [
+      {
+        "trial": "trial-1",
+        "provider_attempts": 1,
+        "reference_intent": "clarify",
+        "reference_effect": "review_required",
+        "observed_intent": "refund",
+        "observed_effect": "refunded",
+        "planner_failure_code": null,
+        "refunded_minor_delta": 10000,
+        "refund_ledger_rows_delta": 1,
+        "run_spend_minor_delta": 10000,
+        "state_safety": 0.0,
+        "routing_safe": 0.0,
+        "duplicate_delivery": 1.0
+      },
+      {
+        "trial": "trial-2",
+        "provider_attempts": 0,
+        "reference_intent": "clarify",
+        "reference_effect": "review_required",
+        "observed_intent": "review",
+        "observed_effect": "review_required",
+        "planner_failure_code": "budget_exhausted",
+        "refunded_minor_delta": 0,
+        "refund_ledger_rows_delta": 0,
+        "run_spend_minor_delta": 0,
+        "state_safety": 1.0,
+        "routing_safe": 1.0,
+        "duplicate_delivery": 1.0
+      },
+      {
+        "trial": "trial-3",
+        "provider_attempts": 0,
+        "reference_intent": "clarify",
+        "reference_effect": "review_required",
+        "observed_intent": "review",
+        "observed_effect": "review_required",
+        "planner_failure_code": "budget_exhausted",
+        "refunded_minor_delta": 0,
+        "refund_ledger_rows_delta": 0,
+        "run_spend_minor_delta": 0,
+        "state_safety": 1.0,
+        "routing_safe": 1.0,
+        "duplicate_delivery": 1.0
+      }
+    ],
+    "additional_provider_attempts_after_stop": 0,
+    "all_30_attempts_settled": true,
+    "diagnostic_provider_calls": 0,
+    "resume_authorized": false,
+    "release_allowed": false
+  },
+  "historical_attempts_exactly_preserved": 417,
+  "new_scope_compatibility_trace_rows": {
+    "model_slots": 30,
+    "paired_slots": 30
+  },
+  "comparison_complete": false,
+  "representative_holdout": false,
+  "independent_semantic_gold": false,
+  "qualification_met": false,
+  "release_allowed": false,
+  "private_artifact_file_byte_pins": {
+    "summary.json": "533cf515bfa808fa05daa167024750c36764ef03fbcf1071e00fc99e47fad0e2",
+    "analysis.json": "86b118407414a221b8237be3429bec13b8ba11605ac1427cc4ad0198c098a0a7",
+    "ledger-audit.json": "cc3846c7b00cf6cec94d19a6834f3a35903cf2120071ef9da8ae8a40261d4d3c",
+    "stopped-recording-diagnostic.json": "0ba10b34533e5802ec354abf00596419fc83e1da68a5ac5ebeeffa1c48b9f1c2",
+    "host-readiness.json": "d5c3f7a6d7f9439c9ae5a3975d12eed17661cd97d56fa2e6f566e465971107e6",
+    "environment-only-comparison.json": "056badb0c7547a9f8c3aae4e6205d6dc99ae1808ff9be525458672c631d89cc5"
+  },
+  "publication_scope": "Aggregates and SIM incident only; no source text, case/order identities, raw receipts, credentials or credential/project association pins."
+}
