@@ -4936,3 +4936,18 @@ Ubuntu3.12 job124378998055 passed1486tests,214typed sources,12build artifacts an
 strict replay6recordings/2invented timeouts/0outbound calls. These precede the lock repair;
 final repaired-head checks still must pass. Docker engine29.8.2 responds locally, while
 the current local SQL result remains pending and is not used as acceptance evidence.
+
+### Strict replay caught the changed lock, then local bounded workers refused a slow run
+Repaired-head Ubuntu quality job124382525879 failed one test (1485passed): the CLI's
+invented-v14 capture still pins the old dependency lock. ReplayBinding deliberately compares
+environment_lock and refuses changed conditions. Preserve v14 bytes/digest, generate a new
+invented-v15 using the existing in-process FakeAgent maintenance helper and repaired lock,
+verify all six requests/responses unchanged, then pin v15 explicitly in the CLI. Add v14 to
+the existing historical-refusal parameterization. Do not relax dependency equality, infer
+trusted pins from input, or regenerate fixtures at replay time.
+
+The local SQL command's terminal summary was unavailable after output truncation. Its
+retained pytest-159 journal shows trial1 reached the90second owned-worker timeout and later
+rows failed to complete; this is a local failure, not an unknown pass. Preserve the artifacts
+and repeat only after the competing local audit/setup commands finish, with captured logs.
+The initial hosted153-test SQL pass remains distinct; no worker/deadline limit is enlarged.

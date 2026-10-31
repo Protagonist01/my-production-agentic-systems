@@ -664,3 +664,9 @@ priorpairedrows,sourceinventories/previousartifacthashesandunchangedrequestpairs
 reportuses48scheduled/48missing;0correctdoesnotmeanobserved0%accuracy. Publicationlabels
 no_quality_result=true. Missingdenominatorsandlackofdecisionevidenceareseparateconcepts.
 Originalpairednegativefindings/largeconfidencefailurestay. No modelpromotedorgateclosed.
+
+For the pyasn1 security lock repair, strict replay correctly refused the old captured
+dependency lock. `replay_example.py` now selects explicitly pinned invented-v15; v14 remains
+unchanged and is covered by the historical changed-lock refusal parameterization in
+`tests/test_replay.py`. The six requests/responses are identical; only capture provenance
+and dependency context change. See Build Book Entry74 for the failed hosted check and fix.

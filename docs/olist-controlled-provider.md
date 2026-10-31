@@ -172,3 +172,11 @@ References: [Langfuse input/reference separation](https://langfuse.com/docs/eval
 and [Gemini structured output](https://ai.google.dev/gemini-api/docs/structured-output).
 The implementation uses the installed SDK and local deterministic scoring; no Langfuse
 dataset upload, API migration or new dependency is introduced.
+
+The lock repair intentionally invalidated the old invented replay environment. Preserve
+invented-v14 and add a synthetic v15 capture with the new lock; all six fake requests and
+responses are unchanged. The CLI uses an explicit reviewed v15 digest, while v14 joins the
+historical refusal tests. No runtime dependency-equality check or fixture trust rule is
+weakened. The repaired-head failed quality job is retained along with the initial audits.
+Local Windows SQL artifacts also retain a90second worker timeout; hosted PostgreSQL passes
+are separate evidence. Real execution still needs readiness on its selected run host.
