@@ -146,6 +146,12 @@ checks and owned child tests retain mock origin. Hosted SQL exercises actual par
 SDK fake HTTP/ledger/accounting/receipt/state/read-back and an injected unsafe semantic
 decision that must stop further fake dispatch. Actual final results are recorded on the PR.
 
+The initial hosted audits failed on four reported vulnerabilities in the existing pyasn10.6.4
+dependency (CVE-2026-119194–119197). A scoped lock update selects0.6.5; no audit suppression
+or policy change. The [upstream release](https://github.com/pyasn1/pyasn1/releases/tag/v0.6.5)
+describes fixes for pathological decoding CPU growth. Audit and full final-head results
+must be checked again after the update; the earlier failed run is retained.
+
 ## Before actual calls
 
 Freeze a new v2 execution plan against verified clean final code, exact accepted packets,

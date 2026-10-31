@@ -4918,3 +4918,21 @@ again stops inDockerCompose startup before either new body; no local SQL pass. R
 hosted SQL must prove six domain fake-SDK worker trials with exact state/receipt/cleanup,
 and an unsafe-reference effect stopping subsequent dispatch. Real ledger read-only audit
 remains417consumed/0unsettled; no real key or amendment was used.
+
+### Audit failure and scoped dependency repair
+The first hosted run41148455144atc911329failed bothlocked audits: pyasn1 0.6.4 has four
+reported CVEs (CVE-2026-119194 through119197), with0.6.5as the listed fix. Check the
+upstream0.6.5release andPyPI,then use uv lock --upgrade-package pyasn1. Only that package
+version andits two artifact hashes change inuv.lock. No audit rule,ignore or threshold
+is altered. Preserve both failed jobs124378998059/124378998155. Re-run actual audits and
+full final-head checks after the patch; previous code/source/environment pins are stale.
+DockerDesktop was stopped; itsD-drive installation is present. Starting it through the
+installedCLI is reversible and uses prior authorization. Wait for actual engine/SQL
+readiness; a Starting status is not a local database pass or a successful restart claim.
+
+The scoped local audit now reports `No known vulnerabilities found` after installing
+pyasn1 0.6.5. Initial hosted PostgreSQL job124378998136 passed153tests in375.33seconds;
+Ubuntu3.12 job124378998055 passed1486tests,214typed sources,12build artifacts and
+strict replay6recordings/2invented timeouts/0outbound calls. These precede the lock repair;
+final repaired-head checks still must pass. Docker engine29.8.2 responds locally, while
+the current local SQL result remains pending and is not used as acceptance evidence.
