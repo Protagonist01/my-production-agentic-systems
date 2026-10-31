@@ -433,6 +433,41 @@
     "model_slots": 30,
     "paired_slots": 30
   },
+  "final_runtime": {
+    "version": "olist-final-runtime-readonly-verification-v1",
+    "at_utc": "2026-10-31T03:05:39.204199+00:00",
+    "execution_source_revision": "ec42e1228a3d4e652b0a3fead108b67aab6e82a6",
+    "execution_checkout_clean": true,
+    "all_125_source_bytes_unchanged": true,
+    "original_proposal_and_active_component_pins_unchanged": true,
+    "live_driver_bytes_unchanged": true,
+    "raw_journal_rows": 54,
+    "verified_summary_rows": 51,
+    "quarantined_incident_rows": 3,
+    "owned_trial_databases_checked": 54,
+    "owned_trial_databases_remaining": 0,
+    "owned_trial_roles_remaining": 0,
+    "study_parent_running": false,
+    "provider_calls": 0,
+    "resume_authorized": false,
+    "release_allowed": false
+  },
+  "cleanup": {
+    "version": "olist-owned-study-cleanup-v1",
+    "at_utc": "2026-10-31T03:06:41.051943+00:00",
+    "owned_execution_container_stopped": true,
+    "owned_postgres_container_stopped": true,
+    "owned_trial_databases_remaining": 0,
+    "owned_trial_roles_remaining": 0,
+    "other_preexisting_running_containers": 6,
+    "other_preexisting_containers_still_running": true,
+    "owned_credential_copy_removed": true,
+    "original_credential_configuration_untouched": true,
+    "private_evidence_and_owned_volumes_retained": true,
+    "docker_prune_performed": false,
+    "provider_calls": 0,
+    "resume_authorized": false
+  },
   "comparison_complete": false,
   "representative_holdout": false,
   "independent_semantic_gold": false,
@@ -444,7 +479,10 @@
     "ledger-audit.json": "cc3846c7b00cf6cec94d19a6834f3a35903cf2120071ef9da8ae8a40261d4d3c",
     "stopped-recording-diagnostic.json": "0ba10b34533e5802ec354abf00596419fc83e1da68a5ac5ebeeffa1c48b9f1c2",
     "host-readiness.json": "d5c3f7a6d7f9439c9ae5a3975d12eed17661cd97d56fa2e6f566e465971107e6",
-    "environment-only-comparison.json": "056badb0c7547a9f8c3aae4e6205d6dc99ae1808ff9be525458672c631d89cc5"
+    "environment-only-comparison.json": "056badb0c7547a9f8c3aae4e6205d6dc99ae1808ff9be525458672c631d89cc5",
+    "final-runtime-verification.json": "72a871c81b91c20c2feaac1a022342b4ce3175b78caf21e1e38163fa43bf06ad",
+    "owned-cleanup.json": "e9918738c2596f3e8378169c8fbb0f45a7c80378ec483faea3564e3b3c082500",
+    "final-artifact-pins.json": "e83a580d778fabec9e97804340bee0841431640c3d9123ddc269d85c0d490db6"
   },
   "publication_scope": "Aggregates and SIM incident only; no source text, case/order identities, raw receipts, credentials or credential/project association pins."
 }

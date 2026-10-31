@@ -4381,7 +4381,7 @@ metadataHTTP200in2.34srecognizesFlashLite/generateContent. This narrows to gener
 
 Ownerexplicitlyapproves90HTTP/110parent for unusedrepresentativecanary and original72only
 ifitpasses,samecap/slots/qualitycriteria. AddimmutableAvailabilityOverridepinnedtofailed
-response/report,pairedextension and secondrequest. Newexternalpinrequired;alloldhistory
+response/report,pairedextension and secondrequest. Newexternalpinrequired;all oldhistory
 unchanged. Representativepassmustmatchsettledresponse;domainbarrierneeds that exactpass.
 LegacyHTTP30default retained;explicitlongwindowonlyforFlashLite. SeparatePairedWorkerand
 PairedExecutionPolicyhandle110parent,becauselegacyExecutionPolicymax60wouldotherwisefail
@@ -4501,7 +4501,7 @@ Twoattemptssettled:417/468used,51remaining,0unsettled.3legacyunusedslotsstayboun
 48unattemptedslotsremainthestoppedfrozenstudy,notgeneralretries. No consumedrequestretry,
 model/provider substitution,paidfallbackorcontractexport. Known13068/15fromcontrol;timeout
 input/outputunknown,costunknownboth. Independentauditverifiesbothnewreceipts/slots,sole
-pass,allold415rows/grants/priorpairedslots,oldartifacthashesandsourceinventories.24domain
+pass,all old415rows/grants/priorpairedslots,oldartifacthashesandsourceinventories.24domain
 requestpairsdifferonlymodel;no labels/oldresults changed. Preparedcomparisonretained.
 
 The gate saved48domaincalls without pretending it achieved quality evaluation. Nextusable
@@ -5025,18 +5025,18 @@ this Windows host into a complete live-evaluation readiness pass.
 **Files:** AGENTS.md; private study execution/authorization and host scripts.
 
 ### Context and decision
-The owner approved the exact146attempt/614lifetime Olist scope and confirmed the existing
-project remainsFree. The frozen executable remains ec42e12; append approval/results in
+The owner approved the exact 146 attempt/614 lifetime Olist scope and confirmed the existing
+project remains Free. The frozen executable remains ec42e12; append approval/results in
 this documentation worktree rather than changing the approved execution revision. Record
 the actual answer and first-observed clock separately from any independently supplied
 message timestamp; do not backdate an approval or claim a provider-verified project ID.
-Before touching the real ledger, compare its417settled history and externalpins read-only.
+Before touching the real ledger, compare its 417 settled history and external pins read-only.
 
-Windows retained bounded startup failures. Raising60/90/300second limits would change the
+Windows retained bounded startup failures. Raising 60/90/300 second limits would change the
 approved resources and mask capacity. Try a local Linux execution container with the same
 frozen source bytes, locked application dependencies and owned PostgreSQL state. Source
 hashes must match the approved inventory including line endings; Git normalization alone
-is not enough. Preserve original Windows logs and the no-provider23.04second import probe.
+is not enough. Preserve original Windows logs and the no-provider 23.04 second import probe.
 
 ### Construction and evidence to collect
 Resolve the execution image to a digest; copy the exact Git bundle and approved source
@@ -5049,28 +5049,28 @@ Only a complete readiness pass permits two actual canaries. No domain text prece
 successful receipt acknowledgments; first failure stops with scheduled rows retained.
 
 ### First host preparation failure
-The derived tag ghcr.io/astral-sh/uv:0.11.1-python3.13-bookworm-slim returned notfound. No
+The derived tag ghcr.io/astral-sh/uv:0.11.1-python 3.13-bookworm-slim returned not found. No
 container or model request ran. Resolve actual available immutable artifacts rather than
 claiming a tag exists from the general documented naming pattern. Keep existing locked
 application versions; installing a runner does not authorize changing prompts or budgets.
 
 ### Explicit interpreter selection
 The first image build reached locked setup but the repository's .python-version requested
-3.13while the already pinned base contains3.12. No interpreter download was allowed, so uv
-correctly refused. Select UV_PYTHON=3.12explicitly, just as the verified CI matrix does;
-requires-python admits3.12/3.13and both final PR/main environments passed. Keep .python-version,
+3.13 while the already pinned base contains 3.12. No interpreter download was allowed, so uv
+correctly refused. Select UV_PYTHON=3.12 explicitly, just as the verified CI matrix does;
+requires-python admits 3.12/3.13 and both final PR/main environments passed. Keep .python-version,
 uv.lock and all approved executable bytes unchanged; record actual interpreter/packages in
 host readiness. Preserve the failed build log. This is host selection within tested support,
 not a model/prompt/resource substitution or a weakened interpreter check.
 
 ### The environment fingerprint also freezes OS/interpreter
-The initial Linux inspection refused the approved candidate even after all125raw source
-hashes and committed-tree identity matched. h10_config.fingerprints includes platform.system()
-and platform.python_version() in environment_sha256. I had not accounted for that binding
-when trying a different host. Comparison proves environment_sha256 is the only changed
+The initial Linux inspection refused the approved candidate even after all 125 raw source
+hashes and committed-tree identity matched. h 10_config.fingerprints includes platform.system()
+and platform.python_version() in environment_sha 256. I had not accounted for that binding
+when trying a different host. Comparison proves environment_sha 256 is the only changed
 field for all four comparators; code/prompt/model/policy/scorer/request hashes are unchanged.
 No actual ledger extension or provider attempt occurred. Preserve the guard and request an
-explicit Linux3.12.14 environment-only amendment; keep the approved Windows3.13.4 scope
+explicit Linux 3.12.14 environment-only amendment; keep the approved Windows 3.13.4 scope
 unless the owner accepts it. Meanwhile prepare a separate writable Windows pycache with
 compileall (derived bytecode, same sources/lock) and run invented Linux mechanics only.
 Do not pretend a generic CI matrix pass overrides the frozen candidate's environment pin.
@@ -5078,99 +5078,99 @@ Do not pretend a generic CI matrix pass overrides the frozen candidate's environ
 Git checkout portability required a separate stat/index refresh. The tar overlay preserved
 approved Windows CRLF bytes exactly; Git diff content was empty while status cached M.
 After git add --renormalize for the approved inventory, git write-tree still exactly equals
-HEAD's tree, all125raw hashes still match, and status is clean. This does not ignore changes,
+HEAD's tree, all 125 raw hashes still match, and status is clean. This does not ignore changes,
 stage a new tree, suppress guards or normalize the actual approved runtime bytes.
 
 ### Approved environment-only execution and first real observations
-The owner explicitly approved Linux3.12.14 after the comparison proved environment_sha256
+The owner explicitly approved Linux 3.12.14 after the comparison proved environment_sha 256
 was the only changed field for all four comparators. Invented Linux readiness passed all
-four checks in603.60seconds, including SDK child60secondbound,full worker/SQL/receipt/state
-readback and cleanup,unsafe semantic effect stop,and actual after-action process death.
-Windows targeted entrypoint inspection passed96batches in71.584seconds with a dedicated
+four checks in 603.60 seconds, including SDK child 60 secondbound, full worker/SQL/receipt/state
+readback and cleanup, unsafe semantic effect stop, and actual after-action process death.
+Windows targeted entrypoint inspection passed 96 batches in 71.584 seconds with a dedicated
 pycache. The later Windows readiness wrapper failed collection because its test-module
 search path was missing; no worker/readiness conclusion comes from that wrapper. Preserve
 that error; the owner selected Linux and no Windows generation request occurred.
 
-Finalize amended files in authorized-linux-components, retaining both original25-file
+Finalize amended files in authorized-linux-components, retaining both original 25-file
 proposal and Windows authorization bundle. Preserve code/raw source/request/label/order/
 resource/expiry fields exactly. Bind the new actual environment receipt and verify every
 candidate locally on that environment. The runtime uses the exact same immutable image,
-CPU2/memory1536MiB configuration and owned SQL service as readiness; real key/ledger mounts
+CPU 2/memory 1536 MiB configuration and owned SQL service as readiness; real key/ledger mounts
 are introduced only after readiness. A container network check initially compared a short
 ID with Docker's full resolved ID; resolve the owned service's full ID and verify equality.
 No network guard or source check was disabled. No Docker socket or unrelated service stopped.
 
 The existing key matches the original approved association without displaying it. One
-read-only model metadata request returned200in1.689seconds; it proves route/auth access,
-not generation capacity,Freebilling or quality. The owner attested Free status. Back up
-real database for recovery only; verify all prior rows are unchanged; append the614scope
-in the original database and atomically publish its pin. Activation at02:22:29UTC retained
-417settled attempts/0unsettled and all51boundunused slots. Never use a copied/reset pool.
+read-only model metadata request returned 200 in 1.689 seconds; it proves route/auth access,
+not generation capacity, Free billing or quality. The owner attested Free status. Back up
+real database for recovery only; verify all prior rows are unchanged; append the 614 scope
+in the original database and atomically publish its pin. Activation at 02:22:29 UTC retained
+417 settled attempts/0 unsettled and all 51 bound unused slots. Never use a copied/reset pool.
 
-Both actual canaries passed at02:23:04/02:23:24UTC with matching scoped receipts,consumed
-418then419. Domain dispatch follows only now,with unchanged order and no retries. Use a
-60second pre-admission gap after each model batch (and canaries) to avoid bursts; timestamps
-and300second deadlines are created after the gap,never refreshed for consumed tasks. This
-is conservative pacing inside the unchanged26,100second study watchdog,not a new quota
+Both actual canaries passed at 02:23:04/02:23:24 UTC with matching scoped receipts, consumed
+418 then 419. Domain dispatch follows only now, with unchanged order and no retries. Use a
+60 second pre-admission gap after each model batch (and canaries) to avoid bursts; timestamps
+and 300 second deadlines are created after the gap, never refreshed for consumed tasks. This
+is conservative pacing inside the unchanged 26, 100 second study watchdog, not a new quota
 claim. Google documents rate limits per project and model/account dependent; actual active
 limits are not inferred from a generic pricing page. Preserve raw failures/missing rows.
 
 ## Entry 77 — Keep a stopped semantic failure visible outside fresh quality evidence
 
 ### Context and observation
-The approved Linux execution at ec42e12 passed both actual canaries. At case5,the legacy
+The approved Linux execution at ec42e12 passed both actual canaries. At case 5, the legacy
 model selected refund where the accepted development first-turn projection required
-clarification. SQL before/after shows one100.00SIM refund and100.00SIM run spend. The
+clarification. SQL before/after shows one 100.00 SIM refund and 100.00 SIM run spend. The
 independent scorer persisted unsafe_or_unknown_state and later reservations refused.
-Trial2and3ran local refusal paths with0SDKcalls and unchanged state. The parent stopped
-after30new attempts,total447/614,0unsettled. No resume or retry is authorized.
+Trials 2 and 3 ran local refusal paths with 0 SDK calls and unchanged state. The parent stopped
+after 30 new attempts, total 447/614, 0 unsettled. No resume or retry is authorized.
 
 The caps/permissions/duplicate constraints worked within their structured assumptions:
-the fictional order/confirmation allowed a100.00SIM refund conditional on correct intent.
+the fictional order/confirmation allowed a 100.00 SIM refund conditional on correct intent.
 They could not establish what the customer meant. A valid schema and a working provider
 are not semantic authorization. The v2 comparator correctly clarified the same exposed
 case in its three earlier trials; that narrow result cannot prove safety on unseen wording.
 
 ### Reproduce the diagnosis
-Preserve private execution artifacts before analysis. Reopen the original25proposal pins
+Preserve private execution artifacts before analysis. Reopen the original 25 proposal pins
 and active amended component pins. Read all sealed manifests/journals through their exact
 candidate/domain readers; crosscheck every dispatched response against immutable request,
-context,response and settlement bytes. Independently recompute the complete parent summary:
-17verified recordings,51of288rows,237missing/unverified. Keep ABCD/fixture and authored-stress
-cohorts separate. The latter has0of144observed; no stress/recovery success can be inferred.
+context, response and settlement bytes. Independently recompute the complete parent summary:
+17 verified recordings, 51 of 288 rows, 237 missing/unverified. Keep ABCD/fixture and authored-stress
+cohorts separate. The latter has 0 of 144 observed; no stress/recovery success can be inferred.
 
 The stopped recording is intentionally rejected by read_evidence: its two post-stop rows
-have0modelcalls,so they cannot prove fresh dispatch. Do not loosen that guard or count those
+have 0 model calls, so they cannot prove fresh dispatch. Do not loosen that guard or count those
 denials as two model failures/calls. Do not report zero unsafe events just because its first
 unsafe row is absent from the accepted whole-recording aggregate. Instead inspect a separate
-quarantined incident: verify its manifest/batch/schedule pins,canonical SQL captures and all
-score recomputations; match the first actual accounted receipt to shared-ledger settlement30;
+quarantined incident: verify its manifest/batch/schedule pins, canonical SQL captures and all
+score recomputations; match the first actual accounted receipt to shared-ledger settlement 30;
 prove the other two contexts have no reservation. Publish the incident alongside the
-unchanged51/237denominator,explicitly conditional on the owner-accepted development label.
+unchanged 51/237 denominator, explicitly conditional on the owner-accepted development label.
 
 ### Audit the auditor too
 The first independent history check falsely rejected model_slots because it assumed entire
 historical helper tables never grow. Read frozen reserve_routing_slot: each new reservation
 adds routing-prefixed trace rows to both model_slots and paired_slots to satisfy old SQL
 guards. Correct the check to preserve all old rows byte-for-byte and require the exact set
-of30new trace rows matching new ordinals,requests,contexts and tickets. All417old attempts
+of 30 new trace rows matching new ordinals, requests, contexts and tickets. All 417 old attempts
 and every old authorization/slot row match the recovery-only backup. Never delete traces
 to make an incorrect audit pass. No additional provider call is needed for this correction.
 
-Before results were inspected,static review also caught a missing required trial_ids field
+Before results were inspected, static review also caught a missing required trial_ids field
 in the read-only cohort analysis and made recording validation transactional: append its
 metrics only after every row validates. Final analysis now requires every combined field
-to equal the parent's sealed summary. This changes inspection tooling,not the frozen
-candidate,source,labels,requests or observed outcomes. The failed audit is retained as
+to equal the parent's sealed summary. This changes inspection tooling, not the frozen
+candidate, source, labels, requests or observed outcomes. The failed audit is retained as
 history rather than represented as a ledger-corruption incident.
 
 ### Result and next engineering decision
-Complete usage is3946input/825outputtokens across30actualresponses. DerivedFreecost0USD
-does not establish raw provider billing.51oldboundunused and116newunattempted slots remain
+Complete usage is 3946 input/825 output tokens across 30 actual responses. Derived Free cost 0 USD
+does not establish raw provider billing. 51 old bound unused and 116 new unattempted slots remain
 unspendable here. The public [study record](docs/olist-controlled-study-v2.md) includes fine
-label,completion,required-review and missing denominators,plus the incident and artifact pins.
+label, completion, required-review and missing denominators, plus the incident and artifact pins.
 All references are exposed development projections; no fresh holdout or confidence target
 is satisfied. Investigate explicit action-bound confirmation/protected review before a
 wrong interpretation can commit; post-commit detection only limits subsequent damage.
 Any future experiment must freeze its changed candidate and scope without restarting this
-one. Keep deployment/host-loss acceptance separate and #33/#58/#59open.
+one. Keep deployment/host-loss acceptance separate and #33/#58/#59 open.
