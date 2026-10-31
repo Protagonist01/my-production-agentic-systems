@@ -210,3 +210,22 @@ Its preparation inventory does not certify model quality, independent groups, un
 process death, host-loss recovery or release. New SQL/H10 canned-decision tests establish
 mechanics only. Owner label review, frozen provider scope and final operational acceptance
 remain separate; no shared Gemini slot may be reused to run these cases implicitly.
+
+## Stress acceptance and controlled provider implementation (2026-10-31)
+
+Owner accepted all12stress labels **for development**. Private receipt:
+`olist/routing-stress-draft-2026-10-30-v1/owner-development-acceptance-2026-10-31.json`.
+It binds draft3d4d3f02afedbf38fc916e65c01d22212b47259c932d7bfe0a378f84cd877cc1;
+preserve original labels/packets. This supersedes pending owner review of this draft only.
+No independent gold, provider export, new attempts or release follows.
+
+The owner authorized implementing the controlled provider adapter and budget controls with
+fake HTTP. The private routing-comparison-proposal-2026-10-31-v1 remains historical planning.
+Prospective v2 must use three-trial case/variant batches (H10 requirement), conservative
+publisher token admission, and a300second batch deadline/90second worker/30second HTTP.
+The proposed146new attempts would extend the SAME ledger468->614, keeping all51old unused
+slots bound. This increase is **not authorized or applied**. Never call append_routing_extension
+on the real ledger, load its key for dispatch, or run canaries under implementation approval.
+Real ledger remains417/468 with0unsettled as last read. Final code/behavior/protocol hashes,
+current Free/account evidence and explicit scope/budget approval precede any actual call.
+Mock HTTP scopes/evidence remain mock; no source model-quality or release claim.

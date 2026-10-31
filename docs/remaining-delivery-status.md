@@ -1,3 +1,12 @@
+## Controlled Olist provider preparation - 2026-10-31
+
+The [controlled provider composition](olist-controlled-provider.md) adds explicit prospective
+slots, receipt-gated canaries, source/control/variant binding, durable failure stops and scoped
+accounting while preserving mock-only legacy factories. The proposed614lifetime maximum is
+not activated: actual Gemini remains417/468,51unused bound elsewhere. Source export and
+actual calls remain unauthorized. Owner accepted all12stress labels for development, not
+independent semantic gold. Final executable freeze/approval and fresh results still precede #33.
+
 ## Constructed stress and recovery preparation - 2026-10-30
 
 The [separate stress draft](olist-stress-and-recovery.md) adds twelve entirely invented

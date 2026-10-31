@@ -6,7 +6,7 @@ from datetime import UTC, datetime
 from decimal import Decimal
 from typing import Literal
 
-from pydantic import AwareDatetime
+from pydantic import AwareDatetime, Field
 
 from agent_harness.contracts import Contract, ModelRequest, ModelResponse, NonEmpty, Usage
 from agent_harness.gateway import DeadlineTransport
@@ -37,6 +37,7 @@ class CostAccounting(Contract):
     derived_at: AwareDatetime
     raw_usage: Usage
     allowance_sha256: Sha256 | None = None
+    capture_scope_sha256: Sha256 | None = Field(default=None, exclude_if=lambda v: v is None)
 
 
 def derive(
@@ -48,6 +49,7 @@ def derive(
     *,
     now: datetime,
     allowance_sha256: str | None = None,
+    capture_scope_sha256: str | None = None,
 ) -> ModelResponse:
     request = ModelRequest.model_validate_json(request.canonical_json())
     response = ModelResponse.model_validate_json(response.canonical_json())
@@ -84,6 +86,7 @@ def derive(
         derived_at=now,
         raw_usage=raw,
         allowance_sha256=allowance_sha256,
+        capture_scope_sha256=capture_scope_sha256,
     )
     return response.model_copy(
         update={
@@ -93,14 +96,13 @@ def derive(
     )
 
 
-def control_pin(allowance: str, tariff: str, project: str) -> str:
+def control_pin(allowance: str, tariff: str, project: str, scope: str | None = None) -> str:
     from agent_harness.release_contracts import sha256
 
-    return sha256(
-        json.dumps(
-            dict(allowance=allowance, tariff=tariff, project=project), sort_keys=True
-        ).encode()
-    )
+    values = dict(allowance=allowance, tariff=tariff, project=project)
+    if scope is not None:
+        values["capture_scope"] = scope
+    return sha256(json.dumps(values, sort_keys=True).encode())
 
 
 def verify_accounting(
@@ -111,7 +113,12 @@ def verify_accounting(
     saved = CostAccounting.model_validate_json(json.dumps(response.accounting))
     if expected_control_sha256 is not None and (
         saved.allowance_sha256 is None
-        or control_pin(saved.allowance_sha256, saved.tariff_sha256, saved.tariff.project_sha256)
+        or control_pin(
+            saved.allowance_sha256,
+            saved.tariff_sha256,
+            saved.tariff.project_sha256,
+            saved.capture_scope_sha256,
+        )
         != expected_control_sha256
     ):
         raise ValueError("cost evidence differs from reviewed provider controls")
@@ -124,6 +131,7 @@ def verify_accounting(
         saved.tariff.project_sha256,
         now=saved.derived_at,
         allowance_sha256=saved.allowance_sha256,
+        capture_scope_sha256=saved.capture_scope_sha256,
     )
     if reconstructed != response:
         raise ValueError("derived cost differs from raw usage and frozen tariff")
@@ -136,6 +144,7 @@ class AccountedTransport:
     tariff_sha256: str
     project_sha256: str
     allowance_sha256: str | None = None
+    capture_scope_sha256: str | None = None
 
     def generate(self, request: ModelRequest, *, timeout_seconds: float = 30.0) -> ModelResponse:
         # Validate the policy before any dispatch, using a non-dispatched sentinel.
@@ -149,6 +158,7 @@ class AccountedTransport:
             self.project_sha256,
             now=datetime.now(UTC),
             allowance_sha256=self.allowance_sha256,
+            capture_scope_sha256=self.capture_scope_sha256,
         )
         response = self.delegate.generate(request, timeout_seconds=timeout_seconds)
         return derive(
@@ -159,4 +169,5 @@ class AccountedTransport:
             self.project_sha256,
             now=datetime.now(UTC),
             allowance_sha256=self.allowance_sha256,
+            capture_scope_sha256=self.capture_scope_sha256,
         )
