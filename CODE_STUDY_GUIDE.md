@@ -1,5 +1,13 @@
 # Code Study Guide — Production Agentic Systems
 
+The [controlled study activation chapter](docs/olist-controlled-study-v2.md) explains
+why `h10_config.fingerprints` binds OS/interpreter in addition to source/lock, how explicit
+environment-only approval preserves the original proposal and146slot/614lifetime authority,
+and why a readiness container is not a production deployment. Actual frozen execution stays
+atec42e12while this documentation evolves. Interview exercise: distinguish allocation slots,
+consumed rows,unsettled attempts and old bound unused slots; then explain why a metadata200
+and tariff-derived zero do not establish generation capacity or a zero provider bill.
+
 The [controlled provider chapter](docs/olist-controlled-provider.md) traces preparation from
 base7981fd4: exact prospective `RoutingSlot` -> transactional shared-ledger reservation ->
 SDK -> scoped raw/derived accounting -> durable receipt gate -> owned SQL worker -> independent

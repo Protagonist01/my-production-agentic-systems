@@ -245,3 +245,46 @@ must bind the final verified merged follow-up source, not the earlier proposal o
 Local owned after-action process-death SQL test passes; full local run-host readiness is
 still pending because an existing SDK child can hit its60second startup bound. Preserve
 failed runs, keep60/90/300second limits and obtain actual study/account authorization.
+
+
+## Olist controlled development study authorized (2026-10-31)
+
+The owner explicitly answered "Approve this scope; the project is still Free" for the
+pinned routing-comparison-proposal-2026-10-31-v2 review packet. This supersedes earlier
+pending Olist export/budget statements for this exact study only. Private receipt:
+D:/document/.cache/production-agents/olist/routing-comparison-execution-2026-10-31-v2/owner-approval.json.
+Approval first observed2026-10-31T01:37:23Z,expiry2026-11-07T01:37:23Z. At most146new
+GeminiFree attempts (2invented canaries then144domain),same lifetime cap614,417oldconsumed
+preserved andall51oldunusedbound. Use ONLY the existing ledger;no reset/newpool/oldslotreuse.
+Export only12acceptedABCDfirst-user texts and12authoredstress texts with fixed prompts/schemas,
+Gemini3.5FlashLite,temp0/LOW/output512,HTTP30/worker90/batch300,oneconcurrenttrial,noautomatic
+retries/paidfallback/modelsubstitution. BOTH canaries need matching successful scoped receipts.
+Full selected-host fake SDK/SQL readiness precedes any actual dispatch. Parent death stops
+study;no implicit continuation. Preserve failures/missingrows and all original packets.
+
+Frozen execution source remains clean ec42e1228a3d4e652b0a3fead108b67aab6e82a6, even if a
+later documentation PR records approval/results. Do not rebase/modify that execution checkout
+or silently change candidate behavior/order/resources. Preserve the pending25-file proposal;
+append actual authorization/control envelopes in a separate execution directory. Confirm
+read-only417consumed/0unsettled and all historical/externalpins before applying the614extension.
+This approves development evaluation and Free-project attestation,not independent gold,
+representative holdout,confidence qualification,hosting purchases or production release.
+
+## Linux-only environment amendment and activation (2026-10-31)
+
+The owner explicitly approved the Linux environment-only amendment after all four actual
+fake-SDK/SQL readiness checks passed in603.60seconds on Linux/Python3.12.14. Only
+`environment_sha256` changed for each comparator. Sourceec42e12,rawbytes,code,prompts,
+requests,labels,order,HTTP30/worker90/batch300limits,146newattempts,614lifetimecap and
+expiry2026-11-07T01:37:23Z remain fixed. Private environment-owner-amendment.json binds
+the actual reply and readiness report. Preserve Windows authorization/proposal as history;
+active files are authorized-linux-components plus active-authorization-bundle.json in the
+same execution directory. Never silently change OS/interpreter or resume a stopped run.
+
+The614extension was appended to the SAME authoritative ledger at2026-10-31T02:22:29Z.
+All417historical attempts/rows were preserved;51oldunused slots stay bound. Original external
+pins and a recovery-only backup were preserved; never dispatch from that backup or reapply
+another extension. Both actual canaries passed with matching accounted receipt acknowledgment:
+new consumed418then419. Live execution marker/events are in the private execution directory;
+check actual current status before any action. The parent study has a single run-started
+marker and NO automatic resume/retry. Failures consume slots. No paid fallback or release.
