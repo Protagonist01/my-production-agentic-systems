@@ -1,5 +1,16 @@
 # Code Study Guide — Production Agentic Systems
 
+The [controlled provider chapter](docs/olist-controlled-provider.md) traces preparation from
+base7981fd4: exact prospective `RoutingSlot` -> transactional shared-ledger reservation ->
+SDK -> scoped raw/derived accounting -> durable receipt gate -> owned SQL worker -> independent
+state scorer -> sealed read-back -> full288-row development summary. New614maximum is a
+supported contract, not an applied authorization. Logical allocations469–614 coexist with
+contiguous attempt serials418–563; no fake historical rows or reuse of51old slots. Scope
+origin is bound to the transport; fake HTTP cannot validate as provider evidence. Old
+control hashes stay stable when the optional scope field is absent. Interview exercise:
+why must a settled canary still wait for receipt acknowledgment, and why would a4096token
+budget be denied by the conservative provider admission quote before SDK dispatch?
+
 The [constructed stress and recovery chapter](docs/olist-stress-and-recovery.md) continues
 from merged `ab8e300`. `routing_stress.build_draft` -> authored references/fixtures ->
 `StressDraft` parent/challenge checks -> text-only manifest/private packet -> preparation
@@ -653,3 +664,9 @@ priorpairedrows,sourceinventories/previousartifacthashesandunchangedrequestpairs
 reportuses48scheduled/48missing;0correctdoesnotmeanobserved0%accuracy. Publicationlabels
 no_quality_result=true. Missingdenominatorsandlackofdecisionevidenceareseparateconcepts.
 Originalpairednegativefindings/largeconfidencefailurestay. No modelpromotedorgateclosed.
+
+For the pyasn1 security lock repair, strict replay correctly refused the old captured
+dependency lock. `replay_example.py` now selects explicitly pinned invented-v15; v14 remains
+unchanged and is covered by the historical changed-lock refusal parameterization in
+`tests/test_replay.py`. The six requests/responses are identical; only capture provenance
+and dependency context change. See Build Book Entry74 for the failed hosted check and fix.

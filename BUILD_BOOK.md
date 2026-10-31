@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 74 — Bind wider provider execution to an unspent prospective scope](#entry-74--bind-wider-provider-execution-to-an-unspent-prospective-scope)
 - [Entry 73 — Distinguish authored risk coverage from observed recovery](#entry-73--distinguish-authored-risk-coverage-from-observed-recovery)
 - [Entry 72 — Evaluate wider routes without inventing policy labels](#entry-72--evaluate-wider-routes-without-inventing-policy-labels)
 - [Entry 71 — Separate unsupported intent from a generic review](#entry-71--separate-unsupported-intent-from-a-generic-review)
@@ -4848,3 +4849,115 @@ Retain the failure; correct the test to preserve all three sequential tasks/IDs 
 all three receipts/state/cleanup results per case. Do not change the production recorder
 or its budget partitions. Twelve tests now schedule36mock mechanism trials; this still
 supplies zero provider quality observations. Require a fresh final-head fullmatrix/SQLpass.
+
+## Entry 74 — Bind wider provider execution to an unspent prospective scope
+**Files touched:** shared routing allowance contracts, controlled routing factory, tests and protocol.
+
+### Context and decisions before implementation
+Continue from verified main7981fd4. On2026-10-31the owner accepted all12stress labels for
+ development; the private acceptance binds every original packet byte. The user then asked
+for a protocol and call proposal, now explicitly authorizes implementing the adapter and
+controls. This doesnot authorize real requests, exporting source text or applying a live
+allowance amendment. Existing ledger remains417/468,51old bound unused,0unsettled.
+
+The pinned private v1proposal enumerates24cases/288workflowtrials,144modelattempts and two
+invented canaries. Suggested extension468+146=614 preserves all51old slots. Fake-SDK
+preflight validated50payloads with no network/ledger reservation. It is not executable
+provider freeze, model quality or independent gold. Preserve that proposal as history.
+
+### Before you read on
+How can a new allowance preserve51unused historical slots while adding146usable slots,
+when attempts.serial is a contiguous row count? Use a separate prospective allocation
+ordinal; don't invent51consumed rows or silently treat the unspent slots as new budget.
+
+### Options and constraints found in code
+Reusing the old model-only extension would export Olist under Revenue authority. Reusing
+mock factories would mislabel fake exchanges as provider evidence. Instead add a distinct
+schedule-bound extension/client pin and an explicit controlled composition; leave old
+mock refusal and release gates intact. Existing SQL guards require historical trace rows;
+new namespaced trace rows can satisfy them without changing any historical reservation.
+
+H10's recorder requires three sequential trials per recording. V1's trial-by-trial alternating
+model order cannot be dispatched by that recorder unchanged. Prepare a prospective v2
+schedule of case/variant three-trial batches, alternating which variant goes first by case.
+Counts, texts, labels and settings stay the same; preserve v1instead of editing history.
+All fresh tasks require distinct run IDs and current bounded deadlines. No expired schedule
+may be refreshed after consuming an attempt.
+
+### Construction plan
+Reserve exactly one named prospective slot transactionally before SDK dispatch. Reject
+stale external pins, wrong request/case/trial/tenant/run/variant/candidate behavior, unresolved
+reservations, unknown required usage and exhausted ceilings. Two settled known-answer
+canaries unlock domain slots; failures stop, not retry. Persist stop reasons and consecutive
+transient errors durably across workers. Test these controls on invented ledgers only.
+
+Bind provider control to every historical amendment, the new scope, project and tariff;
+never include a key. A fake HTTP transport must derive mock origin, so actual SDK/SQL tests
+cannot manufacture provider-origin evidence. Independently read state and stop later dispatch
+on unsafe or missing scorer evidence. Source, controls, frozen case references and exact
+request pins remain separate from agent text. No qualification or deployment follows.
+
+### Integration failures caught before any live call
+First request helper inherited a100token budget while expecting512outputtokens. The
+planner correctly clamped to100and the frozen-slot guard refused it. Correct the invented
+helper to the actual admission budget,not the guard. Existing admission reserves the full
+publisher ceiling1,114,112tokens; planningv1's4096cannot pass it. Preservev1and proposev2
+with conservative ceilings,512outputtokens,30HTTP/90worker/300batch limits. No user spending
+or token increase was activated. The scope still needs a separate owner approval.
+
+Add optional capture_scope_sha256 to new accounting; omit it from old canonical receipts.
+Hash the full scope plus historical amendments/project/tariff,never the key. New controls
+bind mock/provider origin. A successful canary settlement alone is insufficient: require
+an exact accounted receipt acknowledgment. Store raw response and receipt documents privately
+for read-back; don't let missing outputfiles or a parent crash unlock the gate silently.
+
+The focused21new tests passed69.21s,then the expanded new/legacy accounting/routing suite
+passed61tests76.61s,including actual owned child SDK fake HTTP and duplicate/race/history
+checks.214sources typecheck and import/lint/configuredformat checks pass. Local SQL attempt
+again stops inDockerCompose startup before either new body; no local SQL pass. Required
+hosted SQL must prove six domain fake-SDK worker trials with exact state/receipt/cleanup,
+and an unsafe-reference effect stopping subsequent dispatch. Real ledger read-only audit
+remains417consumed/0unsettled; no real key or amendment was used.
+
+### Audit failure and scoped dependency repair
+The first hosted run41148455144atc911329failed bothlocked audits: pyasn1 0.6.4 has four
+reported CVEs (CVE-2026-119194 through119197), with0.6.5as the listed fix. Check the
+upstream0.6.5release andPyPI,then use uv lock --upgrade-package pyasn1. Only that package
+version andits two artifact hashes change inuv.lock. No audit rule,ignore or threshold
+is altered. Preserve both failed jobs124378998059/124378998155. Re-run actual audits and
+full final-head checks after the patch; previous code/source/environment pins are stale.
+DockerDesktop was stopped; itsD-drive installation is present. Starting it through the
+installedCLI is reversible and uses prior authorization. Wait for actual engine/SQL
+readiness; a Starting status is not a local database pass or a successful restart claim.
+
+The scoped local audit now reports `No known vulnerabilities found` after installing
+pyasn1 0.6.5. Initial hosted PostgreSQL job124378998136 passed153tests in375.33seconds;
+Ubuntu3.12 job124378998055 passed1486tests,214typed sources,12build artifacts and
+strict replay6recordings/2invented timeouts/0outbound calls. These precede the lock repair;
+final repaired-head checks still must pass. Docker engine29.8.2 responds locally, while
+the current local SQL result remains pending and is not used as acceptance evidence.
+
+### Strict replay caught the changed lock, then local bounded workers refused a slow run
+Repaired-head Ubuntu quality job124382525879 failed one test (1485passed): the CLI's
+invented-v14 capture still pins the old dependency lock. ReplayBinding deliberately compares
+environment_lock and refuses changed conditions. Preserve v14 bytes/digest, generate a new
+invented-v15 using the existing in-process FakeAgent maintenance helper and repaired lock,
+verify all six requests/responses unchanged, then pin v15 explicitly in the CLI. Add v14 to
+the existing historical-refusal parameterization. Do not relax dependency equality, infer
+trusted pins from input, or regenerate fixtures at replay time.
+
+The local SQL command's terminal summary was unavailable after output truncation. Its
+retained pytest-159 journal shows trial1 reached the90second owned-worker timeout and later
+rows failed to complete; this is a local failure, not an unknown pass. Preserve the artifacts
+and repeat only after the competing local audit/setup commands finish, with captured logs.
+The initial hosted153-test SQL pass remains distinct; no worker/deadline limit is enlarged.
+
+The isolated local rerun failed1test/269.48seconds. Its invented canary report shows
+90.0607seconds, timed_out=true, exit=-15, worker_entered=null and generation_returned=null:
+the bounded child had not entered its body. No real provider request was attempted.
+The fake HTTP callable lived in routing_provider_fixtures.py, whose imports load the
+historical-ledger/test suite graph during spawn unpickling. Move its unchanged body to
+small routing_sdk_fake.py (json/httpx only), re-export from the old helper for existing
+callers, and retest actual owned spawn. This removes unnecessary test-child imports;
+it does not increase90/300second limits, alter assertions or establish that all host
+capacity problems are solved. Preserve pytest-159/161 and the captured failure log.
