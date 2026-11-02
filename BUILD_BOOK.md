@@ -3,6 +3,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 - [Entry 78 — Bind refund execution to customer confirmation](#entry-78--bind-refund-execution-to-customer-confirmation)
+- [Entry 79 — Prepare evaluation of the actual customer-confirmed service](#entry-79--prepare-evaluation-of-the-actual-customer-confirmed-service)
 - [Entry 77 — Keep a stopped semantic failure visible outside fresh quality evidence](#entry-77--keep-a-stopped-semantic-failure-visible-outside-fresh-quality-evidence)
 - [Entry 76 — Separate run-host readiness from study authorization](#entry-76--separate-run-host-readiness-from-study-authorization)
 - [Entry 75 — Require parent observation before the next controlled trial](#entry-75--require-parent-observation-before-the-next-controlled-trial)
@@ -5292,3 +5293,81 @@ Keep the demonstration's credentials invented and separate from all model config
 Read-only inspection of the authoritative shared allowance confirmed447consumed,0unsettled,
 1durable routing stop. No provider calls, scope amendments or model-quality claims follow.
 Final CI/merge evidence belongs on PR130 and linked issue updates; release gates remain open.
+
+## Entry 79 — Prepare evaluation of the actual customer-confirmed service
+
+### Context and decision
+
+The owner asked to prepare a separate evaluation after PR130. Inspection at merged d4bdf52
+found that the old RoutingEnvironment installs business/checkpoints only, while CaseStore
+uses a staff-selected FixedPlanner. Running the old recorder would evaluate a different
+system. Keep the stopped447/614scope and its artifacts unchanged; preparation makes no
+provider calls and does not authorize a new grant, slot reassignment or release.
+
+### Before you read on
+
+Where should the model decision live so that customer confirmation, reviewer approval,
+restart and amount checks all use the same interpretation? What happens if a model emits
+clarify but the old staff request has a refund placeholder?
+
+### Options considered and construction
+
+Projecting model intent onto the three-field staff intent enum loses clarify/unsupported
+and can discard requested amounts. Reusing old H10 SupportWorkflow skips the service's
+customer challenge and installed SQL guard. Add an opt-in trusted CaseStore planner instead:
+pin its distinct agent/candidate identity, persist the complete typed checkpoint decision,
+and build proposals from that saved decision, never from a staff placeholder on planner
+cases. Default staff cases retain their old wire shape and fixed-intent behavior.
+
+Add `intent_source` and `intent_decision` to CaseRecord; omit their default operator values
+when serializing so the ordinary staff payload remains compatible. On planner submission,
+use a distinct request hash domain and require explicit new candidate identifiers. Preserve
+the original bounded context/run identity instead of silently refreshing its deadline/run
+ID: a future provider grant must bind exactly the dispatched context. Read the durable
+LangGraph decision after the graph finishes, including recovery where the planner is not
+called again. Reject a successful legacy plan in this profile; planner failures remain
+review, with no command.
+
+Snapshot policy input uses the saved routing intent and requested minor units. Clarify,
+unsupported, review or a failed decision produces no refund command. Partial or over-cap
+requested amounts remain policy checks. Bind the saved plan into the action digest; new
+customer authority still requires exact action/amount, state, account and version. Default
+API/CLI construction does not install a live planner or load any credential.
+
+### Evidence boundary while building
+
+The next proposal will retain the owner-accepted operating targets and source references.
+Scripted customer actions test conditional mechanics; they are neither independent customer
+judgments nor natural-language gold. Model meaning and authorized state effects require
+separate denominators. A proposed74attempt allocation (2canaries+24cases x3trials) would fit
+within614only after explicit reassignment of74of the116stopped slots, retaining51old bound
+slots and42other stopped slots. This is arithmetic, not an applied authorization. The old
+controlled dispatcher remains stopped and cannot execute this new profile.
+
+Verification and actual failures will be recorded below as they occur.
+
+### First checks and reference feasibility
+
+The first SQL run had31passes and1test failure: before approval, the existing resume API
+raises PermissionError for reviewer/action ownership, before reaching the state-conflict
+branch. Correct the test's expected denial; do not weaken production authorization. The
+isolated corrected test passes. The first staff-wire test omitted inherited schema_version
+from its expected key set; retain that original field. Eighteen targeted unit checks then
+pass, and full type checking still covers215sources. Final exact-head CI remains required.
+
+Validate both existing RoutingPopulation files without printing text or modifying either.
+The combined inventory has24development cases,16declared groups,14language families,
+14refund/4clarify/3unsupported/2status/1reship references; policy outcomes are7eligible,
+15required-review and2status. All are exposed owner-reviewed AI development projections.
+Even an optimistic16independent zero-error groups give only79.409%as the lower endpoint of
+a two-sided95%exact binomial success interval. Three repeated trials do not make72independent
+families. Record this limit before proposing more calls, not after another non-qualifying run.
+
+The optional74attempt diagnostic could fit614only through explicitly approved reassignment;
+it is not recommended before source/recorder readiness. A qualification arithmetic floor,
+assuming zero errors and separately95%confidence per endpoint, needs72fresh independent
+eligible families and72required-review families:432domain trials at3each, plus2canaries.
+That434attempt floor excludes extra slices/multiplicity/dependence/label uncertainty and
+is neither an approved study nor a claim that the required reference population exists.
+The protocol retains the accepted quality targets and distinguishes semantics, conditional
+SIM policy, customer authority and independent state effects. No live ledger is modified.

@@ -316,3 +316,20 @@ This authorizes implementation, verification, submission and merging under the e
 delivery authority. It does not authorize provider calls, allowance amendments, a resumed
 study, customer identity integration, hosting purchases or release. Same ledger stays
 447/614 consumed, zero unsettled as last observed; verify read-only before reporting.
+
+## Separate customer-confirmed evaluation preparation (2026-11-02)
+
+The owner said "proceed" after the explanation that a separate study needs preparation
+and concrete scoped allocation approval. Prepare the actual service bridge, protocol,
+references and allocation proposal without provider calls. Opt-in candidate
+`olist-customer-confirmed-routing-v1` must preserve the saved fine intent/requested amount;
+default staff construction stays offline. Do not reuse the old routing H10 environment
+as evidence of this service. Scripted consent is mechanism input, not independent semantic
+gold or real customer approval. Current24cases are exposed development only.
+
+The optional74attempt diagnostic and any qualification sampling/budget arithmetic in
+docs/olist-confirmed-evaluation-plan.md are proposals only. No slot reassignment, cap
+increase, live ledger amendment, model dispatch, study restart or release is authorized.
+Keep the same447/614ledger and original stop unchanged. A final provider-frozen package
+needs the service-aware recorder/scorer, selected-host readiness, concrete references,
+request/context/source pins and explicit scoped allocation/account approval.

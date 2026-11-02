@@ -1,15 +1,15 @@
 """Strict private application records; HTTP callers never supply principals or grants."""
 
 from datetime import datetime
-from typing import Annotated, Literal
+from typing import Annotated, Any, Literal, cast
 
 from agent_harness.contracts import Contract, RunContext
-from pydantic import Field
+from pydantic import Field, SerializerFunctionWrapHandler, model_serializer
 
 from olist_support.business_contracts import CallerGrant, Identity, RefundCommand
 from olist_support.policy import PolicyProposal, ScenarioConfirmation
 from olist_support.views import OrderView
-from olist_support.workflow import WorkflowResult
+from olist_support.workflow import IntentDecision, WorkflowResult
 
 
 class Principal(Contract):
@@ -75,6 +75,16 @@ class CaseRecord(Contract):
     approved_by: Identity | None = None
     approval_version: int | None = None
     error_code: str | None = None
+    intent_source: Literal["operator", "planner"] = "operator"
+    intent_decision: IntentDecision | None = None
+
+    @model_serializer(mode="wrap")
+    def preserve_operator_wire(self, handler: SerializerFunctionWrapHandler) -> dict[str, Any]:
+        data = cast(dict[str, Any], handler(self))
+        if self.intent_source == "operator" and self.intent_decision is None:
+            data.pop("intent_source", None)
+            data.pop("intent_decision", None)
+        return data
 
 
 class Decision(Contract):
