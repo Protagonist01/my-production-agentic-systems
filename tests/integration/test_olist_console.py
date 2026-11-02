@@ -73,8 +73,9 @@ def create_case(console, *, amount=5000, facts=True):
     return store, case, operator, reviewer
 
 
-def decide(store, case, reviewer, decision="approve"):
-    return store.decide(
+def decide(store, case, reviewer, decision="approve", *, console):
+    """Test review, plus separate customer consent; neither helper executes an effect."""
+    approved = store.decide(
         reviewer,
         case.case_id,
         Decision(
@@ -84,6 +85,40 @@ def decide(store, case, reviewer, decision="approve"):
             rationale="Invented explicit reviewer decision.",
         ),
     )
+    if decision == "approve":
+        customer_confirm(store, approved, console)
+    return approved
+
+
+def customer_confirm(store, case, console):
+    from olist_support.customer_intent import Confirmation, CustomerIntentStore
+
+    customer = Principal(
+        username="customer_" + case.case_id[:32],
+        tenant_id=case.tenant_id,
+        actor_id="customer-" + case.case_id,
+        role="customer",
+        order_ids=(case.order_id,),
+    )
+    # Account provisioning is trusted test setup, not customer-issued permission.
+    with store.connect() as admin_connection:
+        existing = admin_connection.execute(
+            "SELECT 1 FROM olist_app.accounts WHERE username=%s", (customer.username,)
+        ).fetchone()
+    if not existing:
+        # The runtime role cannot create accounts; use the owned fixture's admin.
+        with console[0].connect(console[1].name) as admin:
+            provision(admin, customer, PASSWORD)
+    intent = CustomerIntentStore(store)
+    offer = intent.issue(customer, case.case_id)
+    payload = Confirmation(
+        challenge=offer["challenge"],
+        action="refund",
+        amount_minor=offer["amount_minor"],
+        unit="SIM",
+    )
+    intent.confirm(customer, case.case_id, payload)
+    return customer, payload
 
 
 def observed(console, case):
@@ -113,7 +148,7 @@ def test_exact_approval_audit_and_refund_are_atomic_and_recover_after_lost_respo
     store, case, operator, reviewer = create_case(console)
     assert case.command.amount_minor == 5000 and case.evidence.currency_unit is None
     with pytest.raises(PermissionError):
-        decide(store, case, operator)
+        decide(store, case, operator, console=console)
     with pytest.raises(BusinessReview):
         store.decide(
             reviewer,
@@ -125,7 +160,7 @@ def test_exact_approval_audit_and_refund_are_atomic_and_recover_after_lost_respo
                 rationale="Invented invalid binding.",
             ),
         )
-    approved = decide(store, case, reviewer)
+    approved = decide(store, case, reviewer, console=console)
     assert approved.status == "approved" and observed(console, case) == ((0, 0), (0, 0), 0)
 
     def before(stage):
@@ -163,8 +198,8 @@ def test_rejection_ineligible_facts_and_cap_cannot_be_overridden(console):
         store, case, _, reviewer = create_case(console, amount=amount, facts=facts)
         assert case.command is None and case.action_digest is None
         with pytest.raises(BusinessReview):
-            decide(store, case, reviewer)
-        rejected = decide(store, case, reviewer, "reject")
+            decide(store, case, reviewer, console=console)
+        rejected = decide(store, case, reviewer, "reject", console=console)
         assert rejected.status == "rejected"
         with pytest.raises((PermissionError, BusinessReview)):
             store.resume(reviewer, case.case_id, None, run_limit_minor=10000)
@@ -173,7 +208,7 @@ def test_rejection_ineligible_facts_and_cap_cannot_be_overridden(console):
 
 def test_changed_record_invalidates_approval_and_requires_new_explicit_decision(console):
     store, case, _, reviewer = create_case(console)
-    decide(store, case, reviewer)
+    decide(store, case, reviewer, console=console)
     with console[0].connect(console[1].name) as admin:
         admin.execute(
             "UPDATE olist.orders SET version=version+1 WHERE tenant_id=%s AND order_id=%s",
@@ -184,8 +219,8 @@ def test_changed_record_invalidates_approval_and_requires_new_explicit_decision(
     refreshed = store.reevaluate(reviewer, case.case_id)
     assert refreshed.action_digest != case.action_digest and refreshed.command.expected_version == 1
     with pytest.raises(BusinessReview):
-        decide(store, case, reviewer)
-    decide(store, refreshed, reviewer)
+        decide(store, case, reviewer, console=console)
+    decide(store, refreshed, reviewer, console=console)
     assert (
         store.resume(reviewer, case.case_id, refreshed.action_digest, run_limit_minor=10000).status
         == "committed"
@@ -199,7 +234,7 @@ def test_reviewer_identity_scope_concurrent_decisions_and_resume_cannot_duplicat
 
     def attempt(user):
         try:
-            return decide(store, case, user)
+            return decide(store, case, user, console=console)
         except BusinessReview:
             return None
 
@@ -209,6 +244,7 @@ def test_reviewer_identity_scope_concurrent_decisions_and_resume_cannot_duplicat
     assert sum(x is not None for x in results) == 1
     winner = reviewer if approved.approved_by == reviewer.actor_id else other
     loser = other if winner == reviewer else reviewer
+    customer_confirm(store, store.detail(winner, case.case_id)[0], console)
     with pytest.raises(PermissionError):
         store.resume(loser, case.case_id, case.action_digest, run_limit_minor=10000)
     with pytest.raises(PermissionError):
@@ -309,6 +345,13 @@ def test_authenticated_http_flow_rejects_role_tenant_csrf_and_forged_authority(c
         client.post(path + "/decision", json=decision, headers=headers).json()["status"]
         == "approved"
     )
+    from olist_support.console_contracts import CaseRecord
+
+    customer_confirm(
+        CaseStore(lambda: server.connect_trial(trial)),
+        CaseRecord.model_validate_json(json.dumps(client.get(path).json()["case"])),
+        console,
+    )
     result = client.post(
         path + "/resume", json={"action_digest": case["action_digest"]}, headers=headers
     )
@@ -368,7 +411,7 @@ def test_runtime_cannot_delete_decision_audit_or_provision_accounts(console):
 
 def test_owned_process_exit_preserves_exact_approval_completion_and_audit(console):
     store, case, _, reviewer = create_case(console)
-    decide(store, case, reviewer)
+    decide(store, case, reviewer, console=console)
     server, trial, _ = console
     state = {
         "port": server.port,

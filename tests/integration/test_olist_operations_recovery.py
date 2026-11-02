@@ -34,7 +34,7 @@ def test_private_snapshot_restores_review_ledger_checkpoint_and_duplicate_withou
     server, source, _ = console
     store, pending, operator, reviewer = create_case(console)
     store, committed, operator2, reviewer2 = create_case(console)
-    approved = decide(store, committed, reviewer2)
+    approved = decide(store, committed, reviewer2, console=console)
     result = store.resume(
         reviewer2, committed.case_id, approved.action_digest, run_limit_minor=10000
     )
@@ -47,7 +47,7 @@ def test_private_snapshot_restores_review_ledger_checkpoint_and_duplicate_withou
     with pytest.raises(FileExistsError):
         save(path, archive)
     # A later source effect must survive restore into the separate target.
-    approved_pending = decide(store, pending, reviewer)
+    approved_pending = decide(store, pending, reviewer, console=console)
     later = store.resume(
         reviewer, pending.case_id, approved_pending.action_digest, run_limit_minor=10000
     )

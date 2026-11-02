@@ -303,3 +303,16 @@ not old unused slots reused. Complete 30-response usage 3946 input/825 output; d
 is not provider billing proof. Source ec42e12/labels/protocol/expiry unchanged. Preserve all
 private artifacts/reports; docs/olist-controlled-study-v2.md and its public aggregate explain
 scope and results. No model promotion, confidence qualification or release; #33/#58/#59 open.
+
+## Customer transaction authority selected (2026-11-01)
+
+The owner selected: "Customer confirms the exact refund action and amount". Implement the
+new `olist-customer-confirmed-service-v2` composition with provisioned, order-scoped customer
+accounts, explicit action/amount/SIM confirmation, short-lived server-side challenges and
+atomic consent consumption with receipt/case/audit. Staff review, where required, remains
+separate and cannot supply customer consent. Preserve legacy primitives and the frozen
+ec42e12 experiment as historical evidence; do not modify its candidates, labels or stop.
+This authorizes implementation, verification, submission and merging under the existing
+delivery authority. It does not authorize provider calls, allowance amendments, a resumed
+study, customer identity integration, hosting purchases or release. Same ledger stays
+447/614 consumed, zero unsettled as last observed; verify read-only before reporting.

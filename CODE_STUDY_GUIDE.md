@@ -1,5 +1,14 @@
 # Code Study Guide — Production Agentic Systems
 
+The [customer transaction authority chapter](docs/olist-customer-confirmation.md) traces the
+new service composition from base `7e7e823`: staff suggestion -> read-only customer session ->
+five-minute exact-action challenge -> confirmed authority -> business transaction consuming
+authority with receipt/case/audit -> deferred SQL commit guards. It covers migration history,
+revocation ordering, lost responses and restoring consumed consent. Raw workflow primitives
+and the stopped ec42e12 model study remain distinct; no model quality or release is inferred.
+Interview exercise: why does a correctly parsed, eligible refund still lack customer intent,
+and why must a transaction callback be backed by an installed database guard?
+
 The [controlled study activation chapter](docs/olist-controlled-study-v2.md) explains
 why `h10_config.fingerprints` binds OS/interpreter in addition to source/lock, how explicit
 environment-only approval preserves the original proposal and 146 slot/614 lifetime authority,

@@ -21,7 +21,7 @@ from test_olist_console import console as console
 def test_real_server_drains_commit_flushes_and_reconstructs_duplicate(console, tmp_path):
     store, case, _, reviewer = create_case(console)
     _, pending, _, pending_reviewer = create_case(console)
-    approved = decide(store, case, reviewer)
+    approved = decide(store, case, reviewer, console=console)
     with console[0].connect(console[1].name) as admin:
         provision(admin, reviewer, PASSWORD)
     reached, release = threading.Event(), threading.Event()

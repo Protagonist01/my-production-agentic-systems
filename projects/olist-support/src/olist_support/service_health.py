@@ -14,7 +14,11 @@ def readiness(connect: ConnectionFactory) -> dict[str, object]:
         with connect() as connection, connection.transaction():
             connection.execute("SET LOCAL statement_timeout=2000")
             connection.execute("SET LOCAL lock_timeout=1000")
-            for schema, resource in (("olist", "business.sql"), ("olist_app", "console.sql")):
+            for schema, resource in (
+                ("olist", "business.sql"),
+                ("olist_app", "console.sql"),
+                ("olist_intent", "customer_intent.sql"),
+            ):
                 from psycopg import sql
 
                 actual = connection.execute(
@@ -47,6 +51,17 @@ def readiness(connect: ConnectionFactory) -> dict[str, object]:
                 "SELECT password_hash,principal,enabled FROM olist_app.accounts LIMIT 0"
             )
             connection.execute("SELECT checkpoint,metadata FROM olist_graph.checkpoints LIMIT 0")
+            connection.execute(
+                "SELECT token_hash,state,document FROM olist_intent.challenges LIMIT 0"
+            )
+            from olist_support.customer_intent import guard_ready
+
+            if not guard_ready(connection):
+                return {
+                    "ready": False,
+                    "reason": "customer_authority_guard_mismatch",
+                    "action": "verify_pinned_customer_authority_schema",
+                }
             return {"ready": True, "reason": "ready", "business_unit": "SIM"}
     except (psycopg.errors.UndefinedTable, psycopg.errors.InvalidSchemaName):
         return {

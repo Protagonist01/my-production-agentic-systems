@@ -263,8 +263,11 @@ class CaseStore:
             intent = "review" if case.request.require_review else case.request.intent
             try:
                 with saver(self.connect) as checkpoints:
+                    from olist_support.customer_intent import ConfirmationRequiredStore
+
                     result = SupportWorkflow(
-                        self.business, FixedPlanner(IntentPlan(intent=intent))
+                        ConfirmationRequiredStore(self.connect),
+                        FixedPlanner(IntentPlan(intent=intent)),
                     ).run(
                         context,
                         WorkflowRequest(order_id=case.order_id, text=case.request.text),
@@ -376,6 +379,20 @@ class CaseStore:
         if case.status != "approved" or case.command is None:
             raise BusinessReview("case_is_not_approved")
 
+        from olist_support.customer_intent import confirmation_deadline, consume
+
+        try:
+            customer_deadline = confirmation_deadline(self.connect, case)
+        except BusinessReview:
+            latest = self.detail(principal, case_id)[0]
+            if (
+                latest.status == "committed"
+                and latest.action_digest == digest
+                and latest.approved_by == principal.actor_id
+            ):
+                return latest
+            raise
+
         def record(connection: Connection[Any], receipt: RefundReceipt) -> None:
             locked = self.load(connection, principal, case_id, lock=True)
             if locked.status == "committed" and locked.result and locked.result.receipt == receipt:
@@ -391,6 +408,7 @@ class CaseStore:
             fresh = self._snapshot_pin_from_locked_order(connection, locked)
             if fresh != locked.record_pin:
                 raise BusinessReview("approval_evidence_changed")
+            consume(connection, locked, receipt)
             result = WorkflowResult(
                 outcome="refunded",
                 reason="approved_ledger_and_state_verified",
@@ -399,6 +417,8 @@ class CaseStore:
                     f"{receipt.amount_minor // 100}.{receipt.amount_minor % 100:02d} SIM."
                 ),
                 receipt=receipt,
+                usage=locked.result.usage if locked.result else None,
+                usage_run_id=locked.result.usage_run_id if locked.result else None,
             )
             current = locked.model_copy(
                 update={
@@ -424,7 +444,7 @@ class CaseStore:
                 case.command,
                 run_id=uuid.uuid4().hex,
                 run_limit_minor=run_limit_minor,
-                expires_at=datetime.now(UTC) + timedelta(minutes=2),
+                expires_at=min(customer_deadline, datetime.now(UTC) + timedelta(minutes=2)),
                 fault=fault,
                 record_commit=record,
             )

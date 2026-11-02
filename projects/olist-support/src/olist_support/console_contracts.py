@@ -16,7 +16,7 @@ class Principal(Contract):
     username: Identity
     tenant_id: Identity
     actor_id: Identity
-    role: Literal["operator", "reviewer"]
+    role: Literal["operator", "reviewer", "customer"]
     order_ids: Annotated[tuple[Identity, ...], Field(max_length=1000)]
 
     def grant(self, order: str) -> CallerGrant:
@@ -24,7 +24,7 @@ class Principal(Contract):
             tenant_id=self.tenant_id,
             actor_id=self.actor_id,
             order_ids=self.order_ids,
-            capabilities=("read", "refund"),
+            capabilities=("read",) if self.role == "customer" else ("read", "refund"),
         )
         grant.require(self.tenant_id, order, "read")
         return grant

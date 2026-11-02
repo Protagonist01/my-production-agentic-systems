@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 78 — Bind refund execution to customer confirmation](#entry-78--bind-refund-execution-to-customer-confirmation)
 - [Entry 77 — Keep a stopped semantic failure visible outside fresh quality evidence](#entry-77--keep-a-stopped-semantic-failure-visible-outside-fresh-quality-evidence)
 - [Entry 76 — Separate run-host readiness from study authorization](#entry-76--separate-run-host-readiness-from-study-authorization)
 - [Entry 75 — Require parent observation before the next controlled trial](#entry-75--require-parent-observation-before-the-next-controlled-trial)
@@ -5174,3 +5175,84 @@ is satisfied. Investigate explicit action-bound confirmation/protected review be
 wrong interpretation can commit; post-commit detection only limits subsequent damage.
 Any future experiment must freeze its changed candidate and scope without restarting this
 one. Keep deployment/host-loss acceptance separate and #33/#58/#59 open.
+
+## Entry 78 — Bind refund execution to customer confirmation
+
+### Context and decision
+
+The owner selected customer confirmation of the exact refund action and amount. The
+existing service authenticates provisioned operators/reviewers; it has no customer role
+or transaction-confirmation endpoint. Keep the stopped ec42e12 study and its 447/614
+ledger unchanged. Implement a new service composition and invented tests without model
+calls. This is a workflow/authority change, not a claim that model interpretation improved.
+
+### Before you read on
+
+How can a customer approve a particular refund without letting the model manufacture that
+approval, a different customer reuse it, or a lost HTTP response execute the refund twice?
+Specify the identity, order, operation, amount, request and state that must stay bound.
+
+### Options considered
+
+Prompt-only repair cannot establish transaction authority: the previous response was valid
+JSON and within the business cap. Trusted payment/cancellation facts establish eligibility,
+not customer intent. The chosen customer confirmation separates a language suggestion from
+permission to commit. Existing reviewer approval remains a separate requirement where the
+request explicitly demands review; it cannot substitute for customer confirmation.
+
+### Construction in progress
+
+Reuse provisioned opaque sessions and CSRF checks, adding a customer role with read-only
+order scope. Keep customers out of internal operator case/audit endpoints. Store a random,
+expiring challenge server-side, bound to the customer, case request/version, exact command,
+action digest and trusted evidence pin. Display refund/order/amount/SIM explicitly; confirmation
+must echo those significant fields. Missing/changed/expired authority must fail closed.
+
+Keep old immutable SQL files intact; add a separately pinned schema for customer authority.
+New operator automatic-refund execution must stop for customer confirmation, and reviewer
+execution must verify it too. Couple confirmation consumption, business receipt, case and
+audit event in the existing refund transaction. A duplicate confirmed delivery may return
+the original verified receipt; it cannot create another operation or refresh an expiry.
+Include the new schema in private backup/readiness. Historical raw workflow primitives and
+the frozen study are distinct from this new service composition and are not release approval.
+
+Verify invented wrong-intent output cannot commit, customer/order separation, changed
+amount/request/evidence, expiry, duplicate/concurrent confirmation and commit-response loss.
+Record actual implementation failures and results below as they occur.
+
+### Close the older-binary bypass before calling this a commit guard
+
+Application callbacks alone do not stop an older binary from writing a refund without
+calling them. Add a deferred PostgreSQL constraint trigger at the service migration: at
+commit, a new receipt must have matching consumed customer authority, the completed case
+and its audit event. Keep exact pre-migration receipt rows in an admin-seeded, runtime
+read-only historical table; those are historical effects, not retroactive customer consent.
+The migration must seed this table only once, not on every bootstrap. Include the guard
+function/trigger definitions and authority tables in recovery fingerprints and readiness.
+
+The first SQL run failed at Docker startup before all 15 test bodies; Docker Desktop was
+stopped. Starting the existing daemon succeeded. The first broad Windows unit run also
+used a temp location under an existing C:\\.git, so source guards correctly refused it.
+Preserve that refusal, leave C:\\.git untouched, and use a newly verified external temp
+directory on D: instead. Nine new contract checks and the existing seven API checks pass;
+database behavior and full verification remain pending.
+
+### Keep runtime account permissions narrow
+
+The first actual SQL pass ran 15 checks: five passed and ten failed. The repeated cause was
+`permission denied for table accounts`: PostgreSQL row-locking SELECT also requires update
+privilege. Do not grant the application permission to edit accounts to fix a locking choice.
+Use a transaction advisory lock keyed by customer username, and a BEFORE UPDATE/DELETE
+account trigger taking the same lock. Consumption checks the current account with ordinary
+SELECT while holding that lock. This orders revocation against execution without account
+write permission. See PostgreSQL 17's SELECT privilege rules and CREATE TRIGGER semantics.
+An HTTP test also used strict Python-object validation on JSON date/decimal fields; use
+the existing JSON validator instead, preserving strict validation rather than enabling coercion.
+
+The authority state trigger stamps confirmation/consumption times using the database clock.
+New consumption must be unexpired; consumed authority is immutable. The deferred refund
+guard checks current account state for new consumption, while an isolated restore may copy
+already-consumed history without requiring a deleted/disabled customer to sign again.
+Historical consumption timestamps and receipts remain unchanged. No trigger is disabled
+for restore. Readiness checks actual function bodies/configuration and enabled trigger
+definitions, not only a stored migration hash; backup fingerprints include these objects.
