@@ -1,5 +1,15 @@
 # Code Study Guide — Production Agentic Systems
 
+The [customer-confirmed evaluation preparation](docs/olist-confirmed-evaluation-plan.md)
+continues from d4bdf52. The opt-in `CaseStore(..., planner=...)` pins a distinct profile,
+preserves its bounded context, reads the durable typed decision after graph execution and
+builds commands from fine intent/requested amount rather than a staff placeholder. Default
+staff wire shape remains unchanged. The chapter separates model meaning, conditional SIM
+eligibility, customer authority and independently observed effects, with a metric table and
+budget/reference arithmetic. It is not a provider-frozen recorder or a qualification claim.
+Interview exercise: why can 74 new calls fit the cap while the current16declared groups
+still cannot establish a95%confidence95%success claim?
+
 The [customer transaction authority chapter](docs/olist-customer-confirmation.md) traces the
 new service composition from base `7e7e823`: staff suggestion -> read-only customer session ->
 five-minute exact-action challenge -> confirmed authority -> business transaction consuming

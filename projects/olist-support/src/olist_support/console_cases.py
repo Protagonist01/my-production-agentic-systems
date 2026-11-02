@@ -5,7 +5,7 @@ import uuid
 from collections.abc import Iterator
 from contextlib import contextmanager
 from datetime import UTC, datetime, timedelta
-from typing import Any
+from typing import Any, Literal
 
 from agent_harness.contracts import RunContext
 from psycopg import Connection
@@ -16,20 +16,28 @@ from olist_support.business import BusinessStore, ConnectionFactory, FaultHook, 
 from olist_support.business_contracts import BusinessReview, RefundCommand, RefundReceipt
 from olist_support.console_contracts import CaseRecord, Decision, Principal, Submission
 from olist_support.policy import POLICY_VERSION, SupportRequest, propose
+from olist_support.routing_contracts import RoutingPlan
 from olist_support.workflow import (
     FixedPlanner,
+    IntentDecision,
     IntentPlan,
+    Planner,
     SupportWorkflow,
     WorkflowRequest,
     WorkflowResult,
 )
 from olist_support.workflow_postgres import saver
 
+MODEL_SERVICE_CANDIDATE = "olist-customer-confirmed-routing-v1"
+MODEL_SERVICE_AGENT = "olist-customer-confirmed-routing-sim"
+
 
 class CaseStore:
-    def __init__(self, connect: ConnectionFactory) -> None:
+    def __init__(self, connect: ConnectionFactory, *, planner: Planner | None = None) -> None:
         self.connect = connect
         self.business = BusinessStore(connect)
+        # Trusted composition only; never selectable through an HTTP request body.
+        self.planner = planner
 
     @contextmanager
     def connection(self) -> Iterator[Connection[Any]]:
@@ -131,11 +139,32 @@ class CaseStore:
         view, facts, version = self.business.order(
             principal.grant(case.order_id), case.tenant_id, case.order_id
         )
-        request = SupportRequest(
-            intent="reship" if case.request.intent == "reship" else "refund",
-            message=case.request.text,
+        intent: str = case.request.intent
+        requested_minor: int | None = None
+        decision = case.intent_decision
+        if case.intent_source == "planner":
+            intent = decision.plan.intent if decision and not decision.failure_code else "review"
+            requested_minor = decision.plan.requested_minor if decision else None
+        policy_intent = (
+            intent
+            if case.intent_source == "planner"
+            else "reship"
+            if case.request.intent == "reship"
+            else "refund"
         )
-        proposal = propose(view, request, facts)
+        proposal = (
+            propose(
+                view,
+                SupportRequest(
+                    intent="reship" if policy_intent == "reship" else "refund",
+                    message=case.request.text,
+                    requested_minor=requested_minor,
+                ),
+                facts,
+            )
+            if policy_intent in ("refund", "reship")
+            else None
+        )
         record_pin = identity_hash(
             "approval-record",
             view.canonical_json(),
@@ -144,7 +173,8 @@ class CaseStore:
         )
         command = None
         if (
-            case.request.intent == "refund"
+            intent == "refund"
+            and proposal is not None
             and proposal.action == "propose_full_refund"
             and proposal.amount_minor is not None
         ):
@@ -166,6 +196,12 @@ class CaseStore:
             if command
             else None
         )
+        if digest and case.intent_source == "planner":
+            if decision is None:
+                raise BusinessReview("saved_planner_decision_missing")
+            digest = identity_hash(
+                "planner-confirmed-action-v1", digest, decision.plan.canonical_json()
+            )
         return {
             "evidence": view,
             "confirmation": facts,
@@ -190,11 +226,21 @@ class CaseStore:
         request = Submission.model_validate_json(request.canonical_json())
         if context.tenant_id != principal.tenant_id or context.versions.policy != POLICY_VERSION:
             raise PermissionError("context scope/policy mismatch")
+        source: Literal["operator", "planner"] = (
+            "planner" if self.planner is not None else "operator"
+        )
+        if source == "planner" and (
+            context.agent_id != MODEL_SERVICE_AGENT
+            or context.versions.candidate != MODEL_SERVICE_CANDIDATE
+        ):
+            raise PermissionError("explicit customer-confirmed routing candidate required")
         case_id = identity_hash(
             "console-case", principal.tenant_id, principal.actor_id, request.event_key
         )
         context = context.model_copy(update={"business_event_id": case_id, "case_id": case_id})
         pin = identity_hash("console-request", request.canonical_json(), principal.actor_id)
+        if source == "planner":
+            pin = identity_hash("console-planner-request-v1", pin, MODEL_SERVICE_CANDIDATE)
         now = datetime.now(UTC)
         initial = CaseRecord(
             case_id=case_id,
@@ -207,6 +253,7 @@ class CaseStore:
             context=context,
             created_at=now,
             updated_at=now,
+            intent_source=source,
         )
         with self.connection() as connection:
             with connection.transaction():
@@ -242,6 +289,8 @@ class CaseStore:
         case, _ = self.detail(principal, case_id)
         if case.status not in ("processing", "needs_recovery"):
             return case
+        if (case.intent_source == "planner") != (self.planner is not None):
+            raise BusinessReview("case_planner_composition_changed")
         with self.business.session(
             principal.grant(case.order_id),
             tenant=case.tenant_id,
@@ -253,12 +302,16 @@ class CaseStore:
             if case.status not in ("processing", "needs_recovery"):
                 return case
             now = datetime.now(UTC)
-            context = case.context.model_copy(
-                update={
-                    "run_id": uuid.uuid4().hex,
-                    "clock": now,
-                    "deadline": now + timedelta(minutes=2),
-                }
+            context = (
+                case.context
+                if case.intent_source == "planner"
+                else case.context.model_copy(
+                    update={
+                        "run_id": uuid.uuid4().hex,
+                        "clock": now,
+                        "deadline": now + timedelta(minutes=2),
+                    }
+                )
             )
             intent = "review" if case.request.require_review else case.request.intent
             try:
@@ -267,7 +320,9 @@ class CaseStore:
 
                     result = SupportWorkflow(
                         ConfirmationRequiredStore(self.connect),
-                        FixedPlanner(IntentPlan(intent=intent)),
+                        self.planner
+                        if self.planner is not None
+                        else FixedPlanner(IntentPlan(intent=intent)),
                     ).run(
                         context,
                         WorkflowRequest(order_id=case.order_id, text=case.request.text),
@@ -275,13 +330,44 @@ class CaseStore:
                         checkpoints,
                         run_limit_minor=run_limit_minor,
                     )
+                    decision = None
+                    if case.intent_source == "planner":
+                        checkpoint = checkpoints.get_tuple(
+                            {
+                                "configurable": {
+                                    "thread_id": identity_hash(
+                                        "thread", context.tenant_id, context.business_event_id
+                                    )
+                                }
+                            }
+                        )
+                        if checkpoint is None:
+                            raise BusinessReview("saved_planner_checkpoint_missing")
+                        decision = IntentDecision.model_validate_json(
+                            json.dumps(checkpoint.checkpoint["channel_values"]["decision"])
+                        )
+                        if not decision.failure_code and not isinstance(decision.plan, RoutingPlan):
+                            raise BusinessReview("explicit_routing_plan_required")
+                        if case.request.require_review and result.outcome != "review_required":
+                            result = WorkflowResult(
+                                outcome="review_required",
+                                reason="operator_requires_review",
+                                message="This request requires review. No new refund is confirmed.",
+                                usage=result.usage,
+                                usage_run_id=result.usage_run_id,
+                            )
                 updates: dict[str, Any] = {
                     "result": result,
                     "status": "committed" if result.outcome == "refunded" else result.outcome,
                     "error_code": None,
+                    "intent_decision": decision,
                 }
                 if result.outcome == "review_required":
-                    updates.update(self._snapshot(principal, case))
+                    updates.update(
+                        self._snapshot(
+                            principal, case.model_copy(update={"intent_decision": decision})
+                        )
+                    )
             except Exception:
                 # The commit may already exist. Preserve recovery, never assert rollback.
                 updates = {
