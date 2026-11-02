@@ -5371,3 +5371,13 @@ That434attempt floor excludes extra slices/multiplicity/dependence/label uncerta
 is neither an approved study nor a claim that the required reference population exists.
 The protocol retains the accepted quality targets and distinguishes semantics, conditional
 SIM policy, customer authority and independent state effects. No live ledger is modified.
+
+### Review must also apply to status answers
+
+Inspection before merge found that configuring a model for a staff require_review request
+could return status directly: the graph no longer used the staff path's fixed review plan.
+Keep the model's fine classification for evaluation, but replace a non-review service result
+with operator_requires_review when that request flag is set. It creates no refund command
+for a status plan and does not expose a completed service answer before requested review.
+Add an actual SQL regression for this branch. The first private preparation packet remains
+historical; create a new packet for the corrected source rather than overwrite its pins.

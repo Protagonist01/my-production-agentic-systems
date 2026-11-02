@@ -170,6 +170,17 @@ def test_wrong_candidate_identity_is_rejected_before_planner_dispatch(console):
         )
 
 
+def test_model_status_cannot_bypass_explicit_staff_review(console):
+    _, case, _, _, _, _ = submit(
+        console,
+        RoutingPlan(routing_version="olist-intent-routing-v2", intent="status"),
+        review=True,
+    )
+    assert case.intent_decision.plan.intent == "status"
+    assert case.status == "review_required" and case.result.reason == "operator_requires_review"
+    assert case.command is None and observed(console, case) == ((0, 0), (0, 0), 0)
+
+
 def test_checkpoint_recovery_keeps_original_run_and_does_not_call_planner_again(
     console, monkeypatch
 ):

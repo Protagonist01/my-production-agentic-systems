@@ -42,6 +42,8 @@ an HTTP field cannot choose a planner, transport, principal or authorization.
    unsupported, review or a failed decision creates no refund command, even when the staff
    request contains a refund placeholder. Partial/zero/over-cap amounts remain independent
    policy refusals. A successful full-refund command remains pending customer confirmation.
+   An explicit staff review request also keeps a model-classified status answer in review;
+   preserving the model's fine classification does not grant it authority to skip review.
 6. Bind the plan into the action digest. A default customer-facing store can read the saved
    plan and enforce fresh evidence without owning a model. Required staff review is still
    additional to customer consent. Consumption, receipt, case and audit remain transactional.

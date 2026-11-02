@@ -145,17 +145,24 @@ class CaseStore:
         if case.intent_source == "planner":
             intent = decision.plan.intent if decision and not decision.failure_code else "review"
             requested_minor = decision.plan.requested_minor if decision else None
+        policy_intent = (
+            intent
+            if case.intent_source == "planner"
+            else "reship"
+            if case.request.intent == "reship"
+            else "refund"
+        )
         proposal = (
             propose(
                 view,
                 SupportRequest(
-                    intent="reship" if intent == "reship" else "refund",
+                    intent="reship" if policy_intent == "reship" else "refund",
                     message=case.request.text,
                     requested_minor=requested_minor,
                 ),
                 facts,
             )
-            if intent in ("refund", "reship")
+            if policy_intent in ("refund", "reship")
             else None
         )
         record_pin = identity_hash(
@@ -313,7 +320,9 @@ class CaseStore:
 
                     result = SupportWorkflow(
                         ConfirmationRequiredStore(self.connect),
-                        self.planner or FixedPlanner(IntentPlan(intent=intent)),
+                        self.planner
+                        if self.planner is not None
+                        else FixedPlanner(IntentPlan(intent=intent)),
                     ).run(
                         context,
                         WorkflowRequest(order_id=case.order_id, text=case.request.text),
@@ -339,6 +348,14 @@ class CaseStore:
                         )
                         if not decision.failure_code and not isinstance(decision.plan, RoutingPlan):
                             raise BusinessReview("explicit_routing_plan_required")
+                        if case.request.require_review and result.outcome != "review_required":
+                            result = WorkflowResult(
+                                outcome="review_required",
+                                reason="operator_requires_review",
+                                message="This request requires review. No new refund is confirmed.",
+                                usage=result.usage,
+                                usage_run_id=result.usage_run_id,
+                            )
                 updates: dict[str, Any] = {
                     "result": result,
                     "status": "committed" if result.outcome == "refunded" else result.outcome,
