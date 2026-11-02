@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Olist · Confirm a refund</title>
+    <link rel="stylesheet" href="/assets/console.css" />
+    <script src="/assets/customer.js" defer></script>
+  </head>
+  <body>
+    <section class="login-screen">
+      <div class="login-note">
+        <span class="wordmark">olist<span class="brand-dot">.</span></span>
+        <p class="eyebrow">YOUR ORDER</p>
+        <h1>You choose<br />what happens next.</h1>
+        <p>Check the order and exact amount before confirming a full refund.</p>
+        <span class="simulation-label">Controlled simulation · SIM funds only</span>
+      </div>
+      <section class="login-card">
+        <form id="customer-login">
+          <h2>Sign in to your orders</h2>
+          <p class="muted">Use your provisioned customer account.</p>
+          <label for="username">Username</label>
+          <input id="username" autocomplete="username" maxlength="64" required />
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" maxlength="128" required />
+          <button type="submit" class="primary">Sign in</button>
+        </form>
+        <div id="customer-orders" hidden>
+          <h2>Your requests</h2>
+          <p class="muted">Signing in does not authorize a refund.</p>
+          <button id="customer-refresh" class="text-button">Refresh requests</button>
+          <div id="customer-list"></div>
+          <section id="customer-proposal" hidden aria-live="polite">
+            <h3>Check this full refund</h3>
+            <p id="customer-order"></p>
+            <p id="customer-request"></p>
+            <p id="customer-amount"></p>
+            <p id="customer-expiry" class="small muted"></p>
+            <p>No refund has been confirmed. Continue only if this is the action you want.</p>
+            <button id="customer-confirm" class="primary">Confirm full refund</button>
+            <button id="customer-cancel" class="text-button">Cancel · do not confirm</button>
+          </section>
+          <button id="customer-logout" class="text-button">Sign out</button>
+        </div>
+        <p id="customer-notice" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+  </body>
+</html>

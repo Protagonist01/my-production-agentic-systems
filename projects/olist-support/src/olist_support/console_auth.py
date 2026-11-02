@@ -73,6 +73,9 @@ def setup_console(admin: Connection[Any], runtime_role: str) -> None:
                     sql.Identifier(runtime_role)
                 )
             )
+    from olist_support.customer_intent import setup_customer_intent
+
+    setup_customer_intent(admin, runtime_role)
 
 
 def provision(admin: Connection[Any], principal: Principal, password: str) -> None:

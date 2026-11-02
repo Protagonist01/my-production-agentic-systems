@@ -22,7 +22,7 @@ from starlette.types import ASGIApp, Message, Receive, Scope, Send
 from olist_support.business_contracts import BusinessReview
 from olist_support.console_auth import SESSION_SECONDS, AuthStore
 from olist_support.console_cases import CaseStore
-from olist_support.console_contracts import Decision, Principal, Resume, Submission
+from olist_support.console_contracts import CaseRecord, Decision, Principal, Resume, Submission
 from olist_support.policy import POLICY_VERSION
 from olist_support.service_telemetry import CountHTTP, ServiceTelemetry
 
@@ -142,14 +142,19 @@ def create_app(
         ):
             raise PermissionError("same-origin JSON required")
 
-    def principal(request: Request, *, write: bool = False) -> Principal:
+    def principal(
+        request: Request, *, write: bool = False, customer: bool = False, any_role: bool = False
+    ) -> Principal:
         csrf = None
         if write:
             same_origin(request)
             csrf = request.headers.get("x-csrf-token", "")
             if not 20 <= len(csrf) <= 128:
                 raise PermissionError("request verification required")
-        return auth.authenticate(request.cookies.get(session_cookie, ""), csrf)
+        user = auth.authenticate(request.cookies.get(session_cookie, ""), csrf)
+        if not any_role and (user.role == "customer") != customer:
+            raise PermissionError("account role does not authorize this endpoint")
+        return user
 
     @app.middleware("http")
     async def headers(request: Request, call_next: Any) -> Response:
@@ -197,9 +202,15 @@ def create_app(
             files("olist_support").joinpath("web/index.html").read_text(encoding="utf-8")
         )
 
+    @app.get("/customer")
+    def customer_page() -> HTMLResponse:
+        return HTMLResponse(
+            files("olist_support").joinpath("web/customer.html").read_text(encoding="utf-8")
+        )
+
     @app.get("/assets/{name}")
     def asset(name: str) -> Response:
-        if name not in ("console.css", "console.js"):
+        if name not in ("console.css", "console.js", "customer.js"):
             return Response(status_code=404)
         return Response(
             files("olist_support").joinpath("web/" + name).read_bytes(),
@@ -244,11 +255,14 @@ def create_app(
 
     @app.get("/api/session")
     def session(request: Request) -> dict[str, Any]:
-        return {"principal": principal(request).model_dump(mode="json"), "csrf_cookie": csrf_cookie}
+        return {
+            "principal": principal(request, any_role=True).model_dump(mode="json"),
+            "csrf_cookie": csrf_cookie,
+        }
 
     @app.post("/api/logout")
     def logout(request: Request) -> JSONResponse:
-        principal(request, write=True)
+        principal(request, write=True, any_role=True)
         auth.logout(request.cookies.get(session_cookie, ""))
         response = JSONResponse({"signed_out": True})
         response.delete_cookie(session_cookie, path="/")
@@ -294,7 +308,7 @@ def create_app(
         context = RunContext(
             run_id=uuid.uuid4().hex,
             tenant_id=user.tenant_id,
-            agent_id="olist-explicit-offline-intent",
+            agent_id="olist-customer-confirmed-sim",
             case_id="assigned-by-case-store",
             trial_id=trial_id,
             business_event_id="assigned-by-case-store",
@@ -307,7 +321,7 @@ def create_app(
             ),
             versions=CandidateVersions(
                 code_revision=code_revision,
-                candidate="olist-explicit-offline-intent-v1",
+                candidate="olist-customer-confirmed-service-v2",
                 data_snapshot=view.source_manifest_sha256,
                 policy=POLICY_VERSION,
                 environment_lock=environment_lock,
@@ -343,6 +357,48 @@ def create_app(
     @app.post("/api/cases/{case_id}/reevaluate")
     def reevaluate(case_id: str, request: Request) -> dict[str, Any]:
         return cases.reevaluate(principal(request, write=True), case_id).model_dump(mode="json")
+
+    from olist_support.customer_intent import Confirmation, CustomerIntentStore
+
+    customer_intents = CustomerIntentStore(cases)
+
+    def customer_result(case: CaseRecord) -> dict[str, Any]:
+        return {
+            "case_id": case.case_id,
+            "order_id": case.order_id,
+            "status": case.status,
+            "message": case.result.message if case.result else "No refund is confirmed.",
+            "committed": case.status == "committed",
+        }
+
+    @app.get("/api/customer/cases")
+    def customer_cases(request: Request) -> list[dict[str, Any]]:
+        return [customer_result(c) for c in cases.listing(principal(request, customer=True))]
+
+    @app.get("/api/customer/cases/{case_id}")
+    def customer_case(case_id: str, request: Request) -> dict[str, Any]:
+        return customer_result(cases.detail(principal(request, customer=True), case_id)[0])
+
+    @app.post("/api/customer/cases/{case_id}/challenge")
+    def customer_challenge(case_id: str, request: Request) -> dict[str, Any]:
+        return customer_intents.issue(principal(request, write=True, customer=True), case_id)
+
+    @app.post("/api/customer/cases/{case_id}/confirm")
+    def customer_confirm(case_id: str, payload: Confirmation, request: Request) -> dict[str, Any]:
+        return customer_intents.confirm(
+            principal(request, write=True, customer=True), case_id, payload
+        )
+
+    @app.post("/api/customer/cases/{case_id}/execute")
+    def customer_execute(case_id: str, payload: Confirmation, request: Request) -> dict[str, Any]:
+        return customer_result(
+            customer_intents.execute(
+                principal(request, write=True, customer=True),
+                case_id,
+                payload,
+                run_limit_minor=run_limit_minor,
+            )
+        )
 
     # Last-added middleware wraps body/host/header checks as well as normal routes.
     app.add_middleware(CountHTTP, telemetry=telemetry)

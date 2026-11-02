@@ -17,8 +17,8 @@ from pydantic import AwareDatetime, Field
 
 from olist_support.policy_cases import external
 
-SCHEMAS = ("olist", "olist_app", "olist_graph")
-Namespace = Literal["olist", "olist_app", "olist_graph"]
+SCHEMAS = ("olist", "olist_app", "olist_graph", "olist_intent")
+Namespace = Literal["olist", "olist_app", "olist_graph", "olist_intent"]
 MAX_BYTES = 20_000_000
 
 
@@ -49,7 +49,7 @@ def table_inventory(connection: Connection[Any]) -> tuple[tuple[str, str], ...]:
         (list(SCHEMAS),),
     ).fetchall()
     if not rows or {s for s, _ in rows} != set(SCHEMAS):
-        raise ValueError("all three installed Olist schemas are required")
+        raise ValueError("all installed Olist schemas including customer authority are required")
     return tuple((str(s), str(t)) for s, t in rows)
 
 
@@ -83,9 +83,23 @@ def schema_pin(connection: Connection[Any]) -> str:
         (list(SCHEMAS),),
     ).fetchone():
         raise ValueError("snapshot does not support sequence state")
+    functions = connection.execute(
+        "SELECT n.nspname,p.proname,pg_get_functiondef(p.oid) FROM pg_proc p "
+        "JOIN pg_namespace n ON n.oid=p.pronamespace WHERE n.nspname=ANY(%s) "
+        "AND p.prokind='f' ORDER BY n.nspname,p.proname,pg_get_function_identity_arguments(p.oid)",
+        (list(SCHEMAS),),
+    ).fetchall()
+    triggers = connection.execute(
+        "SELECT n.nspname,c.relname,t.tgname,t.tgenabled,pg_get_triggerdef(t.oid) "
+        "FROM pg_trigger t JOIN pg_class c ON c.oid=t.tgrelid "
+        "JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname=ANY(%s) "
+        "AND NOT t.tgisinternal ORDER BY n.nspname,c.relname,t.tgname",
+        (list(SCHEMAS),),
+    ).fetchall()
     return sha256(
         json.dumps(
-            [table_inventory(connection), columns, constraints, indexes], sort_keys=True
+            [table_inventory(connection), columns, constraints, indexes, functions, triggers],
+            sort_keys=True,
         ).encode()
     )
 

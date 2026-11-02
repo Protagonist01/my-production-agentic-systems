@@ -91,6 +91,11 @@ function screen(name) {
   for (const id of ["empty", "compose", "detail"]) $(id).hidden = id !== name;
 }
 async function signedIn(session) {
+  if (session.principal.role === "customer") {
+    $("password").value = "";
+    window.location.assign("/customer");
+    return;
+  }
   user = session.principal;
   csrfName = session.csrf_cookie;
   $("password").value = "";
