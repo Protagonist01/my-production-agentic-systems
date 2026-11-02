@@ -5381,3 +5381,8 @@ with operator_requires_review when that request flag is set. It creates no refun
 for a status plan and does not expose a completed service answer before requested review.
 Add an actual SQL regression for this branch. The first private preparation packet remains
 historical; create a new packet for the corrected source rather than overwrite its pins.
+
+The434attempt arithmetic assumes a deliberately disjoint-family, separate-call design for
+the two conditional strata. State that assumption in the proposal; it is not a universal
+minimum. A paired-family counterfactual design may use different calls but changes conditional
+claims and dependence. Do not inflate its independent sample size by counting variants.

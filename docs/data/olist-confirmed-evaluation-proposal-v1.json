@@ -41,6 +41,8 @@
   },
   "qualification_arithmetic_floor": {
     "assumptions_approved": false,
+    "design": "disjoint_family_strata_with_separate_calls_per_applicable_case",
+    "universal_minimum_claimed": false,
     "interval": "two_sided_95_percent_exact_binomial_separately_per_endpoint",
     "desired_success_lower_bound": 0.95,
     "zero_errors_required_for_this_floor": true,

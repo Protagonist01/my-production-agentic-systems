@@ -132,11 +132,15 @@ qualification claims. Otherwise another perfect exposed-case result still cannot
 
 For illustration only, a separately-per-endpoint two-sided95%exact-binomial lower bound
 of95% needs at least72independent all-success families in each applicable denominator.
-Eligible-refund and required-review strata are disjoint: at least72+72=144families before
-adding status/other required slices. At three trials per family this is at least432domain
-calls+2canaries=434attempts. Errors, dependence, label uncertainty and simultaneous confidence
-requirements can increase that requirement. This is a lower-bound calculation, not an
-approved sample size, complete cohort, representative population or spend request.
+Consider a design that deliberately samples **disjoint families** for eligible-refund and
+required-review strata, with separate calls per applicable case:72+72=144families before
+adding status/other required slices. At three trials per family this design needs at least
+432domain calls+2canaries=434attempts. This is a design-specific floor, not a universal
+minimum. A paired-family or reused-response design has different arithmetic and must make
+its conditional endpoints and dependence explicit; it cannot count paired variants as
+new independent families. Errors, label uncertainty and simultaneous confidence requirements
+can increase sample needs. Neither design is an approved protocol, available cohort or
+spend request; the source evidence must establish which claims can actually be supported.
 
 Freshness means new independent source groups with a documented sampling frame, not new
 edits of these24texts. Source work must examine whether publisher annotations establish
