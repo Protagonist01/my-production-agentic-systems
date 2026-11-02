@@ -11,6 +11,7 @@ const money = (n) => `${Math.floor(n / 100)}.${String(n % 100).padStart(2, "0")}
 function clearProposal() {
   selection = null;
   $("customer-proposal").hidden = true;
+  $("customer-confirm").textContent = "Confirm full refund";
   for (const id of ["customer-order", "customer-request", "customer-amount", "customer-expiry"]) $(id).textContent = "";
 }
 function clearSessionView() {
@@ -23,12 +24,18 @@ function cookie(name) {
   return entry ? decodeURIComponent(entry.slice(name.length + 1)) : "";
 }
 async function api(path, body) {
+  const epoch = sessionEpoch;
   const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 120000);
   try {
     const headers = body === undefined ? {} : {"Content-Type":"application/json", "X-CSRF-Token":cookie(csrfName)};
     const response = await fetch(path, {method:body === undefined ? "GET" : "POST", credentials:"same-origin", headers,
       body:body === undefined ? undefined : JSON.stringify(body), signal:controller.signal});
     const value = await response.json();
+    if (response.status === 403 && identity && epoch === sessionEpoch) {
+      ++generation; identity = null; csrfName = null; clearSessionView();
+      $("customer-login").hidden = false;
+      notice("Your session or order access changed. Sign in again.");
+    }
     if (!response.ok) throw new Error(response.status === 403 ? "Your session or order access does not allow this action. Sign in again."
       : response.status === 409 ? "This confirmation changed, expired or needs review. Refresh the request before continuing."
       : "The request could not be completed. Refresh before trying again.");

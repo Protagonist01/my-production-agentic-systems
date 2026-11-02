@@ -96,7 +96,8 @@ Timeout language allows for an already-committed refund and directs a refresh.
 [`customer.js`](../projects/olist-support/src/olist_support/web/customer.js) uses session
 epochs and selection generations to discard late responses after logout/account change.
 Authentication mutations serialize through a queue. Private fields are cleared immediately
-on account transition; a pending confirmation response cannot dispatch execution as a new
+on account transition or a current-session access denial; a stale old-account denial cannot
+clear a newer session. A pending confirmation response cannot dispatch execution as a new
 customer. Server authorization remains authoritative even if browser code is changed.
 
 ## Migration, provisioning and recovery
@@ -140,6 +141,13 @@ shipped asset with late responses, account switches, cancel, exact amount and a 
 execution with no automatic retry. Contract tests reject extra fields and malformed money.
 Actual final test counts and browser observations belong in the PR and Build Book; a planned
 check is not a result.
+
+Local focused SQL verification on2026-11-02 passed21checks in622.18seconds. Initial PR130
+hosted logs passed all162SQL checks; the final-head matrix remains the delivery authority.
+An actual Edge browser run on an isolated invented order observed zero effects after cancel,
+then one50.00SIM receipt and one version increase after exact confirmation, preserved on
+refresh. Read-only ledger inspection retained447consumed/0unsettled/1durable stop. Browser
+captures and raw logs remain private/ignored; no real customer data or provider was involved.
 
 **Design limits:** this is provisioned loopback HTTP/SIM, not public production identity,
 payments, MFA, independent semantic gold, host-loss qualification or a full security audit.

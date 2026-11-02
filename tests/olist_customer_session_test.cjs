@@ -50,6 +50,7 @@ function harness() {
   await late.click("customer-logout"); challenge.resolve(response(offer)); await opening;
   assert.equal(late.state().identity,null); assert.equal(late.state().selection,null);
   assert.equal(late.node("customer-proposal").hidden,true); assert.equal(late.node("customer-request").textContent,"");
+  assert.equal(late.node("customer-confirm").textContent,"Confirm full refund");
 
   const switched = harness(); await tick(); await switched.login("first"); await switched.open();
   const confirmed = switched.queue("/api/customer/cases/case-one/confirm"), sending = switched.click("customer-confirm"); await tick();
@@ -63,5 +64,17 @@ function harness() {
   await failed.click("customer-confirm");
   assert.equal(failed.calls.filter(c=>c.url.endsWith("/execute")).length,1);
   assert.equal(failed.state().selection,null); assert.match(failed.node("customer-notice").textContent,/Refresh/);
+  const expired = harness(); await tick(); await expired.login(); await expired.open();
+  const deniedSession = expired.queue("/api/customer/cases/case-one/confirm"); deniedSession.resolve(response({},403));
+  await expired.click("customer-confirm");
+  assert.equal(expired.state().identity,null); assert.equal(expired.node("customer-request").textContent,"");
+  assert.equal(expired.node("customer-confirm").textContent,"Confirm full refund");
+  assert.equal(expired.node("customer-login").hidden,false);
+
+  const staleDenied = harness(); await tick(); await staleDenied.login("first");
+  const old = staleDenied.queue("/api/customer/cases/case-one/challenge"), loading = staleDenied.open(); await tick();
+  await staleDenied.click("customer-logout"); await staleDenied.login("second");
+  old.resolve(response({},403)); await loading;
+  assert.equal(staleDenied.state().identity.username,"second");
   console.log("Olist customer asset: exact amount, cancel, stale challenge, account switch and no automatic retry passed; zero network calls");
 })().catch(error=>{console.error(error);process.exitCode=1;});

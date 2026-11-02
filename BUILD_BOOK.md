@@ -5256,3 +5256,39 @@ already-consumed history without requiring a deleted/disabled customer to sign a
 Historical consumption timestamps and receipts remain unchanged. No trigger is disabled
 for restore. Readiness checks actual function bodies/configuration and enabled trigger
 definitions, not only a stored migration hash; backup fingerprints include these objects.
+
+### Verification and a browser cleanup correction (2026-11-02)
+
+The final focused local SQL run passed all21checks in622.18seconds on Windows/Python3.13.4.
+It exercised the new eight authority tests plus affected console, recovery and process-shutdown
+checks. The initial PR130 hosted tree also passed all162PostgreSQL checks. Its Ubuntu3.12/3.13
+and Windows3.12 logs each show1500unit passes,215typed sources,12built wheel/sdist artifacts
+and strict replay consuming6recordings/2invented timeouts with0outbound provider calls.
+The Windows3.13 cell and final changed browser asset still require their exact-head checks;
+do not treat this intermediate evidence as permission to skip those checks.
+
+Run `node tests/olist_customer_session_test.cjs` to drive the shipped browser asset with
+controlled late responses and no network. It verifies exact50.00SIM confirmation, cancel,
+logout during a challenge, an account switch during confirmation, and one failed execute
+without automatic retry. Review found two further private-state cleanup gaps: a hidden
+button retained the old amount, and a current-session403 left prior details on screen.
+Clear the button label with the proposal, and clear authenticated private state only if
+the denied response's session epoch is still current. Add both expired-session and stale
+old-account denial tests; the expanded asset check passes. Do not let a late old403 clear
+the newly authenticated customer.
+
+For actual browser verification, create an isolated external `Workspace`, install business,
+checkpoints and console schemas, enroll one invented eligible50.00SIM order and provision
+separate operator/customer accounts. Submit an intentionally wrong refund suggestion on
+"what options do I have?"; it must remain review-required. Open `/customer` with Playwright
+CLI using installed Edge (the default Chrome channel was absent). Sign in, open the exact
+refund details and cancel: a read-only SQL observation showed0receipts,order[0,0],pending
+challenge. Open details again and explicitly confirm50.00SIM: the UI reports a SIM commit;
+SQL independently shows1receipt,total5000minor,order[5000,1],consumed challenge. Refresh
+preserves the single effect. Private screenshots are ignored under `output/playwright/`.
+The initial unauthenticated session probe's403 is expected, not a JS execution error.
+
+Keep the demonstration's credentials invented and separate from all model configuration.
+Read-only inspection of the authoritative shared allowance confirmed447consumed,0unsettled,
+1durable routing stop. No provider calls, scope amendments or model-quality claims follow.
+Final CI/merge evidence belongs on PR130 and linked issue updates; release gates remain open.
