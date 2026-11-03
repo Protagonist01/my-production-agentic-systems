@@ -333,3 +333,18 @@ increase, live ledger amendment, model dispatch, study restart or release is aut
 Keep the same447/614ledger and original stop unchanged. A final provider-frozen package
 needs the service-aware recorder/scorer, selected-host readiness, concrete references,
 request/context/source pins and explicit scoped allocation/account approval.
+
+## Olist project partition preparation selected (2026-11-03)
+
+The owner explicitly selected retaining publisher split metadata and creating Olist project
+partitions over unexposed source groups. This amends the earlier interpretation that only
+publisher test records may be project holdout. Preserve native split metadata and the source
+files, apply connected exposure/duplicate grouping before assignment, and keep reviewed
+witnesses excluded from fresh qualification. Private preparation amendment/exposure inputs:
+`D:/document/.cache/production-agents/olist/reference-audit-inputs-2026-11-03-v2`.
+This authorizes partition preparation only, not new gold labels, an accepted replacement
+review policy, statistical thresholds, provider calls, allowance amendments or release.
+The same447/614ledger, zero unsettled and durable original stop remain unchanged as last
+read. Do not treat lexical clusters or publisher annotations as authenticated independence
+or automatic first-message semantic truth. Current20/20/60hash weights are draft preparation,
+not an owner-reviewed frozen study or production acceptance criterion.

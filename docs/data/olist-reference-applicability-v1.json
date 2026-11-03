@@ -1,0 +1,143 @@
+{
+  "amount_reference_established": false,
+  "audit_sha256": "25d8e6153b887ef9cc01699bbe30535b93701a68ce626cf6f9dcfb856699ecc0",
+  "audit_summary": {
+    "amount_reference_established": false,
+    "archive_sha256": "2bdf53ac359543dcdc38d55bc6513e78df120363f8f44870716e909f4606de15",
+    "exclusion_counts": {
+      "native_goal_outside_declared_projection": 8280,
+      "no_literal_scope_anchor": 8915,
+      "normalized_text_crosses_native_splits": 1536,
+      "previously_exposed_normalized_text": 682,
+      "previously_exposed_source": 29,
+      "turn_annotation_differs_from_scenario": 2172,
+      "visible_conflict_requires_applicability_review": 316
+    },
+    "exposure_sha256": "2ed76f5809aa423c39e0ebe81ba1ddc1c82eaeed90b3e64430dfefdce4066b3e",
+    "independence_validated": false,
+    "literal_review_candidate_counts": {
+      "dev:refund": 8,
+      "dev:status": 37,
+      "dev:unsupported": 61,
+      "test:refund": 8,
+      "test:status": 39,
+      "test:unsupported": 54,
+      "train:refund": 72,
+      "train:status": 292,
+      "train:unsupported": 480
+    },
+    "native_split_route_counts": {
+      "dev:refund": 18,
+      "dev:status": 55,
+      "dev:unmapped": 829,
+      "dev:unsupported": 102,
+      "test:refund": 19,
+      "test:status": 58,
+      "test:unmapped": 828,
+      "test:unsupported": 99,
+      "train:refund": 139,
+      "train:status": 425,
+      "train:unmapped": 6623,
+      "train:unsupported": 847
+    },
+    "new_labels_accepted": 0,
+    "normalized_text_groups": 8436,
+    "provider_calls": 0,
+    "qualification_ready": false,
+    "release_allowed": false,
+    "semantic_gold_validated": false,
+    "source_records": 10042,
+    "version": "olist-abcd-reference-audit-v1"
+  },
+  "exposed_normalized_texts": 39,
+  "exposed_source_ids": 29,
+  "exposure_index_sha256": "2ed76f5809aa423c39e0ebe81ba1ddc1c82eaeed90b3e64430dfefdce4066b3e",
+  "exposure_texts_sha256": "f733961ef344d056c08d967511656f5db9bf2b80ec796d2991487262a8c610d8",
+  "frozen_for_provider": false,
+  "independence_validated": false,
+  "lifetime_cap": 614,
+  "live_ledger_read_only": {
+    "consumed": 447,
+    "stops": 1,
+    "unsettled": 0
+  },
+  "partitions_sha256": "9ef26339df683df8ad3fda65a3afe0fd9c3e3ae72179dcd6c1a260d13e7563e3",
+  "preparation_authorization_ref": "owner-split-preparation-amendment:98b42fca104f5d81fc3f843dc79ef32d38830015c9114216f7d833c62cbe1a85",
+  "prepared_date": "2026-11-03",
+  "project_partition_summary": {
+    "audit_sha256": "25d8e6153b887ef9cc01699bbe30535b93701a68ce626cf6f9dcfb856699ecc0",
+    "connected_groups_by_project_split": {
+      "development": 189,
+      "holdout": 539,
+      "regression": 189
+    },
+    "frozen_for_provider": false,
+    "groups_by_project_and_proposed_route": {
+      "development:refund": 15,
+      "development:status": 76,
+      "development:unsupported": 98,
+      "holdout:refund": 49,
+      "holdout:status": 183,
+      "holdout:unsupported": 307,
+      "regression:refund": 16,
+      "regression:status": 65,
+      "regression:unsupported": 108
+    },
+    "independence_validated": false,
+    "labels_accepted": false,
+    "native_splits_retained_as_metadata": true,
+    "release_allowed": false,
+    "rows_by_project_and_proposed_route": {
+      "development:refund": 15,
+      "development:status": 77,
+      "development:unsupported": 106,
+      "excluded:refund": 88,
+      "excluded:status": 164,
+      "excluded:unmapped": 8280,
+      "excluded:unsupported": 438,
+      "holdout:refund": 57,
+      "holdout:status": 203,
+      "holdout:unsupported": 376,
+      "regression:refund": 16,
+      "regression:status": 94,
+      "regression:unsupported": 128
+    },
+    "rows_by_project_split": {
+      "development": 198,
+      "excluded": 8970,
+      "holdout": 636,
+      "regression": 238
+    },
+    "version": "olist-reference-project-partitions-v1"
+  },
+  "provider_calls": 0,
+  "reference_review_complete": false,
+  "release_allowed": false,
+  "semantic_gold_validated": false,
+  "source_archive_sha256": "2bdf53ac359543dcdc38d55bc6513e78df120363f8f44870716e909f4606de15",
+  "source_commit": "6b8700ce67c6b37b062dd7a60abc76d7ef832a97",
+  "source_file_hash_scope": "prepared_local_runtime_bytes",
+  "source_file_sha256": [
+    {
+      "sha256": "a0d4b0a88b7bd16a55d006ba5eaed911a02720b236d8a7b5706293d305467581",
+      "source_path": "projects/olist-support/src/olist_support/console_api.py"
+    },
+    {
+      "sha256": "83b90a389be8a5a9014bdda9172ae123d2d4ff7dfe616079c314af1314ed8dff",
+      "source_path": "projects/olist-support/src/olist_support/project_partitions.py"
+    },
+    {
+      "sha256": "e72272de1c8e6fffdd6c4eff0d9688ef4df7c7af89fc30b9e7c880a3ed92c8eb",
+      "source_path": "projects/olist-support/src/olist_support/reference_audit.py"
+    },
+    {
+      "sha256": "5ea22962e975d22053c27434904c4b0494f948886c855cafbb25f99c0e044ee2",
+      "source_path": "projects/olist-support/src/olist_support/reference_audit_cli.py"
+    },
+    {
+      "sha256": "e726e9a903a7c6a7de14dd9a98f30065820fdbd65dd8cb2aac622459091f0e8e",
+      "source_path": "projects/olist-support/src/olist_support/service_study.py"
+    }
+  ],
+  "version": "olist-reference-applicability-public-v1"
+}

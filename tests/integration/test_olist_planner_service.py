@@ -236,3 +236,105 @@ def test_planner_failure_and_unversioned_success_cannot_create_service_authority
     _, legacy, _, _, _, _ = submit(console, IntentPlan(intent="refund"))
     assert legacy.status == "needs_recovery" and legacy.command is None
     assert observed(console, legacy) == ((0, 0), (0, 0), 0)
+
+
+@pytest.mark.parametrize("intent", ["refund", "clarify", "status"])
+def test_trusted_planner_composition_uses_matching_http_identity_and_exact_customer_flow(
+    console, intent
+):
+    from fastapi.testclient import TestClient
+    from olist_support.console_api import create_app
+    from olist_support.console_auth import AuthStore, provision
+    from olist_support.console_contracts import Principal
+    from test_olist_console import ORIGIN, PASSWORD
+
+    order, operator, _ = actors(console)
+    customer = Principal(
+        username="customer_" + uuid.uuid4().hex,
+        tenant_id=operator.tenant_id,
+        actor_id="customer-" + uuid.uuid4().hex,
+        role="customer",
+        order_ids=(order,),
+    )
+    with console[0].connect(console[1].name) as admin:
+        provision(admin, operator, PASSWORD)
+        provision(admin, customer, PASSWORD)
+    gateway = InventedGateway(
+        RoutingPlan(routing_version="olist-intent-routing-v2", intent=intent).canonical_json()
+    )
+    route = ModelRequest(
+        provider="invented",
+        endpoint="in-process",
+        model="invented-model",
+        messages=(ModelMessage(role="user", content="unused"),),
+        parameters={},
+    )
+    store = CaseStore(
+        lambda: console[0].connect_trial(console[1]), planner=RoutingGatewayPlanner(gateway, route)
+    )
+    app = create_app(
+        store,
+        AuthStore(store.connect),
+        origin=ORIGIN,
+        trial_id=console[1].name,
+        code_revision="invented-http-composition",
+        environment_lock="a" * 64,
+        run_limit_minor=10000,
+    )
+    with TestClient(app, base_url=ORIGIN) as staff:
+        signed = staff.post(
+            "/api/login",
+            json={"username": operator.username, "password": PASSWORD},
+            headers={"origin": ORIGIN},
+        )
+        assert signed.status_code == 200
+        headers = {"origin": ORIGIN, "x-csrf-token": staff.cookies[signed.json()["csrf_cookie"]]}
+        request = {
+            "event_key": uuid.uuid4().hex,
+            "order_id": order,
+            "text": "Invented HTTP request.",
+            "intent": "refund",
+            "require_review": False,
+        }
+        response = staff.post("/api/cases", json=request, headers=headers)
+        assert response.status_code == 200
+        case = store.detail(operator, response.json()["case_id"])[0]
+        assert case.context.agent_id == MODEL_SERVICE_AGENT
+        assert case.context.versions.candidate == MODEL_SERVICE_CANDIDATE
+        assert case.context.mode == "offline_fake"  # no live scope is enabled by this seam
+        assert case.intent_decision.plan.intent == intent and len(gateway.requests) == 1
+        assert staff.post("/api/cases", json=request, headers=headers).json() == response.json()
+    assert observed(console, case) == ((0, 0), (0, 0), 0)
+    if intent != "refund":
+        assert case.command is None
+        return
+    customer_app = create_app(
+        CaseStore(store.connect),
+        AuthStore(store.connect),
+        origin=ORIGIN,
+        trial_id=console[1].name,
+        code_revision="invented-http-customer-restart",
+        environment_lock="a" * 64,
+        run_limit_minor=10000,
+    )
+    with TestClient(customer_app, base_url=ORIGIN) as portal:
+        signed = portal.post(
+            "/api/login",
+            json={"username": customer.username, "password": PASSWORD},
+            headers={"origin": ORIGIN},
+        )
+        headers = {"origin": ORIGIN, "x-csrf-token": portal.cookies[signed.json()["csrf_cookie"]]}
+        path = "/api/customer/cases/" + case.case_id
+        offer = portal.post(path + "/challenge", json={}, headers=headers)
+        assert offer.status_code == 200
+        body = {
+            "challenge": offer.json()["challenge"],
+            "action": "refund",
+            "amount_minor": 5000,
+            "unit": "SIM",
+        }
+        assert portal.post(path + "/confirm", json=body, headers=headers).status_code == 200
+        committed = portal.post(path + "/execute", json=body, headers=headers)
+        assert committed.status_code == 200 and committed.json()["status"] == "committed"
+        assert portal.post(path + "/execute", json=body, headers=headers).json() == committed.json()
+    assert len(gateway.requests) == 1 and observed(console, case) == ((5000, 1), (1, 5000), 1)

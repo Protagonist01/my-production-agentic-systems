@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 82 — Audit reference applicability before another model study](#entry-82--audit-reference-applicability-before-another-model-study)
 - [Entry 81 — Keep consent evidence independent of semantic correctness](#entry-81--keep-consent-evidence-independent-of-semantic-correctness)
 - [Entry 80 — Observe the complete customer-confirmed transaction](#entry-80--observe-the-complete-customer-confirmed-transaction)
 - [Entry 78 — Bind refund execution to customer confirmation](#entry-78--bind-refund-execution-to-customer-confirmation)
@@ -5497,3 +5498,97 @@ Run the focused SQL case and static checks before submitting; required full CI r
 The focused real-SQL regression passes in36.86seconds. Lint and formatting pass. Version
 the changed semantics as `olist-confirmed-service-state-v2`; old v1 artifacts retain their
 old source/scorer pins and cannot be silently reinterpreted as v2 evidence.
+
+## Entry 82 — Audit reference applicability before another model study
+
+### Context and decision in progress
+
+The next closeout step starts from verified main8ca35df. The service recorder is now real,
+but its existing24texts are exposed development cases. The pinned ABCD source describes
+its annotations as latent conversation goals. Reading new metadata examples confirms the
+problem: a refund-initialize dialogue can start with a generic return request, and an
+account-recovery dialogue can start with only a greeting. Do not map every publisher
+subflow directly into first-message Olist gold.
+
+### Before you read on
+
+What does a source pin prove? It proves which bytes were read. What does a matching literal
+word prove? Only that those characters occur. Neither proves the intended action, absence
+of a requested amount, family independence or release qualification.
+
+### Construction and tradeoff
+
+Keep the approved ABCD source, original splits and earlier acceptances unchanged. Add an
+offline applicability auditor that verifies the separately supplied archive/exposure pins,
+projects only the first customer text, retains original scenario/turn annotations outside
+candidate input, and records exact literal scope anchors and exclusions. Exclude exposed
+IDs/text and normalized duplicates crossing native splits. Preserve unmatched/conflicting
+cases rather than force them into clarification or unsupported. All proposed mappings
+remain review candidates; no labels are accepted and all release/gold flags stay false.
+
+Investigate Bitext's directly annotated support corpus as an alternative, using its pinned
+publisher metadata/license only at this stage. Its card describes hybrid synthetic seed
+expansion, so many rows alone would not establish independent families or unseen real
+customer performance. Do not silently change the approved source mix or export new data.
+
+The service also needs its own complete comparison report: three matched compositions,
+every scheduled case/trial including absent variants, fine fields, conditional completion/
+review rates, grouped repeat success, observed timing scope and cost unknowns. Reusing the
+old four-variant report would omit authority/audit and bind the wrong fixture. Implement
+the separate preparation report without changing any release threshold or live allowance.
+
+Verification, actual source counts and any remaining decisions follow below.
+
+### Runnable HTTP seam found during the operational audit
+
+`create_app` already accepts a trusted CaseStore, but its submit route always constructed
+the staff-only agent/candidate identity. Supplying the new planner store therefore failed
+CaseStore's explicit profile check before dispatch. Select the model-service identity only
+when the trusted constructor has a planner; retain the default staff identity and
+offline_fake mode. HTTP input still cannot select a planner, mode, grant or profile.
+This makes invented planner-composition HTTP tests possible without enabling live models.
+Test authenticated submission/redelivery and the separate exact customer flow, plus
+clarification/status with no command, through the actual API rather than direct methods.
+
+### Owner decision, grouping and measured preparation
+
+The archive has 10,042 conversations, but the native test split offers only eight literal
+refund review candidates after initial exposure exclusions. Ask rather than silently
+redefine source-split preservation. The owner selected retaining native split metadata
+while creating Olist project partitions over unexposed groups. Preserve that preparation
+reply separately; it accepts neither the labels nor a qualification study.
+
+Build `ExposureTexts` from every known exposed text and require its normalized identities
+to match the complete exposure index. In `project_partitions.partition`, connect mapped
+records, excluded mapped intermediaries, exposed source records and exposed texts before
+partition assignment. Union exact normalized matches or token-set Jaccard overlap >=4/5.
+Exclude every connected exposure component. Hash sorted component members, then assign
+the component using fixed 20/20/60 development/regression/holdout hash ranges. Native-split
+crossing copies stay in one component. Never retune the hash after seeing outcomes.
+
+Run the network-denied audit CLI with externally pinned archive, exposure and exposed-text
+inputs and a new output directory; the concrete invocation is in
+`docs/olist-reference-applicability.md`. Recompute source frames and partitions before
+publishing aggregate counts. Current exposure inventory: 29 source IDs and 39 normalized
+texts, including the 12 training-only review witnesses. Actual draft: 198 development,
+238 regression, 636 holdout and 8,970 excluded rows. The holdout has 539 declared lexical
+components, including 49 refund components. Lexical grouping cannot establish independent
+authors, correct semantic labels, absent amounts or foundation-model pretraining novelty.
+Keep those validation flags false rather than promoting a preparation statistic.
+
+### Bugs encountered and verification
+
+The HTTP test initially attempted to restart the same terminated FastAPI app. Its one-shot
+telemetry guard correctly rejected reuse. Reconstruct a separate customer app with a
+fresh telemetry lifecycle and no planner; retained SQL state then supports exact consent,
+execution and duplicate delivery without another inference. Do not weaken the guard.
+All three HTTP cases pass against real PostgreSQL. The existing real-SQL three-trial H10
+case also passes with the new comparison assembler: three candidate rows plus six absent
+baseline rows remain nine scheduled observations, not three successful comparisons.
+
+The final focused unit run passes 24 tests, including tampered-source/partition refusal,
+transitive exposure exclusion, native-split provenance, CLI partial-input refusal and
+unknown-cost/missing-comparator accounting. Strict typing passes all 222 source files;
+both import boundaries pass. Full required hosted CI and post-merge acceptance remain
+delivery steps, not results assumed from these focused checks. No provider calls or
+allowance mutations occur. The original stopped study remains intact.
