@@ -19,7 +19,7 @@ from olist_support.release import ScheduledTrial, StateSnapshot, expected_state
 from olist_support.routing_evaluation import RoutingCase
 from olist_support.service_observation import ServiceSnapshot
 
-SCORER_VERSION = "olist-confirmed-service-state-v1"
+SCORER_VERSION = "olist-confirmed-service-state-v2"
 
 
 class ServiceScript(Contract):
@@ -197,7 +197,13 @@ def _authority_ok(scenario: ServiceScenario, row: ServiceCapture, case: CaseReco
     committed = case.result.receipt if case.result else None
     if not committed:
         return not any(r.state == "consumed" for r in records)
-    if not scenario.expects_commit or len(records) != 1:
+    # Actual customer authority is independent of the original semantic reference.
+    # Task correctness/state safety below still reject an effect outside that reference.
+    if (
+        scenario.script.customer != "confirm"
+        or scenario.script.amount_minor != committed.amount_minor
+        or len(records) != 1
+    ):
         return False
     record, authority = records[0], records[0].document
     events = [e for e in row.final.events if e.case_id == scenario.case_id]
