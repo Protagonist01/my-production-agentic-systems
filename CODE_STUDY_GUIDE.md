@@ -23,6 +23,13 @@ remain unqualified; these mechanisms do not certify a new production benchmark.
 Interview exercise: why can 74 new calls fit the cap while the current16declared groups
 still cannot establish a95%confidence95%success claim?
 
+The [instruction-reference walkthrough](docs/olist-utterance-reference.md) continues from
+verified main `ffc03b4`: raw CSV/exposure pins, exact instruction-only projection, native
+annotation provenance and separate intent exclusions versus full-service amount/slot gaps.
+It explains why externally supplied utterance labels fit a different task unit from ABCD
+latent goals, and why neither template buckets nor null amounts manufacture missing truth.
+The source/mapping method is a preparation proposal; legacy review/release gates stay active.
+
 The [customer transaction authority chapter](docs/olist-customer-confirmation.md) traces the
 new service composition from base `7e7e823`: staff suggestion -> read-only customer session ->
 five-minute exact-action challenge -> confirmed authority -> business transaction consuming
