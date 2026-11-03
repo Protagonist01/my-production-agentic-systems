@@ -1,0 +1,106 @@
+{
+  "acceptance_sha256": "1590f18efe6a4346b91115aac32eafd208670fea01c2b0245f0adc069e7b852e",
+  "accepted_method_proposal_file_sha256": "c8554eaafab13938309510cc270a6ce5f33a146e9b32ab712de8ae621283d17d",
+  "baseline_observations_recomputed_with_final_source": true,
+  "baseline_source_files": [
+    {
+      "sha256": "0d733af52491180aea5cbe1da2b487f4bc085405ab091abba55448656281eccf",
+      "source_path": "projects/olist-support/src/olist_support/fresh_release.py"
+    },
+    {
+      "sha256": "920560bcfb65d26f7283f5903e2aac911961597cc43906c1c1d8e5caa67d9f13",
+      "source_path": "projects/olist-support/src/olist_support/baseline_recording.py"
+    },
+    {
+      "sha256": "4f76b8942000ec5eb492c3b23765e4f8bc79613fd663360ee50cc502c4e8a1ff",
+      "source_path": "projects/olist-support/src/olist_support/service_h10.py"
+    },
+    {
+      "sha256": "b610fe3108d796c00b78b9790a0ccc891084f7bc68f49dca4aaa97cd8f7cd352",
+      "source_path": "projects/olist-support/src/olist_support/intent_reference.py"
+    }
+  ],
+  "bundle_sha256": "03cc2083162f7a5e9969be396520d75637bc6fe26d61d09340b2b16e04d6eba5",
+  "comparison": {
+    "amount_and_full_service_assessed": false,
+    "bundle_sha256": "03cc2083162f7a5e9969be396520d75637bc6fe26d61d09340b2b16e04d6eba5",
+    "cases": 12,
+    "claim_scope": "exposed_development_conditional_native_intent_agreement",
+    "missing": 36,
+    "normalized_text_buckets_not_independent": 12,
+    "observed": 72,
+    "population_confidence_established": false,
+    "qualification_met": false,
+    "release_allowed": false,
+    "scheduled": 108,
+    "semantic_gold_validated": false,
+    "trial_ids": [
+      "development-1",
+      "development-2",
+      "development-3"
+    ],
+    "variants": {
+      "always-review": {
+        "all_repetitions_agree_cases": 0,
+        "confusions": {
+          "refund:review": 6,
+          "status:review": 6,
+          "unsupported:review": 24
+        },
+        "failed": 0,
+        "missing": 0,
+        "native_reference_agreements": 0,
+        "observed": 36,
+        "review_abstentions": 36,
+        "scheduled": 36,
+        "scheduled_agreement_fraction": 0.0
+      },
+      "candidate": {
+        "all_repetitions_agree_cases": 0,
+        "confusions": {
+          "refund:missing": 6,
+          "status:missing": 6,
+          "unsupported:missing": 24
+        },
+        "failed": 0,
+        "missing": 36,
+        "native_reference_agreements": 0,
+        "observed": 0,
+        "review_abstentions": 0,
+        "scheduled": 36,
+        "scheduled_agreement_fraction": 0.0
+      },
+      "rules": {
+        "all_repetitions_agree_cases": 0,
+        "confusions": {
+          "refund:review": 6,
+          "status:review": 6,
+          "unsupported:review": 24
+        },
+        "failed": 0,
+        "missing": 0,
+        "native_reference_agreements": 0,
+        "observed": 36,
+        "review_abstentions": 36,
+        "scheduled": 36,
+        "scheduled_agreement_fraction": 0.0
+      }
+    },
+    "version": "olist-native-intent-development-comparison-v1"
+  },
+  "lifetime_cap": 614,
+  "limited_method_accepted": true,
+  "live_ledger_read_only": {
+    "consumed": 447,
+    "stops": 1,
+    "unsettled": 0
+  },
+  "mapping_sha256": "218f5327e9d7ad67b452238ddab1dde751a2a3379caa8ce679a797a4a818f815",
+  "per_record_gold_accepted": false,
+  "provider_calls": 0,
+  "recorded_date": "2026-11-04",
+  "release_allowed": false,
+  "source_csv_sha256": "6f81102b0100b97b8468eb04368033a23206bf1fde9d53500d5806ec1001a434",
+  "source_revision": "430d1a89bd93bd1fa23c16f29dd53e73f0087443",
+  "version": "olist-accepted-intent-development-public-v1"
+}

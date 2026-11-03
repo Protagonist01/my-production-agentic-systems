@@ -364,3 +364,21 @@ unknown requested amounts with null or substitute placeholders while inheriting 
 labels. Intent-only proposals and full-service blockers are different scopes. The current
 ABCD partitions and old acceptances stay intact; new research witnesses have their own
 exposure record. Same ledger remains 447/614, zero unsettled, original stop; verify read-only.
+
+## Limited native-instruction reference method accepted (2026-11-04)
+
+The owner explicitly replied "Accept this limited reference method" to the concrete
+`reference-method-decision-2026-11-03-v2/decision.md` question. This accepts the pinned
+Bitext instruction/intent annotations and six fixed workflow mappings as development/
+calibration intent references. Bind the separate acceptance to exact method proposal,
+source CSV/revision and mapping pins. Proposal file SHA-256:
+`c8554eaafab13938309510cc270a6ce5f33a146e9b32ab712de8ae621283d17d`.
+Private receipt/bundle/comparison: `D:/document/.cache/production-agents/olist/accepted-intent-method-development-2026-11-04-v1`.
+
+The approval does not individually validate every native label, replace blind/qualified
+release review, establish amounts/reship/clarification, authenticate families, authorize
+model calls or approve release. Preserve conditional applicability and all field gaps.
+The first 12 inspected messages remain exposed development; original preparation/proposal
+flags and old source/exposure files remain immutable. A new intent-only bundle must not
+fill requested_minor=null to fit a full-service reference. The original stopped ledger
+remains 447/614 with 0 unsettled and 1 stop as last read; no slots are reassigned or resumed.

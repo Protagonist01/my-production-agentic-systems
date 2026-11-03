@@ -30,6 +30,13 @@ It explains why externally supplied utterance labels fit a different task unit f
 latent goals, and why neither template buckets nor null amounts manufacture missing truth.
 The source/mapping method is a preparation proposal; legacy review/release gates stay active.
 
+The owner subsequently accepted the limited development/calibration intent method on
+2026-11-04. The [accepted-method walkthrough](docs/olist-accepted-intent-method.md) traces
+its separate immutable receipt into `intent_reference.prepare` and complete field-only
+comparison. It keeps native intent agreement, safe abstention, unknown amount references
+and absent model observations distinct. The original proposal/audit bytes and legacy
+release review remain unchanged; this acceptance does not qualify a full service cohort.
+
 The [customer transaction authority chapter](docs/olist-customer-confirmation.md) traces the
 new service composition from base `7e7e823`: staff suggestion -> read-only customer session ->
 five-minute exact-action challenge -> confirmed authority -> business transaction consuming

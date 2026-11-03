@@ -4,6 +4,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 ## Index
 - [Entry 82 — Audit reference applicability before another model study](#entry-82--audit-reference-applicability-before-another-model-study)
 - [Entry 83 — Bind utterance references without inventing missing labels](#entry-83--bind-utterance-references-without-inventing-missing-labels)
+- [Entry 84 — Make limited reference acceptance usable without expanding its authority](#entry-84--make-limited-reference-acceptance-usable-without-expanding-its-authority)
 - [Entry 81 — Keep consent evidence independent of semantic correctness](#entry-81--keep-consent-evidence-independent-of-semantic-correctness)
 - [Entry 80 — Observe the complete customer-confirmed transaction](#entry-80--observe-the-complete-customer-confirmed-transaction)
 - [Entry 78 — Bind refund execution to customer confirmation](#entry-78--bind-refund-execution-to-customer-confirmation)
@@ -5670,3 +5671,57 @@ project partitions and routing references. Strict mypy passes 223 source files; 
 formatting of all 366 Python files, both import boundaries and diff checks pass. Actual
 source/exposure recomputation verifies the final V2 artifact, with zero provider calls.
 Required hosted checks and exact post-merge log verification remain delivery steps.
+
+## Entry 84 — Make limited reference acceptance usable without expanding its authority
+
+### Context and decision in progress
+
+On 2026-11-04 the owner accepted the pinned native-instruction reference method for
+development/calibration. PR #135 and its actual main logs now pass 1,530 unit / 201 SQL
+tests. Record this explicit acceptance without rewriting the original proposal or making
+the preparation artifact's false mapping/gold flags retrospectively true.
+
+### Before you read on
+
+How can the accepted method be used to compare existing algorithms while missing amounts,
+unresolved source slots and absent model outputs remain visible? An approved evidence
+method is not an approval of every source row or a production performance claim.
+
+### Chosen construction
+
+Bind a separate acceptance to the exact proposal/source/mapping hashes and owner reply.
+Project selected original instructions into a separate intent-only development bundle,
+with the original native row/frame pins and exact exposures. Do not coerce it into a
+RoutingReference, whose expected plan would manufacture a numeric/null amount reference.
+Preserve applicability caveats and the fact that these 12 messages were already inspected.
+
+Run the existing unchanged rules and always-review algorithms on that text projection.
+Keep a complete scheduled comparison, including missing candidate observations, per-class
+confusions and repeated-case counts. Record abstention separately from correct native
+intent agreement. Run no provider, SIM transaction or SQL service for this field-only
+diagnostic. Repetition of deterministic outputs is schedule coverage, not new information.
+
+The source bytes, exposure index, native draft/proposal and earlier artifacts remain intact.
+Verification, actual baseline results and next executable-scope limits follow below.
+
+### Actual comparison and diagnosis
+
+The accepted 12-message development projection has two refund, two status and eight
+unsupported references. Both unchanged algorithms return review on all 36 scheduled
+repetitions: zero exact intent agreements and 36 abstentions per algorithm. The rules
+baseline recognizes the old authored Primary request grammar; do not improve it after
+seeing these native messages and then pretend it was the original comparator. Abstention
+is a real result and is distinct from wrong transactional behavior; no service state or
+provider ran in this intent-only measurement. All 36 model slots remain explicitly missing.
+
+A strict mypy error found reuse of `row` across a validated-observation loop and a later
+optional dictionary lookup. Rename the latter local variable; preserve the first execution
+source pin and independently rerun/recompute all 72 baseline rows with final source.
+The source/audit/acceptance/projection, every baseline observation and complete report
+reproduce exactly. The acceptance records receipt time rather than inventing an exact
+owner action timestamp. Original proposal/audit and source exposure bytes are unmodified.
+
+Six new tests pass locally, covering stale source/approval/selection pins, conditional
+native references, missing amounts, conflicts, illegal authority flags and complete
+schedule accounting. Strict mypy passes 224 source files after the rename. Final relevant
+checks and mandatory exact-head/main verification follow before delivery acceptance.
