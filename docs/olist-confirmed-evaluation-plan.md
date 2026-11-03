@@ -48,9 +48,57 @@ an HTTP field cannot choose a planner, transport, principal or authorization.
    plan and enforce fresh evidence without owning a model. Required staff review is still
    additional to customer consent. Consumption, receipt, case and audit remain transactional.
 
-This bridge is not a service-aware H10 recorder or scorer. Those components need distinct
-versions and fingerprints before provider execution. The old `RoutingScorer` assumes direct
-workflow outcomes; a pending customer proposal is not a completed refund under that contract.
+The bridge now has a separate [service-aware H10 adapter](#service-aware-recording) on
+`codex/closeout-service-evaluation`, from merged ba02e2c,2026-11-03. The old `RoutingScorer`
+still assumes direct workflow outcomes and is incompatible. Historical preparation packets
+retain their original source pins; this implementation does not retroactively update them.
+
+## Service-aware recording
+
+`service_evaluation.ServiceScenario` wraps an unchanged RoutingCase with a separately
+declared ServiceScript: customer withholds or confirms an explicit SIM amount; reviewer
+does nothing, approves or rejects when review is required. These are fixture inputs, not
+new source labels, independent customer judgments or real customer authorizations.
+Different scripts for the same reference retain its source group. Freeze the scenario hash
+and derived application case/event IDs before preparing a gateway context.
+
+`service_h10.ServiceEnvironment` creates a new restricted database per trial, installs all
+four business/application/checkpoint/intent schemas, enrolls the pinned order and provisions
+three invented scoped actors. The agent receives text and fixture access, never reference
+labels. `ServiceAgent` runs the real CaseStore with RoutingGatewayPlanner, observes the
+pending proposal, redelivers the submission with a planner that forbids another call, then
+performs only the scripted reviewer/customer actions. Exact amount mismatch withholds the
+scripted confirmation. Controlled after-commit response loss reconstructs the service and
+reads its receipt; duplicate execution must preserve the complete observed state.
+
+`service_observation.collect_service_state` reads business orders/receipts/budgets, scoped
+account principals/enabled flags, full case records, authority documents and audit in one
+repeatable-read, read-only transaction across all tenants. It never selects passwords,
+session records or challenge tokens. Artifacts still contain private source text and must
+remain private. `release.collect_state(..., in_snapshot=True)` refuses an idle, writable or
+weaker-isolation transaction; the original default call still owns its own transaction.
+
+`ServiceScorer` reads the database again after the agent returns. Independent scoring checks
+fine intent/requested amount, conditional service status/reason, proposal isolation, exact
+business delta, customer consumption/audit, unrelated state, truthful output, duplicate and
+recovery. Only the random server execution run ID is read from the SQL receipt to construct
+the expected delta; its command, scope, amount, actor and cap come from the frozen fixture.
+A wrong refund with withheld consent is safe but semantically incorrect. A wrong refund
+that a scripted customer confirms still fails reference state safety and correctness.
+
+Matched rules/always-review comparators retain their existing heuristics, merely expressing
+the same decision in RoutingPlan; DenyModels prevents dispatch. A model attempt
+and a zero-call abstention have different evidence types. All three compositions bind the
+service, observer, scorer, schema and script driver source into their H10 fingerprints.
+Strict readers verify H10 envelopes first and then recompute each private observation;
+noncanonical bytes, altered results/scores, extra files or symlinks refuse readback.
+
+Both recording paths require one concurrent trial and an independent parent readback fence
+after journaling each row. Unsafe, corrupt or absent observations stop before further
+dispatch. Failed/stopped rows and the original complete schedule remain in the journal.
+This implementation exposes mock and zero-call entrypoints only. A live service scope,
+allowance binding, selected-host readiness and explicit owner authorization are still
+required; the old stopped447/614scope cannot execute it.
 
 ## Keep four questions separate
 
@@ -152,9 +200,9 @@ report the claim as unsupported rather than manufacturing labels or lowering the
 
 ## Execution checklist before any model call
 
-1. Finish the service-aware H10 factory/observer/phase scorer and matched baselines. Install
-   all service/checkpoint/intent schemas; provision invented scoped actors through trusted
-   setup. Keep evaluator-only labels and customer scripts outside candidate/model input.
+1. Verify the service-aware H10 factory/observer/phase scorer and matched baselines against
+   the selected host. These components are implemented separately from the old adapter;
+   mock/SQL checks establish mechanics, not provider readiness or reference quality.
 2. Freeze reference eligibility and case order; version the language-quality and service-state
    observations separately. Include complete scheduled denominators and all missing/failed
    rows. Required recovery and customer-authority observations cannot be omitted to pass.
@@ -183,7 +231,8 @@ tests establish mechanisms, not model accuracy, fake-SDK readiness or qualificat
 
 Explain why the first wrong refund was within cap yet still wrong, why a customer click
 cannot turn that original classification into a correct prediction, and why a restored
-checkpoint should avoid a second model dispatch. Then calculate74development attempts
-versus the434attempt qualification floor and identify which reference/sampling assumptions
-are still missing. A strong project explanation states those limits alongside the working
-consent/transaction controls.
+checkpoint should avoid a second model dispatch. Compare the optional74attempt development
+example with the illustrative434attempt disjoint-family design, and explain why neither is
+an approved release protocol or a new mandatory sample size. Apply the actual reviewed
+uncertainty target and source/sampling assumptions. A strong project explanation states
+those limits alongside the working consent/transaction controls.

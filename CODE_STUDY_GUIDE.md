@@ -6,7 +6,12 @@ preserves its bounded context, reads the durable typed decision after graph exec
 builds commands from fine intent/requested amount rather than a staff placeholder. Default
 staff wire shape remains unchanged. The chapter separates model meaning, conditional SIM
 eligibility, customer authority and independently observed effects, with a metric table and
-budget/reference arithmetic. It is not a provider-frozen recorder or a qualification claim.
+budget/reference arithmetic. The service-aware mock/baseline adapter now runs the actual
+CaseStore, exact customer/reviewer scripts and all four schemas; its observer reads them
+in a single read-only snapshot and its parent fence independently rechecks each saved row.
+It is not a provider-frozen scope or a qualification claim. The
+[construction walkthrough](docs/code-study-olist-h10.md#customer-confirmed-service-adapter)
+explains why withholding consent can pass safety while failing semantic correctness.
 Interview exercise: why can 74 new calls fit the cap while the current16declared groups
 still cannot establish a95%confidence95%success claim?
 
