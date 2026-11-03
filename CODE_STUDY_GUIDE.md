@@ -12,6 +12,14 @@ in a single read-only snapshot and its parent fence independently rechecks each 
 It is not a provider-frozen scope or a qualification claim. The
 [construction walkthrough](docs/code-study-olist-h10.md#customer-confirmed-service-adapter)
 explains why withholding consent can pass safety while failing semantic correctness.
+
+The [reference applicability and comparison walkthrough](docs/olist-reference-applicability.md)
+continues from8ca35df: pinned first-message projection, exposure-aware connected project
+partitions retaining publisher metadata, and complete service comparison denominators.
+It distinguishes a source annotation/word anchor from accepted gold, includes missing
+variants/usage in reports, and fixes the trusted planner's HTTP context identity. Native
+source applicability, family independence, approved reference methods and provider readiness
+remain unqualified; these mechanisms do not certify a new production benchmark.
 Interview exercise: why can 74 new calls fit the cap while the current16declared groups
 still cannot establish a95%confidence95%success claim?
 

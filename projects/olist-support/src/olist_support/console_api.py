@@ -21,7 +21,7 @@ from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 from olist_support.business_contracts import BusinessReview
 from olist_support.console_auth import SESSION_SECONDS, AuthStore
-from olist_support.console_cases import CaseStore
+from olist_support.console_cases import MODEL_SERVICE_AGENT, MODEL_SERVICE_CANDIDATE, CaseStore
 from olist_support.console_contracts import CaseRecord, Decision, Principal, Resume, Submission
 from olist_support.policy import POLICY_VERSION
 from olist_support.service_telemetry import CountHTTP, ServiceTelemetry
@@ -308,7 +308,9 @@ def create_app(
         context = RunContext(
             run_id=uuid.uuid4().hex,
             tenant_id=user.tenant_id,
-            agent_id="olist-customer-confirmed-sim",
+            agent_id=MODEL_SERVICE_AGENT
+            if cases.planner is not None
+            else "olist-customer-confirmed-sim",
             case_id="assigned-by-case-store",
             trial_id=trial_id,
             business_event_id="assigned-by-case-store",
@@ -321,7 +323,9 @@ def create_app(
             ),
             versions=CandidateVersions(
                 code_revision=code_revision,
-                candidate="olist-customer-confirmed-service-v2",
+                candidate=MODEL_SERVICE_CANDIDATE
+                if cases.planner is not None
+                else "olist-customer-confirmed-service-v2",
                 data_snapshot=view.source_manifest_sha256,
                 policy=POLICY_VERSION,
                 environment_lock=environment_lock,

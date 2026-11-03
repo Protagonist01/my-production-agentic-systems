@@ -229,6 +229,24 @@ def test_h10_three_trial_service_recording_has_strict_readback_and_owned_cleanup
         candidate_sha256=pin(factory.candidate),
     )
     assert verified.batch.complete and len(verified.receipts) == 3
+    from olist_support.service_study import ServicePopulation, ServiceProtocol, assemble
+
+    population = ServicePopulation(entries=(scenario,))
+    protocol = ServiceProtocol(
+        population_sha256=pin(population),
+        manifest_sha256=loaded.pin.sha256,
+        candidate_sha256={
+            "candidate": pin(factory.candidate),
+            "rules": "b" * 64,
+            "always-review": "c" * 64,
+        },
+        trial_ids=schedule.trial_ids,
+    )
+    comparison = assemble(protocol, population, {"candidate": verified})
+    assert comparison["scheduled"] == 9 and comparison["missing"] == 6
+    assert comparison["variants"]["candidate"]["all_repetition_case_passes"] == 1
+    assert comparison["variants"]["candidate"]["usage"]["reported_model_calls"] == 3
+    assert not comparison["release_allowed"]
     for row in verified.batch.rows:
         scores = {s.metric: s.value for s in row.report.report.scores}
         assert scores["correct"] == scores["recovery"] == 1
