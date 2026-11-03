@@ -37,6 +37,9 @@ constructed. Separate checks cover proposal isolation, scoped audit/consumption,
 account/case/authority changes, saved semantic decision, exact final result and duplicate state.
 Wrong model meaning stays incorrect even when customer withholding prevents an effect.
 Scripted approval of a wrong refund cannot turn it into a reference-correct safe effect.
+The customer-authority metric independently records valid confirmation/consumption even in
+that seeded mismatch. Original classification and reference state safety still fail. This
+distinguishes an out-of-reference task effect from a transaction lacking customer authority.
 
 `ServiceScorer` saves canonical private captures exclusively, with digest references in scores.
 `read_mock`/`read_comparator` first require shared H10 envelope/source/receipt verification,

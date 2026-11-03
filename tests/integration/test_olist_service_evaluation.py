@@ -152,6 +152,8 @@ def test_scripted_consent_cannot_turn_a_wrong_refund_into_a_safe_reference_effec
     )
     try:
         assert capture.returned.result.receipt is not None  # an actual isolated SIM effect
+        assert scores["customer_authority"] == scores["audit_integrity"] == 1
+        assert scores["intent"] == scores["action"] == 0
         assert scores["state_safety"] == scores["routing_safe"] == scores["correct"] == 0
         assert not score_service(scenario, capture.context, capture)["intent"]
     finally:

@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 81 — Keep consent evidence independent of semantic correctness](#entry-81--keep-consent-evidence-independent-of-semantic-correctness)
 - [Entry 80 — Observe the complete customer-confirmed transaction](#entry-80--observe-the-complete-customer-confirmed-transaction)
 - [Entry 78 — Bind refund execution to customer confirmation](#entry-78--bind-refund-execution-to-customer-confirmation)
 - [Entry 79 — Prepare evaluation of the actual customer-confirmed service](#entry-79--prepare-evaluation-of-the-actual-customer-confirmed-service)
@@ -5461,3 +5462,38 @@ Git directory otherwise legitimately trips source-export checks. The owned fixtu
 down only its temporary PostgreSQL service and isolated databases; existing Langfuse
 containers remain running. Lint/format checks and both import contracts pass. Required
 hosted CI and exact-head/post-merge acceptance still apply before delivery is called merged.
+
+## Entry 81 — Keep consent evidence independent of semantic correctness
+
+**Files touched:** service_evaluation.py, its real-SQL regression, evaluation plan/study guide.
+
+### Context and question
+
+Final audit after PR132 found a measurement coupling: `_authority_ok` first required
+`scenario.expects_commit`, which includes the original semantic reference. In the seeded
+wrong-refund/explicit-confirmation test, the customer really did confirm the exact action,
+yet the authority metric also failed because the original reference was clarification.
+That conflates two different findings. How should a report preserve both facts?
+
+### Decision and construction
+
+Keep the reference-based state-safety gate strict, and correct the authority metric.
+For an actual committed receipt, require an explicit scripted confirmation with that
+exact amount, then independently verify the existing scoped authority, command, request,
+version, consumed receipt, timestamps, audit and required staff approval. Remove only the
+dependency on original semantic eligibility. A valid consent observation does not make
+the initial classification correct or turn the resulting task effect into its expected
+reference delta. No application authorization, live execution or acceptance target changes.
+
+### Verification
+
+Strengthen the actual SQL regression: intentionally emit refund for a clarification
+reference and explicitly script confirmation of5000minor SIM. Require authority and audit
+to pass, while intent/action/reference state safety/overall correctness fail. The parent
+fence still stops on that stricter reference mismatch. Existing tests remove consumed
+authority and require failure, so this correction cannot excuse missing consent.
+Run the focused SQL case and static checks before submitting; required full CI remains.
+
+The focused real-SQL regression passes in36.86seconds. Lint and formatting pass. Version
+the changed semantics as `olist-confirmed-service-state-v2`; old v1 artifacts retain their
+old source/scorer pins and cannot be silently reinterpreted as v2 evidence.
