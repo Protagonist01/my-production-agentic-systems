@@ -5,6 +5,15 @@ This prepares #58/#59 on the existing local Docker host. Production release, ext
 deployment, RPO/RTO objectives, telemetry acceptance and the #33 prerequisite remain pending.
 No paid service or provider call occurs in these operations.
 
+The2026-11-03 customer-confirmed evaluation adapter adds a four-schema restore witness in
+`tests/integration/test_olist_service_evaluation.py`. An invented RoutingPlan runs through
+the real service; explicit customer confirmation commits one refund, controlled response
+loss reconstructs the service without another model call, and duplicate delivery preserves
+the original receipt/case/consumed authority/audit. Capture/restore to a new isolated target
+must reproduce the entire independent ServiceSnapshot, including saved model decision and
+account scopes. This extends mechanism coverage to the new profile; it does not replace
+the earlier source-grounded demonstration or establish host-loss RPO/RTO/availability.
+
 ## Service health
 
 Use the locked setup (`python dev.py setup`) and existing `olist_support.console_cli`

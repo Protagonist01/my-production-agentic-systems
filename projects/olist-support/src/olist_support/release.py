@@ -79,15 +79,33 @@ class StateSnapshot(Contract):
         return self
 
 
-def collect_state(connection: Connection[Any]) -> StateSnapshot:
+def collect_state(connection: Connection[Any], *, in_snapshot: bool = False) -> StateSnapshot:
     """Trusted evaluator connection to an isolated trial, before/after worker execution.
 
     Read every tenant, not only the permitted target. Never use runtime receipt verification.
-    The supplied connection must be idle; this owns a consistent read-only transaction.
+    Normally the connection must be idle; this owns a consistent read-only transaction.
+    A service observer can instead join an existing repeatable-read, read-only snapshot.
     Cursor-local tuple rows preserve any caller-configured connection row factory.
     """
-    with connection.transaction(), connection.cursor(row_factory=tuple_row) as cursor:
-        cursor.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY")
+    from contextlib import nullcontext
+
+    from psycopg.pq import TransactionStatus
+
+    if in_snapshot and connection.info.transaction_status != TransactionStatus.INTRANS:
+        raise ValueError("an active read-only repeatable snapshot is required")
+    with (
+        nullcontext() if in_snapshot else connection.transaction(),
+        connection.cursor(row_factory=tuple_row) as cursor,
+    ):
+        if in_snapshot:
+            settings = cursor.execute(
+                "SELECT current_setting('transaction_isolation'),"
+                "current_setting('transaction_read_only')"
+            ).fetchone()
+            if settings != ("repeatable read", "on"):
+                raise ValueError("an active read-only repeatable snapshot is required")
+        else:
+            cursor.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY")
         orders = tuple(
             OrderState(
                 tenant_id=t,

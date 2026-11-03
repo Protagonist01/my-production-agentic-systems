@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 80 — Observe the complete customer-confirmed transaction](#entry-80--observe-the-complete-customer-confirmed-transaction)
 - [Entry 78 — Bind refund execution to customer confirmation](#entry-78--bind-refund-execution-to-customer-confirmation)
 - [Entry 79 — Prepare evaluation of the actual customer-confirmed service](#entry-79--prepare-evaluation-of-the-actual-customer-confirmed-service)
 - [Entry 77 — Keep a stopped semantic failure visible outside fresh quality evidence](#entry-77--keep-a-stopped-semantic-failure-visible-outside-fresh-quality-evidence)
@@ -5386,3 +5387,77 @@ The434attempt arithmetic assumes a deliberately disjoint-family, separate-call d
 the two conditional strata. State that assumption in the proposal; it is not a universal
 minimum. A paired-family counterfactual design may use different calls but changes conditional
 claims and dependence. Do not inflate its independent sample size by counting variants.
+
+## Entry 80 — Observe the complete customer-confirmed transaction
+
+### Context and decision in progress
+
+The owner requested a bounded project closeout. PR131 connected the model to CaseStore,
+but the recorder still ran the older direct-refund workflow. Reusing its scores would
+measure the wrong application. This entry records construction of the service adapter;
+it does not authorize calls or turn development references into release evidence.
+
+### Before you read on
+
+A model proposes a refund for an ambiguous request. A fixture customer withholds consent.
+What should pass, and what should fail? The state must remain safe, but the model's intent
+score must still fail. Conversely, a correct refund interpretation without customer consent
+must not be marked an eligible completed refund.
+
+### Options and construction
+
+Keep the existing RoutingCase untouched and wrap it in a ServiceScenario with a separate
+explicit customer amount/action and reviewer script. Bind the new case ID before H10
+execution: hash the complete scenario into an event key, then derive the application case
+ID with the same tenant/operator/event identity rule used by CaseStore. Reject contexts
+whose case/event/profile/snapshot differs, rather than rewrite a gateway context mid-run.
+
+The old observer opened its own transaction for business tables. Reading cases, challenges
+and audit afterward could combine two different commits. Add an opt-in join mode that
+requires an already active repeatable-read, read-only transaction. The new observer uses
+that mode and reads business, accounts (principal/enabled only), cases, authority documents
+and audit in one snapshot. Never select password hashes, sessions or raw challenge tokens.
+
+Keep the actor driver separate from the scorer. The driver may approve and confirm only
+the scripted exact amount. The scorer never mutates state or calls a model; it derives the
+permitted command/amount/cap/actor from the reference and script, independently observes
+SQL and compares the entire business delta. Only the server-random execution run ID comes
+from the observed SQL receipt. Wrong model interpretation remains wrong even if no effect
+occurs. Verify proposal isolation, consent consumption, audit binding, duplicate delivery
+and controlled post-commit response-loss recovery separately.
+
+Implementation checks, failures and final evidence are recorded below as they occur.
+
+### First checks and debugging
+
+The new observer initially used strict Python-object validation for decoded PostgreSQL JSON.
+Principal.order_ids is a tuple contract, while JSON returns an array. Decode through the
+strict JSON contract path instead; do not loosen the principal schema. A test import also
+lost its intentional ROOT re-export during lint cleanup; make the re-export explicit.
+
+Forty-nine focused unit checks pass and full type checking covers218sources. The direct
+real-SQL witnesses verify routing, independent review/consent and four-schema restoration.
+One spawned H10 check failed before any receipt was written while implementation source
+was still changing. The same shared gateway/receipt path passes in process after source
+stabilization. Freeze code while running the consolidated spawn checks; a source-pinned
+factory must refuse a changing runtime rather than accept stale fingerprints. Final
+spawned/hosted results are recorded separately, not inferred from the direct witness.
+
+Audit review added two further checks before final validation: compare unrelated rows by
+tenant AND case ID, and reject false/extra committed audit events even if a balance did not
+change. Read the database after agent return to detect unrelated account revocation that
+an in-memory capture omits. Missing observations remain unknown in every required metric.
+
+With implementation source stable, the complete new PostgreSQL suite passes19checks in
+365.42seconds. It includes real spawned H10 three-trial recording/readback, both zero-call
+comparators, the after-first-unsafe-attempt parent stop and exact four-schema restoration.
+The earlier spawned failure is retained in the private v3 test output; the stable v4 run
+passes. These are invented mechanism witnesses, not model-quality observations.
+
+Reproduce with `python -m pytest tests/integration/test_olist_service_evaluation.py -o
+addopts= -q --basetemp <fresh-external-directory>` using the locked development environment
+and running Docker engine. Use a temp path outside any Git ancestor: the existing C-drive
+Git directory otherwise legitimately trips source-export checks. The owned fixture tears
+down only its temporary PostgreSQL service and isolated databases; existing Langfuse
+containers remain running. Lint/format checks and both import contracts pass. Required
+hosted CI and exact-head/post-merge acceptance still apply before delivery is called merged.

@@ -1,5 +1,57 @@
 # Code study — Olist H10 recording and recomputation
 
+## Customer-confirmed service adapter
+
+Inspected2026-11-03 on `codex/closeout-service-evaluation`, from merged ba02e2c.
+The historical adapter below remains for its original direct-workflow recordings.
+New files [service_h10.py](../projects/olist-support/src/olist_support/service_h10.py),
+[service_evaluation.py](../projects/olist-support/src/olist_support/service_evaluation.py)
+and [service_observation.py](../projects/olist-support/src/olist_support/service_observation.py)
+form a separate composition for the actual customer-confirmed service. See
+[Build Book Entry80](../BUILD_BOOK.md#entry-80--observe-the-complete-customer-confirmed-transaction).
+
+`ServiceScenario` retains the original RoutingCase and a separate scripted customer/reviewer
+choice. Hash the complete scenario into an event key; derive its application case ID before
+freezing RunContext, including business_event_id. The environment installs all four schemas
+and provisions distinct invented scoped actors. The candidate sees customer text and trusted
+fixture access; reference meaning remains evaluator-only. Script variants retain source groups.
+
+`ServiceAgent.run` submits through CaseStore with RoutingGatewayPlanner, observes the proposal,
+checks saved context equality, then redelivers with NoSecondDispatch. It applies only explicit
+reviewer/customer fixture instructions. Confirmation requires its own exact SIM amount;
+an offer of a different amount cannot silently change that input. Controlled response loss
+reconstructs CustomerIntentStore against the same database, then repeats the request to check
+idempotence. This is a response-loss/restart witness, not OS process death or host-loss proof.
+
+`collect_service_state` owns a repeatable-read, read-only transaction. Business reads join it
+only after checking active transaction/isolation/read-only settings. Case records, authorities,
+audit and account scopes are read in the same snapshot across all tenants. Explicit SQL columns
+exclude passwords, sessions and challenge tokens; the remaining records still contain private
+source text. The scorer makes another independent read after agent execution. It cannot approve,
+confirm, refund, rewrite source labels or call a model.
+
+`score_service` constructs the permitted business delta from reference/script and compares
+complete orders, receipts and budgets. The server's random refund run ID is the only opaque
+receipt identity adopted from SQL; amount, operation, scope, cap and actor are independently
+constructed. Separate checks cover proposal isolation, scoped audit/consumption, unrelated
+account/case/authority changes, saved semantic decision, exact final result and duplicate state.
+Wrong model meaning stays incorrect even when customer withholding prevents an effect.
+Scripted approval of a wrong refund cannot turn it into a reference-correct safe effect.
+
+`ServiceScorer` saves canonical private captures exclusively, with digest references in scores.
+`read_mock`/`read_comparator` first require shared H10 envelope/source/receipt verification,
+then recompute scores and output from exact observation bytes. The sequential ParentFence does
+the latter after journaling each row, before another trial. Missing/unsafe/corrupt evidence
+aborts and preserves the complete schedule plus failure/missing rows. This file exposes only
+mock and zero-call factories. Existing model grants do not authorize this profile.
+
+Rules and always-review keep their old algorithms; VersionedBaseline only changes their plan
+representation. DenyModels enforces zero calls. Mock receipts prove wiring, not model quality,
+provider capacity, corpus independence, customer preference or production recovery objectives.
+Interview exercise: compare a wrong refund with withheld consent, a correct refund with missing
+staff approval, and a committed refund with a lost response. State which scores must fail,
+which effects must remain absent, and which persistent rows establish recovery.
+
 Follow-up inspected 2026-10-24 from merged base `b915f1b`: unmerged
 `codex/three-release-evaluators` adds the [three-issue evaluation preparation](three-release-evaluators.md).
 The original walkthrough below retains its historical implementation/evidence scope.
