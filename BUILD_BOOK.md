@@ -3,6 +3,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 - [Entry 82 — Audit reference applicability before another model study](#entry-82--audit-reference-applicability-before-another-model-study)
+- [Entry 83 — Bind utterance references without inventing missing labels](#entry-83--bind-utterance-references-without-inventing-missing-labels)
 - [Entry 81 — Keep consent evidence independent of semantic correctness](#entry-81--keep-consent-evidence-independent-of-semantic-correctness)
 - [Entry 80 — Observe the complete customer-confirmed transaction](#entry-80--observe-the-complete-customer-confirmed-transaction)
 - [Entry 78 — Bind refund execution to customer confirmation](#entry-78--bind-refund-execution-to-customer-confirmation)
@@ -5592,3 +5593,80 @@ unknown-cost/missing-comparator accounting. Strict typing passes all 222 source 
 both import boundaries pass. Full required hosted CI and post-merge acceptance remain
 delivery steps, not results assumed from these focused checks. No provider calls or
 allowance mutations occur. The original stopped study remains intact.
+
+## Entry 83 — Bind utterance references without inventing missing labels
+
+### Context and decision in progress
+
+Start from verified main ffc03b4 after PR #134. Its 636 ABCD project holdout candidates
+are still unvalidated: a latent status goal can accompany a first message about an
+address or price, and a latent refund goal can accompany only an unwanted-item complaint.
+The next task is to establish reference applicability rather than collect more model
+outputs against those assumptions.
+
+### Before you read on
+
+A corpus supplies a native intent for each instruction, but no requested amount or
+generation seed ID. Which values may an importer copy, which may it propose, and which
+must remain unknown? Sketch a candidate-only input projection before designing the scorer.
+
+### Options considered and source finding
+
+Keep ABCD as contextual/development evidence; do not promote its first-message literal
+anchors to semantic gold. Inspect the identified Bitext candidate privately at its pinned
+revision and independently published LFS hash. Its actual CSV has 26,872 rows and 27 native
+intents, including 997 get_refund and 995 track_order instructions, despite omissions in
+the displayed card taxonomy. The instructions are hybrid synthetic with automated labels
+and linguist curation. This is a useful alternative evidence unit, not a claim of natural
+traffic validity or independent families.
+
+The first 12 fixed-hash research witnesses include refund/currency placeholders. Copying
+null into requested_minor would manufacture an amount reference. Neither reship nor
+clarification is a native class; seed/author identities and native train/test splits are
+not supplied. Keep those gaps visible. Existing benchmark and exposure files stay intact;
+selected new-source witnesses get a separate research-exposure record.
+
+### Construction
+
+Implement a pinned source adapter with an exact CSV schema, immutable native row hashes,
+separate native annotations and instruction-only AgentInput. Propose only six explicitly
+versioned native-to-workflow mappings. Retain unmapped labels, unresolved placeholders,
+known exposures and conflicting exact-text labels as exclusions. Do not substitute slots,
+inherit truth after edits, assign partitions or authenticate lexical templates as families.
+Mapping/gold/provider-freeze/release flags remain false. An offline CLI and source-byte
+recomputation make preparation reproducible without a provider transport.
+
+Verification and the concrete source/method decision packet follow below; these checks
+have not yet run at the time this design entry is written.
+
+### Field-specific correction and actual verification
+
+The first private prototype blanket-excluded every unresolved slot. The real source run
+showed why that is too coarse: many tracking instructions contain an order-number slot,
+yet their coarse tracking intent can still be examined. Separate intent exclusions from
+full-service blockers in V2. Preserve every placeholder unchanged. All 26,872 records still
+lack an established requested-amount reference; 6,670 additionally contain unresolved
+slots. Neither a slot-free row nor an intent label may manufacture requested_minor=null.
+The V1 prototype artifact and its exact source bytes remain private history, and the V2
+schema refuses that old artifact rather than silently reinterpreting it.
+
+The final source adapter run and byte-for-byte source/exposure recomputation both passed.
+After known research-text exclusion, it retains 991 refund, 989 status and 3,950 unsupported
+intent proposals; none are accepted gold or a qualification cohort. The 12 selected source
+witnesses expose 25 rows through duplicate text. No native split or seed ID is invented.
+
+Seven new source/CLI tests pass locally. One initial test used an invalid public observation
+and failed in AgentInput before reaching the intended frame guard. Replace the fixture
+with a structurally valid observation, then require the instruction-only guard to reject
+it. This tests the actual boundary rather than accidentally relying on another validator.
+The focused source/reference/partition run also passed 18 tests before the field-specific
+V2 correction; final relevant checks and mandatory hosted delivery verification follow.
+This implementation supplies preparation mechanics. A separately accepted reference method,
+missing field coverage, frozen evaluation scope and explicit provider allocation are still
+needed for release work. No model attempts or live allowance changes have occurred.
+
+Final focused verification now passes 34 tests across the new adapter, source audit,
+project partitions and routing references. Strict mypy passes 223 source files; lint,
+formatting of all 366 Python files, both import boundaries and diff checks pass. Actual
+source/exposure recomputation verifies the final V2 artifact, with zero provider calls.
+Required hosted checks and exact post-merge log verification remain delivery steps.

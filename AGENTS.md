@@ -348,3 +348,19 @@ The same447/614ledger, zero unsettled and durable original stop remain unchanged
 read. Do not treat lexical clusters or publisher annotations as authenticated independence
 or automatic first-message semantic truth. Current20/20/60hash weights are draft preparation,
 not an owner-reviewed frozen study or production acceptance criterion.
+
+## Instruction-reference research and preparation (2026-11-03)
+
+After #134, the owner said proceed with the next reference/evaluation preparation. A pinned
+public Bitext CSV was acquired privately for source research, with a 12-item exposed draft
+and a network-denied instruction-only preparation adapter. This does not add an accepted
+benchmark source, accept native-to-workflow mappings/gold, replace legacy blind/qualified
+review or authorize model calls. Source/method proposal:
+`D:/document/.cache/production-agents/olist/reference-method-proposal-2026-11-03-v1/review.md`.
+Final preparation run: `D:/document/.cache/production-agents/olist/utterance-reference-audit-2026-11-03-v2`.
+Keep all source labels/responses outside candidate input. Amount annotations, reship and
+clarification coverage and authenticated seed/author families are missing. Do not fill
+unknown requested amounts with null or substitute placeholders while inheriting original
+labels. Intent-only proposals and full-service blockers are different scopes. The current
+ABCD partitions and old acceptances stay intact; new research witnesses have their own
+exposure record. Same ledger remains 447/614, zero unsettled, original stop; verify read-only.

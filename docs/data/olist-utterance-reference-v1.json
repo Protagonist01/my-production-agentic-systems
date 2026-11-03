@@ -1,0 +1,86 @@
+{
+  "adapter_source_sha256": "fdea85c40bced4824fbcd6fcf15c0d7efb79cbcdea70bd31575707263adc76eb",
+  "amount_reference_established": false,
+  "audit_sha256": "830116abc05c8a3affddadab06f7fd5dd5b8b7f331b7c7eb73804521ff645d5b",
+  "benchmark_source_accepted": false,
+  "current_approved_benchmark_changed": false,
+  "exclusion_counts": {
+    "native_intent_not_mapped": 20917,
+    "previously_exposed_normalized_text": 25
+  },
+  "exposure_sha256": "ec4b986cca84eebe6e77d3db881e57c3b3f56b4be7aa42649fe326709c02e35d",
+  "frozen_for_provider": false,
+  "full_service_reference_blockers": {
+    "requested_amount_reference_unestablished": 26872,
+    "unresolved_source_slots": 6670
+  },
+  "lexical_template_buckets_not_independent_families": 23827,
+  "lifetime_cap": 614,
+  "live_ledger_read_only": {
+    "consumed": 447,
+    "stops": 1,
+    "unsettled": 0
+  },
+  "mapping_acceptance": false,
+  "mapping_sha256": "218f5327e9d7ad67b452238ddab1dde751a2a3379caa8ce679a797a4a818f815",
+  "native_partitions_supplied": false,
+  "normalized_text_buckets": 24274,
+  "prepared_date": "2026-11-03",
+  "proposed_route_counts": {
+    "refund": 997,
+    "status": 995,
+    "unmapped": 20917,
+    "unsupported": 3963
+  },
+  "provider_calls": 0,
+  "raw_source_published": false,
+  "release_allowed": false,
+  "rows_by_native_intent": {
+    "cancel_order": 998,
+    "change_order": 997,
+    "change_shipping_address": 973,
+    "check_cancellation_fee": 950,
+    "check_invoice": 1000,
+    "check_payment_methods": 999,
+    "check_refund_policy": 997,
+    "complaint": 1000,
+    "contact_customer_service": 1000,
+    "contact_human_agent": 999,
+    "create_account": 997,
+    "delete_account": 995,
+    "delivery_options": 995,
+    "delivery_period": 999,
+    "edit_account": 1000,
+    "get_invoice": 999,
+    "get_refund": 997,
+    "newsletter_subscription": 999,
+    "payment_issue": 999,
+    "place_order": 998,
+    "recover_password": 995,
+    "registration_problems": 999,
+    "review": 997,
+    "set_up_shipping_address": 997,
+    "switch_account": 1000,
+    "track_order": 995,
+    "track_refund": 998
+  },
+  "seed_or_author_ids_supplied": false,
+  "semantic_gold_validated": false,
+  "slot_free_unexcluded_proposal_counts": {
+    "refund": 801,
+    "status": 26,
+    "unsupported": 3527
+  },
+  "source_csv_sha256": "6f81102b0100b97b8468eb04368033a23206bf1fde9d53500d5806ec1001a434",
+  "source_file_hash_scope": "prepared_local_runtime_bytes",
+  "source_input_or_annotations_exported_to_model": false,
+  "source_license_declared": "CDLA-Sharing-1.0",
+  "source_revision": "430d1a89bd93bd1fa23c16f29dd53e73f0087443",
+  "source_rows": 26872,
+  "unexcluded_intent_proposal_counts": {
+    "refund": 991,
+    "status": 989,
+    "unsupported": 3950
+  },
+  "version": "olist-bitext-utterance-preparation-v2"
+}
