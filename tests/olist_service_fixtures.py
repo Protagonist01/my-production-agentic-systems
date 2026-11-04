@@ -29,6 +29,7 @@ from olist_support.service_h10 import (
 @dataclass(frozen=True)
 class MockServiceRoute:
     intent: str
+    requested_minor: int | None = None
 
     def generate(self, request, *, timeout_seconds=30.0):
         assert len(request.messages) == 2 and not request.tools
@@ -38,7 +39,9 @@ class MockServiceRoute:
             output=ModelMessage(
                 role="assistant",
                 content=RoutingPlan(
-                    routing_version="olist-intent-routing-v2", intent=self.intent
+                    routing_version="olist-intent-routing-v2",
+                    intent=self.intent,
+                    requested_minor=self.requested_minor,
                 ).canonical_json(),
             ),
             usage=Usage(
@@ -48,12 +51,22 @@ class MockServiceRoute:
 
 
 def composition(
-    intent="clarify", *, script=None, recovery=False, emitted=None, variant="candidate"
+    intent="clarify",
+    *,
+    script=None,
+    recovery=False,
+    emitted=None,
+    variant="candidate",
+    scenario=None,
 ):
     _, _, old_schedule, old = old_composition()
-    scenario = ServiceScenario(
-        reference=label_for(intent, recovery=recovery),
-        script=script if script is not None else ServiceScript(),
+    scenario = (
+        scenario
+        if scenario is not None
+        else ServiceScenario(
+            reference=label_for(intent, recovery=recovery),
+            script=script if script is not None else ServiceScript(),
+        )
     )
     manifest = manifest_for((scenario,))
     raw = manifest.canonical_json().encode()
@@ -73,6 +86,7 @@ def composition(
             context=t.context.model_copy(
                 update={
                     "agent_id": MODEL_SERVICE_AGENT,
+                    "tenant_id": scenario.reference.order.tenant_id,
                     "case_id": scenario.case_id,
                     "business_event_id": scenario.case_id,
                     "run_id": run + str(i),
