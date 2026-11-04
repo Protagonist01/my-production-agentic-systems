@@ -1,5 +1,16 @@
 # Code Study Guide — Production Agentic Systems
 
+The [controlled-field walkthrough](docs/olist-controlled-field-references.md) continues
+from verified main `247beb9`. It traces the accepted constructed development method:
+typed money roles, integer rendering, a separate Decimal/full-message checker, immutable
+case/parent/input/reference bindings and seeded generator faults. Payment 100.00 versus
+requested refund 25.00 is the key debugging exercise. Explain why checker agreement can
+catch a role bug without proving independent semantics, why all six refund examples share
+one parent, and why original proposal flags stay false beside a separate owner receipt.
+Forty focused tests cover these mechanics and eight conditional policy-table comparisons;
+no model quality, SQL effect, natural-language gold or release claim follows. Production
+parsers, legacy references/review gates and the stopped study were not changed.
+
 The [customer-confirmed evaluation preparation](docs/olist-confirmed-evaluation-plan.md)
 continues from d4bdf52. The opt-in `CaseStore(..., planner=...)` pins a distinct profile,
 preserves its bounded context, reads the durable typed decision after graph execution and

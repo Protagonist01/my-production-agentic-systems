@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 85 — Check controlled field references with a second implementation](#entry-85--check-controlled-field-references-with-a-second-implementation)
 - [Entry 82 — Audit reference applicability before another model study](#entry-82--audit-reference-applicability-before-another-model-study)
 - [Entry 83 — Bind utterance references without inventing missing labels](#entry-83--bind-utterance-references-without-inventing-missing-labels)
 - [Entry 84 — Make limited reference acceptance usable without expanding its authority](#entry-84--make-limited-reference-acceptance-usable-without-expanding-its-authority)
@@ -5725,3 +5726,75 @@ Six new tests pass locally, covering stale source/approval/selection pins, condi
 native references, missing amounts, conflicts, illegal authority flags and complete
 schedule accounting. Strict mypy passes 224 source files after the rename. Final relevant
 checks and mandatory exact-head/main verification follow before delivery acceptance.
+
+## Entry 85 — Check controlled field references with a second implementation
+
+### Context and decision in progress
+
+Start from verified main 247beb9 after the limited native-intent method was accepted.
+That method still supplies no requested amounts, reship or clarification references.
+The owner asked to proceed. Prepare a concrete controlled-language method for review;
+do not apply its new labels to the native corpus or declare the release method accepted.
+
+### Before you read on
+
+How would you distinguish a payment mentioned in a message from the amount requested
+back, and catch a generator that assigns the first number to both? A numeric span alone
+does not establish the number's role. Sketch the generator and checker separately.
+
+### Options and chosen construction
+
+Arbitrary edits of native instructions cannot inherit their labels. Instead, author a
+small explicit grammar with typed slots and preserve its constructed provenance. Generate
+only complete messages in that grammar. A separate full-message recognizer uses Decimal
+and role-specific captures to recover intent, requested amount and both money spans;
+the generator uses integer divmod and piece offsets. Neither imports the other's rules.
+Their agreement checks consistency, not independent semantic truth: both are written here
+and can share a mistaken interpretation. Show the grammar and first 12 examples for review.
+
+Keep all amounts and wording variants in coarse declared parent groups, development only.
+Use a contrast with payment 100.00 SIM and requested refund 25.00 SIM; a wrong role must
+fail even though both amounts are syntactically valid. Include cap boundaries, reship,
+explicit alternatives and status. Unknown text or foreign currency must refuse reference
+construction rather than receive a guessed intent. No candidate is evaluated or provider
+allowance changed. Verification and the precise reproducible draft follow below.
+
+### Construction, verification and actual owner decision
+
+Define ten literal productions in `ControlledSpec`, allowing requested_minor only in the
+three numeric refund templates and paid_minor only in the three payment-mention templates.
+Reject extra/missing roles, signs, booleans and values above the signed 64-bit limit. Render
+with integer divmod and record the offsets of each complete amount/unit token. Bind a case
+to the canonical spec hash and group all refund variants by one parent instead of inventing
+independent template families. `ControlledReference.reconstruct` checks all identity/input/
+expected/witness fields, then invokes the separately written recognizer. That recognizer
+imports no renderer and full-matches the whole message, independently names paid/requested
+captures and converts with Decimal. It refuses unknown language rather than guessing.
+
+Seed one generator fault that makes both its expected amount and witnesses choose payment
+instead of requested refund. The second implementation must reject it. Seed an intent
+fault without numeric fields as well. Test zero, one minor unit, cap neighbors and maximum
+integer, prefix/suffix currency, changed text/labels/spans/groups, foreign currency, extra
+actions and negative/overflow amounts. A warning in the first test run identified an
+iterator passed to pytest's parametrize; materialize it as a tuple. The final run has no
+warning: 40 new tests pass, and 66 relevant reference/service unit checks pass in 5.77s.
+Strict mypy passes 226 sources, repository lint/locked dependency check pass, all 371
+Python files in the actual dev.py formatting scope pass and both import boundaries hold.
+
+Reproduce the actual twelve-case packet in the new private
+`controlled-field-reference-proposal-2026-11-04-v1` directory. Record method/source/script
+pins, separated candidate inputs/references, all role spans and eight actual conditional
+policy outputs. Against a wholly invented paid-100.00-SIM canceled-order fixture, the
+separate table and production proposal agree: two full-refund proposals and six reviews.
+No SQL, transaction or model runs. Independently reconstruct the entire packet from final
+source and require all pins/output bytes to match before publishing its constructed data.
+
+The owner then explicitly accepted the method and twelve meanings. Store the exact reply
+in a separate immutable acceptance directory, bound to the proposal/reference/review file
+hashes. Leave the proposal and its historical false flags unchanged; describe the accepted
+scope beside it rather than rewriting history. That acceptance permits constructed
+development references only, not general semantic gold, qualification, replacement release
+review, provider calls or deployment. The checker's agreement does not remove the correlated
+semantic-error risk of two implementations sharing an author. Same authoritative ledger
+reads 447/614 consumed, zero unsettled and one original stop. Required hosted CI and exact
+post-merge log readback remain delivery steps; no issue is closed by this development work.
