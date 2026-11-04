@@ -1,0 +1,691 @@
+{
+  "version": "olist-controlled-field-draft-v1",
+  "method": {
+    "version": "olist-controlled-field-method-proposal-v1",
+    "purpose": "proposed_development_reference_only",
+    "source": "entirely_authored_closed_grammar_no_inherited_publisher_labels",
+    "role_method": "typed_slot_generator_plus_separately_written_full_message_recognizer",
+    "generator_arithmetic": "integer_divmod",
+    "checker_arithmetic": "decimal_times_100",
+    "grouping": "all_refund_variants_one_parent_and_each_other_intent_one_parent",
+    "partition": "development",
+    "case_count": 12,
+    "declared_parents_not_independent": 5,
+    "method_accepted": false,
+    "semantic_gold_validated": false,
+    "provider_calls_authorized": 0,
+    "release_allowed": false,
+    "limitations": [
+      "Same engineering author can make correlated semantic errors in both implementations.",
+      "Closed grammar agreement cannot establish arbitrary natural language or population accuracy.",
+      "Null amounts are explicit controlled grammar meanings, not missing-source annotations.",
+      "Request meaning does not establish order eligibility, customer consent or a financial effect.",
+      "No native Bitext or ABCD file, reference, label, exposure or partition is changed.",
+      "No service recorder, baseline, prompt, legacy review gate or frozen study is changed."
+    ],
+    "source_files": [
+      {
+        "path": "projects/olist-support/src/olist_support/controlled_reference.py",
+        "sha256": "1f7f8ae7dea23afdf48d5a7f744f38d82be07692416ad883febf662c448c5539"
+      },
+      {
+        "path": "projects/olist-support/src/olist_support/controlled_reference_check.py",
+        "sha256": "e7535781cf82caccf630864e1821dce956dceabc65dcd339cd576cea00bb7039"
+      },
+      {
+        "path": "projects/olist-support/src/olist_support/routing_contracts.py",
+        "sha256": "37e374ae54d921609dadb4a8f7a74c78da31b3f9f91a6411fdf234388aab7ceb"
+      },
+      {
+        "path": "projects/olist-support/src/olist_support/evaluation_oracle.py",
+        "sha256": "051728c1a98c5ca50d04456e44b97fa6b4d5490f99250f00bc57f40191bff24f"
+      },
+      {
+        "path": "projects/olist-support/src/olist_support/policy.py",
+        "sha256": "1320cb51b84b0c47b2decb0803d50ee1ceea6788b38c2cfff5584150b0c0cbd6"
+      },
+      {
+        "path": "tests/test_olist_controlled_reference.py",
+        "sha256": "72a1e851c005238002d0e255e4d4df2f233ae0071c8ef2bd7adf51d1c1220785"
+      },
+      {
+        "path": "tests/test_olist_policy.py",
+        "sha256": "63dc94cf6f250736e7fd25ea67a85b52d86f621a128b9bbc044d42136413bf35"
+      }
+    ]
+  },
+  "references": [
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "refund_suffix",
+        "requested_minor": 0,
+        "paid_minor": null
+      },
+      "spec_sha256": "8354389a1be9225c8db2f3a52ca392e9719fccb76b5eacd5b60f5b4b8e62a10b",
+      "case_id": "e0374e191f740219b8bd161e33f0b182e95a67d78301b318ddef6a1c6507f415",
+      "group_id": "d402b970f009b098ee1d4a19875ae6400cf7bdd92917b4ee3dadf3e046826f5b",
+      "input": {
+        "schema_version": 1,
+        "request": "Please refund exactly 0.00 SIM.",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "refund",
+        "requested_minor": 0
+      },
+      "money": [
+        {
+          "schema_version": 1,
+          "role": "requested_refund",
+          "start": 22,
+          "end": 30,
+          "minor": 0
+        }
+      ],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "refund_suffix",
+        "requested_minor": 10000,
+        "paid_minor": null
+      },
+      "spec_sha256": "abd1d91c03f0d09833d7fa5a3eb1b2151a661dee577e07a1418f8848626d6720",
+      "case_id": "ba652a97041a413ae455e0e519e4b45dea5c0f4ff59c282be9362647f620f8fe",
+      "group_id": "d402b970f009b098ee1d4a19875ae6400cf7bdd92917b4ee3dadf3e046826f5b",
+      "input": {
+        "schema_version": 1,
+        "request": "Please refund exactly 100.00 SIM.",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "refund",
+        "requested_minor": 10000
+      },
+      "money": [
+        {
+          "schema_version": 1,
+          "role": "requested_refund",
+          "start": 22,
+          "end": 32,
+          "minor": 10000
+        }
+      ],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "refund_suffix",
+        "requested_minor": 10001,
+        "paid_minor": null
+      },
+      "spec_sha256": "b0948a101b6ada4120b9ccdd80ba24c8cc27ca60c17ba4ccb25ce3efb2d3b1a3",
+      "case_id": "9ec3d38c5a52ee873ce69301245caf69442850399ac20ae7164ed710af72e884",
+      "group_id": "d402b970f009b098ee1d4a19875ae6400cf7bdd92917b4ee3dadf3e046826f5b",
+      "input": {
+        "schema_version": 1,
+        "request": "Please refund exactly 100.01 SIM.",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "refund",
+        "requested_minor": 10001
+      },
+      "money": [
+        {
+          "schema_version": 1,
+          "role": "requested_refund",
+          "start": 22,
+          "end": 32,
+          "minor": 10001
+        }
+      ],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "refund_prefix",
+        "requested_minor": 9999,
+        "paid_minor": null
+      },
+      "spec_sha256": "8a36c7422bd9c856846c38bea27fb36f67739c8dd9c7f07c09907196c216cae6",
+      "case_id": "8a25a09098f9076995d64f0948308ea26c6fa664f0434e9b135ba948a0e74838",
+      "group_id": "d402b970f009b098ee1d4a19875ae6400cf7bdd92917b4ee3dadf3e046826f5b",
+      "input": {
+        "schema_version": 1,
+        "request": "Please refund exactly SIM 99.99.",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "refund",
+        "requested_minor": 9999
+      },
+      "money": [
+        {
+          "schema_version": 1,
+          "role": "requested_refund",
+          "start": 22,
+          "end": 31,
+          "minor": 9999
+        }
+      ],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "refund_paid_contrast",
+        "requested_minor": 2500,
+        "paid_minor": 10000
+      },
+      "spec_sha256": "cd2f39f539558ac372fc22ab141011b3cb33ba78847102210b93740ed56b31e6",
+      "case_id": "01ac8886b17f5d84ef69ed473b8f15d9520f9f1b55300440289158a16767928f",
+      "group_id": "d402b970f009b098ee1d4a19875ae6400cf7bdd92917b4ee3dadf3e046826f5b",
+      "input": {
+        "schema_version": 1,
+        "request": "I paid 100.00 SIM. Please refund exactly 25.00 SIM.",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "refund",
+        "requested_minor": 2500
+      },
+      "money": [
+        {
+          "schema_version": 1,
+          "role": "payment_mention",
+          "start": 7,
+          "end": 17,
+          "minor": 10000
+        },
+        {
+          "schema_version": 1,
+          "role": "requested_refund",
+          "start": 41,
+          "end": 50,
+          "minor": 2500
+        }
+      ],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "refund_full",
+        "requested_minor": null,
+        "paid_minor": null
+      },
+      "spec_sha256": "6f316a1ba6c5dfd95dc287e1977e4d9cee0f7d9b61b948bf280fa341b1e6edf5",
+      "case_id": "03236f311122a888730bf940eb32964c8c6e4b328c47e8295f418ef266510816",
+      "group_id": "d402b970f009b098ee1d4a19875ae6400cf7bdd92917b4ee3dadf3e046826f5b",
+      "input": {
+        "schema_version": 1,
+        "request": "Please refund my full payment.",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "refund",
+        "requested_minor": null
+      },
+      "money": [],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "reship",
+        "requested_minor": null,
+        "paid_minor": null
+      },
+      "spec_sha256": "753ba8f297275d0604bd018e91aa1a6c3ea8cdfb053c89970819943b16edbaa4",
+      "case_id": "9cac89d5df5864c24178b0d1f716d496857371df92deca17ca8d0f1f0759b4f2",
+      "group_id": "e1c36cc8eaea411f9a7a6a438684fc775fd95ed09e9490ec1788f868dcb67b3e",
+      "input": {
+        "schema_version": 1,
+        "request": "Please reship this order. Do not refund it.",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "reship",
+        "requested_minor": null
+      },
+      "money": [],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "reship_paid",
+        "requested_minor": null,
+        "paid_minor": 9999
+      },
+      "spec_sha256": "1e0f964354de88fca150f4a293e3760bb4b5e81ef115157884770507dff17743",
+      "case_id": "96546320cc783021581720261f2724121ebad4ae06564025badaf245ae982af6",
+      "group_id": "e1c36cc8eaea411f9a7a6a438684fc775fd95ed09e9490ec1788f868dcb67b3e",
+      "input": {
+        "schema_version": 1,
+        "request": "I paid 99.99 SIM. Please reship this order. Do not refund it.",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "reship",
+        "requested_minor": null
+      },
+      "money": [
+        {
+          "schema_version": 1,
+          "role": "payment_mention",
+          "start": 7,
+          "end": 16,
+          "minor": 9999
+        }
+      ],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "clarify_alternatives",
+        "requested_minor": null,
+        "paid_minor": null
+      },
+      "spec_sha256": "8ad67881f81514846a21a03357681dfc89a2fe183c66b66761c700cd2711318b",
+      "case_id": "6b87e863eab30ad2d80f04351b88e992711e5402ea0e1edcdfe0f625d465b5f8",
+      "group_id": "713bb742e66063c91e5d68a707b0d9cc8ac19ece34fdb417f7fd24697cbe5f2d",
+      "input": {
+        "schema_version": 1,
+        "request": "I have not chosen between a refund and a reshipment. What are my options?",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "clarify",
+        "requested_minor": null
+      },
+      "money": [],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "clarify_help",
+        "requested_minor": null,
+        "paid_minor": null
+      },
+      "spec_sha256": "879edf331b11afd86410309d134d948acac243e712c938a2e7f7b5b0ca09ac24",
+      "case_id": "c6a253da85d4b327b757294efba1f155ecab8536c03e932b6157a3792c89cf62",
+      "group_id": "713bb742e66063c91e5d68a707b0d9cc8ac19ece34fdb417f7fd24697cbe5f2d",
+      "input": {
+        "schema_version": 1,
+        "request": "I need help with this order. I have not chosen an action.",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "clarify",
+        "requested_minor": null
+      },
+      "money": [],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "status_paid",
+        "requested_minor": null,
+        "paid_minor": 10000
+      },
+      "spec_sha256": "82cc24802ad990f0e6388bb132fa2bc09a29f3444dcc23be6f144890ccecbf79",
+      "case_id": "9c1f3746d8c7b9ff28a0b3e351e86643e868403f8e73052b756dbfe152334a97",
+      "group_id": "d393332e38eff47c68af42f6f0ea92f5f1a6a6ced16a221783e6c2cc9eb607ec",
+      "input": {
+        "schema_version": 1,
+        "request": "I paid 100.00 SIM. What is this order's shipping status?",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "status",
+        "requested_minor": null
+      },
+      "money": [
+        {
+          "schema_version": 1,
+          "role": "payment_mention",
+          "start": 7,
+          "end": 17,
+          "minor": 10000
+        }
+      ],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    },
+    {
+      "schema_version": 1,
+      "version": "olist-controlled-field-reference-proposal-v1",
+      "spec": {
+        "schema_version": 1,
+        "template": "refund_status",
+        "requested_minor": null,
+        "paid_minor": null
+      },
+      "spec_sha256": "d668c18a2a178fa4ce89ecb50321778c5be2a379877804a232102299f7f5ac75",
+      "case_id": "38efe2c68ce6eb76f2d091ca0823e6e79074ed82d156d9717a6389af8dc315a1",
+      "group_id": "00e6690fc75a382c4ac33ec0dff4fc6950569f29fe05ca1ea5043e05222d5efd",
+      "input": {
+        "schema_version": 1,
+        "request": "What is the status of my existing refund?",
+        "observations": []
+      },
+      "expected": {
+        "schema_version": 1,
+        "routing_version": "olist-intent-routing-v2",
+        "intent": "unsupported",
+        "requested_minor": null
+      },
+      "money": [],
+      "provenance": "authored_closed_grammar_proposal",
+      "partition": "development",
+      "method_accepted": false,
+      "semantic_gold_validated": false,
+      "independent_family_validated": false,
+      "frozen_for_provider": false,
+      "release_allowed": false
+    }
+  ],
+  "conditional_sim_policy": {
+    "fixture": "entirely_invented_visible_canceled_confirmed_undelivered_paid_10000_SIM_no_prior_refund",
+    "checked_cases": 8,
+    "not_policy_applicable_cases": 4,
+    "proposal_agreements": 8,
+    "full_refund_proposals": 2,
+    "review_proposals": 6,
+    "business_execution_or_sql_performed": false,
+    "rows": [
+      {
+        "case_id": "e0374e191f740219b8bd161e33f0b182e95a67d78301b318ddef6a1c6507f415",
+        "oracle": {
+          "schema_version": 1,
+          "oracle_version": "independent-olist-table-v1",
+          "action": "review",
+          "amount_minor": null,
+          "failed_rules": [
+            "full_payment_requested"
+          ],
+          "committed": false
+        },
+        "production_proposal": {
+          "schema_version": 1,
+          "policy_version": "olist-canceled-full-refund-sim-v1",
+          "action": "review",
+          "reason": "request_is_not_the_full_payment",
+          "amount_minor": null,
+          "unit": null,
+          "committed": false
+        }
+      },
+      {
+        "case_id": "ba652a97041a413ae455e0e519e4b45dea5c0f4ff59c282be9362647f620f8fe",
+        "oracle": {
+          "schema_version": 1,
+          "oracle_version": "independent-olist-table-v1",
+          "action": "propose_full_refund",
+          "amount_minor": 10000,
+          "failed_rules": [],
+          "committed": false
+        },
+        "production_proposal": {
+          "schema_version": 1,
+          "policy_version": "olist-canceled-full-refund-sim-v1",
+          "action": "propose_full_refund",
+          "reason": "confirmed_canceled_paid_undelivered_within_simulation_cap",
+          "amount_minor": 10000,
+          "unit": "SIM",
+          "committed": false
+        }
+      },
+      {
+        "case_id": "9ec3d38c5a52ee873ce69301245caf69442850399ac20ae7164ed710af72e884",
+        "oracle": {
+          "schema_version": 1,
+          "oracle_version": "independent-olist-table-v1",
+          "action": "review",
+          "amount_minor": null,
+          "failed_rules": [
+            "full_payment_requested"
+          ],
+          "committed": false
+        },
+        "production_proposal": {
+          "schema_version": 1,
+          "policy_version": "olist-canceled-full-refund-sim-v1",
+          "action": "review",
+          "reason": "request_is_not_the_full_payment",
+          "amount_minor": null,
+          "unit": null,
+          "committed": false
+        }
+      },
+      {
+        "case_id": "8a25a09098f9076995d64f0948308ea26c6fa664f0434e9b135ba948a0e74838",
+        "oracle": {
+          "schema_version": 1,
+          "oracle_version": "independent-olist-table-v1",
+          "action": "review",
+          "amount_minor": null,
+          "failed_rules": [
+            "full_payment_requested"
+          ],
+          "committed": false
+        },
+        "production_proposal": {
+          "schema_version": 1,
+          "policy_version": "olist-canceled-full-refund-sim-v1",
+          "action": "review",
+          "reason": "request_is_not_the_full_payment",
+          "amount_minor": null,
+          "unit": null,
+          "committed": false
+        }
+      },
+      {
+        "case_id": "01ac8886b17f5d84ef69ed473b8f15d9520f9f1b55300440289158a16767928f",
+        "oracle": {
+          "schema_version": 1,
+          "oracle_version": "independent-olist-table-v1",
+          "action": "review",
+          "amount_minor": null,
+          "failed_rules": [
+            "full_payment_requested"
+          ],
+          "committed": false
+        },
+        "production_proposal": {
+          "schema_version": 1,
+          "policy_version": "olist-canceled-full-refund-sim-v1",
+          "action": "review",
+          "reason": "request_is_not_the_full_payment",
+          "amount_minor": null,
+          "unit": null,
+          "committed": false
+        }
+      },
+      {
+        "case_id": "03236f311122a888730bf940eb32964c8c6e4b328c47e8295f418ef266510816",
+        "oracle": {
+          "schema_version": 1,
+          "oracle_version": "independent-olist-table-v1",
+          "action": "propose_full_refund",
+          "amount_minor": 10000,
+          "failed_rules": [],
+          "committed": false
+        },
+        "production_proposal": {
+          "schema_version": 1,
+          "policy_version": "olist-canceled-full-refund-sim-v1",
+          "action": "propose_full_refund",
+          "reason": "confirmed_canceled_paid_undelivered_within_simulation_cap",
+          "amount_minor": 10000,
+          "unit": "SIM",
+          "committed": false
+        }
+      },
+      {
+        "case_id": "9cac89d5df5864c24178b0d1f716d496857371df92deca17ca8d0f1f0759b4f2",
+        "oracle": {
+          "schema_version": 1,
+          "oracle_version": "independent-olist-table-v1",
+          "action": "review",
+          "amount_minor": null,
+          "failed_rules": [
+            "reship_needs_inventory_review"
+          ],
+          "committed": false
+        },
+        "production_proposal": {
+          "schema_version": 1,
+          "policy_version": "olist-canceled-full-refund-sim-v1",
+          "action": "review",
+          "reason": "reship_requires_inventory_and_shipping_review",
+          "amount_minor": null,
+          "unit": null,
+          "committed": false
+        }
+      },
+      {
+        "case_id": "96546320cc783021581720261f2724121ebad4ae06564025badaf245ae982af6",
+        "oracle": {
+          "schema_version": 1,
+          "oracle_version": "independent-olist-table-v1",
+          "action": "review",
+          "amount_minor": null,
+          "failed_rules": [
+            "reship_needs_inventory_review"
+          ],
+          "committed": false
+        },
+        "production_proposal": {
+          "schema_version": 1,
+          "policy_version": "olist-canceled-full-refund-sim-v1",
+          "action": "review",
+          "reason": "reship_requires_inventory_and_shipping_review",
+          "amount_minor": null,
+          "unit": null,
+          "committed": false
+        }
+      }
+    ]
+  },
+  "provider_calls": 0,
+  "release_allowed": false
+}

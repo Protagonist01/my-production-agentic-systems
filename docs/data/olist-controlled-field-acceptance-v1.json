@@ -1,0 +1,21 @@
+{
+  "version": "olist-controlled-field-owner-acceptance-v1",
+  "recorded_at": "2026-11-04T18:54:41.449128+00:00",
+  "recorded_at_is_owner_action_time": false,
+  "reply_reference": "Codex chat request_user_input_async call_d308778691eb4a3082908c7e9dd4acee item0; reply received 2026-11-04",
+  "exact_reply": "Accept this constructed development method",
+  "method_proposal_sha256": "6bcd0d9541217af327381a5bdf7367c06c2fa277f3e84d0e6624dbb1c6275ccc",
+  "reference_file_sha256": "9c611469e4428126870f735608d0cd1c4a2fd6613036736d0c552f0707dd1140",
+  "review_file_sha256": "ad26b08204e51f555c599785d534d693f97ef5b8f7fc6bf8a9e67571e9edb672",
+  "scope": "closed_grammar_constructed_development_references_and_12_proposed_meanings",
+  "method_accepted": true,
+  "original_proposal_preserved": true,
+  "natural_language_gold_validated": false,
+  "independent_semantic_review_established": false,
+  "family_independence_validated": false,
+  "qualification_cohort_approved": false,
+  "replaces_release_review": false,
+  "provider_calls_authorized": 0,
+  "release_allowed": false,
+  "source": "owner_reply_recorded_by_engineering_agent_not_cryptographic_identity_proof"
+}

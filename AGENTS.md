@@ -382,3 +382,23 @@ The first 12 inspected messages remain exposed development; original preparation
 flags and old source/exposure files remain immutable. A new intent-only bundle must not
 fill requested_minor=null to fit a full-service reference. The original stopped ledger
 remains 447/614 with 0 unsettled and 1 stop as last read; no slots are reassigned or resumed.
+
+## Constructed field reference method accepted (2026-11-04)
+
+The owner explicitly replied "Accept this constructed development method" to the concrete
+12-case closed-grammar packet at
+`D:/document/.cache/production-agents/olist/controlled-field-reference-proposal-2026-11-04-v1/review.md`.
+Method file SHA-256: `6bcd0d9541217af327381a5bdf7367c06c2fa277f3e84d0e6624dbb1c6275ccc`.
+The separate exact-reply receipt is in sibling directory
+`controlled-field-development-acceptance-2026-11-04-v1`; docs/olist-controlled-field-references.md
+and two public data files describe implementation, acceptance and limitations.
+
+Use this grammar/12 intent-amount meanings as constructed development references only.
+The separate recognizer checks role/span/Decimal consistency, not independent semantic
+truth. Preserve original proposal bytes/false historical flags and native Bitext/ABCD
+annotations/exposures. Five conservative declared parent groups are not independent
+population samples. This accepts neither natural-language gold, a qualification cohort,
+replacement release review, service-schema expansion, provider calls, slot reassignment
+nor release. No candidate/prompt/baseline or frozen study is changed. Same ledger remains
+stopped 447/614 with zero unsettled and one original stop as last read; verify read-only
+before reporting. No keys are needed to construct or check these references.
