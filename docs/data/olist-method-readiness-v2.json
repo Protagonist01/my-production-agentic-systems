@@ -1,0 +1,22 @@
+{
+  "version": "olist-evidence-method-coverage-audit-v2",
+  "cases": 18,
+  "declared_connected_groups_not_authenticated": 5,
+  "required_claims": 181,
+  "admitted_supported_claims": 0,
+  "method_coverage_met": false,
+  "holdout_slices_missing": [
+    "cap_boundary",
+    "conflicting_facts",
+    "crash_restart",
+    "eligible_refund",
+    "missing_facts",
+    "prompt_injection",
+    "required_review",
+    "unseen_wording"
+  ],
+  "basis": "all 18 exposed development scenarios; no qualification scopes or claims admitted",
+  "provider_calls_authorized": 0,
+  "qualification_allowed": false,
+  "release_allowed": false
+}

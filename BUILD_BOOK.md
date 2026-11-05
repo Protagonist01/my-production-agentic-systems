@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 87 — Measure service baselines before accepting a replacement evidence policy](#entry-87--measure-service-baselines-before-accepting-a-replacement-evidence-policy)
 - [Entry 86 — Carry accepted constructed meanings through the actual service evaluator](#entry-86--carry-accepted-constructed-meanings-through-the-actual-service-evaluator)
 - [Entry 85 — Check controlled field references with a second implementation](#entry-85--check-controlled-field-references-with-a-second-implementation)
 - [Entry 82 — Audit reference applicability before another model study](#entry-82--audit-reference-applicability-before-another-model-study)
@@ -5868,3 +5869,86 @@ scenarios/manifest inputs, three fake composition pins and all 162 missing compa
 No candidate/baseline quality result is inferred from preparation. The original stopped
 ledger still reads 447/614, zero unsettled and one stop; no key, dispatch or amendment occurs.
 Final focused checks, full required hosted CI and post-merge main verification follow.
+
+## Entry 87 — Measure service baselines before accepting a replacement evidence policy
+
+### Context and decision in progress
+
+Continue from verified main 6ca379d after #138. The prepared service package still contains
+162 missing comparison rows. The legacy StandardProtocol accepts only actual blind human
+review records; the two accepted Olist reference methods cover development only. More
+mock candidate tests cannot supply a release-policy decision or independent language truth.
+
+### Before you read on
+
+Which claims can an independent executable rule establish, and which still need applicable
+semantic reference evidence? How would you measure an always-review baseline without
+reporting zero effects as useful completion or quietly approving a replacement policy?
+
+### Chosen next step
+
+Run the existing unchanged rules and always-review algorithms through all eighteen prepared
+development scenarios, three isolated sequential trials each, using DenyModels and the
+actual service scorer/readback. Freeze exact executable sources, original packet, schedules
+and composition pins before execution. Preserve every failed/missing row and stop on
+unknown/unsafe state. Do not start or amend the stopped shared provider allowance.
+
+Prepare a concrete field-by-field replacement-method decision from that actual evidence.
+Keep objective state/authority/message checks separate from intent/amount semantics. Do
+not change Review.kind, _reviewed, historical profiles or label scopes. Owner acceptance
+of a concrete substitution policy remains a separate decision; unresolved language or
+sampling evidence must stay unresolved under any new method rather than gain a waiver.
+
+### Accepted design and construction
+
+The owner accepts the concrete Olist-only substitution matrix, saying "Approve this Olist
+v2 evidence-method design". Keep the proposal bytes and false historical flags unchanged;
+write a separate exact-reply acceptance bound to its method hash. This authorizes method
+implementation, not qualification labels/cohorts, study limits, calls or release.
+
+Build `MethodCase`, `MethodScope` and `MethodClaim` as strict contracts. Split compound
+amount/action/review-reason fields into required parts: arithmetic cannot prove requested
+meaning. Construct every expected case/field/part before looking at claims and reject
+duplicates. Join source/input keys transitively before counting or checking splits. Require
+separately trusted scope pins and independently admitted full-claim hashes, not a bundle
+that grants itself authority. Include disposition in the full hash so flipping contradicted
+to supported invalidates admission. Check exact bindings, slices, scope/observation times.
+Recompute actual qualification dataset/protocol/study for a semantic model and check exact
+field.part/evaluator/slices and qualification before grant. Always return release=false.
+
+This library deliberately performs no factual IO or identity authentication: trusted domain
+readers/control-plane grants remain a prerequisite. No actual qualification grant is
+created. Project the eighteen current development scenarios with their actual manifest tags,
+five connected parent/order groups, no qualification claims and no grants; require181parts
+and admit0. Every qualification holdout slice remains missing. Record the accepted method,
+actual readiness and legacy path separately rather than relabel old studies to pass.
+
+### Failures and verification while building
+
+The Windows baseline runner stopped without sealing a baseline. Read its actual journal,
+not a file count as evidence of completion:54terminal rows include27service reports, one
+setup error and26abort placeholders. Reread all27captures and recompute scores against the
+original manifest. They all report review, fail whole-service correctness and pass observed
+state/routing safety. Later27outcomes remain unknown. The generic worker_cleanup_error is
+also an abort sentinel, so do not call26placeholders actual worker cleanup failures. No
+always-review capture started; no108-row completion or whole-run cleanup receipt exists.
+Docker's engine pipe is absent at diagnosis, but the generic setup code lost the underlying
+exception. Preserve the entire unsealed run and inventory; root cause remains unestablished.
+No automatic retry or resume. A new separately frozen capture needs engine readiness,
+persisted parent stderr and strict cleanup/seal/readback rather than synthetic completion.
+
+The first private diagnostic helper passed decoded JSON money strings to strict Python
+validation, which correctly refused Decimal=max_cost. Preserve that initial directory and
+use the JSON boundary in a new v2 diagnostic; do not relax the shared money contract.
+Two first unit failures were fixture errors: _reviewed requires its before time, and a
+model qualification needs both calibration classes as well as holdout. Fix the invented
+fixtures; preserve qualification criteria. Focused83tests then pass, including legacy rules.
+Mypy passes229sources. Full delivery checks and final evidence follow on the PR/main.
+
+Add a regression requiring evaluator qualification to finish before its scope grant,
+bringing the focused group to84checks. The first full local unit run refuses raw-source
+fixtures in the default C: temporary directory because one of its ancestors contains .git.
+Keep the source privacy guard unchanged; run the suite with a fresh, verified external D:
+cache basetemp. The prior error run is not a successful full-suite result. Broad Ruff dot
+formatting also reports five pre-existing documentation snippets outside the CI source
+list; the exact CI formatting scope passes without unrelated documentation changes.

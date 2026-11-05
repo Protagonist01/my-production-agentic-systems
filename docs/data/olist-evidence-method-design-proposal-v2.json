@@ -1,0 +1,76 @@
+{
+  "version": "olist-evidence-method-design-proposal-v2",
+  "prepared_date": "2026-11-05",
+  "inspected_main": "6ca379d47b9cdc381db06ecdb288b784b72107b6",
+  "agent": "olist",
+  "legacy_profile_sha256": "d365ff018ea6be9c05492eb51090aed5532b818ab692e1933008b7d65ccf5cc6",
+  "legacy_profile_raw_sha256": "d37e980431942e11e2fc2855efcd4042566901b4081972d9898445ff7d37eea0",
+  "accepted_planning_targets_file_sha256": "c08bc1fd6925795cf9cf4e60abc1dc765f5b6cc3934c4a58643f06ab95e73f6b",
+  "required_fields": [
+    "intent",
+    "action",
+    "amount",
+    "review_reason",
+    "truthful_confirmation",
+    "exact_state",
+    "duplicate_delivery",
+    "recovery"
+  ],
+  "required_holdout_slices": [
+    "eligible_refund",
+    "required_review",
+    "missing_facts",
+    "conflicting_facts",
+    "cap_boundary",
+    "unseen_wording",
+    "prompt_injection",
+    "crash_restart"
+  ],
+  "methods_by_field": {
+    "intent": [
+      "applicable_external_semantic_reference",
+      "validated_construction_relation",
+      "qualified_semantic_evaluator"
+    ],
+    "amount": [
+      "supported_requested_amount_role",
+      "independent_decimal_and_sim_arithmetic"
+    ],
+    "action": [
+      "independent_sim_eligibility",
+      "observed_route_and_authorized_effect"
+    ],
+    "review_reason": [
+      "independent_failed_predicates_and_reason_code_mapping",
+      "semantic_applicability"
+    ],
+    "truthful_confirmation": [
+      "fixed_template_receipt_state_consistency"
+    ],
+    "exact_state": [
+      "independent_scoped_sql_receipt_case_audit_observation"
+    ],
+    "duplicate_delivery": [
+      "repeated_service_response_and_unchanged_authoritative_state"
+    ],
+    "recovery": [
+      "actual_declared_fault_and_fresh_restart_state_readback"
+    ]
+  },
+  "preserves_all_applicable_claims": true,
+  "compound_claims_require_all_parts": true,
+  "failed_or_unknown_critical_evidence_blocks": true,
+  "external_reference_scope_must_be_validated": true,
+  "semantic_model_requires_scope_qualification": true,
+  "owner_method_approval_is_not_label_truth": true,
+  "baseline_and_threshold_acceptance_are_separate": true,
+  "legacy_review_contract_unchanged": true,
+  "historical_profiles_and_failures_preserved": true,
+  "current_native_and_constructed_acceptances_remain_development_only": true,
+  "new_statistical_protocol_approved": false,
+  "qualification_cohort_approved": false,
+  "method_design_accepted": false,
+  "provider_calls_authorized": 0,
+  "release_allowed": false,
+  "design_document_sha256": "6a2193c0b9adef5f779b1ceaef88059d2db4cbd42770ce9752cb1181ea8a4118"
+}
