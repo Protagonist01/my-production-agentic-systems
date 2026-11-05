@@ -13,6 +13,7 @@ from multiprocessing.reduction import ForkingPickler
 from pathlib import Path
 from typing import Protocol, Self, cast
 
+import psycopg
 from pydantic import model_validator
 
 from agent_harness.cases import LoadedManifest
@@ -25,6 +26,7 @@ from agent_harness.telemetry import TraceSession
 from agent_harness.telemetry_contracts import TraceHealth
 from agent_harness.trials import (
     BatchReport,
+    TrialDiagnostic,
     TrialError,
     TrialJournal,
     TrialRow,
@@ -132,6 +134,35 @@ class WorkerCleanupError(RuntimeError):
     """Do not release state or admit additional work after failed owned-worker cleanup."""
 
 
+def _exception_diagnostic(code: TrialError, error: Exception) -> TrialDiagnostic:
+    category = "other"
+    sqlstate = None
+    if isinstance(error, psycopg.Error):
+        category = "database"
+        # Use only a known library code, never arbitrary per-instance diagnostic text.
+        candidate = type(error).sqlstate
+        if isinstance(candidate, str):
+            try:
+                sqlstate = psycopg.errors.lookup(candidate).sqlstate
+            except KeyError:
+                pass
+    else:
+        for kind, name in (
+            (TimeoutError, "timeout"),
+            (ConnectionError, "connection"),
+            (PermissionError, "permission"),
+            (OSError, "os"),
+            (ValueError, "validation"),
+            (RuntimeError, "runtime"),
+        ):
+            if isinstance(error, kind):
+                category = name
+                break
+    return TrialDiagnostic.model_validate(
+        {"code": code, "origin": "exception", "exception_category": category, "sqlstate": sqlstate}
+    )
+
+
 def _isolated(
     factory: TrialFactory,
     loaded: LoadedManifest,
@@ -196,6 +227,7 @@ def _coordinate(
 ) -> TrialRow:
     started = time.perf_counter()
     errors: list[TrialError] = []
+    diagnostics: list[TrialDiagnostic] = []
     report = None
     telemetry = None
     lease = None
@@ -205,6 +237,7 @@ def _coordinate(
         return TrialRow(
             task=task,
             errors=("worker_cleanup_error",),
+            diagnostics=(TrialDiagnostic(code="worker_cleanup_error", origin="prior_trial_abort"),),
             timing=TrialTiming(
                 setup_seconds=time.perf_counter() - started,
                 execution_seconds=0.0,
@@ -216,13 +249,17 @@ def _coordinate(
         if not lease.reference.strip() or lease.fixture != schedule.state_fixture:
             raise ValueError("prepared state differs from scheduled fixture")
         state_ref = lease.reference
-    except Exception:
+    except Exception as error:
         errors.append("setup_error")
+        diagnostics.append(_exception_diagnostic("setup_error", error))
     prepared = time.perf_counter()
     try:
         if not errors and lease is not None:
             if abort.is_set():
                 errors.append("worker_cleanup_error")
+                diagnostics.append(
+                    TrialDiagnostic(code="worker_cleanup_error", origin="prior_trial_abort")
+                )
             else:
                 duration = (task.context.deadline - task.context.clock).total_seconds()
                 result = _isolated(
@@ -242,25 +279,32 @@ def _coordinate(
                 ):
                     report = None
                     errors.append("invalid_frame")
-    except WorkerCleanupError:
+                    diagnostics.append(
+                        TrialDiagnostic(code="invalid_frame", origin="identity_mismatch")
+                    )
+    except WorkerCleanupError as error:
         can_release = False
         abort.set()
         errors.append("worker_cleanup_error")
-    except Exception:
+        diagnostics.append(_exception_diagnostic("worker_cleanup_error", error))
+    except Exception as error:
         errors.append("execution_error")
+        diagnostics.append(_exception_diagnostic("execution_error", error))
     finally:
         executed = time.perf_counter()
         if lease is not None and can_release:
             try:
                 environment.release(lease)
-            except Exception:
+            except Exception as error:
                 errors.append("cleanup_error")
+                diagnostics.append(_exception_diagnostic("cleanup_error", error))
     finished = time.perf_counter()
     return TrialRow(
         task=task,
         state_ref=state_ref,
         report=report,
         errors=tuple(errors),
+        diagnostics=tuple(diagnostics),
         telemetry=telemetry,
         timing=TrialTiming(
             setup_seconds=prepared - started,

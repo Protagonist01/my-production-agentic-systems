@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 88 — Keep diagnostic causes separate from aborted trial placeholders](#entry-88--keep-diagnostic-causes-separate-from-aborted-trial-placeholders)
 - [Entry 87 — Measure service baselines before accepting a replacement evidence policy](#entry-87--measure-service-baselines-before-accepting-a-replacement-evidence-policy)
 - [Entry 86 — Carry accepted constructed meanings through the actual service evaluator](#entry-86--carry-accepted-constructed-meanings-through-the-actual-service-evaluator)
 - [Entry 85 — Check controlled field references with a second implementation](#entry-85--check-controlled-field-references-with-a-second-implementation)
@@ -5952,3 +5953,34 @@ Keep the source privacy guard unchanged; run the suite with a fresh, verified ex
 cache basetemp. The prior error run is not a successful full-suite result. Broad Ruff dot
 formatting also reports five pre-existing documentation snippets outside the CI source
 list; the exact CI formatting scope passes without unrelated documentation changes.
+
+## Entry 88 — Keep diagnostic causes separate from aborted trial placeholders
+
+### Context and decision in progress
+
+Continue #33 from verified main3483484 after #139. The prior baseline capture is unsealed,
+with27service reports, one generic setup error and26abort placeholders. The generic
+worker_cleanup_error code cannot distinguish abort from a physical worker-reaping failure.
+Its setup exception details were discarded, so the old low-level cause remains unknown.
+
+### Before you read on
+
+How can a private journal retain a useful failure boundary without storing database
+passwords, source text or arbitrary exception messages? How can old canonical row pins
+remain valid after adding that information?
+
+### Chosen construction
+
+Add an optional, omitted-when-empty structured diagnostic tuple to TrialRow. Retain all
+old error codes and failure/abort behavior. Use fixed cause categories, explicit origin
+and known database SQLSTATE codes only; never stringify exceptions or store traceback
+locals. Bind diagnostic codes to actual row errors and distinguish prior-trial abort
+from caught setup/execution/cleanup exceptions. Test actual parent coordinator paths and
+old-row byte round-trip, rather than changing failure criteria to make a run pass.
+
+Restore the stopped Docker Desktop using existing owner authorization; engine29.8.2 is
+now responding. Preserve the original baseline directory and every provider stop/slot.
+Any further zero-call development capture uses a new frozen source/schedule/output and
+persisted private parent logs, actual readiness and strict seal/readback/owned cleanup.
+It is neither a retry of failed provider requests nor qualification/release authority.
+Implementation, diagnostic tests and actual execution results follow as observed.
