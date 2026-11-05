@@ -1,0 +1,62 @@
+{
+  "version": "olist-unsealed-baseline-diagnosis-v1",
+  "executable_revision": "6ca379d47b9cdc381db06ecdb288b784b72107b6",
+  "package_sha256": "32b7d3b9bed353e9e5123eaf3c9ff2a6f4d4fff6f41b97ceef92e261361516c9",
+  "planned_comparison_rows": 162,
+  "rules_scheduled": 54,
+  "rules_journal_rows": 54,
+  "rules_service_reports_verified": 27,
+  "rules_error_only_rows": 27,
+  "error_codes": {
+    "setup_error": 1,
+    "worker_cleanup_error": 26
+  },
+  "error_code_limit": "worker_cleanup_error is also the coordinator abort sentinel; not proof of 26 failed process cleanups",
+  "rules_quality_or_safety_unknown_rows": 27,
+  "always_review_attempted": false,
+  "candidate_attempted": false,
+  "sealed_baselines": 0,
+  "completed_comparison": false,
+  "observed_prefix": {
+    "correct": {
+      "passed": 0,
+      "failed": 27,
+      "observed": 27,
+      "rules_scheduled": 54,
+      "unknown_or_missing": 27
+    },
+    "routing_safe": {
+      "passed": 27,
+      "failed": 0,
+      "observed": 27,
+      "rules_scheduled": 54,
+      "unknown_or_missing": 27
+    },
+    "state_safety": {
+      "passed": 27,
+      "failed": 0,
+      "observed": 27,
+      "rules_scheduled": 54,
+      "unknown_or_missing": 27
+    },
+    "observed_review": {
+      "passed": 27,
+      "failed": 0,
+      "observed": 27,
+      "rules_scheduled": 54,
+      "unknown_or_missing": 27
+    }
+  },
+  "host_engine_available_at_diagnosis": false,
+  "setup_root_cause": "not established; original low-level exception not captured",
+  "trial_cleanup_verified": false,
+  "automatic_retry_or_resume": false,
+  "new_provider_calls": 0,
+  "ledger_read_only": {
+    "consumed": 447,
+    "unsettled": 0,
+    "stops": 1
+  },
+  "lifetime_cap": 614,
+  "release_allowed": false
+}

@@ -420,3 +420,34 @@ these rows as allowance reservations, a provider-frozen protocol or a replacemen
 review policy. A future provider study needs its actual source/host/scope freeze, readiness
 and explicit allocation approval. Preserve the original447/614ledger, zero unsettled and
 one stop; no slot reuse, key loading, allowance amendment, stopped-run continuation or release.
+
+## Olist v2 evidence-method design accepted (2026-11-05)
+
+The owner replied "Approve this Olist v2 evidence-method design" to the concrete decision
+at `release-method-decision-2026-11-05-v1/decision.md` (call_63633e66137c44ad8044c5c8239ddbae,
+item0). Proposal method raw SHA-256:
+`51e7b9ef21b70f551c1fe4715a485dce9db5bc9ec26c774f4bec7d87424ca7c7`.
+Separate exact-reply receipt raw SHA-256:
+`fb39d0589b5f11dff9aeaf68f3efc51272635b95de8d684f65fac4fdf21fd8dc`.
+Private receipt: `D:/document/.cache/production-agents/olist/release-method-design-acceptance-2026-11-05-v1`.
+Preserve original proposal/false history and distinct acceptance. Scope is Olist-only
+design/implementation of the substitution matrix: independently executed objective checks;
+applicable external/construction references or separately qualified semantic evaluators;
+all eight fields/slices and existing targets retained. Do not manufacture Review identities
+or modify legacy _reviewed/historical profile acceptance. Current labels remain development.
+
+This accepts no qualification cohort, sampling/statistical protocol, baseline, threshold
+freeze, provider call/allowance/slot change, hosting purchase or release. Method coverage
+is not release permission. Trusted scope/proof pins must come from separate control-plane/
+domain verification, never the submitted evidence itself. No qualification grants or real
+Olist semantic evaluator are created. See docs/olist-evidence-method-audit.md for code,
+trust boundary and remaining gates.
+
+The zero-call capture at `service-development-baselines-2026-11-05-v1` is unsealed:
+27 actual verified service reports, one setup error and26 abort placeholders in a54-row
+rules journal; no always-review capture or completed108-row comparison. Preserve original
+files and unknown outcomes. Docker was unavailable at diagnosis; the generic setup code
+does not establish its low-level cause. No automatic retry/resume or invented cleanup
+receipt. Read-only diagnosis/181-part readiness audit: `evidence-method-readiness-2026-11-05-v2`.
+Initial v1 diagnosis directory preserves a strict Decimal parsing failure, not a successful
+audit. Same stopped447/614ledger, zero unsettled / one original stop; no key/provider call.

@@ -1,0 +1,16 @@
+{
+  "version": "olist-v2-method-design-owner-acceptance-v1",
+  "recorded_at": "2026-11-05T09:29:57.586250+00:00",
+  "recorded_at_is_owner_action_time": false,
+  "reply_reference": "Codex chat request_user_input_async call_63633e66137c44ad8044c5c8239ddbae item0; reply received 2026-11-05",
+  "exact_reply": "Approve this Olist v2 evidence-method design",
+  "proposal_sha256": "51e7b9ef21b70f551c1fe4715a485dce9db5bc9ec26c774f4bec7d87424ca7c7",
+  "scope": "olist_v2_method_design_and_implementation_only",
+  "method_design_accepted": true,
+  "qualification_cohort_approved": false,
+  "statistical_protocol_approved": false,
+  "baseline_approved": false,
+  "threshold_freeze_approved": false,
+  "provider_calls_authorized": 0,
+  "release_allowed": false
+}

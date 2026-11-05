@@ -1,5 +1,16 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Olist evidence-method audit](docs/olist-evidence-method-audit.md) continues from
+verified main `6ca379d` on `codex/olist-release-method-decision`. It implements the owner's
+accepted Olist-only substitution matrix as a pure method-coverage library, retaining all
+eight fields/slices and legacy review rules. Trace exact receipt/profile pins, compound
+semantic/arithmetic claims, separately trusted grants/proofs, transitive groups and actual
+recomputed evaluator qualification. A self-consistent hash bundle is not factual truth.
+The actual18development scenarios still have zero qualification-admitted claims out of181.
+The local baseline stopped unsealed:27reread reports, one setup error and26abort placeholders;
+neither108completed trials nor a representative quality result is claimed. Scope excludes
+full statistical release integration, qualified language references and hosted operations.
+
 The [controlled service-package walkthrough](docs/olist-controlled-service-package.md)
 continues from verified main `1d20801`. Follow exact acceptance/reference bytes through
 ControlledServiceReference, its opt-in RoutingCase version, fictional fixture compilation,
