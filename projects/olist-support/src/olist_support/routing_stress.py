@@ -54,7 +54,8 @@ class StressDraft(Contract):
         for entry in self.entries:
             case = entry.case
             if (
-                case.source_kind != "synthetic"
+                not isinstance(case.reference, RoutingReference)
+                or case.source_kind != "synthetic"
                 or case.split != "development"
                 or case.reference.provenance != "constructed_development"
             ):
@@ -63,6 +64,8 @@ class StressDraft(Contract):
                 parent = indexed.get(entry.parent_case_id)
                 if parent is None or parent.parent_case_id is not None:
                     raise ValueError("stress variant requires a root parent in this draft")
+                if not isinstance(parent.case.reference, RoutingReference):
+                    raise ValueError("stress variant requires the original reference format")
                 if (case.group_id, case.language_family, case.order, case.confirmation) != (
                     parent.case.group_id,
                     parent.case.language_family,

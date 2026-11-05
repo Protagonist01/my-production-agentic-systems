@@ -9,6 +9,7 @@ from pydantic import Field, model_validator
 
 from olist_support.business import sha
 from olist_support.business_contracts import CallerGrant, RefundCommand
+from olist_support.controlled_service_reference import ControlledServiceReference
 from olist_support.evaluation_oracle import OracleFacts, OracleRequest, evaluate_policy
 from olist_support.field_evaluation import FieldCapture
 from olist_support.policy import POLICY_VERSION, ScenarioConfirmation
@@ -39,7 +40,7 @@ class RoutingCase(Contract):
     split: Split
     source_kind: Literal["hybrid", "synthetic"]
     reference_source_sha256: Digest
-    reference: RoutingReference
+    reference: RoutingReference | ControlledServiceReference
     order: OrderView
     confirmation: ScenarioConfirmation | None
     expected: ExpectedWorkflow
@@ -47,6 +48,16 @@ class RoutingCase(Contract):
 
     @model_validator(mode="after")
     def coherent(self) -> Self:
+        if isinstance(self.reference, ControlledServiceReference) and (
+            self.split != "development"
+            or self.source_kind != "synthetic"
+            or self.group_id != self.reference.source.group_id
+            or self.language_family != "controlled-parent-" + self.reference.expected.intent
+            or self.reference_source_sha256 != self.reference.reference_file_sha256
+        ):
+            raise ValueError(
+                "controlled service reference requires original synthetic development group"
+            )
         intent = self.reference.expected.intent
         outcome = self.expected.outcome
         if (intent == "status") != (outcome == "status"):

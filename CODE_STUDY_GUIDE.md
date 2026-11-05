@@ -1,5 +1,14 @@
 # Code Study Guide — Production Agentic Systems
 
+The [controlled service-package walkthrough](docs/olist-controlled-service-package.md)
+continues from verified main `1d20801`. Follow exact acceptance/reference bytes through
+ControlledServiceReference, its opt-in RoutingCase version, fictional fixture compilation,
+manifest input projection and the existing SQL scorer. Explain why prefix-currency text
+cannot be rewritten to satisfy an older reference parser, why a wrong refund withheld by
+the customer remains semantically wrong, and why eighteen actor scenarios remain five
+dependent groups. The guide covers evaluator preparation and tested mechanisms; provider
+qualification, production host evidence and natural-customer generalization remain pending.
+
 The [controlled-field walkthrough](docs/olist-controlled-field-references.md) continues
 from verified main `247beb9`. It traces the accepted constructed development method:
 typed money roles, integer rendering, a separate Decimal/full-message checker, immutable

@@ -402,3 +402,21 @@ replacement release review, service-schema expansion, provider calls, slot reass
 nor release. No candidate/prompt/baseline or frozen study is changed. Same ledger remains
 stopped 447/614 with zero unsettled and one original stop as last read; verify read-only
 before reporting. No keys are needed to construct or check these references.
+
+## Constructed service evaluation preparation (2026-11-04)
+
+After verified #137 the owner said proceed. Continue service-evaluation implementation
+using the accepted twelve constructed meanings, without new provider calls. The explicit
+ControlledServiceReference adapter and ControlledServicePackage preserve original source/
+approval pins and old reference contracts. The new preparation contains eighteen wholly
+fictional actor/fixture scenarios over five dependent parent/order groups, including exact
+consent, review/rejection, wrong amount and response-loss recovery. Their preparation is
+not an accepted qualification cohort, independent population sample or real customer consent.
+Private packet: `D:/document/.cache/production-agents/olist/controlled-service-preparation-2026-11-04-v1`.
+
+The three fake composition pins/three-trial plan have162descriptive comparison rows; absent
+observations stay missing. No model/baseline quality is observed by preparation. Do not use
+these rows as allowance reservations, a provider-frozen protocol or a replacement release
+review policy. A future provider study needs its actual source/host/scope freeze, readiness
+and explicit allocation approval. Preserve the original447/614ledger, zero unsettled and
+one stop; no slot reuse, key loading, allowance amendment, stopped-run continuation or release.

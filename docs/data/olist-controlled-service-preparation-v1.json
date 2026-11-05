@@ -1,0 +1,58 @@
+{
+  "version": "olist-controlled-service-preparation-v1",
+  "accepted_constructed_meanings": 12,
+  "prepared_service_scenarios": 18,
+  "declared_connected_groups_not_independent": 5,
+  "fictional_order_groups": 5,
+  "scripted_expected_commits": 4,
+  "scripted_recovery_cases": 1,
+  "original_pinned_packet_verified": true,
+  "input_manifest_roundtrips_verified": 18,
+  "package_sha256": "32b7d3b9bed353e9e5123eaf3c9ff2a6f4d4fff6f41b97ceef92e261361516c9",
+  "manifest_sha256": "c43f9292c7b41b846e712e0c218e8e5ef474489230b23230f2359dd884a906dd",
+  "preparation_protocol_sha256": "7ca5e22bbf1c168b2ab6936e2bb152ef4f9dfc9a98df0c4236a56f629005ef33",
+  "diagnostic_comparison_rows": 162,
+  "candidate_and_baseline_rows_observed": 0,
+  "missing_rows": 162,
+  "source_files": [
+    {
+      "path": "projects/olist-support/src/olist_support/controlled_service_reference.py",
+      "sha256": "81f5af4e2664d4e0bb667a72d0ff7e4f46092ad09bc94614929be59275bbe29f"
+    },
+    {
+      "path": "projects/olist-support/src/olist_support/controlled_service_package.py",
+      "sha256": "28c7127e5ec9d86e552a5855127d8d0d7171f2e264641bad25b1af45073f2d26"
+    },
+    {
+      "path": "projects/olist-support/src/olist_support/routing_evaluation.py",
+      "sha256": "735b4bb55d74e494ce952308db22607dd1cc5501127e982ab9b370877f7d33af"
+    },
+    {
+      "path": "projects/olist-support/src/olist_support/routing_stress.py",
+      "sha256": "dde51baea43fac0b1fdd5456d6df2b1c51971776c195a313034c659ebaab1f62"
+    },
+    {
+      "path": "projects/olist-support/src/olist_support/service_evaluation.py",
+      "sha256": "4ea5566e936f87f67ad082b624e80bcaea1003eb62ec2a62083d3657e8ee1219"
+    },
+    {
+      "path": "projects/olist-support/src/olist_support/service_h10.py",
+      "sha256": "4f76b8942000ec5eb492c3b23765e4f8bc79613fd663360ee50cc502c4e8a1ff"
+    },
+    {
+      "path": "projects/olist-support/src/olist_support/service_study.py",
+      "sha256": "e726e9a903a7c6a7de14dd9a98f30065820fdbd65dd8cb2aac622459091f0e8e"
+    }
+  ],
+  "semantic_gold_validated": false,
+  "family_independence_validated": false,
+  "qualification_cohort_approved": false,
+  "frozen_for_provider": false,
+  "provider_calls": 0,
+  "read_only_ledger": {
+    "consumed": 447,
+    "unsettled": 0,
+    "stops": 1
+  },
+  "release_allowed": false
+}

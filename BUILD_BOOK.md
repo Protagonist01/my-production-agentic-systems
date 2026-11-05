@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 86 — Carry accepted constructed meanings through the actual service evaluator](#entry-86--carry-accepted-constructed-meanings-through-the-actual-service-evaluator)
 - [Entry 85 — Check controlled field references with a second implementation](#entry-85--check-controlled-field-references-with-a-second-implementation)
 - [Entry 82 — Audit reference applicability before another model study](#entry-82--audit-reference-applicability-before-another-model-study)
 - [Entry 83 — Bind utterance references without inventing missing labels](#entry-83--bind-utterance-references-without-inventing-missing-labels)
@@ -5798,3 +5799,72 @@ review, provider calls or deployment. The checker's agreement does not remove th
 semantic-error risk of two implementations sharing an author. Same authoritative ledger
 reads 447/614 consumed, zero unsettled and one original stop. Required hosted CI and exact
 post-merge log readback remain delivery steps; no issue is closed by this development work.
+
+## Entry 86 — Carry accepted constructed meanings through the actual service evaluator
+
+### Context and design in progress
+
+Continue from verified main 1d20801 after the owner accepted the twelve constructed
+development meanings. Their reference format deliberately supports prefix currency and
+role-specific spans. The older service reader accepts only RoutingReference's suffix
+span. Reformatting the input would change the evaluated message; replacing the old span
+validator would silently change an existing reference contract.
+
+### Before you read on
+
+How can a new evaluator reference expose the same text/expected-plan interface while
+retaining its original grammar and acceptance pins? What must remain outside agent input?
+
+### Chosen construction
+
+Add a distinctly versioned evaluator-only wrapper and an opt-in union in RoutingCase.
+The wrapper retains the exact ControlledReference and accepted provenance pins. Its
+preparation loader verifies the actual private approval/method/reference bytes against
+externally fixed pins and recomputes all twelve original references. Preserve the old
+reference schema and explicitly refuse the new wrapper in the older stress-draft format.
+
+Compile the unchanged twelve meanings into wholly fictional paid-100.00-SIM service
+fixtures. Bind conservative parent identity, development split and synthetic provenance;
+separate their expected policy outcomes from explicit customer/reviewer scripts. Validate
+the actual manifest round-trip and preserve all absent candidate/baseline trial rows.
+This is service evaluation preparation, not acceptance of new qualification labels,
+provider execution, authentic customer consent or release. Tests and actual results follow.
+
+### Construction, failures and actual verification
+
+In `bind_accepted`, verify the three actual raw packet hashes before parsing. Compare the
+decoded complete ordered reference set to the original twelve generator outputs. The
+service wrapper keeps original text/plan via properties and retains separate provenance
+pins. Extend RoutingCase with this explicit version, then constrain synthetic/development/
+group/family/reference-file metadata. Narrow the older stress validator to its original
+reference type before reading its suffix span; do not weaken that span rule for new text.
+
+Generate five fictional order groups, all with known 100.00 SIM payments, then declare
+workflow outcomes/reasons and let the separate policy table check refund eligibility.
+Build twelve withholding scenarios, two exact confirmations, approval/rejection variants,
+one wrong customer amount and one after-commit response-loss case. Package reconstruction
+requires exactly these fixtures/scripts. Round-trip each scenario through the actual
+service manifest and prove AgentInput is the original text-only projection. Eighteen
+scenarios remain five dependent groups; no sampled-population claim is made.
+
+The first loader test reconstructed LF bytes for files originally written with CRLF on
+Windows. Exact pin refusal was correct. Preserve those files, and reconstruct their
+explicit original endings in portable fixtures rather than normalizing incoming evidence.
+Mypy also required Final annotations for literal defaults. A local privacy test refused
+the default temporary directory because of a Git ancestor; use a fresh verified external
+cache directory, retaining the privacy guard. Create its parent first; the first external
+run exposed a missing-parent setup error rather than an application failure.
+
+The first six SQL checks failed at the context boundary before service execution: the old
+test helper still supplied invented-tenant while the new fixture declared its own tenant.
+Bind task context to scenario.reference.order.tenant_id and add a unit regression. Keep
+the production tenant guard intact. The corrected actual PostgreSQL run passes all six
+checks in 214.15 seconds: exact one-effect commit, prefix/partial review, wrong amount/intent
+withheld without effect, after-commit recovery, and three-trial H10 recording/strict readback
+with owned database/role cleanup. All gateway decisions are invented, not provider results.
+
+The private preparation independently recomputes the exact accepted packet, eighteen
+scenarios/manifest inputs, three fake composition pins and all 162 missing comparison rows.
+No candidate/baseline quality result is inferred from preparation. The original stopped
+ledger still reads 447/614, zero unsettled and one stop; no key, dispatch or amendment occurs.
+Final focused checks, full required hosted CI and post-merge main verification follow.
