@@ -5984,3 +5984,37 @@ Any further zero-call development capture uses a new frozen source/schedule/outp
 persisted private parent logs, actual readiness and strict seal/readback/owned cleanup.
 It is neither a retry of failed provider requests nor qualification/release authority.
 Implementation, diagnostic tests and actual execution results follow as observed.
+
+### Completed capture and continuation — 2026-11-06
+
+The 25 new diagnostic checks and 64 existing trial checks pass together (89 checks,
+52.14 seconds on this continuation). Six real service/database readiness checks passed
+before the separately frozen capture. Both unchanged algorithms completed 54 trials:
+108 sealed observations, zero trial errors, and 54 deliberately missing model rows.
+Each algorithm reports review for every case. Both score 54/54 routing/state safe but
+0/54 whole-service correct, 0/54 joint intent/amount, 0/12 eligible completion and 0/39
+expected review routing/reason. Containment is not useful completion or semantic agreement.
+
+To reproduce verification without rerunning trials, validate the accepted package pins,
+load its manifest and saved protocol/route/composition specs, check executable source
+hashes, then call read_comparator for each saved baseline and assemble on both returned
+evidence objects. Compare that result with comparison.json exactly. Check the completion
+receipt separately: all 108 owned database/role pairs were removed and the owned workspace
+container/volume was torn down before completion. Rehash the original failed inventory;
+its 27 reports and unknown suffix must stay unchanged rather than gain a successful seal.
+
+The authorized six-container Langfuse pause ended with restoration at 17:20 UTC on
+2026-11-05. Docker was stopped again at today's continuation; start the existing engine,
+then verify the original IDs/names and running states rather than creating replacements.
+Today's first readback hit a protected historical file before score verification. Keep
+that failed output directory and use a new directory after authorized read access. The
+successful readback reproduces the saved comparison, confirms the historical inventory
+and six running container IDs, and opens the provider ledger read-only: 447 consumed,
+zero unsettled and one original stop. No model call, key load, slot reuse or allowance
+amendment occurs. Public output contains aggregate counts/pins, not private trial records.
+
+The development grammar, five dependent groups and exposed inputs limit interpretation.
+Do not change baseline behavior to improve this frozen result or treat missing model rows
+as observed failures. Qualified language references, sampling/protocol acceptance, full
+candidate evidence and operational release evidence remain separate unfinished work on #33.
+Final hosted delivery checks follow on the PR and post-merge main.

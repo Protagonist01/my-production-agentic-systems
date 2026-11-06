@@ -463,3 +463,18 @@ The private `artifacts/restore-baseline-langfuse.py` helper verifies names/IDs a
 only those previously running. No volume or data deletion is authorized by this pause.
 This is a temporary host-readiness step, not permission to change observability permanently,
 resume a stopped provider study, reuse slots, load model keys or accept qualification.
+
+## Completed separate zero-call baselines (2026-11-06)
+
+The separate v2 capture completed on 2026-11-05; strict independent readback on 2026-11-06
+reproduces 108 sealed observations and preserves the original failed v1 inventory. Both
+unchanged algorithms are routing/state safe54/54 but whole-service correct0/54 and eligible
+completion0/12;54model rows remain missing. All108owned database/role pairs and the owned
+workspace container/volume were removed. The six original Langfuse containers were restored
+on2026-11-05 and their original running IDs rechecked on2026-11-06. The temporary pause is
+fulfilled. See docs/olist-baseline-completion-v2.md and its aggregate pins.
+
+These are exposed constructed development results, not baseline/threshold approval,
+qualification or release. Preserve both runs and the stopped447/614ledger (zero unsettled,
+one original stop at readback). No further provider call, slot reassignment or allowance
+change is authorized by this completion. #33 retains language, study and operational gates.
