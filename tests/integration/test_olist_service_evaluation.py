@@ -347,3 +347,65 @@ def test_real_service_baselines_keep_zero_calls_and_safe_abstention(app, tmp_pat
         assert row.report.report.result.usage.model_calls == 0
         assert scores["routing_safe"] == scores["observed_review"] == 1
         assert scores["intent"] == scores["correct"] == 0
+    from datetime import UTC, datetime, timedelta
+
+    from olist_support.evidence_methods import MethodScope
+
+    from service_method_readback import PARTS, read_method_evidence
+
+    objectives = read_method_evidence(
+        output,
+        loaded,
+        route=factory.route,
+        selected=selected,
+        evidence_sha256=pin(evidence),
+        candidate_sha256=pin(factory.candidate),
+        checked_at=datetime.now(UTC),
+    )
+    assert len(objectives.readback.facts) == 3
+    assert all(f.disposition == "supported" for f in objectives.readback.facts)
+    assert not objectives.claims and not objectives.verified_claim_pins
+    assert not objectives.readback.release_allowed
+    case = objectives.readback.cases[0]
+    scopes = tuple(
+        MethodScope(
+            field=field,
+            part=part,
+            method=method,
+            input_sha256=case.input_sha256,
+            reference_sha256=case.reference_sha256,
+            source_sha256=pin(evidence),
+            evaluator_sha256=objectives.readback.evaluator_sha256,
+            slices=case.slices,
+            permitted_use="development",
+            authority_reference="invented-integration-test-grant",
+            granted_at=evidence.started_at - timedelta(seconds=1),
+            expires_at=datetime.now(UTC) + timedelta(hours=1),
+        )
+        for field, (part, method) in PARTS.items()
+    )
+    admitted = read_method_evidence(
+        output,
+        loaded,
+        route=factory.route,
+        selected=selected,
+        evidence_sha256=pin(evidence),
+        candidate_sha256=pin(factory.candidate),
+        checked_at=datetime.now(UTC),
+        scopes=scopes,
+        trusted_scope_pins=frozenset(pin(s) for s in scopes),
+    )
+    assert len(admitted.claims) == len(admitted.verified_claim_pins) == 3
+    assert all(c.disposition == "supported" for c in admitted.claims)
+    observation = next((output / "observations").glob("*.json"))
+    observation.write_bytes(observation.read_bytes() + b" ")
+    with pytest.raises(ValueError, match="readback"):
+        read_method_evidence(
+            output,
+            loaded,
+            route=factory.route,
+            selected=selected,
+            evidence_sha256=pin(evidence),
+            candidate_sha256=pin(factory.candidate),
+            checked_at=datetime.now(UTC),
+        )

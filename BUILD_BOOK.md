@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
 - [Entry 88 — Keep diagnostic causes separate from aborted trial placeholders](#entry-88--keep-diagnostic-causes-separate-from-aborted-trial-placeholders)
 - [Entry 87 — Measure service baselines before accepting a replacement evidence policy](#entry-87--measure-service-baselines-before-accepting-a-replacement-evidence-policy)
 - [Entry 86 — Carry accepted constructed meanings through the actual service evaluator](#entry-86--carry-accepted-constructed-meanings-through-the-actual-service-evaluator)
@@ -6018,3 +6019,69 @@ Do not change baseline behavior to improve this frozen result or treat missing m
 as observed failures. Qualified language references, sampling/protocol acceptance, full
 candidate evidence and operational release evidence remain separate unfinished work on #33.
 Final hosted delivery checks follow on the PR and post-merge main.
+
+## Entry 89 — Connect pinned service readback to objective method proofs
+
+### Context and decision in progress
+
+Continue #33 from verified main894a573 after #140. The method audit accepts independently
+verified claim pins, but no service-specific adapter derives those claims from actual
+sealed records. Current labels and both completed baselines remain development evidence.
+This step connects existing checks; it creates no metric, qualification grant or release.
+
+### Before you read on
+
+How can a verifier check old frozen runtime packages without changing their inventory?
+How should one supported, one contradicted and one unknown repetition combine into a
+single method claim, and who supplies the independent scope authority?
+
+### Options considered and chosen construction
+
+Adding a verifier to the Olist or harness package would change its complete runtime
+inventory. Historical read_comparator deliberately refuses that mismatch. Keep those
+packages intact and put the control-plane adapter in a separately versioned root module,
+included in normal lint/type checks. It imports the unchanged domain reader and therefore
+still requires the recorded runtime, interpreter and platform to match its frozen pins.
+Do not bypass verify_runtime or rewrite old candidate inventories to accommodate new code.
+
+Read the externally pinned baseline/candidate with read_comparator, which rereads the
+sealed journal and recomputes service state/output scores from canonical captures. Project
+actual manifest inputs/references/groups/slices, then fold all scheduled repetitions for
+each objective part: any false contradicts; otherwise an unknown remains unresolved; only
+all true supports. Bind facts to the entire baseline, scorer and separately hashed adapter.
+Generate MethodClaims only for separately trusted development scopes with exact case,
+source, evaluator, part, slice and complete capture-interval bindings. Missing scopes
+produce no admissions. No semantic judgment or qualification permission is inferred.
+
+Confirmation text, exact state and duplicate delivery map to existing objective parts.
+Inspect declared response-loss recovery separately: that service witness does not prove
+process death or host restoration and cannot by itself fill the profile's crash/restart
+slice. Keep that distinction explicit while implementing the adapter. Tests and observed
+readback results will be recorded as they occur.
+
+The first focused run caught two invented-fixture errors: unknown-score Failure needs an
+explicit retryable=false, and the existing reference contract only permits after-commit
+recovery for an expected refund. Correct those fixtures rather than weakening either
+contract. The default Windows pytest temporary directory was also inaccessible; use a
+fresh task-owned temporary directory. Typechecking already passes all230sources. Actual
+service SQL integration remains to be checked; a missing local Docker engine is not a
+successful database test.
+
+The corrected focused group passes61checks, including23new adapter checks. All230typed
+sources, CI-scoped lint/format and both import contracts pass. Git comparison confirms
+that harness/Olist runtime files and uv.lock are unchanged. The new control-plane module
+is included in dev.py and mypy's existing check path rather than a frozen runtime package.
+
+Actual private readback of both prior completed baselines succeeds through the unchanged
+runtime verifier:18cases/54trials per algorithm,54objective parts with50supported and4
+contradicted, plus one separately contradicted response-loss observation each. Every
+repetition hash is retained in private facts. No scope was supplied, so both produce0
+method claims/0verified claim pins; no qualification grant is created. The old whole-service
+correctness remains0/54 per algorithm. The authoritative ledger was opened read-only and
+is unchanged447consumed/0unsettled/1stop. No trial or provider call was repeated.
+
+The existing two real SQL baseline tests now call the adapter on their actual captures,
+check zero-scope behavior, exercise three explicitly invented development grants, and
+require canonical-byte corruption to refuse a subsequent read. These fixtures do not
+create real control-plane authority. Local Docker is unavailable; full hosted SQL/quality
+and post-merge verification remain pending, not counted as already passed.
