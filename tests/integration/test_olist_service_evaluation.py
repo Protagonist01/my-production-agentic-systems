@@ -374,7 +374,7 @@ def test_real_service_baselines_keep_zero_calls_and_safe_abstention(app, tmp_pat
             method=method,
             input_sha256=case.input_sha256,
             reference_sha256=case.reference_sha256,
-            source_sha256=pin(evidence),
+            source_sha256=loaded.pin.sha256,
             evaluator_sha256=objectives.readback.evaluator_sha256,
             slices=case.slices,
             permitted_use="development",

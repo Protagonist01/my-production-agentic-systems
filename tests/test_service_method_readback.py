@@ -109,7 +109,7 @@ def scopes_for(report):
             method=method,
             input_sha256=case.input_sha256,
             reference_sha256=case.reference_sha256,
-            source_sha256=report.baseline_sha256,
+            source_sha256=report.manifest_sha256,
             evaluator_sha256=report.evaluator_sha256,
             slices=case.slices,
             permitted_use="development",
@@ -151,6 +151,42 @@ def test_actual_input_reference_and_group_projection_are_bound(monkeypatch):
     assert case.slices == original.slices and case.split == "development"
     assert any(k.startswith("normalized_text:") for k in case.source_keys)
     assert any(k.startswith("order:") for k in case.source_keys)
+
+
+def test_scope_can_be_frozen_before_capture_without_its_outcome_hash(monkeypatch):
+    from olist_support.service_h10 import private_scenario
+
+    kwargs, calls, verified = setup(monkeypatch)
+    loaded = kwargs["loaded"]
+    case = loaded.manifest.entries[0].case
+    evaluator = sha256(
+        Path(reader.__file__).read_bytes() + verified.manifest.candidate.scorer_sha256.encode()
+    )
+    scope = MethodScope(
+        field="exact_state",
+        part="authoritative_state",
+        method="state_observation",
+        input_sha256=sha256(case.input.request.encode()),
+        reference_sha256=pin(private_scenario(case)),
+        source_sha256=loaded.pin.sha256,
+        evaluator_sha256=evaluator,
+        slices=case.slices,
+        permitted_use="development",
+        authority_reference="invented-prospective-test-grant",
+        granted_at=NOW - timedelta(hours=1),
+        expires_at=NOW + timedelta(hours=1),
+    )
+    assert not calls and scope.source_sha256 != pin(verified.manifest)
+    result = reader.read_method_evidence(
+        **kwargs, scopes=(scope,), trusted_scope_pins=frozenset((pin(scope),))
+    )
+    assert calls == [True] and len(result.claims) == 1
+    assert result.claims[0].source_sha256 == loaded.pin.sha256
+    impossible = scope.model_copy(update={"source_sha256": pin(verified.manifest)})
+    with pytest.raises(ValueError, match="scope differs"):
+        reader.read_method_evidence(
+            **kwargs, scopes=(impossible,), trusted_scope_pins=frozenset((pin(impossible),))
+        )
 
 
 @pytest.mark.parametrize(

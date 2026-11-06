@@ -61,7 +61,9 @@ Never build the trusted set from scopes in an untrusted evidence submission. The
 public endpoint, grant registry or identity service implemented by this module.
 
 For each supplied scope, `_claims` checks external admission, exact input/reference,
-baseline/evaluator, field/part/method and slices. The grant must cover the whole capture
+frozen source manifest/evaluator, field/part/method and slices. Those pins can be known
+before execution. The finished baseline hash stays in the proof rather than in a grant
+that must predate that baseline. The grant must cover the whole capture
 interval and remain current at readback. Qualification scopes, semantic parts, recovery
 claims, duplicate scopes and mismatched bindings are refused even if their hashes are
 listed as trusted. This adapter creates development claims only.
@@ -75,9 +77,12 @@ inputs; actual artifacts must be checked again to produce another verified resul
 
 ## Actual development readback
 
-The [aggregate](data/olist-objective-method-readback-v1.json) records a new readback of the
+The [v2 aggregate](data/olist-objective-method-readback-v2.json) records a new readback of the
 two completed #140 baselines. No trial was rerun and no provider was called. Original
 package and baseline pins match the earlier accepted preparation and sealed results.
+The [first adapter's readback](data/olist-objective-method-readback-v1.json) is preserved
+as history: its prospective grant source binding was corrected before merge. Neither
+version supplied any actual scope or emitted a method claim.
 
 | Per algorithm, over 18 scenarios and 54 trials | Rules | Always review |
 | --- | ---: | ---: |

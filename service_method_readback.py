@@ -40,8 +40,8 @@ class ObjectiveFact(Contract):
 
 
 class ObjectiveReadback(Contract):
-    version: Literal["olist-development-objective-readback-v1"] = (
-        "olist-development-objective-readback-v1"
+    version: Literal["olist-development-objective-readback-v2"] = (
+        "olist-development-objective-readback-v2"
     )
     baseline_sha256: Sha256
     candidate_sha256: Sha256
@@ -93,7 +93,7 @@ def _claims(
             scope.permitted_use != "development"
             or scope.part != part
             or scope.method != method
-            or scope.source_sha256 != report.baseline_sha256
+            or scope.source_sha256 != report.manifest_sha256
             or scope.evaluator_sha256 != report.evaluator_sha256
             or not set(case.slices).issubset(scope.slices)
             or not scope.granted_at <= report.started_at <= report.finished_at

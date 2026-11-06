@@ -6085,3 +6085,20 @@ check zero-scope behavior, exercise three explicitly invented development grants
 require canonical-byte corruption to refuse a subsequent read. These fixtures do not
 create real control-plane authority. Local Docker is unavailable; full hosted SQL/quality
 and post-merge verification remain pending, not counted as already passed.
+
+Review before merge caught an impossible prospective dependency: the first adapter bound
+a grant's source hash to the finished baseline while requiring the grant before capture.
+Invented grants in tests hid that temporal contradiction. Bind source_sha256 to the frozen
+manifest instead; it and the evaluator exist before execution. Keep the completed baseline,
+every row and readback report in the resulting evidence hash. Add a regression that builds
+the grant before calling the reader, using no outcome hash, and refuses the former binding.
+Version the readback asv2; preserve the first private readback and publish a separately
+recomputed v2 summary. No scopes existed in either actual readback, so no real admission
+or frozen baseline changes. A new commit supersedes the first in-progress CI run.
+
+The corrected focused group passes62checks (24new adapter checks), all230typed sources
+and full CI-scoped lint/format. A separately named v2 private readback again produces
+50supported/fourcontradicted objective parts plus one contradicted response-loss witness
+per baseline, with0actual claims/grants and no new execution. The source hash in the v2
+public aggregate matches the final adapter bytes. Preserve v1 as the first draft's actual
+readback, not evidence of a usable prospective grant or a superseded baseline outcome.
