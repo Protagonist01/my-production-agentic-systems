@@ -1,5 +1,16 @@
 # Code Study Guide — Production Agentic Systems
 
+The [service-baseline and diagnostic chapter](docs/olist-baseline-completion-v2.md)
+continues from main `3483484` (#139). Follow optional TrialRow diagnostics through actual
+parent setup/execution/cleanup, fixed categories/known SQLSTATEs, distinct abort origin and
+legacy byte preservation. Existing failure criteria and unsafe-state fences stay intact.
+It also traces a separately frozen zero-model development capture over the accepted18
+fictional scenarios; the original unsealed capture and provider stop remain historical.
+Coverage is coordinator diagnostics and development service evidence, not a qualified
+language benchmark, production host or release audit. Strict readback reproduces all108
+baseline observations: both algorithms are safe54/54 but correct0/54, with0/12eligible
+completion;54model rows remain missing. The chapter explains those distinct denominators.
+
 The [Olist evidence-method audit](docs/olist-evidence-method-audit.md) continues from
 verified main `6ca379d` on `codex/olist-release-method-decision`. It implements the owner's
 accepted Olist-only substitution matrix as a pure method-coverage library, retaining all

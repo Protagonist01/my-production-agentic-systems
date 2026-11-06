@@ -1,0 +1,546 @@
+{
+  "version": "olist-complete-service-baseline-development-v2",
+  "frozen_execution_revision": "0e324129887d9c691902ae06fc4fbf6734f26a39",
+  "package_sha256": "32b7d3b9bed353e9e5123eaf3c9ff2a6f4d4fff6f41b97ceef92e261361516c9",
+  "protocol_sha256": "aff522553c69e5d34fc13211cc2f4d47b03b5095016c3700c6c514835662f97f",
+  "manifest_sha256": "c43f9292c7b41b846e712e0c218e8e5ef474489230b23230f2359dd884a906dd",
+  "report_sha256": "6802b0ce94899a77e63eea3f15151b61e58a519f1eec762a13e4f854f5e88da0",
+  "baseline_sha256": {
+    "rules": "2a31c0e6df329e86d9dde3269815ce2f0bfbc6218ee9e7fe300dc25376fb9487",
+    "always-review": "c9a5f54ccc58d8e5dac1d61099aeb6b4543a9ef58a015ee39050184eb7807436"
+  },
+  "scope": "exposed_constructed_development_only",
+  "scenarios": 18,
+  "dependent_parent_order_groups": 5,
+  "trial_ids": [
+    "trial-1",
+    "trial-2",
+    "trial-3"
+  ],
+  "python": "3.13.4",
+  "system": "Windows",
+  "owned_trial_cleanup_verified": 108,
+  "owned_workspace_container_and_volume_removed": true,
+  "original_interrupted_capture_unchanged": true,
+  "langfuse_original_containers_restored": 6,
+  "provider_calls": 0,
+  "ledger_read_only": {
+    "consumed": 447,
+    "unsettled": 0,
+    "stops": 1
+  },
+  "lifetime_cap": 614,
+  "baseline_usefulness_approved": false,
+  "production_release_allowed": false,
+  "comparison": {
+    "version": "olist-service-comparison-report-v1",
+    "scheduled": 162,
+    "observed": 108,
+    "missing": 54,
+    "variants": {
+      "candidate": {
+        "scheduled": 54,
+        "observed": 0,
+        "missing": 54,
+        "unresolved": 0,
+        "fields": {
+          "intent": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "amount": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "action": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "review_reason": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "truthful_confirmation": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "exact_state": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "duplicate_delivery": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "proposal_isolation": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "customer_authority": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "audit_integrity": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "state_safety": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "correct": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "routing_safe": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "observed_review": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 54,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "recovery": {
+            "passed": 0,
+            "failed": 0,
+            "unknown_or_missing": 3,
+            "scheduled": 3,
+            "pass_fraction": 0.0
+          }
+        },
+        "joint_intent_amount": {
+          "passed": 0,
+          "failed": 0,
+          "unknown_or_missing": 54,
+          "scheduled": 54,
+          "pass_fraction": 0.0
+        },
+        "eligible_completion": {
+          "passed": 0,
+          "failed": 0,
+          "unknown_or_missing": 12,
+          "scheduled": 12,
+          "pass_fraction": 0.0
+        },
+        "required_review_routing": {
+          "passed": 0,
+          "failed": 0,
+          "unknown_or_missing": 39,
+          "scheduled": 39,
+          "pass_fraction": 0.0
+        },
+        "all_repetition_case_passes": 0,
+        "cases_scheduled": 18,
+        "declared_connected_groups": 5,
+        "observed_failed_groups": 0,
+        "unknown_groups": 5,
+        "conditional_group_error_bounds": {
+          "lower": 0.0,
+          "upper": 1.0,
+          "method": "exact_boundary_wilson_interior_95_percent",
+          "independence_authenticated": false
+        },
+        "timing": {
+          "scope": "parent_trial_setup_execution_cleanup",
+          "observed": 0,
+          "unknown_or_missing": 54,
+          "p95_observed_seconds": null,
+          "complete": false,
+          "api_latency_target_assessable": false
+        },
+        "usage": {
+          "observed_rows": 0,
+          "missing_rows": 54,
+          "reported_model_calls": 0,
+          "known_input_tokens": 0,
+          "input_tokens_unknown_or_missing": 54,
+          "known_output_tokens": 0,
+          "output_tokens_unknown_or_missing": 54,
+          "known_reported_costs": {},
+          "cost_unknown_or_missing": 54,
+          "billing_cost_verified": false
+        }
+      },
+      "rules": {
+        "scheduled": 54,
+        "observed": 54,
+        "missing": 0,
+        "unresolved": 0,
+        "fields": {
+          "intent": {
+            "passed": 0,
+            "failed": 54,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "amount": {
+            "passed": 24,
+            "failed": 30,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.4444444444444444
+          },
+          "action": {
+            "passed": 39,
+            "failed": 15,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.7222222222222222
+          },
+          "review_reason": {
+            "passed": 0,
+            "failed": 54,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "truthful_confirmation": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "exact_state": {
+            "passed": 42,
+            "failed": 12,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.7777777777777778
+          },
+          "duplicate_delivery": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "proposal_isolation": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "customer_authority": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "audit_integrity": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "state_safety": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "correct": {
+            "passed": 0,
+            "failed": 54,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "routing_safe": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "observed_review": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "recovery": {
+            "passed": 0,
+            "failed": 3,
+            "unknown_or_missing": 0,
+            "scheduled": 3,
+            "pass_fraction": 0.0
+          }
+        },
+        "joint_intent_amount": {
+          "passed": 0,
+          "failed": 54,
+          "unknown_or_missing": 0,
+          "scheduled": 54,
+          "pass_fraction": 0.0
+        },
+        "eligible_completion": {
+          "passed": 0,
+          "failed": 12,
+          "unknown_or_missing": 0,
+          "scheduled": 12,
+          "pass_fraction": 0.0
+        },
+        "required_review_routing": {
+          "passed": 0,
+          "failed": 39,
+          "unknown_or_missing": 0,
+          "scheduled": 39,
+          "pass_fraction": 0.0
+        },
+        "all_repetition_case_passes": 0,
+        "cases_scheduled": 18,
+        "declared_connected_groups": 5,
+        "observed_failed_groups": 5,
+        "unknown_groups": 0,
+        "conditional_group_error_bounds": {
+          "lower": 0.4781762498950185,
+          "upper": 1.0,
+          "method": "exact_boundary_wilson_interior_95_percent",
+          "independence_authenticated": false
+        },
+        "timing": {
+          "scope": "parent_trial_setup_execution_cleanup",
+          "observed": 54,
+          "unknown_or_missing": 0,
+          "p95_observed_seconds": 14.710217799998645,
+          "complete": true,
+          "api_latency_target_assessable": false
+        },
+        "usage": {
+          "observed_rows": 54,
+          "missing_rows": 0,
+          "reported_model_calls": 0,
+          "known_input_tokens": 0,
+          "input_tokens_unknown_or_missing": 0,
+          "known_output_tokens": 0,
+          "output_tokens_unknown_or_missing": 0,
+          "known_reported_costs": {
+            "USD": "0"
+          },
+          "cost_unknown_or_missing": 0,
+          "billing_cost_verified": false
+        }
+      },
+      "always-review": {
+        "scheduled": 54,
+        "observed": 54,
+        "missing": 0,
+        "unresolved": 0,
+        "fields": {
+          "intent": {
+            "passed": 0,
+            "failed": 54,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "amount": {
+            "passed": 24,
+            "failed": 30,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.4444444444444444
+          },
+          "action": {
+            "passed": 39,
+            "failed": 15,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.7222222222222222
+          },
+          "review_reason": {
+            "passed": 0,
+            "failed": 54,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "truthful_confirmation": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "exact_state": {
+            "passed": 42,
+            "failed": 12,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.7777777777777778
+          },
+          "duplicate_delivery": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "proposal_isolation": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "customer_authority": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "audit_integrity": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "state_safety": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "correct": {
+            "passed": 0,
+            "failed": 54,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 0.0
+          },
+          "routing_safe": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "observed_review": {
+            "passed": 54,
+            "failed": 0,
+            "unknown_or_missing": 0,
+            "scheduled": 54,
+            "pass_fraction": 1.0
+          },
+          "recovery": {
+            "passed": 0,
+            "failed": 3,
+            "unknown_or_missing": 0,
+            "scheduled": 3,
+            "pass_fraction": 0.0
+          }
+        },
+        "joint_intent_amount": {
+          "passed": 0,
+          "failed": 54,
+          "unknown_or_missing": 0,
+          "scheduled": 54,
+          "pass_fraction": 0.0
+        },
+        "eligible_completion": {
+          "passed": 0,
+          "failed": 12,
+          "unknown_or_missing": 0,
+          "scheduled": 12,
+          "pass_fraction": 0.0
+        },
+        "required_review_routing": {
+          "passed": 0,
+          "failed": 39,
+          "unknown_or_missing": 0,
+          "scheduled": 39,
+          "pass_fraction": 0.0
+        },
+        "all_repetition_case_passes": 0,
+        "cases_scheduled": 18,
+        "declared_connected_groups": 5,
+        "observed_failed_groups": 5,
+        "unknown_groups": 0,
+        "conditional_group_error_bounds": {
+          "lower": 0.4781762498950185,
+          "upper": 1.0,
+          "method": "exact_boundary_wilson_interior_95_percent",
+          "independence_authenticated": false
+        },
+        "timing": {
+          "scope": "parent_trial_setup_execution_cleanup",
+          "observed": 54,
+          "unknown_or_missing": 0,
+          "p95_observed_seconds": 16.153666799998973,
+          "complete": true,
+          "api_latency_target_assessable": false
+        },
+        "usage": {
+          "observed_rows": 54,
+          "missing_rows": 0,
+          "reported_model_calls": 0,
+          "known_input_tokens": 0,
+          "input_tokens_unknown_or_missing": 0,
+          "known_output_tokens": 0,
+          "output_tokens_unknown_or_missing": 0,
+          "known_reported_costs": {
+            "USD": "0"
+          },
+          "cost_unknown_or_missing": 0,
+          "billing_cost_verified": false
+        }
+      }
+    },
+    "evidence_scope": "reference_relative_preparation",
+    "release_allowed": false,
+    "qualification_met": false,
+    "semantic_gold_validated": false
+  }
+}

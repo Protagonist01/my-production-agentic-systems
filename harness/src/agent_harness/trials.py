@@ -158,6 +158,39 @@ class TrialTiming(Contract):
         return self.setup_seconds + self.execution_seconds + self.cleanup_seconds
 
 
+class TrialDiagnostic(Contract):
+    """Bounded private causes, never exception text, SQL, connection details or locals."""
+
+    code: TrialError
+    origin: Literal["exception", "prior_trial_abort", "identity_mismatch"]
+    exception_category: (
+        Literal[
+            "database",
+            "timeout",
+            "connection",
+            "permission",
+            "os",
+            "validation",
+            "runtime",
+            "other",
+        ]
+        | None
+    ) = None
+    sqlstate: Annotated[str, Field(pattern=r"^[0-9A-Z]{5}$")] | None = None
+
+    @model_validator(mode="after")
+    def consistent(self) -> Self:
+        if (self.origin == "exception") != (self.exception_category is not None):
+            raise ValueError("only caught exceptions carry a category")
+        if self.sqlstate is not None and self.exception_category != "database":
+            raise ValueError("SQLSTATE requires a database exception")
+        if self.origin == "prior_trial_abort" and self.code != "worker_cleanup_error":
+            raise ValueError("abort diagnostic must retain the legacy abort error code")
+        if self.origin == "identity_mismatch" and self.code != "invalid_frame":
+            raise ValueError("identity diagnostic must bind invalid_frame")
+        return self
+
+
 class TrialRow(Contract):
     task: TrialTask
     state_ref: Identifier | None = None
@@ -166,6 +199,8 @@ class TrialRow(Contract):
     telemetry: "TraceHealth | None" = None
     # Omit absent timing so historical canonical journal pins remain unchanged.
     timing: TrialTiming | None = Field(default=None, exclude_if=lambda value: value is None)
+    # Historical rows remain byte-identical when this optional evidence is absent.
+    diagnostics: tuple[TrialDiagnostic, ...] = Field(default=(), exclude_if=lambda value: not value)
 
     @model_validator(mode="after")
     def terminal_identity(self) -> Self:
@@ -175,6 +210,8 @@ class TrialRow(Contract):
             raise ValueError("trial report context differs from scheduled context")
         if self.report is not None and self.report.report.telemetry != self.telemetry:
             raise ValueError("trial telemetry differs from case report")
+        if any(d.code not in self.errors for d in self.diagnostics):
+            raise ValueError("diagnostic must bind an actual row error")
         return self
 
 
