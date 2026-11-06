@@ -1,5 +1,13 @@
 # Code Study Guide — Production Agentic Systems
 
+The [objective method-readback chapter](docs/olist-objective-method-readback.md) continues
+from verified main `894a573` (#140). It traces the separate root adapter through pinned
+service readback, complete repetition folding and externally scoped development claims.
+Frozen runtime packages, semantic requirements and release gates stay unchanged. The
+actual baseline readback has50supported/fourcontradicted objective parts per algorithm;
+response-loss observations remain separate and no scope/claim is invented. This chapter
+covers objective proof integration, not semantic qualification or production authorization.
+
 The [service-baseline and diagnostic chapter](docs/olist-baseline-completion-v2.md)
 continues from main `3483484` (#139). Follow optional TrialRow diagnostics through actual
 parent setup/execution/cleanup, fixed categories/known SQLSTATEs, distinct abort origin and
