@@ -6139,3 +6139,43 @@ markers adjacent to words. Keep ordinary order numbers distinct from currency-ma
 mentions. All30new checks pass; all231typed sources and CI-scoped formatting/lint pass.
 The positive witnesses still have requested_role_validated=false. Freeze this implementation
 before measuring the whole pinned archive; aggregate source results follow after execution.
+
+### Actual execution and next source lead
+
+Freeze the adapter at884b88b, copy its exact bytes into a new exclusive private directory,
+then verify all source-policy and exposure pins before the census. Serialize the canonical
+audit privately and publish only the aggregate. The first operator invocation failed before
+source execution: launching an artifacts script puts that directory, not the repository
+root, first on Python's import path. Preserve that stderr, add the explicit repository root
+in the operator script, and use separate success logs. Frozen adapter bytes stay unchanged.
+
+The complete10,042conversation census contains826refund actions in788conversations.
+785arguments parse;41stay unknown. Only2action values match currency-marked values in
+the first delexed input, neither with the declared refund/money-back lexeme. There are10
+first-original numeric matches, but the original cannot repair the model-visible delexed
+input. Two values equal the known default50; that still does not prove default use.
+No semantic role is established. A narrower pre-action-turn opportunity scan finds19
+original/7delexed co-occurrences but zero under its additional restrictive adjacency,
+single-value and source-policy filter. Do not call a narrow regex a proof of no usable
+language anywhere in the archive. It supplies neither a cohort nor accepted labels.
+
+Source research then found a historical official Bitext file with native refund_amount
+entities, a more promising task shape than later action arguments. Download its immutable
+Hugging Face revision9bea5fa privately, hash CSV/README, and inspect the exact repository
+tree instead of borrowing a newer version's license. The actual4,514rows include63amount
+entities, all get_refund. Run offset/value inventories over every one, without changing
+values or choosing examples for an evaluation. Only20match zero-based/end-exclusive
+entity spans;16offsets exceed message bounds;27values match no supported currency lexeme.
+The data uses only5native values and32number-masked templates. Those are not63proven
+independent families. The pinned tree lacks an explicit license and split/family columns.
+Five discovery messages were inspected and their text hashes are retained as new exposure.
+
+An intermediate discovery helper failed while serializing tuple-keyed counts. Keep that
+failure as tooling history; the successful separate inventory uses JSON-safe keys. Native
+span inconsistencies and a visible-number/entity-value mismatch remain source findings,
+not silently corrected labels. This rejects a tempting shortcut without weakening the
+amount-role target. The accepted constructed grammar still supplies development checks;
+natural-language qualification needs an applicable external reference or separately
+qualified evaluator. The shared ledger remains447/0unsettled/1stop, read-only; no model
+study, new cohort or release is authorized. See the source chapter and public aggregate
+for exact pins, reproduction steps, known parser limits and the next evidence boundary.
