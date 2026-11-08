@@ -28,6 +28,7 @@ def uv_command(command: str, executable: str) -> list[str]:
         "dev.py",
         "ci_checks.py",
         "service_method_readback.py",
+        "amount_source_research.py",
         "harness",
         "projects",
         "tests",

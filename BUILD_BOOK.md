@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 90 — Audit requested-amount applicability before choosing references](#entry-90--audit-requested-amount-applicability-before-choosing-references)
 - [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
 - [Entry 88 — Keep diagnostic causes separate from aborted trial placeholders](#entry-88--keep-diagnostic-causes-separate-from-aborted-trial-placeholders)
 - [Entry 87 — Measure service baselines before accepting a replacement evidence policy](#entry-87--measure-service-baselines-before-accepting-a-replacement-evidence-policy)
@@ -6102,3 +6103,39 @@ and full CI-scoped lint/format. A separately named v2 private readback again pro
 per baseline, with0actual claims/grants and no new execution. The source hash in the v2
 public aggregate matches the final adapter bytes. Preserve v1 as the first draft's actual
 readback, not evidence of a usable prospective grant or a superseded baseline outcome.
+
+## Entry 90 — Audit requested-amount applicability before choosing references
+
+### Context and decision in progress
+
+Continue #33 from verified main874579b after #141. The existing twelve exposed ABCD
+dialogues have four numeric offer-refund annotations, but none matches the initial
+customer turn numerically. The publisher guideline permits a default50 when the customer
+does not know the amount. A native action amount is therefore not automatically a
+customer-requested amount reference. Existing labels, input convention and gates remain.
+
+### Before you read on
+
+How would you distinguish a visible money mention from a requested amount, a payment
+mention or a later agent default without treating a regex as semantic truth? What must
+stay unknown, and how would you audit the whole source without changing a held-out input?
+
+### Chosen construction
+
+Add a separate root research adapter so frozen harness/Olist runtime inventories stay
+unchanged. Verify the original compressed source pin and bounded expansion, preserve
+native splits/identities and source exposures, then inspect every offer-refund annotation.
+Retain first-message money spans separately from original/delexed visibility, later
+customer matches and equality to the source-policy default. Equality to50 is not proof
+that a default was used; matching a number is not proof of the requested-money role.
+Keep findings as research metadata with no accepted label, candidate input expansion,
+qualification grant, provider call or release. No cohort selection or split reassignment
+occurs. Implement with invented boundary/failure witnesses before the pinned source run.
+
+The first invented checks caught a lexical bug: a terminal full stop was treated like
+the beginning of another decimal, so "$25." was missed. Permit sentence punctuation
+while refusing partial matches inside malformed decimals/thousands, and handle currency
+markers adjacent to words. Keep ordinary order numbers distinct from currency-marked
+mentions. All30new checks pass; all231typed sources and CI-scoped formatting/lint pass.
+The positive witnesses still have requested_role_validated=false. Freeze this implementation
+before measuring the whole pinned archive; aggregate source results follow after execution.
