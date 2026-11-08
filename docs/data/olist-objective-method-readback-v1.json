@@ -1,0 +1,46 @@
+{
+  "version": "olist-objective-baseline-method-readback-v1",
+  "scope": "development_only",
+  "adapter_source_sha256": "9991862bf9de0c2c04317ea9dc0a51c71090336706ff9e039d585a7b379af07c",
+  "original_package_sha256": "32b7d3b9bed353e9e5123eaf3c9ff2a6f4d4fff6f41b97ceef92e261361516c9",
+  "manifest_sha256": "c43f9292c7b41b846e712e0c218e8e5ef474489230b23230f2359dd884a906dd",
+  "scenarios": 18,
+  "dependent_groups": 5,
+  "trials_per_algorithm": 54,
+  "variants": {
+    "rules": {
+      "baseline_sha256": "2a31c0e6df329e86d9dde3269815ce2f0bfbc6218ee9e7fe300dc25376fb9487",
+      "evaluator_sha256": "492428a954fc00c1b6edad8f78c860af21d1352105d5e31a2f6b4057990b9183",
+      "readback_sha256": "4a5953fcc0ad04457a6f71d86c4152b8cc872f3a0ec037ed9b32b7eaf5dedb12",
+      "objective_parts": 54,
+      "objective_dispositions": {
+        "supported": 50,
+        "contradicted": 4
+      },
+      "response_loss_witnesses": [
+        "contradicted"
+      ],
+      "claims_emitted": 0
+    },
+    "always-review": {
+      "baseline_sha256": "c9a5f54ccc58d8e5dac1d61099aeb6b4543a9ef58a015ee39050184eb7807436",
+      "evaluator_sha256": "8056c857d3c746db9644c566c6687df673dcfb0ff8261b97afc1ec575828b2bd",
+      "readback_sha256": "8426b8e7e8117e78cb48b1657a0564e03cb2f7b0cff887b3be13a4d13f42211d",
+      "objective_parts": 54,
+      "objective_dispositions": {
+        "supported": 50,
+        "contradicted": 4
+      },
+      "response_loss_witnesses": [
+        "contradicted"
+      ],
+      "claims_emitted": 0
+    }
+  },
+  "new_provider_calls": 0,
+  "new_trial_executions": 0,
+  "qualification_grants_created": 0,
+  "semantic_reference_authenticated": false,
+  "process_death_verified": false,
+  "release_allowed": false
+}
