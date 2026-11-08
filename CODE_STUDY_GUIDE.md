@@ -1,5 +1,13 @@
 # Code Study Guide — Production Agentic Systems
 
+The [requested-amount source chapter](docs/olist-amount-source-research.md) continues
+from verified main `874579b` (#141), inspected2026-11-08. Follow the separately frozen
+root census through source-policy pins, visibility diagnostics, exact money spans and
+false semantic-acceptance flags. Actual ABCD and historical Bitext inventories explain
+why later/default amounts and inconsistent entity spans cannot become requested-amount
+gold. Coverage is source applicability and30invented checks, not a qualified semantic
+evaluator, accepted cohort or new model study. Existing release targets remain intact.
+
 The [objective method-readback chapter](docs/olist-objective-method-readback.md) continues
 from verified main `894a573` (#140). It traces the separate root adapter through pinned
 service readback, complete repetition folding and externally scoped development claims.

@@ -1,0 +1,128 @@
+{
+  "version": "olist-requested-amount-source-research-v1",
+  "date": "2026-11-08",
+  "scope": "source_applicability_research_only",
+  "parts": {
+    "abcd_census": {
+      "execution_revision": "884b88b677b361e30d9225fb6d5f5944edcac444",
+      "research_module_sha256": "2faf76a4363696c57279c69d7d2f172967a2bd62c5b65028c4c17cf440e9ab30",
+      "source_license_sha256": "3ab7e179a7f13027b7bc64293541f0e9beacca3701cade67fb8fce78c2d9317b",
+      "summary": {
+        "version": "olist-abcd-amount-source-research-v1",
+        "archive_sha256": "2bdf53ac359543dcdc38d55bc6513e78df120363f8f44870716e909f4606de15",
+        "ontology_sha256": "2e1c1d763518ba084ada7f7bc8b54f0b489c81da3b170875cf9340891e06524c",
+        "guidelines_sha256": "9264557941df24fe075138a632a2345172971573124a354ccb2ceee2a12e4c2a",
+        "exposure_sha256": "2ed76f5809aa423c39e0ebe81ba1ddc1c82eaeed90b3e64430dfefdce4066b3e",
+        "native_conversations": 10042,
+        "offer_refund_annotations": 826,
+        "conversations_with_offer_refund": 788,
+        "annotation_counts_by_native_split": {
+          "train": 663,
+          "dev": 90,
+          "test": 73
+        },
+        "supported_numeric_arguments": 785,
+        "first_visible_currency_matches": 2,
+        "first_visible_currency_and_refund_lexemes": 0,
+        "first_original_numeric_matches": 10,
+        "equals_known_policy_default": 2,
+        "flag_counts": {
+          "first_text_crosses_native_splits": 132,
+          "multiple_visible_money_values": 1,
+          "native_action_is_not_a_requested_amount_label": 826,
+          "native_argument_not_one_supported_money_value": 41,
+          "no_matching_currency_marked_value_in_first_input": 783,
+          "original_numeric_match_does_not_establish_visible_input_match": 8,
+          "previously_exposed_first_text": 53,
+          "previously_exposed_source": 7,
+          "prior_customer_numeric_match_does_not_label_first_input": 468
+        },
+        "input_convention": "unchanged_delexed_first_customer_turn",
+        "requested_role_validated": false,
+        "new_cohort_prepared": false,
+        "new_labels_accepted": 0,
+        "provider_calls": 0,
+        "independence_authenticated": false,
+        "release_allowed": false
+      }
+    },
+    "abcd_later_turn_scan": {
+      "version": "olist-amount-source-opportunity-research-v1",
+      "source_census_sha256": "347e6b03e0959dae8174e2993443b248d6d59d242d96c7724b863bea7fc7ca7c",
+      "currency_refund_cooccurrence_by_projection": {
+        "original": 19,
+        "delexed": 7
+      },
+      "original_simple_adjacent_same_policy_witnesses": 0,
+      "original_simple_adjacent_unique_utterances": 0,
+      "original_simple_adjacent_first_turn_witnesses": 0,
+      "input_convention_changed": false,
+      "new_cohort_prepared": false,
+      "labels_accepted": 0,
+      "provider_calls": 0,
+      "release_allowed": false
+    },
+    "bitext_historical_discovery": {
+      "version": "olist-bitext-tagged-source-discovery-v1",
+      "source_revision": "9bea5faf42b8732ca8c347a80f0b5777486a18e1",
+      "source_sha256": "9ff7312474ac11414190ca672eef89be843856c1926844d47a6bddd53f4ad3fd",
+      "source_readme_sha256": "85cd6994484c74998ae87b7d97af1c8038918d4f700b577be2254705075d7075",
+      "native_rows": 4514,
+      "native_columns": [
+        "context",
+        "role",
+        "instruction",
+        "intent",
+        "entity_type",
+        "entity_value",
+        "start_offset",
+        "end_offset",
+        "category",
+        "tags",
+        "response"
+      ],
+      "refund_amount_rows": 63,
+      "amount_by_intent": {
+        "get_refund": 63
+      },
+      "offset_exact_entity_matches": {
+        "zero_exclusive": 20,
+        "zero_inclusive": 0,
+        "one_exclusive": 0,
+        "one_inclusive": 0
+      },
+      "zero_exclusive_out_of_bounds": 16,
+      "native_value_matches_currency_lexeme": 36,
+      "native_value_does_not_match_currency_lexeme": 27,
+      "distinct_native_values": 5,
+      "distinct_normalized_texts": 63,
+      "distinct_number_masked_templates": 32,
+      "template_groups_are_independence_proof": false,
+      "readme_native_row_counts_conflict": true,
+      "explicit_license_in_pinned_tree": false,
+      "license_resolved": false,
+      "native_split_or_generator_family_columns": false,
+      "requested_role_validated": false,
+      "new_cohort_prepared": false,
+      "accepted_reference_count": 0,
+      "provider_calls": 0,
+      "release_allowed": false
+    }
+  },
+  "private_summary_sha256": {
+    "abcd_census": "c11f567ed99d2b33b4321685df55587e364e704709ef164b3655c9efaeb10e8a",
+    "abcd_later_turn_scan": "e12d4a7c3c2a6409ac23b8ffa88548ac0c94bc3ea6097beb03826ea86e0a93f1",
+    "bitext_historical_discovery": "1276f3774df59ff646dc4ec77e0b976a705c5faf9a8aee0f221f4d15090d6436"
+  },
+  "ledger_read_only": {
+    "consumed": 447,
+    "unsettled": 0,
+    "stops": 1
+  },
+  "lifetime_cap": 614,
+  "study_expired_at": "2026-11-07T01:37:23Z",
+  "new_provider_attempts": 0,
+  "new_labels_accepted": 0,
+  "new_cohort_prepared": false,
+  "release_allowed": false
+}

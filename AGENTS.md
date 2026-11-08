@@ -478,3 +478,24 @@ These are exposed constructed development results, not baseline/threshold approv
 qualification or release. Preserve both runs and the stopped447/614ledger (zero unsettled,
 one original stop at readback). No further provider call, slot reassignment or allowance
 change is authorized by this completion. #33 retains language, study and operational gates.
+
+## Requested-amount source research (2026-11-08)
+
+The complete pinned ABCD census is source applicability research, not a reference cohort:
+10,042conversations/826refund actions, only2first-delexed currency-value matches and0
+accepted requested-amount labels. Later action values, original hidden numbers and default50
+cannot establish a requested amount in the first input. The separate root adapter preserves
+frozen runtime package inventories. See docs/olist-amount-source-research.md and aggregate
+pins; private census/opportunity scripts and all failures remain in the Olist cache.
+
+Historical Bitext revision9bea5fa is a newly researched source, distinct from the accepted
+27Kintent-development version. Its63refund_amount annotations have measured offset/value
+inconsistencies, unresolved exact-version licensing and no native split/generator-family
+columns. Five discovery messages are newly exposed in the private discovery exposure
+receipt. No annotation repair, source/method acceptance, semantic gold or qualification
+follows. Keep both source inventories and all original acceptances as history.
+
+The original routing study expired2026-11-07T01:37:23Z. Read-only ledger remains447/614,
+zero unsettled and one stop at this research readback. Do not reuse older/stopped slots,
+load model keys, remove the stop or dispatch providers under a general proceed instruction.
+No new calls, label acceptance, cohort, allowance amendment or release is authorized here.

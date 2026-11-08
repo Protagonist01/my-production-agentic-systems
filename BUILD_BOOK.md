@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 90 — Audit requested-amount applicability before choosing references](#entry-90--audit-requested-amount-applicability-before-choosing-references)
 - [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
 - [Entry 88 — Keep diagnostic causes separate from aborted trial placeholders](#entry-88--keep-diagnostic-causes-separate-from-aborted-trial-placeholders)
 - [Entry 87 — Measure service baselines before accepting a replacement evidence policy](#entry-87--measure-service-baselines-before-accepting-a-replacement-evidence-policy)
@@ -6102,3 +6103,79 @@ and full CI-scoped lint/format. A separately named v2 private readback again pro
 per baseline, with0actual claims/grants and no new execution. The source hash in the v2
 public aggregate matches the final adapter bytes. Preserve v1 as the first draft's actual
 readback, not evidence of a usable prospective grant or a superseded baseline outcome.
+
+## Entry 90 — Audit requested-amount applicability before choosing references
+
+### Context and decision in progress
+
+Continue #33 from verified main874579b after #141. The existing twelve exposed ABCD
+dialogues have four numeric offer-refund annotations, but none matches the initial
+customer turn numerically. The publisher guideline permits a default50 when the customer
+does not know the amount. A native action amount is therefore not automatically a
+customer-requested amount reference. Existing labels, input convention and gates remain.
+
+### Before you read on
+
+How would you distinguish a visible money mention from a requested amount, a payment
+mention or a later agent default without treating a regex as semantic truth? What must
+stay unknown, and how would you audit the whole source without changing a held-out input?
+
+### Chosen construction
+
+Add a separate root research adapter so frozen harness/Olist runtime inventories stay
+unchanged. Verify the original compressed source pin and bounded expansion, preserve
+native splits/identities and source exposures, then inspect every offer-refund annotation.
+Retain first-message money spans separately from original/delexed visibility, later
+customer matches and equality to the source-policy default. Equality to50 is not proof
+that a default was used; matching a number is not proof of the requested-money role.
+Keep findings as research metadata with no accepted label, candidate input expansion,
+qualification grant, provider call or release. No cohort selection or split reassignment
+occurs. Implement with invented boundary/failure witnesses before the pinned source run.
+
+The first invented checks caught a lexical bug: a terminal full stop was treated like
+the beginning of another decimal, so "$25." was missed. Permit sentence punctuation
+while refusing partial matches inside malformed decimals/thousands, and handle currency
+markers adjacent to words. Keep ordinary order numbers distinct from currency-marked
+mentions. All30new checks pass; all231typed sources and CI-scoped formatting/lint pass.
+The positive witnesses still have requested_role_validated=false. Freeze this implementation
+before measuring the whole pinned archive; aggregate source results follow after execution.
+
+### Actual execution and next source lead
+
+Freeze the adapter at884b88b, copy its exact bytes into a new exclusive private directory,
+then verify all source-policy and exposure pins before the census. Serialize the canonical
+audit privately and publish only the aggregate. The first operator invocation failed before
+source execution: launching an artifacts script puts that directory, not the repository
+root, first on Python's import path. Preserve that stderr, add the explicit repository root
+in the operator script, and use separate success logs. Frozen adapter bytes stay unchanged.
+
+The complete10,042conversation census contains826refund actions in788conversations.
+785arguments parse;41stay unknown. Only2action values match currency-marked values in
+the first delexed input, neither with the declared refund/money-back lexeme. There are10
+first-original numeric matches, but the original cannot repair the model-visible delexed
+input. Two values equal the known default50; that still does not prove default use.
+No semantic role is established. A narrower pre-action-turn opportunity scan finds19
+original/7delexed co-occurrences but zero under its additional restrictive adjacency,
+single-value and source-policy filter. Do not call a narrow regex a proof of no usable
+language anywhere in the archive. It supplies neither a cohort nor accepted labels.
+
+Source research then found a historical official Bitext file with native refund_amount
+entities, a more promising task shape than later action arguments. Download its immutable
+Hugging Face revision9bea5fa privately, hash CSV/README, and inspect the exact repository
+tree instead of borrowing a newer version's license. The actual4,514rows include63amount
+entities, all get_refund. Run offset/value inventories over every one, without changing
+values or choosing examples for an evaluation. Only20match zero-based/end-exclusive
+entity spans;16offsets exceed message bounds;27values match no supported currency lexeme.
+The data uses only5native values and32number-masked templates. Those are not63proven
+independent families. The pinned tree lacks an explicit license and split/family columns.
+Five discovery messages were inspected and their text hashes are retained as new exposure.
+
+An intermediate discovery helper failed while serializing tuple-keyed counts. Keep that
+failure as tooling history; the successful separate inventory uses JSON-safe keys. Native
+span inconsistencies and a visible-number/entity-value mismatch remain source findings,
+not silently corrected labels. This rejects a tempting shortcut without weakening the
+amount-role target. The accepted constructed grammar still supplies development checks;
+natural-language qualification needs an applicable external reference or separately
+qualified evaluator. The shared ledger remains447/0unsettled/1stop, read-only; no model
+study, new cohort or release is authorized. See the source chapter and public aggregate
+for exact pins, reproduction steps, known parser limits and the next evidence boundary.
