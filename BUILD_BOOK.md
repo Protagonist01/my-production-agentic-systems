@@ -6212,3 +6212,17 @@ roughly2.5GBfree on C:,68GBon D: and about5GBavailable RAM. Starting the stopped
 is part of the selected local-host work. The earlier Langfuse pause was fulfilled; it
 does not authorize stopping unrelated services now. Record readiness/observed results
 as they occur, rather than copying earlier recovery measurements.
+
+### First local exercise
+
+Docker started successfully (Desktop4.94.0/Engine29.8.2). Its initial inventory has47
+exited and6running containers. Leave them intact. The new workspace provisions its own
+database/role and starts a real loopback TCP application with three distinct accounts.
+The first exercise reaches reviewer approval with no refund effect, then receives403on
+customer challenge creation. Diagnosis: the operator script sends no JSON body; the
+same-origin write guard requires application/json even for an otherwise bodyless endpoint.
+This is an exercise-client error, not a reason to weaken the endpoint. Retain v1 plan,
+runner, failure/telemetry and verified cleanup. Its source database/role/container are
+removed and all preexisting container identities survive. No provider call or restore
+success is claimed. Prepare a separately named v2 run with an explicit empty JSON object
+and an intentional negative request documenting the original refusal before valid traffic.
