@@ -53,6 +53,51 @@ must differ. The command prompts for passwords; do not put passwords in command 
 Enroll an explicitly invented SIM order/facts through `business.enroll` for the exercise;
 never interpret a made-up order as a source-grounded customer record.
 
+For an isolated demonstration, the following Python setup creates two clearly invented
+orders and principal files. Run it after bootstrap, replace the paths/trial ID, and prepare
+the private principal parent outside Git. Keep these fixture helpers out of production
+customer enrollment; they intentionally supply fictional SIM confirmation, not verified
+real-world facts. Rerunning with existing identities/files is not a reset procedure.
+
+```python
+from pathlib import Path
+from agent_harness.local_services import Workspace, private_json
+from olist_support.business import enroll
+from olist_support.console_contracts import Principal
+from olist_support.policy import ScenarioConfirmation
+from olist_support.policy_cases import external
+from olist_support.views import AmountTotal, OrderView
+
+w = Workspace(Path("<clean-checkout>").resolve())
+t = w.load_trial("<local-trial>")
+orders = ("local-refund-order", "local-pending-order")
+private = Path("<private-principal-parent>").resolve()
+with w.server().connect(t.name) as admin:
+    for order in orders:
+        view = OrderView(
+            tenant_id="invented-tenant", order_id=order,
+            as_of_source_local="2026-10-19T00:00:00",
+            source_manifest_sha256="invented-source", currency_unit=None,
+            snapshot_details_visible=True, events=(), final_source_status="canceled",
+            estimated_delivery_source_local=None, customer_city=None, customer_state=None,
+            items=(), payments=(), reviews=(), item_count=0, payment_count=1,
+            price=None, freight=None,
+            payment=AmountTotal(known_minor=5000, total_minor=5000, missing_rows=0),
+        )
+        proof = ScenarioConfirmation(
+            tenant_id="invented-tenant", order_id=order,
+            available_at_source_local="2026-10-18T00:00:00", unit="SIM",
+            payment_confirmed=True, undelivered_confirmed=True, prior_refund_minor=0,
+        )
+        enroll(admin, view, proof)
+for role in ("operator", "reviewer", "customer"):
+    principal = Principal(
+        username="local-" + role, tenant_id="invented-tenant",
+        actor_id="local-" + role, role=role, order_ids=orders,
+    )
+    private_json(external(private / (role + ".json")), principal.model_dump(mode="json"))
+```
+
 ```powershell
 uv run --locked --all-packages python -m olist_support.console_cli --root <clean-checkout> --trial <local-trial> account --principal <private-principal.json>
 uv run --locked --all-packages python -m olist_support.console_cli --root <clean-checkout> --trial <local-trial> serve --port 8765 --run-limit-minor 10000 --telemetry-output <new-private-telemetry.json>
@@ -137,8 +182,33 @@ separate. A future host-loss drill must not stop unrelated services on this work
 
 ## Evidence and remaining limits
 
-The November9local measurement will be recorded separately after execution, including
-host startup failures, complete request/SQL outcomes and cleanup. Prior source-grounded
-demonstrations and completed baseline captures remain historical. This plan changes no
-runtime package, frozen study, provider allowance or qualification threshold. It supplies
-portable operator steps and an explicit acceptance boundary; it does not close #33/#58/#59.
+The [November9aggregate](data/olist-local-deployment-exercise-v1.json) records a completed
+exercise at source revision7a404e2:19real loopback HTTP requests,18successful responses and
+one intentionally refused non-JSON write. Three distinct accounts approve/confirm/execute
+one50.00SIMrefund while a second case remains in review. SQL checks require one refund,
+consumed customer authority, original receipt across duplicates and unchanged source.
+Both server lifetimes drain with zero active/interrupted requests. The four-schema archive
+has18tables/70rows. Capture took0.498seconds; restore/verification/readiness took2.762seconds
+against the60-second local exercise bound. These are one small local sample, not p95,
+30-day availability, a power-loss test or host-loss RPO/RTO.
+
+Prior v1 failed at a bodyless challenge request (403); v2 completed the refund/duplicate
+flow but failed exporting PostgreSQL Decimal totals before restore. Both remain incomplete
+with private observations/failure and verified cleanup. The successful v3 uses explicit
+JSON, an intentional negative request and exact-integral minor-unit serialization. It
+does not round fractional values. All three runs are zero-provider operations, not model
+trials. The final read-only allowance is unchanged447consumed/0unsettled/1stop.
+
+Successful cleanup removes the two owned databases/roles and its owned container/volume.
+All53preexisting container identities survive and the six previously running containers
+remain running. No always-on Olist server is left by this bounded exercise. The startup
+commands above are the operator path for a persistent local instance, whose state must be
+preserved until a separately chosen teardown. Private archive, reports, failure history,
+frozen runner, HTTP observations and independent readback are retained under
+`D:/document/.cache/production-agents/olist/local-deployment-exercise-2026-11-09-v1`,
+`v2` and `v3` respectively (each shares the complete directory prefix).
+
+Prior source-grounded demonstrations and completed baseline captures remain historical.
+This plan changes no runtime package, frozen study, provider allowance or qualification
+threshold. It supplies portable operator steps and measured local mechanism evidence;
+semantic qualification, off-host recovery and release gates keep #33/#58/#59 open.

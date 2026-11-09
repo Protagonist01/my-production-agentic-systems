@@ -6235,3 +6235,29 @@ are removed and all six previously running containers remain running. Fix only t
 operator exporter: serialize finite integral Decimal values as integer minor units,
 reject fractions rather than rounding, and retain exclusive output creation. A v3 run
 will start from a new identity; v1/v2 are not overwritten or promoted to completed drills.
+
+### Complete v3 measurement and independent readback
+
+Freeze7a404e2before execution. The new script checks exact Decimal5000conversion and
+fractional50.01refusal before provisioning. Its loopback audit hook rejects non-loopback
+Python socket connections; no provider key is loaded. Three distinct provisioned accounts
+exercise real TCP login/submission/review/customer-confirm/execute. A non-JSON challenge
+request intentionally returns403, followed by the correct JSON request. Trusted SQL sees
+exactly one5000minor refund and consumed authority; duplicates preserve receipt and state.
+
+The complete run has19HTTPrequests (18successful/1intentional403), one pending review,
+and two cleanly drained server lifetimes. A separately owned target restores all four
+schemas/18tables/70rows and serves the original receipt on duplicate customer execution.
+Capture is0.497991seconds; restore/verification/readiness2.7618599seconds under the local
+60-second bound. Do not call that end-to-end host recovery. Cleanup removes both owned
+databases/roles/container/volume, preserves53preexisting container identities and keeps
+all six previously running containers running. No Olist server is left running by the drill.
+
+Independent readback rehashes every saved artifact, validates the archive with its separate
+report pin and schema inventory, checks report durations, reconciles19HTTPobservations
+against both finalized telemetry snapshots and samples known case/order/request canaries
+for absence from telemetry. Both earlier incomplete runs and cleanup remain visible.
+Actual ledger remains447/0unsettled/1stop. Public aggregate contains only counts/pins; the
+archive, scoped accounts, sessions and raw state remain private. The portable chapter has
+actual CLI commands, self-contained invented enrollment, root-bound identity constraints,
+new-target recovery, rollback boundaries and a proposed (uninstalled) backup cadence.

@@ -6,6 +6,11 @@ health, role provisioning, snapshot and new-target restore entrypoints. It trace
 operator steps and workstation identity, confidential backup and host-loss boundaries.
 Runtime packages remain unchanged; current coverage is an operational plan with separately
 recorded local measurements, not external hosting, language qualification or production DR.
+The completed drill has19real HTTPrequests, one50.00SIMrefund, a pending review and
+original-receipt duplicates after four-schema restore. Independent readback reconciles
+telemetry/HTTP counts and pins; restore/readiness measured2.762seconds locally. Both failed
+operator-script runs remain documented. All owned resources are cleaned up; this is not
+an always-on deployed service, whole-host-loss test or qualified model-quality result.
 
 The [requested-amount source chapter](docs/olist-amount-source-research.md) continues
 from verified main `874579b` (#141), inspected2026-11-08. Follow the separately frozen

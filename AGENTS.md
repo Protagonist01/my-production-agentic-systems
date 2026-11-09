@@ -509,3 +509,14 @@ Docker Desktop is within this target selection; do not stop unrelated containers
 the earlier fulfilled Langfuse pause. No cloud purchase, external exposure, real payment,
 new provider call, stopped-slot reuse or release approval follows. Local snapshot restore
 measurements cannot establish whole-host-loss15-minute RPO/60-minute RTO or30-day uptime.
+
+The separate local v3 drill completed at frozen7a404e2:19TCPrequests, one5000minorSIM
+refund, one pending review, original receipt on duplicates before/after four-schema restore.
+Restore/verification/readiness measured2.7618599seconds under a60-second local exercise
+bound. v1non-JSON403and v2Decimal-export failure remain incomplete historical runs.
+All owned source/restore databases/roles/container/volume were removed;53prior container
+identities survived and six running containers stayed running. No Olist server remains
+running from the drill. Private cache directories local-deployment-exercise-2026-11-09-v1/
+v2/v3 and the independent readback hold exact artifacts; public aggregate/portable chapter
+record counts, pins and limits. Ledger remains447/0unsettled/1stop. Do not infer off-host
+backup, WAL/PITR, a scheduler, provider authorization, language qualification or release.
