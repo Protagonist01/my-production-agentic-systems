@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 91 — Bind local deployment and a portable recovery plan](#entry-91--bind-local-deployment-and-a-portable-recovery-plan)
 - [Entry 90 — Audit requested-amount applicability before choosing references](#entry-90--audit-requested-amount-applicability-before-choosing-references)
 - [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
 - [Entry 88 — Keep diagnostic causes separate from aborted trial placeholders](#entry-88--keep-diagnostic-causes-separate-from-aborted-trial-placeholders)
@@ -6179,3 +6180,35 @@ natural-language qualification needs an applicable external reference or separat
 qualified evaluator. The shared ledger remains447/0unsettled/1stop, read-only; no model
 study, new cohort or release is authorized. See the source chapter and public aggregate
 for exact pins, reproduction steps, known parser limits and the next evidence boundary.
+
+## Entry 91 — Bind local deployment and a portable recovery plan
+
+### Context and decision in progress
+
+On2026-11-09 the owner chose options1and3: the current local Docker host plus a
+host-neutral deployment plan. Start from verified main3fe00b7 (#142). This authorizes
+local SIM deployment/recovery preparation, not cloud purchases, a provider-study restart
+or production release. Keep the accepted15-minute RPO/60-minute RTO as planning targets;
+a same-host snapshot exercise does not establish either host-loss objective.
+
+### Before you read on
+
+What evidence survives if an application process dies, a database container is replaced,
+or the entire machine is lost? Which credentials, application artifacts, backups and
+verification steps would another operator need on a different host?
+
+### Chosen construction
+
+Use the existing locked loopback console, restricted database roles and new-target-only
+restore API. Keep schemas/runtime packages unchanged so old captures remain verifiable.
+Prepare an executable operator command sequence and a portability/acceptance matrix,
+with separate columns for measured local evidence and future host-specific requirements.
+Freeze the checkout before the actual exercise; retain private archives/receipts and
+publish aggregate measurements only. Use wholly invented SIM state, not a new language
+cohort or model result. Preserve all unrelated containers and databases.
+
+Initial host inspection finds Docker Desktop installed on D: with its engine stopped,
+roughly2.5GBfree on C:,68GBon D: and about5GBavailable RAM. Starting the stopped desktop
+is part of the selected local-host work. The earlier Langfuse pause was fulfilled; it
+does not authorize stopping unrelated services now. Record readiness/observed results
+as they occur, rather than copying earlier recovery measurements.

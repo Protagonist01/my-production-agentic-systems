@@ -1,5 +1,12 @@
 # Code Study Guide — Production Agentic Systems
 
+The [local deployment and portable recovery plan](docs/olist-deployment-plan.md), prepared
+2026-11-09 from main3fe00b7, binds the owner's local Docker choice to existing console,
+health, role provisioning, snapshot and new-target restore entrypoints. It traces local
+operator steps and workstation identity, confidential backup and host-loss boundaries.
+Runtime packages remain unchanged; current coverage is an operational plan with separately
+recorded local measurements, not external hosting, language qualification or production DR.
+
 The [requested-amount source chapter](docs/olist-amount-source-research.md) continues
 from verified main `874579b` (#141), inspected2026-11-08. Follow the separately frozen
 root census through source-policy pins, visibility diagnostics, exact money spans and
