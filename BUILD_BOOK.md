@@ -6226,3 +6226,12 @@ runner, failure/telemetry and verified cleanup. Its source database/role/contain
 removed and all preexisting container identities survive. No provider call or restore
 success is claimed. Prepare a separately named v2 run with an explicit empty JSON object
 and an intentional negative request documenting the original refusal before valid traffic.
+
+The separate v2 run passes the three-role HTTP flow, explicit customer confirmation and
+duplicate checks, then its private JSON exporter raises TypeError on PostgreSQL's Decimal
+result for sum(bigint). The application is not at fault. Retain all HTTP observations,
+partial private output and failure; no restore result is claimed. Owned source resources
+are removed and all six previously running containers remain running. Fix only the
+operator exporter: serialize finite integral Decimal values as integer minor units,
+reject fractions rather than rounding, and retain exclusive output creation. A v3 run
+will start from a new identity; v1/v2 are not overwritten or promoted to completed drills.
