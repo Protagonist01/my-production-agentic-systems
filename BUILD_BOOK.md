@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 91 — Bind local deployment and a portable recovery plan](#entry-91--bind-local-deployment-and-a-portable-recovery-plan)
 - [Entry 90 — Audit requested-amount applicability before choosing references](#entry-90--audit-requested-amount-applicability-before-choosing-references)
 - [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
 - [Entry 88 — Keep diagnostic causes separate from aborted trial placeholders](#entry-88--keep-diagnostic-causes-separate-from-aborted-trial-placeholders)
@@ -6179,3 +6180,84 @@ natural-language qualification needs an applicable external reference or separat
 qualified evaluator. The shared ledger remains447/0unsettled/1stop, read-only; no model
 study, new cohort or release is authorized. See the source chapter and public aggregate
 for exact pins, reproduction steps, known parser limits and the next evidence boundary.
+
+## Entry 91 — Bind local deployment and a portable recovery plan
+
+### Context and decision in progress
+
+On2026-11-09 the owner chose options1and3: the current local Docker host plus a
+host-neutral deployment plan. Start from verified main3fe00b7 (#142). This authorizes
+local SIM deployment/recovery preparation, not cloud purchases, a provider-study restart
+or production release. Keep the accepted15-minute RPO/60-minute RTO as planning targets;
+a same-host snapshot exercise does not establish either host-loss objective.
+
+### Before you read on
+
+What evidence survives if an application process dies, a database container is replaced,
+or the entire machine is lost? Which credentials, application artifacts, backups and
+verification steps would another operator need on a different host?
+
+### Chosen construction
+
+Use the existing locked loopback console, restricted database roles and new-target-only
+restore API. Keep schemas/runtime packages unchanged so old captures remain verifiable.
+Prepare an executable operator command sequence and a portability/acceptance matrix,
+with separate columns for measured local evidence and future host-specific requirements.
+Freeze the checkout before the actual exercise; retain private archives/receipts and
+publish aggregate measurements only. Use wholly invented SIM state, not a new language
+cohort or model result. Preserve all unrelated containers and databases.
+
+Initial host inspection finds Docker Desktop installed on D: with its engine stopped,
+roughly2.5GBfree on C:,68GBon D: and about5GBavailable RAM. Starting the stopped desktop
+is part of the selected local-host work. The earlier Langfuse pause was fulfilled; it
+does not authorize stopping unrelated services now. Record readiness/observed results
+as they occur, rather than copying earlier recovery measurements.
+
+### First local exercise
+
+Docker started successfully (Desktop4.94.0/Engine29.8.2). Its initial inventory has47
+exited and6running containers. Leave them intact. The new workspace provisions its own
+database/role and starts a real loopback TCP application with three distinct accounts.
+The first exercise reaches reviewer approval with no refund effect, then receives403on
+customer challenge creation. Diagnosis: the operator script sends no JSON body; the
+same-origin write guard requires application/json even for an otherwise bodyless endpoint.
+This is an exercise-client error, not a reason to weaken the endpoint. Retain v1 plan,
+runner, failure/telemetry and verified cleanup. Its source database/role/container are
+removed and all preexisting container identities survive. No provider call or restore
+success is claimed. Prepare a separately named v2 run with an explicit empty JSON object
+and an intentional negative request documenting the original refusal before valid traffic.
+
+The separate v2 run passes the three-role HTTP flow, explicit customer confirmation and
+duplicate checks, then its private JSON exporter raises TypeError on PostgreSQL's Decimal
+result for sum(bigint). The application is not at fault. Retain all HTTP observations,
+partial private output and failure; no restore result is claimed. Owned source resources
+are removed and all six previously running containers remain running. Fix only the
+operator exporter: serialize finite integral Decimal values as integer minor units,
+reject fractions rather than rounding, and retain exclusive output creation. A v3 run
+will start from a new identity; v1/v2 are not overwritten or promoted to completed drills.
+
+### Complete v3 measurement and independent readback
+
+Freeze7a404e2before execution. The new script checks exact Decimal5000conversion and
+fractional50.01refusal before provisioning. Its loopback audit hook rejects non-loopback
+Python socket connections; no provider key is loaded. Three distinct provisioned accounts
+exercise real TCP login/submission/review/customer-confirm/execute. A non-JSON challenge
+request intentionally returns403, followed by the correct JSON request. Trusted SQL sees
+exactly one5000minor refund and consumed authority; duplicates preserve receipt and state.
+
+The complete run has19HTTPrequests (18successful/1intentional403), one pending review,
+and two cleanly drained server lifetimes. A separately owned target restores all four
+schemas/18tables/70rows and serves the original receipt on duplicate customer execution.
+Capture is0.497991seconds; restore/verification/readiness2.7618599seconds under the local
+60-second bound. Do not call that end-to-end host recovery. Cleanup removes both owned
+databases/roles/container/volume, preserves53preexisting container identities and keeps
+all six previously running containers running. No Olist server is left running by the drill.
+
+Independent readback rehashes every saved artifact, validates the archive with its separate
+report pin and schema inventory, checks report durations, reconciles19HTTPobservations
+against both finalized telemetry snapshots and samples known case/order/request canaries
+for absence from telemetry. Both earlier incomplete runs and cleanup remain visible.
+Actual ledger remains447/0unsettled/1stop. Public aggregate contains only counts/pins; the
+archive, scoped accounts, sessions and raw state remain private. The portable chapter has
+actual CLI commands, self-contained invented enrollment, root-bound identity constraints,
+new-target recovery, rollback boundaries and a proposed (uninstalled) backup cadence.

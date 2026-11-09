@@ -1,0 +1,104 @@
+{
+  "version": "olist-local-deployment-exercise-readback-v1",
+  "date": "2026-11-09",
+  "summary": {
+    "execution_revision": "7a404e2681afeb418f6d29f6147ee71e355f93cc",
+    "environment_lock": "81a504ce4eb42c35d873d6ee1d9d3c0b672644d81df8dab693afd342354f2d0e",
+    "four_schemas_restored": true,
+    "separate_roles": 3,
+    "invented_orders": 2,
+    "refunds": 1,
+    "refund_minor": 5000,
+    "pending_reviews": 1,
+    "same_receipt_after_duplicates_and_restore": true,
+    "source_unchanged": true,
+    "normal_shutdown_verified": true,
+    "http_requests": 19,
+    "http_status_counts": {
+      "200": 18,
+      "403": 1
+    },
+    "capture_seconds": 0.497991,
+    "restore_verify_seconds": 2.7618599,
+    "local_restore_bound_seconds": 60,
+    "restore_bound_passed": true,
+    "host_loss_rpo_rto_verified": false,
+    "model_quality_verified": false,
+    "provider_calls": 0,
+    "ledger_after": {
+      "consumed": 447,
+      "unsettled": 0,
+      "stops": 1
+    },
+    "release_allowed": false
+  },
+  "successful_cleanup": {
+    "restored_database_role_removed": true,
+    "source_database_role_removed": true,
+    "owned_container_removed": true,
+    "unrelated_container_identities_preserved": true,
+    "preexisting_running_containers_still_running": true
+  },
+  "prior_incomplete_runs": {
+    "1": {
+      "failure": {
+        "stage": "http_workflow",
+        "exception_type": "AssertionError",
+        "provider_calls": 0,
+        "release_allowed": false
+      },
+      "cleanup": {
+        "source_database_role_removed": true,
+        "owned_container_removed": true,
+        "unrelated_container_identities_preserved": true
+      },
+      "failure_sha256": "3be02197967cc6311a463e4c2732c1e7ebde007b3f03ae6654a6fb247a72d78a",
+      "runner_sha256": "8341610192151fc51acfdfe8e2ff1d049913394c1c779ba93e406f0cd4917c72"
+    },
+    "2": {
+      "failure": {
+        "stage": "http_workflow",
+        "exception_type": "TypeError",
+        "provider_calls": 0,
+        "release_allowed": false
+      },
+      "cleanup": {
+        "source_database_role_removed": true,
+        "owned_container_removed": true,
+        "unrelated_container_identities_preserved": true,
+        "preexisting_running_containers_still_running": true
+      },
+      "failure_sha256": "0c3ac45f9d48a49be73f33e8c6c813d84cdea632e644876ddde6b73eca6364e2",
+      "runner_sha256": "5be90e26d9c62fa60d640a7f6712ad5a6fb04de8b142b2610909fd4a5b1f193a"
+    }
+  },
+  "successful_artifact_pins": {
+    "plan.json": "973cd1040be693c365c56e0e3b7c59b0e368df9369789430a1d4a56315b36287",
+    "runner.py": "5a351931d007d86ccad57643799d06e31edbb5c67c6d1a382a0fdf7dada65484",
+    "summary.json": "d3e882d50f8214475b2cd6f63a96886a241c9537d36a4e802ea63bc086469490",
+    "recovery-report.json": "a8957e2e065ad63ac4eab8b15eef4d83b579f80a9d5ee35bf57566136702d4b7",
+    "private-archive.json": "d883c3416ac163998a9b020a2b1f1828f27f015c9134eb0b8a321a307c465432",
+    "http-observations.json": "165143d75aa4c12de626cc9f7c6702569b8b8978e9bd75880bcddfc9573efa31",
+    "telemetry-source.json": "05e41563815669b7bf2b16056fb6ae955c05ca29861d5c8afcb33a8034fc204a",
+    "telemetry-restored.json": "5ad0223773d38d9d18a91ca619a6dd1dc1ffde7299d1edd86c33bc6f5722a8e2",
+    "cleanup.json": "15d7302c87db7aa9fe94ba65aab45677e44ccd5531983c294e2759944108c305",
+    "pins.json": "f5a874ad491a07b2a98c8cc02ea1e0eae57d57b5e718fe8efad9e3a3e4e68aea"
+  },
+  "verified_http_and_telemetry_counts": true,
+  "archive_pin_schema_inventory_verified": true,
+  "source_text_absent_from_telemetry_sample": true,
+  "archive_tables": 18,
+  "archive_rows": 70,
+  "external_host_deployed": false,
+  "host_loss_rpo_rto_verified": false,
+  "release_allowed": false,
+  "scope": "invented_local_sim_operations_and_host_neutral_plan",
+  "private_readback_sha256": "ff1d48522335f3cacaf3bfa1a469585766b32ce5b553b58cbfbb9cc62d6e900c",
+  "observed_host": {
+    "system": "Windows",
+    "python": "3.13.4",
+    "docker_engine": "29.8.2",
+    "docker_desktop": "4.94.0",
+    "postgres_image": "postgres@sha256:67f41722b7a8cbdb868a44a4995c846eddfdc2973bccb291ce937dce88ad5675"
+  }
+}
