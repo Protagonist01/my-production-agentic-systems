@@ -6307,3 +6307,9 @@ clarification flag in its fixture. Corrected fixture plus new binding checks pas
 tests; the subsequent SQL rerun failed during Compose setup. Hosted SQL/full matrix must
 pass before merge. Preserve those failed runs; never weaken source guards or count setup
 errors as safe observations. No provider calls or model-quality rows were generated.
+
+Final review caught a second denominator mistake: customer withholding consent must not
+make an otherwise policy-eligible proposal a wrong proposal. Bind eligibility to the
+reference policy outcome, independently of actor choices. Then require the scripted
+commit expectation before a correct refund scenario earns completion. Two additional
+currency/consent-wait combinations exercise that separation in the projection tests.

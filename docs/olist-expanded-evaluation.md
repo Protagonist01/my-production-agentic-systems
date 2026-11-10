@@ -101,10 +101,12 @@ domain-review waiver or release authorization is inferred from this implementati
 existing ServiceScenario, calls the unchanged service scorer to recheck capture/context/state
 and projects the actual proposed command and saved decision. Unknown amount references and
 non-v2 plans refuse. A wrong refund withheld by the customer remains an interpretation failure.
-Applicability flags must match the bound scenario: supported intent, expected committed refund
+Applicability flags must match the bound scenario: supported intent, policy-eligible refund
 without mandatory review for autonomous eligibility, required review, recovery and clarification.
 Costs in currencies other than USD remain unknown in this USD-only report; no conversion or
 currency relabeling occurs.
+Eligibility does not come from the customer's decision to confirm. A correct proposal waiting
+for that decision is allowed, but cannot earn completed-refund credit.
 
 The adapter performs no file IO or custody authentication. First use the existing externally
 pinned service/H10 readers. A self-consistent Python object is not factual evidence.

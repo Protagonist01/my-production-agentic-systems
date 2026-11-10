@@ -27,7 +27,7 @@
   ],
   "source_pins": {
     "olist_diagnostics.py": "12da52981cdcde64ae4ac4701b7cfb5f6b6a888fa4a416ee9fd3111ba36a4bbd",
-    "olist_diagnostic_readback.py": "b9e828f3f90610f678cf4cb07ba8065af018f611eab62109abe59fb2cb9a2f65",
+    "olist_diagnostic_readback.py": "053651347c801ffd7a6f63ac547aac424366a3e9054f1c79472dd36025a0c51f",
     "olist_profiling.py": "f9fc488974c6efbb339bacd730e899c509dbcc6e289a3cd7f393815218cf87ef"
   },
   "empty_capture": {

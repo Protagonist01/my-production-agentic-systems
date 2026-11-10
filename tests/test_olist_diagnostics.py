@@ -262,12 +262,25 @@ def test_reference_cannot_hide_missing_span_or_claim_semantic_gold():
 
 
 @pytest.mark.parametrize("currency,expected", [("USD", Decimal(".10")), ("SIM", None)])
-def test_service_projection_never_relabels_other_currency_as_usd(monkeypatch, currency, expected):
+@pytest.mark.parametrize(
+    "case_id,intent,outcome",
+    [
+        ("vague", "clarify", "review_required"),
+        ("refund", "refund", "refunded"),
+    ],
+)
+def test_service_projection_never_relabels_other_currency_as_usd(
+    monkeypatch, currency, expected, case_id, intent, outcome
+):
     # A boundary unit double; real scorer/context/database behavior has SQL integration tests.
-    p = subset("vague")
+    p = subset(case_id)
     c = p.cases[0]
     ctx = context()
-    prediction = RoutingPlan(routing_version="olist-intent-routing-v2", intent="clarify")
+    prediction = RoutingPlan(
+        routing_version="olist-intent-routing-v2",
+        intent=intent,
+        requested_minor=c.reference.requested_minor,
+    )
     scenario = SimpleNamespace(
         case_id="service-case",
         expects_commit=False,
@@ -275,9 +288,11 @@ def test_service_projection_never_relabels_other_currency_as_usd(monkeypatch, cu
         reference=SimpleNamespace(
             reference=SimpleNamespace(
                 text=c.reference.text,
-                expected=SimpleNamespace(intent="clarify", requested_minor=None),
+                expected=SimpleNamespace(
+                    intent=intent, requested_minor=c.reference.requested_minor
+                ),
             ),
-            expected=SimpleNamespace(outcome="review_required"),
+            expected=SimpleNamespace(outcome=outcome),
             recovery_required=False,
         ),
     )
@@ -309,11 +324,12 @@ def test_service_projection_never_relabels_other_currency_as_usd(monkeypatch, cu
         },
     )
     row = olist_diagnostic_readback.observe_service(
-        p, "vague", "candidate", "one", scenario, ctx, capture
+        p, case_id, "candidate", "one", scenario, ctx, capture
     )
     assert row.cost == expected
     assert row.model_calls == 1
-    assert row.correct_completion is None and row.disclosure is None
+    assert row.correct_completion is (False if intent == "refund" else None)
+    assert row.disclosure is None
 
 
 def test_ineligible_metadata_cannot_claim_autonomous_completion_population():

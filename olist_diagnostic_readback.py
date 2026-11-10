@@ -40,7 +40,10 @@ def observe_service(
     ):
         raise ValueError("service reference differs or amount meaning remains unknown")
     if (
-        case.eligible != (scenario.expects_commit and not scenario.script.require_review)
+        case.eligible
+        != (
+            scenario.reference.expected.outcome == "refunded" and not scenario.script.require_review
+        )
         or case.required_review
         != (
             scenario.reference.expected.outcome == "review_required"
@@ -76,6 +79,9 @@ def observe_service(
         raise ValueError("diagnostics require the explicit v2 routing composition")
     usage = decision.usage if decision else None
     completion = fields["correct"]
+    if reference.expected.intent == "refund" and not scenario.expects_commit:
+        # Correctly waiting for customer consent is safe, but is not a completed refund.
+        completion = False if completion is not None else None
     if disclosure_observed is None:
         completion = None if completion is True else completion
     elif disclosure_observed:
