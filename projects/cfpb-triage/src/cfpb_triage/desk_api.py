@@ -19,6 +19,8 @@ from starlette.types import ASGIApp, Message, Receive, Scope, Send
 from cfpb_triage.desk_auth import SESSION_SECONDS, AuthStore
 from cfpb_triage.desk_contracts import Principal, QueueCommand, StateChanged
 from cfpb_triage.desk_store import DeskStore
+from cfpb_triage.evaluation_store import EvaluationStore, WorkCommand
+from cfpb_triage.measurement import CURRENT, Profiler
 
 
 class Login(Contract):
@@ -65,6 +67,7 @@ def create_app(
     *,
     origin: str,
     trial_id: str,
+    evaluation: EvaluationStore | None = None,
 ) -> FastAPI:
     parsed = urlsplit(origin)
     if (
@@ -98,7 +101,9 @@ def create_app(
         csrf = request.headers.get("x-csrf-token") if mutation else None
         if mutation and not csrf:
             raise PermissionError("request verification required")
-        return auth.authenticate(request.cookies.get(cookie, ""), csrf)
+        user = auth.authenticate(request.cookies.get(cookie, ""), csrf)
+        request.state.authenticated_user = user
+        return user
 
     @app.middleware("http")
     async def headers(request: Request, call_next: RequestResponseEndpoint) -> Response:
@@ -232,5 +237,85 @@ def create_app(
             except LookupError:
                 continue
         return JSONResponse(profile(rows).model_dump(mode="json"))
+
+    if evaluation is not None:
+
+        @app.middleware("http")
+        async def evaluation_timings(
+            request: Request, call_next: RequestResponseEndpoint
+        ) -> Response:
+            profiler = Profiler()
+            token = CURRENT.set(profiler)
+            try:
+                with profiler.span("receipt"):
+                    response = await call_next(request)
+                # Only authenticated, assigned case requests may create timing receipts.
+                case = request.path_params.get("case_id")
+                if (
+                    request.url.path.startswith("/api/v2/evaluation/")
+                    and case
+                    and response.status_code < 400
+                ):
+                    user = getattr(request.state, "authenticated_user", None)
+                    try:
+                        if user is None:
+                            raise PermissionError("timing identity missing")
+                        evaluation.record_profile(user, str(case), tuple(profiler.rows))
+                    except (PermissionError, LookupError, ValueError, psycopg.Error):
+                        # Profiling failure must not turn an already committed action into
+                        # an ambiguous HTTP500. Missing telemetry remains explicit.
+                        response.headers["X-CFPB-Timing"] = "not-recorded"
+                    else:
+                        response.headers["X-CFPB-Timing"] = "recorded"
+                return response
+            finally:
+                CURRENT.reset(token)
+
+        @app.get("/evaluation")
+        def evaluation_index() -> HTMLResponse:
+            return HTMLResponse(
+                files("cfpb_triage")
+                .joinpath("web/evaluation.html")
+                .read_text(encoding="utf-8")
+                .replace("__CSRF_COOKIE__", csrf_cookie)
+            )
+
+        @app.get("/evaluation.js")
+        def evaluation_asset() -> Response:
+            return Response(
+                files("cfpb_triage").joinpath("web/evaluation.js").read_bytes(),
+                media_type="text/javascript",
+            )
+
+        @app.get("/evaluation.css")
+        def evaluation_style() -> Response:
+            return Response(
+                files("cfpb_triage").joinpath("web/evaluation.css").read_bytes(),
+                media_type="text/css",
+            )
+
+        @app.get("/api/v2/evaluation")
+        def evaluation_cases(request: Request) -> JSONResponse:
+            user = principal(request)
+            rows = []
+            for case_id in user.case_ids:
+                try:
+                    row = evaluation.evaluation_snapshot(user, case_id)
+                except (LookupError, PermissionError):
+                    continue
+                rows.append({k: row[k] for k in ("case_id", "version", "arm", "accepted_at")})
+            return JSONResponse({"cases": rows})
+
+        @app.get("/api/v2/evaluation/{case_id}")
+        def evaluation_detail(case_id: str, request: Request) -> JSONResponse:
+            return JSONResponse(evaluation.evaluation_snapshot(principal(request), case_id))
+
+        @app.post("/api/v2/evaluation/{case_id}/work")
+        def evaluation_work(
+            case_id: str, payload: dict[str, Any], request: Request
+        ) -> JSONResponse:
+            user = principal(request, mutation=True)
+            command = WorkCommand.model_validate_json(json.dumps(payload))
+            return JSONResponse({"version": evaluation.work(user, case_id, command)})
 
     return app

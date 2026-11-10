@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>CFPB triage work study</title><link rel="stylesheet" href="/assets/console.css">
+<link rel="stylesheet" href="/evaluation.css">
+<body><main class="study"><h1>Triage work study</h1>
+<p>Use your provisioned account. This records accepted triage, not resolution of a complaint.</p>
+<form id="login"><label>Username <input name="username" autocomplete="username" required></label>
+<label>Password <input name="password" type="password" autocomplete="current-password" required></label>
+<button>Sign in</button></form><button id="load">Load my assignments</button>
+<button id="logout">Sign out</button><p id="message" role="status"></p><div id="assignments"></div>
+<section id="case" hidden><h2 id="case-title"></h2><p id="arm"></p><p id="basis"></p><pre id="narrative"></pre>
+<h3>Candidate suggestion</h3><pre id="candidate"></pre>
+<label>Work type <select id="work-kind"><option value="review">Initial review</option>
+<option value="correction">Correction</option><option value="oversight">Oversight</option></select></label>
+<button id="start">Start active work</button>
+<label>Active seconds since Start (exclude interruptions)
+<input id="seconds" type="number" min="0" max="14400" value="0" step="1"></label>
+<button id="pause">Pause work</button>
+<form id="judgment"><label>Scope <select id="scope">
+<option value="in_scope">Financial complaint</option>
+<option value="out_of_scope">Unrelated request</option>
+<option value="insufficient">Need more information</option>
+<option value="unsupported_request">Unsupported account action or advice</option>
+<option value="taxonomy_gap">Financial topic outside the supplied categories</option></select></label>
+<label>Product <select id="product"></select></label><label>Issue <select id="issue"></select></label>
+<label>Priority <select id="priority"><option>uncertain</option><option>routine</option><option>elevated</option></select></label>
+<label>Context <select id="ambiguity"><option value="ambiguous">Needs clarification</option><option value="clear">Clear</option></select></label>
+<label>Short exact supporting quote <textarea id="quote" maxlength="500"></textarea></label>
+<button type="button" id="correct">Record correction and pause</button>
+<button type="submit">Accept final triage and finish</button></form></section>
+<p>Time is your attestation. Pauses exclude interruptions. A correction ends the active interval;
+start again before acceptance. Refresh after a conflict. No account or payment action is available.</p>
+</main><script src="/evaluation.js" data-csrf="__CSRF_COOKIE__" defer></script></body></html>

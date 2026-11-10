@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 95 — Measure useful CFPB triage before increasing automation](#entry-95--measure-useful-cfpb-triage-before-increasing-automation)
 - [Entry 92 — Measure unsupported requests, attacks and stage coverage](#entry-92--measure-unsupported-requests-attacks-and-stage-coverage)
 - [Entry 93 — Enable runnable SQL and request profiling](#entry-93--enable-runnable-sql-and-request-profiling)
 - [Entry 94 — Measure unchanged diagnostic baselines before model comparison](#entry-94--measure-unchanged-diagnostic-baselines-before-model-comparison)
@@ -6315,6 +6316,130 @@ make an otherwise policy-eligible proposal a wrong proposal. Bind eligibility to
 reference policy outcome, independently of actor choices. Then require the scripted
 commit expectation before a correct refund scenario earns completion. Two additional
 currency/consent-wait combinations exercise that separation in the projection tests.
+
+## Entry 95 — Measure useful CFPB triage before increasing automation
+
+On 2026-11-10 the owner requested all six recommended CFPB improvements: scope and attack
+handling, complete timing, human-effort/value measurement, broader metrics, conventional
+baselines and evidence-based routing. Start in an isolated worktree from verified main
+163888e (#144), preserving the completed Olist work and unrelated user files.
+
+Before building: how do we distinguish an unrelated request from an unclear complaint,
+measure the full cost of a wrong automatic answer, and avoid calling synthetic reviewer
+minutes observed labor savings? Which clock covers queues, subprocesses and human work?
+
+Use an opt-in versioned workflow and additive database schema rather than changing frozen
+v1 records/DDL or interpreting historical null predictions as known out-of-scope inputs.
+The new desk must separate scope outcomes, version/lease-bound publication, active-time
+attestations, accepted/corrected triage and complaint resolution. Manual comparison arms
+must not expose model predictions. Timings use bounded fixed stage names and monotonic
+within-process spans; cross-process timestamps remain separate. No raw payload or exception
+text is telemetry. Missing observations/unknown cost remain unknown.
+
+Implement TF-IDF/logistic regression with pinned scikit-learn in an optional evaluation
+extra, rather than claiming a home-grown optimizer is an established baseline. Fit only
+training data; calibrate separately and preserve untouched holdout. The new dependency lock
+belongs to the new candidate, not any old frozen study. Existing releases/captures remain
+pinned to their historical checkout/lock. No provider call, allowance change, judge/label
+qualification or release approval follows from this software implementation.
+
+### Walkthrough and diagnostic decisions
+
+Implement the additive schema with trusted participant provisioning, case/arm assignment,
+append-only command receipts and leased jobs. Do not reuse legacy enrollment: it would create
+a v1 pending model job before the v2 transaction could commit. Store manual cases separately
+and refuse duplicate actor/family assignments. Reuse authenticated opaque sessions and CSRF
+in an opt-in `/evaluation` desk, but require new study participation and exact case authority.
+Bound active seconds inside a server interval; keep work type and final acceptance explicit.
+The browser renders suggestions as text, not HTML or internal policy/trace JSON.
+
+Place monotonic stage spans around the gateway, parser, unique-quote checks, routing, SQL
+statements and commits. Use a separate post-commit receipt for publication timing: a commit
+cannot truthfully include its own already-finished duration before it completes. Select only
+these receipts for aggregate timing, rather than adding the pre-commit copy again. Queue and
+browser acknowledgements are wall-clock observations, not cross-process monotonic spans.
+
+Review found that a visibility acknowledgement must not increment semantic case revision:
+otherwise simply displaying a manual/assisted assignment could invalidate a running worker.
+Case/job locks must use the same order during claim and publication to avoid a lock cycle.
+An expired worker claim must not automatically dispatch again because the earlier request
+might already be consumed. Publish a review-required unavailable receipt instead. Persisted
+acceptance/correction supersedes candidate publication; exact command replay adds no labor.
+
+Build the scorecard from scheduled slots, not observed rows. An entire absent trial is easy
+to lose if trial count is inferred from returned observations: require the explicit schedule.
+A critical effect must block all operating points even when the offending prediction is sent
+to review. Final-only cascade results cannot support threshold/cost counterfactuals: collect
+both fixed stage observations, replay escalation and count selected stage requests/costs.
+Do not let a strong answer erase an earlier cheap risk indication. Keep scope confidence
+separate from category confidence, and require their gates independently.
+
+Early unit fixtures failed because the invented gateway response omitted provider/model/usage
+required by the shared wire contract; fix the fixture rather than weakening that contract.
+The initial default Windows temp directory was denied; rerun using an owned private external
+`--basetemp`, preserving the failed run. A one-package mypy invocation missed workspace source
+typing; use the repository-wide invocation. The first full-workspace type check then found a
+real variable collision between exported WorkSample tuples and legacy diagnostic rows; rename
+the export local. First focused verification passed26tests; the expanded run including legacy
+API and actual SQL/HTTP witnesses passed33tests. Further counterfactual/coverage tests and full
+checks are required before delivery. These are software witnesses, not fresh provider results.
+
+The final focused regression run passed118tests: v2 scope/economics/calibration, actual
+PostgreSQL/API state and strict-replay histories. Preserve the first26/33passes as earlier
+checkpoints. The new sklearn dependency changes uv.lock, so produce invented-v16 with the
+new lock and reviewed dirty development revision; compare all6canonical requests/responses
+to v15 before publishing. They are identical. Preserve v15bytes and add it to historical
+changed-lock refusal tests. Strict replay independently consumed6recorded calls, reproduced
+2timeouts and made0outbound calls. This is fake replay evidence, not provider evaluation.
+
+Another review caught provenance and interface risks: a login role is not proof a human
+performed the work. Store an explicit measurement basis on enrollment; Python defaults to
+invented and CLI enrollment requires a choice. Automated browser exercises remain invented.
+Do not carry prior-case judgments into a new assignment or retain narrative/quotes on
+logout. Reset the fields, display the stored final judgment on accepted cases and disable
+edits after acceptance. Keep active work kind fixed until pause. Separate optional v2 routing
+from the v1 PydanticAI runtime import so the evaluation extra has its declared dependencies.
+The final workspace type/CI checks and browser privacy/cleanup receipts follow in delivery.
+
+### Delivery verification boundary
+
+The broad offline run reported1742passes/2failures while implementation files were still
+being edited. Both failures were reviewed-source inventory refusals in CFPB domain recording:
+new source bytes no longer matched the inventory captured earlier in that same running test.
+Do not weaken the source guard. Rerun those tests with stable files and require full hosted
+matrix/SQL verification on the final PR head. A later focused run used an unauthorized default
+Windows temporary path and reported25passes/1setup error; rerun with owned external basetemp.
+
+Real Edge browser verification exercised login, manual-arm blinding, start, exact-quote final
+acceptance, cross-case field resets,390pxmobile layout without horizontal overflow and logout
+clearing. The first browser trial confirmed persisted acceptance and cleanup. A second run
+exposed an in-flight timing receipt re-authenticating after logout: response handling could
+raise after an action committed. Reuse the handler-authenticated principal; telemetry failure
+now leaves a `not-recorded` response header and never masks a committed action. Add a direct
+regression for that boundary. The second operator cleanup assertion assumed row0was the
+accepted case even after introducing two assignments; check the accepted case count instead.
+Both owned trial/container/volumes were removed. Preserve the failed diagnostic run rather
+than calling it a production incident or successful receipt. Final browser retry/check
+results and hosted exact-head/main checks are recorded separately in the PR delivery.
+
+### Final CFPB checkpoint and concurrent-main reconciliation
+
+The stable-source rerun passed54targeted tests, including the two earlier source-inventory
+refusals, post-commit telemetry failure and real SQL/HTTP state. The final browser v4readback
+independently confirmed one accepted case with1.0invented review second, an untouched second
+case and unknown correctness/cost. Accepted controls were disabled; all owned browser
+trial/container/volumes were removed. Earlier failed cleanup assertions remain recorded.
+The private CLI expanded16cases ×6comparators ×2trials into192missing slots with unknown
+safety and no release eligibility. The read-only live ledger remained447consumed,0unsettled,
+1original stop. No keys or provider requests were used.
+
+PR146headc5e2bd4passed all10checks in workflow42910034454:1750unit tests on all4OS/Python
+jobs,245typed sources,12wheel/sdist artifacts per job,220PostgreSQL tests, audits and secret
+scan. Each strict replay consumed6calls/reproduced2timeouts/0outbound. The merge guard then
+correctly refused a newly advanced main after concurrent Olist PR147merged. Reconcile its
+additive baseline report/readback entrypoints and preserve both guide sections; CFPB becomes
+Entry95to avoid colliding with its Entry94. Require CI on the reconciled head before merge;
+prior green jobs do not certify an untested combined tree. Final receipts live in the PR.
 
 ## Entry 93 — Enable runnable SQL and request profiling
 

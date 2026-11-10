@@ -41,6 +41,7 @@ dev = [
     "ruff>=0.17.0",
     "production-agent-harness[gemini]",
     "production-agent-cfpb-triage[web]",
+    "production-agent-cfpb-triage[evaluation]",
     "production-agent-prior-auth[web]",
     "production-agent-olist-support[web]",
     "production-agent-revenue-integrity[web,events]",

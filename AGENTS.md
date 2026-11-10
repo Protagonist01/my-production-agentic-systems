@@ -2,6 +2,20 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## CFPB evaluation implementation (2026-11-10)
+
+The owner authorized all six CFPB recommendations in dependency order: scope and adversarial
+handling, accepted-work economics, subprocess timing, full scorecards and balanced routing
+comparisons. Use the opt-in v2 path documented in docs/cfpb-evaluation-v2.md. Preserve v1
+records/schema and frozen studies. Blind manual assignments server-side; distinguish
+review/correction/oversight; retain missing cost/results; block critical effects regardless
+of confidence threshold. Fit conventional baselines only on training groups and thresholds
+on separate calibration; preserve holdout. Cascade fitting needs both stage observations,
+not final-only routed answers. Authored examples are not qualified financial-risk truth;
+attested work is not randomized causal evidence. This authorizes implementation/tests/delivery,
+not new provider attempts, allowance changes, new qualification labels or production release.
+The stopped shared ledger and existing delivery/merge authorization remain in force.
+
 ## Pull request submission
 
 When the user authorizes implementation and a review PR, submit the prepared PR directly
