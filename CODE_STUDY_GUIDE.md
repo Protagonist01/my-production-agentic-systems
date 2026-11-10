@@ -1,11 +1,19 @@
 # Code Study Guide — Production Agentic Systems
 
+<<<<<<< HEAD
 The [CFPB evaluation walkthrough](docs/cfpb-evaluation-walkthrough.md), prepared 2026-11-10
 on `codex/cfpb-evaluation-v2` from verified main163888e (#144), traces the six requested
 improvements through scope-aware routing, blinded work receipts, stage timing, scorecards
 and calibration. The [operator/method chapter](docs/cfpb-evaluation-v2.md) includes private
 commands and source applicability. This branch remains unmerged until separately verified;
 tests establish software behavior, not new model quality, measured savings or release approval.
+=======
+The [runnable profiling chapter](docs/olist-runtime-profiling.md) traces the separate local
+entrypoint into real psycopg connection/cursor subclasses, transaction finalization and
+protected API paths, with a private shutdown profile. It also explains input/reference
+separation and the proposal-only development packet. See Build Book Entry93 for the
+least-privilege fixture failure and why SQL time cannot identify lock wait independently.
+>>>>>>> origin/main
 
 The [expanded Olist diagnostics chapter](docs/olist-expanded-evaluation.md), prepared
 2026-11-10 from main48b24e9, traces unsupported/adversarial development references into

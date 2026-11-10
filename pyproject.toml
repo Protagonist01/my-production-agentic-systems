@@ -53,6 +53,6 @@ dev = [
 ]
 
 [tool.mypy]
-files = ["dev.py", "ci_checks.py", "service_method_readback.py", "amount_source_research.py", "olist_diagnostics.py", "olist_diagnostic_readback.py", "olist_profiling.py", "harness/src/agent_harness", "projects/*/src"]
+files = ["dev.py", "ci_checks.py", "service_method_readback.py", "amount_source_research.py", "olist_diagnostics.py", "olist_diagnostic_readback.py", "olist_profiling.py", "olist_profiled_runtime.py", "harness/src/agent_harness", "projects/*/src"]
 python_version = "3.12"
 strict = true

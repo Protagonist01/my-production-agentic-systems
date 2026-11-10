@@ -29,6 +29,15 @@ Stage = Literal[
     "planner",
     "gateway",
     "parse",
+    "sql_connect",
+    "sql_execute",
+    "sql_fetch",
+    "sql_commit",
+    "sql_rollback",
+    "sql_transaction",
+    "sql_finalize",
+    "startup",
+    "response_send",
 ]
 STAGES: tuple[Stage, ...] = (
     "request",
@@ -41,6 +50,15 @@ STAGES: tuple[Stage, ...] = (
     "planner",
     "gateway",
     "parse",
+    "sql_connect",
+    "sql_execute",
+    "sql_fetch",
+    "sql_commit",
+    "sql_rollback",
+    "sql_transaction",
+    "sql_finalize",
+    "startup",
+    "response_send",
 )
 T = TypeVar("T")
 
@@ -234,4 +252,9 @@ class ProfiledHTTP:
             await self.app(scope, receive, send)
         else:
             with self.recorder.phase("request"):
-                await self.app(scope, receive, send)
+
+                async def timed_send(message: Any) -> None:
+                    with self.recorder.phase("response_send"):
+                        await send(message)
+
+                await self.app(scope, receive, timed_send)
