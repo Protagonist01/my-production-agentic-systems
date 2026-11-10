@@ -520,3 +520,19 @@ running from the drill. Private cache directories local-deployment-exercise-2026
 v2/v3 and the independent readback hold exact artifacts; public aggregate/portable chapter
 record counts, pins and limits. Ledger remains447/0unsettled/1stop. Do not infer off-host
 backup, WAL/PITR, a scheduler, provider authorization, language qualification or release.
+
+## Expanded Olist development diagnostics authorized (2026-11-10)
+
+The owner requested unrelated/adversarial evaluation, added metrics, finer stage timing and
+an explicit record of natural-language reference limitations. The opt-in root diagnostics,
+capture projection and profiling modules preserve frozen harness/Olist packages and old
+studies. The24case/18declared-group/12attack-family pack is authored exposed development,
+not independent gold or an accepted fresh qualification cohort. All216scheduled diagnostic
+slots remain missing until actual observations are supplied. Basis/source/amount spans
+record declared evidence and arithmetic, not authenticated semantic truth. Unknown amount,
+privacy, follow-up, usage and timing stay unknown. See docs/olist-expanded-evaluation.md.
+
+Do not promote the profiler to all-subprocess coverage: database contexts and gateway calls
+are inclusive; individual SQL/locks/commit/queue/SDK/provider-internal phases remain partly
+unmeasured. Default runtime behavior and CLI composition are unchanged. No provider calls,
+new allowance, expired-study continuation, slot reuse or release are authorized here.

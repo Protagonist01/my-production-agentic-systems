@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 92 — Measure unsupported requests, attacks and stage coverage](#entry-92--measure-unsupported-requests-attacks-and-stage-coverage)
 - [Entry 91 — Bind local deployment and a portable recovery plan](#entry-91--bind-local-deployment-and-a-portable-recovery-plan)
 - [Entry 90 — Audit requested-amount applicability before choosing references](#entry-90--audit-requested-amount-applicability-before-choosing-references)
 - [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
@@ -6261,3 +6262,54 @@ Actual ledger remains447/0unsettled/1stop. Public aggregate contains only counts
 archive, scoped accounts, sessions and raw state remain private. The portable chapter has
 actual CLI commands, self-contained invented enrollment, root-bound identity constraints,
 new-target recovery, rollback boundaries and a proposed (uninstalled) backup cadence.
+
+## Entry 92 — Measure unsupported requests, attacks and stage coverage
+
+The owner requested deeper unrelated/adversarial evaluation, additional metrics, finer
+subprocess timing and explicit natural-language reference limitations on2026-11-10.
+Start from verified main48b24e9 (#143). Keep the stopped provider study and old runtime
+inventories intact. Implement separate opt-in root diagnostics/composition modules checked
+by normal CI, with no provider dispatch or change to legacy review/release behavior.
+
+Before building: how do we distinguish a wrong proposal that a guard blocks from an actual
+unauthorized effect? How do absent observations affect attack success and latency? How can
+an authored expected answer remain useful without pretending it is independent gold?
+
+Use a frozen diagnostic plan with complete case/trial/variant identities and explicit
+reference provenance, uncertainty and applicable metrics. Preserve missing/unknown rows.
+Constructed unrelated/adversarial examples are development proposals, not accepted semantic
+qualification. A root profiler composes existing planner/gateway/auth/case operations with
+bounded, content-free monotonic stage observations. It must never record args, identities,
+SQL, credentials, text or exception messages. Parent/nested elapsed times are inclusive;
+missing stages and unavailable provider-internal timing remain unknown, not zero. Tests
+must use seeded wrong outputs and known clocks, plus existing application paths.
+
+Construction: define Reference before Case/Plan, then pin the complete variant/case/trial
+schedule before admitting Observation rows. The summary expands missing slots before
+calculating slice denominators. Check interpretation independently from proposed commands
+and committed state. A safe blocked wrong refund must fail interpretation without counting
+an unsafe effect. Eligible wrong amounts must also fail completion and cost-per-success.
+The service adapter reuses the existing independent scorer and refuses applicability flags
+that disagree with the bound actor script. Non-USD cost becomes unknown in the USD report.
+
+Build the profiler as composition around the existing planner, gateway, authentication and
+case store. Allocate a bounded sequence under a lock, keep nesting in ContextVar, and close
+spans in finally. Per-request coverage walks parent chains rather than borrowing stages
+from another request. Use an exact injected clock to verify inclusive timing; a concurrent
+test verifies that separate requests do not share parents. No raw payload is collected.
+
+Verification so far:27new unit tests pass and mypy checks234source files. The first full
+local run used a Git-contained basetemp and correctly hit the source isolation guard;
+the external-temp rerun was interrupted because concurrent Docker verification was very
+slow. Neither run is a full-suite pass. Initial SQL setup failed with Docker stopped;
+after startup one protected HTTP test passed, while the service test exposed a missing
+clarification flag in its fixture. Corrected fixture plus new binding checks pass unit
+tests; the subsequent SQL rerun failed during Compose setup. Hosted SQL/full matrix must
+pass before merge. Preserve those failed runs; never weaken source guards or count setup
+errors as safe observations. No provider calls or model-quality rows were generated.
+
+Final review caught a second denominator mistake: customer withholding consent must not
+make an otherwise policy-eligible proposal a wrong proposal. Bind eligibility to the
+reference policy outcome, independently of actor choices. Then require the scripted
+commit expectation before a correct refund scenario earns completion. Two additional
+currency/consent-wait combinations exercise that separation in the projection tests.
