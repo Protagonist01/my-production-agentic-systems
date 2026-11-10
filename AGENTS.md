@@ -536,3 +536,22 @@ Do not promote the profiler to all-subprocess coverage: database contexts and ga
 are inclusive; individual SQL/locks/commit/queue/SDK/provider-internal phases remain partly
 unmeasured. Default runtime behavior and CLI composition are unchanged. No provider calls,
 new allowance, expired-study continuation, slot reuse or release are authorized here.
+
+## Runnable profiling follow-up (2026-11-10)
+
+The owner said proceed after the five Olist implementation gaps were enumerated. Continue
+finer profiling and runnable integration plus development preparation. The separate root
+entrypoint uses the existing operator-intent console and trial privileges, without model
+transport. SQL execution/fetch/connection and transaction finalization are inclusive;
+queue, independent lock wait, driver internals and some cursor paths remain gaps. Shutdown
+profiles are private and bounded, not crash-durable or all-subprocess coverage. Preserve
+frozen package inventories and historical source pins. A prepared24case/216slot packet and
+74attempt estimate are proposals, not independent gold, allocation, model calls or release.
+The earlier Docker cleanup uncertainty was resolved: all three failed-run workspaces clear,
+53unrelated containers preserved and six stayed running; additive private v2receipt retained.
+
+The new private no-provider draft is at
+`D:/document/.cache/production-agents/olist/runtime-profile-development-preparation-2026-11-10-v1`.
+Inputs, proposed references, unreviewed form, full plan and empty report are separately
+hashed in manifest.json. It supplies no new judgments or model results. Its74attempt
+estimate is not an allowance or a runnable frozen provider study.
