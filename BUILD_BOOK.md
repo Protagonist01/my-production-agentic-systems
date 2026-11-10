@@ -4,6 +4,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 ## Index
 - [Entry 92 — Measure unsupported requests, attacks and stage coverage](#entry-92--measure-unsupported-requests-attacks-and-stage-coverage)
 - [Entry 93 — Enable runnable SQL and request profiling](#entry-93--enable-runnable-sql-and-request-profiling)
+- [Entry 94 — Measure unchanged diagnostic baselines before model comparison](#entry-94--measure-unchanged-diagnostic-baselines-before-model-comparison)
 - [Entry 91 — Bind local deployment and a portable recovery plan](#entry-91--bind-local-deployment-and-a-portable-recovery-plan)
 - [Entry 90 — Audit requested-amount applicability before choosing references](#entry-90--audit-requested-amount-applicability-before-choosing-references)
 - [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
@@ -6363,3 +6364,51 @@ shutdown persistence. Keep v1/v2failure history. Reproduction: run pytest agains
 tests/integration/test_olist_profiled_runtime.py with strict markers and an external private
 basetemp; ordinary unit checks include tests/test_olist_profiled_runtime.py. All32focused
 tests pass; hosted full-suite and platform checks are required before merge.
+
+## Entry 94 — Measure unchanged diagnostic baselines before model comparison
+
+Continue from verified merged1a14f19 (#145). The owner said continue. The prepared authored
+development plan contains216missing slots. Execute only the two existing deterministic
+planners:24cases times3trials times2baselines. Candidate rows must stay missing. This is
+routing-only execution, not whole-service state or language qualification.
+
+Before running: should the rules baseline be expanded to match the new authored examples?
+No: measuring the unchanged template-aware baseline makes its applicability visible.
+Do not tune it against the expected answers and then present that as comparative evidence.
+Give each planner only WorkflowRequest and neutral RunContext, never evaluator labels.
+Keep input/reference files separate; validate the preparation manifest before execution.
+
+Build a reproducible script under docs/evaluation. Pin its bytes, imported algorithm files,
+diagnostics and lock before execution. Create a new private output exclusively. Block socket
+connect/connect_ex/create_connection/DNS during the planner loop; no gateway or SQL exists
+in this composition. Check each decision's zero usage and run identity. Record raw context,
+request, decision and routing projection. Keep operation/privacy/review/completion fields
+unknown because no service path was exercised. Planner-only time is not end-to-end latency.
+Write raw rows even on failure; write the complete manifest only after schedule completion.
+
+The first v1attempt stopped before decisions: shared Budget requires positive limits and
+rejected zero call/token fields. Preserve the failed output. Use schema-minimum1/1in a new
+v2run; that context is not provider authorization. Zero actual usage, no gateway and network
+denial establish this execution boundary. The separate readback takes an externally supplied
+manifest pin, rechecks source/packet/artifact hashes and row identities, and recomputes the
+complete report. A successful hash readback is custody/consistency evidence, not independent
+language truth or protection against a trusted host fabricating every artifact.
+
+The v2run completed144decisions with zero socket/DNS attempts and zero model usage. Separate
+readback reproduces both72/72review route inventories and0/72exact intent/amount matches;
+candidate72slots remain missing. An initial Python-object loader rejected persisted JSON
+datetime/Decimal values; strict model_validate_json fixed the reader without changing the
+capture. The original sandbox read was denied by private-file permissions; read-only
+elevation allowed verification. Five separately modified copies refused: missing row,
+changed prediction, invented safe effect, forged score and wrong external manifest pin.
+
+The result is a concrete baseline applicability finding. The rules algorithm recognizes
+Primary request templates, so this pack's ordinary wording reaches its review fallback.
+Do not call a routing-only mismatch an unsafe effect or an observed human review. Publish
+only aggregate counts/pins and the reproducible scripts; full contexts/decisions remain
+private. The weak reference and weak-comparator limitations are explicit in the chapter.
+
+Lint/format checks, document links, script syntax and exact public source pins pass. The
+developer-command test first hit a sandbox system-temp permission error (14passed/1setup
+error); the separate external-private-temp rerun passed all15tests. No source guard or
+algorithm was changed to obtain that pass. Full hosted checks remain required before merge.

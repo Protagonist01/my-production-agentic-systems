@@ -1,0 +1,86 @@
+{
+  "cases": 24,
+  "date": "2026-11-10",
+  "declared_groups": 18,
+  "end_to_end_latency_observed": false,
+  "independent_population_claim": false,
+  "manifest_sha256": "2444dee6b50ab7e6f69ecff43411a72ebc8a5bdeb4c3b9b79bc8f83ba5d5ac83",
+  "network_attempts": 0,
+  "plan_sha256": "665df6e6d798a5abe1af0c3c0e30cfb6fb6b706d81252d0427d2860ca1612e39",
+  "provider_calls": 0,
+  "qualification": false,
+  "real_world_language_gold": false,
+  "release_allowed": false,
+  "report_sha256": "a25b2401e2ea300ea83b78ed0e2736b3ac10fb84326b7640582486c66ed6da93",
+  "rows": 144,
+  "scope": "routing_only_exposed_authored_development",
+  "separate_readback_source_sha256": "d3f2bbde56dad12431eebd0d3f33e1cfd9064519523a6ca9ce096d07630dc916",
+  "source_pins": {
+    "docs/evaluation/run_olist_diagnostic_baselines.py": "f475a497e2bcdb29d4bfe9aab4b02c718666981338e31231694a515b62e33cfe",
+    "harness/src/agent_harness/baseline_recording.py": "42ed669588c897d0b273f7a18e1a2fb673dbb087bbae462a7ce2a20bcea12b71",
+    "harness/src/agent_harness/contracts.py": "6dcd2d8d252e68506ed796a97711380e4c6d0c3aa1b781750619a86c303c83f1",
+    "olist_diagnostics.py": "12da52981cdcde64ae4ac4701b7cfb5f6b6a888fa4a416ee9fd3111ba36a4bbd",
+    "projects/olist-support/src/olist_support/baseline_recording.py": "920560bcfb65d26f7283f5903e2aac911961597cc43906c1c1d8e5caa67d9f13",
+    "projects/olist-support/src/olist_support/fresh_release.py": "0d733af52491180aea5cbe1da2b487f4bc085405ab091abba55448656281eccf",
+    "projects/olist-support/src/olist_support/routing_contracts.py": "37e374ae54d921609dadb4a8f7a74c78da31b3f9f91a6411fdf234388aab7ceb",
+    "projects/olist-support/src/olist_support/workflow.py": "033f6b5e5165e0afd9fac39ef6ef44929681bfb014bcdf652bdf2a45d392360b",
+    "uv.lock": "81a504ce4eb42c35d873d6ee1d9d3c0b672644d81df8dab693afd342354f2d0e"
+  },
+  "tamper_checks": {
+    "changed_prediction": "refused",
+    "claimed_effect": "refused",
+    "forged_report": "refused",
+    "missing_row": "refused",
+    "wrong_external_pin": "refused"
+  },
+  "variants": {
+    "always-review": {
+      "joint_correct": {
+        "fraction_of_observed": 0.0,
+        "fraction_of_schedule": 0.0,
+        "no": 72,
+        "scheduled": 72,
+        "unknown_or_missing": 0,
+        "yes": 0
+      },
+      "missing": 0,
+      "observed": 72,
+      "route_counts": {
+        "review": 72
+      },
+      "service_effect_unknown": 72
+    },
+    "candidate": {
+      "joint_correct": {
+        "fraction_of_observed": null,
+        "fraction_of_schedule": 0.0,
+        "no": 0,
+        "scheduled": 72,
+        "unknown_or_missing": 72,
+        "yes": 0
+      },
+      "missing": 72,
+      "observed": 0,
+      "route_counts": {},
+      "service_effect_unknown": 72
+    },
+    "rules": {
+      "joint_correct": {
+        "fraction_of_observed": 0.0,
+        "fraction_of_schedule": 0.0,
+        "no": 72,
+        "scheduled": 72,
+        "unknown_or_missing": 0,
+        "yes": 0
+      },
+      "missing": 0,
+      "observed": 72,
+      "route_counts": {
+        "review": 72
+      },
+      "service_effect_unknown": 72
+    }
+  },
+  "version": "olist-diagnostic-baseline-routing-v2",
+  "whole_service_evaluated": false
+}

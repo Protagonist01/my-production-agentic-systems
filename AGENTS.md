@@ -555,3 +555,16 @@ The new private no-provider draft is at
 Inputs, proposed references, unreviewed form, full plan and empty report are separately
 hashed in manifest.json. It supplies no new judgments or model results. Its74attempt
 estimate is not an allowance or a runnable frozen provider study.
+
+## Authored diagnostic baseline execution (2026-11-10)
+
+The owner said continue after #145. The separate routing-only deterministic v2run has144
+actual baseline decisions:72rules and72always-review, all outputreviewand0exact declared
+intent/amount matches each. Candidate72slots remain missing. This is exposed authored
+development, not the previous108whole-service captures, independent gold or release evidence.
+Operational review, proposal/effect/privacy/completion/follow-up/recovery remain unknown.
+Run manifest2444dee6b50ab7e6f69ecff43411a72ebc8a5bdeb4c3b9b79bc8f83ba5d5ac83.
+Private root: `D:/document/.cache/production-agents/olist/diagnostic-baseline-routing-2026-11-10-v2`.
+Preserve v1schema-budget failure. Shared Budget requires positive fields; v2uses1/1minimum
+context, no model gateway and zero usage/network attempts. No provider authorization follows.
+Do not retune captured algorithms/labels or claim safe operational review from routing alone.
