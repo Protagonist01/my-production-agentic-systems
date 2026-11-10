@@ -1,5 +1,12 @@
 # Code Study Guide — Production Agentic Systems
 
+The [CFPB evaluation walkthrough](docs/cfpb-evaluation-walkthrough.md), prepared 2026-11-10
+on `codex/cfpb-evaluation-v2` from verified main163888e (#144), traces the six requested
+improvements through scope-aware routing, blinded work receipts, stage timing, scorecards
+and calibration. The [operator/method chapter](docs/cfpb-evaluation-v2.md) includes private
+commands and source applicability. This branch remains unmerged until separately verified;
+tests establish software behavior, not new model quality, measured savings or release approval.
+
 The [expanded Olist diagnostics chapter](docs/olist-expanded-evaluation.md), prepared
 2026-11-10 from main48b24e9, traces unsupported/adversarial development references into
 complete-schedule metrics, service-capture projection and opt-in monotonic stage profiles.
