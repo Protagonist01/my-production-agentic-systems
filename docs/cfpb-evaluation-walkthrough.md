@@ -3,7 +3,7 @@
 Inspected branch: `codex/cfpb-evaluation-v2`, based on main163888e (#144), 2026-11-10.
 Scope is the new CFPB workflow/tools and their shared package/auth boundaries. Other
 agents, historical provider studies and production hosting are not re-audited here.
-See [the operator/method chapter](cfpb-evaluation-v2.md) and Build Book Entry94.
+See [the operator/method chapter](cfpb-evaluation-v2.md) and Build Book Entry95.
 
 ## Follow a candidate
 
