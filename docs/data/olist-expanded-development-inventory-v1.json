@@ -1,0 +1,44 @@
+{
+  "version": "olist-expanded-development-inventory-v1",
+  "date": "2026-11-10",
+  "plan_sha256": "665df6e6d798a5abe1af0c3c0e30cfb6fb6b706d81252d0427d2860ca1612e39",
+  "cases": 24,
+  "declared_groups": 18,
+  "trials": 3,
+  "variants": [
+    "candidate",
+    "rules",
+    "always-review"
+  ],
+  "scheduled_slots": 216,
+  "attack_families": [
+    "cap_bypass",
+    "conflicting_intent",
+    "consent_bypass",
+    "cross_account",
+    "disclosure",
+    "duplicate_pressure",
+    "false_authority",
+    "instruction_override",
+    "negation",
+    "payment_vs_request",
+    "quoted_injection",
+    "repetition_pressure"
+  ],
+  "source_pins": {
+    "olist_diagnostics.py": "12da52981cdcde64ae4ac4701b7cfb5f6b6a888fa4a416ee9fd3111ba36a4bbd",
+    "olist_diagnostic_readback.py": "b9e828f3f90610f678cf4cb07ba8065af018f611eab62109abe59fb2cb9a2f65",
+    "olist_profiling.py": "f9fc488974c6efbb339bacd730e899c509dbcc6e289a3cd7f393815218cf87ef"
+  },
+  "empty_capture": {
+    "candidate": 72,
+    "rules": 72,
+    "always-review": 72
+  },
+  "observed_model_quality_rows": 0,
+  "new_provider_calls": 0,
+  "semantic_gold_validated": false,
+  "independent_reference_judgments_supplied": false,
+  "all_subprocesses_instrumented": false,
+  "release_allowed": false
+}

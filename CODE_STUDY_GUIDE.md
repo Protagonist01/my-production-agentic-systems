@@ -1,5 +1,13 @@
 # Code Study Guide — Production Agentic Systems
 
+The [expanded Olist diagnostics chapter](docs/olist-expanded-evaluation.md), prepared
+2026-11-10 from main48b24e9, traces unsupported/adversarial development references into
+complete-schedule metrics, service-capture projection and opt-in monotonic stage profiles.
+It separates wrong proposals, unsafe effects, disclosure and completion; unknown meaning,
+cost and timing cannot become passes. Coverage is diagnostic software and authored examples,
+not qualified natural-language gold, all-subprocess tracing or a new provider study. The
+chapter explicitly preserves reference limitations and the work needed to improve them.
+
 The [local deployment and portable recovery plan](docs/olist-deployment-plan.md), prepared
 2026-11-09 from main3fe00b7, binds the owner's local Docker choice to existing console,
 health, role provisioning, snapshot and new-target restore entrypoints. It traces local
