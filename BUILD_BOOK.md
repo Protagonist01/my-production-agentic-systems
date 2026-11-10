@@ -2,7 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
-- [Entry 93 — Measure useful CFPB triage before increasing automation](#entry-93--measure-useful-cfpb-triage-before-increasing-automation)
+- [Entry 94 — Measure useful CFPB triage before increasing automation](#entry-94--measure-useful-cfpb-triage-before-increasing-automation)
 - [Entry 92 — Measure unsupported requests, attacks and stage coverage](#entry-92--measure-unsupported-requests-attacks-and-stage-coverage)
 - [Entry 93 — Enable runnable SQL and request profiling](#entry-93--enable-runnable-sql-and-request-profiling)
 - [Entry 91 — Bind local deployment and a portable recovery plan](#entry-91--bind-local-deployment-and-a-portable-recovery-plan)
@@ -6316,8 +6316,7 @@ reference policy outcome, independently of actor choices. Then require the scrip
 commit expectation before a correct refund scenario earns completion. Two additional
 currency/consent-wait combinations exercise that separation in the projection tests.
 
-<<<<<<< HEAD
-## Entry 93 — Measure useful CFPB triage before increasing automation
+## Entry 94 — Measure useful CFPB triage before increasing automation
 
 On 2026-11-10 the owner requested all six recommended CFPB improvements: scope and attack
 handling, complete timing, human-effort/value measurement, broader metrics, conventional
@@ -6421,7 +6420,7 @@ accepted case even after introducing two assignments; check the accepted case co
 Both owned trial/container/volumes were removed. Preserve the failed diagnostic run rather
 than calling it a production incident or successful receipt. Final browser retry/check
 results and hosted exact-head/main checks are recorded separately in the PR delivery.
-=======
+
 ## Entry 93 — Enable runnable SQL and request profiling
 
 The owner asked to proceed after the remaining coverage gaps were explained. Continue from
@@ -6470,4 +6469,3 @@ shutdown persistence. Keep v1/v2failure history. Reproduction: run pytest agains
 tests/integration/test_olist_profiled_runtime.py with strict markers and an external private
 basetemp; ordinary unit checks include tests/test_olist_profiled_runtime.py. All32focused
 tests pass; hosted full-suite and platform checks are required before merge.
->>>>>>> origin/main
