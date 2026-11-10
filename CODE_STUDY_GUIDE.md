@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [routing baseline result chapter](docs/olist-diagnostic-baseline-results.md) traces the
+prepared authored inputs into unchanged rules/always-review decisions, a field-preserving
+routing projection and separate pinned readback. Both return review72/72and match none of
+the declared six-route references. The chapter explains why this is a baseline applicability
+finding, not proof of unsafe effects, candidate quality or independent language truth.
+
 The [runnable profiling chapter](docs/olist-runtime-profiling.md) traces the separate local
 entrypoint into real psycopg connection/cursor subclasses, transaction finalization and
 protected API paths, with a private shutdown profile. It also explains input/reference
