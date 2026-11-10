@@ -3,6 +3,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 - [Entry 92 — Measure unsupported requests, attacks and stage coverage](#entry-92--measure-unsupported-requests-attacks-and-stage-coverage)
+- [Entry 93 — Enable runnable SQL and request profiling](#entry-93--enable-runnable-sql-and-request-profiling)
 - [Entry 91 — Bind local deployment and a portable recovery plan](#entry-91--bind-local-deployment-and-a-portable-recovery-plan)
 - [Entry 90 — Audit requested-amount applicability before choosing references](#entry-90--audit-requested-amount-applicability-before-choosing-references)
 - [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
@@ -6313,3 +6314,52 @@ make an otherwise policy-eligible proposal a wrong proposal. Bind eligibility to
 reference policy outcome, independently of actor choices. Then require the scripted
 commit expectation before a correct refund scenario earns completion. Two additional
 currency/consent-wait combinations exercise that separation in the projection tests.
+
+## Entry 93 — Enable runnable SQL and request profiling
+
+The owner asked to proceed after the remaining coverage gaps were explained. Continue from
+merged main163888e (#144), preserving the earlier failed runs and new Docker cleanup receipt.
+The existing profiler is opt-in composition only; build a separate root entrypoint that
+always enables it for the local operator console. Do not alter frozen runtime package code.
+
+Before building: should SQL timings come from a generic proxy or the driver's supported
+connection/cursor extension points? A proxy risks changing identity/type/row-factory behavior
+used by the checkpoint saver. Choose actual psycopg subclasses and cursor_factory instead.
+Use the existing Server/Trial scope and credentials; wrap only their loopback connection.
+Override execute/executemany/fetch methods with fixed-name elapsed spans and no query/args.
+Explicit commit/rollback calls and transaction-context finalization need separate spans:
+the driver may finalize a savepoint without calling Connection.commit. A timed context exit
+must preserve exception suppression and propagation exactly. Never sum inclusive nested time.
+
+Reuse ServiceTelemetry's exclusive private output, lifespan and fsync behavior for shutdown
+persistence. The new root CLI supplies the profiled stores and factory to the existing API,
+retaining access controls and drain settings. Add response-send spans around awaited ASGI
+send; they do not prove client receipt. SQL time includes lock/server/network wait but does
+not independently attribute them. Pipelines, cursor iteration, COPY and named cursors remain
+coverage limitations. Do not claim all-subprocess profiling or crash-durable traces.
+
+Prepare development inputs separately from proposed references and unreviewed judgments;
+write a hash manifest last. The report must contain all216missing slots and no invented
+model results. The74attempt estimate is proposal-only, not allocation or permission.
+
+The first SQL run passed query-failure rollback and real protected HTTP/profile persistence,
+but the transaction test failed at CREATE TEMP: the runtime role intentionally lacks TEMP.
+Do not grant more runtime power. Fix the fixture by creating a dedicated table through the
+isolated test administrator and granting only SELECT/INSERT for that table. Rerun the actual
+SQL tests after this correction. Initial unit checks passed31tests and235typed files;
+the packet test was added afterward and still needs final verification.
+
+The second SQL fixture exposed the hardened runtime search path: an unqualified public
+table was not visible. Move the probe into the already allowed olist schema and qualify
+every table reference. Retain runtime schema restrictions and the original failed runs.
+Final unit verification now passes32focused tests, including the new packet guard; lint,
+format, import contracts and235typed sources pass. The private packet was created at
+runtime-profile-development-preparation-2026-11-10-v1 with a completed hash manifest and
+all216observations missing. No provider call occurred. The final SQL rerun is pending.
+
+The final isolated SQL v3run passed all3tests in149.49seconds, including real nested
+savepoint rollback, query-failure recovery, delayed execute, protected login/read and
+shutdown persistence. Keep v1/v2failure history. Reproduction: run pytest against
+tests/integration/test_olist_profiled_runtime.py with strict markers and an external private
+basetemp; ordinary unit checks include tests/test_olist_profiled_runtime.py. All32focused
+tests pass; hosted full-suite and platform checks are required before merge.

@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [runnable profiling chapter](docs/olist-runtime-profiling.md) traces the separate local
+entrypoint into real psycopg connection/cursor subclasses, transaction finalization and
+protected API paths, with a private shutdown profile. It also explains input/reference
+separation and the proposal-only development packet. See Build Book Entry93 for the
+least-privilege fixture failure and why SQL time cannot identify lock wait independently.
+
 The [expanded Olist diagnostics chapter](docs/olist-expanded-evaluation.md), prepared
 2026-11-10 from main48b24e9, traces unsupported/adversarial development references into
 complete-schedule metrics, service-capture projection and opt-in monotonic stage profiles.
