@@ -41,6 +41,7 @@ def uv_command(command: str, executable: str) -> list[str]:
         "docs/evaluation/prepare_cfpb_mapping_draft.py",
         "docs/evaluation/prepare_cfpb_input_packet.py",
         "docs/evaluation/olist_conservative_experiment.py",
+        "docs/evaluation/olist_native_intent_readiness.py",
         "harness",
         "projects",
         "tests",

@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [native reference readiness chapter](docs/olist-native-reference-readiness.md) traces
+the accepted limited method into source-CSV/audit/acceptance/bundle revalidation and a
+36decision coarse-intent comparison. It records9agreements (25%)on12previously exposed
+instructions, leaves amount unscored, and maps all eight release fields to their remaining
+evidence. This is not a fresh holdout, qualified judge or production-language accuracy claim.
+
 The [CFPB input-readiness chapter](docs/cfpb-input-readiness.md), prepared 2026-11-11 from
 main d09c93f, records the owner's explicit instruction to continue preparation while the
 12 mappings remain pending. Follow `prepare_cfpb_input_packet.project`: validate the external

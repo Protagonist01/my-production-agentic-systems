@@ -624,3 +624,18 @@ authority, label approval, frozen package or old capture is changed.
 Private capture: `D:/document/.cache/production-agents/olist/conservative-routing-development-2026-11-11-v1`.
 Manifest2186581d93bca20568bd7baef318a9cc04f32f65b68e93689726439329fb7563.
 No new provider call, allocation, old-slot reuse, stopped-study continuation or release.
+
+## Native reference readiness follow-up (2026-11-11)
+
+After #148 the owner said proceed. Revalidate the pinned26,872row Bitext CSV/audit, actual
+limited method acceptance and exact original12case bundle, then execute the unchanged
+conservative comparator only on those exposed inputs. The separate36decision run has9
+coarse-intent agreements (25%):refund6/6,status3/6,unsupported0/24; errors are3status-to-
+clarify,21unsupported-to-clarify and3unsupported-to-refund. Do not compare this as a paired
+accuracy drop from the different authored joint-intent/amount pack. Amount is not scored;
+no missing annotation becomes a null expected amount. No source/label/method is promoted.
+Private run: `D:/document/.cache/production-agents/olist/native-intent-readiness-2026-11-11-v1`.
+Manifest7e5e5e9ea2db266d7af2bb259e6b959430cdd5c314bb3d29ead9c076bd7e4047.
+The readback and five negative checks verify custody/bindings/metrics, not real-world truth
+or qualification. All eight required field/slice gates remain; no new provider allocation,
+key load, old-slot reuse, stopped/expired study continuation, judge activation or release.
