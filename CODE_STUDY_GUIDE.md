@@ -1,5 +1,15 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Revenue evaluation v2 chapter](docs/revenue-evaluation-v2.md) traces the explicit opt-in
+read-only relevance/meaning path, trusted document bindings, source/task applicability,
+complete-schedule scorecards and content-free runtime/SQL/worker timings. Follow the valid
+quote/wrong-amount test before examining the separate correct/extracted arithmetic paths.
+The actual ContractNLI training audit preserves its native three-class NDA task; it supplies
+no billing-meaning gold. The 96 actual rules/always-review outputs remain authored scope
+diagnostics, with 48 candidate slots and all effect/cost judgments missing. Qualification,
+old stopped provider scopes and production release remain separate. The chapter includes
+reproduction commands, symbol traces, trust boundaries and interview exercises.
+
 The [backup catalog chapter](docs/olist-backup-catalog.md), prepared 2026-11-11 from main
 c5b265d, traces the standalone `olist_backup_catalog` helper. `frozen_checkout` binds the
 entrypoint/editable imports, clean HEAD and lock before/after capture. `BackupCatalog.publish`

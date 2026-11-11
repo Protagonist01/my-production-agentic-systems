@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 100 — Build Revenue relevance, semantic diagnostics and stage timing](#entry-100--build-revenue-relevance-semantic-diagnostics-and-stage-timing)
 - [Entry 98 — Discover fresh backups without hiding incomplete writes](#entry-98--discover-fresh-backups-without-hiding-incomplete-writes)
 - [Entry 97 — Seal CFPB inputs while keeping mapping decisions pending](#entry-97--seal-cfpb-inputs-while-keeping-mapping-decisions-pending)
 - [Entry 96 — Execute unchanged CFPB baselines before another model study](#entry-96--execute-unchanged-cfpb-baselines-before-another-model-study)
@@ -6854,3 +6855,83 @@ with247typed sources. No runtime package, SQL schema or uv.lock bytes changed. T
 restore witness is implemented but its hosted result is still pending at this checkpoint;
 record its actual result in the PR/main delivery receipt. No provider call, live cutover,
 backup deletion, persistent scheduler or remote service is part of this change.
+
+## Entry 100 — Build Revenue relevance, semantic diagnostics and stage timing
+
+### Context
+
+On2026-11-11 the owner authorized implementing all five Revenue recommendations in order.
+Use separate codex/revenue-evaluation-v2 from actual mainfd4ef0c (#152). The previous
+checkout has ongoing Olist source work, including reserved Entry99; leave it untouched.
+Implement timing first, then request/document relevance, adversarial diagnostics, structured
+meaning/reference preparation and complete metrics. No provider study, label acceptance,
+live Langfuse dataset or production release is authorized by this implementation.
+
+### Before you read on
+
+How would you distinguish a valid agreement with no price from an unrelated request,
+a wrong-account agreement and a missing pricing schedule? How do you measure a quote
+that exists but omits an exception, without letting the candidate write its own truth?
+
+### Construction in progress
+
+Keep the frozen harness/domain packages and historical schemas intact. Add opt-in root
+adapters with closed contracts, fixed-name content-free nested timings, explicit trusted
+document bindings, independently supplied references and full scheduled denominators.
+Reuse the shared evaluator-qualification reporter instead of inventing a second release
+authority. Existing CFPB timing provides useful conventions but importing that vertical
+would couple domains; the Revenue adapter depends only on shared contracts and Revenue.
+Hold inferred relevance and semantic support apart from actual database authority. No
+automatic billing writer or source-label repair follows from a model's supported claim.
+
+Use invented positive/negative and clean/attack pairs to test mechanisms. Keep authored
+development references exposed and separate from any external publisher task. The
+ContractNLI adapter must preserve its three native inference labels and evidence, audit
+exact source/license pins, and cannot certify subscription-billing semantics. Record real
+test failures and readiness results below as they occur.
+
+### Implementation, failures and actual evidence
+
+Build `revenue_profiling` first: fixed-name spans with context-local parents and explicit
+bounded capacity. A regressing injected clock originally risked masking the real exception;
+record a clock anomaly/incomplete snapshot instead. Import only actual worker milestones,
+label the observer PID/CPU honestly, and skip a stale delegate timing object after a new
+early failure. A real invented owned-process test now verifies startup/generation/framing/
+cleanup, while recording no request/error text and making no provider call.
+
+Add `revenue_assessment` with grant checks before document classification, source hash and
+server account/product/period/version binding, named missing terms and eight closed meaning
+fields. Test a real quoted1,000with a false9,000interpretation: citation integrity succeeds,
+so the unqualified meaning must remain unable to authorize a write. Add the separate
+constructed arithmetic comparison; it shows3,000correct-terms versus27,000extracted-terms
+without changing an invoice, and refuses unrepresented amendments/conditions/units.
+
+Build `revenue_evaluation` around the entire scheduled cross product. Fix slice grouping to
+reuse the full transitive graph, preserve unknown precision when a flag lacks a billing
+reference, and require known effect evidence before diagnostic criteria can pass. Separate
+reference coverage from a generic accuracy number. A missing model result fails scheduled
+completion but is not an observed bad model decision. The three repeated injection refusals
+are a measured false-positive tradeoff, not48independent successes or measured safe effects.
+
+Acquire the pinned official ContractNLI archive/license in a private temporary directory.
+Verify both Git object pins and SHA-256 bytes, then decode only its training JSON. Actual
+audit:423documents/17fixedhypotheses/7,191native references/8,341evidence intervals. Preserve
+the original three classes; never map NDA support directly to subscription billing truth.
+Reusing the shared qualification reporter avoids a second authority path; a perfect invented
+judge test still activates no evaluator. Details/notices:docs/revenue-evaluation-v2.md.
+
+The first focused run passed50tests but its temporary-directory fixture could not access
+the default Windows pytest parent. An explicit new temp directory exposed a second path
+issue: this environment has a C:root.git marker. The new capture helper now rejects the
+actual source checkout and project checkouts with.pyproject.toml plus.git, without treating
+the entire drive as this project. This changes only the new helper, not old source guards.
+The real private capture contains96outputs on16authored scope cases:rules45/48,always-review
+21/48agreements; candidate0observed/48missing. A separately started readback process verifies
+manifestae2de78333db107c2246e1e7be819468f2ddc6fb418a5c73bf9c127d5424926c and recomputes the
+scorecard. No joint/billing reference, qualified label, effect/workflow judgment or cost is
+invented. Full aggregate and source audit are committed; raw source/capture stays private.
+
+The intermediate checkpoint passed70focused/developer tests and255typed sources; the
+additional real-process and stale-timing regressions passed11profiling tests. Local Docker
+is unavailable, so the new actual SQL adapter witness requires hosted execution. Record
+final full-suite/SQL/matrix and exact-head/main delivery evidence before claiming completion.
