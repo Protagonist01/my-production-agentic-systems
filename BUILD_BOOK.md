@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 99 — Find an exact licensed amount source before another study](#entry-99--find-an-exact-licensed-amount-source-before-another-study)
 - [Entry 98 — Discover fresh backups without hiding incomplete writes](#entry-98--discover-fresh-backups-without-hiding-incomplete-writes)
 - [Entry 97 — Seal CFPB inputs while keeping mapping decisions pending](#entry-97--seal-cfpb-inputs-while-keeping-mapping-decisions-pending)
 - [Entry 96 — Execute unchanged CFPB baselines before another model study](#entry-96--execute-unchanged-cfpb-baselines-before-another-model-study)
@@ -6854,3 +6855,100 @@ with247typed sources. No runtime package, SQL schema or uv.lock bytes changed. T
 restore witness is implemented but its hosted result is still pending at this checkpoint;
 record its actual result in the PR/main delivery receipt. No provider call, live cutover,
 backup deletion, persistent scheduler or remote service is part of this change.
+
+## Entry 99 — Find an exact licensed amount source before another study
+
+### Context
+
+On 2026-11-11 the owner asked to obtain trustworthy language/amount references and a fresh
+candidate evaluation after #151. Start from actual main fd4ef0c (#152) in the reused clean
+checkout. The historical Hugging Face amount-tagged source has unresolved exact-version
+licensing and measured annotation defects. The accepted 27K source is intent-development
+only. Neither the old stopped study nor its unused slots funds this new work.
+
+### Before you read on
+
+What evidence would let an external amount tag answer what this customer asks to receive,
+rather than what they paid or what an agent later offered? Which source bytes and license
+have to be pinned together before selecting any scoring references?
+
+### Options considered
+
+- Reusing ABCD action amounts would confuse later/default offers with the current input.
+  Inspecting the previously inventoried training opportunities confirms context and service
+  scope mismatches; no original hidden value is restored into delexed input.
+- Repairing old Bitext tags with our own candidate would create a circular reference.
+- Investigate the publisher's own GitHub history. The tagged CSV remains at revision
+  8b6ca3d9559a4a9abab94f7978fae67019215a82 together with LICENSE.txt, README and TAGS.
+  This is a separately received exact-version source, not a retroactive license assertion
+  about the earlier Hugging Face copy.
+
+### How to build it
+
+Obtain immutable tree/blob identities through the official repository. Download only the
+named revision's files into an exclusive private directory. Bound each response and check
+Git blob SHA-1 against the independently retrieved tree, then record SHA-256 and byte size.
+Save all original data and notices. Census the actual schema and rows before considering
+semantic applicability. Hashes establish which source was inspected, not label correctness.
+
+The first snapshot has 4,514 rows and the expected eleven tagged columns. Its CSV SHA-256
+is 079b0cec48d34c319c9877b6d178390bf7187a7f7a604958e0ed5a096bba5af6. Next, compare
+native amount values/offsets with visible instruction spans, preserve all contradictions,
+and identify whether any amount-role reference can actually be proposed. Do not silently
+repair source tags, open a holdout, accept a method, or dispatch a provider.
+
+### What went wrong
+
+The current publisher repository only lists the newer 27K CSV. Querying its complete short
+commit history exposed the deleted tagged training path alongside an explicit license.
+Current-card URLs and the separate Hugging Face history alone did not establish that
+exact-version binding. No annotation-quality or evaluation result is claimed yet.
+
+The immutable official download passed the separately retrieved Git blob identities for
+CSV, README, TAGS and license. The actual amount census still has63tags,20exact spans and
+16out-of-bounds offsets. The first applicability run incorrectly treated role as the speaker
+and excluded everything. Its frozen script/output remain v1. The pinned README explicitly
+defines role as the model's adopted role and instruction as the user's request. The second
+run admits5whole direct refund/reimburse commands but wrongly inferred USD. Preserve that
+v2script/output too; v3keeps nominal dollar hundredths with unknown ISO currency and no SIM
+conversion. Those5commands cover only2values/4masked templates and remain proposed limited
+development references, not a general-language qualification population.
+
+Build the candidate outside frozen runtime packages. Its request constructor accepts only
+text and emits fixed system/schema plus exact user content. Its output separates intent,
+explicit/no-explicit/unclear/not-applicable money roles, integer hundredths, currency class
+and literal quote. Independent parsing refuses duplicate JSON fields, invalid combinations,
+fabricated/partial quotes and rounding. An invented test deliberately accepts the mechanics
+of a price quote while leaving its requested-money role unproved: arithmetic is not meaning.
+
+Prepare24development inputs:5proposed native direct commands,3unresolved price-role contrasts,
+4previously accepted conditional native intent cases and12unchanged accepted constructed
+examples. Keep source/expected fields evaluator-only. At3trials, intent has63conditional
+reference slots and9unknowns; amount has51reference slots and21unknowns. Failures/missing
+outputs remain in scheduled denominators. All74requests (2invented canaries plus72domain
+slots) pass the actual SDK serializer. No model or business action ran.
+
+The shared allowance remains447consumed/0unsettled/1original stop at read-only preparation.
+Implement an additive immutable namespace in the existing ledger, requiring an externally
+trusted exact owner grant before provider installation. Reserve/commit each slot before
+dispatch; atomically save response and parent observation before the next reservation.
+Keep old schema/rows pinned, old stop present, same614cap and93other slots bound; transferring
+74old unattempted routing slots needs explicit amendment. `mode=rw`must never create a new
+live ledger if its path is wrong. Another attempt refuses an unobserved response, wrong
+request/origin, expiry, duplicate, changed history or failed canary. Settlement after expiry
+is permitted without permitting another dispatch.
+
+Compose the existing SDK in an owned spawned worker with90second HTTP/110second parent
+limits, no SDK retry, raw response persisted before derived tariff accounting and bounded
+parent observations. Exact source/lock, clean HEAD/imports, environment, requests, input,
+reference and invented canary pins are separate bindings. Fake SDK mode denies socket/DNS
+access, has mock origin and cannot qualify as a real response. Independent readback checks
+actual reservation/response/observation records and recomputes only supported field scores.
+This is a language-only study; no SQL business environment or customer authority is invoked.
+
+Focused verification reached78passes before the added denominator tests; those4also pass.
+The real spawned SDK/fake-HTTP test passes schema/quote/usage checks without network access.
+The first developer test invocation hit the host's inaccessible shared pytest temporary
+directory; rerun with an exclusive owned basetemp passed. Preserve that host failure rather
+than attributing it to source applicability or a model. Full hosted tests and complete mock
+74slot run remain required before the provider proposal can be called execution-ready.

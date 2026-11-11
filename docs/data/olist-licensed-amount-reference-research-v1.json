@@ -1,0 +1,123 @@
+{
+  "empty_domain_report": {
+    "development_only": true,
+    "domain": {
+      "amount_match": 0,
+      "amount_reference": 51,
+      "amount_unknown": 21,
+      "failed": 0,
+      "intent_match": 0,
+      "intent_reference": 63,
+      "intent_unknown": 9,
+      "missing": 72,
+      "observed": 0,
+      "scheduled": 72
+    },
+    "qualification": false,
+    "release_allowed": false,
+    "strata": {
+      "constructed_accepted": {
+        "amount_match": 0,
+        "amount_reference": 36,
+        "amount_unknown": 0,
+        "failed": 0,
+        "intent_match": 0,
+        "intent_reference": 36,
+        "intent_unknown": 0,
+        "missing": 36,
+        "observed": 0,
+        "scheduled": 36
+      },
+      "native_direct_proposed": {
+        "amount_match": 0,
+        "amount_reference": 15,
+        "amount_unknown": 0,
+        "failed": 0,
+        "intent_match": 0,
+        "intent_reference": 15,
+        "intent_unknown": 0,
+        "missing": 15,
+        "observed": 0,
+        "scheduled": 15
+      },
+      "native_intent_accepted": {
+        "amount_match": 0,
+        "amount_reference": 0,
+        "amount_unknown": 12,
+        "failed": 0,
+        "intent_match": 0,
+        "intent_reference": 12,
+        "intent_unknown": 0,
+        "missing": 12,
+        "observed": 0,
+        "scheduled": 12
+      },
+      "price_role_unresolved": {
+        "amount_match": 0,
+        "amount_reference": 0,
+        "amount_unknown": 9,
+        "failed": 0,
+        "intent_match": 0,
+        "intent_reference": 0,
+        "intent_unknown": 9,
+        "missing": 9,
+        "observed": 0,
+        "scheduled": 9
+      }
+    },
+    "trials_are_independent_language_families": false
+  },
+  "method_decision_pending": true,
+  "new_live_scope_installed": false,
+  "new_provider_calls": 0,
+  "preparation_packet_sha256": "a7fcfb36f04a6c476c2b1488ff42fa36bc8258a44493cefc24140bb53a9172e2",
+  "proposed_inputs": 24,
+  "proposed_provider_attempts": 74,
+  "provider_amendment_pending": true,
+  "qualification": false,
+  "release_allowed": false,
+  "sdk_serialization_checks": 74,
+  "source_applicability": {
+    "accepted_reference_count": 0,
+    "amount_annotations": 63,
+    "annotation_repair": false,
+    "candidate_ordinals": [
+      2743,
+      2792,
+      2830,
+      2841,
+      2864
+    ],
+    "distinct_candidate_templates": 4,
+    "distinct_candidate_values": 2,
+    "exact_native_spans": 20,
+    "exclusions": {
+      "native_tag_not_direct_requested_number": 9,
+      "native_value_span_not_exact": 43,
+      "outside_proposed_direct_request_language": 49
+    },
+    "iso_currency_reference_established": false,
+    "license_evidence": "CDLA-Sharing-1.0_file_published_in_same_revision",
+    "native_rows": 4514,
+    "new_method_accepted": false,
+    "out_of_bounds_native_spans": 16,
+    "prior_hugging_face_permission_inferred": false,
+    "proposed_direct_request_candidates": 5,
+    "provider_calls": 0,
+    "release_allowed": false,
+    "semantic_gold_validated": false,
+    "source_currency_converted_to_sim": false,
+    "source_pins": {
+      "LICENSE.txt": "f6054388eae4947a769ca2020c54e6d394eb01c41d58db55bb6cfd24ce71cdd8",
+      "README.md": "bff261543a14237450bf3c8d887c98787e80492abeb3c2d8015fded3a5f6a23d",
+      "TAGS.md": "53a349c1e04467fa298b7b1e0f297339b521d80467fb20e0f4636a2e932f76ec",
+      "data/train/Bitext_Sample_Customer_Support_Training_Dataset.csv": "079b0cec48d34c319c9877b6d178390bf7187a7f7a604958e0ed5a096bba5af6"
+    },
+    "source_revision": "8b6ca3d9559a4a9abab94f7978fae67019215a82",
+    "template_groups_prove_independence": false,
+    "version": "olist-licensed-amount-applicability-v1"
+  },
+  "source_audit_manifest_sha256": "ddeb9724f4c5bbf3c70014b4d68f3f1dc5711eed3d10f343d16f466453cd0aed",
+  "source_review_packet_sha256": "f42c024468e05f78bef69f33ca7ce8e74b4d87cf96f8ca67f51cdd8d13b63afd",
+  "version": "olist-licensed-amount-reference-research-v1"
+}

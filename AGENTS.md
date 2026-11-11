@@ -2,6 +2,27 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Semantic reference and comparison preparation (2026-11-11)
+
+The owner asked to obtain language/amount references and a fresh candidate evaluation,
+then said to address limitations and finish the project. Continue implementation and
+bounded preparation; do not record that reply as acceptance of every proposed label or
+as an exact provider amendment. See docs/olist-semantic-reference-comparison.md.
+The exact official GitHub Bitext revision8b6ca3d carries its tagged CSV and CDLA-Sharing
+license together. Its63amount annotations have20exact spans and16out-of-bounds spans;
+five rows satisfy the proposed whole direct-refund-command rule. They cover2values and
+4masked templates, not independent general-language gold. Nominal dollar hundredths do
+not establish an ISO currency or conversion to SIM. Price-role contrasts stay unresolved.
+Preserve v1role-convention and v2USD-inference audits; v3is the corrected separate capture.
+
+The24input/74attempt proposal is development-only:2invented canaries then72domain slots.
+Only21cases have conditional/proposed intent references and17have amount references.
+Method decision, exact candidate/environment freeze, source-export/74slot transfer amendment
+and current Free-project confirmation remain separate. Same614lifetime cap,447historical
+consumed,93other bound slots preserved and original stop retained; no live scope installed.
+Do not load keys, transfer slots, create a replacement ledger or dispatch from generic
+proceed. All eight field/slice release gates and operational requirements remain unchanged.
+
 ## CFPB preparation while mappings stay pending (2026-11-11)
 
 After PR149 the owner explicitly chose "Continue preparation; mappings remain pending".

@@ -1,5 +1,14 @@
 # Code Study Guide — Production Agentic Systems
 
+The [semantic reference/comparison chapter](docs/olist-semantic-reference-comparison.md),
+prepared from main fd4ef0c on 2026-11-11, traces exact licensed source bytes into five
+proposed direct-command amount references, strict input-only candidate extraction, additive
+shared-ledger controls, spawned SDK capture and independent field-specific readback.
+It distinguishes annotation defects, unknown money roles, nominal dollars/ISO currency,
+exposed development/fresh responses and mechanical evidence/semantic truth. These research
+entrypoints cannot grant action authority or release. Their live scope remains uninstalled
+until an exact owner amendment; the old stop and ledger history remain intact.
+
 The [backup catalog chapter](docs/olist-backup-catalog.md), prepared 2026-11-11 from main
 c5b265d, traces the standalone `olist_backup_catalog` helper. `frozen_checkout` binds the
 entrypoint/editable imports, clean HEAD and lock before/after capture. `BackupCatalog.publish`
