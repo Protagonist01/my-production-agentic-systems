@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 97 — Seal CFPB inputs while keeping mapping decisions pending](#entry-97--seal-cfpb-inputs-while-keeping-mapping-decisions-pending)
 - [Entry 96 — Execute unchanged CFPB baselines before another model study](#entry-96--execute-unchanged-cfpb-baselines-before-another-model-study)
 - [Entry 95 — Measure useful CFPB triage before increasing automation](#entry-95--measure-useful-cfpb-triage-before-increasing-automation)
 - [Entry 92 — Measure unsupported requests, attacks and stage coverage](#entry-92--measure-unsupported-requests-attacks-and-stage-coverage)
@@ -6675,3 +6676,47 @@ runtime,16-case corpus, captured outputs or proposed mappings. Existing source p
 match and the private exact-byte snapshot remains available. Require the combined head's
 checks before merge. Historical duplicate Entry95titles from the two earlier workstreams
 remain preserved; this CFPB continuation is the separately titled Entry96.
+
+## Entry 97 — Seal CFPB inputs while keeping mapping decisions pending
+
+On 2026-11-11, after PR149merged and its main checks passed, the owner said proceed.
+Asked whether that accepted the12development mappings or continued preparation; the owner
+explicitly chose preparation with mappings pending. Do not turn a generic proceed into
+label acceptance or reactivate the stopped provider study. Verified main d09c93f and created
+codex/cfpb-input-readiness without touching prior worktrees or the private draft.
+
+Before building: can the next candidate receive only its allowed narrative input, while
+publisher intents, proposed scope, uncertainty, training-source identity and grouping
+metadata stay outside its input? Can an integrity pass be confused with execution approval?
+
+Use a separate input-only projection rather than modifying the approved draft or creating
+accepted Reference labels. First verify the external source-manifest hash and every named
+file. Read each file once into a validated byte snapshot to avoid rereading changed bytes
+between digest verification and parsing. Reject duplicate JSON keys, path escapes, changed
+source/test-split flags and accepted/non-null target fields. Materialize only ComplaintInput
+schema_version/case_id/narrative, preserving exact source text; the text hash is its opaque
+case identity. Put original publisher/source metadata and pending proposals in evaluator-only
+storage. Keep project partitions, trial count, candidate requests and operating limits unset.
+
+Seal a readiness record that says blocked_for_execution even when input integrity passes.
+Its explicit blockers cover pending mappings, applicable qualified semantic references,
+representative/group-separated protocol, frozen taxonomy/policy, sample/trial/operating/cost
+limits, fresh provider authorization, unchanged old stop, observed human effort and release
+prerequisites. The four preparation/contract source hashes are not a frozen model candidate.
+No SDK, gateway, key loader, new source record, training, scoring or provider dispatch is
+needed. Python socket/DNS audit denial covers the CLI preparation/readback operation.
+
+Verify in a separate process against both external pins and reconstruct input/evaluator
+projections from the original draft. Tamper tests rehash copies with leaked target fields,
+accepted mappings, trial settings or execution flags; those must still refuse. Preserve
+exclusive output behavior and the original draft bytes. A hash establishes custody, not
+independent meaning or protection from an entirely compromised trusted host.
+
+Actual preparation completed 12 input records under packet manifest
+7d6d2c08579f69669283f6bc3df6bd67579cba7ed69ede5dcf68496c2d8788b5. Separate-process
+readback passed against the unchanged draft pin cd7a8fd8bb081405bc7b2bc83a5859d3aca75956f98c0d8ecaa3b0e30918c954.
+Both operations observed 0 socket/DNS attempts. All mappings remain unaccepted and execution
+blocked. Preserve the four exact preparation source files in a separately hashed private
+snapshot; line-ending differences in a later checkout must not rewrite the old packet.
+The focused preparation/developer-command run passed 22 tests. No private source text was
+published and no new source record, trial assignment, target or model attempt was created.
