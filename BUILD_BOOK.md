@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 96 — Execute unchanged CFPB baselines before another model study](#entry-96--execute-unchanged-cfpb-baselines-before-another-model-study)
 - [Entry 95 — Measure useful CFPB triage before increasing automation](#entry-95--measure-useful-cfpb-triage-before-increasing-automation)
 - [Entry 92 — Measure unsupported requests, attacks and stage coverage](#entry-92--measure-unsupported-requests-attacks-and-stage-coverage)
 - [Entry 93 — Enable runnable SQL and request profiling](#entry-93--enable-runnable-sql-and-request-profiling)
@@ -6537,3 +6538,82 @@ Lint/format checks, document links, script syntax and exact public source pins p
 developer-command test first hit a sandbox system-temp permission error (14passed/1setup
 error); the separate external-private-temp rerun passed all15tests. No source guard or
 algorithm was changed to obtain that pass. Full hosted checks remain required before merge.
+
+## Entry 96 — Execute unchanged CFPB baselines before another model study
+
+On 2026-11-11 the owner said continue after merged PR146. Verified GitHub mainbf6426d
+and open release issue38, then created `codex/cfpb-baseline-evidence`. The next useful
+step is actual comparator evidence on the existing16authored inputs, not another claim
+that a passing software test establishes model quality. Preserve all corpus bytes, labels,
+groups, training designation and algorithms; no dataset is created in Langfuse.
+
+Before building: can we reproduce observed/missing slots independently, prevent a missing
+result being counted as success, and keep routing-only predictions distinct from actual
+security effects or accepted human work? Can a conventional classifier be evaluated when
+the entire existing pack is designated training?
+
+Run the unchanged rules and always-review functions three times each on16cases (96actual
+outputs). Keep all6comparators in the288slot schedule, leaving192slots missing. Record
+comparator-only monotonic duration and wall timestamps; no service/human timing or known
+infrastructure cost is inferred. Deny Python socket/DNS operations, never load keys or
+construct a gateway, pin the package/lock/script inventory before execution and recheck it
+afterward. Exclusive private output plus an externally supplied manifest pin preserves
+complete and failed captures. A separate reader reconstructs identities, algorithm outputs
+and metrics. It establishes custody/consistency, not an independent financial-risk oracle.
+
+Do not fit the TF-IDF baseline and score it on these same training cases. That would give
+an optimistic resubstitution score. No new partition/method or qualification reference is
+approved here. Instead audit public README/license/intent metadata for CLINC150/BANKING77
+without fetching utterance records, and document where those labels do and do not transfer.
+Provider attempts, scope label acceptance, a fresh cohort and production release remain
+separate from this preparation. Keep the stopped447/614shared ledger unchanged.
+
+### Actual execution and applicability findings
+
+Capturev1completed96actual outputs across288scheduled slots; separate readback verified
+manifest a7537ce1760b9c4a4636c7d888a359eb76f131858e3a32dd74c7faa691098e96. Rules classified12
+and reviewed36of48; always-review reviewed48of48. Their declared unnecessary-review counts
+are18and30respectively. One negated unrelated case produced three repeated scope false-
+positives in rules while its action still went to review. Do not count those as three
+independent unsafe actions. All observed evidence relevance, actual effects and costs remain
+unknown; composite success is not established, not proven false. Four other comparators
+remain entirely missing. No baseline was retuned and no provider request was made.
+
+The first read of private aggregate files under ordinary sandbox permissions was denied;
+repeat read-only with elevation, then publish only aggregates. This is file access, not a
+failed algorithm run. The22test focused run passed, including missing/altered rows, wrong
+pins, forged safety/scores and overwrite refusal. A rehashed forged manifest still cannot
+make an algorithm-absent safe-effect field an observation. Readback shares scoring code,
+so it is not an independent language judge or protection from a fully compromised host.
+
+Pinned README/license/intent metadata confirms CLINC150's CC BY3.0license and BANKING77's
+CC BY4.0dataset declaration. CLINC's original oosmeaning is relative to its150intents;
+BANKING77intent names do not supply CFPB taxonomy/urgency truth. Keep attribution and exact
+revision/hash records. Metadata alone can motivate, not approve, item-level project labels.
+
+The owner explicitly approved preparation of12training-only mapping examples:4CLINC general
+intents,4banking operation/information intents and4complaint-like banking intents. The
+source CLINC container physically includes other splits, so scan bytes and JSON-decode/save
+only its trainmember; never decode/select source test records. BANKING uses train.csv.
+Cross-check each downloaded source against its Git blob identity at the pinned commit.
+Select the lowest SHA256text/label pair within each predeclared intent rather than handpick
+examples to improve an algorithm's observed score. Original text and publisher labels are
+separate from AI scope proposals. Preserve typos; do not repair "change my in" into PIN
+merely because the publisher label hints at it. Complaint-like card text often lacks the
+product facts to assign a supported CFPB pair. Proposed draft:4out_of_scope,3unsupported,
+5insufficient, with uncertainty explicit and product/issue/priority/ambiguity unset.
+
+Private review: D:/document/.cache/production-agents/cfpb/scope-mapping-draft-2026-11-11-v1/review.md.
+Manifest cd7a8fd8bb081405bc7b2bc83a5859d3aca75956f98c0d8ecaa3b0e30918c954 binds originals,
+proposals, training selection provenance and source notices/licenses. Preparation approval
+is not mapping acceptance, gold qualification, partition acceptance, provider scope or release.
+The new parser tests prove unrelated split values are not UTF8/JSON-decoded and test/oos_train
+cannot substitute for the approved trainmember. No live Langfuse dataset was mutated.
+
+The final focused parser/capture/developer-command run passed26tests. Source audit fetched
+only metadata first; after the owner's preparation approval, pinned training extraction
+selected12records and bound the private review packet. No source test record was decoded.
+To preserve exact-byte readback across future checkout/line-ending changes, store a separate
+private source snapshot of every pinned file and verify each hash before copying. The
+original capture remains unchanged. Git commit identity alone is not a byte-equivalent
+checkout guarantee; use the frozen source snapshot or make a fresh exclusive capture.

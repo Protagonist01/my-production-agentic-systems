@@ -2,6 +2,24 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## CFPB baseline evidence and mapping preparation (2026-11-11)
+
+The owner said continue after #146 and explicitly approved preparation of12 training-only
+mapping examples:4 CLINC general intents,4 banking operations/information and4 complaint-like
+banking intents. See docs/cfpb-diagnostic-baseline-results.md and the private review packet
+at D:/document/.cache/production-agents/cfpb/scope-mapping-draft-2026-11-11-v1/review.md.
+Original text/publisher labels and AI proposals remain separate; no mapping is accepted yet.
+Do not infer supported CFPB pairs, urgency or independent gold from publisher intent names.
+CLINC mixed-split bytes were downloaded/hashed but only `train` was decoded/saved; no source
+test record was decoded/selected. Preserve source notices, original typos, pins and selection.
+Preparation approval does not authorize qualification, repartitioning, models or release.
+
+The unchanged rules/always-review run contains96 actual outputs on the existing16 authored
+training cases, with192 other slots missing. Full private capture/readback and all unknown
+effect/cost fields stay preserved. No TF-IDF resubstitution score or provider run exists.
+Do not retune algorithms/references and relabel this capture improved or held-out evidence.
+The stopped shared ledger and existing final-check/merge authorization remain unchanged.
+
 ## CFPB evaluation implementation (2026-11-10)
 
 The owner authorized all six CFPB recommendations in dependency order: scope and adversarial

@@ -1,5 +1,40 @@
 # Code Study Guide — Production Agentic Systems
 
+The [CFPB baseline execution chapter](docs/cfpb-diagnostic-baseline-results.md), inspected
+2026-11-11 from mainbf6426d on `codex/cfpb-baseline-evidence`, adds actual deterministic
+development captures without changing the merged runtime packages. Follow
+`run_cfpb_diagnostic_baselines.run`: freeze existing cases and source bytes, allocate all
+288 case/comparator/trial slots, deny Python socket/DNS operations, execute only rules and
+always-review, retain unknown effects/cost and write exclusive private artifacts. The
+separate `readback` process verifies an external manifest pin, exact identities and frozen
+algorithm outputs, then recomputes scores and independently counts routes. Sharing scorer
+code establishes consistency, not independent semantic truth or host attestation.
+
+Actual 96 outputs leave192 missing, including TF-IDF: all 16 source cases are designated
+training, so resubstitution would be an invalid generalization claim. Three repeated
+scope false-positives come from one negated case routed to review, not three independent
+unsafe actions. Tests in `tests/test_cfpb_baseline_capture.py` refuse missing/changed rows,
+forged safe effects/scores, wrong pins and overwrite. A recomputed forged manifest still
+cannot invent an algorithm-absent security observation. Coverage excludes new model calls,
+qualified labels, human productivity and production release. External-source metadata audit
+supports a concrete next mapping-draft proposal, not automatic inheritance of scope/risk.
+
+Interview exercise: why are the 12 classified rule outputs not 12 proven correct completions?
+Their evidence relevance, actual effects and accepted work were not observed. Why leave
+TF-IDF missing when it can fit? Fitting and evaluating the same training examples would
+answer the wrong question. Why is a valid hash insufficient? A fully trusted host can
+fabricate an internally consistent capture; provenance does not establish language truth.
+
+The owner subsequently approved the 12 training-only mapping draft. In
+`prepare_cfpb_mapping_draft.training_member`, skip non-target JSON values with byte-level
+balanced scanning, decode only the top-level `train` member and stop. This matters because
+the publisher CLINC container physically includes test data. The acquisition receipt checks
+the pinned Git blob identity, while `choose` deterministically selects one text/label hash
+per predeclared intent. Original records stay separate from uncertain project proposals.
+`tests/test_cfpb_mapping_preparation.py` exercises skipped undecodable test bytes, escaped
+braces, absent training data and order-independent selection. This is source-selection
+and preparation evidence, not acceptance of scope/risk labels or a changed release method.
+
 The [CFPB evaluation walkthrough](docs/cfpb-evaluation-walkthrough.md), prepared 2026-11-10
 on `codex/cfpb-evaluation-v2` from verified main163888e (#144), traces the six requested
 improvements through scope-aware routing, blinded work receipts, stage timing, scorecards

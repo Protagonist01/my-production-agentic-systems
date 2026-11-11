@@ -1,0 +1,43 @@
+{
+  "cases": 12,
+  "manifest_sha256": "cd7a8fd8bb081405bc7b2bc83a5859d3aca75956f98c0d8ecaa3b0e30918c954",
+  "mappings_accepted": false,
+  "preparation_approved": true,
+  "proposed_scope_counts": {
+    "insufficient": 5,
+    "out_of_scope": 4,
+    "unsupported_request": 3
+  },
+  "provider_attempts": 0,
+  "publisher_test_records_decoded": false,
+  "publisher_training_records_only": true,
+  "qualified_labels": false,
+  "release_allowed": false,
+  "schema_version": 1,
+  "sources": [
+    {
+      "blob": "7a7b26c5f2dfbbf213f3e67d2dd0727e1af545aa",
+      "commit": "828f8093932c8fe6ca7936c3d2e52903b1c523de",
+      "container_note": "mixed-split container scanned as bytes; only train decoded/saved",
+      "download_sha256": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
+      "path": "data/data_full.json",
+      "repository": "clinc/oos-eval",
+      "saved_file": "clinc-train-member.json",
+      "saved_sha256": "4d152a8c0d695a6c58c0fc850a599e9453c4cdb5e3ce411656518bc9271af278",
+      "source_test_records_decoded": false,
+      "url": "https://raw.githubusercontent.com/clinc/oos-eval/828f8093932c8fe6ca7936c3d2e52903b1c523de/data/data_full.json"
+    },
+    {
+      "blob": "98e2543cf482d0dca7bfb175ebe35d98efad95be",
+      "commit": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+      "container_note": "training CSV only",
+      "download_sha256": "b06e26ac675513959a63135f11b94ea7786ed02da65db93a5650d8838cbc664b",
+      "path": "banking_data/train.csv",
+      "repository": "PolyAI-LDN/task-specific-datasets",
+      "saved_file": "bank-train.csv",
+      "saved_sha256": "b06e26ac675513959a63135f11b94ea7786ed02da65db93a5650d8838cbc664b",
+      "source_test_records_decoded": false,
+      "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/banking_data/train.csv"
+    }
+  ]
+}
