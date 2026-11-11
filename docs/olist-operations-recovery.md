@@ -36,6 +36,11 @@ quality. CLI: `python -m olist_support.operations_cli --root <checkout> ready --
 
 ## Private snapshot
 
+For bounded capture sets, freshness monitoring and verified archive discovery, use the
+[standalone backup catalog](olist-backup-catalog.md). It keeps partial/corrupt attempts
+visible and requires the source-bound external marker pin. Existing single-archive commands
+below remain supported; the catalog does not change their snapshot/restore format.
+
 [`capture()`](../projects/olist-support/src/olist_support/backup.py) first verifies source
 database/role ownership markers. One read-only repeatable-read transaction captures `olist`,
 `olist_app` and `olist_graph`: orders, receipts/run budgets, review cases/events and checkpoint

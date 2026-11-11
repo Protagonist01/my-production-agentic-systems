@@ -160,7 +160,14 @@ Do not rerun into an existing target, replace source rows or drop failed evidenc
 6. Require actual TLS/ingress, OS-signal, backup access/key recovery and operational checks
    on that host. Preserve the eight-field/eight-slice semantic qualification requirement.
 
-## Backup schedule and host-loss acceptance to implement later
+## Backup freshness implemented; scheduler and host-loss acceptance pending
+
+The standalone [backup catalog](olist-backup-catalog.md), added 2026-11-11, now provides
+bounded private snapshot capture/discovery and an explicit freshness check. It retains
+incomplete attempts and stale writer locks, selects the newest byte-verified snapshot,
+and reports degraded health instead of silently hiding a failed newer capture. It reuses
+the existing new-target-only restore; it installs no scheduler and deletes no backup.
+Catalog health is not an actual restore or host-loss acceptance result.
 
 For the15-minute planning RPO, propose a10-minute backup/check cadence with alerts when
 the latest independently recoverable point approaches15minutes. This is a design proposal,
