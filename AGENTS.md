@@ -582,3 +582,16 @@ Private root: `D:/document/.cache/production-agents/olist/diagnostic-baseline-ro
 Preserve v1schema-budget failure. Shared Budget requires positive fields; v2uses1/1minimum
 context, no model gateway and zero usage/network attempts. No provider authorization follows.
 Do not retune captured algorithms/labels or claim safe operational review from routing alone.
+
+## Conservative comparator development (2026-11-11)
+
+The owner said continue after #147. A separately versioned root conservative-rules-v1
+comparator is developed on the exposed24case pack. Its distinct72row capture has54exact
+route/amount matches (18/24cases), with6cases abstaining toreview:override/quote/cap/consent/
+repeat/noise. Preserve those mismatches and the original0/72baselines. This is75%development
+agreement, below the95%planning target, not an independent qualification score or provider
+study. Raw operational outcomes remain unknown; no default app composition, refund guard,
+authority, label approval, frozen package or old capture is changed.
+Private capture: `D:/document/.cache/production-agents/olist/conservative-routing-development-2026-11-11-v1`.
+Manifest2186581d93bca20568bd7baef318a9cc04f32f65b68e93689726439329fb7563.
+No new provider call, allocation, old-slot reuse, stopped-study continuation or release.

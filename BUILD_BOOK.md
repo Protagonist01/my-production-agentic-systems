@@ -6,6 +6,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 92 — Measure unsupported requests, attacks and stage coverage](#entry-92--measure-unsupported-requests-attacks-and-stage-coverage)
 - [Entry 93 — Enable runnable SQL and request profiling](#entry-93--enable-runnable-sql-and-request-profiling)
 - [Entry 94 — Measure unchanged diagnostic baselines before model comparison](#entry-94--measure-unchanged-diagnostic-baselines-before-model-comparison)
+- [Entry 95 — Add a conservative development routing comparator](#entry-95--add-a-conservative-development-routing-comparator)
 - [Entry 91 — Bind local deployment and a portable recovery plan](#entry-91--bind-local-deployment-and-a-portable-recovery-plan)
 - [Entry 90 — Audit requested-amount applicability before choosing references](#entry-90--audit-requested-amount-applicability-before-choosing-references)
 - [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
@@ -6537,3 +6538,46 @@ Lint/format checks, document links, script syntax and exact public source pins p
 developer-command test first hit a sandbox system-temp permission error (14passed/1setup
 error); the separate external-private-temp rerun passed all15tests. No source guard or
 algorithm was changed to obtain that pass. Full hosted checks remain required before merge.
+
+## Entry 95 — Add a conservative development routing comparator
+
+The owner said continue on2026-11-11after #147 exposed the two identical review-only routing
+comparators. Start from verified8a499fe. Keep the original algorithms, labels and144row
+capture unchanged. Create root `olist_routing_baseline.py`, versionolist-conservative-rules-v1.
+This is openly developed on exposed examples, not a fresh qualification candidate.
+
+Before building: how should a zero-call comparator distinguish payment100from refund20,
+without pretending regex understands arbitrary language? Match a refund/return/reimburse
+verb adjacent to an exact SIM decimal. Accept a separate narrow paid/payment phrase, then
+abstain if other numerical/currency roles remain. Reject multiple requested amounts,
+malformed formats and out-of-range values. Extract101.00faithfully: the existing policy,
+not this language comparator, decides whether an amount can be executed.
+
+Route explicit order-status and replacement features; clarify conflicting routes or unknown
+negation. Recognize only whole-clause do-not-refund wording before another supported clause.
+Return unsupported for explicit private/cross-account and unrelated requests; abstain to
+review for quoted context or instruction/execution pressure. No fact lookup, model gateway,
+customer authority, proposal, refund or approval is created. Document rule-order effects
+and lexical ambiguities rather than claiming general natural-language competence.
+
+Add34hand-authored tests including different amounts/wording, multiple amounts, malformed
+money, negation, mixed scope and zero-usage context binding. The initial focused check now
+passes34tests; full lint/type verification and comparison capture remain pending.
+
+Prepare a distinct72slot plan with the same24cases and3trials but only the new comparator
+variant. Preserve the source plan hash and new plan hash separately. Record decisions with
+network denied, zero usage and unknown operational outcomes. A separate readback path
+rechecks source/packet/artifact hashes and raw bindings, then recomputes report metrics.
+Do not copy new observations into the old plan or call this fresh model evidence.
+
+The distinct v1capture completed72decisions and readback reproduced54/72joint matches,
+18/24cases correct in all3trials. All6mismatched cases abstain toreview:override,quote,cap,
+consent,repeat,noise. Keep those outcomes, not post-hoc relabeling. The score is75%on exposed
+development, below the95%planning target and not a qualification measurement. The original
+144row capture and candidate missing slots remain unchanged.
+
+Five modified copies refused missing row, changed prediction, invented effect, forged
+report and wrong pin. New34unit tests and71focused baseline/diagnostic/dev-command tests
+pass; lint/format pass. Local mypy reports246sources because this root comparator follows
+additional imports; hosted logs must establish the final source count. SQL/package code
+is unchanged. Published aggregate excludes raw records and admits every reference limit.
