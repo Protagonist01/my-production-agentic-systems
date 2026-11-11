@@ -6581,3 +6581,10 @@ report and wrong pin. New34unit tests and71focused baseline/diagnostic/dev-comma
 pass; lint/format pass. Local mypy reports246sources because this root comparator follows
 additional imports; hosted logs must establish the final source count. SQL/package code
 is unchanged. Published aggregate excludes raw records and admits every reference limit.
+
+CI/base reconciliation: the branch actually starts atbf6426d (#146), a CFPB evaluation
+merge after8a499fe. My earlier attribution of246typed sources to additional imports was
+unverified and incorrect; the base already includes CFPB modules/tests. Actual hosted
+quality logs report1784tests and246typed sources. This change still adds34Olist unit tests.
+Record the observed base/count rather than treating the earlier1756estimate as expected
+evidence. The new baseline's captured source/packet pins and54/72result are unchanged.
