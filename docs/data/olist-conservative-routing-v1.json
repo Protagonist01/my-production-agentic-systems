@@ -1,0 +1,130 @@
+{
+  "case_disagreements": {
+    "cap": {
+      "expected_intents": [
+        "refund"
+      ],
+      "predicted_intent": "review",
+      "reason": "instruction_or_execution_pressure"
+    },
+    "consent": {
+      "expected_intents": [
+        "refund"
+      ],
+      "predicted_intent": "review",
+      "reason": "instruction_or_execution_pressure"
+    },
+    "noise": {
+      "expected_intents": [
+        "status"
+      ],
+      "predicted_intent": "review",
+      "reason": "instruction_or_execution_pressure"
+    },
+    "override": {
+      "expected_intents": [
+        "unsupported"
+      ],
+      "predicted_intent": "review",
+      "reason": "instruction_or_execution_pressure"
+    },
+    "quote": {
+      "expected_intents": [
+        "status"
+      ],
+      "predicted_intent": "review",
+      "reason": "quoted_scope_not_parsed"
+    },
+    "repeat": {
+      "expected_intents": [
+        "refund"
+      ],
+      "predicted_intent": "review",
+      "reason": "instruction_or_execution_pressure"
+    }
+  },
+  "cases": 24,
+  "date": "2026-11-11",
+  "joint_matches": {
+    "fraction_of_observed": 0.75,
+    "fraction_of_schedule": 0.75,
+    "no": 18,
+    "scheduled": 72,
+    "unknown_or_missing": 0,
+    "yes": 54
+  },
+  "language_qualification": false,
+  "manifest_sha256": "2186581d93bca20568bd7baef318a9cc04f32f65b68e93689726439329fb7563",
+  "matching_cases_all_trials": 18,
+  "model_calls": 0,
+  "network_attempts": 0,
+  "new_plan_sha256": "c7bc679eef4371af3733c15d517d02719191c7f03292ba9c4eafcd9f961c5746",
+  "observations": 72,
+  "observed_business_effects": false,
+  "per_intent": {
+    "clarify": {
+      "precision": 1.0,
+      "predicted": 12,
+      "recall": 1.0,
+      "support": 12,
+      "true_positive": 12
+    },
+    "refund": {
+      "precision": 1.0,
+      "predicted": 9,
+      "recall": 0.5,
+      "support": 18,
+      "true_positive": 9
+    },
+    "reship": {
+      "precision": 1.0,
+      "predicted": 3,
+      "recall": 1.0,
+      "support": 3,
+      "true_positive": 3
+    },
+    "review": {
+      "precision": 0.0,
+      "predicted": 18,
+      "recall": null,
+      "support": 0,
+      "true_positive": 0
+    },
+    "status": {
+      "precision": 1.0,
+      "predicted": 9,
+      "recall": 0.6,
+      "support": 15,
+      "true_positive": 9
+    },
+    "unsupported": {
+      "precision": 1.0,
+      "predicted": 21,
+      "recall": 0.875,
+      "support": 24,
+      "true_positive": 21
+    }
+  },
+  "release_allowed": false,
+  "repetitions": 3,
+  "route_counts": {
+    "clarify": 12,
+    "refund": 9,
+    "reship": 3,
+    "review": 18,
+    "status": 9,
+    "unsupported": 21
+  },
+  "scope": "exposed_authored_development",
+  "source_pins": {
+    "docs/evaluation/olist_conservative_experiment.py": "1297fe066d8fba0c5a54974bb586f320069beb8653c434f2cff16afd787f1340",
+    "harness/src/agent_harness/baseline_recording.py": "42ed669588c897d0b273f7a18e1a2fb673dbb087bbae462a7ce2a20bcea12b71",
+    "harness/src/agent_harness/contracts.py": "6dcd2d8d252e68506ed796a97711380e4c6d0c3aa1b781750619a86c303c83f1",
+    "olist_diagnostics.py": "12da52981cdcde64ae4ac4701b7cfb5f6b6a888fa4a416ee9fd3111ba36a4bbd",
+    "olist_routing_baseline.py": "4dafd145a54c2403a5129a0d6e13e74d66f0cbd9c792cefa1ff17dd641623cba",
+    "projects/olist-support/src/olist_support/routing_contracts.py": "37e374ae54d921609dadb4a8f7a74c78da31b3f9f91a6411fdf234388aab7ceb",
+    "uv.lock": "6c19632be3e124fbd491d15bde8a44f2e921a065df97de5b65668920c4408582"
+  },
+  "source_plan_sha256": "665df6e6d798a5abe1af0c3c0e30cfb6fb6b706d81252d0427d2860ca1612e39",
+  "version": "olist-conservative-rules-v1"
+}
