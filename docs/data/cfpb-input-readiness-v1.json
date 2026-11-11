@@ -1,0 +1,43 @@
+{
+  "cases": 12,
+  "input_fields": [
+    "schema_version",
+    "case_id",
+    "narrative"
+  ],
+  "network_attempts_during_preparation_and_readback": 0,
+  "packet_manifest_sha256": "7d6d2c08579f69669283f6bc3df6bd67579cba7ed69ede5dcf68496c2d8788b5",
+  "readiness": {
+    "blockers": [
+      "development_scope_mappings_pending",
+      "qualified_semantic_references_missing",
+      "representative_cohort_not_approved",
+      "project_groups_and_partitions_not_approved",
+      "taxonomy_and_candidate_policy_not_frozen",
+      "sample_support_and_trial_plan_not_approved",
+      "operating_and_cost_limits_not_approved",
+      "fresh_provider_scope_not_authorized",
+      "existing_provider_stop_not_reusable",
+      "human_effort_comparison_not_observed",
+      "dependency_33_and_release_evidence_pending"
+    ],
+    "candidate_requests": null,
+    "execution_authorized": false,
+    "input_integrity_passed": true,
+    "mapping_acceptance": false,
+    "operating_limits": null,
+    "project_partitions": null,
+    "provider_attempts": 0,
+    "provider_export_authorized": false,
+    "purpose": "input_projection_and_preparation_only",
+    "qualification": false,
+    "release_allowed": false,
+    "schema_version": 1,
+    "status": "blocked_for_execution",
+    "training_or_scoring_performed": false,
+    "trials": null
+  },
+  "schema_version": 1,
+  "separate_process_readback": true,
+  "source_draft_sha256": "cd7a8fd8bb081405bc7b2bc83a5859d3aca75956f98c0d8ecaa3b0e30918c954"
+}
