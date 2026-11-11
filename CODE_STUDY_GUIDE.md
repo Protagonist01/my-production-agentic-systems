@@ -1,5 +1,12 @@
 # Code Study Guide — Production Agentic Systems
 
+The [conservative routing comparator chapter](docs/olist-conservative-routing-baseline.md)
+traces input-only lexical features and amount-role rules into a versioned zero-call planner,
+separate72row development capture and pinned readback. It records54/72exact matches on
+exposed authored cases, the six pressure/quotation abstentions, and why75%cannot establish
+independent language quality or meet the proposed planning target. Application authority
+and frozen package code remain outside this comparator's scope.
+
 The [CFPB evaluation walkthrough](docs/cfpb-evaluation-walkthrough.md), prepared 2026-11-10
 on `codex/cfpb-evaluation-v2` from verified main163888e (#144), traces the six requested
 improvements through scope-aware routing, blinded work receipts, stage timing, scorecards
