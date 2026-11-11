@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-11",
+  "initial_utf8_bstr_encoding_refusal_preserved": true,
+  "provider_calls": 0,
+  "release_allowed": false,
+  "remote_destination_used": false,
+  "task_enabled": false,
+  "task_registered": false,
+  "version": "olist-disabled-task-validation-v1",
+  "windows_task_validate_only_passed": true
+}

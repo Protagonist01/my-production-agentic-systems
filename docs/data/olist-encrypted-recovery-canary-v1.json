@@ -1,0 +1,26 @@
+{
+  "actual_host_loss_recovery": false,
+  "bundle_bytes": 2846,
+  "bundle_sha256": "27c25a90b387eec306f908373cee45f8fcbdeae06c237412aa132cc931c07a70",
+  "database_restored": false,
+  "encrypted_repository_check_read_data_passed": true,
+  "exact_upload_readback": true,
+  "new_directory_recovery_verified": true,
+  "provider_calls": 0,
+  "real_restic_binary": true,
+  "receipt_sha256": "78afb27a57713f5320e92f6da6a33d0dbf2f6af94b9908fedb95ff1d2b72ee0e",
+  "release_allowed": false,
+  "remote_destination_used": false,
+  "restic": {
+    "archive_sha256": "da948ad707ed690426473aaba2046cd61f8f90f6f0e7dab6be0d5796531de67d",
+    "executable_sha256": "b0dd1fd21eea5d8fe1325f55f7118213c21f36de8a261e04c0624a5ab9fd7830",
+    "source": "https://github.com/restic/restic/releases/download/v0.19.1/restic_0.19.1_windows_amd64.zip",
+    "version": "0.19.1"
+  },
+  "runner_sha256": "fdac2a86055294f78799eac07869d3996a0168e82059e0bb875e50587e02160d",
+  "scheduler_registered": false,
+  "snapshot_id": "fb4325ac38bd7953daf751076429b2322b23857ec8f957614550929eaa8e78a1",
+  "source_data": "invented_non_sql_fixture",
+  "version": "olist-encrypted-local-canary-v1",
+  "wrong_password_refused": true
+}

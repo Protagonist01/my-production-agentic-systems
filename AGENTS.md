@@ -652,3 +652,21 @@ No scheduler, backup deletion/rotation, remote destination, encryption key, live
 provider scope or release is authorized by this implementation. Current CFPB scope mappings
 remain pending and the shared stopped ledger is unchanged. Local Docker was unavailable;
 use the required hosted SQL exercise rather than claiming an unrun local restore succeeded.
+
+## Qualification and scheduled/off-host recovery execution (2026-11-11)
+
+After #152 the owner explicitly requested remaining qualification and scheduled/off-host
+recovery work. Asked for existing destination/restore-machine details; the owner requested
+a recommendation. Recommend Restic/private R2 Standard plus a separate clean Linux restore
+host. The portable job, independent exact encrypted readback, private journal, health check,
+disabled native task XML and new-directory recovery are implementation work. No real bucket,
+spending ceiling, persistent source or second host was supplied. Do not initialize a remote
+repository, activate placeholder tasks, purchase hosting, delete backups or claim an off-host
+drill from the local encrypted canary. Obtain concrete private configuration and activation
+decision when ready. Preserve crash-left locks and failed cycles.
+
+The five-file pinned tau retail policy/license/evaluator audit reads no task corpus and
+establishes no Olist semantic qualification. Publisher pending cancellation/delivered returns
+and modeled actions/state do not supply canceled-order SIM refund/amount-role truth. Current
+development references/mappings, required fields/slices and stopped provider ledger remain
+unchanged. No new semantic grant, model call, live judge or release follows.
