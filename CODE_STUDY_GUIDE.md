@@ -1,5 +1,27 @@
 # Code Study Guide — Production Agentic Systems
 
+The [CFPB input-readiness chapter](docs/cfpb-input-readiness.md), prepared 2026-11-11 from
+main d09c93f, records the owner's explicit instruction to continue preparation while the
+12 mappings remain pending. Follow `prepare_cfpb_input_packet.project`: validate the external
+draft pin and exact file inventory, parse only validated byte snapshots, preserve training
+source text and isolate publisher/proposed targets from `ComplaintInput`. Input IDs are
+text hashes; they are not anonymization or semantic references. The separate evaluator file
+retains the proposals with no project partition or qualification claim.
+
+`prepare` seals exclusive private artifacts and a blocked readiness record; `verify`
+reconstructs them in a separate process using both external pins. It requires the exact
+input fields and all original false authority flags/null study settings. The helper pins
+only preparation/contracts/lock, not an approved candidate. Tests in
+`tests/test_cfpb_input_packet.py` rehash target-leakage and forged-authority copies, require
+refusal, preserve duplicate-key/path guards and demonstrate that integrity cannot promote
+pending meanings. Coverage is input custody and execution-boundary software; no training,
+scoring, provider request, new source record or live Langfuse dataset is part of this work.
+
+Interview exercise: why can a packet pass integrity and still be blocked? Hashes can prove
+which text/proposals were prepared but cannot approve labels, establish representative
+coverage, fund a fresh study or satisfy release prerequisites. Explain the difference
+between allowed input fields, evaluator-only metadata and an explicit execution grant.
+
 The [CFPB baseline execution chapter](docs/cfpb-diagnostic-baseline-results.md), inspected
 2026-11-11 from mainbf6426d on `codex/cfpb-baseline-evidence`, adds actual deterministic
 development captures without changing the merged runtime packages. Follow

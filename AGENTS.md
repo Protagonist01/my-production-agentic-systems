@@ -2,6 +2,17 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## CFPB preparation while mappings stay pending (2026-11-11)
+
+After PR149 the owner explicitly chose "Continue preparation; mappings remain pending".
+The separate input/readiness packet projects the same approved 12 training records without
+accepting labels, assigning project splits, training/scoring or preparing executable model
+requests. See docs/cfpb-input-readiness.md. Keep only ComplaintInput fields in the input
+file; publisher labels and uncertain proposals stay evaluator-only. Integrity pass is not
+execution approval: provider/export/qualification/release flags stay false, trial/policy/
+limit/candidate settings remain unset and the existing provider stop remains unchanged.
+Do not edit prior draft/capture bytes or use a generic proceed as scope-mapping acceptance.
+
 ## CFPB baseline evidence and mapping preparation (2026-11-11)
 
 The owner said continue after #146 and explicitly approved preparation of12 training-only
