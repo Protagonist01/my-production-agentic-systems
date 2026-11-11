@@ -90,6 +90,20 @@ def test_quote_must_not_be_a_numeric_suffix() -> None:
         parse("refund 125 SIM", explicit(currency="SIM", amount_evidence="25 SIM"))
 
 
+@pytest.mark.parametrize("ending", [".", ", please", "!", "?"])
+def test_sentence_punctuation_is_not_a_decimal_continuation(ending: str) -> None:
+    result = parse(
+        "refund 25.00 SIM" + ending, explicit(currency="SIM", amount_evidence="25.00 SIM")
+    )
+    assert result.requested_minor == 2500
+
+
+@pytest.mark.parametrize("suffix", [".000", ",000", "0"])
+def test_partial_number_quote_refuses_actual_continuation(suffix: str) -> None:
+    with pytest.raises(ValueError, match="fragment"):
+        parse("refund $25" + suffix, explicit())
+
+
 @pytest.mark.parametrize("literal", ["$25.000", "$-25", "$025", "$2,500"])
 def test_no_rounding_or_silent_format_repair(literal: str) -> None:
     with pytest.raises(ValueError):

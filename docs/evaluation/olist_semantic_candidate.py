@@ -107,7 +107,7 @@ def parse(text: str, output: str) -> SemanticOutput:
     occurrences = list(re.finditer(re.escape(quote), text))
     if not any(
         (m.start() == 0 or text[m.start() - 1] not in "+-.,0123456789$")
-        and (m.end() == len(text) or text[m.end()] not in ".,0123456789")
+        and not re.match(r"(?:[0-9]|[.,][0-9])", text[m.end() :])
         for m in occurrences
     ):
         raise ValueError("quote is a fragment of a different money expression")

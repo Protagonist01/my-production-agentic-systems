@@ -6952,3 +6952,11 @@ The first developer test invocation hit the host's inaccessible shared pytest te
 directory; rerun with an exclusive owned basetemp passed. Preserve that host failure rather
 than attributing it to source applicability or a model. Full hosted tests and complete mock
 74slot run remain required before the provider proposal can be called execution-ready.
+
+The first complete fake-SDK run stopped after2invented canaries: the second SDK response
+was valid, but the new quote-boundary check treated sentence-ending punctuation after SIM
+as decimal continuation. The raw response, successful worker timing and failed parent
+observation identify a local parser bug, not model quality or a timeout. Preserve this
+v1run and immutable invented ledger. Accept terminal punctuation while refusing a dot/comma
+followed by digits and numeric suffix fragments; add explicit regressions before a separate
+new mock readiness run. No real provider attempt was consumed or retried.
