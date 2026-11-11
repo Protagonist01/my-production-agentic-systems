@@ -1,5 +1,18 @@
 # Code Study Guide — Production Agentic Systems
 
+The [backup catalog chapter](docs/olist-backup-catalog.md), prepared 2026-11-11 from main
+c5b265d, traces the standalone `olist_backup_catalog` helper. `frozen_checkout` binds the
+entrypoint/editable imports, clean HEAD and lock before/after capture. `BackupCatalog.publish`
+serializes writers, preserves a partial attempt on failure, fsyncs/readbacks archive bytes,
+then writes a completion receipt. `status` revalidates exact source/inner bytes, orders by
+snapshot time and distinguishes snapshot freshness from catalog health. It never overwrites,
+deletes, cuts over or calls models. The existing new-target restore remains the database
+verification boundary. Tests cover a real child exit37, filesystem failures, time/capacity,
+source pins and SQL restoration with newer source effects preserved. This walkthrough
+does not qualify model meanings or demonstrate off-host recovery. Interview exercise: why
+must a valid old archive remain selectable while backup health reports failure, and why
+does a newly completed write not reset the age of its older snapshot?
+
 The [native reference readiness chapter](docs/olist-native-reference-readiness.md) traces
 the accepted limited method into source-CSV/audit/acceptance/bundle revalidation and a
 36decision coarse-intent comparison. It records9agreements (25%)on12previously exposed

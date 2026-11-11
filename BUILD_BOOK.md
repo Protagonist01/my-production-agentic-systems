@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 98 — Discover fresh backups without hiding incomplete writes](#entry-98--discover-fresh-backups-without-hiding-incomplete-writes)
 - [Entry 97 — Seal CFPB inputs while keeping mapping decisions pending](#entry-97--seal-cfpb-inputs-while-keeping-mapping-decisions-pending)
 - [Entry 96 — Execute unchanged CFPB baselines before another model study](#entry-96--execute-unchanged-cfpb-baselines-before-another-model-study)
 - [Entry 95 — Measure useful CFPB triage before increasing automation](#entry-95--measure-useful-cfpb-triage-before-increasing-automation)
@@ -6781,3 +6782,75 @@ blocked. Preserve the four exact preparation source files in a separately hashed
 snapshot; line-ending differences in a later checkout must not rewrite the old packet.
 The focused preparation/developer-command run passed 22 tests. No private source text was
 published and no new source record, trial assignment, target or model attempt was created.
+
+
+## Entry 98 — Discover fresh backups without hiding incomplete writes
+**Files touched:** `olist_backup_catalog.py`, focused unit/SQL tests and operations documentation.
+
+### Context
+On 2026-11-11 the owner asked to proceed with remaining work after #150. Current main
+c5b265d also contains the independently merged #151. Scope mappings remain pending and
+provider execution stays stopped. The selected local-host/portable recovery work for
+#33/#58/#59 can advance: archives exist, but a backup set has no runnable freshness check
+or verified discovery path. Reuse the clean checkout on codex/olist-backup-catalog; do not
+modify frozen runtime package bytes, historical captures or the unrelated root checkout.
+
+### Before you read on
+When a new backup is half-written, should yesterday's complete archive make monitoring
+green? Which timestamp measures age: the database snapshot or the end of the file write?
+How does a restore operator distinguish a complete archive from a directory's newest name?
+
+### Options considered
+- A mutable latest-file pointer alone is insufficient: a failed replacement can hide the
+  previous archive or make an incomplete write appear current.
+- Chosen: bounded private catalog, externally pinned source marker, immutable per-capture
+  directories and a completion receipt written only after archive fsync and readback.
+  Keep incomplete directories visible and never delete/rotate old archives automatically.
+
+### Why
+Freshness is measured from the archive's conservative snapshot timestamp, not completion
+or filesystem mtime. A valid older backup remains discoverable after failure, while the
+catalog reports degraded health. Byte verification is not an actual restore or off-host
+RPO guarantee; reuse the existing new-target-only restore path for that separate exercise.
+
+### How to build it
+Build the standalone operator helper outside the pinned runtime package inventory. First
+create an exclusive private marker bound to the intended source identity and capacity;
+retain its returned hash separately. Serialize captures under an exclusive writer lock.
+Preserve partial attempts, save bounded canonical archive bytes, fsync, read them back and
+verify table digests/count inventory before writing the final completion receipt. A status
+command verifies the marker, scans only bounded owned entry names, revalidates each completed
+archive, reports incomplete/corrupt/future entries and selects the newest valid snapshot.
+Require explicit age/capacity settings; do not install a persistent scheduler, choose an
+off-host destination, delete backups or silently clear a crash-left lock. Capture commands
+must use the actual clean checkout revision/lock and the existing ownership-checked database.
+
+### What went wrong
+No implementation result yet. Tests must demonstrate failed publication/lock/capacity,
+wrong source/marker, stale/future snapshots and corruption without promoting an invalid
+entry or hiding the previous complete archive. An isolated real-SQL exercise will verify
+selection through the existing restore function and preserve newer source effects.
+
+
+The first 18 catalog tests plus 15 developer-command tests passed. Expanding with actual
+writer exit37, fsync failure, future/schema and source-checkout guards brought the focused
+checkpoint to39passes. Strict mypy initially requested an explicit list[Path] for the
+bounded catalog inventory; fix that annotation, then all247typed sources and local
+lint/format/import/lock checks pass. Docker's local Linux engine pipe and Desktop executable
+were unavailable at the checked location; do not claim a local SQL exercise or restart
+unrelated services. The required hosted PostgreSQL job will execute the new restore witness.
+
+Review exposed a preflight-recording gap: an early dirty-checkout refusal occurred before
+creating a catalog attempt, so the catalog could not show that failure. Move the clean/source
+freeze into the locked producer callback, before any SQL, and retain its incomplete entry.
+Recheck actual revision/lock after SQL before completion. Add separate tests for pre-SQL
+refusal and a changed post-capture revision; neither may publish a completion receipt.
+
+
+The final focused local checkpoint passes41tests (26catalog cases and15developer-command
+checks), including the actual operator status command selecting the newer snapshot even
+when an older snapshot was published later. Local lint/format/type/import/lock checks pass
+with247typed sources. No runtime package, SQL schema or uv.lock bytes changed. The SQL
+restore witness is implemented but its hosted result is still pending at this checkpoint;
+record its actual result in the PR/main delivery receipt. No provider call, live cutover,
+backup deletion, persistent scheduler or remote service is part of this change.

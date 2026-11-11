@@ -639,3 +639,16 @@ Manifest7e5e5e9ea2db266d7af2bb259e6b959430cdd5c314bb3d29ead9c076bd7e4047.
 The readback and five negative checks verify custody/bindings/metrics, not real-world truth
 or qualification. All eight required field/slice gates remain; no new provider allocation,
 key load, old-slot reuse, stopped/expired study continuation, judge activation or release.
+
+
+## Local backup catalog continuation (2026-11-11)
+
+After #150 the owner said proceed with remaining work. Continue the already selected local
+SIM deployment/recovery preparation for #33/#58/#59. The standalone backup catalog adds
+bounded capture/discovery and explicit freshness reporting, preserving incomplete attempts
+and stale locks. Keep catalogs outside Git, retain the external source marker pin, require
+the actual clean editable checkout, and restore only through the existing new-target path.
+No scheduler, backup deletion/rotation, remote destination, encryption key, live cutover,
+provider scope or release is authorized by this implementation. Current CFPB scope mappings
+remain pending and the shared stopped ledger is unchanged. Local Docker was unavailable;
+use the required hosted SQL exercise rather than claiming an unrun local restore succeeded.
