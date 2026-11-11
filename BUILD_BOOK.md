@@ -8,6 +8,7 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 - [Entry 93 — Enable runnable SQL and request profiling](#entry-93--enable-runnable-sql-and-request-profiling)
 - [Entry 94 — Measure unchanged diagnostic baselines before model comparison](#entry-94--measure-unchanged-diagnostic-baselines-before-model-comparison)
 - [Entry 95 — Add a conservative development routing comparator](#entry-95--add-a-conservative-development-routing-comparator)
+- [Entry 97 — Recheck native reference evidence before language qualification](#entry-97--recheck-native-reference-evidence-before-language-qualification)
 - [Entry 91 — Bind local deployment and a portable recovery plan](#entry-91--bind-local-deployment-and-a-portable-recovery-plan)
 - [Entry 90 — Audit requested-amount applicability before choosing references](#entry-90--audit-requested-amount-applicability-before-choosing-references)
 - [Entry 89 — Connect pinned service readback to objective method proofs](#entry-89--connect-pinned-service-readback-to-objective-method-proofs)
@@ -6668,6 +6669,59 @@ unverified and incorrect; the base already includes CFPB modules/tests. Actual h
 quality logs report1784tests and246typed sources. This change still adds34Olist unit tests.
 Record the observed base/count rather than treating the earlier1756estimate as expected
 evidence. The new baseline's captured source/packet pins and54/72result are unchanged.
+
+## Entry 97 — Recheck native reference evidence before language qualification
+
+The owner said proceed after #148. Start from actual maind09c93f (#149), which also contains
+the CFPB work in Entry96. Inspect the accepted evidence-method design and existing source
+findings before adding another authored benchmark. Publisher labels for latent dialogue
+goals, later refund actions or payment amounts cannot establish the current utterance's
+requested refund amount. Do not solve missing truth with another agreement score.
+
+Before building: which question can the accepted Bitext method legitimately answer? Only
+conditional coarse intent for the six fixed native-to-workflow mappings in development/
+calibration. The owner accepted that exact method, not every native label, money role,
+family independence, provider use or release. Reuse the original12exposed instructions;
+do not open or repurpose proposed holdout records to improve the comparator.
+
+Build a reproducible research script that checks the separately recorded owner acceptance,
+method, source CSV/revision, full source audit and exact bundle/input projection. Recompute
+the source audit from the original26,872row CSV and exposure index. The old prepared audit,
+acceptance and bundle remain immutable. Give the existing conservative comparator only
+the original instruction, neutral context and an unused invented order identity. Score
+intent only; never fill an absent amount annotation with requested_minor=null.
+
+Save a distinct36decision capture (12exposed cases/3trials), raw context/request/decision
+bindings, source hashes, network-attempt counter and intent confusion counts. Deny socket/
+DNS calls during execution and verify zero model usage. Revalidate the original source and
+recompute the metrics in a separate readback invocation with an externally held manifest
+pin. Keep all operational, model-candidate and qualification fields outside the claim.
+
+The first sandbox metadata read was denied for the private cache. Read-only elevation
+listed filenames/sizes and located the existing trusted records without exposing raw
+instructions or altering their permissions. Do not weaken private-path/source guards.
+
+The source/acceptance/audit/input projection revalidated successfully. The unchanged
+conservative comparator produced36decisions: refund6/6agree, status3/6agree (3clarify),
+unsupported0/24agree (21clarify/3refund). Total9/36(25%)against the limited conditional
+native-intent mapping. This is not comparable to54/72joint matches on the authored pack:
+different population, class balance and field scope, no paired performance-drop claim.
+Both are exposed development and neither is independent production-language truth.
+
+A separate invocation reproduced all source hashes, decisions and metrics from the raw
+manifest. Five independently modified copies refused missing row, changed input, wrong
+execution identity, falsely scored amount and wrong manifest pin. The aggregate packager
+also checks original public acceptance/bundle/CSVpins, preserving the exact twelve-case
+selection. No raw source instructions or responses are published, and no amount is scored.
+The new release-field matrix keeps all eight fields/slices and qualification gates; it
+does not mint qualification scopes. Runtime packages, current comparator and lock unchanged.
+
+Final local checks pass:15developer-command tests, script/dev lint and formatting, relative
+links and exact public source/reference pins. Collection on the actuald09c93fbase reports
+1795unit tests and220SQLtests; hosted execution must verify these counts, not infer them
+from the earlier #148base. The new research script joins normal CI lint/format. The pinned
+publisher-card URL could not be fetched by the web tool during this task; actual source
+applicability checks use the preserved pinned CSV/audit/acceptance, not a new card assertion.
 
 Concurrent Olist PR148merged during PR149checks. Reconcile only the build/guide/source-list
 conflicts by preserving both bodies and all checker paths; do not change the frozen CFPB

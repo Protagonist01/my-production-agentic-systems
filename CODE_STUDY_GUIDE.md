@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [native reference readiness chapter](docs/olist-native-reference-readiness.md) traces
+the accepted limited method into source-CSV/audit/acceptance/bundle revalidation and a
+36decision coarse-intent comparison. It records9agreements (25%)on12previously exposed
+instructions, leaves amount unscored, and maps all eight release fields to their remaining
+evidence. This is not a fresh holdout, qualified judge or production-language accuracy claim.
+
 The [CFPB baseline execution chapter](docs/cfpb-diagnostic-baseline-results.md), inspected
 2026-11-11 from mainbf6426d on `codex/cfpb-baseline-evidence`, adds actual deterministic
 development captures without changing the merged runtime packages. Follow
