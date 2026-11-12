@@ -18,6 +18,25 @@ workers are not a sandbox or public command API. Implementation/testing/submissi
 are authorized; new provider attempts, scope transfers, qualification and release are not.
 The stopped shared allowance and existing exact-head delivery checks remain in force.
 
+## Prior Auth document pipeline implementation (2026-11-12)
+
+The owner authorized all Prior Auth recommendation groups in dependency order: unrelated
+and adversarial intake, document variation, stage timing, policy selection, evaluation
+and demo payer handling. See docs/prior-auth-document-pipeline.md and its code-study
+chapter. Keep this as opt-in root adapters; preserve frozen clinical/harness packages,
+legacy schema and release gates. Import bindings/relevance/redaction/extraction review
+are trusted assertions, never document/model authority. Only invented provenance is
+enabled here. Exact citation integrity does not prove clinical meaning. No new provider
+calls, real patient export, insurer credentials, public upload or clinical adjudication
+are authorized. Existing tested-PR submission/merge authority remains in force.
+
+The owner asked which sandbox to use for demo. The implemented default is a local
+synthetic clinic/payer emulator with durable receipts, not a commercial payer or HL7
+certification. External HL7/SMART integration is documented as a later configured target.
+The26authored risk cases and52deterministic observations are development mechanisms,
+not independent clinical gold; the model comparator and criterion labels remain missing.
+The actual native/SQL CI witnesses must pass before claiming those mechanisms verified.
+
 ## Revenue evaluation implementation (2026-11-11)
 
 The owner authorized implementing all five Revenue recommendations: relevance, adversarial
