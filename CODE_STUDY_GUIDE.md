@@ -1,5 +1,20 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Supply evaluation and timing chapter](docs/supply-evaluation-observability.md) follows
+the real structured API into server-owned role/incident checks, canonical SQL transactions
+and independent state readback. Begin with `admit_intake` in `supply_diagnostics.py`: it
+checks an already proposed decision, not language meaning. Then follow `ProfiledService.assess`
+through `ProfiledWorkflow`'s timed planner and `ProfiledStore`/`ProfiledConnection` without
+changing native policy. `Recorder.phase` carries context across threads; `run_worker` sends
+explicit parent context across spawn and retains timeout/crash/missing-child distinctions.
+`scorecard` retains the complete schedule, pins references/readbacks, separates safe plans
+from verified effects, and never treats missing notice/recovery/cost evidence as successful.
+The test matrix and reproduction commands are in that chapter. Exercise: explain why a
+blocked malicious proposal is still a candidate failure, why three repetitions are not
+three independent incidents, and why an inclusive `FOR UPDATE` span cannot identify server
+lock-wait time or storage fsync. Future-language authored cases, SQL/process regressions and
+SDK replay timings establish different claims; none grants production release.
+
 The [Revenue evaluation v2 chapter](docs/revenue-evaluation-v2.md) traces the explicit opt-in
 read-only relevance/meaning path, trusted document bindings, source/task applicability,
 complete-schedule scorecards and content-free runtime/SQL/worker timings. Follow the valid
