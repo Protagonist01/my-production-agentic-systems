@@ -1,6 +1,5 @@
 # Code Study Guide — Production Agentic Systems
 
-<<<<<<< HEAD
 The [Revenue evaluation v2 chapter](docs/revenue-evaluation-v2.md) traces the explicit opt-in
 read-only relevance/meaning path, trusted document bindings, source/task applicability,
 complete-schedule scorecards and content-free runtime/SQL/worker timings. Follow the valid
@@ -10,7 +9,7 @@ no billing-meaning gold. The 96 actual rules/always-review outputs remain author
 diagnostics, with 48 candidate slots and all effect/cost judgments missing. Qualification,
 old stopped provider scopes and production release remain separate. The chapter includes
 reproduction commands, symbol traces, trust boundaries and interview exercises.
-=======
+
 The [semantic reference/comparison chapter](docs/olist-semantic-reference-comparison.md),
 prepared from main fd4ef0c on 2026-11-11, traces exact licensed source bytes into five
 proposed direct-command amount references, strict input-only candidate extraction, additive
@@ -19,7 +18,6 @@ It distinguishes annotation defects, unknown money roles, nominal dollars/ISO cu
 exposed development/fresh responses and mechanical evidence/semantic truth. These research
 entrypoints cannot grant action authority or release. Their live scope remains uninstalled
 until an exact owner amendment; the old stop and ledger history remain intact.
->>>>>>> origin/main
 
 The [encrypted recovery chapter](docs/olist-encrypted-recovery.md), prepared 2026-11-11 from
 main fd4ef0c, follows `olist_remote_recovery.cycle`: bind a canonical job and private journal,

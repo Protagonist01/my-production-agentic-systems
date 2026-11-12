@@ -2,12 +2,10 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
-<<<<<<< HEAD
-- [Entry 100 — Build Revenue relevance, semantic diagnostics and stage timing](#entry-100--build-revenue-relevance-semantic-diagnostics-and-stage-timing)
-=======
+- [Entry 101 — Build Revenue relevance, semantic diagnostics and stage timing](#entry-101--build-revenue-relevance-semantic-diagnostics-and-stage-timing)
+
 - [Entry 100 — Verify the complete SDK path before requesting live scope](#entry-100--verify-the-complete-sdk-path-before-requesting-live-scope)
 - [Entry 99 — Find an exact licensed amount source before another study](#entry-99--find-an-exact-licensed-amount-source-before-another-study)
->>>>>>> origin/main
 
 - [Entry 99 — Verify encrypted scheduled recovery before claiming off-host readiness](#entry-99--verify-encrypted-scheduled-recovery-before-claiming-off-host-readiness)
 - [Entry 98 — Discover fresh backups without hiding incomplete writes](#entry-98--discover-fresh-backups-without-hiding-incomplete-writes)
@@ -7067,8 +7065,63 @@ concrete R2/private configuration, persistent source, separate restore machine a
 retention/activation decision; qualification still needs applicable independent semantic
 references before a fresh bounded final-candidate study. Preserve all targets and failures.
 
-<<<<<<< HEAD
-## Entry 100 — Build Revenue relevance, semantic diagnostics and stage timing
+## Entry 100 — Verify the complete SDK path before requesting live scope
+
+On 2026-11-11 the source/candidate/control/scorer checkpoint passed82focused checks.
+Seven punctuation regressions then reproduced/fixed the failed second mock canary; actual
+collection became1902unit tests. Hosted PR153checks passed1902per matrix cell/221SQL and
+247typed sources. During its checks, independently merged PR154advanced main to c5cadaf.
+Both differently titled Entry99records remain history; retain the source and recovery
+chapters, checker paths, instructions and all implementation when reconciling. This entry
+uses100to avoid adding another duplicate number. Final combined checks remain required.
+
+The first mock run's parser defect is preserved above. The second stopped after9invented
+slots when an in-flight scorer-metrics edit made the checkout dirty. That was an operator
+mistake: do not edit a frozen checkout while it is running. The parent source guard refused
+continuation; restore exact frozen bytes, retain the proposed metrics outside the checkout's
+tracked sources and preserve the stopped v2ledger/capture. Do not call that a model error or
+resume the same slots. The third separate mock run completed all74slots on7537e82: both
+invented canaries and all72domain slots, actual SDK and owned spawned processes, socket/DNS
+denied, zero provider calls. The fake outputs are deliberately supplied by a test oracle;
+their agreements establish no model quality.
+
+In a separate process, supply the independently retained scope pin7d3a7ec4e8607f024574471e38c69c17bdfc315890c045f084eac541fdefcc83
+and completion pinfc018e20d02acdc0cc895d61aff72214337d66b8be0879413c3bce80e63400bd.
+Read original requests, raw responses, derived-accounting evidence and actual immutable
+ledger reservations/observations. Recompute quotes, canary expectations, historical ledger
+anchor and field-specific denominators. That readback passed74slots; its report hash is
+f4eb6feaced7cb0c7a4e9eea735f331181d0d057b68c0900db1415cd7ecaf497. Five separately rehashed
+source-audit copies refused missing frames, changed native values, forged acceptance,
+invented USD and wrong external pin. These checks prove custody/mechanics, not meaning.
+
+Execute the three unchanged deterministic comparators on the exact24inputs,3trials each,
+with network denied and no business store/gateway. Save all216actual requests/context/
+decisions and selected code pins before summarizing. Rules/always-review have0/63conditional
+intent matches and0/36constructed joint intent/amount matches each. Conservative-rules-v1
+has18/63intent and15/36constructed joint matches. Native dollar amounts are not scored as
+SIM. Separate-process readback recomputes these counts and verifies all216unique identities,
+actual zero usage and source/input pins. All labels retain proposed/development status.
+
+The prospective provider scope can now be made concrete without dispatch: same614shared
+lifetime cap,447historical consumed,74explicitly transferred old unattempted routing slots,
+93other slots preserved, original stop intact, exact24inputs/74requests and short expiry.
+Before an owner decision, do not install it or load a key. Reconciliation changes the bound
+pyproject only by adding the independently merged recovery module to mypy's file list;
+check that structurally and compare every candidate/SDK/parser/control/scorer byte and the
+actual environment with the completed mock proof. Never claim the mock ran on the later
+merge commit. Freeze the final prospective scope separately and require actual combined CI.
+
+On 2026-11-12, the pending combined-check command was retried after automatic approval
+review's temporary usage-limit failure. It had not executed on the earlier attempt; that
+was an approval-service interruption, not a safety determination or test failure. The
+combined branch now collects1,920unit/222SQLtests and passes248typed sources. All89focused
+source/candidate/control/SDK/readback/developer checks pass, with lint/format and diff checks.
+The candidate, SDK, parser, controls, scorer, frozen packages and lock match the completed
+mock run; the mypy-only configuration addition is disclosed separately. Finish hosted
+combined-head verification and prepare a new prospective seven-day decision dated today;
+do not backdate an approval or infer permission for provider calls from continuation.
+
+## Entry 101 — Build Revenue relevance, semantic diagnostics and stage timing
 
 ### Context
 
@@ -7147,60 +7200,14 @@ The intermediate checkpoint passed70focused/developer tests and255typed sources;
 additional real-process and stale-timing regressions passed11profiling tests. Local Docker
 is unavailable, so the new actual SQL adapter witness requires hosted execution. Record
 final full-suite/SQL/matrix and exact-head/main delivery evidence before claiming completion.
-=======
-## Entry 100 — Verify the complete SDK path before requesting live scope
 
-On 2026-11-11 the source/candidate/control/scorer checkpoint passed82focused checks.
-Seven punctuation regressions then reproduced/fixed the failed second mock canary; actual
-collection became1902unit tests. Hosted PR153checks passed1902per matrix cell/221SQL and
-247typed sources. During its checks, independently merged PR154advanced main to c5cadaf.
-Both differently titled Entry99records remain history; retain the source and recovery
-chapters, checker paths, instructions and all implementation when reconciling. This entry
-uses100to avoid adding another duplicate number. Final combined checks remain required.
 
-The first mock run's parser defect is preserved above. The second stopped after9invented
-slots when an in-flight scorer-metrics edit made the checkout dirty. That was an operator
-mistake: do not edit a frozen checkout while it is running. The parent source guard refused
-continuation; restore exact frozen bytes, retain the proposed metrics outside the checkout's
-tracked sources and preserve the stopped v2ledger/capture. Do not call that a model error or
-resume the same slots. The third separate mock run completed all74slots on7537e82: both
-invented canaries and all72domain slots, actual SDK and owned spawned processes, socket/DNS
-denied, zero provider calls. The fake outputs are deliberately supplied by a test oracle;
-their agreements establish no model quality.
-
-In a separate process, supply the independently retained scope pin7d3a7ec4e8607f024574471e38c69c17bdfc315890c045f084eac541fdefcc83
-and completion pinfc018e20d02acdc0cc895d61aff72214337d66b8be0879413c3bce80e63400bd.
-Read original requests, raw responses, derived-accounting evidence and actual immutable
-ledger reservations/observations. Recompute quotes, canary expectations, historical ledger
-anchor and field-specific denominators. That readback passed74slots; its report hash is
-f4eb6feaced7cb0c7a4e9eea735f331181d0d057b68c0900db1415cd7ecaf497. Five separately rehashed
-source-audit copies refused missing frames, changed native values, forged acceptance,
-invented USD and wrong external pin. These checks prove custody/mechanics, not meaning.
-
-Execute the three unchanged deterministic comparators on the exact24inputs,3trials each,
-with network denied and no business store/gateway. Save all216actual requests/context/
-decisions and selected code pins before summarizing. Rules/always-review have0/63conditional
-intent matches and0/36constructed joint intent/amount matches each. Conservative-rules-v1
-has18/63intent and15/36constructed joint matches. Native dollar amounts are not scored as
-SIM. Separate-process readback recomputes these counts and verifies all216unique identities,
-actual zero usage and source/input pins. All labels retain proposed/development status.
-
-The prospective provider scope can now be made concrete without dispatch: same614shared
-lifetime cap,447historical consumed,74explicitly transferred old unattempted routing slots,
-93other slots preserved, original stop intact, exact24inputs/74requests and short expiry.
-Before an owner decision, do not install it or load a key. Reconciliation changes the bound
-pyproject only by adding the independently merged recovery module to mypy's file list;
-check that structurally and compare every candidate/SDK/parser/control/scorer byte and the
-actual environment with the completed mock proof. Never claim the mock ran on the later
-merge commit. Freeze the final prospective scope separately and require actual combined CI.
-
-On 2026-11-12, the pending combined-check command was retried after automatic approval
-review's temporary usage-limit failure. It had not executed on the earlier attempt; that
-was an approval-service interruption, not a safety determination or test failure. The
-combined branch now collects1,920unit/222SQLtests and passes248typed sources. All89focused
-source/candidate/control/SDK/readback/developer checks pass, with lint/format and diff checks.
-The candidate, SDK, parser, controls, scorer, frozen packages and lock match the completed
-mock run; the mypy-only configuration addition is disclosed separately. Finish hosted
-combined-head verification and prepare a new prospective seven-day decision dated today;
-do not backdate an approval or infer permission for provider calls from continuation.
->>>>>>> origin/main
+On2026-11-12 the first combined Revenue/recovery head passed all four OS/Python cells
+with1,903tests each and223SQLtests, including the actual profiling adapter. Updating the
+PR evidence description triggered another full edited-event run; that also passed. Before
+merge, PR153advanced main with the licensed-reference preparation, so the exact-base guard
+correctly refused the old merge. Preserve incoming work and renumber this unmerged Revenue
+entry to101to avoid incoming Entry100. An encoding error in the resolution helper stopped
+its file writes; sequential PowerShell lines then incorrectly continued into a commit.
+Main was unaffected. Explicit UTF-8 reads/writes and separately checked validation commands
+correct this; retain the failed commit as history and reverify the combined tree.
