@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 - [Entry 100 — Build Revenue relevance, semantic diagnostics and stage timing](#entry-100--build-revenue-relevance-semantic-diagnostics-and-stage-timing)
+
+- [Entry 99 — Verify encrypted scheduled recovery before claiming off-host readiness](#entry-99--verify-encrypted-scheduled-recovery-before-claiming-off-host-readiness)
 - [Entry 98 — Discover fresh backups without hiding incomplete writes](#entry-98--discover-fresh-backups-without-hiding-incomplete-writes)
 - [Entry 97 — Seal CFPB inputs while keeping mapping decisions pending](#entry-97--seal-cfpb-inputs-while-keeping-mapping-decisions-pending)
 - [Entry 96 — Execute unchanged CFPB baselines before another model study](#entry-96--execute-unchanged-cfpb-baselines-before-another-model-study)
@@ -6855,6 +6857,105 @@ with247typed sources. No runtime package, SQL schema or uv.lock bytes changed. T
 restore witness is implemented but its hosted result is still pending at this checkpoint;
 record its actual result in the PR/main delivery receipt. No provider call, live cutover,
 backup deletion, persistent scheduler or remote service is part of this change.
+
+
+## Entry 99 — Verify encrypted scheduled recovery before claiming off-host readiness
+**Files touched:** standalone recovery runner, recovery/task tests and qualification/source documentation.
+
+### Context
+On2026-11-11 the owner explicitly asked to proceed with qualification evidence and scheduled/
+off-host recovery after #152. Start from verified mainfd4ef0c on codex/qualification-recovery-execution.
+Asked which existing off-host destination/restore machine is available; the owner asked for
+our recommendation. Recommend encrypted Restic with private R2 Standard storage plus a
+separate clean Linux restore machine. Account/configuration, actual restore host and cloud
+spending authority are still missing; this recommendation does not manufacture them.
+
+### Before you read on
+Does an upload return code prove the correct database checkpoint can be recovered? What
+happens when the task scheduler overlaps runs, a backup is incomplete, a repository is wrong,
+or the encryption password is lost with the source host?
+
+### Options considered
+- Reject a custom encryption/storage protocol: use the maintained Restic format and its
+  existing S3-compatible repository rather than inventing cryptography or retention deletion.
+- Reject a successful-upload-only receipt: independently fetch the exact newly created
+  snapshot payload and compare its bytes/pins before publishing cycle success.
+- Chosen: pinned standalone one-shot job, explicit deadline/cadence/capacity, fail-closed
+  private attempt journal and prepared native scheduling configuration. Keep local-canary
+  encrypted repository evidence separate from an actual off-host R2 run.
+
+### How to build it
+Bind the runner configuration, Restic executable hash, repository identity, source catalog,
+private password/credential file paths and actual clean checkout. Preserve model budgets
+and frozen runtime packages. Create a new attempt before capture, serialize jobs and invoke
+only the existing read-only capture and explicit Restic backup/read commands. Treat any
+nonzero or unknown Restic exit as failure. Serialize a complete bounded payload first;
+stdin capture is safe only when its independent source succeeded and fetched bytes match.
+Publish success only after exact repository/snapshot readback; never forget, prune, unlock,
+initialize a remote repository automatically or reassign failed attempts. Render a disabled
+Windows task for inspection; real activation requires a functioning persistent source and
+private destination, not placeholders. A fresh restore directory must revalidate the payload
+before handing its exact archive pin to the existing new-database-only restore command.
+
+### Qualification direction
+Apply Langfuse dataset input/expected/metadata separation without creating a live dataset or
+judge. Research pinned publisher benchmark policy/evaluator code before using task records.
+The accepted Bitext mappings remain development/calibration coarse-intent references; they
+cannot fill missing amount/reship/clarification semantics or become a holdout. Audit retail
+benchmark applicability and produce a concrete evidence decision; no source task corpus,
+model run, semantic qualification grant or release approval is inferred from this research.
+
+### What went wrong
+No implementation outcome yet. The local Docker engine remains unavailable; required hosted
+SQL evidence is the existing execution route. Record real Restic encrypted local-repository
+smoke results separately; do not label a second directory an independent failure domain.
+
+
+The first focused runner/catalog/dev-command run passes59tests. Strict mypy caught the
+ElementTree bytes return annotation; use an explicit cast. Actual Restic help also caught
+an incorrect --repo-file spelling before any remote attempt: the supported flag is
+--repository-file. Correct it and require that spelling in transport tests rather than
+letting a mock accept every flag. The real pinned Restic0.19.1 canary then completed a new
+local encrypted repository, exact upload/readback and recovery into a different directory.
+Restic check --read-data passed and an incorrect password was refused. These are invented
+non-SQL bytes, no R2 connection and no actual host/database restore; preserve that boundary.
+The canary directory and receipt remain private; publish only aggregate pins/results.
+
+The pinned tau retail metadata/code audit read five files, no task records. Its policy
+handles pending cancellation and delivered return/exchange, while Olist's accepted SIM
+policy concerns canceled-order full refunds, cap/authority and partial-request review.
+The action evaluator searches required tool calls; environment evaluation compares modeled
+state and optional assertions. Missing expected actions can be treated as vacuously passing
+in that benchmark, so do not transplant that default into mandatory Olist checks. Useful
+engineering/reference-source candidate, but not an admitted per-utterance Olist intent or
+requested-money-role oracle. Do not spend calls on it before applicability is resolved.
+
+
+Windows TASK_VALIDATE_ONLY caught a real integration issue that XML parsing tests missed:
+the UTF-8 declaration conflicts with the Unicode BSTR passed to Task Scheduler (encoding
+switch error at1,40). No task was registered. Remove the encoding declaration while retaining
+UTF-8 file bytes; require that property in the rendering test, then validate a separate v2
+XML through the actual Windows service. Never report ElementTree parsing as scheduler
+acceptance or register a fake-cloud job to make a test pass.
+
+
+The corrected task XML passes actual TASK_VALIDATE_ONLY with no registration. Strengthen
+recovery evidence further: the hosted PostgreSQL job now verifies the official Linux Restic
+archive hash before execution and requires a real encrypted-SQL recovery test. It composes
+actual four-schema capture, real encrypted upload/readback/recovery, newer source commit,
+new-target SQL restore, duplicate/readiness/pending-review observations and full repository
+read-data check. No fake transport substitutes for this required path; local Docker remains
+unavailable and the actual hosted result is pending before submission. Runtime package and
+lock bytes remain unchanged. The separate Windows non-SQL canary is preserved as history.
+
+
+The final local focused checkpoint remains59passes (18remote-runner cases,26catalog and
+15developer-command checks); lint/format/import/lock and248typed sources pass after the
+real-tool/XML corrections. The new encrypted-SQL integration test requires its actual
+hosted binary/database result, not fake transport output. Owner attention remains the
+concrete R2/private configuration, persistent source, separate restore machine and spending/
+retention/activation decision; qualification still needs applicable independent semantic
+references before a fresh bounded final-candidate study. Preserve all targets and failures.
 
 ## Entry 100 — Build Revenue relevance, semantic diagnostics and stage timing
 

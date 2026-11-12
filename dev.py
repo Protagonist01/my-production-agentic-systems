@@ -34,6 +34,7 @@ def uv_command(command: str, executable: str) -> list[str]:
         "olist_profiling.py",
         "olist_profiled_runtime.py",
         "olist_backup_catalog.py",
+        "olist_remote_recovery.py",
         "olist_routing_baseline.py",
         "revenue_assessment.py",
         "revenue_evaluation.py",
