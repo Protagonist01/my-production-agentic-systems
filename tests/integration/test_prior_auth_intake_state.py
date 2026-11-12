@@ -122,7 +122,7 @@ def test_receipt_failure_rolls_back_enrollment_and_job(app):
             )
         )
     try:
-        with pytest.raises(errors.InsufficientPrivilege):
+        with pytest.raises(errors.InsufficientPrivilege, match="table receipts"):
             store.accept(user, prepare(b"AHI: 18 events/hour.", request, Profiler()), Profiler())
         with pytest.raises(LookupError):
             legacy.snapshot(user, request.case.case_id)

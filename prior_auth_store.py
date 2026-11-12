@@ -104,7 +104,7 @@ class IntakeStore:
                 pin = digest(case.canonical_json())
                 current = c.execute(
                     "SELECT binding_sha256 FROM prior_auth_intake.bindings "
-                    "WHERE tenant_id=%s AND case_id=%s FOR UPDATE",
+                    "WHERE tenant_id=%s AND case_id=%s",
                     (case.tenant_id, case.case_id),
                 ).fetchone()
                 joined = JoinedReviewStore(c, self.store.clock)

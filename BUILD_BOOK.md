@@ -7358,3 +7358,13 @@ tests before this reconciliation; require a fresh combined CI head before merge.
 The resolved combined tree passed92focused Prior Auth/Supply tests and strict typing
 for269source files; lint/format and conflict/whitespace checks passed. A comparison
 against30f060bconfirmed no change to any incoming Supply adapter, test or runbook.
+
+The combined native canary and both Linux2040test cells passed. Real SQL then caught
+an actual permission bug: SELECT FOR UPDATE on immutable intake bindings requires UPDATE
+privilege, while the runtime deliberately has only SELECT/INSERT. Keep the narrow grants;
+remove the redundant row lock because the transaction's case advisory lock already
+serializes all importer writes and bindings cannot be updated by that role. Strengthen
+the fault test to require an error naming the receipts table: catching any permission
+error had allowed an earlier binding failure to masquerade as receipt-insert rollback.
+The failed job43324654473/131553955416retains2failures/230passes. Require the corrected
+real SQL proof before merge; do not replace it with a mock or broaden database rights.
