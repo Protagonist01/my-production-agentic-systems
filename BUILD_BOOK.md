@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 102 — Build document intake before expanding Prior Auth assessment](#entry-102--build-document-intake-before-expanding-prior-auth-assessment)
 - [Entry 101 — Build Revenue relevance, semantic diagnostics and stage timing](#entry-101--build-revenue-relevance-semantic-diagnostics-and-stage-timing)
 
 - [Entry 100 — Verify the complete SDK path before requesting live scope](#entry-100--verify-the-complete-sdk-path-before-requesting-live-scope)
@@ -7211,3 +7212,68 @@ entry to101to avoid incoming Entry100. An encoding error in the resolution helpe
 its file writes; sequential PowerShell lines then incorrectly continued into a commit.
 Main was unaffected. Explicit UTF-8 reads/writes and separately checked validation commands
 correct this; retain the failed commit as history and reverify the combined tree.
+
+## Entry 102 — Build document intake before expanding Prior Auth assessment
+
+On2026-11-12 the owner authorized all five Prior Auth recommendation groups in dependency
+order. Start on an isolated branch from main2cf9d69, preserving the other active worktree
+and frozen Prior Auth/harness packages. Implement opt-in root adapters for intake/policy
+bindings, document normalization, payload-free timing, durable handoff, evaluation and a
+local synthetic payer demo. Existing delivery/merge authority applies after verified checks.
+No clinical labels, new provider calls, real patient export or real payer credentials follow.
+
+Before building: how can a document be relevant but unreadable, readable but belong to a
+different patient, or apply to a different payer policy? Preserve those independent states
+instead of turning every intake problem into missing clinical evidence. Trusted binding
+metadata must come from the importing operator/source integration, never the text/model.
+
+Keep the existing seven-criterion checker intact. New ingestion selects an exact applicable
+registry entry, builds source-location-preserving evidence and hands only accepted reviewed
+text to the existing queue. Rejected supplements must not change notes, versions or jobs.
+Use additive schema state rather than rewrite historical SQL. Profiles report
+missing/unavailable stages and metrics explicitly; timer sums cannot become elapsed time.
+
+The proposed demo uses invented clinic/payer identities and deterministic response fixtures.
+FHIR records, PDF/OCR adapters and optional configured sandbox exchange are mechanisms to
+test, not a claim of insurer certification, qualified policy interpretation or clinical
+authorization. The owner asked which sandbox could be used; recommend local synthetic
+resources and the official HL7 Da Vinci reference implementation as an optional later target.
+No default public endpoint receives documents. Real patient use remains a separate milestone.
+
+Build sequence: first implement closed case/document bindings and exact effective-dated
+registry selection. Then implement normalized regions for UTF-8, C-CDA and selected FHIR
+narratives, followed by real Poppler/Tesseract subprocess adapters. Source and normalized
+pins are independent; reviewed redaction preserves character offsets. Native tools are
+trusted absolute configuration, use no shell, and have per-command/document deadlines,
+output/page/text bounds and kill/reap cleanup. Boundaries are not an OS sandbox.
+
+For durable handoff, reject the initially considered separate outbox: both stores already
+use Postgres, so a joined transaction is simpler and avoids enrollment-versus-receipt
+crash ambiguity. Override the legacy store's transaction context to yield the caller's
+connection without committing. Lock the case identity before initial insertion, perform
+the unchanged enrollment/delivery, then persist the receipt and redacted source regions.
+Hash the entire prepared object for replay, so a caller cannot retain an old request hash
+while changing the delivered text. Rejected documents never touch canonical case state.
+
+Next add numeric-only timing, injected-gateway accounting, worker store wrappers, planned
+slot scorecards and a durable SQLite synthetic payer. Record observed/unknown accounting
+separately. Unknown criterion references remain null, not seven invented insufficient
+labels. Authored risk fixtures cannot validate clinical meaning; model output is not run.
+
+The first focused34tests passed. The broader63test attempt had61passes and2source-guard
+failures because the temporary directory was inside Git, as the old guards correctly
+refuse. The default Windows pytest parent was also inaccessible. Run full verification
+with a fresh private temporary directory outside Git rather than weakening those guards.
+Local Docker is unavailable; real SQL and native PDF/OCR are mandatory hosted checks.
+The standalone demo and26case/13family diagnostics both executed with zero provider calls.
+See the runbook for exact reproducer commands, limits and the external demo follow-up.
+
+The corrected broader Prior Auth run passed63tests outside Git. Strict typing passed
+265source files. Added a further explicit unsafe-XML/unknown-gateway-usage witness after
+that checkpoint. The26case development rerun produced52actual baseline outputs: intake
+26/26for both; proposed routes12/14rules versus2/14always-review. Rules disagreed on both
+contradictory-AHI fixtures. Keep that failure visible rather than relabeling it or making
+the development baseline look stronger. All98criterion labels remain unknown/null; an
+all-insufficient placeholder would have fabricated clinical references and was removed
+before publication. A full-suite attempt exposed a missing private temp parent directory;
+create that directory explicitly and rerun, preserving the failed log as environment evidence.

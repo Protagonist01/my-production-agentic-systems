@@ -78,6 +78,10 @@ jobs:
           version: '0.11.1'
           enable-cache: false
       - run: python dev.py setup
+      - name: Install native document canary tools
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils tesseract-ocr
+      - name: Verify real text-PDF and image-only OCR paths
+        run: uv run --locked --all-packages --link-mode copy python docs/evaluation/check_prior_auth_native.py
       - name: Verify Restic encrypted-recovery canary binary
         run: |
           python - <<'PY'

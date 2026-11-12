@@ -53,6 +53,6 @@ dev = [
 ]
 
 [tool.mypy]
-files = ["dev.py", "ci_checks.py", "service_method_readback.py", "amount_source_research.py", "olist_diagnostics.py", "olist_diagnostic_readback.py", "olist_profiling.py", "olist_profiled_runtime.py", "olist_backup_catalog.py", "olist_remote_recovery.py", "olist_routing_baseline.py", "revenue_assessment.py", "revenue_evaluation.py", "revenue_profiling.py", "revenue_profiled_runtime.py", "revenue_protocol.py", "revenue_contractnli.py", "revenue_diagnostics.py", "revenue_billing_paths.py", "harness/src/agent_harness", "projects/*/src"]
+files = ["dev.py", "ci_checks.py", "service_method_readback.py", "amount_source_research.py", "olist_diagnostics.py", "olist_diagnostic_readback.py", "olist_profiling.py", "olist_profiled_runtime.py", "olist_backup_catalog.py", "olist_remote_recovery.py", "olist_routing_baseline.py", "revenue_assessment.py", "revenue_evaluation.py", "revenue_profiling.py", "revenue_profiled_runtime.py", "revenue_protocol.py", "revenue_contractnli.py", "revenue_diagnostics.py", "revenue_billing_paths.py", "prior_auth_intake.py", "prior_auth_documents.py", "prior_auth_profiling.py", "prior_auth_pipeline.py", "prior_auth_store.py", "prior_auth_scorecards.py", "prior_auth_sandbox.py", "prior_auth_demo.py", "prior_auth_diagnostics.py", "harness/src/agent_harness", "projects/*/src"]
 python_version = "3.12"
 strict = true
