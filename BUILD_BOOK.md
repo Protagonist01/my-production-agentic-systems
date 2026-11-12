@@ -2,6 +2,9 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 100 — Verify the complete SDK path before requesting live scope](#entry-100--verify-the-complete-sdk-path-before-requesting-live-scope)
+- [Entry 99 — Find an exact licensed amount source before another study](#entry-99--find-an-exact-licensed-amount-source-before-another-study)
+
 - [Entry 99 — Verify encrypted scheduled recovery before claiming off-host readiness](#entry-99--verify-encrypted-scheduled-recovery-before-claiming-off-host-readiness)
 - [Entry 98 — Discover fresh backups without hiding incomplete writes](#entry-98--discover-fresh-backups-without-hiding-incomplete-writes)
 - [Entry 97 — Seal CFPB inputs while keeping mapping decisions pending](#entry-97--seal-cfpb-inputs-while-keeping-mapping-decisions-pending)
@@ -6856,6 +6859,111 @@ restore witness is implemented but its hosted result is still pending at this ch
 record its actual result in the PR/main delivery receipt. No provider call, live cutover,
 backup deletion, persistent scheduler or remote service is part of this change.
 
+## Entry 99 — Find an exact licensed amount source before another study
+
+### Context
+
+On 2026-11-11 the owner asked to obtain trustworthy language/amount references and a fresh
+candidate evaluation after #151. Start from actual main fd4ef0c (#152) in the reused clean
+checkout. The historical Hugging Face amount-tagged source has unresolved exact-version
+licensing and measured annotation defects. The accepted 27K source is intent-development
+only. Neither the old stopped study nor its unused slots funds this new work.
+
+### Before you read on
+
+What evidence would let an external amount tag answer what this customer asks to receive,
+rather than what they paid or what an agent later offered? Which source bytes and license
+have to be pinned together before selecting any scoring references?
+
+### Options considered
+
+- Reusing ABCD action amounts would confuse later/default offers with the current input.
+  Inspecting the previously inventoried training opportunities confirms context and service
+  scope mismatches; no original hidden value is restored into delexed input.
+- Repairing old Bitext tags with our own candidate would create a circular reference.
+- Investigate the publisher's own GitHub history. The tagged CSV remains at revision
+  8b6ca3d9559a4a9abab94f7978fae67019215a82 together with LICENSE.txt, README and TAGS.
+  This is a separately received exact-version source, not a retroactive license assertion
+  about the earlier Hugging Face copy.
+
+### How to build it
+
+Obtain immutable tree/blob identities through the official repository. Download only the
+named revision's files into an exclusive private directory. Bound each response and check
+Git blob SHA-1 against the independently retrieved tree, then record SHA-256 and byte size.
+Save all original data and notices. Census the actual schema and rows before considering
+semantic applicability. Hashes establish which source was inspected, not label correctness.
+
+The first snapshot has 4,514 rows and the expected eleven tagged columns. Its CSV SHA-256
+is 079b0cec48d34c319c9877b6d178390bf7187a7f7a604958e0ed5a096bba5af6. Next, compare
+native amount values/offsets with visible instruction spans, preserve all contradictions,
+and identify whether any amount-role reference can actually be proposed. Do not silently
+repair source tags, open a holdout, accept a method, or dispatch a provider.
+
+### What went wrong
+
+The current publisher repository only lists the newer 27K CSV. Querying its complete short
+commit history exposed the deleted tagged training path alongside an explicit license.
+Current-card URLs and the separate Hugging Face history alone did not establish that
+exact-version binding. No annotation-quality or evaluation result is claimed yet.
+
+The immutable official download passed the separately retrieved Git blob identities for
+CSV, README, TAGS and license. The actual amount census still has63tags,20exact spans and
+16out-of-bounds offsets. The first applicability run incorrectly treated role as the speaker
+and excluded everything. Its frozen script/output remain v1. The pinned README explicitly
+defines role as the model's adopted role and instruction as the user's request. The second
+run admits5whole direct refund/reimburse commands but wrongly inferred USD. Preserve that
+v2script/output too; v3keeps nominal dollar hundredths with unknown ISO currency and no SIM
+conversion. Those5commands cover only2values/4masked templates and remain proposed limited
+development references, not a general-language qualification population.
+
+Build the candidate outside frozen runtime packages. Its request constructor accepts only
+text and emits fixed system/schema plus exact user content. Its output separates intent,
+explicit/no-explicit/unclear/not-applicable money roles, integer hundredths, currency class
+and literal quote. Independent parsing refuses duplicate JSON fields, invalid combinations,
+fabricated/partial quotes and rounding. An invented test deliberately accepts the mechanics
+of a price quote while leaving its requested-money role unproved: arithmetic is not meaning.
+
+Prepare24development inputs:5proposed native direct commands,3unresolved price-role contrasts,
+4previously accepted conditional native intent cases and12unchanged accepted constructed
+examples. Keep source/expected fields evaluator-only. At3trials, intent has63conditional
+reference slots and9unknowns; amount has51reference slots and21unknowns. Failures/missing
+outputs remain in scheduled denominators. All74requests (2invented canaries plus72domain
+slots) pass the actual SDK serializer. No model or business action ran.
+
+The shared allowance remains447consumed/0unsettled/1original stop at read-only preparation.
+Implement an additive immutable namespace in the existing ledger, requiring an externally
+trusted exact owner grant before provider installation. Reserve/commit each slot before
+dispatch; atomically save response and parent observation before the next reservation.
+Keep old schema/rows pinned, old stop present, same614cap and93other slots bound; transferring
+74old unattempted routing slots needs explicit amendment. `mode=rw`must never create a new
+live ledger if its path is wrong. Another attempt refuses an unobserved response, wrong
+request/origin, expiry, duplicate, changed history or failed canary. Settlement after expiry
+is permitted without permitting another dispatch.
+
+Compose the existing SDK in an owned spawned worker with90second HTTP/110second parent
+limits, no SDK retry, raw response persisted before derived tariff accounting and bounded
+parent observations. Exact source/lock, clean HEAD/imports, environment, requests, input,
+reference and invented canary pins are separate bindings. Fake SDK mode denies socket/DNS
+access, has mock origin and cannot qualify as a real response. Independent readback checks
+actual reservation/response/observation records and recomputes only supported field scores.
+This is a language-only study; no SQL business environment or customer authority is invoked.
+
+Focused verification reached78passes before the added denominator tests; those4also pass.
+The real spawned SDK/fake-HTTP test passes schema/quote/usage checks without network access.
+The first developer test invocation hit the host's inaccessible shared pytest temporary
+directory; rerun with an exclusive owned basetemp passed. Preserve that host failure rather
+than attributing it to source applicability or a model. Full hosted tests and complete mock
+74slot run remain required before the provider proposal can be called execution-ready.
+
+The first complete fake-SDK run stopped after2invented canaries: the second SDK response
+was valid, but the new quote-boundary check treated sentence-ending punctuation after SIM
+as decimal continuation. The raw response, successful worker timing and failed parent
+observation identify a local parser bug, not model quality or a timeout. Preserve this
+v1run and immutable invented ledger. Accept terminal punctuation while refusing a dot/comma
+followed by digits and numeric suffix fragments; add explicit regressions before a separate
+new mock readiness run. No real provider attempt was consumed or retried.
+
 
 ## Entry 99 — Verify encrypted scheduled recovery before claiming off-host readiness
 **Files touched:** standalone recovery runner, recovery/task tests and qualification/source documentation.
@@ -6954,3 +7062,59 @@ hosted binary/database result, not fake transport output. Owner attention remain
 concrete R2/private configuration, persistent source, separate restore machine and spending/
 retention/activation decision; qualification still needs applicable independent semantic
 references before a fresh bounded final-candidate study. Preserve all targets and failures.
+
+## Entry 100 — Verify the complete SDK path before requesting live scope
+
+On 2026-11-11 the source/candidate/control/scorer checkpoint passed82focused checks.
+Seven punctuation regressions then reproduced/fixed the failed second mock canary; actual
+collection became1902unit tests. Hosted PR153checks passed1902per matrix cell/221SQL and
+247typed sources. During its checks, independently merged PR154advanced main to c5cadaf.
+Both differently titled Entry99records remain history; retain the source and recovery
+chapters, checker paths, instructions and all implementation when reconciling. This entry
+uses100to avoid adding another duplicate number. Final combined checks remain required.
+
+The first mock run's parser defect is preserved above. The second stopped after9invented
+slots when an in-flight scorer-metrics edit made the checkout dirty. That was an operator
+mistake: do not edit a frozen checkout while it is running. The parent source guard refused
+continuation; restore exact frozen bytes, retain the proposed metrics outside the checkout's
+tracked sources and preserve the stopped v2ledger/capture. Do not call that a model error or
+resume the same slots. The third separate mock run completed all74slots on7537e82: both
+invented canaries and all72domain slots, actual SDK and owned spawned processes, socket/DNS
+denied, zero provider calls. The fake outputs are deliberately supplied by a test oracle;
+their agreements establish no model quality.
+
+In a separate process, supply the independently retained scope pin7d3a7ec4e8607f024574471e38c69c17bdfc315890c045f084eac541fdefcc83
+and completion pinfc018e20d02acdc0cc895d61aff72214337d66b8be0879413c3bce80e63400bd.
+Read original requests, raw responses, derived-accounting evidence and actual immutable
+ledger reservations/observations. Recompute quotes, canary expectations, historical ledger
+anchor and field-specific denominators. That readback passed74slots; its report hash is
+f4eb6feaced7cb0c7a4e9eea735f331181d0d057b68c0900db1415cd7ecaf497. Five separately rehashed
+source-audit copies refused missing frames, changed native values, forged acceptance,
+invented USD and wrong external pin. These checks prove custody/mechanics, not meaning.
+
+Execute the three unchanged deterministic comparators on the exact24inputs,3trials each,
+with network denied and no business store/gateway. Save all216actual requests/context/
+decisions and selected code pins before summarizing. Rules/always-review have0/63conditional
+intent matches and0/36constructed joint intent/amount matches each. Conservative-rules-v1
+has18/63intent and15/36constructed joint matches. Native dollar amounts are not scored as
+SIM. Separate-process readback recomputes these counts and verifies all216unique identities,
+actual zero usage and source/input pins. All labels retain proposed/development status.
+
+The prospective provider scope can now be made concrete without dispatch: same614shared
+lifetime cap,447historical consumed,74explicitly transferred old unattempted routing slots,
+93other slots preserved, original stop intact, exact24inputs/74requests and short expiry.
+Before an owner decision, do not install it or load a key. Reconciliation changes the bound
+pyproject only by adding the independently merged recovery module to mypy's file list;
+check that structurally and compare every candidate/SDK/parser/control/scorer byte and the
+actual environment with the completed mock proof. Never claim the mock ran on the later
+merge commit. Freeze the final prospective scope separately and require actual combined CI.
+
+On 2026-11-12, the pending combined-check command was retried after automatic approval
+review's temporary usage-limit failure. It had not executed on the earlier attempt; that
+was an approval-service interruption, not a safety determination or test failure. The
+combined branch now collects1,920unit/222SQLtests and passes248typed sources. All89focused
+source/candidate/control/SDK/readback/developer checks pass, with lint/format and diff checks.
+The candidate, SDK, parser, controls, scorer, frozen packages and lock match the completed
+mock run; the mypy-only configuration addition is disclosed separately. Finish hosted
+combined-head verification and prepare a new prospective seven-day decision dated today;
+do not backdate an approval or infer permission for provider calls from continuation.
