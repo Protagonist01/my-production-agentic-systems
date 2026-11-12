@@ -2,7 +2,10 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 100 — Verify the complete SDK path before requesting live scope](#entry-100--verify-the-complete-sdk-path-before-requesting-live-scope)
 - [Entry 99 — Find an exact licensed amount source before another study](#entry-99--find-an-exact-licensed-amount-source-before-another-study)
+
+- [Entry 99 — Verify encrypted scheduled recovery before claiming off-host readiness](#entry-99--verify-encrypted-scheduled-recovery-before-claiming-off-host-readiness)
 - [Entry 98 — Discover fresh backups without hiding incomplete writes](#entry-98--discover-fresh-backups-without-hiding-incomplete-writes)
 - [Entry 97 — Seal CFPB inputs while keeping mapping decisions pending](#entry-97--seal-cfpb-inputs-while-keeping-mapping-decisions-pending)
 - [Entry 96 — Execute unchanged CFPB baselines before another model study](#entry-96--execute-unchanged-cfpb-baselines-before-another-model-study)
@@ -6960,3 +6963,158 @@ observation identify a local parser bug, not model quality or a timeout. Preserv
 v1run and immutable invented ledger. Accept terminal punctuation while refusing a dot/comma
 followed by digits and numeric suffix fragments; add explicit regressions before a separate
 new mock readiness run. No real provider attempt was consumed or retried.
+
+
+## Entry 99 — Verify encrypted scheduled recovery before claiming off-host readiness
+**Files touched:** standalone recovery runner, recovery/task tests and qualification/source documentation.
+
+### Context
+On2026-11-11 the owner explicitly asked to proceed with qualification evidence and scheduled/
+off-host recovery after #152. Start from verified mainfd4ef0c on codex/qualification-recovery-execution.
+Asked which existing off-host destination/restore machine is available; the owner asked for
+our recommendation. Recommend encrypted Restic with private R2 Standard storage plus a
+separate clean Linux restore machine. Account/configuration, actual restore host and cloud
+spending authority are still missing; this recommendation does not manufacture them.
+
+### Before you read on
+Does an upload return code prove the correct database checkpoint can be recovered? What
+happens when the task scheduler overlaps runs, a backup is incomplete, a repository is wrong,
+or the encryption password is lost with the source host?
+
+### Options considered
+- Reject a custom encryption/storage protocol: use the maintained Restic format and its
+  existing S3-compatible repository rather than inventing cryptography or retention deletion.
+- Reject a successful-upload-only receipt: independently fetch the exact newly created
+  snapshot payload and compare its bytes/pins before publishing cycle success.
+- Chosen: pinned standalone one-shot job, explicit deadline/cadence/capacity, fail-closed
+  private attempt journal and prepared native scheduling configuration. Keep local-canary
+  encrypted repository evidence separate from an actual off-host R2 run.
+
+### How to build it
+Bind the runner configuration, Restic executable hash, repository identity, source catalog,
+private password/credential file paths and actual clean checkout. Preserve model budgets
+and frozen runtime packages. Create a new attempt before capture, serialize jobs and invoke
+only the existing read-only capture and explicit Restic backup/read commands. Treat any
+nonzero or unknown Restic exit as failure. Serialize a complete bounded payload first;
+stdin capture is safe only when its independent source succeeded and fetched bytes match.
+Publish success only after exact repository/snapshot readback; never forget, prune, unlock,
+initialize a remote repository automatically or reassign failed attempts. Render a disabled
+Windows task for inspection; real activation requires a functioning persistent source and
+private destination, not placeholders. A fresh restore directory must revalidate the payload
+before handing its exact archive pin to the existing new-database-only restore command.
+
+### Qualification direction
+Apply Langfuse dataset input/expected/metadata separation without creating a live dataset or
+judge. Research pinned publisher benchmark policy/evaluator code before using task records.
+The accepted Bitext mappings remain development/calibration coarse-intent references; they
+cannot fill missing amount/reship/clarification semantics or become a holdout. Audit retail
+benchmark applicability and produce a concrete evidence decision; no source task corpus,
+model run, semantic qualification grant or release approval is inferred from this research.
+
+### What went wrong
+No implementation outcome yet. The local Docker engine remains unavailable; required hosted
+SQL evidence is the existing execution route. Record real Restic encrypted local-repository
+smoke results separately; do not label a second directory an independent failure domain.
+
+
+The first focused runner/catalog/dev-command run passes59tests. Strict mypy caught the
+ElementTree bytes return annotation; use an explicit cast. Actual Restic help also caught
+an incorrect --repo-file spelling before any remote attempt: the supported flag is
+--repository-file. Correct it and require that spelling in transport tests rather than
+letting a mock accept every flag. The real pinned Restic0.19.1 canary then completed a new
+local encrypted repository, exact upload/readback and recovery into a different directory.
+Restic check --read-data passed and an incorrect password was refused. These are invented
+non-SQL bytes, no R2 connection and no actual host/database restore; preserve that boundary.
+The canary directory and receipt remain private; publish only aggregate pins/results.
+
+The pinned tau retail metadata/code audit read five files, no task records. Its policy
+handles pending cancellation and delivered return/exchange, while Olist's accepted SIM
+policy concerns canceled-order full refunds, cap/authority and partial-request review.
+The action evaluator searches required tool calls; environment evaluation compares modeled
+state and optional assertions. Missing expected actions can be treated as vacuously passing
+in that benchmark, so do not transplant that default into mandatory Olist checks. Useful
+engineering/reference-source candidate, but not an admitted per-utterance Olist intent or
+requested-money-role oracle. Do not spend calls on it before applicability is resolved.
+
+
+Windows TASK_VALIDATE_ONLY caught a real integration issue that XML parsing tests missed:
+the UTF-8 declaration conflicts with the Unicode BSTR passed to Task Scheduler (encoding
+switch error at1,40). No task was registered. Remove the encoding declaration while retaining
+UTF-8 file bytes; require that property in the rendering test, then validate a separate v2
+XML through the actual Windows service. Never report ElementTree parsing as scheduler
+acceptance or register a fake-cloud job to make a test pass.
+
+
+The corrected task XML passes actual TASK_VALIDATE_ONLY with no registration. Strengthen
+recovery evidence further: the hosted PostgreSQL job now verifies the official Linux Restic
+archive hash before execution and requires a real encrypted-SQL recovery test. It composes
+actual four-schema capture, real encrypted upload/readback/recovery, newer source commit,
+new-target SQL restore, duplicate/readiness/pending-review observations and full repository
+read-data check. No fake transport substitutes for this required path; local Docker remains
+unavailable and the actual hosted result is pending before submission. Runtime package and
+lock bytes remain unchanged. The separate Windows non-SQL canary is preserved as history.
+
+
+The final local focused checkpoint remains59passes (18remote-runner cases,26catalog and
+15developer-command checks); lint/format/import/lock and248typed sources pass after the
+real-tool/XML corrections. The new encrypted-SQL integration test requires its actual
+hosted binary/database result, not fake transport output. Owner attention remains the
+concrete R2/private configuration, persistent source, separate restore machine and spending/
+retention/activation decision; qualification still needs applicable independent semantic
+references before a fresh bounded final-candidate study. Preserve all targets and failures.
+
+## Entry 100 — Verify the complete SDK path before requesting live scope
+
+On 2026-11-11 the source/candidate/control/scorer checkpoint passed82focused checks.
+Seven punctuation regressions then reproduced/fixed the failed second mock canary; actual
+collection became1902unit tests. Hosted PR153checks passed1902per matrix cell/221SQL and
+247typed sources. During its checks, independently merged PR154advanced main to c5cadaf.
+Both differently titled Entry99records remain history; retain the source and recovery
+chapters, checker paths, instructions and all implementation when reconciling. This entry
+uses100to avoid adding another duplicate number. Final combined checks remain required.
+
+The first mock run's parser defect is preserved above. The second stopped after9invented
+slots when an in-flight scorer-metrics edit made the checkout dirty. That was an operator
+mistake: do not edit a frozen checkout while it is running. The parent source guard refused
+continuation; restore exact frozen bytes, retain the proposed metrics outside the checkout's
+tracked sources and preserve the stopped v2ledger/capture. Do not call that a model error or
+resume the same slots. The third separate mock run completed all74slots on7537e82: both
+invented canaries and all72domain slots, actual SDK and owned spawned processes, socket/DNS
+denied, zero provider calls. The fake outputs are deliberately supplied by a test oracle;
+their agreements establish no model quality.
+
+In a separate process, supply the independently retained scope pin7d3a7ec4e8607f024574471e38c69c17bdfc315890c045f084eac541fdefcc83
+and completion pinfc018e20d02acdc0cc895d61aff72214337d66b8be0879413c3bce80e63400bd.
+Read original requests, raw responses, derived-accounting evidence and actual immutable
+ledger reservations/observations. Recompute quotes, canary expectations, historical ledger
+anchor and field-specific denominators. That readback passed74slots; its report hash is
+f4eb6feaced7cb0c7a4e9eea735f331181d0d057b68c0900db1415cd7ecaf497. Five separately rehashed
+source-audit copies refused missing frames, changed native values, forged acceptance,
+invented USD and wrong external pin. These checks prove custody/mechanics, not meaning.
+
+Execute the three unchanged deterministic comparators on the exact24inputs,3trials each,
+with network denied and no business store/gateway. Save all216actual requests/context/
+decisions and selected code pins before summarizing. Rules/always-review have0/63conditional
+intent matches and0/36constructed joint intent/amount matches each. Conservative-rules-v1
+has18/63intent and15/36constructed joint matches. Native dollar amounts are not scored as
+SIM. Separate-process readback recomputes these counts and verifies all216unique identities,
+actual zero usage and source/input pins. All labels retain proposed/development status.
+
+The prospective provider scope can now be made concrete without dispatch: same614shared
+lifetime cap,447historical consumed,74explicitly transferred old unattempted routing slots,
+93other slots preserved, original stop intact, exact24inputs/74requests and short expiry.
+Before an owner decision, do not install it or load a key. Reconciliation changes the bound
+pyproject only by adding the independently merged recovery module to mypy's file list;
+check that structurally and compare every candidate/SDK/parser/control/scorer byte and the
+actual environment with the completed mock proof. Never claim the mock ran on the later
+merge commit. Freeze the final prospective scope separately and require actual combined CI.
+
+On 2026-11-12, the pending combined-check command was retried after automatic approval
+review's temporary usage-limit failure. It had not executed on the earlier attempt; that
+was an approval-service interruption, not a safety determination or test failure. The
+combined branch now collects1,920unit/222SQLtests and passes248typed sources. All89focused
+source/candidate/control/SDK/readback/developer checks pass, with lint/format and diff checks.
+The candidate, SDK, parser, controls, scorer, frozen packages and lock match the completed
+mock run; the mypy-only configuration addition is disclosed separately. Finish hosted
+combined-head verification and prepare a new prospective seven-day decision dated today;
+do not backdate an approval or infer permission for provider calls from continuation.

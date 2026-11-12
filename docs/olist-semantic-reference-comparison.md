@@ -158,3 +158,20 @@ Interview exercise: explain why an exact publisher span may still label a price;
 source's role column is not the speaker; why `$` cannot become USD; and why 74 fresh outputs
 cannot be advertised as a representative language benchmark. Trace an SDK timeout from
 durable reservation through unknown usage and the refusal of the next slot.
+
+## Actual verification checkpoint
+
+The corrected branch passed 1,902 unit tests on each of four hosted platform/Python jobs,
+221 SQL tests, 247 typed sources, builds and strict replay. PR154 then advanced main with
+recovery work; the combined branch requires fresh checks. The unchanged candidate/SDK/
+parser/control/scorer completed all74actual spawned **mock** slots, with network denied.
+Separate-process readback passed all bindings and denominators. Fake answers came from a
+test oracle: these are readiness checks, not fresh model results. Preserve the earlier
+punctuation failure and source-edit guard stop as separate incomplete runs.
+
+All three unchanged deterministic comparators completed216actual decisions on these inputs.
+Rules and always-review each match0/63conditional intent slots and0/36constructed joint
+intent/amount slots; conservative-rules-v1matches18/63and15/36respectively. Native dollar
+amounts were not scored as SIM. Separate-process readback reproduces all216identities,
+source/input pins and zero usage. The new five references remain proposed, so these are
+conditional development diagnostics, not accepted qualification or operational outcomes.

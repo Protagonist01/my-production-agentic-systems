@@ -162,6 +162,12 @@ Do not rerun into an existing target, replace source rows or drop failed evidenc
 
 ## Backup freshness implemented; scheduler and host-loss acceptance pending
 
+The [encrypted recovery follow-up](olist-encrypted-recovery.md) implements a pinned one-shot
+job, exact encrypted snapshot readback, private failure journal, health check and disabled
+Windows task rendering. Restic/private R2 Standard plus a separate clean Linux restore host
+are recommended. Actual account/configuration, activation, repeated cycles and measured
+host-loss recovery are still pending; the local encrypted canary cannot supply them.
+
 The standalone [backup catalog](olist-backup-catalog.md), added 2026-11-11, now provides
 bounded private snapshot capture/discovery and an explicit freshness check. It retains
 incomplete attempts and stale writer locks, selects the newest byte-verified snapshot,

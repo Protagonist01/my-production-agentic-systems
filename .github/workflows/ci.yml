@@ -78,6 +78,23 @@ jobs:
           version: '0.11.1'
           enable-cache: false
       - run: python dev.py setup
+      - name: Verify Restic encrypted-recovery canary binary
+        run: |
+          python - <<'PY'
+          import bz2, hashlib, urllib.request
+          from pathlib import Path
+          url = "https://github.com/restic/restic/releases/download/v0.19.1/restic_0.19.1_linux_amd64.bz2"
+          expected = "f415415624dcc452f2a02b8c33641791a8c6d6d3b65bbb3543fcf9a25151585c"
+          raw = urllib.request.urlopen(url, timeout=60).read(40_000_001)
+          if len(raw) > 40_000_000 or hashlib.sha256(raw).hexdigest() != expected:
+              raise SystemExit("Restic release checksum/size refused")
+          tool = Path("artifacts/tools/restic-canary")
+          tool.parent.mkdir(parents=True, exist_ok=True)
+          with tool.open("xb") as output:
+              output.write(bz2.decompress(raw))
+          tool.chmod(0o700)
+          print("Verified official Restic 0.19.1 canary executable")
+          PY
       - run: python dev.py db-check
 
   dependencies:

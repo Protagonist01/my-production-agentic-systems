@@ -1,5 +1,9 @@
 # Local backup discovery, freshness and failure reporting
 
+The follow-up [encrypted scheduled recovery job](olist-encrypted-recovery.md) now prepares
+Restic upload/readback, saved-receipt recovery and disabled native task XML. Its real local
+encrypted canary is not an activated off-host destination or host-loss acceptance result.
+
 Prepared 2026-11-11 from main `c5b265d` after #150/#151. This advances the selected local
 deployment/recovery work for #33, #58 and #59. It does not qualify language references,
 resume providers, install a scheduler, select a remote destination or authorize release.

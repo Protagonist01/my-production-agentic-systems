@@ -9,6 +9,28 @@ exposed development/fresh responses and mechanical evidence/semantic truth. Thes
 entrypoints cannot grant action authority or release. Their live scope remains uninstalled
 until an exact owner amendment; the old stop and ledger history remain intact.
 
+The [encrypted recovery chapter](docs/olist-encrypted-recovery.md), prepared 2026-11-11 from
+main fd4ef0c, follows `olist_remote_recovery.cycle`: bind a canonical job and private journal,
+serialize attempts, verify pinned Restic/repository identity, capture the existing four-schema
+catalog entry, construct a bounded bundle and upload/read back its exact snapshot bytes.
+Only then write success; failed attempts/locks stop later cycles. `health` describes the last
+verified upload, not current remote availability or database/host restoration. `recover`
+uses an independently retained receipt pin and a new private directory before the existing
+new-database restore boundary. The real local encrypted non-SQL canary is separate from fake
+transport unit tests and actual SQL catalog restore tests. No R2 account/task/host is activated.
+
+`render_task` prepares disabled, least-privilege, overlap-protected XML. Native validation
+caught an encoding-declaration/BSTR conflict that ElementTree accepted; preserve that failed
+attempt and omit the declaration in the corrected file. This is syntax acceptance only,
+not observed periodic operation. Interview exercise: why are upload success, exact encrypted
+readback, database restore and whole-host RPO/RTO four distinct claims?
+
+The [qualification applicability decision](docs/olist-qualification-evidence-decision.md)
+compares pinned publisher retail policy/evaluators with actual Olist rules. No task corpus,
+qualification grant or model call is involved. Missing action criteria in another benchmark
+must not turn missing Olist evidence into success. Semantic references and final grouped
+candidate evidence remain outside this implementation's verified coverage.
+
 The [backup catalog chapter](docs/olist-backup-catalog.md), prepared 2026-11-11 from main
 c5b265d, traces the standalone `olist_backup_catalog` helper. `frozen_checkout` binds the
 entrypoint/editable imports, clean HEAD and lock before/after capture. `BackupCatalog.publish`

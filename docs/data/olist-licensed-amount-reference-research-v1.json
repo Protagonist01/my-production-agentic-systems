@@ -1,4 +1,5 @@
 {
+  "deterministic_baseline_rows": 216,
   "empty_domain_report": {
     "development_only": true,
     "domain": {
@@ -68,6 +69,15 @@
     "trials_are_independent_language_families": false
   },
   "method_decision_pending": true,
+  "mock_readiness": {
+    "code_revision": "7537e82527627b3ef1ee6343deb38d61040f2c44",
+    "independent_process_readback": "passed",
+    "model_quality_measured": false,
+    "origin": "mock",
+    "real_provider_calls": 0,
+    "slots": 74
+  },
+  "native_amount_baseline_scored_as_SIM": false,
   "new_live_scope_installed": false,
   "new_provider_calls": 0,
   "preparation_packet_sha256": "a7fcfb36f04a6c476c2b1488ff42fa36bc8258a44493cefc24140bb53a9172e2",
@@ -118,6 +128,7 @@
     "version": "olist-licensed-amount-applicability-v1"
   },
   "source_audit_manifest_sha256": "ddeb9724f4c5bbf3c70014b4d68f3f1dc5711eed3d10f343d16f466453cd0aed",
+  "source_negative_readbacks_refused": 5,
   "source_review_packet_sha256": "f42c024468e05f78bef69f33ca7ce8e74b4d87cf96f8ca67f51cdd8d13b63afd",
   "version": "olist-licensed-amount-reference-research-v1"
 }
