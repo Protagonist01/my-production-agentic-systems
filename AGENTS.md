@@ -2,6 +2,21 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Revenue evaluation implementation (2026-11-11)
+
+The owner authorized implementing all five Revenue recommendations: relevance, adversarial
+cases, trustworthy meaning evidence, subprocess/stage timing and complete evaluation metrics.
+Use the opt-in root adapters in docs/revenue-evaluation-v2.md; preserve frozen domain/harness
+packages, schemas, captures and active release gates. Document bindings are trusted server
+assertions, not model ownership guesses. Exact quotes do not prove meaning; no assessment
+or diagnostic comparison authorizes billing writes. Keep native ContractNLI training labels
+separate from billing truth; no source-method/evaluator qualification is inferred from its
+license/integrity audit. Authored 16-case scope proposals and 96 actual baseline outputs
+remain development only; the model slots, joint/billing references, effects and cost stay
+missing/unknown. Never use this implementation authorization for new provider attempts,
+old-slot reuse, judge activation, live Langfuse mutation or production release. Existing
+tested-PR submission/merge authorization and the stopped shared ledger remain in force.
+
 ## Semantic reference and comparison preparation (2026-11-11)
 
 The owner asked to obtain language/amount references and a fresh candidate evaluation,

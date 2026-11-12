@@ -1,0 +1,247 @@
+{
+  "authored_development_only": true,
+  "capture_manifest_sha256": "ae2de78333db107c2246e1e7be819468f2ddc6fb418a5c73bf9c127d5424926c",
+  "independent_reference_groups": false,
+  "plan_sha256": "d1049242187782188c417f641f3070f6ffc48d10cbd1ed0e1968cd1be91c7694",
+  "provider_attempts": 0,
+  "release_allowed": false,
+  "variants": {
+    "always_review": {
+      "adversarial": {
+        "clean_pass_attack_fail": 0,
+        "invalid_proposals": {
+          "denominator": 3,
+          "known_only_rate": null,
+          "numerator": 0,
+          "rate": null,
+          "unknown": 3
+        },
+        "missing_pairs": 0,
+        "scheduled_attack_reference_failures": {
+          "denominator": 3,
+          "known_only_rate": 1.0,
+          "numerator": 3,
+          "rate": 1.0,
+          "unknown": 0
+        },
+        "scheduled_pairs": 3,
+        "unauthorized_effects": {
+          "denominator": 3,
+          "known_only_rate": null,
+          "numerator": 0,
+          "rate": null,
+          "unknown": 3
+        }
+      },
+      "cost": {
+        "currency": null,
+        "known_complete": false,
+        "per_reference_correct": null,
+        "total": null
+      },
+      "eligible_analysis_coverage": {
+        "denominator": 12,
+        "known_only_rate": 0.0,
+        "numerator": 0,
+        "rate": 0.0,
+        "unknown": 0
+      },
+      "independent_group_proxy_count": 1,
+      "invalid_proposals": {
+        "denominator": 48,
+        "known_only_rate": null,
+        "numerator": 0,
+        "rate": null,
+        "unknown": 48
+      },
+      "missing": 0,
+      "observed": 48,
+      "reference_coverage": {
+        "billing_delta_scheduled": 0,
+        "joint_meaning_scheduled": 0,
+        "scope_scheduled": 48,
+        "supported_claim_judgments": 0
+      },
+      "reference_relative_correct": {
+        "denominator": 48,
+        "known_only_rate": 0.4375,
+        "numerator": 21,
+        "rate": 0.4375,
+        "unknown": 0
+      },
+      "scheduled": 48,
+      "unauthorized_effects": {
+        "denominator": 48,
+        "known_only_rate": null,
+        "numerator": 0,
+        "rate": null,
+        "unknown": 48
+      },
+      "whole_workflow_correct": {
+        "denominator": 48,
+        "known_only_rate": null,
+        "numerator": 0,
+        "rate": null,
+        "unknown": 48
+      }
+    },
+    "candidate": {
+      "adversarial": {
+        "clean_pass_attack_fail": 0,
+        "invalid_proposals": {
+          "denominator": 3,
+          "known_only_rate": null,
+          "numerator": 0,
+          "rate": null,
+          "unknown": 3
+        },
+        "missing_pairs": 3,
+        "scheduled_attack_reference_failures": {
+          "denominator": 3,
+          "known_only_rate": 1.0,
+          "numerator": 3,
+          "rate": 1.0,
+          "unknown": 0
+        },
+        "scheduled_pairs": 3,
+        "unauthorized_effects": {
+          "denominator": 3,
+          "known_only_rate": null,
+          "numerator": 0,
+          "rate": null,
+          "unknown": 3
+        }
+      },
+      "cost": {
+        "currency": null,
+        "known_complete": false,
+        "per_reference_correct": null,
+        "total": null
+      },
+      "eligible_analysis_coverage": {
+        "denominator": 12,
+        "known_only_rate": 0.0,
+        "numerator": 0,
+        "rate": 0.0,
+        "unknown": 0
+      },
+      "independent_group_proxy_count": 1,
+      "invalid_proposals": {
+        "denominator": 48,
+        "known_only_rate": null,
+        "numerator": 0,
+        "rate": null,
+        "unknown": 48
+      },
+      "missing": 48,
+      "observed": 0,
+      "reference_coverage": {
+        "billing_delta_scheduled": 0,
+        "joint_meaning_scheduled": 0,
+        "scope_scheduled": 48,
+        "supported_claim_judgments": 0
+      },
+      "reference_relative_correct": {
+        "denominator": 48,
+        "known_only_rate": 0.0,
+        "numerator": 0,
+        "rate": 0.0,
+        "unknown": 0
+      },
+      "scheduled": 48,
+      "unauthorized_effects": {
+        "denominator": 48,
+        "known_only_rate": null,
+        "numerator": 0,
+        "rate": null,
+        "unknown": 48
+      },
+      "whole_workflow_correct": {
+        "denominator": 48,
+        "known_only_rate": null,
+        "numerator": 0,
+        "rate": null,
+        "unknown": 48
+      }
+    },
+    "rules": {
+      "adversarial": {
+        "clean_pass_attack_fail": 3,
+        "invalid_proposals": {
+          "denominator": 3,
+          "known_only_rate": null,
+          "numerator": 0,
+          "rate": null,
+          "unknown": 3
+        },
+        "missing_pairs": 0,
+        "scheduled_attack_reference_failures": {
+          "denominator": 3,
+          "known_only_rate": 1.0,
+          "numerator": 3,
+          "rate": 1.0,
+          "unknown": 0
+        },
+        "scheduled_pairs": 3,
+        "unauthorized_effects": {
+          "denominator": 3,
+          "known_only_rate": null,
+          "numerator": 0,
+          "rate": null,
+          "unknown": 3
+        }
+      },
+      "cost": {
+        "currency": null,
+        "known_complete": false,
+        "per_reference_correct": null,
+        "total": null
+      },
+      "eligible_analysis_coverage": {
+        "denominator": 12,
+        "known_only_rate": 0.75,
+        "numerator": 9,
+        "rate": 0.75,
+        "unknown": 0
+      },
+      "independent_group_proxy_count": 1,
+      "invalid_proposals": {
+        "denominator": 48,
+        "known_only_rate": null,
+        "numerator": 0,
+        "rate": null,
+        "unknown": 48
+      },
+      "missing": 0,
+      "observed": 48,
+      "reference_coverage": {
+        "billing_delta_scheduled": 0,
+        "joint_meaning_scheduled": 0,
+        "scope_scheduled": 48,
+        "supported_claim_judgments": 72
+      },
+      "reference_relative_correct": {
+        "denominator": 48,
+        "known_only_rate": 0.9375,
+        "numerator": 45,
+        "rate": 0.9375,
+        "unknown": 0
+      },
+      "scheduled": 48,
+      "unauthorized_effects": {
+        "denominator": 48,
+        "known_only_rate": null,
+        "numerator": 0,
+        "rate": null,
+        "unknown": 48
+      },
+      "whole_workflow_correct": {
+        "denominator": 48,
+        "known_only_rate": null,
+        "numerator": 0,
+        "rate": null,
+        "unknown": 48
+      }
+    }
+  }
+}

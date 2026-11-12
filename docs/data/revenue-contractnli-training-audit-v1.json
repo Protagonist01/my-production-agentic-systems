@@ -1,0 +1,24 @@
+{
+  "archive_sha256": "e03fc77bbf8b53e2976a250e81d8a294bc3d5e5fb014521e477dee9340d6287b",
+  "attribution": "Yuta Koreeda and Christopher D. Manning, ContractNLI, Findings of EMNLP 2021, 1907\u20131919.",
+  "billing_meaning_reference": false,
+  "choices": {
+    "Contradiction": 841,
+    "Entailment": 3530,
+    "NotMentioned": 2820
+  },
+  "documents": 423,
+  "evidence_intervals": 8341,
+  "hypotheses": 17,
+  "license": "CC-BY-4.0",
+  "license_sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94",
+  "model_calls": 0,
+  "references": 7191,
+  "release_allowed": false,
+  "source_development_decoded": false,
+  "source_revision": "eced6528dd3c1d14d73f9a87df8f7bdbc03126f9",
+  "source_test_decoded": false,
+  "train_bytes": 7608211,
+  "train_member": "contract-nli/train.json",
+  "train_sha256": "dbceb356cd6203b35b27be94a5fa85e499a81c34c42c89ad53060b39f0257ba5"
+}
