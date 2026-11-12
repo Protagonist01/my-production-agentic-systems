@@ -7277,3 +7277,11 @@ the development baseline look stronger. All98criterion labels remain unknown/nul
 all-insufficient placeholder would have fabricated clinical references and was removed
 before publication. A full-suite attempt exposed a missing private temp parent directory;
 create that directory explicitly and rerun, preserving the failed log as environment evidence.
+
+PR157's first real native job passed text extraction, image-only/no-text-layer refusal,
+OCR and regions, then exposed an invalid21page fixture: it repeated one page-object
+reference instead of constructing21distinct page objects. Fix the PDF generator, not
+the required page-limit assertion. Retain the failed job43322389191/131546109320. A code
+review also caught SQLite's context-manager distinction: it commits/rolls back but does
+not close. Add an explicit finally-close around local payer connections;35new focused
+tests pass with that correction. Final hosted checks must verify the corrected head.

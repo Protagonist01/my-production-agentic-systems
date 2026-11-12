@@ -30,15 +30,19 @@ def text_pdf(pages: int = 1) -> bytes:
     stream = (
         b"BT /F1 24 Tf 50 720 Td (AHI: 18 events/hour.) Tj 0 -40 Td (Invented sleep report.) Tj ET"
     )
+    kids = " ".join(f"{5 + index} 0 R" for index in range(pages))
+    page = (
+        b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] "
+        b"/Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>"
+    )
     return pdf(
         [
             b"<< /Type /Catalog /Pages 2 0 R >>",
-            (f"<< /Type /Pages /Count {pages} /Kids [" + "3 0 R " * pages + "] >>").encode(),
-            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] "
-            b"/Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>",
+            f"<< /Type /Pages /Count {pages} /Kids [{kids}] >>".encode(),
             b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
             f"<< /Length {len(stream)} >>\nstream\n".encode() + stream + b"\nendstream",
         ]
+        + [page] * pages
     )
 
 

@@ -7,6 +7,8 @@ receipts; this is a demo transport, not an HL7 PAS conformance implementation.
 
 import json
 import sqlite3
+from collections.abc import Iterator
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Annotated, Literal, get_args
 
@@ -52,10 +54,15 @@ class SyntheticPayer:
                 "response TEXT NOT NULL, PRIMARY KEY(tenant_id,request_id))"
             )
 
-    def connect(self) -> sqlite3.Connection:
+    @contextmanager
+    def connect(self) -> Iterator[sqlite3.Connection]:
         connection = sqlite3.connect(self.database, timeout=5)
-        connection.execute("PRAGMA synchronous=FULL")
-        return connection
+        try:
+            connection.execute("PRAGMA synchronous=FULL")
+            with connection:
+                yield connection
+        finally:
+            connection.close()
 
     def submit(
         self,
