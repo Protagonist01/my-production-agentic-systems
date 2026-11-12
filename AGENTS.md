@@ -2,6 +2,22 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Supply evaluation implementation (2026-11-12)
+
+The owner authorized implementing all four Supply recommendations in dependency order:
+unrelated-input boundaries, adversarial evaluation, stage/process timing and expanded
+scorecards. Use the opt-in root modules described in docs/supply-evaluation-observability.md;
+preserve frozen domain/harness packages, SQL, source captures, ledgers and release gates.
+The actual API accepts structured incident commands and has no customer language endpoint.
+The twelve authored intake cases and admission contract do not implement/qualify a classifier.
+Keep prohibited proposal, protection block, unauthorized effect and disclosure observations
+separate. Report absent stage/readback/reference/cost evidence as unknown, not success.
+Local profiles contain fixed metadata only; they do not export Langfuse data. SQL lock
+statement time is inclusive; replay timing is not elapsed business wait. Trusted spawned
+workers are not a sandbox or public command API. Implementation/testing/submission/merge
+are authorized; new provider attempts, scope transfers, qualification and release are not.
+The stopped shared allowance and existing exact-head delivery checks remain in force.
+
 ## Prior Auth document pipeline implementation (2026-11-12)
 
 The owner authorized all Prior Auth recommendation groups in dependency order: unrelated

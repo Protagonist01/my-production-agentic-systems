@@ -2,7 +2,9 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
-- [Entry 102 — Build document intake before expanding Prior Auth assessment](#entry-102--build-document-intake-before-expanding-prior-auth-assessment)
+
+- [Entry 103 — Build document intake before expanding Prior Auth assessment](#entry-103--build-document-intake-before-expanding-prior-auth-assessment)
+- [Entry 102 — Evaluate Supply boundaries before adding stage profiling and scorecards](#entry-102--evaluate-supply-boundaries-before-adding-stage-profiling-and-scorecards)
 - [Entry 101 — Build Revenue relevance, semantic diagnostics and stage timing](#entry-101--build-revenue-relevance-semantic-diagnostics-and-stage-timing)
 
 - [Entry 100 — Verify the complete SDK path before requesting live scope](#entry-100--verify-the-complete-sdk-path-before-requesting-live-scope)
@@ -7213,7 +7215,69 @@ its file writes; sequential PowerShell lines then incorrectly continued into a c
 Main was unaffected. Explicit UTF-8 reads/writes and separately checked validation commands
 correct this; retain the failed commit as history and reverify the combined tree.
 
-## Entry 102 — Build document intake before expanding Prior Auth assessment
+## Entry 102 — Evaluate Supply boundaries before adding stage profiling and scorecards
+
+On2026-11-12 the owner authorized all four Supply recommendations in order: actual input
+boundaries, adversarial coverage, explicit stage/process timings and extended metrics.
+Start from verified main2cf9d69in a new isolated worktree; leave the newer Olist reference
+checkout untouched. No model invocation or allowance amendment follows. Existing Supply
+policy, source rights, SIM-only scope and release gates remain.
+
+First distinguish the incident-ID API from a future language interface. Test malformed,
+unrelated-field, unknown and unauthorized structured commands against the real handlers;
+prepare closed language-intake contracts/authored examples without activating a classifier.
+Consolidate hostile command outcomes with separate bad proposal, blocked attempt, actual
+effect and disclosure observations. Unknown results must not become successful protection.
+
+Add opt-in root adapters, preserving frozen package bytes. Use bounded, content-free spans
+with process-local monotonic intervals and explicit parent/trace context. Wrap real HTTP,
+authorization, planner, store/notice and Psycopg paths; retain inclusive SQL-lock/finalization
+labels instead of pretending to measure independent server wait or fsync. Expose separately
+timed event waits and a trusted spawned-worker adapter; unobserved stages remain missing.
+Do not re-enable automatic graph prompt/fact export. Local timing is not a Langfuse export.
+
+Finally extend the existing hidden-world reports with fixed scheduled denominators, paired
+cost distributions, tail cost, safe completion, approval/churn/notices/recovery/coverage
+diagnostics and explicit reference basis. Authored semantic examples and hindsight outcome
+comparisons stay separate from qualified references and decisions possible from public facts.
+Exercise invented negatives and actual SQL adapters before reporting coverage or performance.
+
+Implementation path: create `supply_diagnostics.py` first, with canonical contract revalidation
+and the full case/trial schedule. Run `tests/test_supply_intake_diagnostics.py` to prove
+forged fields never reach its service spy. Add `supply_profiling.py` and compose it in
+`supply_profiled_runtime.py` rather than editing native packages. Wrap the trusted planner,
+Psycopg cursor/transaction, ASGI send and Inngest steps at their real call sites. The cursor
+records no SQL text; only a fixed `FOR UPDATE` category distinguishes lock-bearing calls.
+Run real spawn success/error/death/timeout tests and compare child parent-span/trace IDs.
+Finally add `supply_scorecard.py`: call the unchanged native simulation report first for
+inventory/world validation, then add operational readbacks and explicitly based intervention
+references. Validate paired counts and keep missing slots in every scheduled denominator.
+
+The first focused run passed all15 intake tests. The next run found a wrong HTTP test
+expectation (schema rejection is422) and a Windows worker startup timeout under a heavy
+module import. Preserve those findings: move invented worker functions to an import-light
+module and give non-timeout spawn tests a bounded60-second startup allowance; retain the
+separate50ms timeout test and its missing-child profile. The corrected27 focused tests
+passed. This is test-host startup handling, not a relaxed candidate latency target. The
+full-source mypy run found one dictionary optional-key type error; supply an explicit
+empty-string default, retaining unknown-event rejection. New SDK and SQL checks follow.
+
+Local Docker inspection returned no engine pipe. Do not stop/restart unrelated containers
+or claim local SQL acceptance. The hosted Postgres job must execute the new real SQL tests
+before merge. See docs/supply-evaluation-observability.md for the metric definitions,
+boundaries and interview exercises. No provider configuration or allowance was loaded.
+
+The final focused run passed28tests, including native SDK step replay; mypy passed260source
+files and Ruff/format passed. The first broad run used temporary files inside Git and was
+stopped before completion. The next stopped at62passes because its private parent directory
+was absent; create that parent explicitly. The corrected private-path run reached134passes
+then failed importing scikit-learn from the reused older environment. No baseline assertion
+was reached in that failing test. Use the clean locked hosted OS/Python matrix for complete
+acceptance rather than claiming the incomplete local broad run passed. PR156contains the
+full implementation; inspect all actual hosted job logs before merging. Existing Supply,
+other vertical and shared-harness package bytes, SQL and uv.lock remain unchanged.
+
+## Entry 103 — Build document intake before expanding Prior Auth assessment
 
 On2026-11-12 the owner authorized all five Prior Auth recommendation groups in dependency
 order. Start on an isolated branch from main2cf9d69, preserving the other active worktree
@@ -7285,3 +7349,12 @@ the required page-limit assertion. Retain the failed job43322389191/131546109320
 review also caught SQLite's context-manager distinction: it commits/rolls back but does
 not close. Add an explicit finally-close around local payer connections;35new focused
 tests pass with that correction. Final hosted checks must verify the corrected head.
+
+While PR157 ran, Supply PR156 advanced main to30f060b. Preserve its Entry102
+and all Supply adapters/tests/configuration; renumber this entry103 and retain both
+instruction blocks and source lists. Both original matrices passed2012Prior-Auth
+tests before this reconciliation; require a fresh combined CI head before merge.
+
+The resolved combined tree passed92focused Prior Auth/Supply tests and strict typing
+for269source files; lint/format and conflict/whitespace checks passed. A comparison
+against30f060bconfirmed no change to any incoming Supply adapter, test or runbook.

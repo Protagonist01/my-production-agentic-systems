@@ -2,7 +2,7 @@
 
 Inspected2026-11-12 on `codex/prior-auth-document-pipeline`, based on main2cf9d69.
 This chapter covers the opt-in root adapters and new tests, not a fresh clinical study.
-See [implementation/runbook](prior-auth-document-pipeline.md) and Build Book Entry102.
+See [implementation/runbook](prior-auth-document-pipeline.md) and Build Book Entry103.
 
 ## Follow one invented request
 
