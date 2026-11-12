@@ -7215,6 +7215,31 @@ correct this; retain the failed commit as history and reverify the combined tree
 
 ## Entry 102 — Evaluate Supply boundaries before adding stage profiling and scorecards
 
+On2026-11-12 the owner authorized all four Supply recommendations in order: actual input
+boundaries, adversarial coverage, explicit stage/process timings and extended metrics.
+Start from verified main2cf9d69in a new isolated worktree; leave the newer Olist reference
+checkout untouched. No model invocation or allowance amendment follows. Existing Supply
+policy, source rights, SIM-only scope and release gates remain.
+
+First distinguish the incident-ID API from a future language interface. Test malformed,
+unrelated-field, unknown and unauthorized structured commands against the real handlers;
+prepare closed language-intake contracts/authored examples without activating a classifier.
+Consolidate hostile command outcomes with separate bad proposal, blocked attempt, actual
+effect and disclosure observations. Unknown results must not become successful protection.
+
+Add opt-in root adapters, preserving frozen package bytes. Use bounded, content-free spans
+with process-local monotonic intervals and explicit parent/trace context. Wrap real HTTP,
+authorization, planner, store/notice and Psycopg paths; retain inclusive SQL-lock/finalization
+labels instead of pretending to measure independent server wait or fsync. Expose separately
+timed event waits and a trusted spawned-worker adapter; unobserved stages remain missing.
+Do not re-enable automatic graph prompt/fact export. Local timing is not a Langfuse export.
+
+Finally extend the existing hidden-world reports with fixed scheduled denominators, paired
+cost distributions, tail cost, safe completion, approval/churn/notices/recovery/coverage
+diagnostics and explicit reference basis. Authored semantic examples and hindsight outcome
+comparisons stay separate from qualified references and decisions possible from public facts.
+Exercise invented negatives and actual SQL adapters before reporting coverage or performance.
+
 Implementation path: create `supply_diagnostics.py` first, with canonical contract revalidation
 and the full case/trial schedule. Run `tests/test_supply_intake_diagnostics.py` to prove
 forged fields never reach its service spy. Add `supply_profiling.py` and compose it in
@@ -7240,27 +7265,12 @@ or claim local SQL acceptance. The hosted Postgres job must execute the new real
 before merge. See docs/supply-evaluation-observability.md for the metric definitions,
 boundaries and interview exercises. No provider configuration or allowance was loaded.
 
-On2026-11-12 the owner authorized all four Supply recommendations in order: actual input
-boundaries, adversarial coverage, explicit stage/process timings and extended metrics.
-Start from verified main2cf9d69in a new isolated worktree; leave the newer Olist reference
-checkout untouched. No model invocation or allowance amendment follows. Existing Supply
-policy, source rights, SIM-only scope and release gates remain.
-
-First distinguish the incident-ID API from a future language interface. Test malformed,
-unrelated-field, unknown and unauthorized structured commands against the real handlers;
-prepare closed language-intake contracts/authored examples without activating a classifier.
-Consolidate hostile command outcomes with separate bad proposal, blocked attempt, actual
-effect and disclosure observations. Unknown results must not become successful protection.
-
-Add opt-in root adapters, preserving frozen package bytes. Use bounded, content-free spans
-with process-local monotonic intervals and explicit parent/trace context. Wrap real HTTP,
-authorization, planner, store/notice and Psycopg paths; retain inclusive SQL-lock/finalization
-labels instead of pretending to measure independent server wait or fsync. Expose separately
-timed event waits and a trusted spawned-worker adapter; unobserved stages remain missing.
-Do not re-enable automatic graph prompt/fact export. Local timing is not a Langfuse export.
-
-Finally extend the existing hidden-world reports with fixed scheduled denominators, paired
-cost distributions, tail cost, safe completion, approval/churn/notices/recovery/coverage
-diagnostics and explicit reference basis. Authored semantic examples and hindsight outcome
-comparisons stay separate from qualified references and decisions possible from public facts.
-Exercise invented negatives and actual SQL adapters before reporting coverage or performance.
+The final focused run passed28tests, including native SDK step replay; mypy passed260source
+files and Ruff/format passed. The first broad run used temporary files inside Git and was
+stopped before completion. The next stopped at62passes because its private parent directory
+was absent; create that parent explicitly. The corrected private-path run reached134passes
+then failed importing scikit-learn from the reused older environment. No baseline assertion
+was reached in that failing test. Use the clean locked hosted OS/Python matrix for complete
+acceptance rather than claiming the incomplete local broad run passed. PR156contains the
+full implementation; inspect all actual hosted job logs before merging. Existing Supply,
+other vertical and shared-harness package bytes, SQL and uv.lock remain unchanged.

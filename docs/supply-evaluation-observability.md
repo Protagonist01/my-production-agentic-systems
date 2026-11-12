@@ -25,8 +25,8 @@ separate work.
 The real API tests send unrelated text, forged tenant/approval/price fields, malformed
 identifiers, unknown scopes and unknown routes. Rejection is checked before service effects;
 SQL integration also snapshots budgets, shipments, proposals, ledger, confirmations and
-notices before/after the hostile requests. The test session adapter does not certify login;
-existing actual authentication/CSRF/session tests remain in the suite.
+notices before/after the hostile requests. The SQL test also logs in through the actual profiled authentication store;
+existing authentication/CSRF/session regressions remain in the suite.
 
 ## 2. Adversarial evaluation
 
