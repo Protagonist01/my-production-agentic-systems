@@ -2,6 +2,23 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth operator continuation (2026-11-13)
+
+After #157 the owner asked for the next work. The opt-in local operator workflow uses
+existing reviewer accounts for import/receipt/source-location commands, explicit schema
+bootstrap and offline workers. Authenticate before private file access, check write/case/
+tenant scope before source parsing, and revoke sessions on success/failure. Keep source
+and request files outside Git; return fixed metadata rather than clinical note bodies.
+See docs/prior-auth-operator-workflow.md. No public upload, provider flag or native-worker
+isolation claim follows from a trusted local command.
+
+The separately named conflict-rules-v3 baseline is development-only. Preserve original
+rules, source cases, proposed labels and captures. The comparison uses only the two
+already exposed conflict inputs, retains unknown criterion references and executes no
+model. Agreement on those cases is not independent clinical truth or qualification.
+Existing merge/testing authority applies; release #51, source-method decisions, live
+model/export scopes and the stopped shared ledger remain unchanged.
+
 ## Supply evaluation implementation (2026-11-12)
 
 The owner authorized implementing all four Supply recommendations in dependency order:

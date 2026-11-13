@@ -73,6 +73,27 @@ response. A simulated approval never changes the legacy evidence checker into an
 
 ## Tests and engineering questions
 
+The [authenticated operator workflow](prior-auth-operator-workflow.md) adds the concrete
+command composition after PR157. `prior_auth_operator.authenticated` obtains the
+server-stored principal before `import_document` loads any private input. Scope checks
+precede the source read and parser, and logout executes even if import fails. The worker
+has only explicit offline baselines; it cannot enable a provider through a flag.
+
+`prior_auth_intake_readback.IntakeReader` reads receipts without requiring a legacy case
+to exist, which makes rejected intake inspectable. `locate` instead joins documents,
+receipts and the current case in one statement snapshot. It checks the expected current
+note hash, the saved prefix, source hash and import-version agreement before translating
+Unicode offsets. It returns source locations without returning clinical text. The SQL
+test appends a supplement, rejects the old note pin, locates both documents with the new
+pin and detects an administrator-mutated source pin.
+
+`prior_auth_operator_rules.conflict_rules` is a new development comparator, preserving
+the original rules and old captures. Distinct explicit hourly rates cause intentional
+abstention, not selection of a medical fact. The separate comparison reconstructs only
+the two exposed conflict inputs and checks their original source/request pins; readback
+recomputes the three scorecards and keeps unknown criterion labels unknown. This cannot
+supply independent clinical evidence or a qualification claim.
+
 Read `tests/test_prior_auth_pipeline.py`, `tests/test_prior_auth_sandbox.py`, the new
 SQL tests and the required native canary. Focus on wrong patient/tenant, malformed
 documents, DTDs, URL attachments, injection, expired/overlapping policies, redaction
