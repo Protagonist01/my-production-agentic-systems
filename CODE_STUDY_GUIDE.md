@@ -431,7 +431,7 @@ It is preparation for #51/#57/#61, with reviewer responses and final release stu
 
 [Supply console chapter](docs/code-study-supply-console.md) traces S5 server-derived scopes, exact decisions, atomic projections and recoverable in-app notices (unmerged branch).
 
-[Prior-auth evidence chapter](docs/code-study-prior-auth.md) traces the P1–P3 source/label/model/evidence boundaries merged through #92. The [P4/P5 document-review chapter](docs/code-study-prior-auth-review.md) follows SQL leases, versioned waits, protected sessions and reviewer actions. The [document-pipeline chapter](docs/code-study-prior-auth-pipeline.md) traces opt-in intake, native extraction, atomic handoff, profiling, scorecards and the local synthetic payer; it records the remaining clinical and interoperability limits.
+[Prior-auth evidence chapter](docs/code-study-prior-auth.md) traces the P1–P3 source/label/model/evidence boundaries merged through #92. The [P4/P5 document-review chapter](docs/code-study-prior-auth-review.md) follows SQL leases, versioned waits, protected sessions and reviewer actions. The [document-pipeline chapter](docs/code-study-prior-auth-pipeline.md) traces opt-in intake, native extraction, atomic handoff, profiling, scorecards and the local synthetic payer; it records the remaining clinical and interoperability limits. The [release-readiness chapter](docs/code-study-prior-auth-release.md) traces independent structured references, exact no-provider request preparation and the durable external HL7 reference-payer adapter.
 
 ## 1. What exists and what the architecture means
 

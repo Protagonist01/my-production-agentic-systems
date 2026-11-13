@@ -2,6 +2,32 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth release-readiness continuation (2026-11-13)
+
+After #158 the owner requested clinical qualification, fresh studies and external payer
+integration. See docs/prior-auth-release-readiness.md and its code-study chapter. The
+new structured-fact reference is a proposed constructed method, not clinical gold.
+Keep AHI/RDI measures and national/local short-study policy scopes separate. Preserve
+legacy packages/captures and all eight clinical fields/slices; no qualification flag
+or release #51 acceptance follows from authored labels, exact quotes or an HTTP200.
+
+The private v2 development packet is at D:/document/.cache/production-agents/prior-auth/
+release-readiness-2026-11-13-v2. It contains12invented notes,168criterion slots(166actual
+request preparations),48actual baseline outputs and separate proposed labels. Manifest
+119a2297ce220a5063e28755e99e58d93f591ced672a54d3930264bb890f1824. No provider call,
+key load or ledger mutation occurred. The proposed170newattempt/784lifetime scope and
+constructed method are pending explicit owner approval/current Free confirmation and
+scoped runner readiness. Keep the447consumed/614ceiling snapshot, old stop and all old
+slots/history intact. A pending question is not approval; do not dispatch implicitly.
+
+The opt-in PAS adapter targets only an owned loopback HL7-DaVinci/br-payer reference
+service at pinned commit10d40911cb90d6198aacec144b4bfc48466af2fb, invented resources
+and a note hash. Authenticated application reviewer authority and canonical state are
+caller requirements. It is not a commercial payer/public authentication qualification.
+Reserve before POST, preserve reserved/unknown outcomes and never auto-resubmit them.
+Verify actual independent-process CI for the exact head before claiming interoperability.
+Existing tested-PR submission/merge authority applies; study and release gates stay separate.
+
 ## Prior Auth operator continuation (2026-11-13)
 
 After #157 the owner asked for the next work. The opt-in local operator workflow uses

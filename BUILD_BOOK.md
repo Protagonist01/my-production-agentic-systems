@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 105 — Separate clinical qualification, fresh study authority and payer interoperability](#entry-105--separate-clinical-qualification-fresh-study-authority-and-payer-interoperability)
+
 - [Entry 104 — Turn Prior Auth intake into an authenticated operator workflow](#entry-104--turn-prior-auth-intake-into-an-authenticated-operator-workflow)
 
 - [Entry 103 — Build document intake before expanding Prior Auth assessment](#entry-103--build-document-intake-before-expanding-prior-auth-assessment)
@@ -7422,3 +7424,65 @@ echo path: an accidentally supplied credential could appear in stderr before our
 exception handler ran. Override parser.error to show only fixed usage/guidance, and keep
 runtime exception-class output on the separate fixed-message exit path. Add an invalid
 baseline-value canary test; do not rely only on application exceptions being quiet.
+
+## Entry 105 — Separate clinical qualification, fresh study authority and payer interoperability
+
+On 2026-11-13 the owner explicitly requested the three remaining Prior Auth release
+requirements after PR158. Start from main4d2b174 in a separate worktree. The goal remains
+the existing assistive initial-CPAP application; an engineering demo is not its release.
+
+Before building: which evidence can establish policy arithmetic, clinical interpretation
+and an actual payer transport independently? CMS NCD240.4 provides authoritative national
+coverage prose, not patient-level semantic gold. Existing Synthea examples are synthetic
+and the old labels are AI-provisional. MedNLI needs credentialed access and constrained
+LLM use; a clinical-trial entailment benchmark does not automatically cover CPAP records.
+Keep a field-level applicability matrix and an explicit unresolved clinical judgment.
+
+Implement a separate fact-table oracle and qualification inventory without importing the
+candidate scorer to derive its expected values. Prepare a bounded, private study draft,
+with candidate inputs separated from references, full worst-case attempt arithmetic and
+no dispatch/key loading until an exact scope/allowance grant is recorded. Read the same
+authoritative shared ledger read-only; preserve the old stop and bound slots.
+
+For external interoperability, prefer the newer official HL7-DaVinci/br-payer reference
+service over treating the older oxygen demo as a CPAP clinical oracle. Pin commit
+10d40911cb90d6198aacec144b4bfc48466af2fb. Its PAS outcome=complete is processing status,
+while item-level reviewAction carries the decision; an unknown service defaults to A3
+(not required), which must never become a clinical approval in our application. Test
+an actual independently running service with invented, code-catalog-free resources.
+Authentication, correlation, bounded transport and durable unknown outcomes remain
+necessary even though this is a local-owned reference service, not a commercial insurer.
+
+Build the root adapter without touching the legacy clinical package. Validate a trusted
+reviewer/current-version submission, hash its canonical payload, and commit a SQLite
+reservation before opening the connection. Test a lost response and a process-death
+exception separately: ordinary failures become unknown; process death leaves reserved.
+In both cases replay returns stored uncertainty without another POST. Run concurrent
+callers against the same journal to witness one actual transport invocation.
+
+Source inspection found the RI changes Claim ids and assigns a random response Bundle
+identifier. Therefore GET the assigned Claim and match our stable identifier rather
+than treating the Bundle identifier as an echo. The nested review-action-code extension
+uses its full canonical URL and X12 coding system, not a guessed child named code.
+Read the upstream constants/extension builder and correct the adapter/test fixture
+before the independent-server check. Assign per-submission synthetic resource ids so
+later invented requests cannot overwrite another case's patient resources.
+
+The first focused test run failed9tests because the fixture called demo_request without
+its required raw bytes; correct the caller/order and keep that run in the log. The
+next18tests passed. An isolated mypy invocation skipped untyped installed workspace
+imports; use the repository's full source configuration instead. It found one real
+mixed-dictionary type inference issue in resource id rewriting. Annotate the resource
+collection explicitly; the full276source-file strict run then passed. A broad Ruff
+format invocation also checked old Markdown examples; use dev.py's explicit Python
+source inventory rather than reformatting unrelated historical prose.
+
+Generate the private v2 packet with the actual pinned CMS policy source/prose/compilation,
+not the shape-only demo policy. Independently capture the legacy request builder for
+each criterion/trial without an SDK, key or network. The12notes yield168slots but166
+requests because two retrievals are absent. Execute rules/always-review twice each:
+48actual baseline outputs, with agreement unknown because reference method acceptance
+and clinical qualification are separate. Manifest119a2297ce220a5063e28755e99e58d93f591ced672a54d3930264bb890f1824.
+Preserve the earlier v1 draft rather than rewriting it. Ask the owner about the concrete
+170attempt development proposal only after these artifacts exist; continue independent
+implementation and hosted checks while that question is pending.
