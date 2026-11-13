@@ -258,6 +258,26 @@ def run(packet: Path, capture: Path, ledger_path: Path, configuration: Path) -> 
             db.backup(backup)
     ledger = initialize(ledger_path, grant)
     (capture / "scope.sha256").write_text(ledger.scope_pin + "\n", encoding="ascii")
+    write(
+        ledger_path.parent / "prior-auth-784-external-pin.json",
+        {
+            "scope_sha256": ledger.scope_pin,
+            "capture": str(capture),
+            "maximum": 784,
+            "meaning": "PA extension in same ledger; old external marker and stopped scope unchanged",
+        },
+    )
+    print(
+        json.dumps(
+            {
+                "phase": "grant_committed",
+                "scope_sha256": ledger.scope_pin,
+                "lifetime_maximum": 784,
+                "historical_consumed": 447,
+            }
+        ),
+        flush=True,
+    )
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
     context = RunContext(
         run_id="prior-auth-development-2026-11-13-v1",
