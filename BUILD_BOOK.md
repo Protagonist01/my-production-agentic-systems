@@ -7486,3 +7486,23 @@ and clinical qualification are separate. Manifest119a2297ce220a5063e28755e99e58d
 Preserve the earlier v1 draft rather than rewriting it. Ask the owner about the concrete
 170attempt development proposal only after these artifacts exist; continue independent
 implementation and hosted checks while that question is pending.
+
+The owner accepted the concrete v2 constructed-development scope and confirmed Free.
+Implement its grant as new append-only tables in the same budget SQLite file. Leave
+the stopped routing tables and triggers intact; fingerprint their entire logical
+schema/data inside every new reservation/settlement transaction. Old clients still
+show their447/614scope, so report the new cumulative count explicitly. The first
+root-budget design check found that SharedControls retains every pessimistic token
+reservation;170full ceilings exceed the accepted2million token cap. Do not silently
+raise that cap or invent a tokenizer estimate. Permit one outstanding attempt, reserve
+the existing full ceiling before I/O, settle to actual known usage, and stop on unknown
+usage. This preserves the accepted aggregate cap without changing frozen harness code.
+
+The actual hosted HL7 build succeeded. Its submit returned a correlated A3, but inquiry
+failed a Bundle-only validator. Read PasInquiryService/buildInquiryResponse at the
+pinned upstream revision: inquiry returns Parameters with0..*responseBundle entries
+and omits patient/organization resources in the nested Bundle. Add a separate single-
+match wrapper parser and independently GET missing identity resources through closed
+same-base paths. Do not accept an empty/ambiguous match or remove the correlation check.
+Add the inquiry regression before another actual-service run. Preserve the failed
+workflow runs43341461169and43342076468 as evidence of the initial mismatch.

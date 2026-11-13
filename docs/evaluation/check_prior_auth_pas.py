@@ -20,7 +20,7 @@ from prior_auth_pas import (  # noqa: E402
     Loopback,
     PasClient,
     bundle,
-    checked_response,
+    checked_inquiry,
     object_from,
 )
 from prior_auth_pipeline import prepare  # noqa: E402
@@ -131,7 +131,7 @@ def main(war: Path) -> None:
                 )
                 assert client.submit(user, request, note, current_version=1) == response
                 assert counts.count("POST Claim/$submit") == 1
-                inquiry = checked_response(
+                inquiry = checked_inquiry(
                     transport("POST", "Claim/$inquire", bundle(request, note)),
                     digest(request.canonical_json()),
                     request,

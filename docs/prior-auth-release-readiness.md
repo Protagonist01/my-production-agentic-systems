@@ -112,15 +112,37 @@ reference for national short-study interpretation stays unresolved.
 
 The shared ledger read-only snapshot was447consumed,0unsettled, lifetime ceiling614,
 with the prior routing stop present. Existing bound slots cannot fund this new scope.
-The proposed lifetime ceiling is784, with all old history, stop and slots preserved.
-That number is a proposal, not authorization. No request in this change is sent to
-Gemini. The owner must accept the concrete method/export/limits and confirm the
-configured project remains Free before a same-ledger extension and dispatch.
+The owner subsequently approved the concrete v2 constructed-development method/export/
+limits,170newattempts, lifetime ceiling784 and confirmed the project remains Free.
+That approval supplies no clinical qualification or release decision. The new scoped
+runner must pass readiness checks before dispatch. Preserve every old history row,
+stop and slot; do not continue the old stopped study or transfer its unused allowance.
 
 Proposed limits: Gemini3.5Flash-Lite, temperature0, output512tokens/request, no tools,
 90sHTTP/110sparent,18,000srun,2,000,000total tokens, one request at a time,7daysfrom
 approval, both canaries pass before domain calls. Count failures and never retry a
 consumed request automatically. No paid fallback, old-slot reuse or release grant.
+
+`prior_auth_study_budget.py` adds append-only PA scope/reservation/settlement/stop
+tables in the same existing SQLite file. It leaves historical tables and their SQL
+triggers unchanged and checks their full logical snapshot before every reservation
+and settlement. The old frozen reader still reports its own447/614scope; use the new
+PA summary for the cumulative total and784ceiling. This is one budget file, not a new
+parallel allowance. Any historical mutation blocks the PA run. A missing settlement
+blocks further reservations; no implicit resume or outstanding-attempt retry exists.
+
+The runner uses the exact owner-approved v2 packet pin and same Windows/Python
+environment, freezes all executable source/lock bytes, and verifies the existing
+credential association privately. Two canaries reuse already approved representative
+request bytes; then166domain requests run in fixed order. The two retrieval-absent
+slots cannot be converted to another case. The170allowance is an upper bound, not a
+target to exhaust. Only one attempt may be outstanding. It reserves the existing
+full input/output token ceiling against the2million remaining token allowance before
+dispatch and releases that pending ceiling only to known observed usage after
+settlement. Unknown usage stops the run. Raw provider cost stays unknown when absent;
+the owner's Free attestation is not provider billing evidence. Each request uses an
+owned/reaped child with90sHTTP/110sparent limits and no SDK retry or fallback. The run
+expires conservatively at2026-11-20T00:00Z, within seven days of approval.
 
 Reproduce preparation from an installed editable checkout, with a new directory:
 
@@ -157,7 +179,11 @@ without converting it, `outcome=complete`, or any HTTP200 into our own approval.
 
 The RI assigns a new Claim id and random response Bundle identifier. Correlate with
 a separate bounded GET of that Claim and our stable Claim identifier, then match
-the response Patient/insurer/requestor identifiers. Reject arbitrary/absolute URLs,
+the response Patient/insurer/requestor identifiers. Inquiry returns a Parameters
+wrapper with0..*responseBundle values; require exactly one match and independently
+read the referenced identity resources when its Bundle omits them. A foreign/absolute
+reference remains refused; only closed Patient/Organization/Claim ids at the same
+literal loopback base may be read. Reject arbitrary/absolute URLs,
 unexpected service items, ambiguous/missing review codes and duplicate JSON keys.
 Transport uses a literal loopback address, closed operations, no environment proxy,
 no redirect following,2MBbody limits and bounded socket/read operations.

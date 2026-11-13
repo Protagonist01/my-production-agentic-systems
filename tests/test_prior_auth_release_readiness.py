@@ -18,6 +18,7 @@ from prior_auth_pas import (
     Loopback,
     PasClient,
     bundle,
+    checked_inquiry,
     checked_response,
     encoded,
     object_from,
@@ -241,6 +242,36 @@ def test_ambiguous_json_and_nonobjects_are_refused():
     for raw in (b'{"resourceType":"Bundle","resourceType":"Claim"}', b"[]", b"x" * 2_000_001):
         with pytest.raises(ValueError):
             object_from(raw)
+
+
+def test_inquiry_parameters_need_unique_match_and_independent_identity_readback():
+    request, note = fixture()
+    response, stored = payer_response(bundle(request, note))
+    resources = {
+        f"{e['resource']['resourceType']}/{e['resource']['id']}": e["resource"]
+        for e in response["entry"][1:]
+    }
+    response["entry"] = response["entry"][:1]
+    wrapper = {
+        "resourceType": "Parameters",
+        "parameter": [{"name": "responseBundle", "resource": response}],
+    }
+    gets = []
+
+    def read(method, path, payload):
+        gets.append(path)
+        return encoded(stored if path == "Claim/server-claim" else resources[path])
+
+    result = checked_inquiry(encoded(wrapper), digest(request.canonical_json()), request, read)
+    assert result.review_codes == ("A3",) and len(gets) == 4
+    for parameters in ([], wrapper["parameter"] * 2):
+        with pytest.raises(ValueError):
+            checked_inquiry(
+                encoded({"resourceType": "Parameters", "parameter": parameters}),
+                digest(request.canonical_json()),
+                request,
+                read,
+            )
 
 
 def test_proposal_has_separate_labels_and_no_false_qualification(tmp_path):

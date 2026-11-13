@@ -170,7 +170,10 @@ class Loopback:
             ("GET", "metadata"),
             ("POST", "Claim/$submit"),
             ("POST", "Claim/$inquire"),
-        } and not (method == "GET" and re.fullmatch(r"Claim/[A-Za-z0-9.-]{1,64}", path)):
+        } and not (
+            method == "GET"
+            and re.fullmatch(r"(?:Claim|Patient|Organization)/[A-Za-z0-9.-]{1,64}", path)
+        ):
             raise ValueError("closed PAS operation required")
         raw = None if payload is None else encoded(payload)
         if raw is not None and len(raw) > MAX_BYTES:
@@ -275,9 +278,12 @@ def checked_response(
     )
     for field, pin, kind in expected:
         ref = cr.get(field, {}).get("reference", "")
-        if not re.fullmatch(kind + r"/[A-Za-z0-9.-]{1,64}", ref) or not has_id(
-            resources.get(ref, {}), pin
-        ):
+        if not re.fullmatch(kind + r"/[A-Za-z0-9.-]{1,64}", ref):
+            raise ValueError("closed response identity reference required")
+        resource = resources.get(ref)
+        if resource is None:
+            resource = object_from(transport("GET", ref, None))
+        if resource.get("resourceType") != kind or not has_id(resource, pin):
             raise ValueError("response identity differs")
     codes = []
     for item in cr.get("item", []):
@@ -304,6 +310,24 @@ def checked_response(
         processing=cr["outcome"],
         review_codes=tuple(codes),
     )
+
+
+def checked_inquiry(
+    raw: bytes,
+    key: str,
+    request: Submission,
+    transport: Callable[[str, str, dict[str, Any] | None], bytes],
+) -> Receipt:
+    value = object_from(raw)
+    parameters = value.get("parameter", [])
+    if (
+        value.get("resourceType") != "Parameters"
+        or len(parameters) != 1
+        or (parameters[0].get("name") != "responseBundle")
+    ):
+        raise ValueError("one uniquely correlated inquiry response required")
+    result = checked_response(encoded(parameters[0]["resource"]), key, request, transport)
+    return result.model_copy(update={"response_sha256": hashlib.sha256(raw).hexdigest()})
 
 
 class PasClient:

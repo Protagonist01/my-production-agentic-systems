@@ -45,6 +45,25 @@ method is accepted. These are real baseline executions, not real model execution
 The manifest is not an approval or full live-runner/environment attestation. The
 separate scoped runner, same-ledger grant and SDK readiness must precede dispatch.
 
+The subsequently approved development runner is [`prior_auth_study_run.py`](../prior_auth_study_run.py).
+It accepts only the exact v2 manifest pin, fixed request order and its original
+Windows/Python environment. It freezes every executable source file and verifies
+the private credential association against the original shared authorization. The
+[new budget namespace](../prior_auth_study_budget.py) lives in the same ledger file:
+append-only scope, reservation, settlement and stop tables; old tables/triggers are
+unchanged. The history snapshot is recomputed inside each admission transaction.
+One outstanding reservation blocks others. Known settled usage replaces the pending
+full token ceiling; unknown usage creates a durable stop. This differs from the old
+SharedControls policy that retains every pessimistic token reservation: that policy
+could not admit the approved study within2million tokens. No frozen harness change
+or smaller assumed model ceiling was used to work around it.
+
+The isolated worker caps HTTP at90seconds and the parent at110; it never retries.
+Private observations retain raw responses and process phase times. The readback
+candidate reconstructs checked decisions from those exact captured responses, with
+no provider access. Scheduled-but-missing case trials stay missing. This study remains
+constructed development even if every model output agrees with its proposed labels.
+
 ## Trace one external payer submission
 
 [`PasClient.submit`](../prior_auth_pas.py) takes a trusted authenticated Principal,
@@ -79,6 +98,13 @@ payer and provider identifiers. Closed relative references prevent a payer respo
 from directing reads to another host. Missing/ambiguous actions and unexpected items
 are refused. `complete` plus A3 remains recorded as processing complete/not required;
 the receipt schema has no clinical approval field and validation always stays false.
+
+Actual hosted testing caught a protocol difference that the first submit-shaped fake
+missed: inquiry returns Parameters containing responseBundle entries, and its Bundle
+can omit patient/organization resources. `checked_inquiry` requires a single match;
+the common validator fetches missing identities only through closed resource paths
+at the same configured service. An empty/multiple-match response remains an unresolved
+inquiry, never an implicit approval. Keep this regression separate from submit tests.
 
 ## Evidence and operating limits
 
