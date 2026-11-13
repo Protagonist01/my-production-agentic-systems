@@ -7530,3 +7530,40 @@ That is the wrong boundary for an ignored private configuration. Add a separate
 metadata-only check requiring ignored AND untracked Git status before reading it,
 then retain the original credential-association match. Keep the source/evaluator guard
 unchanged and test that it still refuses Git storage. No consumed request was retried.
+
+The actual study then ran to completion on0eefbf2:2passing canaries and166domain
+requests, no retries/fallback/transport failures,24case trials with all required raw
+requests observed. All token usage was known:88,684input and11,749output including
+thinking. The same ledger has615/784consumed(447old+168new),0unsettled; the old stopped
+scope and every old row/slot remain unchanged. The unused two upper-bound slots cannot
+become another experiment. Current parent request p95is9.768seconds; this is not a
+whole-case/API or production SLA measurement.
+
+The independent readback then correctly refused PermissionError. The reconstruction
+used example_context's invented-tenant, while completed notes belong to demo. Earlier
+reader tests had no complete case, so extraction never reached that scope fence. Verify
+the frozen provider source/lock first(it matched exactly), then fix only the reader's
+explicit demo tenant and add a completed-case regression. Three reader tests passed;
+the standalone reader verified the complete capture without any model call. Its only
+post-run Python differences are that reader and its test. Do not weaken the candidate's
+scope check or rewrite the original recording to make the reader pass.
+
+The scored result is160/166raw state agreements,128/168after checking,154/168rules
+and8/168always-review, all against accepted constructed proposals. Six raw positive
+disagreements were contained: fractional threshold, same-measure conflict and unresolved
+national short-study condition, twice each. The checker also produced38unrecognized-
+support abstentions and2different-measure conflicts against matching proposed states.
+Inspect actual invented quotes: some omit positive-result or physician-supervision
+sentences. The recognizer already joins quotes; do not diagnose a nonexistent joining
+bug. Low checked agreement can reflect incomplete citation selection and conservative
+grammar as well as policy-meaning uncertainty. Preserve each layer separately.
+
+Research while the frozen study ran found HealthAdminBench and CHI-Bench workflow
+candidates, but no task corpus/judge was activated. Record exact metadata revisions,
+gated data/handbook and semantic-grader applicability gaps. A narrow CMS compliance
+example addresses missing sleep-test documentation but bills a bi-level device; it
+cannot supply our full initial-CPAP disposition gold. Qualification inventory2ad821260
+ad9afa85a72424fb428d493621a146200d8ef08bef56c27ef9d0459 keeps all eight required
+fields/slices and an empty acceptance form. Constructed event counts/intervals also need
+clinical applicability review before clinical qualification. No new label is silently
+created, no benchmark name becomes proof, and no code merge closes release issue51.

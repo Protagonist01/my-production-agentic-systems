@@ -5,6 +5,10 @@ It never approves insurance coverage or recommends treatment. The three workstre
 below have different evidence requirements; a successful HTTP request cannot qualify
 clinical meaning, and agreeing with constructed labels cannot qualify patient records.
 
+The approved development study has now completed. See the
+[actual result and failure analysis](prior-auth-development-study-v1.md) and the
+[clinical-reference applicability audit](prior-auth-reference-applicability.md).
+
 ## Source findings that change the evaluation
 
 The authoritative national source is [CMS NCD240.4, version3](https://www.cms.gov/medicare-coverage-database/view/ncd.aspx?ncdid=226&ncdver=3).
@@ -101,8 +105,8 @@ at a time, so prompts/schema/full notes/request hashes can be reviewed without a
 SDK transport, credential loader or ledger mutation. Inputs and proposed references
 are separate files. The manifest pins artifacts, selected code, lock and environment.
 This is a request-preparation witness, not a completed provider result or full live
-runner qualification. A scoped live runner still needs readiness tests and accepted
-limits before dispatch.
+runner qualification. The separate scoped live runner passed readiness and executed
+the subsequently approved study; its evidence is recorded in the actual-result chapter.
 
 The concrete proposal uses12new authored development cases, two trials, at most
 seven criterion calls per trial and two passing canaries: **170maximum attempts**.
@@ -118,7 +122,7 @@ That approval supplies no clinical qualification or release decision. The new sc
 runner must pass readiness checks before dispatch. Preserve every old history row,
 stop and slot; do not continue the old stopped study or transfer its unused allowance.
 
-Proposed limits: Gemini3.5Flash-Lite, temperature0, output512tokens/request, no tools,
+Approved development limits: Gemini3.5Flash-Lite, temperature0, output512tokens/request, no tools,
 90sHTTP/110sparent,18,000srun,2,000,000total tokens, one request at a time,7daysfrom
 approval, both canaries pass before domain calls. Count failures and never retry a
 consumed request automatically. No paid fallback, old-slot reuse or release grant.

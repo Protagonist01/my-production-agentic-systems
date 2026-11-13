@@ -126,3 +126,66 @@ def test_raw_response_reconstruction_and_tampered_artifact_refusal(tmp_path, mon
     (capture / "attempt-001.json").write_text(json.dumps(row))
     with pytest.raises(ValueError, match="artifact"):
         reader.readback(packet, capture, database, ledger.scope_pin)
+
+
+def test_completed_case_reconstruction_requires_the_approved_tenant_context(tmp_path, monkeypatch):
+    packet, capture, database, ledger, notes, schedule = fixture(tmp_path, monkeypatch)
+    observed = []
+    for ordinal, first in enumerate(schedule[:9], 1):
+        request = ModelRequest.model_validate_json(json.dumps(first["request"]))
+        note = notes[first["case_id"]]
+        response = ModelResponse(
+            provider=request.provider,
+            model=request.model,
+            output=ModelMessage(
+                role="assistant",
+                content=json.dumps(
+                    {
+                        "criterion_id": first["criterion"],
+                        "state": "met",
+                        "quotes": [note.text.splitlines()[0]],
+                        "rationale": "Invented scope witness.",
+                    }
+                ),
+            ),
+            usage=Usage(
+                model_calls=1, input_tokens=50, output_tokens=20, cost=None, cost_currency=None
+            ),
+        )
+        parsed = parse(response, request, note)
+        row = {
+            "ordinal": ordinal,
+            "phase": first["phase"],
+            "case_id": first["case_id"],
+            "trial": first["trial"],
+            "criterion": first["criterion"],
+            "request_sha256": request.fingerprint(),
+            "response": response.model_dump(mode="json"),
+            "parsed": parsed.model_dump(mode="json"),
+            "canary_pass": ordinal <= 2,
+            "elapsed_seconds": 1.0,
+        }
+        ledger.reserve(ordinal, request.fingerprint(), now=NOW)
+        ledger.settle(ordinal, row, tokens=70, canary_pass=ordinal <= 2, stop=None)
+        write(capture / f"attempt-{ordinal:03}.json", row)
+        observed.append(row)
+    with pytest.raises(PermissionError):
+        decisions(
+            notes,
+            demo_policy(),
+            schedule,
+            observed,
+            example_context("readback-only", "readback-only"),
+        )
+    correct = decisions(
+        notes,
+        demo_policy(),
+        schedule,
+        observed,
+        example_context("readback-only", "readback-only").model_copy(update={"tenant_id": "demo"}),
+    )
+    (capture / "checked-decisions.json").write_text(json.dumps(correct))
+    result = reader.readback(packet, capture, database, ledger.scope_pin)
+    assert result["checked_proposed_state_agreement"]["observed"] == 7
+    assert result["model_proposed_state_agreement"]["observed"] == 7
+    assert not result["clinical_qualified"]

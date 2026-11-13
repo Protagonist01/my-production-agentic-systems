@@ -6,6 +6,20 @@ it does not claim a line-by-line audit of the Java dependency or clinical qualif
 The earlier [pipeline chapter](code-study-prior-auth-pipeline.md) remains the source
 for intake, native tools, SQL handoff and authenticated operator composition.
 
+```mermaid
+flowchart LR
+    I[Frozen invented inputs and CMS policy] --> P[Exact request preparation]
+    P --> B[Same-file scoped reservation]
+    B --> W[Owned SDK worker]
+    W --> S[Immutable settlement and private capture]
+    S --> R[Separate read-only reconstruction]
+    D[Accepted constructed references] --> R
+    Q[Qualified clinical references still missing] -. qualification .-> R
+```
+
+The proposed references do not enter the model request. A passing canary, matching
+quote or accepted JSON response does not supply the missing clinical-reference node.
+
 ## Independent structured reference
 
 [`Facts` and `reference`](../prior_auth_reference_method.py) describe one constructed
@@ -63,6 +77,21 @@ Private observations retain raw responses and process phase times. The readback
 candidate reconstructs checked decisions from those exact captured responses, with
 no provider access. Scheduled-but-missing case trials stay missing. This study remains
 constructed development even if every model output agrees with its proposed labels.
+
+[`prior_auth_study_readback.readback`](../prior_auth_study_readback.py) opens the ledger
+read-only with query-only mode, checks the externally recorded scope identity and old
+history, compares each immutable settlement with its private artifact, and independently
+checks the raw parse/quote evidence. It reconstructs the checked decisions from captured
+responses through the frozen extractor/checker, without a provider. It reads proposed
+references separately for development agreement; that path cannot create clinical gold.
+Observed failures remain in denominators and missing observations stay explicit.
+
+The first actual reconstruction exposed a caller bug: the generic example context had
+`invented-tenant`, while these notes belong to `demo`. The scope fence correctly refused
+the completed case. Only the reader's explicit context and its completed-case regression
+changed after the provider run. All provider execution/request/reference bytes remained
+unchanged. The [actual study report](prior-auth-development-study-v1.md) records this
+version distinction, raw/checked agreement, incomplete citation examples and limitations.
 
 ## Trace one external payer submission
 
@@ -125,6 +154,13 @@ public-host authentication, patient consent or clinical adjudication. Inspect th
 actual workflow result for the exact PR head before claiming the external check ran.
 
 The [release matrix](prior-auth-release-readiness.md#qualification-matrix) preserves
-all eight required fields/slices. No qualified clinical references, accepted risk
-thresholds, new provider authorization or production release is asserted here.
+all eight required fields/slices. These code checks grant neither clinical reference
+qualification nor production release, and clinical acceptance limits remain pending.
 Build Book Entry105 records the source research, choices and actual failures.
+
+The subsequent [reference applicability audit](prior-auth-reference-applicability.md)
+compares agency policy/examples, clinical-entailment sources and newer administrative
+benchmarks. It records inspected metadata revisions, gated-access and grader limits,
+and unestablished CPAP coverage. It supplies no imported clinical labels. The owner did
+approve the separately bounded constructed development study; that grant is distinct
+from clinical reference qualification and production release.

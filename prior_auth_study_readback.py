@@ -131,7 +131,13 @@ def readback(packet: Path, capture: Path, ledger_path: Path, scope_pin: str) -> 
     checked = cast(
         list[dict[str, Any]],
         decisions(
-            notes, policy, schedule, observations, example_context("readback-only", "readback-only")
+            notes,
+            policy,
+            schedule,
+            observations,
+            example_context("readback-only", "readback-only").model_copy(
+                update={"tenant_id": "demo", "agent_id": "prior-auth"}
+            ),
         ),
     )
     if checked != json.loads((capture / "checked-decisions.json").read_bytes()):
@@ -160,6 +166,7 @@ def readback(packet: Path, capture: Path, ledger_path: Path, scope_pin: str) -> 
         raise ValueError("invalid attempt timing")
     return {
         "version": "prior-auth-development-readback-v1",
+        "reader_version": "readback-tenant-context-v2",
         "custody_verified": True,
         "old_history_unchanged": True,
         "historical_consumed": 447,

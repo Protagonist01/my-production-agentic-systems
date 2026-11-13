@@ -2,10 +2,10 @@ name: Prior Auth reference payer
 
 on:
   pull_request:
-    paths: ['prior_auth_*.py', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
+    paths: ['prior_auth_*.py', 'docs/prior-auth-*.md', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
   push:
     branches: [main]
-    paths: ['prior_auth_*.py', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
+    paths: ['prior_auth_*.py', 'docs/prior-auth-*.md', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
   workflow_dispatch:
 
 permissions:
