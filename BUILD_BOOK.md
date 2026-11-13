@@ -7416,3 +7416,9 @@ The private capture at D:/document/.cache/production-agents/prior-auth/operator-
 original rules0/2, always-review2/2, new variant2/2 against the same proposed routes.
 All14criterion references remain unknown for each; no provider call or qualification.
 The invented draft command also ran successfully without Docker or account credentials.
+
+During final CLI review, argparse's default invalid-value errors were another content
+echo path: an accidentally supplied credential could appear in stderr before our normal
+exception handler ran. Override parser.error to show only fixed usage/guidance, and keep
+runtime exception-class output on the separate fixed-message exit path. Add an invalid
+baseline-value canary test; do not rely only on application exceptions being quiet.

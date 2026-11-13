@@ -7,8 +7,9 @@ account provisioning; passwords are read interactively, never through command ar
 import argparse
 import getpass
 import json
+import sys
 from pathlib import Path
-from typing import Annotated, Any, Literal
+from typing import Annotated, Any, Literal, NoReturn
 
 import psycopg
 from agent_harness.contracts import WireContract
@@ -27,6 +28,14 @@ from prior_auth_operator_rules import VERSION, conflict_rules
 from prior_auth_pipeline import ImportRequest, prepare
 from prior_auth_profiling import Profiler
 from prior_auth_store import IntakeStore, ProfiledReviewStore, setup
+
+
+class OperatorParser(argparse.ArgumentParser):
+    def error(self, message: str) -> NoReturn:
+        # Argparse normally echoes invalid values, including accidentally pasted
+        # credentials. Usage/help is useful; arbitrary argument values are not.
+        self.print_usage(sys.stderr)
+        self.exit(2, "operator: invalid command; use --help\n")
 
 
 class ToolsConfig(WireContract):
@@ -149,7 +158,7 @@ def authenticated(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = OperatorParser(prog="prior_auth_operator", description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--trial", required=True)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -207,8 +216,8 @@ def main() -> None:
                 result = {**result, "timing": profiler.report()}
         print(json.dumps(result, sort_keys=True))
     except (ValueError, OSError, LookupError, PermissionError, psycopg.Error) as error:
-        parser.error(
-            type(error).__name__ + "; inspect private inputs and current case/receipt state"
+        parser.exit(
+            2, type(error).__name__ + "; inspect private inputs and current case/receipt state\n"
         )
 
 

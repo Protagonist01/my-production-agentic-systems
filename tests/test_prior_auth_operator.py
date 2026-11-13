@@ -182,6 +182,29 @@ def test_credential_error_output_does_not_echo_canaries(monkeypatch, capsys):
     assert "ValueError" in captured.err
 
 
+def test_argument_parser_does_not_echo_an_invalid_secret_value(monkeypatch, capsys):
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "prior_auth_operator.py",
+            "--root",
+            ".",
+            "--trial",
+            "demo",
+            "worker",
+            "--baseline",
+            "private-argument-canary",
+        ],
+    )
+    with pytest.raises(SystemExit) as error:
+        operator.main()
+    assert error.value.code == 2
+    captured = capsys.readouterr()
+    assert not captured.out and "private-argument-canary" not in captured.err
+    assert "invalid command" in captured.err
+
+
 def test_comparison_preserves_unknown_references_and_detects_tampering(tmp_path):
     directory = tmp_path / "comparison"
     report = run(directory)
