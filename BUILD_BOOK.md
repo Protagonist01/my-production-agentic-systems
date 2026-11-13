@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 104 — Turn Prior Auth intake into an authenticated operator workflow](#entry-104--turn-prior-auth-intake-into-an-authenticated-operator-workflow)
+
 - [Entry 103 — Build document intake before expanding Prior Auth assessment](#entry-103--build-document-intake-before-expanding-prior-auth-assessment)
 - [Entry 102 — Evaluate Supply boundaries before adding stage profiling and scorecards](#entry-102--evaluate-supply-boundaries-before-adding-stage-profiling-and-scorecards)
 - [Entry 101 — Build Revenue relevance, semantic diagnostics and stage timing](#entry-101--build-revenue-relevance-semantic-diagnostics-and-stage-timing)
@@ -7368,3 +7370,55 @@ the fault test to require an error naming the receipts table: catching any permi
 error had allowed an earlier binding failure to masquerade as receipt-insert rollback.
 The failed job43324654473/131553955416retains2failures/230passes. Require the corrected
 real SQL proof before merge; do not replace it with a mock or broaden database rights.
+
+## Entry 104 — Turn Prior Auth intake into an authenticated operator workflow
+
+On 2026-11-13, after PR157 merged and its exact tested tree was verified on main257c9b9,
+the owner said to proceed. The next operational gap is that the new document importer
+has no authenticated command entrypoint. Keep the external-payer and clinical-release
+requirements separate; this step uses the existing local reviewer accounts and SQL queue.
+No source export, model calls, new clinical labels or hosting purchase follows.
+
+Before building: how should an operator inspect a rejected document when no legacy case
+exists? How can a citation still locate its source after later supplements append text?
+Use receipt lookup scoped by the authenticated principal, and check the current note pin
+plus the saved document prefix before translating character positions to source regions.
+Return fixed states/hashes/locations, not note bodies or clinical quotes, in command output.
+
+Build a root operator command around existing Workspace, AuthStore, prepare, IntakeStore
+and ReviewWorkflow. Authenticate before loading source/request files, check case/tenant
+scope before extraction, bound file reads and preserve the outside-Git source rule.
+Keep bootstrap explicit and provider execution absent. Read-only receipt/location views
+need no new schema or grants; join source and current case in one SQL snapshot to avoid
+reading a different version halfway through location lookup.
+
+For the exposed AHI-conflict finding, preserve the old rules function and all captures.
+Add a separately named development baseline that routes explicit contradictory hourly
+AHI/RDI values to qualified review. Exercise only the two already exposed conflict cases,
+retain their original proposed references, and recompute all three saved comparators in
+a separate readback process. This is a regression mechanism, not a new clinical study or
+an independently qualified label. Record actual failures and delivery evidence as work runs.
+
+Implementation order: add the separate conservative baseline first, then typed receipt
+and source-location readbacks, then compose the authenticated command around the existing
+store. Receipt readback deliberately does not join cases: rejection may have no case.
+Source readback does join case/receipt/document in one snapshot and checks the saved
+substring plus current note, source and version pins before translating offsets. No new
+SQL schema or UPDATE rights are needed. The worker uses the existing versioned leases;
+the default is explicit no-model review. The demo draft is exclusive and invented only.
+
+The first focused run passed15tests; strict typing caught an object-typed diagnostic
+report input iteration. Read the serialized original report explicitly, keeping the
+source/request equality check. Added session-finally and actual SQL worker witnesses;
+the resulting51operator/intake tests passed and strict typing passed273source files.
+The private capture at D:/document/.cache/production-agents/prior-auth/operator-conflict-
+2026-11-13-v1 contains6actual selected observations. A separately started readback passed:
+original rules0/2, always-review2/2, new variant2/2 against the same proposed routes.
+All14criterion references remain unknown for each; no provider call or qualification.
+The invented draft command also ran successfully without Docker or account credentials.
+
+During final CLI review, argparse's default invalid-value errors were another content
+echo path: an accidentally supplied credential could appear in stderr before our normal
+exception handler ran. Override parser.error to show only fixed usage/guidance, and keep
+runtime exception-class output on the separate fixed-message exit path. Add an invalid
+baseline-value canary test; do not rely only on application exceptions being quiet.
