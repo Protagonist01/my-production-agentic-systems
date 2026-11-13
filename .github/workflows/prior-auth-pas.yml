@@ -1,0 +1,48 @@
+name: Prior Auth reference payer
+
+on:
+  pull_request:
+    paths: ['prior_auth_*.py', 'docs/prior-auth-*.md', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
+  push:
+    branches: [main]
+    paths: ['prior_auth_*.py', 'docs/prior-auth-*.md', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prior-auth-pas-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reference-payer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: HL7-DaVinci/br-payer
+          ref: 10d40911cb90d6198aacec144b4bfc48466af2fb
+          path: artifacts/hl7-br-payer
+          persist-credentials: false
+      - uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: '0.11.1'
+          enable-cache: false
+      - run: python dev.py setup
+      - name: Build pinned independent reference service
+        working-directory: artifacts/hl7-br-payer/server
+        run: mvn -B -ntp clean package -DskipTests spring-boot:repackage -Pboot > "$RUNNER_TEMP/pa-reference-build.log" 2>&1
+      - name: Invented actual PAS submit, independent correlation, replay and inquiry
+        run: uv run --locked --all-packages --link-mode copy python docs/evaluation/check_prior_auth_pas.py --war artifacts/hl7-br-payer/server/target/ROOT.war

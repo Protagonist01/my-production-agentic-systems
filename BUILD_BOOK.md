@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 105 — Separate clinical qualification, fresh study authority and payer interoperability](#entry-105--separate-clinical-qualification-fresh-study-authority-and-payer-interoperability)
+
 - [Entry 104 — Turn Prior Auth intake into an authenticated operator workflow](#entry-104--turn-prior-auth-intake-into-an-authenticated-operator-workflow)
 
 - [Entry 103 — Build document intake before expanding Prior Auth assessment](#entry-103--build-document-intake-before-expanding-prior-auth-assessment)
@@ -7422,3 +7424,146 @@ echo path: an accidentally supplied credential could appear in stderr before our
 exception handler ran. Override parser.error to show only fixed usage/guidance, and keep
 runtime exception-class output on the separate fixed-message exit path. Add an invalid
 baseline-value canary test; do not rely only on application exceptions being quiet.
+
+## Entry 105 — Separate clinical qualification, fresh study authority and payer interoperability
+
+On 2026-11-13 the owner explicitly requested the three remaining Prior Auth release
+requirements after PR158. Start from main4d2b174 in a separate worktree. The goal remains
+the existing assistive initial-CPAP application; an engineering demo is not its release.
+
+Before building: which evidence can establish policy arithmetic, clinical interpretation
+and an actual payer transport independently? CMS NCD240.4 provides authoritative national
+coverage prose, not patient-level semantic gold. Existing Synthea examples are synthetic
+and the old labels are AI-provisional. MedNLI needs credentialed access and constrained
+LLM use; a clinical-trial entailment benchmark does not automatically cover CPAP records.
+Keep a field-level applicability matrix and an explicit unresolved clinical judgment.
+
+Implement a separate fact-table oracle and qualification inventory without importing the
+candidate scorer to derive its expected values. Prepare a bounded, private study draft,
+with candidate inputs separated from references, full worst-case attempt arithmetic and
+no dispatch/key loading until an exact scope/allowance grant is recorded. Read the same
+authoritative shared ledger read-only; preserve the old stop and bound slots.
+
+For external interoperability, prefer the newer official HL7-DaVinci/br-payer reference
+service over treating the older oxygen demo as a CPAP clinical oracle. Pin commit
+10d40911cb90d6198aacec144b4bfc48466af2fb. Its PAS outcome=complete is processing status,
+while item-level reviewAction carries the decision; an unknown service defaults to A3
+(not required), which must never become a clinical approval in our application. Test
+an actual independently running service with invented, code-catalog-free resources.
+Authentication, correlation, bounded transport and durable unknown outcomes remain
+necessary even though this is a local-owned reference service, not a commercial insurer.
+
+Build the root adapter without touching the legacy clinical package. Validate a trusted
+reviewer/current-version submission, hash its canonical payload, and commit a SQLite
+reservation before opening the connection. Test a lost response and a process-death
+exception separately: ordinary failures become unknown; process death leaves reserved.
+In both cases replay returns stored uncertainty without another POST. Run concurrent
+callers against the same journal to witness one actual transport invocation.
+
+Source inspection found the RI changes Claim ids and assigns a random response Bundle
+identifier. Therefore GET the assigned Claim and match our stable identifier rather
+than treating the Bundle identifier as an echo. The nested review-action-code extension
+uses its full canonical URL and X12 coding system, not a guessed child named code.
+Read the upstream constants/extension builder and correct the adapter/test fixture
+before the independent-server check. Assign per-submission synthetic resource ids so
+later invented requests cannot overwrite another case's patient resources.
+
+The first focused test run failed9tests because the fixture called demo_request without
+its required raw bytes; correct the caller/order and keep that run in the log. The
+next18tests passed. An isolated mypy invocation skipped untyped installed workspace
+imports; use the repository's full source configuration instead. It found one real
+mixed-dictionary type inference issue in resource id rewriting. Annotate the resource
+collection explicitly; the full276source-file strict run then passed. A broad Ruff
+format invocation also checked old Markdown examples; use dev.py's explicit Python
+source inventory rather than reformatting unrelated historical prose.
+
+Generate the private v2 packet with the actual pinned CMS policy source/prose/compilation,
+not the shape-only demo policy. Independently capture the legacy request builder for
+each criterion/trial without an SDK, key or network. The12notes yield168slots but166
+requests because two retrievals are absent. Execute rules/always-review twice each:
+48actual baseline outputs, with agreement unknown because reference method acceptance
+and clinical qualification are separate. Manifest119a2297ce220a5063e28755e99e58d93f591ced672a54d3930264bb890f1824.
+Preserve the earlier v1 draft rather than rewriting it. Ask the owner about the concrete
+170attempt development proposal only after these artifacts exist; continue independent
+implementation and hosted checks while that question is pending.
+
+The owner accepted the concrete v2 constructed-development scope and confirmed Free.
+Implement its grant as new append-only tables in the same budget SQLite file. Leave
+the stopped routing tables and triggers intact; fingerprint their entire logical
+schema/data inside every new reservation/settlement transaction. Old clients still
+show their447/614scope, so report the new cumulative count explicitly. The first
+root-budget design check found that SharedControls retains every pessimistic token
+reservation;170full ceilings exceed the accepted2million token cap. Do not silently
+raise that cap or invent a tokenizer estimate. Permit one outstanding attempt, reserve
+the existing full ceiling before I/O, settle to actual known usage, and stop on unknown
+usage. This preserves the accepted aggregate cap without changing frozen harness code.
+
+The actual hosted HL7 build succeeded. Its submit returned a correlated A3, but inquiry
+failed a Bundle-only validator. Read PasInquiryService/buildInquiryResponse at the
+pinned upstream revision: inquiry returns Parameters with0..*responseBundle entries
+and omits patient/organization resources in the nested Bundle. Add a separate single-
+match wrapper parser and independently GET missing identity resources through closed
+same-base paths. Do not accept an empty/ambiguous match or remove the correlation check.
+Add the inquiry regression before another actual-service run. Preserve the failed
+workflow runs43341461169and43342076468 as evidence of the initial mismatch.
+
+The corrected independent-service workflow43344290206 passed on b7d7d05: one real
+submit, a separate Claim GET, durable replay without another POST, and correlated
+inquiry, all at the pinned upstream revision. Both operations returned A3; no clinical
+approval follows. Add the later scope/readback files to the workflow path filter so
+the final source head receives a fresh independent-process check as well.
+
+Before any live model call,30focused tests passed, including166actual pinned-SDK
+requests through an HTTP mock with socket connections forbidden, plus an owned spawned
+SDK worker. This took193.79seconds on the Windows host; it is readiness, not provider
+latency. Add a separate read-only result reader that verifies canonical scope, original
+history snapshot, settlement hashes, artifact equality, raw parse/quote counts and
+reconstructed checked decisions. Missing trials remain missing; invalid observed model
+outputs stay in the observed denominator. Two corruption/unknown-score tests passed;
+the full strict configuration now covers279source files. Keep the original v2 packet
+immutable while recording its subsequent approval in a separate grant.
+
+The first live entrypoint refused locally before creating a capture or PA scope table;
+the original ledger stayed447. The source/evaluator outside-Git guard was also applied
+to the owner's explicitly authorized .env.local in an earlier integration worktree.
+That is the wrong boundary for an ignored private configuration. Add a separate
+metadata-only check requiring ignored AND untracked Git status before reading it,
+then retain the original credential-association match. Keep the source/evaluator guard
+unchanged and test that it still refuses Git storage. No consumed request was retried.
+
+The actual study then ran to completion on0eefbf2:2passing canaries and166domain
+requests, no retries/fallback/transport failures,24case trials with all required raw
+requests observed. All token usage was known:88,684input and11,749output including
+thinking. The same ledger has615/784consumed(447old+168new),0unsettled; the old stopped
+scope and every old row/slot remain unchanged. The unused two upper-bound slots cannot
+become another experiment. Current parent request p95is9.768seconds; this is not a
+whole-case/API or production SLA measurement.
+
+The independent readback then correctly refused PermissionError. The reconstruction
+used example_context's invented-tenant, while completed notes belong to demo. Earlier
+reader tests had no complete case, so extraction never reached that scope fence. Verify
+the frozen provider source/lock first(it matched exactly), then fix only the reader's
+explicit demo tenant and add a completed-case regression. Three reader tests passed;
+the standalone reader verified the complete capture without any model call. Its only
+post-run Python differences are that reader and its test. Do not weaken the candidate's
+scope check or rewrite the original recording to make the reader pass.
+
+The scored result is160/166raw state agreements,128/168after checking,154/168rules
+and8/168always-review, all against accepted constructed proposals. Six raw positive
+disagreements were contained: fractional threshold, same-measure conflict and unresolved
+national short-study condition, twice each. The checker also produced38unrecognized-
+support abstentions and2different-measure conflicts against matching proposed states.
+Inspect actual invented quotes: some omit positive-result or physician-supervision
+sentences. The recognizer already joins quotes; do not diagnose a nonexistent joining
+bug. Low checked agreement can reflect incomplete citation selection and conservative
+grammar as well as policy-meaning uncertainty. Preserve each layer separately.
+
+Research while the frozen study ran found HealthAdminBench and CHI-Bench workflow
+candidates, but no task corpus/judge was activated. Record exact metadata revisions,
+gated data/handbook and semantic-grader applicability gaps. A narrow CMS compliance
+example addresses missing sleep-test documentation but bills a bi-level device; it
+cannot supply our full initial-CPAP disposition gold. Qualification inventory2ad821260
+ad9afa85a72424fb428d493621a146200d8ef08bef56c27ef9d0459 keeps all eight required
+fields/slices and an empty acceptance form. Constructed event counts/intervals also need
+clinical applicability review before clinical qualification. No new label is silently
+created, no benchmark name becomes proof, and no code merge closes release issue51.

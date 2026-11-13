@@ -2,6 +2,61 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth release-readiness continuation (2026-11-13)
+
+Completed development result: docs/prior-auth-development-study-v1.md is authoritative
+for this batch.168freshcalls completed(2canaries,166domain),615/784cumulative,0unsettled,
+old447attempts/stop/slots unchanged. Private capture: D:/document/.cache/production-agents/
+prior-auth/development-capture-2026-11-13-v1. Use the new same-file PA summary and
+prior-auth-784-external-pin.json; the old reader describes only its447/614historicalscope.
+No unused slot transfer, automatic new study or production/clinical qualification follows.
+Raw state agreement160/166, checked128/168, rules154/168 are constructed-development
+agreements only. Preserve the six raw positive disagreements and40checked mismatches.
+After the run, only the read-only reader's demo-tenant context and its regression test
+changed; no provider rerun or candidate/request/policy/reference change occurred.
+Independent report e6f2a40e902b9f7d88226a60ebba5963cb2ec79b906cbd7a05069eac72a1aded.
+
+After #158 the owner requested clinical qualification, fresh studies and external payer
+integration. See docs/prior-auth-release-readiness.md and its code-study chapter. The
+new structured-fact reference is a proposed constructed method, not clinical gold.
+Keep AHI/RDI measures and national/local short-study policy scopes separate. Preserve
+legacy packages/captures and all eight clinical fields/slices; no qualification flag
+or release #51 acceptance follows from authored labels, exact quotes or an HTTP200.
+
+The private v2 development packet is at D:/document/.cache/production-agents/prior-auth/
+release-readiness-2026-11-13-v2. It contains12invented notes,168criterion slots(166actual
+request preparations),48actual baseline outputs and separate proposed labels. Manifest
+119a2297ce220a5063e28755e99e58d93f591ced672a54d3930264bb890f1824. No provider call,
+key load or ledger mutation occurred. The proposed170newattempt/784lifetime scope and
+constructed method are pending explicit owner approval/current Free confirmation and
+scoped runner readiness. Keep the447consumed/614ceiling snapshot, old stop and all old
+slots/history intact. A pending question is not approval; do not dispatch implicitly.
+
+The owner subsequently accepted this exact v2 development scope and confirmed the project
+remains Free: up to170newattempts, same lifetime ceiling784, two passing canaries before
+domain, no retries/paid fallback,7daysfrom approval, old history/stop/slots retained.
+This supersedes only the pending authorization sentence above. Constructed references
+are accepted for development, not clinical qualification. Implement/test a separate
+scope extension in the same ledger before dispatch; the old stopped scope cannot be
+resumed. Preserve missing usage/failures and require actual scoped-runner readiness.
+
+The clinical qualification inventory is separate from the development capture:
+D:/document/.cache/production-agents/prior-auth/qualification-evidence-2026-11-13-v1.
+Manifest2ad821260ad9afa85a72424fb428d493621a146200d8ef08bef56c27ef9d0459.
+It contains the unchanged required profile, source register and empty acceptance form;
+it supplies no clinical judgments. See docs/prior-auth-reference-applicability.md for
+the metadata-only HealthAdminBench/CHI-Bench audit and narrow CMS example candidate.
+No benchmark corpus, gated clinical data or new external judge was acquired/activated.
+Current development cases are exposed and must not become a fresh qualification holdout.
+
+The opt-in PAS adapter targets only an owned loopback HL7-DaVinci/br-payer reference
+service at pinned commit10d40911cb90d6198aacec144b4bfc48466af2fb, invented resources
+and a note hash. Authenticated application reviewer authority and canonical state are
+caller requirements. It is not a commercial payer/public authentication qualification.
+Reserve before POST, preserve reserved/unknown outcomes and never auto-resubmit them.
+Verify actual independent-process CI for the exact head before claiming interoperability.
+Existing tested-PR submission/merge authority applies; study and release gates stay separate.
+
 ## Prior Auth operator continuation (2026-11-13)
 
 After #157 the owner asked for the next work. The opt-in local operator workflow uses
