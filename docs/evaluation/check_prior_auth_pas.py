@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -61,6 +62,24 @@ def main(war: Path) -> None:
                 deadline = time.monotonic() + 480
                 while time.monotonic() < deadline:
                     if server.poll() is not None:
+                        # Fixed exception class names/stack locations only; never
+                        # publish upstream sample resources or arbitrary messages.
+                        text = (directory / "server.log").read_text(errors="replace")
+                        classes = sorted(
+                            set(
+                                re.findall(
+                                    r"\b(?:[a-zA-Z_$][\w$]*\.)+[\w$]*(?:Exception|Error)\b", text
+                                )
+                            )
+                        )
+                        print(
+                            json.dumps(
+                                {
+                                    "startup_exit_code": server.returncode,
+                                    "exception_classes": classes[:30],
+                                }
+                            )
+                        )
                         raise ValueError("independent reference payer exited")
                     try:
                         metadata = object_from(transport("GET", "metadata", None))
@@ -97,6 +116,15 @@ def main(war: Path) -> None:
 
                 client = PasClient(directory / "outbox.sqlite", observed)
                 response = client.submit(user, request, note, current_version=1)
+                print(
+                    json.dumps(
+                        {
+                            "submission_state": response.state,
+                            "failure_phase": response.failure_phase,
+                            "review_codes": list(response.review_codes),
+                        }
+                    )
+                )
                 assert response.state == "received", "reference submission not correlated"
                 assert response.review_codes == ("A3",), (
                     "unknown invented service must not be certified"

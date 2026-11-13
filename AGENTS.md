@@ -20,6 +20,14 @@ constructed method are pending explicit owner approval/current Free confirmation
 scoped runner readiness. Keep the447consumed/614ceiling snapshot, old stop and all old
 slots/history intact. A pending question is not approval; do not dispatch implicitly.
 
+The owner subsequently accepted this exact v2 development scope and confirmed the project
+remains Free: up to170newattempts, same lifetime ceiling784, two passing canaries before
+domain, no retries/paid fallback,7daysfrom approval, old history/stop/slots retained.
+This supersedes only the pending authorization sentence above. Constructed references
+are accepted for development, not clinical qualification. Implement/test a separate
+scope extension in the same ledger before dispatch; the old stopped scope cannot be
+resumed. Preserve missing usage/failures and require actual scoped-runner readiness.
+
 The opt-in PAS adapter targets only an owned loopback HL7-DaVinci/br-payer reference
 service at pinned commit10d40911cb90d6198aacec144b4bfc48466af2fb, invented resources
 and a note hash. Authenticated application reviewer authority and canonical state are

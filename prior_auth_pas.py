@@ -40,6 +40,7 @@ class Receipt(WireContract):
     response_sha256: Digest | None = None
     processing: Literal["complete", "queued", "partial", "error"] | None = None
     review_codes: Annotated[tuple[str, ...], Field(max_length=32)] = ()
+    failure_phase: Literal["send", "response_validation"] | None = None
     source: Literal["owned-hl7-reference-payer"] = "owned-hl7-reference-payer"
     clinical_validation: Literal[False] = False
 
@@ -336,6 +337,8 @@ class PasClient:
             raise PermissionError("PAS case scope differs")
         if (
             note.provenance != "invented"
+            or note.use != "initial"
+            or request.case.purpose != "initial_evidence"
             or request.case.service != "initial-cpap"
             or any(
                 not value.startswith("demo-")
@@ -374,15 +377,22 @@ class PasClient:
                         datetime.now(UTC).isoformat(),
                     ),
                 )
+            phase: Literal["send", "response_validation"] = "send"
+            raw = None
             try:
                 payload = bundle(request, note)
-                receipt = checked_response(
-                    self.transport("POST", "Claim/$submit", payload), key, request, self.transport
-                )
+                raw = self.transport("POST", "Claim/$submit", payload)
+                phase = "response_validation"
+                receipt = checked_response(raw, key, request, self.transport)
             except Exception:
                 # An accepted remote POST may have lost its response. Preserve that
                 # uncertainty; never translate it into rejection or resend it.
-                receipt = Receipt(request_sha256=key, state="unknown")
+                receipt = Receipt(
+                    request_sha256=key,
+                    state="unknown",
+                    failure_phase=phase,
+                    response_sha256=hashlib.sha256(raw).hexdigest() if raw else None,
+                )
             with connection:
                 connection.execute(
                     "UPDATE pas_attempts SET receipt=? WHERE tenant=? AND request=? AND pin=?",
