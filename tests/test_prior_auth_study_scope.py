@@ -217,6 +217,33 @@ def test_packet_tamper_refused_without_loading_credentials(tmp_path):
     assert demo_policy().review_status == "ai_provisional"
 
 
+def test_authorized_ignored_configuration_is_separate_from_external_source_guard(
+    tmp_path, monkeypatch
+):
+    from types import SimpleNamespace
+
+    from prior_auth_study_run import private_configuration
+
+    repository = tmp_path / "config-repo"
+    (repository / ".git").mkdir(parents=True)
+    path = repository / ".env.local"
+    path.write_text("invented fixture, no actual credential")
+    monkeypatch.setattr(
+        "prior_auth_study_run.subprocess.run",
+        lambda args, **kwargs: SimpleNamespace(returncode=0 if args[1] == "check-ignore" else 1),
+    )
+    assert private_configuration(path) == path.resolve()
+    monkeypatch.setattr(
+        "prior_auth_study_run.subprocess.run", lambda *args, **kwargs: SimpleNamespace(returncode=0)
+    )
+    with pytest.raises(ValueError):
+        private_configuration(path)
+    from prior_auth.source_io import external
+
+    with pytest.raises(ValueError):
+        external(path)
+
+
 def test_actual_owned_spawn_sdk_frame_and_live_worker_http_ceiling(tmp_path, monkeypatch):
     from agent_harness.isolated_transport import IsolatedTransport
     from prior_auth_sdk_fake import Worker as FakeWorker

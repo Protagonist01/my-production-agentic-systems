@@ -7522,3 +7522,11 @@ reconstructed checked decisions. Missing trials remain missing; invalid observed
 outputs stay in the observed denominator. Two corruption/unknown-score tests passed;
 the full strict configuration now covers279source files. Keep the original v2 packet
 immutable while recording its subsequent approval in a separate grant.
+
+The first live entrypoint refused locally before creating a capture or PA scope table;
+the original ledger stayed447. The source/evaluator outside-Git guard was also applied
+to the owner's explicitly authorized .env.local in an earlier integration worktree.
+That is the wrong boundary for an ignored private configuration. Add a separate
+metadata-only check requiring ignored AND untracked Git status before reading it,
+then retain the original credential-association match. Keep the source/evaluator guard
+unchanged and test that it still refuses Git storage. No consumed request was retried.

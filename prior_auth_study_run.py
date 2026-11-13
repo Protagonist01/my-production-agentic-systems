@@ -97,6 +97,36 @@ def inventory(root: Path) -> dict[str, str]:
     return {name: hashlib.sha256((root / name).read_bytes()).hexdigest() for name in sorted(names)}
 
 
+def private_configuration(path: Path) -> Path:
+    """The owner-authorized ignored config is not a source/evaluator artifact."""
+    path = path.expanduser().resolve(strict=True)
+    repositories = [p for p in path.parents if (p / ".git").exists()]
+    if repositories:
+        root = repositories[0]
+        relative = str(path.relative_to(root))
+        ignored = (
+            subprocess.run(
+                ["git", "check-ignore", "-q", "--no-index", "--", relative],
+                cwd=root,
+                capture_output=True,
+                check=False,
+            ).returncode
+            == 0
+        )
+        tracked = (
+            subprocess.run(
+                ["git", "ls-files", "--error-unmatch", "--", relative],
+                cwd=root,
+                capture_output=True,
+                check=False,
+            ).returncode
+            == 0
+        )
+        if not ignored or tracked:
+            raise ValueError("private configuration must be ignored and untracked")
+    return path
+
+
 @dataclass(frozen=True)
 class Worker:
     api_key: str = field(repr=False)
@@ -205,7 +235,7 @@ def run(packet: Path, capture: Path, ledger_path: Path, configuration: Path) -> 
         "paid_fallback": False,
     }
     # Credentials are loaded only after exact packet/source/environment preflight.
-    configuration = external(configuration)
+    configuration = private_configuration(configuration)
     cfg = dict(
         line.split("=", 1)
         for line in configuration.read_text().splitlines()
