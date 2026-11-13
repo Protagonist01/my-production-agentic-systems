@@ -8,6 +8,7 @@ import sqlite3
 import subprocess
 import sys
 import time
+from contextlib import closing
 from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
@@ -251,6 +252,10 @@ def run(packet: Path, capture: Path, ledger_path: Path, configuration: Path) -> 
     capture.mkdir(mode=0o700, parents=True)
     write(capture / "execution.json", execution)
     write(capture / "grant.json", grant.model_dump(mode="json"))
+    # Local recovery copy only; never use a historical copy as a reset allowance.
+    with closing(sqlite3.connect(ledger_path.as_uri() + "?mode=ro", uri=True)) as db:
+        with closing(sqlite3.connect(capture / "historical-recovery-only.sqlite")) as backup:
+            db.backup(backup)
     ledger = initialize(ledger_path, grant)
     (capture / "scope.sha256").write_text(ledger.scope_pin + "\n", encoding="ascii")
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
@@ -316,6 +321,7 @@ def run(packet: Path, capture: Path, ledger_path: Path, configuration: Path) -> 
         )
         passed = (
             row["phase"] == "canary"
+            and tokens is not None
             and claim is not None
             and claim.state == "met"
             and bool(claim.quotes)

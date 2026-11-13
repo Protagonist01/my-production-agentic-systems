@@ -7506,3 +7506,19 @@ match wrapper parser and independently GET missing identity resources through cl
 same-base paths. Do not accept an empty/ambiguous match or remove the correlation check.
 Add the inquiry regression before another actual-service run. Preserve the failed
 workflow runs43341461169and43342076468 as evidence of the initial mismatch.
+
+The corrected independent-service workflow43344290206 passed on b7d7d05: one real
+submit, a separate Claim GET, durable replay without another POST, and correlated
+inquiry, all at the pinned upstream revision. Both operations returned A3; no clinical
+approval follows. Add the later scope/readback files to the workflow path filter so
+the final source head receives a fresh independent-process check as well.
+
+Before any live model call,30focused tests passed, including166actual pinned-SDK
+requests through an HTTP mock with socket connections forbidden, plus an owned spawned
+SDK worker. This took193.79seconds on the Windows host; it is readiness, not provider
+latency. Add a separate read-only result reader that verifies canonical scope, original
+history snapshot, settlement hashes, artifact equality, raw parse/quote counts and
+reconstructed checked decisions. Missing trials remain missing; invalid observed model
+outputs stay in the observed denominator. Two corruption/unknown-score tests passed;
+the full strict configuration now covers279source files. Keep the original v2 packet
+immutable while recording its subsequent approval in a separate grant.
