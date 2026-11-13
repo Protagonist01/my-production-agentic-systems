@@ -264,7 +264,9 @@ def run(packet: Path, capture: Path, ledger_path: Path, configuration: Path) -> 
             "scope_sha256": ledger.scope_pin,
             "capture": str(capture),
             "maximum": 784,
-            "meaning": "PA extension in same ledger; old external marker and stopped scope unchanged",
+            "meaning": (
+                "PA extension in same ledger; old external marker and stopped scope unchanged"
+            ),
         },
     )
     print(
