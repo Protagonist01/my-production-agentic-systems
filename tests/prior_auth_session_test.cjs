@@ -12,7 +12,7 @@ function harness(){
   function queue(url){const pending=deferred(),rows=plans.get(url)||[];rows.push(pending);plans.set(url,rows);return pending;}
   const context=vm.createContext({console,Date,Promise,encodeURIComponent,crypto:{randomUUID:()=>"invented-command"},document:{body:{dataset:{csrfCookie:"csrf"}},cookie:"csrf=canary",getElementById:node,createElement:tag=>node(tag+Math.random()),createTextNode:text=>({textContent:text})},fetch:async(url,options)=>{calls.push(url);const planned=plans.get(url)?.shift();if(planned)return planned.promise;if(url==="/api/session")return response({},403);if(url==="/api/login")return response({username:JSON.parse(options.body).username,role:"reviewer"});if(url==="/api/cases")return response({cases:[]});return response({});}});
   vm.runInContext(source,context);
-  const api=vm.runInContext("({signIn,signOut,selectCase,loadCases,state:()=>({epoch,user,active})})",context);
+  const api=vm.runInContext("({signIn,signOut,selectCase,loadCases,openPayer:row=>{active=row.case_id;renderPayerExchange(row,$('detail'));},state:()=>({epoch,user,active})})",context);
   return {node,api,queue,calls};
 }
 (async()=>{
@@ -38,5 +38,14 @@ function harness(){
   oldDenied.resolve(response({},403));await oldLoad;
   assert.equal(switched.api.state().user.username,"new-reviewer");
   assert.equal(switched.node("workspace").hidden,false);
+  const payer=harness();await tick();await payer.api.signIn("reviewer","invented password");
+  payer.api.openPayer({case_id:"payer-case",version:1,payer:{configured:true,request_sha256:"invented"}});
+  const box=payer.node("detail").children.at(-1);
+  const submit=box.children.find(n=>n.textContent==="Submit synthetic packet");
+  const pending=payer.queue("/api/cases/payer-case/payer/submit");
+  const posting=submit.onclick();await tick();await payer.api.signOut();
+  pending.resolve(response({submission:{state:"received"}}));await posting;
+  assert.equal(payer.node("detail").children.length,0);
+  assert.ok(!payer.calls.includes("/api/cases/payer-case"));
   console.log("Prior Auth browser asset: stale case/list responses, logout during stalled load and expired-session private clearing passed; zero network calls");
 })().catch(error=>{console.error(error);process.exitCode=1;});

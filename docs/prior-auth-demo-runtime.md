@@ -125,3 +125,8 @@ dependency audit failed CVE-2026-126360; the minimal OpenTelemetry patch then pa
 the local locked audit. Focused replay/candidate/web tests:94passed; browser
 session regressions passed. These are engineering/synthetic evidence only. Final
 head CI must additionally cover the authenticated citation API regression.
+
+
+The subsequent [operator payer-desk composition](prior-auth-payer-desk.md) adds
+optional explicit submission/inquiry using the same protected desk and canonical
+state. It is separately verified; the initial citation batch did not include it.

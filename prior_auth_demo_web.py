@@ -12,9 +12,12 @@ from prior_auth.review_contracts import Principal
 from prior_auth.review_store import ReviewStore
 
 from prior_auth_evidence_cards import EvidenceReader
+from prior_auth_payer_desk import PayerDesk, install
 
 
 class EvidenceStore(ReviewStore):
+    payer_desk: PayerDesk | None = None
+
     def snapshot(self, user: Principal, case_id: str) -> dict[str, Any]:
         snapshot = super().snapshot(user, case_id)
         snapshot["demo_mode"] = "synthetic-records-not-clinically-validated"
@@ -27,6 +30,8 @@ class EvidenceStore(ReviewStore):
             ).fetchall()
         snapshot["current_attempt_modes"] = [r["mode"] for r in modes]
         snapshot["evidence_cards"] = []
+        if self.payer_desk is not None:
+            snapshot["payer"] = self.payer_desk.status(user, case_id, snapshot["version"])
         if snapshot["result"] is not None and snapshot["status"] != "assessing":
             base = ReviewStore(self.connect, clock=self.clock)
             snapshot["evidence_cards"] = [
@@ -38,10 +43,20 @@ class EvidenceStore(ReviewStore):
         return snapshot
 
 
-def demo_app(store: ReviewStore, auth: AuthStore, *, origin: str, trial_id: str) -> FastAPI:
+def demo_app(
+    store: ReviewStore,
+    auth: AuthStore,
+    *,
+    origin: str,
+    trial_id: str,
+    payer_desk: PayerDesk | None = None,
+) -> FastAPI:
     # Auth/origin/CSRF/host checks and mutations remain those of the original desk.
     service = EvidenceStore(store.connect, clock=store.clock)
+    service.payer_desk = payer_desk
     app = create_app(service, auth, origin=origin, trial_id=trial_id)
+    if payer_desk is not None:
+        install(app, payer_desk, auth, origin=origin.rstrip("/"), trial_id=trial_id)
     # Replace presentation routes only. Do not wrap or bypass private API handlers.
     app.router.routes[:] = [
         r for r in app.router.routes if getattr(r, "path", None) not in {"/", "/assets/{name}"}
