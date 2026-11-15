@@ -7772,3 +7772,18 @@ missing evidence, authenticated wait, scoped import, one-criterion reassessment,
 seven mapped citation cards, stale submit refusal, current submit/inquiry and a
 no-work restart. Preserve the same-patient/two-packet integration witness as well.
 Document launch, restart and the remaining backup/live-model limitations honestly.
+
+
+The closeout actual-reference job132945053633 passed on115378a: both the two-packet
+correlation witness and the complete document-wait path succeeded. Mark only those
+engineering mechanisms complete in the demo acceptance record; keep live-provider
+and clinical claims separate. Local10plan/candidate/web tests,286typed files and
+repository lint/format pass. Docker remains unavailable locally.
+
+Prepared a separate private citation-repair proposal from the pinned old packet,
+verifying its complete artifact manifest first and blocking all socket operations
+during preparation. It has166actual revised-prompt domain requests plus2canaries,
+12exposed cases and separate unchanged constructed references. Proposed ceiling952
+is784+168; it does not transfer169old bound/unspent slots or alter615consumed. The
+packet explicitly lacks authorization, ledger extension and execution readiness.
+No key/SDK dispatch or budget mutation occurred. Preserve it as preparation only.
