@@ -990,3 +990,6 @@ unsafe first trial. Otherwise a correct conservative reader could accidentally c
 most important negative observation. Match the actual response to immutable settlement;
 do not promote blocked local paths into provider evidence. History auditing must also allow
 only exact new compatibility traces while proving every original slot/attempt is unchanged.
+
+
+- [Prior Auth operator-controlled reference payer](docs/code-study-prior-auth-payer-desk.md)

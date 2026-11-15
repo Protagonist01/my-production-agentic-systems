@@ -3,6 +3,9 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 109 — Repair the security audit without rewriting model history](#entry-109--repair-the-security-audit-without-rewriting-model-history)
+- [Entry 110 — Expose the reference payer without browser authority](#entry-110--expose-the-reference-payer-without-browser-authority)
+
 - [Entry 108 — Build complete citations and a crash-safe demo assessor](#entry-108--build-complete-citations-and-a-crash-safe-demo-assessor)
 
 - [Entry 107 — Set an honest portfolio-demo finish line](#entry-107--set-an-honest-portfolio-demo-finish-line)
@@ -7683,3 +7686,41 @@ The first focused run encountered sandbox denial creating its outside-Git basete
 rerunning through approval with a fresh directory passed. Node session-race checks
 and repository lint/format pass. All earlier hosted quality/SQL/reference-payer jobs
 passed; the final head still needs its own hosted authentication/SQL evidence.
+
+
+## Entry 110 — Expose the reference payer without browser authority
+
+While PR160's patched CI runs, build the next accepted demo deliverable separately.
+PasClient already has durable reserve-before-submit and independent response identity
+checks. The browser must not supply a new patient/payer, destination or note payload.
+It supplies only current revision and explicit synthetic-exchange confirmation.
+
+Load the trusted CaseBinding from the private import bundle at server startup. On
+each action authenticate the existing session with the same origin/CSRF rules, require
+reviewer/case scope, lock the canonical SQL case and verify the saved intake binding
+hash. Construct a stable request ID from tenant/case/version/note/policy pins. Keep
+that row lock through bounded network I/O, so a concurrent supplement cannot change
+the packet between validation and dispatch. This trades a short blocked edit for a
+simple demo consistency boundary; production could instead use an atomic SQL outbox.
+
+Reuse the existing SQLite submission journal unchanged. Store inquiry observations
+in a separate additive table; an inquiry never calls submit or erases reserved/unknown
+submission history. Repeated submission of the same canonical packet returns its
+original receipt. Display both statuses and explain A3 separately from clinical
+approval. Failures retain fixed metadata, never raw exception details or case text.
+
+Add the optional service to the protected citation desk and a three-part local CLI
+configuration: owned loopback endpoint, outside-Git journal and trusted binding file.
+No configured service means no buttons/network. Verify actual SQL stale/tenant/viewer
+fences, CSRF, duplicate/unknown recovery and browser logout races, then exercise the
+new service against the actual pinned reference process before claiming integration.
+
+
+Local payer-desk checks:8candidate/web and19existing transport/reference tests passed;
+Node logout-race checks,286typed sources, repository lint/format and both import
+contracts pass. Local Docker remains unavailable. Added8SQL/API/fault witnesses
+and1separately configured actual-reference test; they are pending hosted execution.
+Code review found that a new case revision could otherwise bypass an unresolved
+older request. Add a packet index before adapter dispatch, block a replacement, and
+test both revision bypass and death between index and adapter reservation. Also
+assert NOWAIT cannot lock the canonical case while the submission callback runs.

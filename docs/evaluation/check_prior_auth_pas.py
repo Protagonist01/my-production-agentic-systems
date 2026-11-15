@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -153,6 +154,27 @@ def main(war: Path) -> None:
                             "commercial_payer": False,
                         }
                     )
+                )
+                # Exercise the actual authenticated SQL composition against this
+                # same owned independent process, not a response stub.
+                subprocess.run(
+                    [
+                        sys.executable,
+                        "-m",
+                        "pytest",
+                        "-q",
+                        "tests/integration/test_prior_auth_payer_desk_state.py",
+                        "-k",
+                        "actual_reference_payer",
+                        "-o",
+                        "addopts=--strict-config --strict-markers",
+                    ],
+                    cwd=Path(__file__).resolve().parents[2],
+                    env=dict(
+                        os.environ, PRIOR_AUTH_REFERENCE_PAYER_URL="http://127.0.0.1:8081/fhir"
+                    ),
+                    check=True,
+                    timeout=180,
                 )
             finally:
                 server.terminate()

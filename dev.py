@@ -62,6 +62,7 @@ def uv_command(command: str, executable: str) -> list[str]:
         "prior_auth_operator_rules.py",
         "prior_auth_operator_comparison.py",
         "prior_auth_pas.py",
+        "prior_auth_payer_desk.py",
         "prior_auth_complete_citations.py",
         "prior_auth_demo_runtime.py",
         "prior_auth_demo_fixtures.py",

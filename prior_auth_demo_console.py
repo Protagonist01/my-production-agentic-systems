@@ -3,6 +3,7 @@
 import getpass
 import hashlib
 import json
+import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -19,7 +20,9 @@ from prior_auth_demo_fixtures import ScriptedGateway, fake_scope, note
 from prior_auth_demo_runtime import DemoWorker, Scope, provision_scope, setup
 from prior_auth_demo_web import demo_app
 from prior_auth_operator import OperatorParser, bounded_private
-from prior_auth_pipeline import prepare
+from prior_auth_pas import Loopback, PasClient
+from prior_auth_payer_desk import PayerDesk
+from prior_auth_pipeline import ImportRequest, prepare
 from prior_auth_profiling import Profiler
 from prior_auth_store import IntakeStore
 from prior_auth_store import setup as setup_intake
@@ -114,6 +117,9 @@ def main() -> None:
     worker.add_argument("--scope", required=True, type=Path)
     serve = commands.add_parser("serve")
     serve.add_argument("--port", type=int, default=8766)
+    serve.add_argument("--payer-endpoint")
+    serve.add_argument("--payer-journal", type=Path)
+    serve.add_argument("--binding-file", type=Path)
     args = parser.parse_args()
     try:
         if args.command == "initialize":
@@ -136,12 +142,29 @@ def main() -> None:
                     raise ValueError("unprivileged loopback port required")
                 import uvicorn
 
+                payer = None
+                options = (args.payer_endpoint, args.payer_journal, args.binding_file)
+                if any(v is not None for v in options):
+                    if not all(v is not None for v in options):
+                        raise ValueError(
+                            "payer endpoint, private journal and binding file required together"
+                        )
+                    imported = ImportRequest.model_validate_json(
+                        bounded_private(args.binding_file, 2_000_000)
+                    )
+                    payer = PayerDesk(
+                        ReviewStore(connect),
+                        PasClient(args.payer_journal, Loopback(args.payer_endpoint)),
+                        (imported.case,),
+                    )
+
                 uvicorn.run(
                     demo_app(
                         ReviewStore(connect),
                         AuthStore(connect),
                         origin=f"http://127.0.0.1:{args.port}",
                         trial_id=trial.name,
+                        payer_desk=payer,
                     ),
                     host="127.0.0.1",
                     port=args.port,
@@ -150,7 +173,14 @@ def main() -> None:
                 )
                 return
         print(json.dumps(result, sort_keys=True))
-    except (ValueError, OSError, LookupError, PermissionError, psycopg.Error) as error:
+    except (
+        ValueError,
+        OSError,
+        LookupError,
+        PermissionError,
+        psycopg.Error,
+        sqlite3.Error,
+    ) as error:
         parser.exit(
             2, type(error).__name__ + "; inspect private demo configuration and current state\n"
         )

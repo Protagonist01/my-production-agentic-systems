@@ -2,6 +2,17 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth operator payer desk (2026-11-15)
+
+The accepted demo's next composition is prior_auth_payer_desk.py and its protected
+web/CLI integration. Browser commands carry only expected revision and explicit
+synthetic confirmation; canonical SQL and trusted import bindings supply the packet.
+Reuse the existing reference-payer serializer/journal. Preserve unknown submissions,
+block replacement after revision changes, and keep inquiry observations separate.
+Use docs/prior-auth-payer-desk.md and the code-study chapter. No model calls, commercial
+credential, clinical approval or public upload follows. Verify final-head SQL/auth
+and actual independent reference-process CI before merge/integration claims.
+
 ## Demo security maintenance (2026-11-15)
 
 PR160's initial matrix/SQL/reference-payer checks passed, but dependency audit found
