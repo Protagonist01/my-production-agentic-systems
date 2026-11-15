@@ -170,3 +170,9 @@ Historical v1–v12bytes stay unchanged; v12joins the historical lock-rejection 
 rule is relaxed, no real provider is called, and no private Groq/Gemini capture is altered.
 The content guard also rejects Groq credential patterns without echoing them. This is
 synthetic fixture maintenance; it supplies no new provider/domain evaluation evidence.
+
+
+OpenTelemetry security maintenance (2026-11-15): the active invented fixture is v17,
+pinned to the patched lock (API/SDK1.45.2). All six canonical requests/responses
+match v16. Historical v1–v16 remain unchanged and refuse the new lock. This is
+offline wiring evidence only; real provider captures retain their old environments.

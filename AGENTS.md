@@ -2,6 +2,15 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Demo security maintenance (2026-11-15)
+
+PR160's initial matrix/SQL/reference-payer checks passed, but dependency audit found
+CVE-2026-126360 in OpenTelemetry API1.45.1. The explicit security repair advances
+two telemetry manifest pins and eight related lock packages to API/SDK1.45.2,
+leaving unrelated versions fixed. Invented replay v17 replaces only the active
+wiring fixture; v1–v16 and real captures stay unchanged. Preserve historical
+provider environments and the615/784ledger; no provider dispatch follows.
+
 ## Prior Auth demo implementation (2026-11-15)
 
 The owner explicitly requested building the accepted demo. The opt-in root complete-

@@ -7646,3 +7646,40 @@ negative/conflicting context, without encoding clinical threshold answers. Keep 
 server's exact-span and conservative support checker. Citation cards must display both
 the policy source and case-document locations under the authenticated reviewer scope;
 an unmapped quote cannot be advertised as a complete document citation.
+
+
+## Entry 109 — Repair the security audit without rewriting model history
+
+PR160 passed all four OS/Python quality jobs, PostgreSQL isolation and the actual
+reference payer. Its dependency audit failed on opentelemetry-api1.45.1,
+CVE-2026-126360. The upstream advisory identifies excessive CPU when extracting
+malformed traceparent values from carriers preserving embedded newlines; it does
+not establish an exploit in this application.
+
+Inspect the inverted uv tree before changing requirements. The harness pins SDK and
+proto-common1.45.1; SDK1.45.2 requires API1.45.2 and semantic-conventions0.66b2.
+Update those two direct telemetry pins by one patch, resolve only related packages,
+and compare the old/new TOML package versions. Eight OpenTelemetry packages change;
+unrelated versions stay fixed. Do not suppress the advisory.
+
+A dependency lock is also a replay identity. Preserve invented-v1 through v16 and
+all real provider captures. Generate invented-v17 through invented_recording with
+the new lock SHA and actual reviewed dirty revision. Compare all six canonical
+requests/responses to v16 before publishing through write_recording, then pin its
+independently computed digest in the replay entrypoint. Add v16 to historical
+changed-lock refusal coverage. This is offline wiring, not new model evidence.
+
+Run dependency audit, strict replay, focused candidate/web tests, typing and lint,
+then verify final-head hosted SQL/authentication and all CI jobs before merging.
+The first local journal append failed because Windows default decoding was cp1252;
+use explicit UTF-8 for repository Markdown. No journal content was lost.
+
+Upstream: https://github.com/open-telemetry/opentelemetry-python/security/advisories/GHSA-mf5v-w3w3-f6cg
+
+
+The patched local audit reports no known vulnerabilities. Replay consumes6calls and
+reproduces2timeouts with zero network;94focused replay/candidate/web tests pass.
+The first focused run encountered sandbox denial creating its outside-Git basetemp;
+rerunning through approval with a fresh directory passed. Node session-race checks
+and repository lint/format pass. All earlier hosted quality/SQL/reference-payer jobs
+passed; the final head still needs its own hosted authentication/SQL evidence.

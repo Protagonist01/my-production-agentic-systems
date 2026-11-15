@@ -13,11 +13,17 @@ render = function renderDemoEvidence(row) {
   for (const card of row.evidence_cards || []) {
     const body = el("div");
     body.append(el("p", "Policy requirement", "eyebrow"), el("blockquote", card.policy_requirement.quote));
-    const link = el("a", "Open the CMS national policy ↗");
-    link.href = "https://www.cms.gov/medicare-coverage-database/view/ncd.aspx?ncdid=226&ncdver=3";
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    body.append(link, el("p", "Policy review status: " + human(card.policy_review_status), "fine"));
+    const cms = "https://www.cms.gov/medicare-coverage-database/view/ncd.aspx?ncdid=226&ncdver=3";
+    if (card.policy_url === cms) {
+      const link = el("a", "Open the CMS national policy ↗");
+      link.href = cms;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      body.append(link);
+    } else {
+      body.append(el("p", "Fixture policy source. This passage is not verified CMS policy text.", "notice"));
+    }
+    body.append(el("p", "Policy review status: " + human(card.policy_review_status), "fine"));
     body.append(el("p", "Case-document evidence", "eyebrow"));
     if (!card.document_citations.length) body.append(el("p", "No supporting document citation is available.", "reason"));
     for (const citation of card.document_citations) {

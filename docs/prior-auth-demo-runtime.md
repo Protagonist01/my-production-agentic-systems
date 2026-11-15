@@ -2,8 +2,10 @@
 
 This opt-in implementation follows the [accepted portfolio-demo target](prior-auth-demo-acceptance.md).
 It adds a separately versioned citation candidate, a SQL-backed assessor, authenticated
-source cards and a runnable scripted demo. It preserves the frozen domain/harness
-packages, original checker, historical study results and shared provider ledger.
+source cards and a runnable scripted demo. It preserves the original domain/checker behavior, historical study results and
+shared provider ledger. A separate OpenTelemetry security patch updates the
+telemetry dependency pins and active invented replay fixture; historical captures
+retain their original lock.
 
 ## What is implemented
 
@@ -115,3 +117,11 @@ does not add a browser submission button or claim a new actual payer exchange. T
 remaining demo work is the explicit operator submission/inquiry presentation, native
 worker isolation/packaging, the newly scoped live candidate comparison and final
 end-to-end demonstration. Clinical/commercial production qualification remains separate.
+
+
+PR160 initial hosted validation (e0df1db): all four Windows/Linux Python3.12/3.13
+quality jobs, Postgres isolation and independent reference payer passed. The first
+dependency audit failed CVE-2026-126360; the minimal OpenTelemetry patch then passed
+the local locked audit. Focused replay/candidate/web tests:94passed; browser
+session regressions passed. These are engineering/synthetic evidence only. Final
+head CI must additionally cover the authenticated citation API regression.

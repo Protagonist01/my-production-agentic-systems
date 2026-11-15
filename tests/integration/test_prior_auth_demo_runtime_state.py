@@ -222,3 +222,35 @@ def test_wrong_viewer_scope_or_tampered_result_cannot_return_evidence_cards(app)
         )
     with pytest.raises(StateChanged):
         EvidenceReader(app[2]).cards(actor(case), case, expected_version=1)
+
+
+def test_authenticated_demo_api_returns_cards_and_marks_scripted_attempts(app):
+    from fastapi.testclient import TestClient
+    from prior_auth.review_auth import AuthStore, provision
+
+    from prior_auth_demo_web import demo_app
+
+    case, _, _, _, worker, _, _ = seed(app)
+    worker.step()
+    principal = actor(case).model_copy(update={"username": "demo-" + case[-16:]})
+    with app[0].connect(app[1].name) as admin:
+        provision(admin, principal, "invented-test-password-2026")
+    auth = AuthStore(app[2].connect, clock=app[2].clock)
+    with TestClient(
+        demo_app(app[2], auth, origin="http://127.0.0.1:8766", trial_id=app[1].name),
+        base_url="http://127.0.0.1:8766",
+    ) as client:
+        assert client.get("/api/cases/" + case).status_code == 403
+        login = client.post(
+            "/api/login",
+            headers={"origin": "http://127.0.0.1:8766"},
+            json={"username": principal.username, "password": "invented-test-password-2026"},
+        )
+        assert login.status_code == 200
+        response = client.get("/api/cases/" + case)
+        assert response.status_code == 200 and response.headers["cache-control"] == "no-store"
+        row = response.json()
+        assert row["current_attempt_modes"] == ["offline_fake"]
+        assert len(row["evidence_cards"]) == 7
+        assert all(c["source_mapping"] == "mapped" for c in row["evidence_cards"])
+        assert client.get("/api/cases/other").status_code == 403
