@@ -120,3 +120,9 @@ The Supply workflow extra changes only workspace dependency metadata while prese
 ## S5 standalone web metadata
 
 S5 first recorded v8 for the optional web metadata, then preserved it and added v9 after an isolated install revealed the missing LangGraph dependency in web. [The maintenance record](replay.md#supply-standalone-web-dependency-correction-invented-v9) pins the new source, lock and digest. All six request/response pairs remain unchanged; historical v1-v8 are retained. No matching rule or provider evidence changes.
+
+
+OpenTelemetry security maintenance (2026-11-15): the active invented fixture is v17,
+pinned to the patched lock (API/SDK1.45.2). All six canonical requests/responses
+match v16. Historical v1–v16 remain unchanged and refuse the new lock. This is
+offline wiring evidence only; real provider captures retain their old environments.

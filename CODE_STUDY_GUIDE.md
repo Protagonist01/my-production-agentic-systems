@@ -435,6 +435,11 @@ It is preparation for #51/#57/#61, with reviewer responses and final release stu
 
 ## 1. What exists and what the architecture means
 
+The [Prior Auth demo runtime chapter](docs/code-study-prior-auth-demo-runtime.md)
+traces the new citation candidate, durable SQL attempt control, protected source cards
+and scripted launcher. It distinguishes the runnable fake workflow from a newly scoped
+live model comparison and the remaining payer/deployment demo work.
+
 The destination is a shared agent/evaluation platform serving Olist support, CFPB triage, revenue integrity, prior authorization and supply-chain disruption. The current executable work is much smaller: installable packages, import checks, original Olist snapshot profiling/verification, a deterministic fake agent/evaluation flow, and checkout/trial-isolated local Postgres persistence. H1 adds development-only Gemini calls and local trace export/read-back. H2 supplies a shared Gemini transport; H4 wraps live attempts with shared reservation and process-bounded execution. H5 loads a fixed private case manifest and binds explicitly registered independent scorer versions before dispatch; H6 schedules all case/trial pairs, prepares fresh controlled state, owns bounded child processes and reconciles missing/error evidence. The state-check acceptance plugins use invented data. A controlled SIM refund backend and persistent Olist LangGraph workflow now exist; [the workflow chapter](docs/code-study-olist-workflow.md) traces their separate business/checkpoint transactions. The [local console](docs/code-study-olist-console.md) adds scoped sessions and durable reviewer approval. Offline Olist state scoring/reporting, original-contract preparation and read-only Revenue reconciliation extend these paths. Revenue separates literal source evidence from constructed billing facts, checks spans before accepting claims and shares only exact resource-scope membership with Olist. These mechanisms do not establish provider quality. Real payment operations, remote deployment and production traffic remain absent at this snapshot.
 
 ```mermaid

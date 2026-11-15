@@ -1,7 +1,8 @@
 "use strict";
 // Exercise the shipped browser asset against controlled response ordering.
 const assert = require("node:assert/strict"), fs = require("node:fs"), vm = require("node:vm"), path = require("node:path");
-const source = fs.readFileSync(path.join(__dirname,"../projects/prior-auth/src/prior_auth/web/console.js"),"utf8");
+const source = fs.readFileSync(path.join(__dirname,"../projects/prior-auth/src/prior_auth/web/console.js"),"utf8") +
+  "\n" + fs.readFileSync(path.join(__dirname,"../prior_auth_demo_web.js"),"utf8");
 const tick = () => new Promise(resolve=>setImmediate(resolve));
 function deferred(){let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve};}
 function response(value,status=200){return {ok:status>=200&&status<300,status,json:async()=>value};}

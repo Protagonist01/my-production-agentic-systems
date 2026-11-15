@@ -2,6 +2,57 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Demo security maintenance (2026-11-15)
+
+PR160's initial matrix/SQL/reference-payer checks passed, but dependency audit found
+CVE-2026-126360 in OpenTelemetry API1.45.1. The explicit security repair advances
+two telemetry manifest pins and eight related lock packages to API/SDK1.45.2,
+leaving unrelated versions fixed. Invented replay v17 replaces only the active
+wiring fixture; v1–v16 and real captures stay unchanged. Preserve historical
+provider environments and the615/784ledger; no provider dispatch follows.
+
+## Prior Auth demo implementation (2026-11-15)
+
+The owner explicitly requested building the accepted demo. The opt-in root complete-
+citation candidate, additive prior_auth_demo SQL scope/attempt/settlement schema,
+scoped DemoWorker, source cards and protected desk/launcher are described in
+docs/prior-auth-demo-runtime.md and its code-study chapter. Preserve the frozen
+clinical/harness packages, checker, original SQL, captures and shared ledger. The
+shipped console uses only an explicitly scripted gateway and refuses live scopes;
+it is not model-quality evidence. The injected live interface still needs exact
+shared-provider authority, validator and readiness before dispatch. No unused-slot
+transfer or extra call follows from demo development. Payer UI, parser isolation,
+fresh model comparison and final end-to-end packaging remain separate work.
+
+## Accepted Prior Auth portfolio-demo target (2026-11-15)
+
+The owner explicitly clarified demo purpose and accepted authoritative CMS policy
+citations, synthetic patient documents/tests and the already tested official HL7
+reference payer. docs/prior-auth-demo-acceptance.md is the active demo finish line.
+Clinical qualification and commercial payer credentials must not block completing
+this demo; preserve their separate production gates as unmet, not passed/deleted.
+Declared fictional facts/expected outputs are constructed demo references, never
+clinical gold. Keep two citation types: policy requirement and case-document support.
+No clinical authorization/denial/treatment capability follows. Complete citation
+selection, durable model composition, visible operator-authorized payer exchange and
+reproducible demo packaging. Preserve tenant/version/security/budget/replay controls.
+This accepted demo method supersedes treating D1/D2/D5 in the previous checklist as
+demo prerequisites. Actual hosting and exact new provider/runtime scope still need
+concrete configuration/grants; the 615/784 ledger history and bound slots remain.
+
+## Prior Auth closure consolidation (2026-11-15)
+
+The owner requested one consolidated checklist before proceeding toward a running
+release. Use docs/prior-auth-closure-checklist.md for ordered tasks, exit evidence
+and the single D1–D5 decision/access register. Immediate engineering is citation
+completeness and an opt-in durable model assessor, with deployment preparation in
+parallel. The existing ReviewWorkflow lease can repeat model work after crashes;
+its three-attempt behavior is not a provider budget/idempotency control. Preserve
+frozen packages/captures and use a separately versioned composition. Do not infer
+a payer, host, PA limits or new provider scope from old option numbers/Olist targets.
+This consolidation changes no model grant, source rights, qualification or deployment
+activation. Original gates and tested-PR submission/merge authority persist.
+
 ## Prior Auth release-readiness continuation (2026-11-13)
 
 Completed development result: docs/prior-auth-development-study-v1.md is authoritative

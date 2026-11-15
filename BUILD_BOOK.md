@@ -3,6 +3,12 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 108 — Build complete citations and a crash-safe demo assessor](#entry-108--build-complete-citations-and-a-crash-safe-demo-assessor)
+
+- [Entry 107 — Set an honest portfolio-demo finish line](#entry-107--set-an-honest-portfolio-demo-finish-line)
+
+- [Entry 106 — Consolidate the path to a running Prior Auth release](#entry-106--consolidate-the-path-to-a-running-prior-auth-release)
+
 - [Entry 105 — Separate clinical qualification, fresh study authority and payer interoperability](#entry-105--separate-clinical-qualification-fresh-study-authority-and-payer-interoperability)
 
 - [Entry 104 — Turn Prior Auth intake into an authenticated operator workflow](#entry-104--turn-prior-auth-intake-into-an-authenticated-operator-workflow)
@@ -7567,3 +7573,113 @@ ad9afa85a72424fb428d493621a146200d8ef08bef56c27ef9d0459 keeps all eight required
 fields/slices and an empty acceptance form. Constructed event counts/intervals also need
 clinical applicability review before clinical qualification. No new label is silently
 created, no benchmark name becomes proof, and no code merge closes release issue51.
+
+## Entry 106 — Consolidate the path to a running Prior Auth release
+
+On November 15 the owner asked to consolidate the remaining tasks and access/decision
+needs after the completed development study. Start from merged c0a9078 in a separate
+documentation branch. This task creates one execution checklist; it does not run a
+model, choose a payer/host, change risk limits or claim clinical qualification.
+
+Read the actual operator command, ReviewWorkflow, profile, source audit and completed
+study before ordering work. The operational worker defaults to review/offline rules;
+the fresh model study is a separate composition. ReviewWorkflow can retry a leased
+job three times, and its code explicitly notes repeated model calls after a crash.
+Therefore runtime model wiring needs durable per-criterion admission/settlement,
+not just an added live flag. The lease/version fence remains necessary but insufficient
+for provider-attempt control. Record that distinction as an explicit done condition.
+
+Build docs/prior-auth-closure-checklist.md with completed evidence first, ordered
+engineering deliverables and verifiable exit conditions next, then one D1–D5 register
+for clinical reference access, clinical/risk decisions, new model scope, deployment
+configuration and target-payer access. Each item names what engineering prepares before
+the owner/external party must act. Keep citation completeness and model wiring first,
+deployment packaging alongside, and reference/payer access as parallel dependencies.
+Preserve every field/slice; do not borrow Olist limits or infer deployment choices
+from old option numbers. Link the checklist from AGENTS and the current code walkthrough.
+
+Verify local Markdown references, source-symbol claims and the documentation diff.
+No runtime test is needed for this documentation-only change. The previously passing
+suite and model results remain historical evidence, not freshly executed tests here.
+
+## Entry 107 — Set an honest portfolio-demo finish line
+
+The owner clarified that the authorization agent is a portfolio demonstration and
+accepted the recommendation to use authoritative CMS policy, synthetic case records
+and the official reference payer already tested. This changes the immediate delivery
+target: clinical/commercial production qualification cannot remain a prerequisite for
+finishing a clearly labeled synthetic demo. Preserve those original gates as unmet;
+do not mark them passed or delete their evidence requirements.
+
+Write docs/prior-auth-demo-acceptance.md with four inspectable deliverables: complete
+policy/case citations, an operational model composition with durable attempt control,
+visible operator-authorized reference-payer submission/inquiry and reproducible tested
+demo packaging. Separate declared synthetic facts from model inputs and evaluator-only
+expectations. Neither a policy citation nor a research paper proves an individual case
+fact. Unknown or ambiguous interpretations remain explicit review outcomes.
+
+Link the accepted target from the prior closure checklist, AGENTS and code walkthrough
+so future work does not restart the same clinical-review/commercial-access questions.
+Keep actual hosting and new provider-call scope separate: demo acceptance supplies no
+new numerical allowance or transfer of the old study's unused slots. No runtime
+feature, patient-data use, model call or deployment is performed by this scope record.
+
+## Entry 108 — Build complete citations and a crash-safe demo assessor
+
+The owner now explicitly requested building the accepted demo. Keep the original
+clinical/harness packages and captures frozen. The immediate batch is an opt-in root
+candidate/presentation path and a durable assessor that can join the existing SQL
+workflow without a newly inferred provider allowance. Use dependency-injected gateways
+for development; no key load or provider dispatch follows from implementation alone.
+
+Before coding, separate three identities: immutable request bytes, logical criterion
+work, and the expiring SQL job lease. A lease retry must reuse a settled response or
+return review for uncertain work; it must not allocate a fresh paid/provider attempt.
+Changing the prompt/schema must not silently replay an old response. Store attempts
+inside an additive Postgres schema so canonical case/version checks and reservation
+can be atomic under the same database lock; a separate SQLite file would complicate
+case-version fencing and recovery. Preserve unknown crash-left reservations.
+
+The prior capture already established missing positive-result and supervision quotes.
+Add one separately versioned prompt edit requesting all applicable subconditions and
+negative/conflicting context, without encoding clinical threshold answers. Keep the
+server's exact-span and conservative support checker. Citation cards must display both
+the policy source and case-document locations under the authenticated reviewer scope;
+an unmapped quote cannot be advertised as a complete document citation.
+
+
+## Entry 109 — Repair the security audit without rewriting model history
+
+PR160 passed all four OS/Python quality jobs, PostgreSQL isolation and the actual
+reference payer. Its dependency audit failed on opentelemetry-api1.45.1,
+CVE-2026-126360. The upstream advisory identifies excessive CPU when extracting
+malformed traceparent values from carriers preserving embedded newlines; it does
+not establish an exploit in this application.
+
+Inspect the inverted uv tree before changing requirements. The harness pins SDK and
+proto-common1.45.1; SDK1.45.2 requires API1.45.2 and semantic-conventions0.66b2.
+Update those two direct telemetry pins by one patch, resolve only related packages,
+and compare the old/new TOML package versions. Eight OpenTelemetry packages change;
+unrelated versions stay fixed. Do not suppress the advisory.
+
+A dependency lock is also a replay identity. Preserve invented-v1 through v16 and
+all real provider captures. Generate invented-v17 through invented_recording with
+the new lock SHA and actual reviewed dirty revision. Compare all six canonical
+requests/responses to v16 before publishing through write_recording, then pin its
+independently computed digest in the replay entrypoint. Add v16 to historical
+changed-lock refusal coverage. This is offline wiring, not new model evidence.
+
+Run dependency audit, strict replay, focused candidate/web tests, typing and lint,
+then verify final-head hosted SQL/authentication and all CI jobs before merging.
+The first local journal append failed because Windows default decoding was cp1252;
+use explicit UTF-8 for repository Markdown. No journal content was lost.
+
+Upstream: https://github.com/open-telemetry/opentelemetry-python/security/advisories/GHSA-mf5v-w3w3-f6cg
+
+
+The patched local audit reports no known vulnerabilities. Replay consumes6calls and
+reproduces2timeouts with zero network;94focused replay/candidate/web tests pass.
+The first focused run encountered sandbox denial creating its outside-Git basetemp;
+rerunning through approval with a fresh directory passed. Node session-race checks
+and repository lint/format pass. All earlier hosted quality/SQL/reference-payer jobs
+passed; the final head still needs its own hosted authentication/SQL evidence.
