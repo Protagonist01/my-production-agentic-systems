@@ -2,6 +2,19 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth demo implementation (2026-11-15)
+
+The owner explicitly requested building the accepted demo. The opt-in root complete-
+citation candidate, additive prior_auth_demo SQL scope/attempt/settlement schema,
+scoped DemoWorker, source cards and protected desk/launcher are described in
+docs/prior-auth-demo-runtime.md and its code-study chapter. Preserve the frozen
+clinical/harness packages, checker, original SQL, captures and shared ledger. The
+shipped console uses only an explicitly scripted gateway and refuses live scopes;
+it is not model-quality evidence. The injected live interface still needs exact
+shared-provider authority, validator and readiness before dispatch. No unused-slot
+transfer or extra call follows from demo development. Payer UI, parser isolation,
+fresh model comparison and final end-to-end packaging remain separate work.
+
 ## Accepted Prior Auth portfolio-demo target (2026-11-15)
 
 The owner explicitly clarified demo purpose and accepted authoritative CMS policy

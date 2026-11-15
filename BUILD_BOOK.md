@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 108 — Build complete citations and a crash-safe demo assessor](#entry-108--build-complete-citations-and-a-crash-safe-demo-assessor)
+
 - [Entry 107 — Set an honest portfolio-demo finish line](#entry-107--set-an-honest-portfolio-demo-finish-line)
 
 - [Entry 106 — Consolidate the path to a running Prior Auth release](#entry-106--consolidate-the-path-to-a-running-prior-auth-release)
@@ -7621,3 +7623,26 @@ so future work does not restart the same clinical-review/commercial-access quest
 Keep actual hosting and new provider-call scope separate: demo acceptance supplies no
 new numerical allowance or transfer of the old study's unused slots. No runtime
 feature, patient-data use, model call or deployment is performed by this scope record.
+
+## Entry 108 — Build complete citations and a crash-safe demo assessor
+
+The owner now explicitly requested building the accepted demo. Keep the original
+clinical/harness packages and captures frozen. The immediate batch is an opt-in root
+candidate/presentation path and a durable assessor that can join the existing SQL
+workflow without a newly inferred provider allowance. Use dependency-injected gateways
+for development; no key load or provider dispatch follows from implementation alone.
+
+Before coding, separate three identities: immutable request bytes, logical criterion
+work, and the expiring SQL job lease. A lease retry must reuse a settled response or
+return review for uncertain work; it must not allocate a fresh paid/provider attempt.
+Changing the prompt/schema must not silently replay an old response. Store attempts
+inside an additive Postgres schema so canonical case/version checks and reservation
+can be atomic under the same database lock; a separate SQLite file would complicate
+case-version fencing and recovery. Preserve unknown crash-left reservations.
+
+The prior capture already established missing positive-result and supervision quotes.
+Add one separately versioned prompt edit requesting all applicable subconditions and
+negative/conflicting context, without encoding clinical threshold answers. Keep the
+server's exact-span and conservative support checker. Citation cards must display both
+the policy source and case-document locations under the authenticated reviewer scope;
+an unmapped quote cannot be advertised as a complete document citation.
