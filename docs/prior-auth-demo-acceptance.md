@@ -22,20 +22,20 @@ HL7 reference payer. This is the active demo-development target.
 
 ### 1. Complete evidence and citations
 
-- [ ] Every criterion displays its policy paragraph and exact synthetic document
+- [x] Every criterion displays its policy paragraph and exact synthetic document
   citations, with the source identity/location available for inspection.
 - [ ] Every required subcondition is supported. Missing, conflicting or ambiguous
   evidence produces an explicit missing-information/review result.
 - [ ] Fix the measured citation omissions, including positive test/type and prior
   order/supervision. Preserve the prior model outputs and original baseline results.
-- [ ] Keep unresolved national/local short-study and fractional-threshold questions
+- [x] Keep unresolved national/local short-study and fractional-threshold questions
   visible. A demo must not invent a clinical interpretation to make a case pass.
 
 ### 2. Connect the model to the operational workflow safely
 
 - [ ] Explicit model-enabled composition works with authenticated, synthetic-only
   imports and the existing document wait/resume workflow.
-- [ ] Durable per-criterion provider admission and settlement survive worker crashes;
+- [x] Durable per-criterion provider admission and settlement survive worker crashes;
   a lease retry cannot silently resend an unknown or already consumed model attempt.
 - [ ] Budget, route, expiry, timeout, no-fallback, tenant and stale-version controls
   are exercised with SQL and mocked SDK responses before any new live run.
@@ -44,32 +44,48 @@ HL7 reference payer. This is the active demo-development target.
 
 ### 3. Make the payer exchange visible end to end
 
-- [ ] An authenticated operator explicitly submits a synthetic packet to the separate
+- [x] An authenticated operator explicitly submits a synthetic packet to the separate
   reference payer; the model cannot authorize submission itself.
-- [ ] Display the actual submission receipt/status and inquiry result. Label the
+- [x] Display the actual submission receipt/status and inquiry result. Label the
   system as an HL7 reference payer and all patient content as synthetic.
-- [ ] Demonstrate duplicate submission containment and recovery of unknown outcomes
+- [x] Demonstrate duplicate submission containment and recovery of unknown outcomes
   without blind POST retries.
-- [ ] Never present processing-complete or A3/not-required as a clinical approval.
+- [x] Never present processing-complete or A3/not-required as a clinical approval.
   Additional controlled response scenarios must be labeled simulated if supplied
   by an authored emulator rather than the reference service.
 
 ### 4. Package, test and demonstrate
 
-- [ ] Supply a reproducible local launch/config guide with private credentials and
+- [x] Supply a reproducible local launch/config guide with private credentials and
   a clear setup/readiness failure message. A hosted destination is still undecided.
 - [ ] A frozen synthetic test pack covers complete, missing, conflicting, unrelated,
   wrong-subject, adverse-instruction and document-resume scenarios across supported
   layouts. Keep declared facts, expected outputs and model inputs separate.
 - [ ] Test candidate evidence, exact citations, arithmetic, unauthorized effects,
   privacy, replay, concurrency and failures. Missing measurements remain unknown.
-- [ ] Demonstrate one complete workflow: import → evidence review → missing-document
+- [x] Demonstrate one complete workflow: import → evidence review → missing-document
   request → supplement → reassessment → explicit reference-payer submission → inquiry.
-- [ ] Publish measured results, known limitations and a short demonstration recording
+- [x] Publish measured results, known limitations and a short demonstration recording
   or walkthrough. Report synthetic-case agreement, not clinical accuracy.
 
-The demo is ready only when these checks have actual evidence. This document does
-not mark any new runtime feature implemented or declare the demo ready today.
+Checked items above are verified engineering mechanisms: PR160/PR161 and the
+subsequent closeout actual-service test. The gateway is scripted in that workflow;
+those checks do not establish live-provider readiness or clinical correctness.
+The complete path is an automated authenticated SQL/API witness plus a written
+[walkthrough](prior-auth-demo-walkthrough.md), not an observed local browser recording.
+
+The demo is not yet fully ready as a live-model demonstration. Citation improvement
+on fresh provider output, exact live composition/readiness and its bounded smoke test
+remain. Host-loss backup/restore and native parser isolation are also unverified;
+public native uploads remain disabled. A chosen remote deployment host is undecided.
+
+The private no-provider proposal at
+`D:/document/.cache/production-agents/prior-auth/citation-repair-proposal-2026-11-15-v1`
+uses the12already exposed invented development notes, separate constructed references,
+2canaries and166domain requests. It proposes168newattempts and same-file ceiling952,
+preserving615consumed and169old unspent/bound slots. It is prepared, not authorized
+or dispatchable: exact final-source/environment, grant implementation and selected-
+host readiness remain prerequisites. No new provider call or release follows.
 
 ## What remains separate
 
