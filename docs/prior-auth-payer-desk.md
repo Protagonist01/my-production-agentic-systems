@@ -83,3 +83,12 @@ composition verified. A fake unit transport is not independent-payer evidence.
 
 This adds no model attempt, clinical qualification, real-patient permission,
 commercial-payer credential or hosted deployment activation.
+
+
+The desk uses the versioned `payer-desk-trace-v1` request identity and adds the PAS
+itemTraceNumber extension containing the packet digest to both submit and inquiry.
+The pinned reference matcher can otherwise find several requests with the same
+patient/coverage/service. The legacy standalone serializer is still the default;
+its historical wire bytes are unchanged. The desk keeps the single-match response
+check and independent Claim/identity readback. The actual-process regression uses
+two explicit packets for the same patient and requires one match for each inquiry.

@@ -2,8 +2,9 @@
 
 This chapter covers the opt-in root `prior_auth_payer_desk.py`, the demo web/CLI
 composition and its SQL/browser witnesses on `codex/prior-auth-payer-desk`. It follows
-Build Book Entry110. The adapter's FHIR serializer and correlation checker remain
-those already tested before this composition. No fresh model calls are involved.
+Build Book Entry110. The adapter's default FHIR serializer and correlation checker remain
+those already tested before this composition; the desk opts into a versioned
+item-trace serializer for unambiguous inquiry. No fresh model calls are involved.
 
 An invented execution starts with a reviewer opening case `demo-complete`, revision1.
 `EvidenceStore.snapshot` attaches stored payer metadata through `PayerDesk.status`;
@@ -45,3 +46,13 @@ Study exercise: let a POST succeed remotely but kill the worker before its local
 receipt settles. Restart, click submit again, then inquire. A strong explanation
 predicts no second submit POST, retained reserved history, and separately checked
 inquiry evidence. Changing the case revision must not bypass that uncertainty.
+
+
+Integration diagnosis: the first real-service desk run submitted/replayed but inquiry
+was unavailable. The pinned upstream PasInquiryService filters references/coverage/
+service and optional itemTraceNumber, rather than Claim.identifier. Add `traced_bundle`
+for both operations and include its protocol version in stable request identity.
+PasClient accepts an explicit builder but defaults to the original bundle function;
+legacy callers keep their bytes. Test injected serialization and independent readback
+locally, then require the same-patient/two-packet actual-service witness. A synthetic
+response stub cannot establish the reference service's search semantics.

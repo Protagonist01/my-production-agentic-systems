@@ -7724,3 +7724,21 @@ Code review found that a new case revision could otherwise bypass an unresolved
 older request. Add a packet index before adapter dispatch, block a replacement, and
 test both revision bypass and death between index and adapter reservation. Also
 assert NOWAIT cannot lock the canonical case while the submission callback runs.
+
+
+The first actual-service desk test submitted and replayed successfully but inquiry
+returned unavailable (job132933806033). Inspect the pinned upstream PasInquiryService: it
+searches patient/insurer/requestor, coverage and product; Claim.identifier is not an
+exact-match filter. Both old and new test packets share those synthetic identities.
+This makes a multi-match collision the leading diagnosis; the first failure did not
+expose the raw count. Do not accept the first returned response or relax single-match
+correlation. The upstream supports itemTraceNumber filters. Add a versioned desk-only
+serializer placing the request digest in that extension for BOTH submit and inquiry,
+retain the default historical serializer, and keep independent Claim identity checks.
+Exercise two successive packets for the same patient in the actual-process test.
+
+
+The trace fix's23local transport/serializer/web tests and browser logout race pass;
+286typed sources still pass. Preserve the first failed reference job as history and
+rerun the actual service and SQL suite on the changed head. The single-match and
+independent identity validators remain unchanged.

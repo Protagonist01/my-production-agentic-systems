@@ -17,7 +17,7 @@ from prior_auth.review_store import ReviewStore, contract
 from pydantic import Field
 
 from prior_auth_intake import CaseBinding
-from prior_auth_pas import PasClient, Receipt, bundle, checked_inquiry
+from prior_auth_pas import SYSTEM, PasClient, Receipt, bundle, checked_inquiry
 from prior_auth_sandbox import Submission
 
 
@@ -26,9 +26,23 @@ class PayerCommand(Contract):
     confirm_synthetic_exchange: Literal[True]
 
 
+def traced_bundle(request: Submission, note: NoteInput) -> dict[str, Any]:
+    value = bundle(request, note)
+    value["entry"][0]["resource"]["item"][0]["extension"] = [
+        {
+            "url": "http://hl7.org/fhir/us/davinci-pas/StructureDefinition/extension-itemTraceNumber",
+            "valueIdentifier": {"system": SYSTEM, "value": digest(request.canonical_json())},
+        }
+    ]
+    return value
+
+
 class PayerDesk:
     def __init__(self, store: ReviewStore, client: PasClient, bindings: tuple[CaseBinding, ...]):
-        self.store, self.client = store, client
+        self.store = store
+        # Explicitly version this serializer in request identity below. Historical
+        # standalone adapter calls retain their original default serializer.
+        self.client = PasClient(client.journal, client.transport, builder=traced_bundle)
         self.bindings = {
             (b.tenant_id, b.case_id): CaseBinding.model_validate_json(b.canonical_json())
             for b in bindings
@@ -72,7 +86,16 @@ class PayerDesk:
             if note.provenance != "invented" or note.service_date != binding.service_date:
                 raise PermissionError("current invented case required")
             identity = digest(
-                json.dumps([user.tenant_id, case_id, version, note.note_sha256, note.policy_sha256])
+                json.dumps(
+                    [
+                        "payer-desk-trace-v1",
+                        user.tenant_id,
+                        case_id,
+                        version,
+                        note.note_sha256,
+                        note.policy_sha256,
+                    ]
+                )
             )
             request = Submission(
                 request_id="desk-" + identity,
@@ -152,7 +175,9 @@ class PayerDesk:
                     raise StateChanged("submit explicitly before inquiry")
                 try:
                     result = checked_inquiry(
-                        self.client.transport("POST", "Claim/$inquire", bundle(request, note)),
+                        self.client.transport(
+                            "POST", "Claim/$inquire", traced_bundle(request, note)
+                        ),
                         digest(request.canonical_json()),
                         request,
                         self.client.transport,

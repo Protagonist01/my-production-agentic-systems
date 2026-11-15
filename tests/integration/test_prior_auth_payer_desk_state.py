@@ -8,7 +8,7 @@ from datetime import timedelta
 import pytest
 from fastapi.testclient import TestClient
 from prior_auth.review_auth import AuthStore, provision
-from prior_auth.review_contracts import StateChanged, WaitRequest
+from prior_auth.review_contracts import ReviewNote, StateChanged, WaitRequest
 from psycopg import errors
 from test_prior_auth_demo_runtime_state import seed
 from test_prior_auth_release_readiness import payer_response
@@ -16,7 +16,7 @@ from test_prior_auth_review import NOW, actor
 from test_prior_auth_review_state import app as app
 
 from prior_auth_demo_web import demo_app
-from prior_auth_pas import Loopback, PasClient, encoded
+from prior_auth_pas import Loopback, PasClient, encoded, object_from
 from prior_auth_payer_desk import PayerCommand, PayerDesk
 
 COMMAND = PayerCommand(expected_version=1, confirm_synthetic_exchange=True)
@@ -245,10 +245,14 @@ def test_api_requires_session_csrf_origin_confirmation_and_only_canonical_fields
 def test_actual_reference_payer_through_authenticated_sql_desk(app, tmp_path):
     transport = Loopback(os.environ["PRIOR_AUTH_REFERENCE_PAYER_URL"], timeout=10)
     calls = []
+    matches = []
 
     def observed(method, path, payload):
         calls.append((method, path))
-        return transport(method, path, payload)
+        raw = transport(method, path, payload)
+        if path == "Claim/$inquire":
+            matches.append(len(object_from(raw).get("parameter", [])))
+        return raw
 
     case, desk, _ = configured(app, tmp_path, transport=observed)
     client, principal = api_client(app, case, desk)
@@ -275,6 +279,34 @@ def test_actual_reference_payer_through_authenticated_sql_desk(app, tmp_path):
             == sent.json()
         )
         inquiry = client.post(url + "inquire", headers=headers, json=COMMAND.model_dump())
-        assert inquiry.status_code == 200 and inquiry.json()["inquiry"]["review_codes"] == ["A3"]
+        assert inquiry.status_code == 200 and inquiry.json()["inquiry"].get("review_codes") == [
+            "A3"
+        ], {"inquiry_matches": matches}
         assert calls.count(("POST", "Claim/$submit")) == 1
         assert calls.count(("POST", "Claim/$inquire")) == 1
+        # Same patient, coverage and service, but a new explicit packet. The trace
+        # must disambiguate inquiry without accepting a first/ambiguous match.
+        assert (
+            app[2].review(
+                actor(case),
+                case,
+                ReviewNote(
+                    command_id="second-packet",
+                    expected_version=1,
+                    outcome="qualified_review",
+                    reason="expert_review",
+                ),
+            )
+            == 2
+        )
+        second = {"expected_version": 2, "confirm_synthetic_exchange": True}
+        assert (
+            client.post(url + "submit", headers=headers, json=second).json()["submission"]["state"]
+            == "received"
+        )
+        response = client.post(url + "inquire", headers=headers, json=second)
+        assert response.status_code == 200 and response.json()["inquiry"].get("review_codes") == [
+            "A3"
+        ], {"inquiry_matches": matches}
+        assert matches == [1, 1]
+        assert calls.count(("POST", "Claim/$submit")) == 2

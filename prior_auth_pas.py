@@ -332,9 +332,14 @@ def checked_inquiry(
 
 class PasClient:
     def __init__(
-        self, journal: Path, transport: Callable[[str, str, dict[str, Any] | None], bytes]
+        self,
+        journal: Path,
+        transport: Callable[[str, str, dict[str, Any] | None], bytes],
+        *,
+        builder: Callable[[Submission, NoteInput], dict[str, Any]] = bundle,
     ) -> None:
         self.journal, self.transport = external(journal), transport
+        self.builder = builder
         with closing(self.connect()) as connection, connection:
             connection.execute(
                 "CREATE TABLE IF NOT EXISTS pas_attempts (tenant TEXT, request TEXT, "
@@ -404,7 +409,7 @@ class PasClient:
             phase: Literal["send", "response_validation"] = "send"
             raw = None
             try:
-                payload = bundle(request, note)
+                payload = self.builder(request, note)
                 raw = self.transport("POST", "Claim/$submit", payload)
                 phase = "response_validation"
                 receipt = checked_response(raw, key, request, self.transport)
