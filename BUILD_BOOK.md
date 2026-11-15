@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 112 — Check the demo in a real local browser](#entry-112--check-the-demo-in-a-real-local-browser)
+
 - [Entry 111 — Make the missing-document demo reproducible](#entry-111--make-the-missing-document-demo-reproducible)
 
 - [Entry 109 — Repair the security audit without rewriting model history](#entry-109--repair-the-security-audit-without-rewriting-model-history)
@@ -7787,3 +7789,41 @@ during preparation. It has166actual revised-prompt domain requests plus2canaries
 is784+168; it does not transfer169old bound/unspent slots or alter615consumed. The
 packet explicitly lacks authorization, ledger extension and execution readiness.
 No key/SDK dispatch or budget mutation occurred. Preserve it as preparation only.
+
+
+## Entry 112 — Check the demo in a real local browser
+
+After PR162 merged at4c97656 the owner brought Docker online. Its actual engine
+responded, so create a new isolated trial using the real pinned CMS source and the
+education-wait launcher. Never initialize over an existing trial/account. Generate
+a new reviewer password into private outside-Git storage without printing it.
+The first actual local worker published6scripted criterion invocations; education
+was insufficient. The payer remained disconnected in this local browser instance.
+
+Use the Playwright CLI skill and snapshot the sign-in controls before acting. Its
+default Chrome channel was absent; select installed Edge rather than install another
+browser. The first private login helper could not dynamically import Node filesystem
+modules in the CLI VM. Keep the password out of code output: use a one-read, random-
+path,180second loopback helper for this newly generated synthetic account only; close
+it after consumption. This is a task-local test helper, not a production credential
+delivery design. Actual browser login then succeeded.
+
+Inspect the missing criterion and source cards. Request only education through the
+real visible form; the case reached revision2. Import the fixed supplement through
+the existing authenticated operator path and revoke that temporary operator session.
+Run the same scoped worker: exactly1new scripted invocation, revision3,7met/mapped
+findings, followed by a no-job/no-send restart. Reload the browser at1440by1000 and
+open education's source card. Verify both policy and document evidence visually,
+then sign out and assert the private detail is empty. Capture four ignored screenshots.
+
+The waiting-state screenshot caught the case list before its asynchronous refresh;
+inspect mutate before calling that a bug. It already awaits selectCase then loadCases.
+Do not add a redundant network call or invent a persistent state defect from one
+intermediate frame. Source-card inspection confirms the supplement sentence and page1
+location. These observations establish the scripted UI/workflow, not model accuracy.
+
+All final PR and merged-main checks for160/161/162 pass. Add a current Prior Auth
+README entry and a verification report; relabel the old Olist current-status paragraph
+as historical rather than presenting an October main revision as today's head. Keep
+the local-vs-hosted payer evidence, live-grant gap, host-loss recovery and native
+isolation limits explicit. No model key was loaded or provider allowance mutated.

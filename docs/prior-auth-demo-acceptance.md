@@ -71,8 +71,11 @@ HL7 reference payer. This is the active demo-development target.
 Checked items above are verified engineering mechanisms: PR160/PR161 and the
 subsequent closeout actual-service test. The gateway is scripted in that workflow;
 those checks do not establish live-provider readiness or clinical correctness.
-The complete path is an automated authenticated SQL/API witness plus a written
-[walkthrough](prior-auth-demo-walkthrough.md), not an observed local browser recording.
+The complete payer path is an automated authenticated SQL/API witness plus a written
+[walkthrough](prior-auth-demo-walkthrough.md). A subsequent local Edge check verified
+login, document wait, supplement resume, source cards and private clearing at logout.
+The local browser did not connect to a payer; that evidence remains hosted. See the
+[verification report](prior-auth-demo-verification.md). No video is claimed.
 
 The demo is not yet fully ready as a live-model demonstration. Citation improvement
 on fresh provider output, exact live composition/readiness and its bounded smoke test

@@ -122,3 +122,7 @@ this demo has no public upload endpoint and no native-parser sandbox claim.
 
 For a recording, show the seven steps above and close with the limitations on the
 screen. A script walkthrough is supplied here; no screen recording is claimed.
+
+
+See the [observed local and hosted verification](prior-auth-demo-verification.md)
+for the completed checks and their distinct evidence boundaries.
