@@ -102,3 +102,9 @@ This is explicit scripted behavior, not an improved model measurement. The actua
 service test covers that entire path before payer submission and inquiry, including
 stale-version rejection and a subsequent no-work restart. See the walkthrough for
 commands and explicit untested host-loss/native-isolation boundaries.
+
+
+The implementation at merged4c97656 subsequently passed the local Edge/SQL scenario
+as well as hosted checks; the [verification report](prior-auth-demo-verification.md)
+records scope and limits. The local browser payer was not activated; independent
+payer evidence comes from the hosted actual-service workflow.

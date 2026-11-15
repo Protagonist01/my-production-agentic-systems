@@ -8,7 +8,21 @@ Build the real platform and usable applications together at 40 hours/week, inclu
 
 ## Current status
 
-Verified main `6bcac64` includes user-merged #96: nine applicable checks passed,936tests per quality cell and103Postgres, including clean dependency audits. The [separate O8 follow-up](docs/olist-followup-model-card.md) scored36/36correct Gemini trials with known token usage and local process timing. The [old pilot](docs/olist-model-card.md) retains its six timeouts. Four request templates repeat across splits, so the follow-up does not establish broad language robustness. Independent labels/baselines/thresholds and representative validation still gate downstream releases. Native board state is unverified.
+The Prior Auth portfolio demo now has an authenticated evidence desk, policy and
+synthetic-document citations, durable document waits and one-criterion resume, and
+an operator-controlled HL7 reference-payer exchange. The full SQL/API path passed
+against the independent reference process; the local Edge demonstration also passed
+login, document request, supplement resume, source inspection and logout.
+
+Start with the [demo walkthrough](docs/prior-auth-demo-walkthrough.md) and
+[verified evidence and limits](docs/prior-auth-demo-verification.md). The bundled
+assessor is explicitly scripted. Live-model citation improvement, clinical validity
+and commercial-payer acceptance are separate claims and are not supplied by that demo.
+No public patient upload or hosted production release is enabled.
+
+### Earlier Olist pilot evidence
+
+Historical main `6bcac64` included user-merged #96: nine applicable checks passed,936tests per quality cell and103Postgres, including clean dependency audits. The [separate O8 follow-up](docs/olist-followup-model-card.md) scored36/36correct Gemini trials with known token usage and local process timing. The [old pilot](docs/olist-model-card.md) retains its six timeouts. Four request templates repeat across splits, so the follow-up does not establish broad language robustness. Independent labels/baselines/thresholds and representative validation still gate downstream releases. Native board state is unverified.
 
 ## Setup and working commands
 

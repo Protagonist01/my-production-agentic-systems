@@ -2,6 +2,19 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth observed demo proof (2026-11-15)
+
+PR160/161/162 are merged with all final-head and merged-main checks passing. After
+the owner started Docker, the isolated local education-wait demo passed actual Edge
+login/request, authenticated fixed supplement import, education-only reassessment,
+seven mapped cards, no-work restart and private clearing at logout. Screenshots are
+ignored in output/playwright/prior-auth. Payer integration was proven in hosted
+actual-service tests, not this local browser. Use docs/prior-auth-demo-verification.md
+and the README entry. The assessor remains scripted; no model calls or ledger changes.
+Private citation-repair-proposal-2026-11-15-v1 is preparation only (168new/952proposed
+ceiling); exact live authority/composition/readiness remain absent. Keep host-loss
+recovery, native isolation and original production gates explicitly unverified.
+
 ## Prior Auth demo closeout scenario (2026-11-15)
 
 PR160 and PR161 are merged; preserve their exact-head evidence and original production
