@@ -1,5 +1,12 @@
 # Prior Auth release-readiness code walkthrough
 
+The [consolidated closure checklist](prior-auth-closure-checklist.md) maps remaining
+work to exit evidence and one decision/access register. In particular, ReviewWorkflow's
+job retry limit can repeat model work after a crash: future live composition needs
+durable per-criterion provider admission/settlement in addition to its current lease
+and compare-and-publish fence. The checklist is a plan, not evidence that a live
+operational model composition or commercial deployment already exists.
+
 Inspected November13,2026: branch `codex/prior-auth-release-readiness`, based on
 main4d2b174(PR158). This chapter covers the new opt-in root modules and their tests;
 it does not claim a line-by-line audit of the Java dependency or clinical qualification.

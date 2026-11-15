@@ -2,6 +2,19 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth closure consolidation (2026-11-15)
+
+The owner requested one consolidated checklist before proceeding toward a running
+release. Use docs/prior-auth-closure-checklist.md for ordered tasks, exit evidence
+and the single D1–D5 decision/access register. Immediate engineering is citation
+completeness and an opt-in durable model assessor, with deployment preparation in
+parallel. The existing ReviewWorkflow lease can repeat model work after crashes;
+its three-attempt behavior is not a provider budget/idempotency control. Preserve
+frozen packages/captures and use a separately versioned composition. Do not infer
+a payer, host, PA limits or new provider scope from old option numbers/Olist targets.
+This consolidation changes no model grant, source rights, qualification or deployment
+activation. Original gates and tested-PR submission/merge authority persist.
+
 ## Prior Auth release-readiness continuation (2026-11-13)
 
 Completed development result: docs/prior-auth-development-study-v1.md is authoritative

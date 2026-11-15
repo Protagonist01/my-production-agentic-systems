@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 106 — Consolidate the path to a running Prior Auth release](#entry-106--consolidate-the-path-to-a-running-prior-auth-release)
+
 - [Entry 105 — Separate clinical qualification, fresh study authority and payer interoperability](#entry-105--separate-clinical-qualification-fresh-study-authority-and-payer-interoperability)
 
 - [Entry 104 — Turn Prior Auth intake into an authenticated operator workflow](#entry-104--turn-prior-auth-intake-into-an-authenticated-operator-workflow)
@@ -7567,3 +7569,31 @@ ad9afa85a72424fb428d493621a146200d8ef08bef56c27ef9d0459 keeps all eight required
 fields/slices and an empty acceptance form. Constructed event counts/intervals also need
 clinical applicability review before clinical qualification. No new label is silently
 created, no benchmark name becomes proof, and no code merge closes release issue51.
+
+## Entry 106 — Consolidate the path to a running Prior Auth release
+
+On November 15 the owner asked to consolidate the remaining tasks and access/decision
+needs after the completed development study. Start from merged c0a9078 in a separate
+documentation branch. This task creates one execution checklist; it does not run a
+model, choose a payer/host, change risk limits or claim clinical qualification.
+
+Read the actual operator command, ReviewWorkflow, profile, source audit and completed
+study before ordering work. The operational worker defaults to review/offline rules;
+the fresh model study is a separate composition. ReviewWorkflow can retry a leased
+job three times, and its code explicitly notes repeated model calls after a crash.
+Therefore runtime model wiring needs durable per-criterion admission/settlement,
+not just an added live flag. The lease/version fence remains necessary but insufficient
+for provider-attempt control. Record that distinction as an explicit done condition.
+
+Build docs/prior-auth-closure-checklist.md with completed evidence first, ordered
+engineering deliverables and verifiable exit conditions next, then one D1–D5 register
+for clinical reference access, clinical/risk decisions, new model scope, deployment
+configuration and target-payer access. Each item names what engineering prepares before
+the owner/external party must act. Keep citation completeness and model wiring first,
+deployment packaging alongside, and reference/payer access as parallel dependencies.
+Preserve every field/slice; do not borrow Olist limits or infer deployment choices
+from old option numbers. Link the checklist from AGENTS and the current code walkthrough.
+
+Verify local Markdown references, source-symbol claims and the documentation diff.
+No runtime test is needed for this documentation-only change. The previously passing
+suite and model results remain historical evidence, not freshly executed tests here.
