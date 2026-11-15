@@ -53,7 +53,11 @@ class ScriptedGateway:
         claim = QuoteClaim(
             criterion_id=payload["criterion"]["criterion_id"],
             state="met",
-            quotes=(payload["full_note"],),
+            quotes=(EDUCATION,)
+            if payload["criterion"]["criterion_id"] == "education"
+            and "--- Reviewed supplemental evidence ---" in payload["full_note"]
+            and EDUCATION in payload["full_note"]
+            else (payload["full_note"],),
             rationale="Scripted invented demo; server checks evidence.",
         )
         return ModelResponse(

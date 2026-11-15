@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 111 — Make the missing-document demo reproducible](#entry-111--make-the-missing-document-demo-reproducible)
+
 - [Entry 109 — Repair the security audit without rewriting model history](#entry-109--repair-the-security-audit-without-rewriting-model-history)
 - [Entry 110 — Expose the reference payer without browser authority](#entry-110--expose-the-reference-payer-without-browser-authority)
 
@@ -7742,3 +7744,31 @@ The trace fix's23local transport/serializer/web tests and browser logout race pa
 286typed sources still pass. Preserve the first failed reference job as history and
 rerun the actual service and SQL suite on the changed head. The single-match and
 independent identity validators remain unchanged.
+
+
+## Entry 111 — Make the missing-document demo reproducible
+
+PR160 and PR161 are merged; their tested source trees match main. The owner asked to
+continue toward demo completion. Keep the engineering journal and code walkthrough
+current. Local Docker still has no engine pipe, so actual SQL/payer evidence comes
+from hosted checks; do not call that a local browser demonstration.
+
+The complete-case launcher cannot demonstrate its advertised document wait/resume.
+Add an explicit education-wait scenario with a pure plan(policy, now, scenario)
+function. Normalize the initial note through the real import pipeline before
+forecasting the exact supplemental note, including the existing separator. Register
+both sets of request fingerprints in one expiring offline-only scope up front.
+Do not add scope extension during a worker retry or reuse a live-provider allowance.
+
+The private bundle includes fixed supplement text and an ImportRequest for revision2.
+An assigned reviewer requests education in the protected desk; the existing password-
+authenticated operator import then delivers the declared supplement. The worker
+reassesses only education at revision3. Its scripted response cites the exact
+education sentence rather than the joined note/separator, so the source mapping
+points to the supplement. This is authored workflow behavior, not model accuracy.
+
+Test the pure plan locally and add an actual-service SQL/API path covering initial
+missing evidence, authenticated wait, scoped import, one-criterion reassessment,
+seven mapped citation cards, stale submit refusal, current submit/inquiry and a
+no-work restart. Preserve the same-patient/two-packet integration witness as well.
+Document launch, restart and the remaining backup/live-model limitations honestly.

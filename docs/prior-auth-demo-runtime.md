@@ -130,3 +130,7 @@ head CI must additionally cover the authenticated citation API regression.
 The subsequent [operator payer-desk composition](prior-auth-payer-desk.md) adds
 optional explicit submission/inquiry using the same protected desk and canonical
 state. It is separately verified; the initial citation batch did not include it.
+
+
+Use the [complete demo walkthrough](prior-auth-demo-walkthrough.md) for the explicit
+`education-wait` scenario, fixed authenticated supplement and one-criterion resume.

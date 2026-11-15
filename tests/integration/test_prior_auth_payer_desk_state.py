@@ -12,12 +12,20 @@ from prior_auth.review_contracts import ReviewNote, StateChanged, WaitRequest
 from psycopg import errors
 from test_prior_auth_demo_runtime_state import seed
 from test_prior_auth_release_readiness import payer_response
-from test_prior_auth_review import NOW, actor
+from test_prior_auth_review import NOW, actor, policy
 from test_prior_auth_review_state import app as app
 
+from prior_auth_demo_console import plan
+from prior_auth_demo_fixtures import ScriptedGateway
+from prior_auth_demo_runtime import DemoWorker, provision_scope, setup
 from prior_auth_demo_web import demo_app
+from prior_auth_operator import import_document
 from prior_auth_pas import Loopback, PasClient, encoded, object_from
 from prior_auth_payer_desk import PayerCommand, PayerDesk
+from prior_auth_pipeline import prepare
+from prior_auth_profiling import Profiler
+from prior_auth_store import IntakeStore
+from prior_auth_store import setup as setup_intake
 
 COMMAND = PayerCommand(expected_version=1, confirm_synthetic_exchange=True)
 
@@ -310,3 +318,99 @@ def test_actual_reference_payer_through_authenticated_sql_desk(app, tmp_path):
         ], {"inquiry_matches": matches}
         assert matches == [1, 1]
         assert calls.count(("POST", "Claim/$submit")) == 2
+
+
+@pytest.mark.skipif(
+    not os.environ.get("PRIOR_AUTH_REFERENCE_PAYER_URL"),
+    reason="owned reference process not configured",
+)
+def test_actual_reference_payer_after_document_wait_and_resume(app, tmp_path):
+    imported, scope, files = plan(policy(), now=NOW, scenario="education-wait")
+    case = imported.case.case_id
+    app[3][0] = NOW
+    with app[0].connect(app[1].name) as admin:
+        setup_intake(admin, app[1].name)
+        setup(admin, app[1].name)
+        provision_scope(admin, scope)
+    for name, value in files.items():
+        (tmp_path / name).write_text(value, encoding="utf-8")
+    user, store = actor(case), app[2]
+    IntakeStore(store.connect, clock=store.clock).accept(
+        user, prepare(files["source.txt"].encode(), imported, Profiler()), Profiler()
+    )
+    worker = DemoWorker(store, scope, ScriptedGateway())
+    assert worker.step()["sent"] == 6
+    desk = PayerDesk(
+        store,
+        PasClient(
+            tmp_path / "payer.sqlite",
+            Loopback(os.environ["PRIOR_AUTH_REFERENCE_PAYER_URL"], timeout=10),
+        ),
+        (imported.case,),
+    )
+    client, principal = api_client(app, case, desk)
+    with client:
+        assert (
+            client.post(
+                "/api/login",
+                headers={"origin": "http://127.0.0.1:8766"},
+                json={"username": principal.username, "password": "invented-payer-password-2026"},
+            ).status_code
+            == 200
+        )
+        suffix = hashlib.sha256(app[1].name.encode()).hexdigest()[:12]
+        headers = {
+            "origin": "http://127.0.0.1:8766",
+            "x-csrf-token": client.cookies["prior_auth_csrf_" + suffix],
+        }
+        url = "/api/cases/" + case
+        before = client.get(url).json()
+        assert (
+            next(c for c in before["evidence_cards"] if c["criterion"] == "education")["state"]
+            == "insufficient"
+        )
+        wait = client.post(
+            url + "/request",
+            headers=headers,
+            json={
+                "command_id": "demo-wait",
+                "expected_version": 1,
+                "criteria": ["education"],
+                "deadline": (NOW + timedelta(hours=1)).isoformat(),
+            },
+        )
+        assert wait.status_code == 200 and wait.json()["version"] == 2
+        result = import_document(
+            principal,
+            IntakeStore(store.connect, clock=store.clock),
+            tmp_path / "supplement-request.json",
+            tmp_path / "supplement.txt",
+            Profiler(),
+        )
+        assert result["resulting_version"] == 3
+        assert worker.step()["sent"] == 1
+        current = client.get(url).json()
+        assert len(current["evidence_cards"]) == 7
+        assert all(
+            c["state"] == "met" and c["source_mapping"] == "mapped"
+            for c in current["evidence_cards"]
+        )
+        education = next(c for c in current["evidence_cards"] if c["criterion"] == "education")
+        assert education["document_citations"][0]["locations"][0]["document_id"] == "demo-education"
+        assert (
+            client.post(
+                url + "/payer/submit", headers=headers, json=COMMAND.model_dump()
+            ).status_code
+            == 409
+        )
+        command = {"expected_version": 3, "confirm_synthetic_exchange": True}
+        assert (
+            client.post(url + "/payer/submit", headers=headers, json=command).json()["submission"][
+                "state"
+            ]
+            == "received"
+        )
+        assert client.post(url + "/payer/inquire", headers=headers, json=command).json()["inquiry"][
+            "review_codes"
+        ] == ["A3"]
+        assert not DemoWorker(store, scope, ScriptedGateway()).step()["claimed"]

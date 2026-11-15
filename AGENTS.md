@@ -2,6 +2,17 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth demo closeout scenario (2026-11-15)
+
+PR160 and PR161 are merged; preserve their exact-head evidence and original production
+requirements. The explicit education-wait launcher scenario forecasts initial and
+supplemental invented request bytes in one expiring offline scope. Fixed supplement
+import uses the existing authenticated operator command at revision2; the worker
+reassesses education only at revision3 and cites its document, not the separator.
+Follow docs/prior-auth-demo-walkthrough.md. No provider activation/slot transfer,
+public native upload, parser-sandbox or full host-loss recovery claim follows.
+Verify the actual-service full wait/resume/payer test before marking that path done.
+
 ## Prior Auth operator payer desk (2026-11-15)
 
 The accepted demo's next composition is prior_auth_payer_desk.py and its protected

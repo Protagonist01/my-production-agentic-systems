@@ -84,3 +84,21 @@ Material limits: no new provider-quality result, no public upload/native sandbox
 no browser payer-submission flow yet, and no full production/clinical qualification.
 Read [the launch and verification guide](prior-auth-demo-runtime.md) for actual evidence
 status and the remaining demo deliverables. Build Book Entry108 records construction.
+
+
+## Reproducible document wait scenario
+
+The subsequent closeout branch adds `prior_auth_demo_console.plan`: a pure builder
+returning trusted ImportRequest, offline Scope and private file contents. It uses
+the actual normalized initial note, then forecasts the exact joined note generated
+by ReviewStore.deliver, including its separator. The same expiring fake scope lists
+both request inventories. No runtime scope extension or new model grant is created.
+
+The fixed supplement ImportRequest expects revision2. After a reviewer requests
+education, the existing authenticated operator import creates revision3; DemoWorker
+claims only the affected education criterion. The fake response cites just the
+education sentence on a joined note, allowing IntakeReader to locate the supplement.
+This is explicit scripted behavior, not an improved model measurement. The actual-
+service test covers that entire path before payer submission and inquiry, including
+stale-version rejection and a subsequent no-work restart. See the walkthrough for
+commands and explicit untested host-loss/native-isolation boundaries.

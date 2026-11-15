@@ -10,15 +10,17 @@ from typing import Any
 
 import psycopg
 from agent_harness.local_services import Workspace
+from prior_auth.contracts import NoteInput, Policy, digest
 from prior_auth.review_auth import AuthStore, provision, setup_review
 from prior_auth.review_contracts import Principal
 from prior_auth.review_store import ReviewStore
 from prior_auth.source_io import external
 
 from prior_auth_demo import demo_request
-from prior_auth_demo_fixtures import ScriptedGateway, fake_scope, note
+from prior_auth_demo_fixtures import EDUCATION, ScriptedGateway, fake_scope, note
 from prior_auth_demo_runtime import DemoWorker, Scope, provision_scope, setup
 from prior_auth_demo_web import demo_app
+from prior_auth_documents import normalize
 from prior_auth_operator import OperatorParser, bounded_private
 from prior_auth_pas import Loopback, PasClient
 from prior_auth_payer_desk import PayerDesk
@@ -29,25 +31,16 @@ from prior_auth_store import setup as setup_intake
 from prior_auth_study_draft import verified_policy
 
 
-def initialize(
-    root: Path, trial_id: str, directory: Path, policy_directory: Path
-) -> dict[str, object]:
-    directory = external(directory)
-    if directory.exists():
-        raise ValueError("exclusive new demo directory required")
-    policy = verified_policy(policy_directory)
-    workspace = Workspace(root.resolve())
-    if workspace.trial_path(trial_id).exists():
-        raise ValueError("new isolated trial required; existing accounts/state are not replaced")
-    workspace.up()
-    trial = workspace.create(trial_id)
-    server = workspace.server()
-
-    def connect() -> psycopg.Connection[Any]:
-        return server.connect_trial(trial)
-
-    now = datetime.now(UTC)
-    value = note("demo-complete", policy)
+def plan(
+    policy: Policy, *, now: datetime, scenario: str
+) -> tuple[ImportRequest, Scope, dict[str, str]]:
+    if scenario not in {"complete", "education-wait"}:
+        raise ValueError("declared demo scenario required")
+    value = note(
+        "demo-complete" if scenario == "complete" else "demo-education-wait",
+        policy,
+        missing_education=scenario == "education-wait",
+    )
     request = demo_request(value.text.encode(), case_id=value.case_id)
     request = request.model_copy(
         update={
@@ -65,8 +58,73 @@ def initialize(
     )
     prepared = prepare(value.text.encode(), request, Profiler())
     assert prepared.note is not None
+    notes: tuple[NoteInput, ...] = (prepared.note,)
+    files = {
+        "request.json": request.canonical_json(),
+        "policy.json": policy.canonical_json(),
+        "source.txt": value.text,
+    }
+    if scenario == "education-wait":
+        text = prepared.note.text + "\n\n--- Reviewed supplemental evidence ---\n" + EDUCATION
+        resumed = NoteInput.model_validate_json(
+            prepared.note.model_copy(
+                update={
+                    "text": text,
+                    "note_sha256": digest(text),
+                }
+            ).canonical_json()
+        )
+        notes += (resumed,)
+        supplement = ImportRequest.model_validate_json(
+            request.model_copy(
+                update={
+                    "document": request.document.model_copy(
+                        update={
+                            "document_id": "demo-education",
+                            "kind": "education_record",
+                        }
+                    ),
+                    "expected_version": 2,
+                    "source_sha256": digest(EDUCATION),
+                    "normalization_sha256": normalize(EDUCATION.encode(), "text").text_sha256,
+                }
+            ).canonical_json()
+        )
+        files.update(
+            {"supplement.txt": EDUCATION, "supplement-request.json": supplement.canonical_json()}
+        )
+    scope = fake_scope("demo-citations-" + scenario, notes, policy, now=now)
+    files["scope.json"] = scope.canonical_json()
+    return request, scope, files
+
+
+def initialize(
+    root: Path,
+    trial_id: str,
+    directory: Path,
+    policy_directory: Path,
+    *,
+    scenario: str = "complete",
+) -> dict[str, object]:
+    directory = external(directory)
+    if directory.exists():
+        raise ValueError("exclusive new demo directory required")
+    policy = verified_policy(policy_directory)
+    workspace = Workspace(root.resolve())
+    if workspace.trial_path(trial_id).exists():
+        raise ValueError("new isolated trial required; existing accounts/state are not replaced")
+    workspace.up()
+    trial = workspace.create(trial_id)
+    server = workspace.server()
+
+    def connect() -> psycopg.Connection[Any]:
+        return server.connect_trial(trial)
+
+    now = datetime.now(UTC)
+    request, scope, files = plan(policy, now=now, scenario=scenario)
+    prepared = prepare(files["source.txt"].encode(), request, Profiler())
+    assert prepared.note is not None
     value = prepared.note
-    scope = fake_scope("demo-complete-citations", (value,), policy, now=now)
     principal = Principal(
         username="demo-reviewer",
         tenant_id="demo",
@@ -82,12 +140,7 @@ def initialize(
         provision(admin, principal, password)
         provision_scope(admin, scope)
     directory.mkdir(mode=0o700, parents=True, exist_ok=False)
-    for name, content in (
-        ("scope.json", scope.canonical_json()),
-        ("request.json", request.canonical_json()),
-        ("policy.json", policy.canonical_json()),
-        ("source.txt", value.text),
-    ):
+    for name, content in files.items():
         with (directory / name).open("x", encoding="utf-8", newline="\n") as output:
             output.write(content)
     IntakeStore(connect).accept(principal, prepared, Profiler())
@@ -97,7 +150,8 @@ def initialize(
     )
     return {
         "initialized": True,
-        "case": "demo-complete",
+        "case": value.case_id,
+        "scenario": scenario,
         "mode": "scripted-synthetic",
         "provider_calls": 0,
         "clinical_validation": False,
@@ -113,6 +167,7 @@ def main() -> None:
     init = commands.add_parser("initialize")
     init.add_argument("--directory", required=True, type=Path)
     init.add_argument("--policy-directory", required=True, type=Path)
+    init.add_argument("--scenario", choices=("complete", "education-wait"), default="complete")
     worker = commands.add_parser("worker")
     worker.add_argument("--scope", required=True, type=Path)
     serve = commands.add_parser("serve")
@@ -123,7 +178,9 @@ def main() -> None:
     args = parser.parse_args()
     try:
         if args.command == "initialize":
-            result = initialize(args.root, args.trial, args.directory, args.policy_directory)
+            result = initialize(
+                args.root, args.trial, args.directory, args.policy_directory, scenario=args.scenario
+            )
         else:
             workspace = Workspace(args.root.resolve())
             trial, server = workspace.load_trial(args.trial), workspace.server()
