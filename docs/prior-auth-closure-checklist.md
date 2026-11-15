@@ -1,5 +1,12 @@
 # Prior Auth: one checklist to reach release
 
+**Subsequent owner decision:** the active deliverable is a portfolio demo. See the
+[accepted demo finish line](prior-auth-demo-acceptance.md). Clinical qualification,
+commercial credentials and full production acceptance remain separate future gates;
+they are not prerequisites to finishing the synthetic/reference-payer demo. The
+engineering/security controls below still apply. D1/D2 and commercial D5 are retained
+as production requirements, not recurring blockers for demo development.
+
 Prepared November 15, 2026 from the merged release-readiness implementation at
 `c0a907817c5f494d6dceebe98daeaf875ab6f753`. This consolidates remaining work and
 existing gates. It grants no new model study, data rights, spending, clinical

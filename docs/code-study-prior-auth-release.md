@@ -1,5 +1,10 @@
 # Prior Auth release-readiness code walkthrough
 
+The owner subsequently accepted a portfolio-demo target; its
+[demo acceptance contract](prior-auth-demo-acceptance.md) separates synthetic-case
+engineering verification from future clinical/commercial production qualification.
+This is a scope decision, not a new runtime implementation or production approval.
+
 The [consolidated closure checklist](prior-auth-closure-checklist.md) maps remaining
 work to exit evidence and one decision/access register. In particular, ReviewWorkflow's
 job retry limit can repeat model work after a crash: future live composition needs

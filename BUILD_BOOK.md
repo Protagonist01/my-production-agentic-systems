@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 107 — Set an honest portfolio-demo finish line](#entry-107--set-an-honest-portfolio-demo-finish-line)
+
 - [Entry 106 — Consolidate the path to a running Prior Auth release](#entry-106--consolidate-the-path-to-a-running-prior-auth-release)
 
 - [Entry 105 — Separate clinical qualification, fresh study authority and payer interoperability](#entry-105--separate-clinical-qualification-fresh-study-authority-and-payer-interoperability)
@@ -7597,3 +7599,25 @@ from old option numbers. Link the checklist from AGENTS and the current code wal
 Verify local Markdown references, source-symbol claims and the documentation diff.
 No runtime test is needed for this documentation-only change. The previously passing
 suite and model results remain historical evidence, not freshly executed tests here.
+
+## Entry 107 — Set an honest portfolio-demo finish line
+
+The owner clarified that the authorization agent is a portfolio demonstration and
+accepted the recommendation to use authoritative CMS policy, synthetic case records
+and the official reference payer already tested. This changes the immediate delivery
+target: clinical/commercial production qualification cannot remain a prerequisite for
+finishing a clearly labeled synthetic demo. Preserve those original gates as unmet;
+do not mark them passed or delete their evidence requirements.
+
+Write docs/prior-auth-demo-acceptance.md with four inspectable deliverables: complete
+policy/case citations, an operational model composition with durable attempt control,
+visible operator-authorized reference-payer submission/inquiry and reproducible tested
+demo packaging. Separate declared synthetic facts from model inputs and evaluator-only
+expectations. Neither a policy citation nor a research paper proves an individual case
+fact. Unknown or ambiguous interpretations remain explicit review outcomes.
+
+Link the accepted target from the prior closure checklist, AGENTS and code walkthrough
+so future work does not restart the same clinical-review/commercial-access questions.
+Keep actual hosting and new provider-call scope separate: demo acceptance supplies no
+new numerical allowance or transfer of the old study's unused slots. No runtime
+feature, patient-data use, model call or deployment is performed by this scope record.

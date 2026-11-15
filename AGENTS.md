@@ -2,6 +2,22 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Accepted Prior Auth portfolio-demo target (2026-11-15)
+
+The owner explicitly clarified demo purpose and accepted authoritative CMS policy
+citations, synthetic patient documents/tests and the already tested official HL7
+reference payer. docs/prior-auth-demo-acceptance.md is the active demo finish line.
+Clinical qualification and commercial payer credentials must not block completing
+this demo; preserve their separate production gates as unmet, not passed/deleted.
+Declared fictional facts/expected outputs are constructed demo references, never
+clinical gold. Keep two citation types: policy requirement and case-document support.
+No clinical authorization/denial/treatment capability follows. Complete citation
+selection, durable model composition, visible operator-authorized payer exchange and
+reproducible demo packaging. Preserve tenant/version/security/budget/replay controls.
+This accepted demo method supersedes treating D1/D2/D5 in the previous checklist as
+demo prerequisites. Actual hosting and exact new provider/runtime scope still need
+concrete configuration/grants; the 615/784 ledger history and bound slots remain.
+
 ## Prior Auth closure consolidation (2026-11-15)
 
 The owner requested one consolidated checklist before proceeding toward a running
