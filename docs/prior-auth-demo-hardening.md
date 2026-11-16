@@ -6,6 +6,13 @@ restricted parsing without loading a model key or changing any provider allowanc
 Actual-container and restore checks must pass on the final PR head before treating
 these mechanisms as verified. They are not real-patient production qualification.
 
+On November16, after Docker returned, the actual local Windows/Docker image build
+and PDF/OCR/containment/deadline checks passed. All3clean-target restore witnesses
+and4authenticated-import SQL checks passed. The first Windows fixture run correctly
+refused a CRLF-versus-LF manifest mismatch; the fixture now writes exact UTF-8 bytes.
+This evidence supplements the required final-head hosted checks; it does not measure
+off-host recovery or model quality. No provider calls or allowance writes occurred.
+
 ## Restricted document parsing
 
 Build a minimal image from the immutable official Python base and five hash-locked

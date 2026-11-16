@@ -7917,3 +7917,10 @@ three captures;4operator integration tests passed. Write the fixture's exact UTF
 bytes, as the real launcher already does with explicit newline handling. Never weaken
 the manifest comparison to normalize line endings: recovery must preserve source bytes.
 The diagnostic-log-only reference-payer rerun passed without changing upstream code.
+
+The corrected local recovery run passed3tests (129.91seconds), and the earlier
+authenticated-import subset passed4. The locally built image then passed actual
+PDF/OCR, source-region, network/root-write denial, non-root/seccomp/cgroup and
+forced-deadline cleanup probes. Preserve its ignored image-id.txt under
+artifacts/pa-parser-local-2026-11-16-v1. This is local containment and same-build
+restore evidence, not host-loss recovery, model quality or clinical qualification.
