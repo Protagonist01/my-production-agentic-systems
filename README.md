@@ -15,9 +15,11 @@ against the independent reference process; the local Edge demonstration also pas
 login, document request, supplement resume, source inspection and logout.
 
 Start with the [demo walkthrough](docs/prior-auth-demo-walkthrough.md) and
-[verified evidence and limits](docs/prior-auth-demo-verification.md). The bundled
-assessor is explicitly scripted. Live-model citation improvement, clinical validity
-and commercial-payer acceptance are separate claims and are not supplied by that demo.
+[verified evidence and limits](docs/prior-auth-demo-verification.md). The optional
+[live Gemini demo](docs/prior-auth-live-demo-result.md) completed nine approved calls:
+two canaries, six initial criteria and education-only resume, with seven final mapped
+source cards and no extra restart call. The bundled default assessor remains scripted.
+This single fictional case does not establish clinical accuracy or commercial-payer acceptance.
 No public patient upload or hosted production release is enabled.
 
 ### Earlier Olist pilot evidence

@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 115 — Finish the nine-call live document-wait demo](#entry-115--finish-the-nine-call-live-document-wait-demo)
+
 - [Entry 114 — Connect Gemini without resetting provider history](#entry-114--connect-gemini-without-resetting-provider-history)
 
 - [Entry 113 — Bound the final demo hardening and model comparison](#entry-113--bound-the-final-demo-hardening-and-model-comparison)
@@ -8005,3 +8007,79 @@ assert the exact Google host/model path, and pass SDK usage metadata through the
 real parser. A direct invented request returned known10input/2output tokens without
 network. Run the complete SQL canary/case/restart/death/lease witnesses through that
 boundary as well; a pure fake ModelResponse does not test SDK serialization.
+
+## Entry 115 — Finish the nine-call live document-wait demo
+**Files touched:** AGENTS.md, README.md and the actual-result/acceptance documentation.
+The executable sources, prompt, checker and older captures did not change after dispatch.
+
+### Context
+PR164 and PR165 merged with identical reviewed/main trees and all applicable post-merge
+checks passing. The owner then approved the exact private v2 nine-attempt packet and
+confirmed the project remained Free. This resolves that one pending execution decision;
+the larger168-call proposal and clinical release remain unapproved.
+
+### Before you read on
+How would you demonstrate a live model while proving that a later missing-document
+response caused only one new model request and did not erase the original six findings?
+Write the expected case versions and provider counts before running it.
+
+### Options considered
+- Begin another large comparison: deferred because the accepted immediate target was
+  a local portfolio demonstration and that study lacked authorization.
+- Chosen: two supported canaries, six initial requests and one education-only resume,
+  with independently checked store/source correlation and an explicit one-case limit.
+
+### Why
+The smaller scope completes the actual operational integration without treating one
+successful case as a solution to broad clinical or citation quality. Its9new slots
+raise the same ceiling to793 while preserving615consumed and169old bound slots.
+There is no transfer of earlier unspent slots and no silent retry allowance.
+
+### How to build it
+Use prior_auth_live_draft to prepare exact input/request bytes and a separate private
+manifest. Verify that source/environment, case IDs, request pins and the conservative
+seven-day expiry match the final tested checkout. Retain the owner's exact approval
+separately. Create a new owned education-wait trial and a new private reviewer password;
+never print it or replace old accounts/trials. The original scripted scope can exist
+for setup, but the worker must receive the separately provisioned live scope.
+
+Back up the existing allowance for recovery evidence only, then initialize the additive
+approved Grant in the same file. Publish its external pin and the reciprocal live-scope
+pointer, and provision that exact scope in SQL. Confirm0newattempts before loading the
+existing privately configured key. Run each canary once; both passed exact quote/support
+checks and known usage. Run the worker once: six provider requests, six met/mapped cards,
+education insufficient/no evidence, and case status request_information at revision1.
+
+Authenticate as the new scoped reviewer, request only education and advance to revision2.
+Import the fixed education record through the authenticated operator path, revoking its
+session afterward. The import advances to revision3 and queues education only. Run the
+same scoped worker: exactly one request; the other six claims remain. All seven final
+cards are met/mapped, with education pointing to demo-education and the original six to
+demo-document. Restart once more: no job,0requests, still9consumed.
+
+Independently parse every stored response and compare its canonical hash and exact ordered
+request against the approved packet/grant. Correlate the seven domain responses against
+actual SQL settlements: six at revision1 and one education row at revision3. Authenticate
+for source-card readback, retain private snapshots/cards, then sign out. The actual running
+loopback desk also passed unauthenticated refusal, login, fresh_candidate mode/seven cards,
+logout and renewed private-access refusal. This is an HTTP witness, not a new screen recording.
+
+Record5330input/548output tokens across all9calls, zero unsettled, no stop and cumulative
+624/793. All original history/169bound slots remain. Billing cost is unknown on all nine
+responses despite the Free attestation. Keep provider aliases as reported, with no immutable
+model-version or clinical-accuracy inference. The private capture retains the raw evidence;
+the public report includes aggregates and limitations only.
+
+### What went wrong
+Docker Desktop exited after earlier readiness. Fresh-case setup stopped before creating a
+trial, after privately recording approval/password. Inspect process/engine state rather than
+retrying model work. Desktop was not running; its supported start --detach command brought
+it back. Continue setup only after verifying the trial/bundle do not exist, reusing the
+already created private password. No provider reservation or key load occurred during that
+interruption. An independent verification helper initially used strict Python validation on
+JSON arrays; use the contract's JSON deserializer instead. This read-only check changed no
+packet or request. No provider request failed or was retried in the nine-call run.
+
+The local desk has no payer connected. Preserve the already passing hosted actual-service
+payer evidence as a separate result; do not describe this local case as submitted to an
+insurer. Remote hosting, host-loss recovery and real-patient clinical release remain separate.

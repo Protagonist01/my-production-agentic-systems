@@ -2,6 +2,23 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Completed nine-attempt local Gemini demo (2026-11-16)
+
+The owner approved packet live-demo-proposal-2026-11-16-v2 via
+call_ae1f097ac45b40ebb11f4c543090de7b and confirmed Free. This supersedes the pending
+nine-attempt decision below, not the larger168call proposal. PR164/165 and applicable
+merged-main checks passed. The actual run completed9calls:2supported canaries,
+6initial and1education-only supplement reassessment. All7final source cards met/mapped;
+restart sent0. Independent response/SQL/source readback and actual HTTP login/logout
+passed. Current shared count624/793,0unsettled,no stop;615old history and169bound slots
+preserved. All9new slots are consumed: no further calls or unused-slot transfer.
+Known tokens5330input/548output; billing cost remains unknown. Private record:
+D:/document/.cache/production-agents/prior-auth/local-gemini-demo-2026-11-16-v1.
+Desk observed on127.0.0.1:8767, reviewer demo-reviewer, password only in private file.
+No local payer was connected; actual reference-payer proof remains hosted. Follow
+docs/prior-auth-live-demo-result.md. This is one fictional demo, not clinical accuracy
+or production acceptance. Original gates/captures and the unapproved168call study remain.
+
 ## Prior Auth Gemini composition and finite demo proposal (2026-11-16)
 
 PR164 hardening merged atcf143ba with equal final-head/main trees; actual local parser
