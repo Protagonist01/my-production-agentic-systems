@@ -7894,3 +7894,11 @@ Review also moved inventory discovery before the repeatable-read transaction, so
 its first data snapshot is taken only after table locks, avoiding an old SQL snapshot
 combined with a newer journal if a writer commits just before capture locks. Explicit
 quiescence is still mandatory for independent journal users.
+
+The second hosted run133159443363 passed the actual image checks and all three new
+SQL recovery witnesses. Its full SQL suite reported255passed,2skipped,1failed: another
+older authenticated-import integration fixture built an argparse Namespace without
+the new isolated_parser_image option. Add its explicit None value, matching the real
+CLI default; preserve the authentication, replay, source mapping and logout assertions.
+This is a fixture update, not a change to parser selection or a fallback after failure.
+Keep the failed result visible and require the final-head full suite before merging.
