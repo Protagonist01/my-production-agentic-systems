@@ -7997,3 +7997,11 @@ The corrected local12test unit/SQL run passed, including seven cards, two canari
 no-reservation refusal, restart/death containment and simulated lease renewal.
 Final hosted-head and selected-host source readiness remain required; no real key,
 provider request or allowance write was used to implement/test this batch.
+
+Before treating the selected-host composition as SDK-ready, strengthen the spawned
+integration worker: route the actual pinned GeminiTransport/Google SDK through an
+httpx.MockTransport. Build the fictional response from its serialized contents,
+assert the exact Google host/model path, and pass SDK usage metadata through the
+real parser. A direct invented request returned known10input/2output tokens without
+network. Run the complete SQL canary/case/restart/death/lease witnesses through that
+boundary as well; a pure fake ModelResponse does not test SDK serialization.

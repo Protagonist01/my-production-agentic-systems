@@ -5,7 +5,6 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 import pytest
-from agent_harness.contracts import ModelMessage, ModelResponse, Usage
 from agent_harness.gateway import ProviderGateway
 from agent_harness.isolated_transport import IsolatedTransport
 from prior_auth.candidate import QuoteClaim
@@ -23,21 +22,48 @@ from prior_auth_live_gateway import Grant, Ledger, LiveGateway, Slot, initialize
 
 class InventedWorker:
     def generate(self, request, *, timeout_seconds):
-        payload = json.loads(request.messages[1].content)
-        claim = QuoteClaim(
-            criterion_id=payload["criterion"]["criterion_id"],
-            state="met",
-            quotes=(payload["full_note"],),
-            rationale="Invented SDK wiring proof only",
-        )
-        return ModelResponse(
-            provider=request.provider,
-            model=request.model,
-            output=ModelMessage(role="assistant", content=claim.canonical_json()),
-            usage=Usage(
-                model_calls=1, input_tokens=10, output_tokens=2, cost=None, cost_currency=None
-            ),
-        )
+        import httpx
+        from agent_harness.gemini import GeminiTransport
+
+        def fake_http(wire):
+            assert wire.url.host == "generativelanguage.googleapis.com"
+            assert wire.url.path.endswith("/models/gemini-3.5-flash-lite:generateContent")
+            payload = json.loads(json.loads(wire.content)["contents"][0]["parts"][0]["text"])
+            claim = QuoteClaim(
+                criterion_id=payload["criterion"]["criterion_id"],
+                state="met",
+                quotes=(payload["full_note"],),
+                rationale="Invented SDK wiring proof only",
+            )
+            return httpx.Response(
+                200,
+                json={
+                    "candidates": [
+                        {
+                            "content": {
+                                "role": "model",
+                                "parts": [{"text": claim.canonical_json()}],
+                            },
+                            "finishReason": "STOP",
+                        }
+                    ],
+                    "usageMetadata": {
+                        "promptTokenCount": 10,
+                        "candidatesTokenCount": 2,
+                        "thoughtsTokenCount": 0,
+                        "totalTokenCount": 12,
+                    },
+                    "modelVersion": request.model,
+                    "responseId": "invented-local-sdk",
+                },
+            )
+
+        return GeminiTransport(
+            "invented-not-a-credential",
+            free_tier_confirmed=True,
+            http_timeout_seconds=90,
+            http_transport=httpx.MockTransport(fake_http),
+        ).generate(request, timeout_seconds=min(90, timeout_seconds))
 
 
 def live(app, tmp_path, transport=None):
