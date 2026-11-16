@@ -128,8 +128,9 @@ def write_proposal(root: Path, directory: Path, policy_directory: Path, ledger_p
             "Failures count; unknown usage or interruptions stop; no retries or paid fallback. "
             "The exact request schedule, source/environment and seven-day expiry are in "
             "proposal.json "
-            "and scope-template.json. Existing 615 attempts and 169 old bound slots stay untouched; "
-            "the proposed same-file ceiling is 793. At most 2 million tokens. The configured project "
+            "and scope-template.json. Existing 615 attempts and 169 old bound slots stay "
+            "untouched; the proposed same-file ceiling is 793. At most 2 million tokens. "
+            "The configured project "
             "must be confirmed Free again. No clinical qualification or release approval follows. "
             "The separate 168-call comparison proposal remains unapproved.\n"
         ),
