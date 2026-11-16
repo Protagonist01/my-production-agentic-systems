@@ -7909,3 +7909,11 @@ the ephemeral runner. Do not guess a root cause or bypass that service. Print th
 80lines of the public-upstream build log only on failure, retaining exit1, exact source
 revision and actual-service checks. This makes the next failure diagnosable without
 exporting application payloads or credentials; the Maven invocation has neither.
+
+Docker returned after the owner started it. Local Windows execution found that the
+new recovery fixture wrote LF source text with write_text's default CRLF translation,
+but hashed the original LF string. The strict archive checker correctly refused all
+three captures;4operator integration tests passed. Write the fixture's exact UTF-8
+bytes, as the real launcher already does with explicit newline handling. Never weaken
+the manifest comparison to normalize line endings: recovery must preserve source bytes.
+The diagnostic-log-only reference-payer rerun passed without changing upstream code.

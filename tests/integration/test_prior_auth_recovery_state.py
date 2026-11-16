@@ -63,7 +63,7 @@ def source(app, tmp_path, *, uncertain=False):
         "source.txt": note(case, policy()).text,
     }
     for name, text in files.items():
-        (bundle / name).write_text(text, encoding="utf-8")
+        (bundle / name).write_bytes(text.encode("utf-8"))
     manifest = {name: digest(text) for name, text in files.items()}
     (bundle / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
     snapshot = capture(
