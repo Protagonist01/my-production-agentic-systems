@@ -34,7 +34,12 @@ def test_authenticated_import_replay_logout_and_private_receipt(app, tmp_path, m
     source.write_text("AHI: 18 events/hour.", encoding="utf-8")
     monkeypatch.setattr(operator.getpass, "getpass", lambda _: password)
     args = argparse.Namespace(
-        command="import", username=username, request=request_path, source=source, native_tools=None
+        command="import",
+        username=username,
+        request=request_path,
+        source=source,
+        native_tools=None,
+        isolated_parser_image=None,
     )
     first = operator.authenticated(args, legacy.connect, auth, Profiler())
     assert first["recorded"] and first["resulting_version"] == 1

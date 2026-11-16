@@ -68,19 +68,35 @@ def import_document(
     source: Path,
     profiler: Profiler,
     tools_path: Path | None = None,
+    *,
+    isolated_image: str | None = None,
 ) -> dict[str, object]:
     request = ImportRequest.model_validate_json(bounded_private(request_path, 2_000_000))
     user.require(request.case.case_id, write=True)
     if user.tenant_id != request.case.tenant_id:
         raise PermissionError("import tenant differs")
     # Scope is checked before opening the document or starting a native parser.
+    if tools_path and isolated_image:
+        raise ValueError("select one normalization boundary")
     tools = (
         ToolsConfig.model_validate_json(bounded_private(tools_path, 64_000)).tools()
         if tools_path
         else None
     )
     raw = bounded_private(source, MAX_BYTES)
-    prepared = prepare(raw, request, profiler, tools)
+    if isolated_image:
+        from prior_auth_parser_isolation import normalize_isolated
+
+        prepared = prepare(
+            raw,
+            request,
+            profiler,
+            normalizer=lambda data, format: normalize_isolated(
+                data, format, image_id=isolated_image
+            ),
+        )
+    else:
+        prepared = prepare(raw, request, profiler, tools)
     version = store.accept(user, prepared, profiler)
     return {
         "recorded": True,
@@ -140,7 +156,13 @@ def authenticated(
     try:
         if args.command == "import":
             return import_document(
-                user, IntakeStore(connect), args.request, args.source, profiler, args.native_tools
+                user,
+                IntakeStore(connect),
+                args.request,
+                args.source,
+                profiler,
+                args.native_tools,
+                isolated_image=args.isolated_parser_image,
             )
         reader = IntakeReader(connect)
         if args.command == "receipt":
@@ -170,6 +192,7 @@ def main() -> None:
     ingest.add_argument("--request", type=Path, required=True)
     ingest.add_argument("--source", type=Path, required=True)
     ingest.add_argument("--native-tools", type=Path)
+    ingest.add_argument("--isolated-parser-image")
     for name in ("receipt", "locate"):
         cmd = commands.add_parser(name)
         cmd.add_argument("--username", required=True)
