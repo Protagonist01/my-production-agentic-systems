@@ -241,17 +241,46 @@ def capture(
         copies.append(PrivateFile(name=name, data=base64.b64encode(data).decode(), sha256=pin))
     with server.connect() as admin:
         verify_ownership(admin, trial)
-    with server.connect(trial.name) as c, c.transaction():
+    with server.connect(trial.name) as c:
+        names = inventory(c)
+        return capture_locked(
+            c,
+            trial,
+            journal,
+            bundle,
+            copies,
+            names,
+            code_revision=code_revision,
+            environment_sha256=environment_sha256,
+        )
+
+
+def capture_locked(
+    c: Connection[Any],
+    trial: Trial,
+    journal: Path,
+    bundle: Path,
+    copies: list[PrivateFile],
+    names: tuple[tuple[str, str], ...],
+    *,
+    code_revision: str,
+    environment_sha256: str,
+) -> Snapshot:
+    with c.transaction():
         c.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ")
         c.execute("SET LOCAL lock_timeout=2000")
         c.execute("SET LOCAL statement_timeout=15000")
         c.execute("SET LOCAL TIME ZONE 'UTC'")
-        for namespace, name in inventory(c):
+        for namespace, name in names:
             c.execute(
                 sql.SQL("LOCK TABLE {} IN ACCESS EXCLUSIVE MODE NOWAIT").format(
                     sql.Identifier(namespace, name)
                 )
             )
+        # No data snapshot was selected before these locks. The first SELECT now
+        # observes the cut while writers are fenced; verify the inventory again.
+        if inventory(c) != names:
+            raise ValueError("schema changed during capture")
         imported = ImportRequest.model_validate_json((bundle / "request.json").read_bytes())
         if (
             hashlib.sha256((bundle / "source.txt").read_bytes()).hexdigest()

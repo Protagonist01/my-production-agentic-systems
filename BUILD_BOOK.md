@@ -7883,3 +7883,14 @@ for the additional image acquisition/build rather than dropping any assertion.
 The source bundle must match the canonical intake binding; recovery test fixtures
 now use the actual imported request/source instead of an unrelated shape-only plan.
 No actual restore/container result is claimed before hosted execution.
+
+
+Actual hosted container job133158086878 built the minimal image and passed PDF/OCR,
+network/root-write denial, non-root/seccomp/capability/cgroup and forced-deadline
+cleanup. It then failed before SQL on an existing Restic asset GET (connection reset),
+not a parser failure. Add at most3retries only for that idempotent bounded artifact
+read; preserve exact official URL/checksum/size refusal. Provider retries remain off.
+Review also moved inventory discovery before the repeatable-read transaction, so
+its first data snapshot is taken only after table locks, avoiding an old SQL snapshot
+combined with a newer journal if a writer commits just before capture locks. Explicit
+quiescence is still mandatory for independent journal users.
