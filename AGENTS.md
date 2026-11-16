@@ -2,6 +2,20 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth Gemini composition and finite demo proposal (2026-11-16)
+
+PR164 hardening merged atcf143ba with equal final-head/main trees; actual local parser
+and7SQL recovery/import checks passed. Keep post-merge CI verification separate.
+The next root live gateway/console/draft is an explicit existing-Gemini composition,
+not a grant. Its additive same-file admission preserves615history and169old bound
+slots. Prepare the smaller9attempt education-wait proposal (2canaries,6initial,
+1supplement; proposed ceiling793), with exact requests/source/environment/expiry.
+The older168attempt/952proposal remains unapproved. Do not initialize a real grant,
+load a key or dispatch until the owner approves the exact final packet/current Free
+project and selected-host readiness passes. No OpenAI key/comparison or remote host
+is needed now. See docs/prior-auth-live-gemini.md and its code-study chapter. Preserve
+the original clinical gates and captures; demo wiring evidence is not model quality.
+
 ## Prior Auth hardening implementation (2026-11-16)
 
 Root prior_auth_recovery.py captures three PA schemas, private demo bundle and complete
