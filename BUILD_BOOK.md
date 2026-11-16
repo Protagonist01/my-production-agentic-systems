@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 114 — Connect Gemini without resetting provider history](#entry-114--connect-gemini-without-resetting-provider-history)
+
 - [Entry 113 — Bound the final demo hardening and model comparison](#entry-113--bound-the-final-demo-hardening-and-model-comparison)
 
 - [Entry 112 — Check the demo in a real local browser](#entry-112--check-the-demo-in-a-real-local-browser)
@@ -7924,3 +7926,82 @@ PDF/OCR, source-region, network/root-write denial, non-root/seccomp/cgroup and
 forced-deadline cleanup probes. Preserve its ignored image-id.txt under
 artifacts/pa-parser-local-2026-11-16-v1. This is local containment and same-build
 restore evidence, not host-loss recovery, model quality or clinical qualification.
+
+## Entry 114 — Connect Gemini without resetting provider history
+**Files touched:** prior_auth_live_gateway.py, prior_auth_live_console.py,
+prior_auth_live_draft.py, prior_auth_demo_runtime.py and focused unit/SQL witnesses.
+
+### Context
+The owner chose local Docker and Gemini only; defer the second-model comparison.
+PR164 is merged atcf143ba after all final-head checks. Its local actual parser and
+seven restore/import tests passed. The remaining composition must enforce the same
+provider allowance across crashes, without treating old unused slots as new authority.
+
+### Before you read on
+Where would you commit a provider reservation when SQL work and an existing SQLite
+allowance must both survive interruption? Write the three effect boundaries before
+choosing automatic recovery behavior.
+
+### Options considered
+- Reuse the old stopped allowance or unspent slots: rejected because those slots
+  belong to exact earlier requests, not this new citation candidate.
+- Chosen: preserve the complete old logical history and add a distinct append-only
+  live grant in the same SQLite file, behind the existing SQL reservation layer.
+
+### Why
+The stores cannot form one distributed transaction. An outstanding reservation must
+stay consumed/unknown; automatic resend would break the attempt cap. Exact source,
+request, project association and expiry checks make this a finite operational scope,
+not a flag that activates arbitrary model work.
+
+### How to build it
+First define Grant and ordered Slot contracts. Hash all old schema/rows, excluding
+only the new namespace. Require the existing447historical plus168settled PA attempts
+and unchanged project association before trusted grant creation. Add immutable grant,
+attempt, settlement and stop tables. Reserve with BEGIN IMMEDIATE, exact next slot,
+known prior usage and two supported canaries; commit before transport.
+
+Then implement LiveGateway. Require one committed unsettled SQL attempt for domain
+work before the shared reservation. Delegate to the existing ProviderGateway and
+IsolatedTransport around the90second Gemini worker with a110second parent limit.
+Settle shared response first, then let DurableGateway settle SQL. Death between any
+boundary stays unknown and blocks redispatch. Keep the frozen checker and prompt.
+
+Use a concrete canary checker: parse closed JSON, validate exact quotes and run the
+existing support checker on the fixed complete-note adult/education requests. An
+education quote cannot establish adult/OSA merely because it occurs in the note.
+The factory refuses a different/dirty checkout and changed/expired authority before
+loading ignored private configuration, and compares its key/path association without
+printing a key. Return payload-free local model timings and unknown-cost accounting.
+
+The SQL job originally lasted five minutes, but seven bounded requests can exceed
+that. Under existing case/job locks, renew only a still-active matching live lease
+before the next new request, bounded by scope expiry. Keep expired/stolen leases
+blocked. Test by advancing store time two minutes per response; this is an explicit
+clock simulation, not a claim of two-minute measured provider latency.
+
+Prepare the smallest useful next proposal: two invented complete-note canaries,
+six initial missing-education requests and one education-only supplement request.
+Nine new slots imply ceiling793 while preserving615consumed and169bound old slots.
+The separate168-call comparison stays unapproved. Preparing exact bytes/source and
+review text is read-only against the allowance and does not grant permission to run.
+
+### What went wrong
+The first SQL canary fixture used normalized imported-note requests against the
+separate complete-note canary. A trailing newline changes the full-note hash, so
+exact admission correctly rejected it. Plan canary and imported bytes separately;
+never normalize inside the allowance. Next, the invented spawned SDK omitted the
+required cost_currency=None alongside unknown cost. The worker correctly returned
+fixed unknown failure rather than leaking an exception; fix the fake response shape.
+The corrected local12test unit/SQL run passed, including seven cards, two canaries,
+no-reservation refusal, restart/death containment and simulated lease renewal.
+Final hosted-head and selected-host source readiness remain required; no real key,
+provider request or allowance write was used to implement/test this batch.
+
+Before treating the selected-host composition as SDK-ready, strengthen the spawned
+integration worker: route the actual pinned GeminiTransport/Google SDK through an
+httpx.MockTransport. Build the fictional response from its serialized contents,
+assert the exact Google host/model path, and pass SDK usage metadata through the
+real parser. A direct invented request returned known10input/2output tokens without
+network. Run the complete SQL canary/case/restart/death/lease witnesses through that
+boundary as well; a pure fake ModelResponse does not test SDK serialization.

@@ -1,5 +1,10 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Gemini operational composition chapter](docs/code-study-prior-auth-live-gemini.md)
+traces exact private proposals through source/project admission, SQL and shared-ledger
+reservations, spawned transport, canary support and bounded active-lease renewal.
+Its tests use invented responses; no new model grant follows from implementation.
+
 The [Supply evaluation and timing chapter](docs/supply-evaluation-observability.md) follows
 the real structured API into server-owned role/incident checks, canonical SQL transactions
 and independent state readback. Begin with `admit_intake` in `supply_diagnostics.py`: it

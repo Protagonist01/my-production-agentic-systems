@@ -6,6 +6,7 @@ inject the separately authorized gateway. The shipped demo CLI uses only a fake 
 
 import json
 from collections.abc import Callable
+from datetime import timedelta
 from decimal import Decimal
 from pathlib import Path
 from typing import Annotated, Any, Literal, Self
@@ -256,6 +257,21 @@ class DurableGateway:
                 if self.provider_validator is None:
                     raise PermissionError("shared live provider authorization validator required")
                 self.provider_validator(scope, request)
+                # Each individual live attempt is bounded below five minutes, but
+                # seven sequential criteria can outlast the initial job lease.
+                # Renew only the current, still-active lease under the locks above;
+                # an expired/stolen lease can never be revived here.
+                c.execute(
+                    "UPDATE prior_auth_app.jobs SET lease_until=%s "
+                    "WHERE tenant_id=%s AND case_id=%s AND version=%s AND lease_id=%s",
+                    (
+                        min(now + timedelta(minutes=5), scope.expires_at),
+                        note.tenant_id,
+                        note.case_id,
+                        job["version"],
+                        job["lease_id"],
+                    ),
+                )
             c.execute(
                 "INSERT INTO prior_auth_demo.attempts VALUES(%s,%s,%s,%s,%s,%s,%s,%s)",
                 (
@@ -343,7 +359,6 @@ class DemoWorker:
             if not ready:
                 return {"claimed": False, "published": False, "sent": 0, "replayed": 0}
             import secrets
-            from datetime import timedelta
 
             lease = secrets.token_hex(24)
             c.execute(

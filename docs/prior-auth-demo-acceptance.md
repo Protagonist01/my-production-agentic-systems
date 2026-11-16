@@ -37,7 +37,7 @@ HL7 reference payer. This is the active demo-development target.
   imports and the existing document wait/resume workflow.
 - [x] Durable per-criterion provider admission and settlement survive worker crashes;
   a lease retry cannot silently resend an unknown or already consumed model attempt.
-- [ ] Budget, route, expiry, timeout, no-fallback, tenant and stale-version controls
+- [x] Budget, route, expiry, timeout, no-fallback, tenant and stale-version controls
   are exercised with SQL and mocked SDK responses before any new live run.
 - [ ] Complete an expressly scoped live demo smoke test after its exact model grant.
   Existing study slots are not a standing runtime allowance.
@@ -78,9 +78,13 @@ The local browser did not connect to a payer; that evidence remains hosted. See 
 [verification report](prior-auth-demo-verification.md). No video is claimed.
 
 The demo is not yet fully ready as a live-model demonstration. Citation improvement
-on fresh provider output, exact live composition/readiness and its bounded smoke test
-remain. Host-loss backup/restore and native parser isolation are also unverified;
-public native uploads remain disabled. A chosen remote deployment host is undecided.
+on fresh provider output and an exactly authorized bounded smoke test remain. The
+[Gemini composition](prior-auth-live-gemini.md) is exercised with spawned invented
+responses and actual SQL; that is wiring evidence, not live model quality. Local
+[parser containment and clean-target restore](prior-auth-demo-hardening.md) are now
+verified, including unknown-effect preservation. Full host-loss/off-host recovery
+remains unverified; public native uploads remain disabled. The owner selected local
+Docker for now and deferred remote hosting.
 
 The private no-provider proposal at
 `D:/document/.cache/production-agents/prior-auth/citation-repair-proposal-2026-11-15-v1`
