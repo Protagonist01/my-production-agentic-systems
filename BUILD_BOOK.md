@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 113 — Bound the final demo hardening and model comparison](#entry-113--bound-the-final-demo-hardening-and-model-comparison)
+
 - [Entry 112 — Check the demo in a real local browser](#entry-112--check-the-demo-in-a-real-local-browser)
 
 - [Entry 111 — Make the missing-document demo reproducible](#entry-111--make-the-missing-document-demo-reproducible)
@@ -7827,3 +7829,57 @@ README entry and a verification report; relabel the old Olist current-status par
 as historical rather than presenting an October main revision as today's head. Keep
 the local-vs-hosted payer evidence, live-grant gap, host-loss recovery and native
 isolation limits explicit. No model key was loaded or provider allowance mutated.
+
+
+## Entry 113 — Bound the final demo hardening and model comparison
+
+On November16 the owner authorized proceeding with live-model preparation, parser
+isolation and backup/restore, and asked what a GPT5.6Luna comparison would cost.
+Verify official model/pricing pages before answering: Luna input0.20/output1.20
+USD per million tokens; Gemini3.5Flash-Lite paid input0.30/output2.50, eligible
+Free0. Use uncached short-context rates and billable output including reasoning.
+At2000input/512output per request,168Luna requests cost0.1704192USD; at10000/2000
+they cost0.7392USD. These are scenarios, not an exact quote or spend authorization.
+Propose a5USD enforced application budget and a separately frozen attempt schedule;
+no key, paid dispatch, new Gemini slots or host purchase follows from cost research.
+Ask for host and existing private OpenAI configuration while independent work proceeds.
+
+Do not promise real-patient clinical production today. The accepted delivery is a
+synthetic portfolio demo; shared code still needs actual parser/restore witnesses.
+For recovery capture all three PA schemas, scope/attempt/settlement state, account
+state, source/config bundle and payer SQLite journal. Fence SQL writers while
+copying the journal, require quiescent trusted callers, preserve unknown attempts
+and restore only into a newly owned trial. Verify exact schema/rows before dropping
+old sessions. Keep source and failed target evidence; never reset live/provider ledgers.
+
+For native parsing use an opt-in fixed-image Docker worker with no network, read-only
+root, no capabilities, no-new-privileges, non-root user, PID/memory/CPU limits and
+bounded tmpfs. Send document bytes through stdin; mount no project/credentials or
+Docker socket. Validate bounded output source/text/region pins in the parent.
+Preserve the existing normalization code; isolated execution is a separate adapter.
+Test actual PDF/OCR plus attempted network/root-file access and deadlines; command
+flags alone are not proof that containment works. Docker's default seccomp stays on.
+
+
+The owner then clarified: local Docker and Gemini3.5Flash-Lite only for this phase;
+defer OpenAI comparison. This supersedes the dual-model direction for immediate
+implementation. Do not ask for an OpenAI key/project or spend budget now. Preserve
+the informational price research and focus readiness on the same Gemini route.
+A model selection is not a numerical grant for the revised requests; prepare the
+concrete exact scoped live composition before asking that final study decision.
+
+
+Hardening code passes289typed sources and58focused parser/pipeline/operator checks.
+The first focused run found the old auth-failure test's manually constructed
+Namespace lacked the new explicit image option and its stub rejected kwargs. Update
+that witness to use the actual new argument, retaining the logout assertion; rerun
+passed. Keep unsafe XML/active narrative/binary safety outcomes across the worker
+boundary using a fixed error allowlist, never arbitrary parser exception text.
+
+Docker's engine pipe disappeared again on November16, confirmed with a privileged
+read-only check. Do not silently restart services. Add required hosted image build
+and actual containment canaries to the Postgres job, extending its timeout to25min
+for the additional image acquisition/build rather than dropping any assertion.
+The source bundle must match the canonical intake binding; recovery test fixtures
+now use the actual imported request/source instead of an unrelated shape-only plan.
+No actual restore/container result is claimed before hosted execution.

@@ -993,3 +993,6 @@ only exact new compatibility traces while proving every original slot/attempt is
 
 
 - [Prior Auth operator-controlled reference payer](docs/code-study-prior-auth-payer-desk.md)
+
+
+- [Prior Auth recovery and parser containment](docs/code-study-prior-auth-hardening.md)

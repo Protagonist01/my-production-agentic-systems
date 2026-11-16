@@ -2,6 +2,29 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Prior Auth hardening implementation (2026-11-16)
+
+Root prior_auth_recovery.py captures three PA schemas, private demo bundle and complete
+payer journal; restore requires a clean different owned trial/new files and revokes
+sessions without changing unknown effects. Stop all trusted writers before capture.
+The opt-in isolated parser sends bytes through stdin to an exact image ID with no
+mount/network, non-root/read-only/capability/resource limits. Default local native
+path remains available for trusted imports; isolated failures never fall back to it.
+See docs/prior-auth-demo-hardening.md and its code-study chapter. Actual SQL/container
+witnesses must pass before verified claims; local Docker was unavailable again when
+this batch started. No provider calls, new grant or production acceptance follows.
+
+## Prior Auth immediate Gemini/local-Docker decision (2026-11-16)
+
+The owner explicitly selected local Docker and Gemini3.5Flash-Lite for now; defer
+GPT5.6Luna/other model comparisons. Implement Gemini operational composition,
+backup/restore and parser isolation under existing tested-PR merge authority.
+No OpenAI project/key or paid-model approval is needed for this phase. Cost research
+is informational only. Preserve615/784history and169bound slots; the prepared168new/
+952proposed ceiling still requires an exact execution grant/current Free confirmation
+and actual selected-host readiness before dispatch. Never move old slots or treat
+choosing Gemini as an unbounded runtime allowance. No real-patient production follows.
+
 ## Prior Auth observed demo proof (2026-11-15)
 
 PR160/161/162 are merged with all final-head and merged-main checks passing. After

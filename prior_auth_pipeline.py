@@ -1,5 +1,6 @@
 """Opt-in trusted import and payload-free assessment wrappers; no default provider."""
 
+from collections.abc import Callable
 from dataclasses import dataclass, replace
 from typing import Annotated, Literal, Self
 
@@ -68,7 +69,12 @@ class PreparedImport(WireContract):
 
 
 def prepare(
-    raw: bytes, request: ImportRequest, profiler: Profiler, tools: NativeTools | None = None
+    raw: bytes,
+    request: ImportRequest,
+    profiler: Profiler,
+    tools: NativeTools | None = None,
+    *,
+    normalizer: Callable[[bytes, Format], Document] | None = None,
 ) -> PreparedImport:
     import hashlib
 
@@ -80,8 +86,12 @@ def prepare(
     with profiler.span("intake"):
         with profiler.span("extraction"):
             try:
-                document = normalize(
-                    raw, request.format, replace(tools, profiler=profiler) if tools else None
+                document = (
+                    normalizer(raw, request.format)
+                    if normalizer
+                    else normalize(
+                        raw, request.format, replace(tools, profiler=profiler) if tools else None
+                    )
                 )
             except DocumentError as error:
                 # Fixed intake state. Original parser code is available to trusted caller

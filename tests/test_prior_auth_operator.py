@@ -109,13 +109,18 @@ def test_authenticated_import_failure_still_logs_out(monkeypatch):
         def logout(self, token):
             calls.append(token)
 
-    def fail(*args):
+    def fail(*args, **kwargs):
         raise ValueError("private-import-canary")
 
     monkeypatch.setattr(operator.getpass, "getpass", lambda _: "private-password")
     monkeypatch.setattr(operator, "import_document", fail)
     args = argparse.Namespace(
-        command="import", username="reviewer", request=None, source=None, native_tools=None
+        command="import",
+        username="reviewer",
+        request=None,
+        source=None,
+        native_tools=None,
+        isolated_parser_image=None,
     )
     with pytest.raises(ValueError):
         operator.authenticated(args, lambda: None, LoggedIn(), Profiler())
