@@ -7902,3 +7902,10 @@ the new isolated_parser_image option. Add its explicit None value, matching the 
 CLI default; preserve the authentication, replay, source mapping and logout assertions.
 This is a fixture update, not a change to parser selection or a fallback after failure.
 Keep the failed result visible and require the final-head full suite before merging.
+
+The next reference-payer job133163679042 failed building the unchanged pinned upstream
+Java service, but its existing redirection discarded the compiler/download error with
+the ephemeral runner. Do not guess a root cause or bypass that service. Print the last
+80lines of the public-upstream build log only on failure, retaining exit1, exact source
+revision and actual-service checks. This makes the next failure diagnosable without
+exporting application payloads or credentials; the Maven invocation has neither.
