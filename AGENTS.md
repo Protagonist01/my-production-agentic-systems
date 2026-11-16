@@ -2,6 +2,16 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Revenue walkthrough closeout (2026-11-17)
+
+The owner selected the first Revenue finish task: complete and verify the end-to-end flow.
+Use docs/revenue-walkthrough.md and the root-only opt-in composition. Registered constructed
+source bytes and independently provisioned billing facts must agree before proposal. Keep the
+old SQL owner of approval, reviewer, apply and receipts; the demo's ordinary proposal endpoint
+cannot bypass source assessment. Clearly label constructed parser/no provider, never live AI.
+No new provider attempt, old-slot transfer, source qualification or release is authorized.
+Preserve current shared provider history, prior failed studies and unrelated worktrees.
+
 ## Completed nine-attempt local Gemini demo (2026-11-16)
 
 The owner approved packet live-demo-proposal-2026-11-16-v2 via

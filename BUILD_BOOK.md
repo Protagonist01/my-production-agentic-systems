@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 116 — Connect Revenue source assessment to the durable approval ledger](#entry-116--connect-revenue-source-assessment-to-the-durable-approval-ledger)
 
 - [Entry 115 — Finish the nine-call live document-wait demo](#entry-115--finish-the-nine-call-live-document-wait-demo)
 
@@ -8083,3 +8084,44 @@ packet or request. No provider request failed or was retried in the nine-call ru
 The local desk has no payer connected. Preserve the already passing hosted actual-service
 payer evidence as a separate result; do not describe this local case as submitted to an
 insurer. Remote hosting, host-loss recovery and real-patient clinical release remain separate.
+
+
+## Entry 116 — Connect Revenue source assessment to the durable approval ledger
+**Files touched:** root Revenue demo service, protected web composition, CLI and tests.
+
+### Context
+On November 17 the owner selected the first Revenue closeout deliverable: finish the
+complete operational walkthrough. Start from current main1e1b8fe. Keep the newer shared
+provider history and all frozen runtime packages unchanged; no new model call is authorized.
+
+### Before you read on
+The old console can propose from stored typed facts, while v2 assessment is read-only.
+How do you join the source check and invoice correction without treating a model's
+plausible interpretation as write authority or introducing a second approval ledger?
+
+### Options and decision
+A new mutable approval database would compete with the existing SQL owner. Instead,
+compose the old store and sessions with a root DemoService. Use fixed constructed SIM
+documents, trusted invoice facts and their exact source pins. Recompute extraction and
+arithmetic on proposal; bind its displayed digest/version to the exact request. Existing
+SQL still owns proposal, reviewer, expiration, apply and duplicate receipts. The demo's
+ordinary proposal endpoint must refuse the shortcut around this checked path.
+
+### How to build it
+First define six invented invoices and complete explicit source-field documents. Scope
+them to provisioned operator/reviewer grants; no browser amount or account is trusted.
+Authenticate before returning source text. Compare exact registered bytes, parse with the
+existing constructed grammar, then reconcile the current stored invoice using those parsed
+terms and independently provisioned typed facts. Missing/conflicting terms, altered source,
+unrelated request and above-cap adjustments cannot create a proposal.
+
+Expose a separate walkthrough route and same-origin/CSRF-protected assessment/proposal
+routes on the unchanged console. Keep all DOM source text in textContent. Separate the
+operator and reviewer; approval must display the exact corrected total and adjustment,
+and only a receipt means committed. Reconstruct the service on restart and redeliver an
+approved operation to prove the ledger does not create a second effect.
+
+The page states constructed parser/no model calls; it is not a live LLM result or legal
+meaning qualification. A later bounded model study remains separate. Add actual SQL/API
+and browser evidence before reporting the walkthrough finished. Local Docker availability
+and final tests are still being established; do not substitute a passing mock for them.

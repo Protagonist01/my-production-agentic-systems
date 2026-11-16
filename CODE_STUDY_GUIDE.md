@@ -1,5 +1,13 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Revenue walkthrough chapter](docs/revenue-walkthrough.md) traces the new root-only
+composition from scoped registered document through exact parser citations, current invoice
+reconciliation, checked proposal, independent review and durable receipt/restart. The source
+catalog and SQL facts must agree; the ordinary proposal shortcut is blocked in this opt-in
+composition. Read `DemoService.propose_checked` beside the existing `OperationStore.apply`
+to distinguish source validation, human consent and duplicate-delivery idempotency. The page
+explicitly labels constructed SIM/no-provider mode; it supplies no new model-quality result.
+
 The [Gemini operational composition chapter](docs/code-study-prior-auth-live-gemini.md)
 traces exact private proposals through source/project admission, SQL and shared-ledger
 reservations, spawned transport, canary support and bounded active-lease renewal.
