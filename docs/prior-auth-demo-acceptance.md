@@ -33,13 +33,13 @@ HL7 reference payer. This is the active demo-development target.
 
 ### 2. Connect the model to the operational workflow safely
 
-- [ ] Explicit model-enabled composition works with authenticated, synthetic-only
+- [x] Explicit model-enabled composition works with authenticated, synthetic-only
   imports and the existing document wait/resume workflow.
 - [x] Durable per-criterion provider admission and settlement survive worker crashes;
   a lease retry cannot silently resend an unknown or already consumed model attempt.
 - [x] Budget, route, expiry, timeout, no-fallback, tenant and stale-version controls
   are exercised with SQL and mocked SDK responses before any new live run.
-- [ ] Complete an expressly scoped live demo smoke test after its exact model grant.
+- [x] Complete an expressly scoped live demo smoke test after its exact model grant.
   Existing study slots are not a standing runtime allowance.
 
 ### 3. Make the payer exchange visible end to end
@@ -77,10 +77,11 @@ login, document wait, supplement resume, source cards and private clearing at lo
 The local browser did not connect to a payer; that evidence remains hosted. See the
 [verification report](prior-auth-demo-verification.md). No video is claimed.
 
-The demo is not yet fully ready as a live-model demonstration. Citation improvement
-on fresh provider output and an exactly authorized bounded smoke test remain. The
-[Gemini composition](prior-auth-live-gemini.md) is exercised with spawned invented
-responses and actual SQL; that is wiring evidence, not live model quality. Local
+The [nine-call live demonstration](prior-auth-live-demo-result.md) now verifies one
+complete fictional missing-document path with seven final mapped source cards.
+The larger test-pack and citation-regression items above remain open; this one case
+does not prove their quality targets. The [Gemini composition](prior-auth-live-gemini.md)
+also passes spawned real-SDK/fake-HTTP and actual SQL checks. Local
 [parser containment and clean-target restore](prior-auth-demo-hardening.md) are now
 verified, including unknown-effect preservation. Full host-loss/off-host recovery
 remains unverified; public native uploads remain disabled. The owner selected local

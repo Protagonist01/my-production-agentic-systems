@@ -1,5 +1,10 @@
 # Code study: a live model behind two durable reservations
 
+The subsequent [nine-call result](prior-auth-live-demo-result.md) records actual
+provider execution on this code, independent SQL/response/source correlation and
+real HTTP sign-in/private cards/sign-out. The original code walkthrough below
+describes the reviewed implementation; its fake-SDK evidence remains distinct.
+
 Inspected unmerged branch: `codex/prior-auth-live-gemini`, based on merged cf143ba.
 Scope: root live gateway/console/draft and the existing demo worker's lease renewal.
 Clinical packages, model prompt, checker and prior captures are unchanged. Build Book
