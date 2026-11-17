@@ -1,4 +1,8 @@
 # Code Study Guide — Production Agentic Systems
+The [final local demo chapter](docs/code-study-prior-auth-demo-closeout.md) follows
+frozen authored inputs through intake, checker, SQL and source mapping, then traces
+pinned-source container building and owned local reference-payer readiness. It keeps
+these guardrail witnesses separate from the preserved nine-call Gemini result.
 
 The [Revenue walkthrough chapter](docs/revenue-walkthrough.md) traces the new root-only
 composition from scoped registered document through exact parser citations, current invoice

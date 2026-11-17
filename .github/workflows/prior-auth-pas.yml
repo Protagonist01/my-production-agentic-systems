@@ -2,10 +2,10 @@ name: Prior Auth reference payer
 
 on:
   pull_request:
-    paths: ['prior_auth_*', 'docs/prior-auth-*.md', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
+    paths: ['prior_auth_*', 'containers/prior-auth-reference-payer/**', 'docs/evaluation/check_prior_auth_reference_container.py', 'docs/prior-auth-*.md', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
   push:
     branches: [main]
-    paths: ['prior_auth_*', 'docs/prior-auth-*.md', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
+    paths: ['prior_auth_*', 'containers/prior-auth-reference-payer/**', 'docs/evaluation/check_prior_auth_reference_container.py', 'docs/prior-auth-*.md', 'docs/evaluation/check_prior_auth_pas.py', '.github/workflows/prior-auth-pas.yml', 'uv.lock']
   workflow_dispatch:
 
 permissions:
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   reference-payer:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -50,3 +50,7 @@ jobs:
           fi
       - name: Invented actual PAS submit, independent correlation, replay and inquiry
         run: uv run --locked --all-packages --link-mode copy python docs/evaluation/check_prior_auth_pas.py --war artifacts/hl7-br-payer/server/target/ROOT.war
+      - name: Build pinned packaged local reference payer
+        run: uv run --locked --all-packages --link-mode copy python prior_auth_reference_service.py --root . --image-file "$RUNNER_TEMP/pa-reference-image.txt" --build-repository artifacts/hl7-br-payer
+      - name: Actual packaged reference image and authenticated SQL exchange
+        run: uv run --locked --all-packages --link-mode copy python docs/evaluation/check_prior_auth_reference_container.py --image-file "$RUNNER_TEMP/pa-reference-image.txt"

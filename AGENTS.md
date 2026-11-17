@@ -12,6 +12,27 @@ cannot bypass source assessment. Clearly label constructed parser/no provider, n
 No new provider attempt, old-slot transfer, source qualification or release is authorized.
 Preserve current shared provider history, prior failed studies and unrelated worktrees.
 
+## Final demo closeout and temporary Langfuse pause (2026-11-17)
+
+The owner authorized regression completion, local official reference-payer connection
+and presentation packaging. New regression/helper sources do not authorize model calls:
+the nine-call scope remains exhausted at624/793,169old slots retained. The latest
+answer to call_1907b6e4b48d497bbf7a6ffd58bf4530 supersedes the earlier keep-running
+answer and authorizes temporarily pausing the six Langfuse containers, then restoring
+exactly their original IDs. The ignored record artifacts/langfuse-pause-prior-auth-
+20261117.json holds those IDs. All six original IDs were restarted and verified
+running after the local payer exchange; this pause is fulfilled and authorizes no
+new interruption. No volumes/data were removed and no unrelated service was stopped.
+The19authored pack and25unit/launcher plus19actualSQL checks passed44total; typing
+covered295sources including the added container CI witness. These are guardrail/regression
+results, not clinical gold or Gemini quality. The pinned official payer image builds
+from approved source. Actual saved-case HTTP submit, identical repeated receipt,
+correlated inquiry A3, seven mapped cards and private refusal after logout passed.
+The private payer journal contains one attempt, one packet and one inquiry. Keep
+that same journal: transient payer state never authorizes blind resubmission. Follow
+this batch's closeout/code-study guides and Build Book Entry116. Preserve all failures.
+
+
 ## Completed nine-attempt local Gemini demo (2026-11-16)
 
 The owner approved packet live-demo-proposal-2026-11-16-v2 via
