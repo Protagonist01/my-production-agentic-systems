@@ -40,6 +40,11 @@ it never resets or overwrites existing work. A failed attempt retains its creden
 for explicit diagnosis. Invoice and account provisioning is trusted setup, not an agent tool.
 The fixture records and accounts are enrolled atomically once the new trial exists.
 
+If startup failed **before a trial was created**, repeat the exact bootstrap command with
+`--resume-bootstrap`. The private file must match the same root, trial and identities; its
+original password is reused without rewriting the file. Existing trials still refuse
+bootstrap. Inspect an interrupted trial explicitly rather than resetting or recreating it.
+
 To restart, stop only this server and repeat `serve` with the same root/trial. The server
 loads the existing database and verifies its source facts and provisioned identities before
 listening. It performs no model inference or re-enrollment on startup. Port binding is
@@ -90,3 +95,20 @@ passed. The prior evaluation baseline remains separate: this operational walkthr
 not fill its missing candidate outputs, independent language labels or unknown evaluation costs.
 It establishes no real recovered revenue, qualified contract meaning or production release.
 Fresh model evaluation and its exact provider authorization remain the next separate deliverable.
+
+
+## Observed local completion
+
+The final local checkpoint passes12focused tests and295typed sources, plus lint/format.
+The real PostgreSQL/authenticated HTTP test passes on Docker after the temporary resource
+pause; the first native-init and Compose readiness failures remain recorded. The actual
+running loopback server also completed one5.00SIM correction: source check, stored proposal,
+different reviewer approval, explicit apply, one receipt, duplicate delivery and sign-out
+refusal. Stopping only its command-line-verified process and restarting against the same
+database preserved the exact receipt and single ledger effect. No model call occurred.
+
+The in-app browser visibly renders the real running login page. The complete authenticated
+journey was observed over HTTP and the actual JavaScript asset passes Node session tests;
+this is not a claim of a recorded full browser-click walkthrough. Six previously running
+Langfuse containers were restored, with all data retained. See the aggregate observed report.
+Hosted final-head/main acceptance remains separately recorded in the PR delivery receipt.

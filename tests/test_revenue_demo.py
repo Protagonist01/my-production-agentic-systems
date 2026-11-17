@@ -143,3 +143,39 @@ def test_actual_walkthrough_browser_asset_session_regressions():
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert "zero network calls" in result.stdout
+
+
+def test_failed_bootstrap_keeps_private_credential_and_resume_refuses_identity_changes(
+    tmp_path, monkeypatch
+):
+    import json
+    import subprocess
+
+    from agent_harness.local_services import Workspace
+
+    from revenue_demo_cli import bootstrap
+
+    root = tmp_path / "owned-workspace"
+    root.mkdir()
+    credential = tmp_path / "private" / "credentials.json"
+    calls = []
+
+    def unavailable(self):
+        calls.append(self.root)
+        raise subprocess.TimeoutExpired("invented owned database startup", 1)
+
+    monkeypatch.setattr(Workspace, "up", unavailable)
+    with pytest.raises(subprocess.TimeoutExpired):
+        bootstrap(root, "owned-demo", credential)
+    original = credential.read_bytes()
+    with pytest.raises(FileExistsError):
+        bootstrap(root, "owned-demo", credential)
+    with pytest.raises(subprocess.TimeoutExpired):
+        bootstrap(root, "owned-demo", credential, resume=True)
+    assert credential.read_bytes() == original and len(calls) == 2
+    value = json.loads(original)
+    value["trial_id"] = "another-owned-demo"
+    credential.write_text(json.dumps(value), encoding="utf-8")
+    with pytest.raises(ValueError):
+        bootstrap(root, "owned-demo", credential, resume=True)
+    assert len(calls) == 2

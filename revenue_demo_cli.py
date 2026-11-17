@@ -3,6 +3,7 @@
 import argparse
 import json
 import secrets
+import subprocess
 from pathlib import Path
 
 import psycopg
@@ -17,7 +18,9 @@ from revenue_profiled_runtime import connection_factory
 from revenue_profiling import Recorder
 
 
-def bootstrap(root: Path, trial_id: str, credentials: Path) -> dict[str, object]:
+def bootstrap(
+    root: Path, trial_id: str, credentials: Path, *, resume: bool = False
+) -> dict[str, object]:
     workspace = Workspace(root.resolve())
     credentials = credentials.expanduser().resolve()
     if any(
@@ -25,22 +28,41 @@ def bootstrap(root: Path, trial_id: str, credentials: Path) -> dict[str, object]
         for p in (credentials.parent, *credentials.parents)
     ):
         raise ValueError("private credentials must remain outside project checkouts")
-    if workspace.trial_path(trial_id).exists() or credentials.exists():
+    if workspace.trial_path(trial_id).exists() or (credentials.exists() and not resume):
         raise FileExistsError(
             "choose a new trial and private credentials file; no reset is performed"
         )
-    password = secrets.token_urlsafe(32)
-    private_json(
-        credentials,
-        {
+    if resume:
+        value = json.loads(credentials.read_text(encoding="utf-8"))
+        expected = {
             "operator": "demo-operator",
             "reviewer": "demo-reviewer",
-            "password": password,
             "trial_id": trial_id,
             "root": str(workspace.root),
             "constructed_demo": True,
-        },
-    )
+        }
+        if (
+            not isinstance(value, dict)
+            or set(value) != set(expected) | {"password"}
+            or any(value[k] != v for k, v in expected.items())
+        ):
+            raise ValueError("resume credentials do not belong to this unstarted trial")
+        password = value["password"]
+        if not isinstance(password, str) or not 32 <= len(password) <= 128:
+            raise ValueError("invalid private demo credential")
+    else:
+        password = secrets.token_urlsafe(32)
+        private_json(
+            credentials,
+            {
+                "operator": "demo-operator",
+                "reviewer": "demo-reviewer",
+                "password": password,
+                "trial_id": trial_id,
+                "root": str(workspace.root),
+                "constructed_demo": True,
+            },
+        )
     workspace.up()
     trial = workspace.create(trial_id)
     server = workspace.server()
@@ -67,15 +89,20 @@ def main() -> None:
     parser.add_argument("--trial", required=True)
     parser.add_argument("--credentials", type=Path)
     parser.add_argument("--port", type=int, default=8878)
+    parser.add_argument("--resume-bootstrap", action="store_true")
     args = parser.parse_args()
     try:
         root = args.root.resolve()
         if args.command == "bootstrap":
             if args.credentials is None:
                 raise ValueError("a new private credentials file is required")
-            print(json.dumps(bootstrap(root, args.trial, args.credentials)))
+            print(
+                json.dumps(
+                    bootstrap(root, args.trial, args.credentials, resume=args.resume_bootstrap)
+                )
+            )
             return
-        if args.credentials is not None or not 1024 <= args.port <= 65535:
+        if args.credentials is not None or args.resume_bootstrap or not 1024 <= args.port <= 65535:
             raise ValueError("serve requires only an existing trial and unprivileged loopback port")
         workspace = Workspace(root)
         trial, server = workspace.load_trial(args.trial), workspace.server()
@@ -123,7 +150,7 @@ def main() -> None:
             timeout_graceful_shutdown=30,
             log_level="warning",
         )
-    except (ValueError, OSError, psycopg.Error):
+    except (ValueError, OSError, psycopg.Error, subprocess.SubprocessError):
         parser.error(
             "Revenue walkthrough refused; inspect private configuration, "
             "database readiness and trial identity"
