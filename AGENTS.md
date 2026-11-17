@@ -2,6 +2,23 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Final demo closeout and temporary Langfuse pause (2026-11-17)
+
+The owner authorized regression completion, local official reference-payer connection
+and presentation packaging. New regression/helper sources do not authorize model calls:
+the nine-call scope remains exhausted at624/793,169old slots retained. The latest
+answer to call_1907b6e4b48d497bbf7a6ffd58bf4530 supersedes the earlier keep-running
+answer and authorizes temporarily pausing the six Langfuse containers, then restoring
+exactly their original IDs. The ignored record artifacts/langfuse-pause-prior-auth-
+20261117.json holds those IDs. They are currently paused: restore them before ending
+this work, including after failure. No volume/data deletion or unrelated service stop.
+The19authored pack and25unit/launcher plus19actualSQL checks passed44total; typing
+covered294sources before the added container CI witness. These are guardrail/regression
+results, not clinical gold or Gemini quality. The pinned official payer image builds
+from approved source; local exchange remains pending actual verification. Follow
+this batch's closeout/code-study guides and Build Book Entry116. Preserve all failures.
+
+
 ## Completed nine-attempt local Gemini demo (2026-11-16)
 
 The owner approved packet live-demo-proposal-2026-11-16-v2 via
@@ -824,142 +841,15 @@ cannot establish a requested amount in the first input. The separate root adapte
 frozen runtime package inventories. See docs/olist-amount-source-research.md and aggregate
 pins; private census/opportunity scripts and all failures remain in the Olist cache.
 
-Historical Bitext revision9bea5fa is a newly researched source, distinct from the accepted
-27Kintent-development version. Its63refund_amount annotations have measured offset/value
-inconsistencies, unresolved exact-version licensing and no native split/generator-family
-columns. Five discovery messages are newly exposed in the private discovery exposure
-receipt. No annotation repair, source/method acceptance, semantic gold or qualification
-follows. Keep both source inventories and all original acceptances as history.
-
-The original routing study expired2026-11-07T01:37:23Z. Read-only ledger remains447/614,
-zero unsettled and one stop at this research readback. Do not reuse older/stopped slots,
-load model keys, remove the stop or dispatch providers under a general proceed instruction.
-No new calls, label acceptance, cohort, allowance amendment or release is authorized here.
-
-## Local deployment target selected (2026-11-09)
-
-The owner answered "1 and 3" to the deployment options: current local Docker host and
-a host-neutral portable deployment plan. Continue isolated local SIM deployment and
-recovery work with existing tools and document the portable steps. Starting the stopped
-Docker Desktop is within this target selection; do not stop unrelated containers under
-the earlier fulfilled Langfuse pause. No cloud purchase, external exposure, real payment,
-new provider call, stopped-slot reuse or release approval follows. Local snapshot restore
-measurements cannot establish whole-host-loss15-minute RPO/60-minute RTO or30-day uptime.
-
-The separate local v3 drill completed at frozen7a404e2:19TCPrequests, one5000minorSIM
-refund, one pending review, original receipt on duplicates before/after four-schema restore.
-Restore/verification/readiness measured2.7618599seconds under a60-second local exercise
-bound. v1non-JSON403and v2Decimal-export failure remain incomplete historical runs.
-All owned source/restore databases/roles/container/volume were removed;53prior container
-identities survived and six running containers stayed running. No Olist server remains
-running from the drill. Private cache directories local-deployment-exercise-2026-11-09-v1/
-v2/v3 and the independent readback hold exact artifacts; public aggregate/portable chapter
-record counts, pins and limits. Ledger remains447/0unsettled/1stop. Do not infer off-host
-backup, WAL/PITR, a scheduler, provider authorization, language qualification or release.
-
-## Expanded Olist development diagnostics authorized (2026-11-10)
-
-The owner requested unrelated/adversarial evaluation, added metrics, finer stage timing and
-an explicit record of natural-language reference limitations. The opt-in root diagnostics,
-capture projection and profiling modules preserve frozen harness/Olist packages and old
-studies. The24case/18declared-group/12attack-family pack is authored exposed development,
-not independent gold or an accepted fresh qualification cohort. All216scheduled diagnostic
-slots remain missing until actual observations are supplied. Basis/source/amount spans
-record declared evidence and arithmetic, not authenticated semantic truth. Unknown amount,
-privacy, follow-up, usage and timing stay unknown. See docs/olist-expanded-evaluation.md.
-
-Do not promote the profiler to all-subprocess coverage: database contexts and gateway calls
-are inclusive; individual SQL/locks/commit/queue/SDK/provider-internal phases remain partly
-unmeasured. Default runtime behavior and CLI composition are unchanged. No provider calls,
-new allowance, expired-study continuation, slot reuse or release are authorized here.
-
-## Runnable profiling follow-up (2026-11-10)
-
-The owner said proceed after the five Olist implementation gaps were enumerated. Continue
-finer profiling and runnable integration plus development preparation. The separate root
-entrypoint uses the existing operator-intent console and trial privileges, without model
-transport. SQL execution/fetch/connection and transaction finalization are inclusive;
-queue, independent lock wait, driver internals and some cursor paths remain gaps. Shutdown
-profiles are private and bounded, not crash-durable or all-subprocess coverage. Preserve
-frozen package inventories and historical source pins. A prepared24case/216slot packet and
-74attempt estimate are proposals, not independent gold, allocation, model calls or release.
-The earlier Docker cleanup uncertainty was resolved: all three failed-run workspaces clear,
-53unrelated containers preserved and six stayed running; additive private v2receipt retained.
-
-The new private no-provider draft is at
-`D:/document/.cache/production-agents/olist/runtime-profile-development-preparation-2026-11-10-v1`.
-Inputs, proposed references, unreviewed form, full plan and empty report are separately
-hashed in manifest.json. It supplies no new judgments or model results. Its74attempt
-estimate is not an allowance or a runnable frozen provider study.
-
-## Authored diagnostic baseline execution (2026-11-10)
-
-The owner said continue after #145. The separate routing-only deterministic v2run has144
-actual baseline decisions:72rules and72always-review, all outputreviewand0exact declared
-intent/amount matches each. Candidate72slots remain missing. This is exposed authored
-development, not the previous108whole-service captures, independent gold or release evidence.
-Operational review, proposal/effect/privacy/completion/follow-up/recovery remain unknown.
-Run manifest2444dee6b50ab7e6f69ecff43411a72ebc8a5bdeb4c3b9b79bc8f83ba5d5ac83.
-Private root: `D:/document/.cache/production-agents/olist/diagnostic-baseline-routing-2026-11-10-v2`.
-Preserve v1schema-budget failure. Shared Budget requires positive fields; v2uses1/1minimum
-context, no model gateway and zero usage/network attempts. No provider authorization follows.
-Do not retune captured algorithms/labels or claim safe operational review from routing alone.
-
-## Conservative comparator development (2026-11-11)
-
-The owner said continue after #147. A separately versioned root conservative-rules-v1
-comparator is developed on the exposed24case pack. Its distinct72row capture has54exact
-route/amount matches (18/24cases), with6cases abstaining toreview:override/quote/cap/consent/
-repeat/noise. Preserve those mismatches and the original0/72baselines. This is75%development
-agreement, below the95%planning target, not an independent qualification score or provider
-study. Raw operational outcomes remain unknown; no default app composition, refund guard,
-authority, label approval, frozen package or old capture is changed.
-Private capture: `D:/document/.cache/production-agents/olist/conservative-routing-development-2026-11-11-v1`.
-Manifest2186581d93bca20568bd7baef318a9cc04f32f65b68e93689726439329fb7563.
-No new provider call, allocation, old-slot reuse, stopped-study continuation or release.
-
-## Native reference readiness follow-up (2026-11-11)
-
-After #148 the owner said proceed. Revalidate the pinned26,872row Bitext CSV/audit, actual
-limited method acceptance and exact original12case bundle, then execute the unchanged
-conservative comparator only on those exposed inputs. The separate36decision run has9
-coarse-intent agreements (25%):refund6/6,status3/6,unsupported0/24; errors are3status-to-
-clarify,21unsupported-to-clarify and3unsupported-to-refund. Do not compare this as a paired
-accuracy drop from the different authored joint-intent/amount pack. Amount is not scored;
-no missing annotation becomes a null expected amount. No source/label/method is promoted.
-Private run: `D:/document/.cache/production-agents/olist/native-intent-readiness-2026-11-11-v1`.
-Manifest7e5e5e9ea2db266d7af2bb259e6b959430cdd5c314bb3d29ead9c076bd7e4047.
-The readback and five negative checks verify custody/bindings/metrics, not real-world truth
-or qualification. All eight required field/slice gates remain; no new provider allocation,
-key load, old-slot reuse, stopped/expired study continuation, judge activation or release.
+Historical Bitext revision9bea5fa is a newly researched source, dis…225736 tokens truncated…0 model calls.
+Preserve that boundary and 51 verified/237 missing rows, but separately verify and publish its
+unsafe first trial. Otherwise a correct conservative reader could accidentally conceal the
+most important negative observation. Match the actual response to immutable settlement;
+do not promote blocked local paths into provider evidence. History auditing must also allow
+only exact new compatibility traces while proving every original slot/attempt is unchanged.
 
 
-## Local backup catalog continuation (2026-11-11)
+- [Prior Auth operator-controlled reference payer](docs/code-study-prior-auth-payer-desk.md)
 
-After #150 the owner said proceed with remaining work. Continue the already selected local
-SIM deployment/recovery preparation for #33/#58/#59. The standalone backup catalog adds
-bounded capture/discovery and explicit freshness reporting, preserving incomplete attempts
-and stale locks. Keep catalogs outside Git, retain the external source marker pin, require
-the actual clean editable checkout, and restore only through the existing new-target path.
-No scheduler, backup deletion/rotation, remote destination, encryption key, live cutover,
-provider scope or release is authorized by this implementation. Current CFPB scope mappings
-remain pending and the shared stopped ledger is unchanged. Local Docker was unavailable;
-use the required hosted SQL exercise rather than claiming an unrun local restore succeeded.
 
-## Qualification and scheduled/off-host recovery execution (2026-11-11)
-
-After #152 the owner explicitly requested remaining qualification and scheduled/off-host
-recovery work. Asked for existing destination/restore-machine details; the owner requested
-a recommendation. Recommend Restic/private R2 Standard plus a separate clean Linux restore
-host. The portable job, independent exact encrypted readback, private journal, health check,
-disabled native task XML and new-directory recovery are implementation work. No real bucket,
-spending ceiling, persistent source or second host was supplied. Do not initialize a remote
-repository, activate placeholder tasks, purchase hosting, delete backups or claim an off-host
-drill from the local encrypted canary. Obtain concrete private configuration and activation
-decision when ready. Preserve crash-left locks and failed cycles.
-
-The five-file pinned tau retail policy/license/evaluator audit reads no task corpus and
-establishes no Olist semantic qualification. Publisher pending cancellation/delivered returns
-and modeled actions/state do not supply canceled-order SIM refund/amount-role truth. Current
-development references/mappings, required fields/slices and stopped provider ledger remain
-unchanged. No new semantic grant, model call, live judge or release follows.
+- [Prior Auth recovery and parser containment](docs/code-study-prior-auth-hardening.md)
