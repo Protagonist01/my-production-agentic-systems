@@ -3,6 +3,8 @@ A journal of the real reasoning behind this build: decisions, options rejected, 
 
 ## Index
 
+- [Entry 116 — Bound the final demo regression and local payer](#entry-116--bound-the-final-demo-regression-and-local-payer)
+
 - [Entry 115 — Finish the nine-call live document-wait demo](#entry-115--finish-the-nine-call-live-document-wait-demo)
 
 - [Entry 114 — Connect Gemini without resetting provider history](#entry-114--connect-gemini-without-resetting-provider-history)
@@ -8083,3 +8085,124 @@ packet or request. No provider request failed or was retried in the nine-call ru
 The local desk has no payer connected. Preserve the already passing hosted actual-service
 payer evidence as a separate result; do not describe this local case as submitted to an
 insurer. Remote hosting, host-loss recovery and real-patient clinical release remain separate.
+
+## Entry 116 — Bound the final demo regression and local payer
+**Files touched:** prior_auth_demo_regression.py, its unit/SQL witnesses and the
+local reference-service container/package documentation.
+
+### Context
+The owner authorized finishing the broader regression pack, then connecting the
+reference payer locally, then packaging the demonstration. The completed9Gemini
+calls and original captures remain unchanged; no further calls are authorized.
+The active target remains a synthetic portfolio demo, not clinical qualification.
+
+### Before you read on
+What should a deliberately positive candidate be prevented from claiming when its
+quote omits half a requirement, or when a different document belongs to another
+subject? Separate document admission, candidate output and checked result before
+writing a single test score.
+
+### Options considered
+- Reopen a broad model study: rejected for this engineering batch because its
+  numerical scope is unapproved and the owner requested finite demo closeout.
+- Chosen: consolidate authored input/reference witnesses and actual SQL guard
+  tests, with explicit separation from the preserved real-model evidence.
+
+### Why
+A scripted all-met proposal exercises the guard's refusal behavior, but cannot
+measure Gemini's language understanding or resistance to malicious instructions.
+The report must say which boundary it tested rather than manufacture a high model
+score. External evidence/model quality and deterministic software regression are
+separate claims, consistent with the current Langfuse dataset guidance.
+
+### How to build it
+Define immutable Witness inputs independently of the EXPECTED intake/route/state
+mapping. Use19declared cases: complete text/C-CDA/FHIR, missing education, conflicting
+rates, explicit negative education, fractional severity, short recording, three
+incomplete-conjunction quotes, unrelated request/document, wrong/unverified subject,
+uncertain relevance, wrong plan, injected unsupported positive instruction and
+redacted fictional name. Encode structured layouts without allowing their header
+canaries into the candidate narrative. Source and normalized pins are checked by
+the unchanged import pipeline. No expected output is placed in the document body.
+
+Propose met with exact selected spans, including deliberately incomplete quotes.
+Run the existing checker without changing policy interpretation, and compare all
+seven checked states plus intake/route against the separate declared expectations.
+Pin input and reference manifests in the regression test. Export only an exclusive
+outside-Git JSON report with scheduled/observed/failed units and explicit no-model-
+quality/no-clinical-validation flags. Through SQL, require rejected documents to
+create no case, and accepted cases to retain checked states and mapped supporting
+citations; rerunning a completed worker must claim no job. Document resume, auth,
+concurrency, crashes, malformed responses and actual PDF/OCR have separate witnesses.
+
+The official reference service source stays fixed at the already accepted commit.
+Its upstream Dockerfile selects Maven3.9.12/Java17; resolve that official registry
+image to an immutable digest. Build only server/library resources with the same
+hosted Maven command, preserving the upstream license and code. No frontend or
+telemetry agent is needed. Bind any host publication to loopback and preserve the
+application's payer journal; upstream H2 is transient, so a payer restart can lose
+remote inquiry state and must not authorize resubmission.
+
+### What went wrong
+The first19case execution passed;21newunit checks and6existingcitation checks passed.
+Strict typing found inferred heterogeneous document-update values and literal-key
+keyword updates; add explicit types and use a typed mapping, retaining all behavior.
+The first actual SQL run and local reference build could not start because Docker
+was absent again:21unit checks passed,19SQL fixture errors. Preserve that setup
+failure. Launch the stopped Desktop through the Windows process service, independent
+of terminal child lifetime, without changing its settings or deleting containers.
+No provider request or allowance mutation follows from retrying local readiness.
+
+After the owner brought Docker back, the serialized rerun passed44checks:25unit/
+launcher witnesses and19actual SQL cases. All rejected inputs left no canonical
+case, and accepted inputs retained their checked states and source mappings with
+no work on restart. Strict typing now covers295sources, including the new actual-
+container CI witness. The exclusive private regression report records19/19observed
+software cases, separately pinned inputs/references and0provider calls.
+
+Free host RAM fell below1GB while the six Langfuse containers and other project jobs
+were active. Do not stop other projects' Python jobs. The owner's latest answer
+explicitly approved pausing Langfuse, superseding the earlier keep-running reply.
+Record the six running IDs first; stop only those, then restore the same IDs before
+ending this work, including after any failure. The earlier November5pause had already
+been fulfilled and could not authorize this new interruption. This new pause is
+recorded in AGENTS and an ignored ID record; no volumes or records were removed.
+
+The initial reference build failed with BuildKit's missing-job result while engine
+readiness was unstable. Preserve that log, then use a new output record for the
+second build. The bounded Maven heap and serialized work avoid adding new memory
+pressure. The current build is downloading Maven dependencies; do not call local
+payer integration verified until actual submit/inquiry readback passes. Add required
+CI that starts the packaged image and reuses the authenticated SQL/PAS tests, while
+retaining the original independent native-Java reference checks. Extend that job to
+45minutes for the second actual build/boot, without dropping assertions.
+
+The second local build completed and its exact image ID was recorded privately.
+The launcher timed out at eight minutes, but left the same container inspectable.
+Its logs subsequently showed startup after about795seconds. Probe metadata through
+the fixed Loopback transport rather than assuming the Java startup line means HTTP
+readiness; the actual result was active CapabilityStatement/FHIR4.0.1. The saved
+desk's first connection probe also refused before it finished importing; no POST
+occurred. Retain both failed readiness observations rather than retrying model work.
+
+Relaunch the saved trial's desk with its exact original request binding, the owned
+loopback payer endpoint and a persistent private payer.sqlite. Authenticate using
+the private existing demo password, inspect all seven mapped version3cards, then
+explicitly submit the invented packet. Save the actual received receipt before
+checking a repeated submit returns that same receipt. Inquire separately and check
+the correlated A3response; this means authorization not required in the reference,
+not clinical approval. Logout must revoke private access. All these actual HTTP
+checks passed. Read the journal independently: one attempt, one packet, one inquiry.
+No note text was exported. The provider ledger remained624/793,0unsettled and all
+169old bound slots retained. This proof does not measure broader clinical quality.
+
+The GitHub connector again rendered a form without submitting. Cached CLI/API
+credentials were unavailable, so use the existing signed-in GitHub browser under
+the owner's standing submission authority. The UI call timed out after submission;
+inspect the existing tab rather than clicking again: it showed created PR168 with
+the expected two commits and15files. Its checks are pending at this writing.
+
+Finally verify each paused container's name against its original recorded ID,
+start the four storage services followed by worker/web, and inspect all six original
+IDs as running. Restoration passed; the temporary pause is fulfilled. Do not reuse
+that approval for a later interruption or delete volumes to relieve memory pressure.
