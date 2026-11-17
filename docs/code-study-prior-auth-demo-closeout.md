@@ -48,3 +48,11 @@ live-model quality, clinical reference qualification or remote-host recovery.
 Interview exercise: an exact quotation is incomplete, a patient binding is wrong,
 and the payer restarts after a received submission. Explain which boundary refuses
 each case and why no model vote or fresh journal is allowed to erase uncertainty.
+
+The November 17 local HTTP witness exercised the real saved version-3 case against
+the packaged Java payer: received submission, identical repeated receipt, correlated
+A3 inquiry and logout refusal. Read-only journal inspection found one attempt,
+packet and inquiry. No note text was exported and no provider attempt was consumed.
+Its first eight-minute readiness check timed out under memory pressure; retained
+logs show startup completed in about 795 seconds. Treat this as an operational
+limit rather than dropping the timeout or reporting a response-time target met.

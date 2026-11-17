@@ -8176,3 +8176,33 @@ payer integration verified until actual submit/inquiry readback passes. Add requ
 CI that starts the packaged image and reuses the authenticated SQL/PAS tests, while
 retaining the original independent native-Java reference checks. Extend that job to
 45minutes for the second actual build/boot, without dropping assertions.
+
+The second local build completed and its exact image ID was recorded privately.
+The launcher timed out at eight minutes, but left the same container inspectable.
+Its logs subsequently showed startup after about795seconds. Probe metadata through
+the fixed Loopback transport rather than assuming the Java startup line means HTTP
+readiness; the actual result was active CapabilityStatement/FHIR4.0.1. The saved
+desk's first connection probe also refused before it finished importing; no POST
+occurred. Retain both failed readiness observations rather than retrying model work.
+
+Relaunch the saved trial's desk with its exact original request binding, the owned
+loopback payer endpoint and a persistent private payer.sqlite. Authenticate using
+the private existing demo password, inspect all seven mapped version3cards, then
+explicitly submit the invented packet. Save the actual received receipt before
+checking a repeated submit returns that same receipt. Inquire separately and check
+the correlated A3response; this means authorization not required in the reference,
+not clinical approval. Logout must revoke private access. All these actual HTTP
+checks passed. Read the journal independently: one attempt, one packet, one inquiry.
+No note text was exported. The provider ledger remained624/793,0unsettled and all
+169old bound slots retained. This proof does not measure broader clinical quality.
+
+The GitHub connector again rendered a form without submitting. Cached CLI/API
+credentials were unavailable, so use the existing signed-in GitHub browser under
+the owner's standing submission authority. The UI call timed out after submission;
+inspect the existing tab rather than clicking again: it showed created PR168 with
+the expected two commits and15files. Its checks are pending at this writing.
+
+Finally verify each paused container's name against its original recorded ID,
+start the four storage services followed by worker/web, and inspect all six original
+IDs as running. Restoration passed; the temporary pause is fulfilled. Do not reuse
+that approval for a later interruption or delete volumes to relieve memory pressure.

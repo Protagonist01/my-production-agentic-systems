@@ -137,3 +137,31 @@ The existing [nine-call result](prior-auth-live-demo-result.md),
 Record a video only from the verified running application; no recording is claimed
 by this written package. Local SQL/container and reference-service results must be
 verified before marking the final local exchange complete.
+
+## Observed local closeout, November 17
+
+The authored pack passed 19/19 declared software cases. Its 25 unit/launcher checks
+and 19 actual SQL cases passed (44 total); strict typing covered 295 source files.
+These counts do not expand the completed nine-call model evidence.
+
+The pinned official image built locally. Under severe memory pressure the initial
+eight-minute startup check expired; the retained service later completed startup
+in about 795 seconds and returned an active FHIR R4 CapabilityStatement. Keep the
+timeout and failed earlier builds as part of the operational record. Starting the
+saved desk also took longer than the first HTTP probe; that connection refusal
+occurred before any submission.
+
+The actual running desk at `http://127.0.0.1:8767` then passed authenticated
+saved-case submission, an identical repeated receipt, and separate correlated
+inquiry returning A3. The private journal retained one attempt, one packet and one
+inquiry. All seven source cards remained met/mapped at version 3; logout restored
+private-access refusal. Clinical note text was not exported to the payer. The
+private capture is alongside the completed model run in
+`D:/document/.cache/production-agents/prior-auth/local-gemini-demo-2026-11-16-v1`.
+The provider readback remained 624/793, zero unsettled, nine newly consumed calls
+and 169 preserved old bound slots. No new model calls were made for this closeout.
+
+This is a functioning local synthetic protocol demonstration. Broad model quality,
+clinical adjudication, commercial payer interoperability and remote deployment
+remain unestablished. The reference service is transient and startup performance
+on this memory-constrained machine is unsuitable for an availability claim.
