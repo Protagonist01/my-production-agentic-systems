@@ -1,4 +1,10 @@
 # Code Study Guide — Production Agentic Systems
+
+The [Olist portfolio finish chapter](docs/code-study-olist-portfolio-demo.md) traces the
+48-case authored contract through model-only extraction, SIM projection, exact customer
+authority, shared-budget admission and independent readback. It explains the omitted
+semantic reservation, card-free managed-database role checks and clean-target restore.
+Mock readiness, real model quality and hosted recovery establish separate claims.
 The [final local demo chapter](docs/code-study-prior-auth-demo-closeout.md) follows
 frozen authored inputs through intake, checker, SQL and source mapping, then traces
 pinned-source container building and owned local reference-payer readiness. It keeps

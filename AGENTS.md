@@ -2,6 +2,47 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Card-free hosting and complete attempt readback (2026-11-17)
+
+The owner selected a service without card verification. Target Render Free web plus
+Neon Free persistent PostgreSQL; do not pursue Oracle card verification or paid
+Hugging Face compute. Verify the actual free accounts before activation. Render
+filesystem state is disposable: neither the sole database nor authoritative attempt
+ledger may live there. No host/account, persistent cloud budget, backup destination
+or public model allowance is activated by this preparation.
+
+Read-only reconciliation found 447 base reservations, 1 separately recorded Olist
+semantic canary, 168 PA reservations and 9 PA live reservations:625consumed, all
+settled. The old PA reader's624total omitted the semantic namespace. Preserve that
+failed call and all old tables/stops. Keep169old bound slots; their allocations plus
+625consumed exceed the recorded793ceiling by one slot, although actual consumption
+is below793. Do not silently reduce retained slots or enlarge authority. The exact
+146attempt demo proposal therefore needs a new940ceiling, not939. No fresh calls
+or correction to an existing grant is authorized. The new all-namespace reader is
+the aggregate source of truth and refuses unknown reservation namespaces.
+
+## Accepted Olist hosted portfolio-demo finish plan (2026-11-17)
+
+The owner clarified that Olist is a hosted portfolio demonstration using simulated orders
+and money, then said "proceed with the concrete finish plans". Implement the48case demo
+acceptance package (refund/status/reship/clarify/unrelated/adversarial), exact reference/
+input separation, composed customer-confirmed SIM workflow, bounded evaluation proposal,
+and hosting/recovery packaging. The owner then selected a free hosting service: do not
+buy hosting, upgrade accounts or activate billable resources. Prepare a free-only target
+and disclose sleep, persistence, account/capacity and recovery limits before activation.
+
+This supersedes requiring broad real-customer semantic qualification or payment/shipping
+integrations to finish this specifically labeled demonstration. Preserve those original
+production gates as unmet historical/future requirements; do not mark them passed or
+rewrite old sources/captures. Declared fictional demo cases are contract references, not
+independent natural-language gold, representative traffic or a population confidence bound.
+Keep the proposed demo95%agreement target and zero unauthorized/duplicate/over-limit effects
+separate from the real-world qualification standard. No fresh provider allocation follows:
+freeze the146attempt proposal and recheck the single current ledger before an exact new
+owner/Free-project grant. The old failed Olist canary and stopped scope remain unchanged.
+Keep fixed customer/action authority, tenant separation, review, privacy and persistent
+attempt accounting. Shipping/requested replacement goes to review; no real payment/shipment.
+
 ## Final demo closeout and temporary Langfuse pause (2026-11-17)
 
 The owner authorized regression completion, local official reference-payer connection
