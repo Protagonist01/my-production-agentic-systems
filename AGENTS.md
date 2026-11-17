@@ -994,3 +994,7 @@ establishes no Olist semantic qualification. Publisher pending cancellation/deli
 and modeled actions/state do not supply canceled-order SIM refund/amount-role truth. Current
 development references/mappings, required fields/slices and stopped provider ledger remain
 unchanged. No new semantic grant, model call, live judge or release follows.
+
+## Revenue scope comparison, November 18
+
+The owner approved up to 50 Gemini Free attempts above the 793 ceiling. Both canaries passed. HTTP 429 stopped the run after 18 attempts, including the failure. The shared ledger has 642 consumed of 843 and 169 historically bound slots. Retain the interrupted study and all settlements. The previous 793 snapshot predates the revenue_scope_843 table. Use the retained pre-study database for historical readback with the frozen Prior Auth reader. The current authoritative database is gemini-closure-180-v1/attempts.sqlite. See docs/revenue-walkthrough.md.

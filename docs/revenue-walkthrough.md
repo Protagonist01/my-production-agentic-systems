@@ -112,3 +112,21 @@ journey was observed over HTTP and the actual JavaScript asset passes Node sessi
 this is not a claim of a recorded full browser-click walkthrough. Six previously running
 Langfuse containers were restored, with all data retained. See the aggregate observed report.
 Hosted final-head/main acceptance remains separately recorded in the PR delivery receipt.
+
+## Recorded walkthrough and model comparison
+
+[Watch the four browser checkpoints](revenue-browser-walkthrough.gif). The operator checked the overbilled 35.00 SIM invoice against the 30.00 SIM agreement. A second login approved the adjustment, the operator applied it, and a second delivery left one receipt for that invoice. The recording starts after sign-in. The earlier underbilling receipt belongs to a different invoice.
+
+On November 18 both invented Gemini 3.5 Flash-Lite Free canaries passed. The first 16-case trial completed. The second reached its sixth case when Gemini returned HTTP 429. The runner stopped with 26 scheduled slots unrun.
+
+| Method | Correct scope decisions on the same 22 slots |
+| --- | ---: |
+| Rules | 20 |
+| Gemini with local access checks | 17 |
+| Always request review | 8 |
+
+Six of the 22 decisions came from local checks. Gemini returned 15 domain answers, 11 of which matched the authored reference. The denominator of 22 includes the failed provider call. Gemini admitted an invoice missing its unit price on both observed repetitions. It also treated the unrelated agreement as an unrelated request in both trials where it appeared. The reference calls for requesting the relevant billing agreement.
+
+These are repeated observations from one authored fixture family. They measure scope routing. Contract interpretation and financial impact require additional evidence. Keep price completeness and registered-source checks ahead of any correction proposal.
+
+The study used 18 provider attempts including both canaries. The shared lifetime count reached 642 of 843. Gemini reported 2,385 tokens across 17 responses. Actual billing cost is unknown. Domain provider requests had a measured p95 of 1.52 seconds including the failed request. See the [aggregate results](data/revenue-scope-demo-20261118.json).
