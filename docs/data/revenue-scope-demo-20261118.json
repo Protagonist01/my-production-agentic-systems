@@ -1,0 +1,31 @@
+{
+  "attempts": 18,
+  "lifetime_consumed": 642,
+  "ceiling": 843,
+  "observed_slots": 22,
+  "scheduled_slots": 48,
+  "correct": 17,
+  "false_admits": 2,
+  "local_blocks": 6,
+  "rules_correct": 45,
+  "always_review_correct": 21,
+  "baseline_slots": 48,
+  "p95_domain_seconds": 1.5200889999978244,
+  "usage_rows": 17,
+  "billing_cost": null,
+  "canaries": [
+    true,
+    true
+  ],
+  "rules_correct_same_slots": 20,
+  "always_review_correct_same_slots": 8,
+  "http_429": 1,
+  "unrun": 26,
+  "model_outputs": 15,
+  "model_correct": 11,
+  "token_totals_reported": {
+    "promptTokenCount": 2211,
+    "candidatesTokenCount": 174,
+    "totalTokenCount": 2385
+  }
+}

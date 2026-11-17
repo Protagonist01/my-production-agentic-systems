@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 117 — Connect Revenue source assessment to the durable approval ledger](#entry-117--connect-revenue-source-assessment-to-the-durable-approval-ledger)
 
 - [Entry 116 — Bound the final demo regression and local payer](#entry-116--bound-the-final-demo-regression-and-local-payer)
 
@@ -8206,3 +8207,80 @@ Finally verify each paused container's name against its original recorded ID,
 start the four storage services followed by worker/web, and inspect all six original
 IDs as running. Restoration passed; the temporary pause is fulfilled. Do not reuse
 that approval for a later interruption or delete volumes to relieve memory pressure.
+
+
+## Entry 117 — Connect Revenue source assessment to the durable approval ledger
+**Files touched:** root Revenue demo service, protected web composition, CLI and tests.
+
+### Context
+On November 17 the owner selected the first Revenue closeout deliverable: finish the
+complete operational walkthrough. Start from current main1e1b8fe. Keep the newer shared
+provider history and all frozen runtime packages unchanged; no new model call is authorized.
+
+### Before you read on
+The old console can propose from stored typed facts, while v2 assessment is read-only.
+How do you join the source check and invoice correction without treating a model's
+plausible interpretation as write authority or introducing a second approval ledger?
+
+### Options and decision
+A new mutable approval database would compete with the existing SQL owner. Instead,
+compose the old store and sessions with a root DemoService. Use fixed constructed SIM
+documents, trusted invoice facts and their exact source pins. Recompute extraction and
+arithmetic on proposal; bind its displayed digest/version to the exact request. Existing
+SQL still owns proposal, reviewer, expiration, apply and duplicate receipts. The demo's
+ordinary proposal endpoint must refuse the shortcut around this checked path.
+
+### How to build it
+First define six invented invoices and complete explicit source-field documents. Scope
+them to provisioned operator/reviewer grants; no browser amount or account is trusted.
+Authenticate before returning source text. Compare exact registered bytes, parse with the
+existing constructed grammar, then reconcile the current stored invoice using those parsed
+terms and independently provisioned typed facts. Missing/conflicting terms, altered source,
+unrelated request and above-cap adjustments cannot create a proposal.
+
+Expose a separate walkthrough route and same-origin/CSRF-protected assessment/proposal
+routes on the unchanged console. Keep all DOM source text in textContent. Separate the
+operator and reviewer; approval must display the exact corrected total and adjustment,
+and only a receipt means committed. Reconstruct the service on restart and redeliver an
+approved operation to prove the ledger does not create a second effect.
+
+The page states constructed parser/no model calls; it is not a live LLM result or legal
+meaning qualification. A later bounded model study remains separate. Add actual SQL/API
+and browser evidence before reporting the walkthrough finished. Local Docker availability
+and final tests are still being established; do not substitute a passing mock for them.
+
+The first local focused checkpoint passes11tests, including the actual Node browser asset,
+and295typed sources. Docker Desktop accepted startup but was initially unavailable. The
+installed native PostgreSQL fallback timed out during initdb before any server-start command;
+preserve that separate private attempt. After Docker became reachable, both a fresh test
+database and the persistent demo database missed readiness. The startup command hit its
+240second bound before creating the demo trial; preserve its generated credential file.
+The host resource probe reported94%memoryload/846MBfree with six Langfuse containers running.
+Temporarily pause only those named containers under the existing stop-and-restore authority,
+record original running state, and restore them after the actual walkthrough verification.
+
+That failure exposed a CLI usability bug: the retained credential correctly prevented
+overwriting, but there was no bounded path to resume an uncreated trial, and subprocess
+timeouts leaked a traceback. Add explicit resume-bootstrap only when no trial exists and
+the exact private root/trial/identity fields match. Reuse the original secret, never rewrite
+it; existing trials still refuse. Catch the subprocess failure without exposing private
+details. A focused negative test proves timeout retention, default refusal and changed-identity
+refusal before another database action. Final real SQL/browser/CI results remain pending.
+
+
+After the exact six-container pause, the retained demo bootstrap succeeded without rewriting
+its credential, and the fresh Docker SQL/HTTP test passed in151.37seconds. The final focused
+checkpoint passes12tests and295typed sources. The standalone HTTP helper first failed on
+its own import path before making any request; prepend the checkout root, then run the
+unchanged workflow. Actual HTTP evidence records one5.00SIM correction and a single receipt.
+Stop only the PID whose command line matches this module/root/trial, restart the same
+server and verify the same receipt against canonical SQL: one ledger entry remains.
+
+The first in-app browser connection timed out; a bounded second connection showed the
+actual login page and its explicit constructed/no-model badge. It does not prove the full
+authenticated browser journey; keep that distinct from actual HTTP and Node asset evidence.
+All six Langfuse containers are restored to running, with no data deleted. A credential
+lookup with interactive Git prompts disabled now returns128/no existing token, explaining
+why the later push/API submission stalled. Use the already connected GitHub write capability
+if sufficient; never expand access or claim an unsubmitted PR exists. Hosted checks remain
+mandatory before any merge.
