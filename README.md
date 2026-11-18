@@ -1,5 +1,14 @@
 # my-production-agentic-systems
 
+## Try the portfolio demos
+
+| Demo | What to look for |
+|---|---|
+| [Revenue Integrity walkthrough and recording](docs/revenue-walkthrough.md) | Follow a fictional invoice from a cited price to a reviewer-approved correction. Sending the same request twice produces one ledger entry. |
+| [Olist customer support desk and local setup](docs/olist-console.md) | Open a scoped support case, inspect order evidence and follow a simulated refund through approval. The guide includes the operator and reviewer setup. |
+
+Both demos run locally with PostgreSQL and use simulated money. The [open release backlog](https://github.com/Protagonist01/my-production-agentic-systems/issues) tracks production qualification.
+
 All five agents now follow the [stronger evaluation standards](docs/evaluation-standards.md): independent frozen labels, unseen grouped holdout, complete per-field/slice results and separately reviewed release limits. Historical pilots remain limited evidence; new methodology qualification and H10 acceptance are required.
 
 Production-minded AI agents across five industries, with a shared evaluation harness, versioned datasets, regression testing, fault injection, observability and code-enforced action controls.
@@ -80,11 +89,8 @@ For H1, copy the selected placeholders from `.env.example` to ignored `.env.loca
 
 ## Applications
 
-The opt-in [Revenue agreement-to-ledger walkthrough](docs/revenue-walkthrough.md) connects
-registered constructed source fields to checked SIM arithmetic, an exact approval request,
-a separate reviewer and a durable correction receipt. Its page explicitly labels the
-no-provider execution mode. Start it with `revenue_demo_cli.py`; fresh model evaluation
-and qualified contract-meaning evidence remain separate.
+The Revenue walkthrough checks explicit agreement fields and invoice arithmetic locally.
+A separate [Gemini scope-routing comparison](docs/revenue-walkthrough.md#recorded-walkthrough-and-model-comparison) shows why those checks matter. Gemini twice let a case proceed with its unit price missing.
 
 | Application | Source input | Delivered behavior |
 |---|---|---|
@@ -94,7 +100,7 @@ and qualified contract-meaning evidence remain separate.
 | Prior auth | Selected policies and illustrative notes | Criterion evidence assessment, recommendation and qualified review |
 | Supply chain | Shipping observations and weather snapshots | Simulated interventions, budget allocation and approval/confirmation workflows |
 
-Olist has a local authenticated console and controlled SIM refund backend. Revenue adds read-only SIM reconciliation; its billing write backend and the remaining domain applications await their later tasks. Evaluation reports distinguish original data, hybrid workflows and synthetic/adversarial cases. No real recovered revenue, clinical outcome or freight-saving claim follows from simulation.
+Olist records controlled SIM refunds. Revenue records approved SIM invoice corrections. Evaluation reports identify the source of each result, including historical data, constructed workflows and adversarial cases.
 
 ## Delivery and evidence
 

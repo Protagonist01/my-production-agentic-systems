@@ -1,9 +1,8 @@
 # Revenue Integrity: agreement to committed ledger
 
-This opt-in walkthrough finishes the operational integration selected by the owner on
-November 17, 2026. It starts from main `1e1b8fe` and preserves the frozen runtime packages,
-schemas and previous evaluation captures. It makes **zero model calls**. The page labels
-its execution mode as a constructed parser demonstration, not live AI or legal analysis.
+[Watch the recorded walkthrough](revenue-browser-walkthrough.gif). A fictional agreement sets the invoice at 30.00 SIM. The operator spots a charge of 35.00, a second person approves the exact correction, and the ledger records it once even after duplicate delivery.
+
+The interactive walkthrough uses a deterministic parser and PostgreSQL. The separate [model comparison](#recorded-walkthrough-and-model-comparison) measures how Gemini routes requests before billing checks.
 
 ## What you can demonstrate
 
@@ -90,28 +89,9 @@ private responses, session expiry, CSRF and source-change invalidation without n
 The required SQL/HTTP integration test exercises real sessions, denied self-review, changed
 approval digest, approval-before-apply, reviewer apply refusal, stored receipt and reconstruction.
 
-Record actual test/CI/browser outcomes in the delivery receipt before calling those checks
-passed. The prior evaluation baseline remains separate: this operational walkthrough does
-not fill its missing candidate outputs, independent language labels or unknown evaluation costs.
-It establishes no real recovered revenue, qualified contract meaning or production release.
-Fresh model evaluation and its exact provider authorization remain the next separate deliverable.
+The Docker/PostgreSQL test exercised the authenticated HTTP workflow. Restarting the local server against the same database preserved the receipt and the single ledger change. All ten checks passed on [PR #167](https://github.com/Protagonist01/my-production-agentic-systems/pull/167), and [CI passed on main](https://github.com/Protagonist01/my-production-agentic-systems/actions/runs/44201584113).
 
-
-## Observed local completion
-
-The final local checkpoint passes12focused tests and295typed sources, plus lint/format.
-The real PostgreSQL/authenticated HTTP test passes on Docker after the temporary resource
-pause; the first native-init and Compose readiness failures remain recorded. The actual
-running loopback server also completed one5.00SIM correction: source check, stored proposal,
-different reviewer approval, explicit apply, one receipt, duplicate delivery and sign-out
-refusal. Stopping only its command-line-verified process and restarting against the same
-database preserved the exact receipt and single ledger effect. No model call occurred.
-
-The in-app browser visibly renders the real running login page. The complete authenticated
-journey was observed over HTTP and the actual JavaScript asset passes Node session tests;
-this is not a claim of a recorded full browser-click walkthrough. Six previously running
-Langfuse containers were restored, with all data retained. See the aggregate observed report.
-Hosted final-head/main acceptance remains separately recorded in the PR delivery receipt.
+[Release issue #45](https://github.com/Protagonist01/my-production-agentic-systems/issues/45) tracks evidence for interpreting unseen agreements, missed discrepancies and false alarms. This demonstration uses fictional amounts throughout.
 
 ## Recorded walkthrough and model comparison
 
