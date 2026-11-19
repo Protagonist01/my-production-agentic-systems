@@ -1,4 +1,14 @@
 # Code Study Guide — Production Agentic Systems
+
+The [CFPB operations exercise](docs/cfpb-operations-exercise.md) follows the public feed
+through a bounded response projection into an isolated SQLite intake journal. A unique
+hashed case ID lets repeated polls preserve the first receipt. The exercise then combines
+metadata-only queue entries, externally pinned archive text and authored cases in a new
+PostgreSQL trial. Trace `run_exercise` through worker lease, protected review commands,
+idempotent acceptance and persisted work export. An intentionally wrong routine recommendation
+produces a correction receipt. Public/archived cases preserve unknown disposition.
+Interview exercise: explain why acceptance and elapsed time can be measured while
+correctness and observed labor savings still remain unknown.
 The [final local demo chapter](docs/code-study-prior-auth-demo-closeout.md) follows
 frozen authored inputs through intake, checker, SQL and source mapping, then traces
 pinned-source container building and owned local reference-payer readiness. It keeps
