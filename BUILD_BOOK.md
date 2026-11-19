@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 118 — Exercise CFPB intake and review without a partner](#entry-118--exercise-cfpb-intake-and-review-without-a-partner)
 - [Entry 117 — Connect Revenue source assessment to the durable approval ledger](#entry-117--connect-revenue-source-assessment-to-the-durable-approval-ledger)
 
 - [Entry 116 — Bound the final demo regression and local payer](#entry-116--bound-the-final-demo-regression-and-local-payer)
@@ -8284,3 +8285,41 @@ lookup with interactive Git prompts disabled now returns128/no existing token, e
 why the later push/API submission stalled. Use the already connected GitHub write capability
 if sufficient; never expand access or claim an unsubmitted PR exists. Hosted checks remain
 mandatory before any merge.
+
+
+## Entry 118 — Exercise CFPB intake and review without a partner
+
+The owner asked to proceed with the free public feed, archive replay and scripted
+reviewer in the CFPB thread. Start from main 37c3f17. The public API serves dated
+publication metadata. We need exact complaint wording to test triage and a separate
+statement of expected outcomes to test decisions. Never join public records and old
+narratives as if both describe the same case.
+
+Take a bounded sample from the official endpoint and project each source ID with the
+existing case-key function. Persist that key and date in a dedicated SQLite transaction,
+then insert the poll receipt. A repeated key increments the deduplication count and keeps
+its original record. Report the server's total alongside the sample size. The official
+schema describes an exclusive end date, but three live boundary probes returned rows
+through the last day. Use inclusive date bounds and test a final-day timestamp. The first
+rejected sample preserved the journal because validation runs before any database write.
+
+Verify both private prepared stores against the published manifest. Its private copy has
+CRLF line endings. Exact raw bytes matched the independently computed CRLF hash, and the
+materialized source and table pins matched the publication. Select development case IDs
+by source group, fetch only their texts for the desk, and rehash both stores afterward.
+The archive remains private. The first fixture needed an explicit ScopeOutput quote, as
+the desk validates scope evidence separately from category evidence.
+
+Put the same authored, archive and metadata-only mix in two arms on a fresh trial. Only
+authored scopes have explicit expected dispositions. The manual arm has no model jobs.
+The assisted arm can publish scripted results through the lease fence. Deliberately publish
+a routine result for one urgent authored case, then sign in as the scoped reviewer and
+record correction work before accepting the elevated result. Publish simulated unavailability
+on another case and require review. Repost every acceptance to verify its receipt. Compare
+server-exported synthetic activity time while keeping human savings, cost and archive truth
+unknown. Exercises use the existing API on a new loopback PostgreSQL cluster or the normal
+owned Compose DB. No cloud account, provider, business outreach or release is needed.
+
+The actual public sample inserted 25 rows and counted all 25 as repeats on the second
+request. The focused intake, evaluation and command run passed 47 tests. Separate SQL
+results and main verification are recorded with the experiment and PR.
