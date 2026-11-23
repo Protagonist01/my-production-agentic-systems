@@ -189,6 +189,7 @@ def test_http_failures_are_typed_redacted_and_never_retried(status, code, retrya
     response = instance.generate(context(), request())
     assert len(seen) == 1 and response.failure.code == code
     assert response.failure.retryable is retryable and response.usage.model_calls == 1
+    assert str(status) in response.failure.message
     assert "private-marker" not in response.model_dump_json()
     assert "invented-key" not in instance.exchanges[0].model_dump_json()
 

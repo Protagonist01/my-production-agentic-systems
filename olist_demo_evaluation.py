@@ -2,9 +2,10 @@
 
 import math
 from collections import Counter
+from collections.abc import Callable
 from typing import Annotated, Literal
 
-from agent_harness.contracts import Contract, ModelResponse
+from agent_harness.contracts import Contract, ModelRequest, ModelResponse
 from pydantic import Field, model_validator
 
 from docs.evaluation.olist_semantic_candidate import parse, request
@@ -50,7 +51,7 @@ def baselines() -> dict[str, object]:
     return result
 
 
-class Observation(Contract):
+class ScoredObservation(Contract):
     origin: Literal["mock", "provider"] = "mock"
     case_id: str
     trial: Literal[1, 2, 3]
@@ -58,11 +59,24 @@ class Observation(Contract):
     response: ModelResponse
     elapsed_ms: Annotated[float, Field(ge=0, allow_inf_nan=False)]
 
+
+class Observation(ScoredObservation):
     @model_validator(mode="after")
     def bounded(self) -> "Observation":
         calls = self.response.usage.model_calls
         if calls > 1 or (calls == 0 and self.response.failure is None):
             raise ValueError("one attempt or a preserved pre-dispatch failure required")
+        return self
+
+
+class TaskObservation(ScoredObservation):
+    """A separately declared user request with at most two recorded provider attempts."""
+
+    @model_validator(mode="after")
+    def bounded(self) -> "TaskObservation":
+        calls = self.response.usage.model_calls
+        if calls > 2 or (calls == 0 and self.response.failure is None):
+            raise ValueError("at most two attempts or a preserved pre-dispatch failure required")
         return self
 
 
@@ -75,17 +89,21 @@ def schedule() -> tuple[tuple[str, int, str], ...]:
     )
 
 
-def summarize(observations: tuple[Observation, ...]) -> dict[str, object]:
+def summarize(
+    observations: tuple[Observation | TaskObservation, ...],
+    *,
+    request_builder: Callable[[str], ModelRequest] = request,
+) -> dict[str, object]:
     origins = {row.origin for row in observations}
     if len(origins) > 1:
         raise ValueError("mock/provider observations must remain separate")
     expected = {(c.case_id, trial): c for c in cases() for trial in (1, 2, 3)}
-    by_key: dict[tuple[str, int], Observation] = {}
+    by_key: dict[tuple[str, int], Observation | TaskObservation] = {}
     for row in observations:
         observed_key = row.case_id, row.trial
         if observed_key not in expected or observed_key in by_key:
             raise ValueError("unknown or duplicate scheduled occurrence")
-        wire = request(expected[observed_key].text)
+        wire = request_builder(expected[observed_key].text)
         if (
             row.request_sha256 != wire.fingerprint()
             or row.response.provider != wire.provider

@@ -5,7 +5,9 @@ The caller must supply a separately bounded gateway. Quote checks are mechanical
 they do not establish that a price mention is really a requested refund amount.
 """
 
-from agent_harness.contracts import ModelGateway, RunContext
+from collections.abc import Callable
+
+from agent_harness.contracts import ModelGateway, ModelRequest, RunContext
 from olist_support.routing_contracts import RoutingPlan
 from olist_support.workflow import IntentDecision, WorkflowRequest
 
@@ -30,11 +32,17 @@ def project(value: SemanticOutput) -> RoutingPlan:
 
 
 class DemoPlanner:
-    def __init__(self, gateway: ModelGateway) -> None:
+    def __init__(
+        self,
+        gateway: ModelGateway,
+        *,
+        request_builder: Callable[[str], ModelRequest] = request,
+    ) -> None:
         self.gateway = gateway
+        self.request_builder = request_builder
 
     def plan(self, context: RunContext, original: WorkflowRequest) -> IntentDecision:
-        wire = request(original.text)
+        wire = self.request_builder(original.text)
         response = self.gateway.generate(context, wire)
         failure: str | None = response.failure.code if response.failure else None
         plan = RoutingPlan(routing_version="olist-intent-routing-v2", intent="review")

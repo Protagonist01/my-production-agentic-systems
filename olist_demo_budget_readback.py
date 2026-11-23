@@ -50,6 +50,12 @@ KNOWN_TABLES = frozenset(ATTEMPTS) | frozenset(
         "olist_demo_results",
         "olist_demo_stop",
         "revenue_scope_843",
+        "olist_r2_scope",
+        "olist_r2_tasks",
+        "olist_r2_attempts",
+        "olist_r2_results",
+        "olist_r2_task_results",
+        "olist_r2_stop",
     }
 )
 
@@ -112,6 +118,8 @@ def inspect(path: Path) -> dict[str, Any]:
             mapped["olist_demo_attempts"] = (
                 "ordinal NOT IN (SELECT ordinal FROM olist_demo_results)"
             )
+        if "olist_r2_attempts" in tables:
+            mapped["olist_r2_attempts"] = "serial NOT IN (SELECT serial FROM olist_r2_results)"
         unknown = tables - KNOWN_TABLES
         if unknown:
             raise ValueError("new reservation namespace needs an explicit audited mapping")
@@ -143,6 +151,12 @@ def inspect(path: Path) -> dict[str, Any]:
                 raise ValueError("one demo scope required")
             demo_scope = json.loads(scope_rows[0][0])
             ceiling, retained = demo_scope["lifetime_ceiling"], demo_scope["retained_bound_slots"]
+        if "olist_r2_scope" in tables:
+            retry_rows = db.execute("SELECT document FROM olist_r2_scope").fetchall()
+            if len(retry_rows) != 1:
+                raise ValueError("one resilient study scope required")
+            retry_scope = json.loads(retry_rows[0][0])
+            ceiling, retained = retry_scope["lifetime_ceiling"], retry_scope["retained_bound_slots"]
         if type(ceiling) is not int or type(retained) is not int or min(ceiling, retained) < 0:
             raise ValueError("invalid historical allowance")
         total = sum(counts.values())

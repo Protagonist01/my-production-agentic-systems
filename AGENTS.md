@@ -2,6 +2,24 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Olist Gemini-only next candidate (2026-11-23)
+
+PR169 and PR172 are merged. The approved continuation has now stopped at its eighth
+HTTP server failure:59settled attempts including2canaries and57domain,46joint correct,
+8provider failures,2wrong intents and1invalid semantic output.87slots remain unattempted.
+Shared consumption is702/990,0unsettled;201older bound slots and the87stopped Olist slots
+remain retained. Preserve every original scope, failure, stop and ledger row. This is
+not completed demo evaluation, model qualification, hosted recovery or release.
+
+The owner confirmed no Groq keys are available:use Gemini only. Park the unpushed Groq
+preparation; do not search for credentials or ask for its key again. Prepare a separate
+Gemini3.5Flash-Lite prompt/operating-policy candidate using the existing bounded gateway:
+146logical tasks, at most2transient attempts each within30seconds. Retain all288unused
+old slots. Its292new maximum/proposed1282lifetime allowance needs a new exact owner grant
+and current Free confirmation. No calls, slot transfer or public runtime authority follow
+from this preparation. Keep raw attempts and final task metrics separately; never retry
+valid wrong meaning or semantic invalidity. See docs/olist-demo-gemini-resilience.md.
+
 ## Olist live stop and next-slot proposal (2026-11-23)
 
 PR #169 is merged; its ten PR checks and post-merge gate passed. The approved amended
