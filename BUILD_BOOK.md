@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 122 — Measure customer requests without hiding provider attempts](#entry-122--measure-customer-requests-without-hiding-provider-attempts)
 - [Entry 121 — Preserve a failed study while proposing its next slots](#entry-121--preserve-a-failed-study-while-proposing-its-next-slots)
 - [Entry 120 — Reconcile the shared study before spending again](#entry-120--reconcile-the-shared-study-before-spending-again)
 - [Entry 119 — Finish the Olist portfolio demonstration against an explicit contract](#entry-119--finish-the-olist-portfolio-demonstration-against-an-explicit-contract)
@@ -8604,3 +8605,100 @@ unknown-token reservations. All 14 initial regressions then passed; three additi
 cooldown/circuit/invalid-output cases passed, giving 17 verified cases. Strict workspace
 typing passed for 311 sources. Provider execution still needs the exact new
 owner amendment after source freeze and checks; no further call is authorized here.
+
+
+## Entry 122 — Measure customer requests without hiding provider attempts
+**Files touched:** Gemini adapter, Olist planner/evaluator, new resilience study, tests and result report.
+
+### What the completed run actually established
+
+The approved continuation stopped on its eighth HTTP server failure. All 59 raw
+reservations settled: two canaries and 57 domain observations. Forty-six domain
+interpretations matched their authored references. The first trial covered all 48
+cases, with 41 matching, four provider failures and three interpretation/schema errors.
+No case completed all three trials. Retain the old stop and missing observations.
+Successful-response agreement alone hides availability failures and cannot pass the
+complete scheduled denominator. The sealed result report preserves these distinctions.
+
+The interpretation defects were concrete: unresolved alternative amounts became refund
+intent; an untrusted quoted command became customer intent; an override produced review
+intent with incompatible refund-money fields. A literal quote validator cannot establish
+speaker role or chosen intent. The strict schema correctly rejected the inconsistent
+fields; weakening it would conceal the defect. Eight unknown-usage failures require
+full conservative reservations. Reported tokens and billing cost are different evidence.
+
+### Decision and alternatives
+
+The owner confirmed only Gemini is available. Park the prepared Groq branch rather
+than searching for credentials or substituting a provider without authority. Reuse
+`BoundedGateway` instead of writing another retry engine. Preserve the old single-attempt
+study as failed/incomplete. Prepare a fresh combined prompt/operating-policy candidate:
+source-role/choice priorities plus at most two transient attempts within one 30-second
+logical request. Both changed, so no causal claim about an individual improvement follows.
+
+The alternative of rerunning any wrong answer until one passes would select favorable
+outputs. This implementation never retries valid wrong meaning or invalid semantic
+output. The alternative of counting only the last raw attempt would hide consumption
+and failure rate. Keep both raw observations and the final customer-request result.
+
+### Reproduce the implementation
+
+1. Add `request_builder` to `DemoPlanner` with the old request as its default. Build the
+   revised Gemini request separately; retain model, parameters and strict output schema.
+2. Keep `Observation` bounded to one call. Introduce `TaskObservation` bounded to two,
+   and inject the request factory into fingerprint validation. Keep 144 scheduled domain
+   outcomes, references and fixed baselines unchanged.
+3. In `olist_demo_resilience_study`, freeze the full task schedule, source/environment,
+   old ledger hash, project association, expiry and exact two-attempt policy. Add all
+   older unspent allocations to retained slots; preparation grants nothing.
+4. Create append-only scope/task/raw-attempt/raw-result/final-result/stop tables in the
+   existing ledger. A committed task context fixes the deadline. Reserve each raw attempt
+   under `BEGIN IMMEDIATE` before network I/O. Require settled preceding attempts,
+   one-second backoff, a transient previous failure and remaining budget/deadline.
+5. Wrap the real SDK in `RecordedTransport`, then the existing provider and bounded
+   gateways. Preserve unknown raw usage when aggregating a recovered final response.
+   Revalidate context, request, policy and aggregate usage at final settlement.
+6. Reject an unfinished lease on restart rather than silently renewing its deadline.
+   Require both canaries, and maintain persistent failed-task circuit/quota/accounting
+   stops. Record a late response as failure. Public HTTP latency still needs its own test.
+7. Extend the independent namespace reader to count raw reservations, never task leases
+   as extra model attempts. Retain the old namespace mapping and refusal of unknown tables.
+8. Keep numeric HTTP status in sanitized new errors. Do not retain response bodies or
+   infer an exact status for the old generic messages.
+
+### Bugs found while checking and actual verification
+
+The first test fixture copied two old transport-timeout fields into the stricter new
+scope. Remove those fixture-only extras; do not loosen the scope. Strict typing also
+caught that the deadline-only recorder did not satisfy the provider gateway's optional
+non-deadline interface. Give it an optional argument but explicitly reject an absent
+bound. This preserves the provider protocol while refusing unbounded calls.
+
+Nine initial offline tests passed, followed by three additional lease/circuit/SDK
+checks. They exercise 146-task success, failure/recovery accounting, no meaning/schema
+retry, late output, crashed-task refusal, durable backoff, third-attempt denial,
+retention/grants, competing leases and the failed-task circuit. Two real SDK canaries
+used invented outputs with socket access denied; they establish adapter/process wiring,
+not model quality. Strict typing passed for 313 sources. Existing regression and hosted
+checks are recorded separately when completed; no new provider call has occurred.
+
+### Remaining limits and discussion exercise
+
+The authored cases are exposed and are a portfolio-demo contract, not independent
+language gold, representative customer traffic or a confidence claim. Parent cleanup,
+SQLite and source checks add overhead beyond SDK time. A prompt plus retry change is a
+combined candidate comparison. Account setup, public runtime allowance and actual
+hosted recovery remain separate. Interview exercise: one raw HTTP failure followed by
+one correct response consumes two attempts, produces one correct logical result, and
+still reports one raw provider failure with unknown first-attempt tokens. Explain why
+none of those facts should overwrite the others.
+
+
+Regression follow-up: the initial 105-test selection produced 99 passes and six
+failures. Four were new diagnostic expectations for authentication/HTTP timeouts;
+those error branches now retain only the numeric status, and all seven HTTP category
+cases passed on rerun. Two packet tests correctly refused an in-checkout temporary
+folder; both passed using an external private test directory. No production check
+was relaxed. The distinct tested union is therefore 105 passing legacy cases plus
+12 new cases. Lint, format, typing and dependency-direction checks passed locally;
+hosted CI and new provider execution remain pending.

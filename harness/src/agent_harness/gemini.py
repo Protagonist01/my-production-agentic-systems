@@ -431,17 +431,21 @@ class GeminiTransport:
                 return failed_response(
                     request,
                     "permission_denied",
-                    "Gemini authentication/permission failure",
+                    f"Gemini HTTP {error.code} authentication/permission failure",
                     dispatched=True,
                 )
             if error.code in (408, 504):
                 return failed_response(
-                    request, "timeout", "Gemini request timed out", dispatched=True, retryable=True
+                    request,
+                    "timeout",
+                    f"Gemini HTTP {error.code} request timed out",
+                    dispatched=True,
+                    retryable=True,
                 )
             return failed_response(
                 request,
                 "unavailable" if error.code and error.code >= 500 else "invalid_response",
-                "Gemini HTTP request failed",
+                f"Gemini HTTP {error.code} request failed",
                 dispatched=True,
                 retryable=bool(error.code and error.code >= 500),
             )

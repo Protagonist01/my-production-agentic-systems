@@ -1,5 +1,13 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Gemini-only resilience chapter](docs/olist-demo-gemini-resilience.md) follows a
+logical customer request through the existing bounded gateway and separate append-only
+raw-attempt/task tables. Compare the unchanged one-attempt observation contract with
+the explicitly two-attempt task contract. Explain why a recovered failure still consumes
+budget and remains visible, why exposed authored cases do not prove generalization, and
+why source quotation is insufficient proof of customer intent. The sealed first-candidate
+result remains separate from this unexecuted proposal.
+
 The [Olist live-stop report](docs/olist-portfolio-demo-evaluation-2026-11-23.md) separates
 a provider HTTP failure from language errors and local timeouts. Follow
 `olist_demo_continuation.py` from immutable prefix hashing through new owner authority,
