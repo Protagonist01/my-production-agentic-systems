@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 121 — Preserve a failed study while proposing its next slots](#entry-121--preserve-a-failed-study-while-proposing-its-next-slots)
 - [Entry 120 — Reconcile the shared study before spending again](#entry-120--reconcile-the-shared-study-before-spending-again)
 - [Entry 119 — Finish the Olist portfolio demonstration against an explicit contract](#entry-119--finish-the-olist-portfolio-demonstration-against-an-explicit-contract)
 
@@ -8518,3 +8519,88 @@ limits and validators; do not weaken the gate or fabricate a missing receipt. Th
 overloaded run remains intact. Reconciled Olist unit/study checks passed28tests, including
 the new cross-namespace cases; strict typing passed310sources. Hosted final-head checks and
 actual amended-scope readiness still need their own results before merge/dispatch claims.
+
+## Entry 121 — Preserve a failed study while proposing its next slots
+**Files touched:** `olist_demo_continuation.py`, offline admission tests, evaluation report and guides.
+
+### Context
+
+PR #169 merged as b5379b4 after all ten PR jobs passed. The source tree matched the local
+freeze exactly; post-merge CI also passed. The original full SDK mock run of 146 slots remained
+applicable to byte-identical capture/SDK/prompt/scoring code and requests. Current CI,
+new SDK canaries and runtime pins supplied current readiness evidence. An extra local
+repeat was still running and was not represented as complete.
+
+The approved real study passed both canaries and seven domain interpretations. Ordinal 10
+returned `unavailable`, `Gemini HTTP request failed`, `retryable=true`. The worker exited 0
+without a timeout. Inspecting the adapter identifies its HTTP >=500 branch, excluding 504;
+the exact status was not retained. All ten reservations settled, the durable stop fired,
+and no further call ran. Consumption became 653/990; 201 older slots stayed bound. Fresh
+readback and independent arithmetic agreed; the original historical hash stayed identical.
+
+### Before you read on
+
+There are 136 unused original slots, but the recorded policy says stop on unknown usage.
+How can a later authorized continuation preserve the failed observation, count its unknown
+tokens conservatively, and prevent a concurrent process from resending the same occurrence?
+
+### Options considered and why
+
+- Reset the stop or rerun the failed request: violates the frozen rule and loses the
+  availability observation. The SDK's ordinary retry recommendation is not this grant.
+- Discard the partial study and buy another whole run: repeats already observed slots
+  and spends a new allocation before establishing why that is needed.
+- Prepare a separately approved next-slot amendment: retain the original failure/stop,
+  fixed 144-slot domain denominator and original expiry, and allow only unattempted ordinals.
+
+The last option is the proposal being implemented. It is not approved by the original
+grant. In particular, the old 2M token ceiling cannot treat an unknown row as zero: one
+full reviewed quote is 1,114,112 tokens, and another such reservation would exceed 2M.
+The proposed 10M ceiling reserves that worst case for every unknown row; it does not claim
+those tokens were actually consumed. The attempt ceiling stays 990, with no new slots.
+
+### How to build it
+
+Start with a read-only `prefix_pin(db, count)`. Hash the other historical namespaces,
+the four original demo tables' SQL definitions and triggers, the parent scope and stop,
+then every reservation/result through the original count. Bind this digest, parent scope
+pin, new source/environment and unchanged expiry in `ContinuationScope`. Keep this private
+amendment artifact externally pinned; do not update the parent scope in SQL.
+
+`Continuation.validate_parent` checks that prefix, both canaries, contiguous occurrence
+numbers, exact request hashes and response routes. Its constructor requires a new grant
+hash for provider origin. Preparation uses only the read-only validator and never loads
+a key. A copied ledger still fails the parent's absolute-path binding.
+
+For each new slot, acquire `BEGIN IMMEDIATE`, recheck the preserved prefix and all other
+history, require settled count equal to reserved count, and require ordinal=count+1.
+Sum observed tokens, charging the full reviewed quote for each unknown row, then require
+room for the next complete quote. Commit admission before SDK I/O. If a parent dies after
+admission, the outstanding row blocks a blind resend. Competing orchestrators cannot both
+reserve that next occurrence.
+
+Preserve settlement in the original append-only result table. The new policy may move to
+the next slot after only the inspected HTTP server failure category and a 60 second pause.
+It does not clear the original stop or resend a failed slot. Other failure categories,
+unexpected cost/usage, three consecutive HTTP failures or the eighth total stop dispatch.
+Readback scores all original and continued observations together, leaving failed slots
+failed and unattempted slots missing. The original stop remains an explicit reported fact.
+
+### What went wrong and verification in progress
+
+The provider failure is not evidence of an amount interpretation error: no answer was
+returned for that occurrence. Seven observed outputs matched, but only one bucket had
+run and the full scheduled score was 7/144. Reporting 7/7 as qualified quality would conceal
+the missing 136 slots. The 9 successful responses reported 3485 tokens; the failure's usage and
+all ten billed costs remained unknown. Retain these limits in the public report.
+
+The first offline test launch lacked permission to create its external temporary folder;
+no test body or real provider call ran. The approved elevated rerun exercised the new
+code. Two fixture defects surfaced: a synthetic Usage omitted required nullable cost
+fields, and its invented environment pin differed from the preparation host. Correct
+the fixtures without weakening real environment or accounting checks. A later hand-counted
+assertion also needed to retain the two known canaries' 240 tokens in addition to full
+unknown-token reservations. All 14 initial regressions then passed; three additional
+cooldown/circuit/invalid-output cases passed, giving 17 verified cases. Strict workspace
+typing passed for 311 sources. Provider execution still needs the exact new
+owner amendment after source freeze and checks; no further call is authorized here.

@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Olist live-stop report](docs/olist-portfolio-demo-evaluation-2026-11-23.md) separates
+a provider HTTP failure from language errors and local timeouts. Follow
+`olist_demo_continuation.py` from immutable prefix hashing through new owner authority,
+conservative unknown-token reservation and admission of only the next unattempted slot.
+Its proposal preserves the failed slot and stop; preparation does not authorize calls.
+
 The [Olist portfolio finish chapter](docs/code-study-olist-portfolio-demo.md) traces the
 48-case authored contract through model-only extraction, SIM projection, exact customer
 authority, shared-budget admission and independent readback. It explains the omitted

@@ -2,6 +2,22 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Olist live stop and next-slot proposal (2026-11-23)
+
+PR #169 is merged; its ten PR checks and post-merge gate passed. The approved amended
+live study passed both canaries, then settled eight domain calls. Seven matched their
+authored references; ordinal 10 returned the inspected HTTP server failure category
+with unknown tokens/cost. All ten attempts count. Shared consumption is 653/990,
+with 201 older slots retained and no unsettled reservation. Original scope/stop/history
+and fresh readback remain intact. Do not label this completed evaluation or release.
+
+Prepare a separately pinned next-slot continuation for the 136 unattempted original
+slots. Keep the failed slot failed, original expiry/requests/references and 990 ceiling.
+The proposed HTTP-failure continuation and 10M conservative token reservation differ
+from the approved stop-on-failure/2M plan: no execution without a new exact owner amendment
+and current Free confirmation. This is preparation only, not an automatic retry grant.
+See docs/olist-portfolio-demo-evaluation-2026-11-23.md for the evidence and limits.
+
 ## Olist PR reconciliation and conditional live approval (2026-11-23)
 
 The owner instructed completing PR169 and the approved live study. The exact Nov17
