@@ -1,5 +1,11 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Olist portfolio finish chapter](docs/code-study-olist-portfolio-demo.md) traces the
+48-case authored contract through model-only extraction, SIM projection, exact customer
+authority, shared-budget admission and independent readback. It explains the omitted
+semantic reservation, card-free managed-database role checks and clean-target restore.
+Mock readiness, real model quality and hosted recovery establish separate claims.
+
 The [CFPB operations exercise](docs/cfpb-operations-exercise.md) follows the public feed
 through a bounded response projection into an isolated SQLite intake journal. A unique
 hashed case ID lets repeated polls preserve the first receipt. The exercise then combines

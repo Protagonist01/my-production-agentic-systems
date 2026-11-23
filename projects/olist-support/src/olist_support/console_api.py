@@ -1,6 +1,7 @@
 """Loopback support/review API and static workbench with scoped opaque sessions."""
 
 import hashlib
+import re
 import uuid
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
@@ -75,11 +76,22 @@ def create_app(
     environment_lock: str,
     run_limit_minor: int,
     telemetry: ServiceTelemetry | None = None,
+    allow_public_https: bool = False,
 ) -> FastAPI:
     parsed = urlsplit(origin)
+    public = (
+        allow_public_https is True
+        and parsed.scheme == "https"
+        and parsed.hostname is not None
+        and re.fullmatch(r"[a-z0-9](?:[a-z0-9.-]{0,251}[a-z0-9])?", parsed.hostname) is not None
+        and "." in parsed.hostname
+        and parsed.hostname not in ("127.0.0.1", "localhost")
+        and parsed.port in (None, 443)
+        and origin.rstrip("/") == "https://" + parsed.hostname
+    )
+    local = parsed.scheme == "http" and parsed.hostname in ("127.0.0.1", "localhost")
     if (
-        parsed.scheme != "http"
-        or parsed.hostname not in ("127.0.0.1", "localhost")
+        not (public or local)
         or parsed.username
         or parsed.password
         or parsed.query
@@ -88,8 +100,9 @@ def create_app(
         or type(run_limit_minor) is not int
         or not 0 <= run_limit_minor <= 2**63 - 1
     ):
-        raise ValueError("explicit loopback origin and nonnegative SIM run limit required")
+        raise ValueError("loopback or explicitly enabled canonical HTTPS origin required")
     origin = origin.rstrip("/")
+    assert parsed.hostname is not None
     suffix = hashlib.sha256(trial_id.encode()).hexdigest()[:12]
     session_cookie, csrf_cookie = "olist_session_" + suffix, "olist_csrf_" + suffix
     telemetry = telemetry or ServiceTelemetry(
@@ -172,6 +185,8 @@ def create_app(
                 "X-Frame-Options": "DENY",
             }
         )
+        if public:
+            response.headers["Strict-Transport-Security"] = "max-age=31536000"
         return response
 
     @app.exception_handler(RequestValidationError)
@@ -245,11 +260,18 @@ def create_app(
             token,
             max_age=SESSION_SECONDS,
             httponly=True,
+            secure=public,
             samesite="strict",
             path="/",
         )
         response.set_cookie(
-            csrf_cookie, csrf, max_age=SESSION_SECONDS, httponly=False, samesite="strict", path="/"
+            csrf_cookie,
+            csrf,
+            max_age=SESSION_SECONDS,
+            httponly=False,
+            samesite="strict",
+            secure=public,
+            path="/",
         )
         return response
 
@@ -265,8 +287,10 @@ def create_app(
         principal(request, write=True, any_role=True)
         auth.logout(request.cookies.get(session_cookie, ""))
         response = JSONResponse({"signed_out": True})
-        response.delete_cookie(session_cookie, path="/")
-        response.delete_cookie(csrf_cookie, path="/")
+        response.delete_cookie(
+            session_cookie, path="/", secure=public, httponly=True, samesite="strict"
+        )
+        response.delete_cookie(csrf_cookie, path="/", secure=public, samesite="strict")
         return response
 
     @app.get("/api/orders")

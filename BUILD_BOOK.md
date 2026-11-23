@@ -2,6 +2,9 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 120 — Reconcile the shared study before spending again](#entry-120--reconcile-the-shared-study-before-spending-again)
+- [Entry 119 — Finish the Olist portfolio demonstration against an explicit contract](#entry-119--finish-the-olist-portfolio-demonstration-against-an-explicit-contract)
+
 - [Entry 118 — Exercise CFPB intake and review without a partner](#entry-118--exercise-cfpb-intake-and-review-without-a-partner)
 - [Entry 117 — Connect Revenue source assessment to the durable approval ledger](#entry-117--connect-revenue-source-assessment-to-the-durable-approval-ledger)
 
@@ -8323,3 +8326,195 @@ owned Compose DB. No cloud account, provider, business outreach or release is ne
 The actual public sample inserted 25 rows and counted all 25 as repeats on the second
 request. The focused intake, evaluation and command run passed 47 tests. Separate SQL
 results and main verification are recorded with the experiment and PR.
+
+## Entry 119 — Finish the Olist portfolio demonstration against an explicit contract
+
+### Context
+
+On 2026-11-17 the owner clarified Olist is a hosted portfolio demonstration with simulated
+orders/money, accepted the concrete finish plan, and selected free hosting. Start from clean
+main3ce6413in the existing Olist checkout. The former request to prove real-world customer
+semantics before release does not define completion of this newly clarified demo. Preserve
+that original qualification track as unmet; do not manufacture gold or hide failed canaries.
+
+### Before you read on
+
+What can a portfolio demonstration truthfully prove? Its declared cases, actual model
+responses, exact simulated effects, authentication and recovery. What survives if a free
+host sleeps, restarts or discards its disk, including the provider-attempt counter?
+
+### Options considered
+
+- Reuse a sleeping service's ephemeral disk for PostgreSQL and the budget ledger: rejected
+  because restart would lose state and could erase consumed-attempt limits.
+- Use a free web host plus a separately managed database: viable only after proving schema,
+  role, checkpoint and backup compatibility; it is not a configuration-only substitution.
+- Prepare a portable single-host Docker deployment, and evaluate an Always Free VM target
+  with persistent block storage. Account verification, regional capacity, quotas and idle
+  reclamation remain real activation constraints; no paid upgrade or purchase is authorized.
+
+### How to build it
+
+Define a separate versioned48case authored demo contract with six buckets of eight cases.
+Keep text-only candidate inputs separate from acceptable route/amount, fixture and rationale.
+Refuse the assumption that every amount mention is a requested refund. Mark ambiguous
+amounts unknown, do not score them as null. Keep related variants in six exposed groups;
+neither a new file name nor repeated trials creates independent holdout evidence.
+
+Use the accepted SIM policy and existing protected CaseStore/customer authority path for
+effects. A correct partial/over-cap amount interpretation can still require review. Reship
+requests remain review-only. Bind real model capture, durable quota accounting and exact
+request identity to a later approved146attempt scope; do not reuse the failed74scope or the
+Prior Auth demo's exhausted slots. Current shared history must be reread before any proposal.
+
+The existing console binds only a loopback origin. Public HTTPS therefore needs an explicit
+tested ingress adapter, canonical host/origin verification, Secure cookies and no trust in
+caller proxy identity headers; exposing its port alone is insufficient. Durable PostgreSQL,
+request accounting, per-visitor separation and encrypted backups must survive restart.
+
+### What went wrong
+
+No new model result exists yet. Docker reports29.9.3; that is engine availability, not a
+successful SQL exercise. Source research found current free-plan details differ from old
+assumptions: hosting terms must be checked directly before choosing or activating a target.
+No accounts, cloud resources, domains, model slots or unrelated containers were changed.
+
+### Implementation checkpoint and useful failures
+
+The owner rejected card verification. Replace the proposed VM target with Render Free
+web plus Neon Free PostgreSQL. Check today's vendor documentation: new Hugging Face
+compute Spaces require a paid plan, Render's web disk is disposable, its free database
+expires, and Neon offers a separate card-free persistent database. Keep the actual
+signup/account checks pending; do not turn a documentation recommendation into a claim
+that a public service already exists.
+
+Create `olist_demo_acceptance.py` with 48 authored examples and write candidate inputs
+separately from references. Create `olist_demo_fixtures.py` with explicit fictional
+payment/status facts. Preserve a case where the customer paid 88.00 SIM but requests
+19.25 SIM: extraction and eligibility answer different questions. Zero, exact cap,
+over-cap, missing facts and contradictory delivery facts need separate rows. Expected
+amount availability is a field; unknown, explicitly absent and numeric zero differ.
+
+Implement `DemoPlanner` against the already inspected semantic prompt/parser. Only
+the input text crosses the gateway; expected routes, order fixtures and action authority
+do not. Project non-SIM explicit money or unclear refund money to review. Wire its plan
+through the existing CaseStore, graph, policy and customer-intent guard. Prove the
+full HTTP reviewer/customer flow and exact SQL receipt, not merely the adapter's return
+value. The first local checkpoints passed 20 unit tests and 58 SQL/HTTP cases, including
+all 48 fixture paths; later timing/accounting/recovery regressions require fresh checks.
+
+Add `allow_public_https` as an explicit API-factory option. Preserve the loopback default,
+require a canonical configured HTTPS origin, keep Host/Origin/CSRF checks, and mark public
+cookies Secure and SameSite strict. Do not trust caller forwarding headers as identity.
+Actual public ingress, visitor provisioning and live runtime admission remain deployment
+work; the seam itself cannot make a local service publicly ready.
+
+Read the complete existing ledger with `olist_demo_budget_readback.py`. This found a
+real accounting defect: base 447 + separate Olist semantic 1 + PA 168 + PA-live 9 = 625.
+The older PA reader reported 624 because it omitted the semantic reservation. All are
+settled. Keep the failed canary and 169 retained allocations; do not erase the extra
+call or silently shrink another grant. Consumed calls are below the recorded ceiling
+793, but retained allocations overcommit that ceiling by one. A proposed 146-call study
+therefore needs ceiling 940, not 939. This is not permission to enlarge it.
+
+Implement `olist_demo_study.py` as a separate namespace in that same file. Freeze the
+146 ordered requests, ledger path, all old schema/rows, source, environment, references,
+project association and seven-day expiry. Provider origin needs a separately pinned
+owner grant confirming Free and these authored contract references. Commit each
+reservation under `BEGIN IMMEDIATE` before process/SDK I/O. Require a settled prefix;
+a lost response blocks a resend. Both canaries must pass before domain work. Known-usage
+invalid domain output is a scored error, while transport failures, unknown usage and
+failed canaries stop later dispatch. Never repair a prompt mid-study or retry a slot.
+
+The first complete scripted capture exposed a strict-validation bug in readback: Python
+`json.loads` produces lists, while nested wire contracts require tuples in Python mode.
+Use `ModelResponse.model_validate_json` at the stored-wire boundary, then construct the
+observation. This preserves the strict distinction instead of weakening the contracts.
+Cache immutable expected schedule/reference hashes to avoid repeatedly rebuilding schemas;
+do not cache mutable request dictionaries. Preserve the failed test directory as evidence.
+
+Add `olist_demo_worker.py` for one owned spawned SDK process per attempt. Its readiness
+mode patches socket operations to deny networking and supplies an explicit mock transport.
+Persist process entry, generation return, frame-ready, timeout and exit-code timing.
+Mock origin cannot pass the real model-quality target. The final runner still needs a
+clean-source freeze, final checks and an exact owner grant before any real dispatch.
+
+`olist_demo_evaluation.py` keeps all 144 domain slots in the denominator. Execute the
+fixed always-review and conservative-rules baselines before the provider run. Distinguish
+parse success from semantic correctness: a quoted payment amount can pass arithmetic
+checks while being the wrong refund role. Separate explicit numeric amount accuracy from
+the larger known-amount denominator, which includes non-refund null answers. Unknown
+money role must not earn credit for a known absence. Preserve missing calls, unknown
+usage/billing, per-bucket counts, full parsed-output repeatability and attempted p95 timing.
+
+For the managed database, `olist_demo_host.py` requires verified TLS and checks both role
+flags and inherited administrator/data-wide privileges. Neon console roles may inherit
+powerful groups even with false individual flags; create a restricted SQL role instead.
+Trusted bootstrap refuses existing application schemas and preserves partial failures.
+`olist_demo_recovery.py` captures a coherent four-schema snapshot, restores only into an
+empty target with the exact same build/schema, compares every row, then revokes sessions.
+This does not recover the model ledger or prove off-host encrypted retention/RPO/RTO.
+
+Reproduce with `python dev.py check`, then the explicit SQL test module with Docker.
+On this workstation C: has a root Git marker, so the outside-Git packet checks correctly
+refused the default C: temporary directory. Use a new dedicated `--basetemp` under the
+private D: cache; do not remove that Git marker or weaken the custody check. Keep failures
+and final-head/post-merge evidence separate. No new model credential was loaded, no real
+provider request was sent, and no cloud resource was activated during these preparations.
+
+## Entry 120 — Reconcile the shared study before spending again
+**Files touched:** shared-budget readback, regression tests, merge documentation and guides.
+
+### Context
+
+On Nov23the owner asked to finish PR169and its live evaluation now. The signed-in browser
+showed the unchanged PR template, four additive merge conflicts, and a review warning about
+Revenue's new provider namespace. Current main9f5904e includes Revenue and CFPB closeouts.
+Preserve those contributions and the original Olist approval, rather than replaying a stale
+study against a newer ledger. The original146SDK mock slots had completed, with zero real
+provider attempts. Their saved result remains separate evidence.
+
+### Before you read on
+
+A new table is called `revenue_scope_843`, but its rows are consumed attempts, not a grant
+document. How would you count lifetime usage and preserve the remaining allocation without
+reusing another agent's slots or accepting every unknown future table?
+
+### Decision and construction
+
+First fetch current main and the submitted head without prompting for a new credential.
+Keep the local pre-reconciliation commit on a backup branch. Its tree equals the submitted
+head, so align the local branch with that head, merge main, and combine additive instruction,
+journal, study-guide and typing-file lists. Keep Revenue117and CFPB118; renumber the newly
+integrated Olist entry119. The browser description must state actual evidence and remaining
+limits; a placeholder issue number correctly fails the PR metadata check.
+
+Inspect the actual SQLite schema and private Revenue plan/runner against their saved custody
+hashes. Its exact table has ordinal0..49, a non-null request pin, and nullable result text.
+Count18rows, all settled. A NULL result would still count as consumed and block new admission.
+The recorded Revenue extension is50slots above793, so retain32unused Revenue slots plus169
+earlier slots. Total consumption is447+1+168+9+18=643. The same146Olist requests need990,
+not940:643consumed+201retained+146new. The older public Revenue aggregate omitted the same
+semantic canary; do not rewrite that raw capture to make the sum fit.
+
+Add only this audited namespace to `KNOWN_TABLES`, verify its exact column/ordinal-bound
+shape, and count its own result column. Unknown names and altered schemas still refuse.
+Test with18settled rows, then one unsettled row: consumption increases, unused allocation
+decreases, and the proposed total allocation stays constant. Add an arbitrary future table
+and require refusal. Pin every original schema/row; excluding only the new Revenue table
+from the current history reproduces the Nov17history hash exactly. No old history changed.
+
+Rebind the same requests, authored references and original Nov24expiry only after concrete
+source/history/accounting amendment preparation. The prior approval is real and recorded;
+it does not silently authorize a different source snapshot or a990shared ceiling. Keep both
+the original940packet and any later amendment. No key is loaded while diagnosing accounting.
+
+### What went wrong and verification
+
+The old whole-suite failure saved two dispatch receipts and a third trial row with error
+`timeout`, execution30.09seconds and no report. The reader correctly refused a fresh trial
+without a dispatch receipt. A new run of all22receipt tests passed with unchanged worker
+limits and validators; do not weaken the gate or fabricate a missing receipt. The prior
+overloaded run remains intact. Reconciled Olist unit/study checks passed28tests, including
+the new cross-namespace cases; strict typing passed310sources. Hosted final-head checks and
+actual amended-scope readiness still need their own results before merge/dispatch claims.
