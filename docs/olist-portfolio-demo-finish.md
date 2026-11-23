@@ -91,8 +91,12 @@ The status canary repeats one declared domain text: this exposed suite is not bl
 Read-only audit found 447 base, one separate semantic, 168 PA and nine PA-live reservations:
 **625 consumed**, all settled. The old total624omitted the semantic canary. Keep169old bound
 slots and all historical failures. The new146attempt proposal therefore requires ceiling
-**940**, rather than939. This is a proposal, not permission to amend any old grant. Actual
-consumption remains below the old793ceiling; retained allocations overcommit it by one.
+**940**, rather than939. The owner accepted that exact conditional scope on Nov17.
+Keep that packet unchanged. On Nov23the shared ledger also contains18Revenue calls under
+its separate50attempt allowance. Current consumption is643, all settled, with169older and
+32Revenue slots retained. The same146Olist calls need an amended990ceiling and201retained
+slots; no other study's slots may be reassigned. Source/history/accounting amendments need
+an exact owner decision, with the original inputs, requests and Nov24expiry retained.
 
 Readback keeps all144domain slots in the denominator, reports per-bucket joint intent/known
 amount agreement, unknown amount exclusions, unsafe refund routing, parse/provider failures,

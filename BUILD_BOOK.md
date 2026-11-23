@@ -2,7 +2,11 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
-- [Entry 117 — Finish the Olist portfolio demonstration against an explicit contract](#entry-117--finish-the-olist-portfolio-demonstration-against-an-explicit-contract)
+- [Entry 120 — Reconcile the shared study before spending again](#entry-120--reconcile-the-shared-study-before-spending-again)
+- [Entry 119 — Finish the Olist portfolio demonstration against an explicit contract](#entry-119--finish-the-olist-portfolio-demonstration-against-an-explicit-contract)
+
+- [Entry 118 — Exercise CFPB intake and review without a partner](#entry-118--exercise-cfpb-intake-and-review-without-a-partner)
+- [Entry 117 — Connect Revenue source assessment to the durable approval ledger](#entry-117--connect-revenue-source-assessment-to-the-durable-approval-ledger)
 
 - [Entry 116 — Bound the final demo regression and local payer](#entry-116--bound-the-final-demo-regression-and-local-payer)
 
@@ -8208,7 +8212,122 @@ start the four storage services followed by worker/web, and inspect all six orig
 IDs as running. Restoration passed; the temporary pause is fulfilled. Do not reuse
 that approval for a later interruption or delete volumes to relieve memory pressure.
 
-## Entry 117 — Finish the Olist portfolio demonstration against an explicit contract
+
+## Entry 117 — Connect Revenue source assessment to the durable approval ledger
+**Files touched:** root Revenue demo service, protected web composition, CLI and tests.
+
+### Context
+On November 17 the owner selected the first Revenue closeout deliverable: finish the
+complete operational walkthrough. Start from current main1e1b8fe. Keep the newer shared
+provider history and all frozen runtime packages unchanged; no new model call is authorized.
+
+### Before you read on
+The old console can propose from stored typed facts, while v2 assessment is read-only.
+How do you join the source check and invoice correction without treating a model's
+plausible interpretation as write authority or introducing a second approval ledger?
+
+### Options and decision
+A new mutable approval database would compete with the existing SQL owner. Instead,
+compose the old store and sessions with a root DemoService. Use fixed constructed SIM
+documents, trusted invoice facts and their exact source pins. Recompute extraction and
+arithmetic on proposal; bind its displayed digest/version to the exact request. Existing
+SQL still owns proposal, reviewer, expiration, apply and duplicate receipts. The demo's
+ordinary proposal endpoint must refuse the shortcut around this checked path.
+
+### How to build it
+First define six invented invoices and complete explicit source-field documents. Scope
+them to provisioned operator/reviewer grants; no browser amount or account is trusted.
+Authenticate before returning source text. Compare exact registered bytes, parse with the
+existing constructed grammar, then reconcile the current stored invoice using those parsed
+terms and independently provisioned typed facts. Missing/conflicting terms, altered source,
+unrelated request and above-cap adjustments cannot create a proposal.
+
+Expose a separate walkthrough route and same-origin/CSRF-protected assessment/proposal
+routes on the unchanged console. Keep all DOM source text in textContent. Separate the
+operator and reviewer; approval must display the exact corrected total and adjustment,
+and only a receipt means committed. Reconstruct the service on restart and redeliver an
+approved operation to prove the ledger does not create a second effect.
+
+The page states constructed parser/no model calls; it is not a live LLM result or legal
+meaning qualification. A later bounded model study remains separate. Add actual SQL/API
+and browser evidence before reporting the walkthrough finished. Local Docker availability
+and final tests are still being established; do not substitute a passing mock for them.
+
+The first local focused checkpoint passes11tests, including the actual Node browser asset,
+and295typed sources. Docker Desktop accepted startup but was initially unavailable. The
+installed native PostgreSQL fallback timed out during initdb before any server-start command;
+preserve that separate private attempt. After Docker became reachable, both a fresh test
+database and the persistent demo database missed readiness. The startup command hit its
+240second bound before creating the demo trial; preserve its generated credential file.
+The host resource probe reported94%memoryload/846MBfree with six Langfuse containers running.
+Temporarily pause only those named containers under the existing stop-and-restore authority,
+record original running state, and restore them after the actual walkthrough verification.
+
+That failure exposed a CLI usability bug: the retained credential correctly prevented
+overwriting, but there was no bounded path to resume an uncreated trial, and subprocess
+timeouts leaked a traceback. Add explicit resume-bootstrap only when no trial exists and
+the exact private root/trial/identity fields match. Reuse the original secret, never rewrite
+it; existing trials still refuse. Catch the subprocess failure without exposing private
+details. A focused negative test proves timeout retention, default refusal and changed-identity
+refusal before another database action. Final real SQL/browser/CI results remain pending.
+
+
+After the exact six-container pause, the retained demo bootstrap succeeded without rewriting
+its credential, and the fresh Docker SQL/HTTP test passed in151.37seconds. The final focused
+checkpoint passes12tests and295typed sources. The standalone HTTP helper first failed on
+its own import path before making any request; prepend the checkout root, then run the
+unchanged workflow. Actual HTTP evidence records one5.00SIM correction and a single receipt.
+Stop only the PID whose command line matches this module/root/trial, restart the same
+server and verify the same receipt against canonical SQL: one ledger entry remains.
+
+The first in-app browser connection timed out; a bounded second connection showed the
+actual login page and its explicit constructed/no-model badge. It does not prove the full
+authenticated browser journey; keep that distinct from actual HTTP and Node asset evidence.
+All six Langfuse containers are restored to running, with no data deleted. A credential
+lookup with interactive Git prompts disabled now returns128/no existing token, explaining
+why the later push/API submission stalled. Use the already connected GitHub write capability
+if sufficient; never expand access or claim an unsubmitted PR exists. Hosted checks remain
+mandatory before any merge.
+
+
+## Entry 118 — Exercise CFPB intake and review without a partner
+
+The owner asked to proceed with the free public feed, archive replay and scripted
+reviewer in the CFPB thread. Start from main 37c3f17. The public API serves dated
+publication metadata. We need exact complaint wording to test triage and a separate
+statement of expected outcomes to test decisions. Never join public records and old
+narratives as if both describe the same case.
+
+Take a bounded sample from the official endpoint and project each source ID with the
+existing case-key function. Persist that key and date in a dedicated SQLite transaction,
+then insert the poll receipt. A repeated key increments the deduplication count and keeps
+its original record. Report the server's total alongside the sample size. The official
+schema describes an exclusive end date, but three live boundary probes returned rows
+through the last day. Use inclusive date bounds and test a final-day timestamp. The first
+rejected sample preserved the journal because validation runs before any database write.
+
+Verify both private prepared stores against the published manifest. Its private copy has
+CRLF line endings. Exact raw bytes matched the independently computed CRLF hash, and the
+materialized source and table pins matched the publication. Select development case IDs
+by source group, fetch only their texts for the desk, and rehash both stores afterward.
+The archive remains private. The first fixture needed an explicit ScopeOutput quote, as
+the desk validates scope evidence separately from category evidence.
+
+Put the same authored, archive and metadata-only mix in two arms on a fresh trial. Only
+authored scopes have explicit expected dispositions. The manual arm has no model jobs.
+The assisted arm can publish scripted results through the lease fence. Deliberately publish
+a routine result for one urgent authored case, then sign in as the scoped reviewer and
+record correction work before accepting the elevated result. Publish simulated unavailability
+on another case and require review. Repost every acceptance to verify its receipt. Compare
+server-exported synthetic activity time while keeping human savings, cost and archive truth
+unknown. Exercises use the existing API on a new loopback PostgreSQL cluster or the normal
+owned Compose DB. No cloud account, provider, business outreach or release is needed.
+
+The actual public sample inserted 25 rows and counted all 25 as repeats on the second
+request. The focused intake, evaluation and command run passed 47 tests. Separate SQL
+results and main verification are recorded with the experiment and PR.
+
+## Entry 119 — Finish the Olist portfolio demonstration against an explicit contract
 
 ### Context
 
@@ -8342,3 +8461,60 @@ refused the default C: temporary directory. Use a new dedicated `--basetemp` und
 private D: cache; do not remove that Git marker or weaken the custody check. Keep failures
 and final-head/post-merge evidence separate. No new model credential was loaded, no real
 provider request was sent, and no cloud resource was activated during these preparations.
+
+## Entry 120 — Reconcile the shared study before spending again
+**Files touched:** shared-budget readback, regression tests, merge documentation and guides.
+
+### Context
+
+On Nov23the owner asked to finish PR169and its live evaluation now. The signed-in browser
+showed the unchanged PR template, four additive merge conflicts, and a review warning about
+Revenue's new provider namespace. Current main9f5904e includes Revenue and CFPB closeouts.
+Preserve those contributions and the original Olist approval, rather than replaying a stale
+study against a newer ledger. The original146SDK mock slots had completed, with zero real
+provider attempts. Their saved result remains separate evidence.
+
+### Before you read on
+
+A new table is called `revenue_scope_843`, but its rows are consumed attempts, not a grant
+document. How would you count lifetime usage and preserve the remaining allocation without
+reusing another agent's slots or accepting every unknown future table?
+
+### Decision and construction
+
+First fetch current main and the submitted head without prompting for a new credential.
+Keep the local pre-reconciliation commit on a backup branch. Its tree equals the submitted
+head, so align the local branch with that head, merge main, and combine additive instruction,
+journal, study-guide and typing-file lists. Keep Revenue117and CFPB118; renumber the newly
+integrated Olist entry119. The browser description must state actual evidence and remaining
+limits; a placeholder issue number correctly fails the PR metadata check.
+
+Inspect the actual SQLite schema and private Revenue plan/runner against their saved custody
+hashes. Its exact table has ordinal0..49, a non-null request pin, and nullable result text.
+Count18rows, all settled. A NULL result would still count as consumed and block new admission.
+The recorded Revenue extension is50slots above793, so retain32unused Revenue slots plus169
+earlier slots. Total consumption is447+1+168+9+18=643. The same146Olist requests need990,
+not940:643consumed+201retained+146new. The older public Revenue aggregate omitted the same
+semantic canary; do not rewrite that raw capture to make the sum fit.
+
+Add only this audited namespace to `KNOWN_TABLES`, verify its exact column/ordinal-bound
+shape, and count its own result column. Unknown names and altered schemas still refuse.
+Test with18settled rows, then one unsettled row: consumption increases, unused allocation
+decreases, and the proposed total allocation stays constant. Add an arbitrary future table
+and require refusal. Pin every original schema/row; excluding only the new Revenue table
+from the current history reproduces the Nov17history hash exactly. No old history changed.
+
+Rebind the same requests, authored references and original Nov24expiry only after concrete
+source/history/accounting amendment preparation. The prior approval is real and recorded;
+it does not silently authorize a different source snapshot or a990shared ceiling. Keep both
+the original940packet and any later amendment. No key is loaded while diagnosing accounting.
+
+### What went wrong and verification
+
+The old whole-suite failure saved two dispatch receipts and a third trial row with error
+`timeout`, execution30.09seconds and no report. The reader correctly refused a fresh trial
+without a dispatch receipt. A new run of all22receipt tests passed with unchanged worker
+limits and validators; do not weaken the gate or fabricate a missing receipt. The prior
+overloaded run remains intact. Reconciled Olist unit/study checks passed28tests, including
+the new cross-namespace cases; strict typing passed310sources. Hosted final-head checks and
+actual amended-scope readiness still need their own results before merge/dispatch claims.

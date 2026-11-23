@@ -61,6 +61,68 @@ def test_all_namespace_readback_counts_separate_semantic_attempt_and_never_mutat
         inspect(path)
 
 
+def test_revenue_namespace_counts_calls_and_preserves_unused_allocation(tmp_path):
+    from test_olist_demo_study import history
+
+    from olist_demo_budget_readback import inspect
+
+    path, _ = history(tmp_path)
+    with sqlite3.connect(path) as db:
+        db.execute(
+            "UPDATE pa_live_grant SET document=?",
+            (
+                json.dumps(
+                    {
+                        "lifetime_ceiling": 793,
+                        "old_slots_preserved": 169,
+                        "historical_consumed": 2,
+                    }
+                ),
+            ),
+        )
+        db.execute(
+            "CREATE TABLE revenue_scope_843(ordinal INTEGER PRIMARY KEY "
+            "CHECK(ordinal BETWEEN 0 AND 49), request_pin TEXT NOT NULL, result TEXT)"
+        )
+        for i in range(18):
+            db.execute("INSERT INTO revenue_scope_843 VALUES(?,?,?)", (i, "a" * 64, "{}"))
+    before = path.read_bytes()
+    report = inspect(path)
+    assert path.read_bytes() == before
+    assert report["reservation_counts"]["revenue_scope_843"] == 18
+    assert report["total_consumed"] == 22
+    assert report["latest_recorded_ceiling"] == 843
+    assert report["retained_bound_slots"] == 201
+    assert report["revenue_unspent_slots_preserved"] == 32
+    assert report["proposed_required_ceiling"] == 369
+    with sqlite3.connect(path) as db:
+        db.execute("INSERT INTO revenue_scope_843 VALUES(18,?,NULL)", ("b" * 64,))
+    report = inspect(path)
+    assert report["total_consumed"] == 23
+    assert report["unsettled_by_namespace"]["revenue_scope_843"] == 1
+    assert report["retained_bound_slots"] == 200
+    assert report["proposed_required_ceiling"] == 369
+    with sqlite3.connect(path) as db:
+        db.execute("CREATE TABLE plausible_future_scope(ordinal INTEGER)")
+    with pytest.raises(ValueError, match="explicit audited mapping"):
+        inspect(path)
+
+
+def test_revenue_namespace_schema_change_fails_closed(tmp_path):
+    from test_olist_demo_study import history
+
+    from olist_demo_budget_readback import inspect
+
+    path, _ = history(tmp_path)
+    with sqlite3.connect(path) as db:
+        db.execute(
+            "CREATE TABLE revenue_scope_843(ordinal INTEGER PRIMARY KEY, "
+            "request_pin TEXT NOT NULL,result TEXT)"
+        )
+    with pytest.raises(ValueError, match="Revenue reservation schema"):
+        inspect(path)
+
+
 @pytest.mark.parametrize(
     "dsn",
     [

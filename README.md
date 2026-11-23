@@ -1,5 +1,14 @@
 # my-production-agentic-systems
 
+## Try the portfolio demos
+
+| Demo | What to look for |
+|---|---|
+| [Revenue Integrity walkthrough and recording](docs/revenue-walkthrough.md) | Follow a fictional invoice from a cited price to a reviewer-approved correction. Sending the same request twice produces one ledger entry. |
+| [Olist customer support desk and local setup](docs/olist-console.md) | Open a scoped support case, inspect order evidence and follow a simulated refund through approval. The guide includes the operator and reviewer setup. |
+
+Both demos run locally with PostgreSQL and use simulated money. The [open release backlog](https://github.com/Protagonist01/my-production-agentic-systems/issues) tracks production qualification.
+
 All five agents now follow the [stronger evaluation standards](docs/evaluation-standards.md): independent frozen labels, unseen grouped holdout, complete per-field/slice results and separately reviewed release limits. Historical pilots remain limited evidence; new methodology qualification and H10 acceptance are required.
 
 Production-minded AI agents across five industries, with a shared evaluation harness, versioned datasets, regression testing, fault injection, observability and code-enforced action controls.
@@ -28,7 +37,7 @@ Historical main `6bcac64` included user-merged #96: nine applicable checks passe
 
 ## Setup and working commands
 
-Install Python 3.13 and uv on PATH; verification uses Python 3.13.4 and uv 0.11.1 on Windows. The supported Python range is 3.12â€“3.13. The runner itself uses only Python's standard library, so setup works before dependencies are installed. From a fresh checkout:
+Install Python 3.13 and uv on PATH; verification uses Python 3.13.4 and uv 0.11.1 on Windows. The supported Python range is 3.12–3.13. The runner itself uses only Python's standard library, so setup works before dependencies are installed. From a fresh checkout:
 
 ```powershell
 git clone https://github.com/Protagonist01/my-production-agentic-systems.git
@@ -53,10 +62,10 @@ PowerShell and the hosted CI jobs use the same `python dev.py check`: lock, lint
 | `integration-live` | Merged H1: two invented Gemini requests; requires a confirmed Free project |
 | `gateway-live` | Merged H4: at most two invented calls through reserved, process-bounded attempts |
 | `trace-check` | Merged H1: two fresh calls, local Langfuse export and required CLI read-back |
-| `db-up`, `db-status`, `db-down` | Start, inspect or stop this checkoutâ€™s isolated Postgres service |
+| `db-up`, `db-status`, `db-down` | Start, inspect or stop this checkout’s isolated Postgres service |
 | `trial-create`, `trial-reset`, `trial-drop` | Manage one disposable trial; require `--trial <identity>` |
 | `db-check` | Required two-service database evidence; separate from offline `check` |
-| `db-destroy` | Remove only this projectâ€™s volume; require its exact workspace identifier |
+| `db-destroy` | Remove only this project’s volume; require its exact workspace identifier |
 | `eval-replay` | H3: pinned invented model-call replay; current code, no provider transport, completion required |
 | `scorecard` | H9: private JSON/Markdown from pinned journals; explicit baseline comparisons, no release decision |
 | `eval-record`, `eval-compare`, `eval-release` | H10: pinned fresh captures, case regressions and independently approved release gates; see [runbook](docs/release-evidence.md) |
@@ -80,6 +89,9 @@ For H1, copy the selected placeholders from `.env.example` to ignored `.env.loca
 
 ## Applications
 
+The Revenue walkthrough checks explicit agreement fields and invoice arithmetic locally.
+A separate [Gemini scope-routing comparison](docs/revenue-walkthrough.md#recorded-walkthrough-and-model-comparison) shows why those checks matter. Gemini twice let a case proceed with its unit price missing.
+
 | Application | Source input | Delivered behavior |
 |---|---|---|
 | Olist support | Historical Brazilian commerce orders | Scoped support, controlled refunds, durable review and recovery |
@@ -88,13 +100,13 @@ For H1, copy the selected placeholders from `.env.example` to ignored `.env.loca
 | Prior auth | Selected policies and illustrative notes | Criterion evidence assessment, recommendation and qualified review |
 | Supply chain | Shipping observations and weather snapshots | Simulated interventions, budget allocation and approval/confirmation workflows |
 
-Olist has a local authenticated console and controlled SIM refund backend. Revenue adds read-only SIM reconciliation; its billing write backend and the remaining domain applications await their later tasks. Evaluation reports distinguish original data, hybrid workflows and synthetic/adversarial cases. No real recovered revenue, clinical outcome or freight-saving claim follows from simulation.
+Olist records controlled SIM refunds. Revenue records approved SIM invoice corrections. Evaluation reports identify the source of each result, including historical data, constructed workflows and adversarial cases.
 
 ## Delivery and evidence
 
 Start repository foundation and Olist source acquisition. Verify minimal shared contracts, then implement gateway, evaluation and Olist in bounded worktrees. Each release needs independent scoring, required-case/fault checks and fresh candidate evidence. Replay checks current software against captured dependencies; fresh evaluation measures candidate quality; monitoring observes served traffic.
 
-[Delivery plan](docs/project-management.md) Â· [Backlog](docs/backlog.json) Â· [Architecture and data plans](docs/README.md) Â· [Build Book](BUILD_BOOK.md) Â· [Code study guide and interview preparation](CODE_STUDY_GUIDE.md)
+[Delivery plan](docs/project-management.md) · [Backlog](docs/backlog.json) · [Architecture and data plans](docs/README.md) · [Build Book](BUILD_BOOK.md) · [Code study guide and interview preparation](CODE_STUDY_GUIDE.md)
 
 [F1 PR #63](https://github.com/Protagonist01/my-production-agentic-systems/pull/63), [O1 integration PR #65](https://github.com/Protagonist01/my-production-agentic-systems/pull/65) and [F2 PR #66](https://github.com/Protagonist01/my-production-agentic-systems/pull/66) are merged and verified. O1 source remains outside Git: [handling/acquisition](docs/data/olist-source.md), [aggregate manifest](docs/data/olist-v7-manifest.json). F2 defines [shared contracts](docs/shared-contracts.md) and the offline fake case. [F3 PR #68](https://github.com/Protagonist01/my-production-agentic-systems/pull/68) is merged and verified on ce8334c. [F4 PR #69](https://github.com/Protagonist01/my-production-agentic-systems/pull/69) is merged and verified on d3f783c. [F5 PR #70](https://github.com/Protagonist01/my-production-agentic-systems/pull/70) is merged and verified on 6e48011: push-main CI, 77 offline checks, dependency audit, six builds and 11 local database checks after recording/retrying one restart-wait failure. [H1 PR #71](https://github.com/Protagonist01/my-production-agentic-systems/pull/71) is merged and verified on 0a859bb: main CI, 97 offline tests, exact-main example, offline integration, six builds and audit passed. H2 #72 is merged/verified on 9282d87: 151 offline tests, strict types/imports/Ruff/lock and nine applicable hosted jobs passed. H3 reuses the attached worktree on its own branch.
 
@@ -104,7 +116,7 @@ H7 #77 is merged and verified on main 487242f. H8 adds [correlated redacted tele
 O2 adds [private Olist order aggregates and conservative historical views](docs/data/olist-orders.md), with exact source-grain checks and preserved unknown currency/timezone. C1 source preparation proceeds independently in the user-selected parallel batch. Refund rules, business actions and domain model-quality evidence remain subsequent work.
 
 
-C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-only agent storage, separate consumer-selected targets and exact-text grouped temporal partitions from the user-selected complete September 2023â€“March 2024 archive. [Source walkthrough](docs/code-study-cfpb.md) explains the boundaries. Raw records stay outside Git; this supplies data preparation, not a classifier or reviewed risk labels.
+C1 adds [pinned CFPB archive preparation](docs/data/cfpb-source.md): narrative-only agent storage, separate consumer-selected targets and exact-text grouped temporal partitions from the user-selected complete September 2023–March 2024 archive. [Source walkthrough](docs/code-study-cfpb.md) explains the boundaries. Raw records stay outside Git; this supplies data preparation, not a classifier or reviewed risk labels.
 
 
 O6/O7 are merged and verified through #86: the [scoped local support desk](docs/olist-console.md) provides durable exact-action approval under the unchanged 100.00 SIM cap. The next user-authorized batch adds [offline Olist state reports](docs/olist-release.md) and [original CUAD contract preparation](docs/data/revenue-source.md), implemented in parallel and integrated for one review. Fresh provider/first-release acceptance remains pending by user instruction. C2 #84 is now merged and verified.

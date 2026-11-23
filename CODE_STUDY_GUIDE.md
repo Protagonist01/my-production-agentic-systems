@@ -5,10 +5,28 @@ The [Olist portfolio finish chapter](docs/code-study-olist-portfolio-demo.md) tr
 authority, shared-budget admission and independent readback. It explains the omitted
 semantic reservation, card-free managed-database role checks and clean-target restore.
 Mock readiness, real model quality and hosted recovery establish separate claims.
+
+The [CFPB operations exercise](docs/cfpb-operations-exercise.md) follows the public feed
+through a bounded response projection into an isolated SQLite intake journal. A unique
+hashed case ID lets repeated polls preserve the first receipt. The exercise then combines
+metadata-only queue entries, externally pinned archive text and authored cases in a new
+PostgreSQL trial. Trace `run_exercise` through worker lease, protected review commands,
+idempotent acceptance and persisted work export. An intentionally wrong routine recommendation
+produces a correction receipt. Public/archived cases preserve unknown disposition.
+Interview exercise: explain why acceptance and elapsed time can be measured while
+correctness and observed labor savings still remain unknown.
 The [final local demo chapter](docs/code-study-prior-auth-demo-closeout.md) follows
 frozen authored inputs through intake, checker, SQL and source mapping, then traces
 pinned-source container building and owned local reference-payer readiness. It keeps
 these guardrail witnesses separate from the preserved nine-call Gemini result.
+
+The [Revenue walkthrough chapter](docs/revenue-walkthrough.md) traces the new root-only
+composition from scoped registered document through exact parser citations, current invoice
+reconciliation, checked proposal, independent review and durable receipt/restart. The source
+catalog and SQL facts must agree; the ordinary proposal shortcut is blocked in this opt-in
+composition. Read `DemoService.propose_checked` beside the existing `OperationStore.apply`
+to distinguish source validation, human consent and duplicate-delivery idempotency. The page
+explicitly labels constructed SIM/no-provider mode; it supplies no new model-quality result.
 
 The [Gemini operational composition chapter](docs/code-study-prior-auth-live-gemini.md)
 traces exact private proposals through source/project admission, SQL and shared-ledger

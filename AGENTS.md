@@ -2,6 +2,27 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Olist PR reconciliation and conditional live approval (2026-11-23)
+
+The owner instructed completing PR169 and the approved live study. The exact Nov17
+approval is recorded privately beside portfolio-demo-study-2026-11-17-v1, scope
+bf581fef…638f5f23. It authorizes at most146new Gemini Free attempts, conditional on
+readiness, through Nov24at10:45amLagos. Do not ask for that original approval again.
+It does not permit changing its frozen source/history/budget bindings silently.
+
+Current main includes Revenue's separate50attempt allowance, with18consumed and32
+unused but bound. The complete current count is643, all settled; preserve169earlier
+bound slots plus32Revenue slots. The same146Olist attempts therefore need a990ceiling
+and201retained slots in the amended packet. This reconciliation grants no calls.
+Keep the original approved940packet and all failures unchanged; prepare one exact
+source/history/accounting amendment after tests, retaining inputs, requests, reference
+meanings, no-retry/no-paid-fallback limits and the original expiry.
+
+Resolve additive conflicts with current main without discarding Revenue/CFPB work.
+The old local receipt test saved a30second worker timeout before its third dispatch;
+the reader correctly refused missing evidence. All22receipt tests passed on Nov23
+with unchanged deadlines/validators. Do not weaken evidence checks to hide that run.
+
 ## Card-free hosting and complete attempt readback (2026-11-17)
 
 The owner selected a service without card verification. Target Render Free web plus
@@ -42,6 +63,16 @@ freeze the146attempt proposal and recheck the single current ledger before an ex
 owner/Free-project grant. The old failed Olist canary and stopped scope remain unchanged.
 Keep fixed customer/action authority, tenant separation, review, privacy and persistent
 attempt accounting. Shipping/requested replacement goes to review; no real payment/shipment.
+
+## Revenue walkthrough closeout (2026-11-17)
+
+The owner selected the first Revenue finish task: complete and verify the end-to-end flow.
+Use docs/revenue-walkthrough.md and the root-only opt-in composition. Registered constructed
+source bytes and independently provisioned billing facts must agree before proposal. Keep the
+old SQL owner of approval, reviewer, apply and receipts; the demo's ordinary proposal endpoint
+cannot bypass source assessment. Clearly label constructed parser/no provider, never live AI.
+No new provider attempt, old-slot transfer, source qualification or release is authorized.
+Preserve current shared provider history, prior failed studies and unrelated worktrees.
 
 ## Final demo closeout and temporary Langfuse pause (2026-11-17)
 
@@ -1025,3 +1056,7 @@ establishes no Olist semantic qualification. Publisher pending cancellation/deli
 and modeled actions/state do not supply canceled-order SIM refund/amount-role truth. Current
 development references/mappings, required fields/slices and stopped provider ledger remain
 unchanged. No new semantic grant, model call, live judge or release follows.
+
+## Revenue scope comparison, November 18
+
+The owner approved up to 50 Gemini Free attempts above the 793 ceiling. Both canaries passed. HTTP 429 stopped the run after 18 attempts, including the failure. The shared ledger has 642 consumed of 843 and 169 historically bound slots. Retain the interrupted study and all settlements. The previous 793 snapshot predates the revenue_scope_843 table. Use the retained pre-study database for historical readback with the frozen Prior Auth reader. The current authoritative database is gemini-closure-180-v1/attempts.sqlite. See docs/revenue-walkthrough.md.

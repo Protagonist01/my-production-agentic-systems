@@ -52,9 +52,13 @@ Begin at `inspect()` in `olist_demo_budget_readback.py`. Four historical reserva
 contain447+1+168+9=625attempts. The older PA report counted447+168+9=624and omitted the separate
 Olist semantic canary. The new reader pins all schema/rows, reports unsettled reservations
 and refuses unknown attempt namespaces. Do not edit an old receipt to make the totals fit.
-Keeping169bound slots means the proposed146new calls need ceiling940; actual625calls have
-not exceeded the old793ceiling. The additional one-slot allocation correction needs the
-same explicit new grant as the study. No provider call was made to diagnose the discrepancy.
+That Nov17snapshot led to the owner-approved940ceiling. Preserve it as history. On Nov23
+Revenue had added18calls under its separate50attempt scope: the complete count is643,
+with169older plus32Revenue slots still bound. `inspect()` now verifies that namespace's
+exact column/bounded-ordinal shape, counts NULL results as unsettled consumed reservations,
+and preserves all50allocated slots across consumed/unused categories. The same146new Olist
+calls need ceiling990and201retained slots. Unknown tables and changed Revenue schemas
+still fail closed. This arithmetic prepares an amendment; it does not amend a grant.
 
 `Scope.frozen()` in `olist_demo_study.py` binds exact requests, references, ledger path,
 history, project, environment and limits. The expected schedule/reference cache stores only
