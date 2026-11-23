@@ -99,6 +99,36 @@ does not prove that an actual cloud account restores within its proposed RPO/RTO
 
 ## Reproduce and discuss
 
+### A stopped study is also evidence
+
+The [Nov 23 live capture](olist-portfolio-demo-evaluation-2026-11-23.md) passed both
+canaries and seven refund interpretations before an HTTP server failure at ordinal 10.
+The recorded worker exited normally and did not time out. Exact status/body were not
+retained, so the adapter branch supports only a server-error category. Usage and cost
+remain unknown for that call. All 136 later requests remain unattempted.
+
+`olist_demo_continuation.prefix_pin` binds the original SQL definitions/triggers, parent
+scope and stop, and every original reservation/response byte. `Continuation.check` checks
+this prefix, the unchanged other namespaces, request order, route, environment, expiry and
+passed canaries. Its constructor requires a new independently supplied grant pin for
+provider origin. Preparation calls the read-only validator and creates no authority.
+
+`reserve` takes an immediate transaction, requires a settled contiguous prefix, charges
+each unknown row the full reviewed route ceiling, and commits only the next exact ordinal
+before SDK I/O. Two competing orchestrators cannot reserve the same next occurrence.
+The amended capture may pause and move past a scored HTTP server failure; it never sends
+that occurrence again. A quota/timeout/transport/worker failure, unexpected cost or token
+ceiling, three consecutive server failures or an eighth server failure stops dispatch.
+`readback` combines the original failed slot with later observations on the same 144-slot
+denominator, and keeps original-stop preservation visible. None of this is active until
+the owner approves the exact amended policy and frozen source.
+
+Design limitation: the continuation grant is an externally pinned private study artifact,
+not a public-service authorization endpoint. It preserves one local study ledger; it does
+not solve distributed public runtime accounting. Unknown usage is conservatively reserved,
+not reconstructed as observed consumption. Ask in an interview why a failed call must stay
+failed even when the next identical-looking trial later succeeds.
+
 Run `python dev.py check` for portable checks, then the opt-in SQL integration tests with
 Docker. `tests/test_olist_demo*.py` covers hand-counted scoring, complete146mock admission,
 crash/stop/path/history refusals and two actual spawned SDK canaries with networking denied.
