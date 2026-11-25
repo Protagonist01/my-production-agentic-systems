@@ -12,6 +12,13 @@ role is passed to web startup. The schema installers run multi-statement SQL,
 so `olist_demo_host.bootstrap` disables automatic query preparation on its
 administrator connections. A partially created schema requires diagnosis.
 
+The [staging delivery workflow](.github/workflows/olist-azure-image.yml)
+builds the CI-tested source and passes an immutable image digest to a separate
+deploy job. Follow the main-branch check before the Azure update, then trace
+how the job checks both the revision's digest and its recorded source commit.
+The GitHub runner uses Azure's readiness status because ingress admits only
+the reviewer IP. A healthy revision can still have functional regressions.
+
 The [Gemini-only resilience chapter](docs/olist-demo-gemini-resilience.md) follows a
 logical customer request through the existing bounded gateway and separate append-only
 raw-attempt/task tables. Compare the unchanged one-attempt observation contract with

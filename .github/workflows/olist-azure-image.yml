@@ -1,6 +1,10 @@
 name: Publish Olist staging image
 
 on:
+  workflow_run:
+    workflows: [Foundation CI]
+    branches: [main]
+    types: [completed]
   workflow_dispatch:
     inputs:
       source_sha:
@@ -16,7 +20,15 @@ concurrency:
 
 jobs:
   publish:
-    if: github.repository == 'Protagonist01/my-production-agentic-systems' && github.ref == 'refs/heads/main'
+    if: >-
+      github.repository == 'Protagonist01/my-production-agentic-systems' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'workflow_dispatch' ||
+       (vars.OLIST_AZURE_AUTO_DEPLOY == 'true' &&
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'push' &&
+        github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
@@ -24,7 +36,10 @@ jobs:
       actions: read
       packages: write
     env:
-      SOURCE_SHA: ${{ inputs.source_sha }}
+      SOURCE_SHA: ${{ inputs.source_sha || github.event.workflow_run.head_sha }}
+    outputs:
+      image: ${{ steps.publish.outputs.image }}
+      source_sha: ${{ steps.publish.outputs.source_sha }}
     steps:
       - name: Verify successful main CI for the selected source
         env:
@@ -38,7 +53,7 @@ jobs:
           test "$passed" = "$SOURCE_SHA"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.source_sha }}
+          ref: ${{ env.SOURCE_SHA }}
           persist-credentials: false
       - name: Build and smoke-test the staging runtime
         run: |
@@ -60,6 +75,7 @@ jobs:
           test "$status" -eq 1
           grep -Fq 'Olist staging startup refused.' "$refusal"
       - name: Push to GitHub Container Registry and report the digest
+        id: publish
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -72,5 +88,62 @@ jobs:
           digest_ref=$(docker image inspect --format '{{index .RepoDigests 0}}' "$OLIST_IMAGE")
           [[ "$digest_ref" == "${OLIST_IMAGE%:*}@sha256:"* ]]
           [[ "${digest_ref##*@sha256:}" =~ ^[0-9a-f]{64}$ ]]
+          printf 'image=%s\nsource_sha=%s\n' "$digest_ref" "$SOURCE_SHA" >> "$GITHUB_OUTPUT"
           printf 'Source commit `%s`\n\nAzure image `%s`\n' "$SOURCE_SHA" "$digest_ref" >> "$GITHUB_STEP_SUMMARY"
 
+
+  deploy:
+    if: github.event_name == 'workflow_run' && vars.OLIST_AZURE_AUTO_DEPLOY == 'true'
+    needs: publish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    environment: olist-azure-staging
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      SOURCE_SHA: ${{ needs.publish.outputs.source_sha }}
+      IMAGE: ${{ needs.publish.outputs.image }}
+      GH_TOKEN: ${{ github.token }}
+      RESOURCE_GROUP: rg-olist-portfolio-stage-cac
+      APP: olist-portfolio-stage
+      AZURE_CORE_OUTPUT: none
+    steps:
+      - name: Sign in to Azure with OIDC
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Create and verify the Azure revision
+        run: |
+          set -euo pipefail
+          [[ "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$IMAGE" =~ ^ghcr\.io/protagonist01/production-agents-olist-staging@sha256:[0-9a-f]{64}$ ]]
+          app=(--resource-group "$RESOURCE_GROUP" --name "$APP")
+          previous=$(az containerapp show "${app[@]}" --query 'properties.latestReadyRevisionName' -o tsv)
+          test -n "$previous"
+          current=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
+          if [[ "$current" != "$SOURCE_SHA" ]]; then
+            echo 'Skipped Azure update because main advanced.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          printf '\nPrevious ready revision %s\n' "$previous" >> "$GITHUB_STEP_SUMMARY"
+          az containerapp update "${app[@]}" --container-name olist --image "$IMAGE" \
+            --set-env-vars "OLIST_SOURCE_COMMIT=$SOURCE_SHA" --output none
+          target=$(az containerapp show "${app[@]}" --query 'properties.latestRevisionName' -o tsv)
+          test -n "$target"
+          selected=$(az containerapp revision show "${app[@]}" --revision "$target" \
+            --query "properties.template.containers[?name=='olist'].{image:image,source:env[?name=='OLIST_SOURCE_COMMIT'].value | [0]} | [0]" -o json)
+          jq -e --arg image "$IMAGE" --arg source "$SOURCE_SHA" \
+            '.image == $image and .source == $source' <<< "$selected" > /dev/null
+          for attempt in {1..36}; do
+            ready=$(az containerapp show "${app[@]}" --query 'properties.latestReadyRevisionName' -o tsv)
+            if [[ "$ready" == "$target" ]]; then
+              printf '\nReady Azure revision %s (%s)\n' "$target" "$SOURCE_SHA" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo 'Azure did not report the selected revision ready before the deadline.' >&2
+          exit 1

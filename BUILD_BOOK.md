@@ -8849,3 +8849,19 @@ incorrect hostname, and the separate web entrypoint returns HTTP 200 from
 `/health/ready` using the restricted login. This validates the packaged
 connection path locally. Azure private DNS, certificate chain and
 subscription capacity still require the actual staging deployment.
+
+## Entry 126 — Ship tested Olist changes to Azure automatically
+
+The first hosted version was pinned to the digest from a manually dispatched
+image build. To automate updates, listen for the completion of Foundation CI
+and use the successful main push's commit as the existing image builder input.
+Keep a separate job for the Azure write so the image builder only needs GitHub
+package access. The deploy job accepts the published digest and commit from
+that same run and rechecks the main tip before updating the existing app.
+
+Bind an Azure identity to the GitHub staging environment for short-lived
+authentication. Let the Azure startup and database readiness probes guide the
+traffic switch. Read the control-plane revision status so GitHub runners do
+not need access to the IP-restricted console. Keep the manual publishing
+workflow available even while the repository toggle for deployment is off.
+The first hosted run still needs verification after the identity is configured.
