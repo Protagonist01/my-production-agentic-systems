@@ -42,6 +42,7 @@ def uv_command(command: str, executable: str) -> list[str]:
         "olist_demo_evaluation.py",
         "olist_demo_planner.py",
         "olist_demo_host.py",
+        "olist_azure_staging.py",
         "olist_demo_budget_readback.py",
         "olist_demo_study.py",
         "olist_demo_capture.py",

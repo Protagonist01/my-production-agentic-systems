@@ -1,5 +1,12 @@
 # Code Study Guide — Production Agentic Systems
 
+The [Azure staging runbook](docs/olist-azure-staging.md) follows the pinned image
+through `olist_azure_staging.application` into verified PostgreSQL TLS, database
+role/schema preflight and the same HTTPS FastAPI console. The Bicep template
+supplies the same hostname to ingress, the app and its probes. Trace why a local
+port consuming a database secret must still reject elevated database roles,
+and why a reviewer approval alone cannot produce a SIM receipt.
+
 The [Gemini-only resilience chapter](docs/olist-demo-gemini-resilience.md) follows a
 logical customer request through the existing bounded gateway and separate append-only
 raw-attempt/task tables. Compare the unchanged one-attempt observation contract with

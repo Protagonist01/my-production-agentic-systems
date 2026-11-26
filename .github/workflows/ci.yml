@@ -19,7 +19,8 @@ jobs:
   quality:
     name: Quality (${{ matrix.os }}, Python ${{ matrix.python }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    # Windows 3.12 finished all tests but hit the job limit before packaging.
+    timeout-minutes: ${{ matrix.os == 'windows-2025' && matrix.python == '3.12' && 25 || 15 }}
     strategy:
       fail-fast: false
       matrix:

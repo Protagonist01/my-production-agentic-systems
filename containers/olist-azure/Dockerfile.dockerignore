@@ -1,0 +1,16 @@
+**
+!pyproject.toml
+!uv.lock
+!harness/
+!harness/pyproject.toml
+!harness/src/
+!harness/src/**
+!projects/
+!projects/*/
+!projects/*/pyproject.toml
+!projects/olist-support/src/
+!projects/olist-support/src/**
+!olist_azure_staging.py
+!olist_demo_host.py
+**/__pycache__
+**/.env*
