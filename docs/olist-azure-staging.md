@@ -67,6 +67,22 @@ The second command should exit 1 with the generic configuration refusal. The
 container runs as UID 65532 with the locked Olist web dependencies. Its build
 context excludes local secrets and artifacts.
 
+### Publish the reviewed staging image
+
+Run **Publish Olist staging image** in GitHub Actions on `main`. Set
+`source_sha` to the exact merged commit selected for Azure. The workflow
+checks its successful main CI run, builds the Linux amd64 image from that
+commit, verifies both Python entrypoints under the image's non-root user
+and checks that startup refuses missing private configuration. The job
+summary records the source commit and immutable registry digest.
+
+The first GitHub Container Registry upload creates a private package.
+Once the owner approves public image distribution, make only this
+dedicated package public and verify an anonymous pull of the exact digest.
+Use that digest for both the bootstrap job and the staging app.
+[GitHub Container Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
+
+
 Deploy `bootstrap.bicep` against the foundation's empty `olist_demo` database.
 The manual job uses the same image with `olist_azure_bootstrap` as its entrypoint.
 It accepts two private DSNs for the same database. One identifies the schema
