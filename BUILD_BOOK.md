@@ -8831,3 +8831,21 @@ an injected local connection to an isolated real PostgreSQL database. It
 checked one order, three scoped sign-ins, no receipts, repeat refusal and
 the hosted app entrypoint. The actual Azure TLS and network route still
 need account-specific verification.
+
+The packaged TLS smoke test uncovered a failure the injected connection did
+not exercise. `DatabaseConfiguration.connection` sets `prepare_threshold=0`,
+which asks Psycopg to prepare queries immediately. PostgreSQL rejects the
+schema installer's multi-statement SQL files when prepared this way. In
+`olist_demo_host.bootstrap`, set `connection.prepare_threshold = None` on each
+short-lived administrator connection before invoking its installer. The
+runtime connection still uses its original settings. The real PostgreSQL
+recovery test now supplies an administrator connection with threshold zero
+to exercise this path during every restore verification.
+
+Rebuild the container and test it against a disposable PostgreSQL 17 server on
+a Docker network with no externally published ports. The packaged job installs
+the schema over TLS. The client rejects both an untrusted certificate and an
+incorrect hostname, and the separate web entrypoint returns HTTP 200 from
+`/health/ready` using the restricted login. This validates the packaged
+connection path locally. Azure private DNS, certificate chain and
+subscription capacity still require the actual staging deployment.

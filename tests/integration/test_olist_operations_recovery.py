@@ -10,22 +10,25 @@ from agent_harness.postgres import Trial, drop_trial
 from agent_harness.release_contracts import pin
 from fastapi.testclient import TestClient
 from olist_support.backup import capture, read, restore, save
-from olist_support.business import setup
 from olist_support.console_api import create_app
-from olist_support.console_auth import AuthStore, setup_console
+from olist_support.console_auth import AuthStore
 from olist_support.console_cases import CaseStore
 from olist_support.recovery_exercise import RecoveryObjective, RecoveryReport, exercise
 from olist_support.service_health import readiness
-from olist_support.workflow_postgres import setup_checkpoints
 from test_olist_business import app as app
 from test_olist_console import console as console
 from test_olist_console import create_case, decide, observed
 
+from olist_demo_host import bootstrap as bootstrap_host
+
 
 def bootstrap(server, trial):
-    for setup_fn in (setup, setup_checkpoints, setup_console):
-        with server.connect(trial.name) as admin:
-            setup_fn(admin, trial.name)
+    def admin_connect():
+        connection = server.connect(trial.name)
+        connection.prepare_threshold = 0
+        return connection
+
+    bootstrap_host(admin_connect, trial.name)
 
 
 def test_private_snapshot_restores_review_ledger_checkpoint_and_duplicate_without_touching_source(

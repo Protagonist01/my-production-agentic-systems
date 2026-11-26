@@ -99,7 +99,9 @@ The accounts are `demo-operator`, `demo-reviewer` and `demo-customer`. Enter a
 review. Use the separate reviewer and customer accounts to finish the flow.
 
 Supply both DSNs with `sslmode=verify-full`, the Azure PostgreSQL DNS name
-and a trusted certificate bundle. Keep the secure parameter in a private,
+and `sslrootcert=/etc/ssl/certs/ca-certificates.crt`, the system trust bundle
+in the image. Verify the actual Azure certificate chain before starting the
+job. Keep the secure parameter in a private,
 untracked deployment parameter file or an approved secret store. Bicep wires one
 Container Apps secret to the runtime. It sends health probes with the exact app
 Host header because the console rejects unexpected hosts. Ingress requires TLS
