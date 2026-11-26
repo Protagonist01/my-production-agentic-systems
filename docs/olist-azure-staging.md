@@ -22,7 +22,10 @@ The staging template requires a Consumption workload profile environment in
 the target resource group. Use `deploy/olist-azure/foundation.bicep` to preview
 a dedicated network, private DNS, environment and PostgreSQL Flexible Server.
 Pass the same region and environment name to the staging deployment. The
-database has its own delegated subnet and public access disabled. The environment
+database has its own delegated subnet and public access disabled. Omit the
+Container Apps log export configuration for this sandbox. Azure preflight
+rejects the literal destination 'none' for the pinned environment API.
+The environment
 uses a separate delegated subnet and exposes only the app's restricted HTTPS
 ingress. Private DNS and the public ingress infrastructure can have costs apart
 from the database and Container Apps free allowances. Verify the actual offer,
