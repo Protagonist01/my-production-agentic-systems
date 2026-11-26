@@ -2,6 +2,8 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 125 — Bootstrap Olist from inside the private network](#entry-125--bootstrap-olist-from-inside-the-private-network)
+- [Entry 124 — Match Azure resources to the trial offer](#entry-124--match-azure-resources-to-the-trial-offer)
 - [Entry 123 — Package the SIM workflow for Azure](#entry-123--package-the-sim-workflow-for-azure)
 - [Entry 122 — Measure customer requests without hiding provider attempts](#entry-122--measure-customer-requests-without-hiding-provider-attempts)
 - [Entry 121 — Preserve a failed study while proposing its next slots](#entry-121--preserve-a-failed-study-while-proposing-its-next-slots)
@@ -8765,3 +8767,67 @@ and compare the order, text and amount before confirming. The browser
 captures show real application pages using the local database and
 operator-selected request type. Cloud activation, hosted live Gemini
 admission and an Azure restore still need their own evidence.
+
+
+## Entry 124 — Match Azure resources to the trial offer
+
+PR #174 passed all ten checks and merged. The Windows/Python 3.12 job
+completed under its longer ceiling. The local browser changed a single
+37.25 SIM order. The recovered database kept the same receipt and one
+refund row, revoked the old sessions and served the saved outcome after
+a fresh login. The restore and database verification took 1.24 seconds.
+
+The Azure portal displayed an active trial and a free PostgreSQL
+B1ms and 32 GiB offer. West Europe was refused for this subscription.
+Canada Central opened a database draft. The wizard initially kept its
+General Purpose sizing because Premium SSD v2 disables Burstable
+compute. Choosing Premium SSD exposed the Burstable size picker. Browser
+access became unavailable before the final price and SKU could be confirmed.
+
+Declare the exact resources in `foundation.bicep`. Give Container Apps
+and PostgreSQL distinct delegated subnets and link the private DNS
+zone to their network. Put PostgreSQL 17 on B1ms with 32 GiB Premium
+SSD, a local seven-day backup and public access disabled. Create a
+dedicated empty database. The separate staging template owns the
+web application and its restricted ingress. That split gives the
+operator time to bootstrap private database roles before starting the app.
+
+Compile both files, then review an Azure what-if for the intended
+subscription. Inspect networking, DNS and ingress charges separately
+from resource size offers. What-if previews changes to Azure resources.
+It does not calculate the invoice.
+
+A network-denied Linux timing probe also identified a candidate fix for
+the live evaluation. All six spawn attempts timed out from the Windows
+bind mount. Five of six passed from Linux-native storage. With modules
+preloaded before the first request, all six mock attempts passed in
+3.9 to 5.1 seconds after 20.5 seconds of warm-up. A deliberately slow
+mock worker still timed out and exited. Measure this path on the
+selected runner before using a newly approved live scope.
+
+
+## Entry 125 — Bootstrap Olist from inside the private network
+
+The foundation database has no publicly reachable administration path. Start
+a manually triggered job in the existing Container Apps environment. It uses
+the same digest as the web app. Its command runs the bootstrap module, with
+its own secret references and zero retries. The long-running app receives
+only the runtime secret.
+
+The job validates both DSNs for hostname verification, the Azure database
+name and distinct principals. It holds a PostgreSQL session lock while the
+existing schema installer opens separate connections. That detail matters
+because LangGraph's checkpointer setup uses autocommit. The job refuses an
+existing app schema or an existing runtime role, including a partial failure
+left by a prior run. A single transaction then enrolls the fictional order
+and three accounts. Finish by checking the restricted login with the existing
+runtime preflight.
+
+The first strict type check caught that an inferred role string did not meet
+the Principal contract. Preserve the contract by typing the three roles as
+the literal values it accepts. The configured strict check then passed for
+315 sources. The local verification supplied invented Azure-shaped DSNs over
+an injected local connection to an isolated real PostgreSQL database. It
+checked one order, three scoped sign-ins, no receipts, repeat refusal and
+the hosted app entrypoint. The actual Azure TLS and network route still
+need account-specific verification.

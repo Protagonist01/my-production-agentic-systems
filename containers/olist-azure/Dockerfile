@@ -12,7 +12,8 @@ FROM python@sha256:f0fa218d5b06f9b9235024fa061cde2cb141f726de52134471053d2d9b532
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 COPY --from=build /app/.venv .venv/
-COPY olist_azure_staging.py olist_demo_host.py uv.lock ./
+COPY olist_azure_staging.py olist_azure_bootstrap.py olist_demo_host.py ./
+COPY olist_demo_fixtures.py olist_demo_acceptance.py uv.lock ./
 USER 65532:65532
 EXPOSE 8080
 ENTRYPOINT ["/app/.venv/bin/python", "-m", "olist_azure_staging"]

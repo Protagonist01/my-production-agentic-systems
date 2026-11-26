@@ -11,6 +11,9 @@
 !projects/olist-support/src/
 !projects/olist-support/src/**
 !olist_azure_staging.py
+!olist_azure_bootstrap.py
 !olist_demo_host.py
+!olist_demo_fixtures.py
+!olist_demo_acceptance.py
 **/__pycache__
 **/.env*
