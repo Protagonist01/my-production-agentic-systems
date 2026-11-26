@@ -64,7 +64,8 @@ def runtime_role_ready(connection: Connection[Any]) -> bool:
         "SELECT 1 FROM pg_roles r WHERE pg_has_role(current_user,r.oid,'MEMBER') "
         "AND (r.rolsuper OR r.rolcreaterole OR r.rolcreatedb OR r.rolbypassrls "
         "OR r.rolreplication OR r.rolname IN "
-        "('neon_superuser','pg_read_all_data','pg_write_all_data','pg_signal_backend')) LIMIT 1"
+        "('azure_pg_admin','neon_superuser','pg_read_all_data','pg_write_all_data',"
+        "'pg_signal_backend')) LIMIT 1"
     ).fetchone():
         return False
     owners = connection.execute(

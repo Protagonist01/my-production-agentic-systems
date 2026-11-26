@@ -2,6 +2,7 @@
 A journal of the real reasoning behind this build: decisions, options rejected, and things that broke along the way.
 
 ## Index
+- [Entry 123 — Package the SIM workflow for Azure](#entry-123--package-the-sim-workflow-for-azure)
 - [Entry 122 — Measure customer requests without hiding provider attempts](#entry-122--measure-customer-requests-without-hiding-provider-attempts)
 - [Entry 121 — Preserve a failed study while proposing its next slots](#entry-121--preserve-a-failed-study-while-proposing-its-next-slots)
 - [Entry 120 — Reconcile the shared study before spending again](#entry-120--reconcile-the-shared-study-before-spending-again)
@@ -8702,3 +8703,65 @@ folder; both passed using an external private test directory. No production chec
 was relaxed. The distinct tested union is therefore 105 passing legacy cases plus
 12 new cases. Lint, format, typing and dependency-direction checks passed locally;
 hosted CI and new provider execution remain pending.
+
+
+## Entry 123 — Package the SIM workflow for Azure
+
+The owner chose Azure for the fictional Olist portfolio demo. The local console
+already serves the operator, reviewer and customer pages. The host helper
+already verifies PostgreSQL transport and privileges. The new job is to put
+those boundaries together in a deployable image and check the actual browser
+journey with a fake order.
+
+### Before you read on
+
+How can a cloud health probe pass the exact Host check without granting
+the web app schema-owner permissions or allowing other traffic through?
+
+### Build the package
+
+1. Keep the frozen provider checkout separate from the deployment branch.
+   Package the Olist web extra from the workspace lock with pinned Python and
+   uv images. Copy the resulting environment and two startup modules into the
+   final image. Run it as UID 65532.
+2. Keep schema creation and fictional account/order provisioning on a trusted
+   admin connection. Pass the restricted runtime DSN as a Container Apps
+   secret. Startup validates hostname-verified TLS, exact schemas and
+   database privileges before opening the port. Add Azure's administrative
+   role to the preflight's list of rejected memberships.
+3. Reuse the support application with the Azure HTTPS origin and its existing
+   authorization checks. The stage uses the operator-selected request type.
+   Gate public access with a single reviewer IP. Supply the exact Host
+   header in liveness and readiness probes and give the initial process a
+   TCP startup probe.
+4. Compile the template against Microsoft's Bicep types. The first version
+   tried to read the existing environment's location during template
+   evaluation. Bicep rejected that lookup where the deployment requires a
+   region known at the start. Pass the verified environment region explicitly.
+5. Preserve the four CI environments. Give only Windows/Python 3.12 a
+   25-minute job window. Its earlier run passed 2,219 tests but hit the
+   15-minute ceiling while building the packages. All application and test
+   deadlines retain their original values.
+
+### Live study evidence
+
+The November 26 study passed its first canary in 28.0 seconds. The second
+exhausted the 30-second decision budget. The worker entered after 25.7
+seconds. On the earlier successful canary, worker entry took 17.2 seconds
+and the SDK returned about 9.0 seconds after entry. The timeout does not
+establish that Gemini itself took 30 seconds. Both calls settled and the
+canary stop prevented domain requests. A fresh readback matched the capture.
+A retry-enabled gateway cannot help when the first attempt consumes the
+whole decision budget. Test runner overhead independently with invented
+responses before proposing a new model run.
+
+### Reproduce the visual walkthrough
+
+In an isolated local database, enroll the fictional 37.25 SIM order and
+assign separate operator, reviewer and customer principals. Open the
+support desk, select the new-request screen and inspect the saved case as
+the reviewer. Approve the exact amount. Sign in at the customer page
+and compare the order, text and amount before confirming. The browser
+captures show real application pages using the local database and
+operator-selected request type. Cloud activation, hosted live Gemini
+admission and an Azure restore still need their own evidence.
