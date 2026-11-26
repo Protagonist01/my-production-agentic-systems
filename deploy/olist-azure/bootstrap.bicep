@@ -21,8 +21,11 @@ resource environment 'Microsoft.App/managedEnvironments@2025-01-01' existing = {
   name: environmentName
 }
 
+var descriptiveJobName = '${environmentName}-bootstrap'
+var jobName = length(descriptiveJobName) < 32 ? descriptiveJobName : 'olist-boot-${uniqueString(environment.id)}'
+
 resource job 'Microsoft.App/jobs@2025-01-01' = {
-  name: '${environmentName}-bootstrap'
+  name: jobName
   location: location
   properties: {
     environmentId: environment.id
