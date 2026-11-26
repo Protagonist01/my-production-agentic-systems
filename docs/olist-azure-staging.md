@@ -18,12 +18,38 @@ spend and can arrive after usage. Keep the existing trial spending protection.
 [Free account expiry](https://learn.microsoft.com/azure/cost-management-billing/manage/subscription-disabled) ·
 [Budget alerts](https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets).
 
-The template requires an existing Consumption workload profile environment in
-the target resource group. Place it on a network with a private route and DNS
-resolution to the dedicated PostgreSQL server. Azure's public database firewall
-option allowing all Azure services would admit other subscriptions, so keep that
-option off. Use the environment's actual Azure region for the app parameter.
+The staging template requires a Consumption workload profile environment in
+the target resource group. Use `deploy/olist-azure/foundation.bicep` to preview
+a dedicated network, private DNS, environment and PostgreSQL Flexible Server.
+Pass the same region and environment name to the staging deployment. The
+database has its own delegated subnet and public access disabled. The environment
+uses a separate delegated subnet and exposes only the app's restricted HTTPS
+ingress. Private DNS and the public ingress infrastructure can have costs apart
+from the database and Container Apps free allowances. Verify the actual offer,
+regional capacity and charge estimate before deployment.
 [Container Apps VNet configuration](https://learn.microsoft.com/azure/container-apps/vnet-custom).
+
+The database template requests PostgreSQL 17, Burstable `Standard_B1ms`, 32 GiB
+of Premium SSD, seven days of local backup retention and an empty `olist_demo`
+database. Azure's portal may select Premium SSD v2 and General Purpose by
+default. That storage type prevents selecting Burstable in the setup form.
+The Azure trial permitted Canada Central in the form but refused West Europe.
+The exact B1ms SKU and Container Apps region still need validation on that
+subscription. Keep high availability, geo-redundant backups and storage
+autogrowth disabled for this single development instance.
+
+Compile and preview the foundation from the selected resource group before
+app setup. The private parameter file supplies `location`, `environmentName`,
+`databaseServerName`, `databaseAdmin` and `databaseAdminPassword`.
+
+```powershell
+bicep build deploy/olist-azure/foundation.bicep --stdout
+az deployment group what-if --resource-group <staging-resource-group> --template-file deploy/olist-azure/foundation.bicep --parameters '@<private-foundation-parameters-file>'
+```
+
+From the plan, verify the two subnet delegations, private DNS link, exact
+database SKU and storage, and the Consumption profile. The plan previews
+resource changes. Use Azure Cost Management to estimate billable meters.
 
 ## Prepare the staging application
 
@@ -41,17 +67,41 @@ The second command should exit 1 with the generic configuration refusal. The
 container runs as UID 65532 with the locked Olist web dependencies. Its build
 context excludes local secrets and artifacts.
 
-From a trusted admin connection inside the selected network, create an empty
-database and a restricted login role. Use `olist_demo_host.bootstrap` to add the
-four application schemas. Enroll only a fictional order and scope one operator,
-reviewer and customer to it via `console_auth.provision`. For one sample input,
-use `olist_demo_fixtures.fixture` with the authored refund case
-`olist-demo-refund-1`. Load each password privately. Keep the schema-owner
-connection outside the web app. Run `olist_demo_host.preflight` with the runtime
-connection to verify schema access and rejection of elevated roles.
+Deploy `bootstrap.bicep` against the foundation's empty `olist_demo` database.
+The manual job uses the same image with `olist_azure_bootstrap` as its entrypoint.
+It accepts two private DSNs for the same database. One identifies the schema
+administrator and the other names the new login `olist_runtime`. Use five
+distinct passwords for the administrator, runtime login, operator, reviewer
+and customer. The last three go into the private `demoAccounts` JSON parameter
+under `operator`, `reviewer` and `customer`.
 
-Supply the runtime DSN with `sslmode=verify-full`, the Azure PostgreSQL DNS name
-and a trusted certificate bundle. Keep the secure parameter in a private,
+The job has zero automatic retries and no ingress. Its code holds a PostgreSQL
+advisory lock during initialization. It creates the restricted runtime role,
+calls the existing schema bootstrap and enrolls one 37.25 SIM order with three
+scoped accounts. It exits successfully only after the runtime DSN passes
+preflight. A repeat or a partially initialized database refuses bootstrap.
+Inspect any failed execution before a new attempt. The job's successful
+completion can be checked through its execution status without log export.
+Remove the temporary job and its admin secret after successful initialization,
+keeping the runtime DSN only in the web app. The administrator secret remains
+under operator custody for intentional administration.
+
+```powershell
+bicep build deploy/olist-azure/bootstrap.bicep --stdout
+az deployment group what-if --resource-group <staging-resource-group> --template-file deploy/olist-azure/bootstrap.bicep --parameters '@<private-bootstrap-parameters-file>'
+az deployment group create --resource-group <staging-resource-group> --template-file deploy/olist-azure/bootstrap.bicep --parameters '@<private-bootstrap-parameters-file>'
+az containerapp job start --resource-group <staging-resource-group> --name <environment-name>-bootstrap
+az containerapp job execution list --resource-group <staging-resource-group> --name <environment-name>-bootstrap --output table
+```
+
+The accounts are `demo-operator`, `demo-reviewer` and `demo-customer`. Enter a
+37.25 SIM full-refund request for `SIM-ORD-1042` as the operator and request
+review. Use the separate reviewer and customer accounts to finish the flow.
+
+Supply both DSNs with `sslmode=verify-full`, the Azure PostgreSQL DNS name
+and `sslrootcert=/etc/ssl/certs/ca-certificates.crt`, the system trust bundle
+in the image. Verify the actual Azure certificate chain before starting the
+job. Keep the secure parameter in a private,
 untracked deployment parameter file or an approved secret store. Bicep wires one
 Container Apps secret to the runtime. It sends health probes with the exact app
 Host header because the console rejects unexpected hosts. Ingress requires TLS

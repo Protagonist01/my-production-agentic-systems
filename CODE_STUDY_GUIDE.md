@@ -6,6 +6,11 @@ role/schema preflight and the same HTTPS FastAPI console. The Bicep template
 supplies the same hostname to ingress, the app and its probes. Trace why a local
 port consuming a database secret must still reject elevated database roles,
 and why a reviewer approval alone cannot produce a SIM receipt.
+Follow `olist_azure_bootstrap.provision_demo` for the one-time private network
+job. The session lock spans schema setup connections, and only the restricted
+role is passed to web startup. The schema installers run multi-statement SQL,
+so `olist_demo_host.bootstrap` disables automatic query preparation on its
+administrator connections. A partially created schema requires diagnosis.
 
 The [Gemini-only resilience chapter](docs/olist-demo-gemini-resilience.md) follows a
 logical customer request through the existing bounded gateway and separate append-only

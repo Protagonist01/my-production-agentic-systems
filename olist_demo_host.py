@@ -125,6 +125,8 @@ def bootstrap(admin_connect: Callable[[], Connection[Any]], runtime_role: str) -
     # Separate admin connections avoid leaking checkpointer row_factory/search_path.
     for operation in (setup, setup_checkpoints, setup_console):
         with admin_connect() as connection:
+            # The installers execute complete SQL files in single calls.
+            connection.prepare_threshold = None
             operation(connection, runtime_role)
 
 
