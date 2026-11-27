@@ -64,6 +64,7 @@ def application(
             (ROOT / "revenue_demo_web.html")
             .read_text(encoding="utf-8")
             .replace("__CSRF_COOKIE__", csrf_cookie)
+            .replace("__DEMO_LABEL__", "Live demo" if allow_hosted_demo else "Local demo")
         )
 
     @app.get("/walkthrough-assets/{name}")
