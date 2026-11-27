@@ -1,0 +1,97 @@
+[
+  {
+    "id": "01",
+    "family": "47QTCA22D00CS",
+    "expected_action": "analyze",
+    "expected_missing_fields": [],
+    "unit_price_minor": 24729,
+    "quantity": 4,
+    "expected_total_minor": 98916,
+    "expected_delta_minor": -1084,
+    "slice": "exact_overbilling"
+  },
+  {
+    "id": "02",
+    "family": "47QTCA22D00CS",
+    "expected_action": "analyze",
+    "expected_missing_fields": [],
+    "unit_price_minor": 24729,
+    "quantity": 4,
+    "expected_total_minor": 98916,
+    "expected_delta_minor": 0,
+    "slice": "correct_invoice"
+  },
+  {
+    "id": "03",
+    "family": "47QTCA22D00CS",
+    "expected_action": "request_information",
+    "expected_missing_fields": [
+      "quantity"
+    ],
+    "unit_price_minor": 24729,
+    "quantity": null,
+    "expected_total_minor": null,
+    "expected_delta_minor": null,
+    "slice": "missing_user_count"
+  },
+  {
+    "id": "04",
+    "family": "GS-35F-135BA",
+    "expected_action": "analyze",
+    "expected_missing_fields": [],
+    "unit_price_minor": 2350,
+    "quantity": 5,
+    "expected_total_minor": 11750,
+    "expected_delta_minor": 0,
+    "slice": "discount_rate_correct"
+  },
+  {
+    "id": "05",
+    "family": "GS-35F-135BA",
+    "expected_action": "analyze",
+    "expected_missing_fields": [],
+    "unit_price_minor": 2350,
+    "quantity": 5,
+    "expected_total_minor": 11750,
+    "expected_delta_minor": 500,
+    "slice": "exact_underbilling"
+  },
+  {
+    "id": "06",
+    "family": "47QTCA21D00DJ",
+    "expected_action": "review",
+    "expected_missing_fields": [],
+    "unit_price_minor": null,
+    "quantity": 3,
+    "expected_total_minor": null,
+    "expected_delta_minor": null,
+    "slice": "conflicting_billing_unit"
+  },
+  {
+    "id": "07",
+    "family": "47QTCA19D009G",
+    "expected_action": "request_information",
+    "expected_missing_fields": [
+      "conditions",
+      "unit_price_minor"
+    ],
+    "unit_price_minor": null,
+    "quantity": 5,
+    "expected_total_minor": null,
+    "expected_delta_minor": null,
+    "slice": "missing_eligibility_and_order_price"
+  },
+  {
+    "id": "08",
+    "family": "47QTCA19D009G",
+    "expected_action": "request_information",
+    "expected_missing_fields": [
+      "conditions"
+    ],
+    "unit_price_minor": null,
+    "quantity": 5,
+    "expected_total_minor": null,
+    "expected_delta_minor": null,
+    "slice": "missing_award_date"
+  }
+]

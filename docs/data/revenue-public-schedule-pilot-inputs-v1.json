@@ -1,0 +1,50 @@
+[
+  {
+    "id": "01",
+    "schedule": "The GSA schedule lists product 4071-MO-CS-S, Commshop powered by Motiondeck, as a per-user monthly subscription with a USD 247.29 schedule rate.",
+    "order": "The simulated order adopts 4071-MO-CS-S at the stated rate for four users for one month. No adjustments apply. Invoice total is USD 1000.00.",
+    "question": "Check this invoice."
+  },
+  {
+    "id": "02",
+    "schedule": "The GSA schedule lists product 4071-MO-CS-S, Commshop powered by Motiondeck, as a per-user monthly subscription with a USD 247.29 schedule rate.",
+    "order": "The simulated order adopts 4071-MO-CS-S at the stated rate for four users for one month. No adjustments apply. Invoice total is USD 989.16.",
+    "question": "Check this invoice."
+  },
+  {
+    "id": "03",
+    "schedule": "The GSA schedule lists product 4071-MO-CS-S, Commshop powered by Motiondeck, as a per-user monthly subscription with a USD 247.29 schedule rate.",
+    "order": "The simulated order adopts 4071-MO-CS-S at the stated rate for one month. No adjustments apply. Invoice total is USD 989.16. The billable user count is missing.",
+    "question": "Check this invoice."
+  },
+  {
+    "id": "04",
+    "schedule": "GAPPS-ENT-1USER-12MO. The schedule lists USD 25.00 per user-month before the listed discount and USD 23.50 as the GSA rate after the 6% discount.",
+    "order": "For this simulated order, the final GSA rate in this row applies to five users for one month. No further adjustments apply. Invoice total is USD 117.50.",
+    "question": "Check this invoice."
+  },
+  {
+    "id": "05",
+    "schedule": "GAPPS-ENT-1USER-12MO. The schedule lists USD 25.00 per user-month before the listed discount and USD 23.50 as the GSA rate after the 6% discount.",
+    "order": "For this simulated order, the final GSA rate in this row applies to five users for one month. No further adjustments apply. Invoice total is USD 112.50.",
+    "question": "Check this invoice."
+  },
+  {
+    "id": "06",
+    "schedule": "Zodiac license 0001Z20201009. The description refers to licensing per user per unit per month. The row lists USD 18.74 and its unit-of-issue column says per user annually.",
+    "order": "For this simulated order, the row is the only rate evidence for three users. The review covers one month. The packet gives no rule for resolving or converting the two units. Invoice total is USD 56.22.",
+    "question": "Check this invoice."
+  },
+  {
+    "id": "07",
+    "schedule": "The EP2-47086 offer lists USD 8.64 MRP per user-month for non-G5 users. It covers eligible US federal GCC, GCC High and DoD environments and excludes commercial, Secret and Top Secret. Awards must be finalized by September 30, 2026. The offer runs for three contract years after award.",
+    "order": "A simulated award was made on September 1, 2026. Five user-months for October 2026 were invoiced at a total of USD 43.20. The packet omits customer and user eligibility and order-specific price confirmation.",
+    "question": "Check this invoice."
+  },
+  {
+    "id": "08",
+    "schedule": "The EP2-47086 offer lists USD 8.64 MRP per user-month for non-G5 users. It covers eligible US federal GCC, GCC High and DoD environments and excludes commercial, Secret and Top Secret. Awards must be finalized by September 30, 2026. The offer runs for three contract years after award.",
+    "order": "The simulated customer and users meet the stated eligibility rules. The signed order expressly applies the published MRP to October 2026 if the award met the published deadline. The award date is missing. Invoice total is USD 43.20 for five users and one month.",
+    "question": "Check this invoice."
+  }
+]

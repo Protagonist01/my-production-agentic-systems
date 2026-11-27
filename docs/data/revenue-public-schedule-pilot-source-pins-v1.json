@@ -1,0 +1,66 @@
+{
+  "version": "revenue-public-schedule-pilot-pin-v1",
+  "reviewed_on": "2026-11-27",
+  "inputs": {
+    "sha256": "680878be9c79fa0170a18bf7b962bac7aa63b99ae0441cc4f757ad621a30dafe",
+    "bytes": 3678
+  },
+  "references": {
+    "sha256": "df6d6b904dec345251da365f1319dfc3825c677e887572e21add5a1588b1998e",
+    "bytes": 2366
+  },
+  "sources": [
+    {
+      "schedule": "47QTCA22D00CS",
+      "url": "https://www.gsaadvantage.gov/ref_text/47QTCA22D00CS/47QTCA22D00CS_Terms_and_Conditions_MCM_04_2026.pdf",
+      "filename": "47QTCA22D00CS.pdf",
+      "pdf_page": 7,
+      "locator": "4071-MO-CS-S",
+      "case_ids": [
+        "01",
+        "02",
+        "03"
+      ],
+      "sha256": "0e3fa9f37b80328b0abb3c04813b224bf8e88d2854b36e1a5ddebbe9628c91ca",
+      "bytes": 589030
+    },
+    {
+      "schedule": "GS-35F-135BA",
+      "url": "https://www.gsaadvantage.gov/ref_text/GS35F135BA/10ADVA.3W0QPY_GS-35F-135BA_GS35F135BAEFFECTUAL.PDF",
+      "filename": "GS-35F-135BA.pdf",
+      "pdf_page": 81,
+      "locator": "GAPPS-ENT-1USER-12MO",
+      "case_ids": [
+        "04",
+        "05"
+      ],
+      "sha256": "b0e282e005ce4bb5a0bd244ad8077f78fc6ef0b6f8062a087224e5b0a242b5f5",
+      "bytes": 933093
+    },
+    {
+      "schedule": "47QTCA21D00DJ",
+      "url": "https://www.gsaadvantage.gov/ref_text/47QTCA21D00DJ/47QTCA21D00DJ_47QTCA21D00DJ_TandC.pdf",
+      "filename": "47QTCA21D00DJ.pdf",
+      "pdf_page": 25,
+      "locator": "0001Z20201009",
+      "case_ids": [
+        "06"
+      ],
+      "sha256": "ae3cefdbb9cf36d11dcfeaeb89d66c1e9bca71efa793acb1ebb5398a1d2e4b3e",
+      "bytes": 366331
+    },
+    {
+      "schedule": "47QTCA19D009G",
+      "url": "https://www.gsaadvantage.gov/ref_text/47QTCA19D009G/47QTCA19D009G_47QTCA19D009G_TandC.pdf",
+      "filename": "47QTCA19D009G.pdf",
+      "pdf_page": 14,
+      "locator": "EP2-47086",
+      "case_ids": [
+        "07",
+        "08"
+      ],
+      "sha256": "5db033b4b56963db54c0ddde6b2b030999f83f1f6b821234544ff5167b25ecfb",
+      "bytes": 448133
+    }
+  ]
+}
