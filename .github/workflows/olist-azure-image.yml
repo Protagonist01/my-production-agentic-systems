@@ -67,7 +67,7 @@ jobs:
             -f containers/olist-azure/Dockerfile -t "$image" .
           docker run --rm --network none --cap-drop ALL \
             --entrypoint /app/.venv/bin/python "$image" -c \
-            'import os, olist_azure_bootstrap, olist_azure_staging; assert os.getuid() == 65532'
+            'import os, olist_azure_bootstrap, olist_azure_staging, olist_nemotron; assert os.getuid() == 65532'
           refusal=$(mktemp)
           trap 'rm -f "$refusal"' EXIT
           status=0

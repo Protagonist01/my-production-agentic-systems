@@ -1,10 +1,9 @@
 # Olist on Azure
 
 Azure supersedes the earlier Render hosting plan. The first deployment is an
-IP-restricted staging workspace. It uses fictional orders, SIM funds, provisioned
+staging workspace. It uses fictional orders, SIM funds, provisioned
 accounts and the console's operator-selected request type. It serves both the
-support desk at `/` and customer confirmation at `/customer`. This staging
-image makes zero provider calls.
+support desk at `/` and customer confirmation at `/customer`. The default runtime uses the operator-selected request type. The model-backed runtime has separate activation steps below.
 
 ## Verify the subscription before creating resources
 
@@ -14,8 +13,8 @@ storage and backup allowances. Check networking, image storage, observability
 and the second database server used during the recovery exercise separately.
 Container Apps Consumption grants apply per subscription. Budget alerts report
 spend and can arrive after usage. Keep the existing trial spending protection.
-[Consumption charges](https://learn.microsoft.com/azure/container-apps/billing) ·
-[Free account expiry](https://learn.microsoft.com/azure/cost-management-billing/manage/subscription-disabled) ·
+[Consumption charges](https://learn.microsoft.com/azure/container-apps/billing) Â·
+[Free account expiry](https://learn.microsoft.com/azure/cost-management-billing/manage/subscription-disabled) Â·
 [Budget alerts](https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets).
 
 The staging template requires a Consumption workload profile environment in
@@ -59,7 +58,7 @@ resource changes. Use Azure Cost Management to estimate billable meters.
 Build from the selected commit. Run the packaged smoke check before publishing
 the image to the chosen registry. The Bicep template accepts an anonymously
 pullable image so the stage requires no ACR or registry secret. Use its immutable
-`@sha256:…` reference after publication.
+`@sha256:â€¦` reference after publication.
 
 ```powershell
 docker build --platform linux/amd64 -f containers/olist-azure/Dockerfile -t olist-azure:staging .
@@ -191,8 +190,30 @@ snapshots restore within its service. The existing application binary archive
 requires the same database build and schema. Test a portable logical restore
 separately if the database build differs. [Azure backup and recovery](https://learn.microsoft.com/azure/postgresql/backup-restore/concepts-backup-restore).
 
-The live candidate still needs a completed evaluation and a hosted provider
-composition with persistent call accounting. Verify rate and concurrency limits,
-visitor isolation, budget exhaustion, restart and fail-closed behavior before
-turning on Gemini for visitors. The local SQLite study allowance governs the
-frozen study only. Cloud release also needs an actual clean-target recovery drill.
+The Gemini evaluation allowance governs the frozen study. The first hosted
+Nemotron demonstration uses a separate PostgreSQL ledger. A clean-target
+Azure recovery drill is still required for hosted recovery evidence.
+
+### Run the first model-backed portfolio demo
+
+Nemotron runs when Azure supplies the dedicated `OLIST_OPENROUTER_API_KEY`
+secret and the runtime login can read the existing PostgreSQL attempt ledger.
+Run the bootstrap image with the existing administrator DSN and
+`python -m olist_azure_bootstrap --install-model-ledger` first. The installer
+creates the budget boundary separately from order and account provisioning.
+Reapplying it preserves existing attempt records.
+
+The operator selects a built-in fictional request. The server rejects other
+text before the case starts. The planner reserves a case-specific slot before
+dispatch, pins the NVIDIA free route, and verifies the response route and zero
+reported cost. No more than 30 reservations can exist. An interrupted call
+still occupies its slot. A deployment restart leaves the ledger in PostgreSQL.
+The model proposes meaning. The existing policy, actor approval and customer
+confirmation continue to govern refunds.
+
+In Azure, add the new key through the portal as a Container Apps secret and
+reference it from the environment variable of the same name. Keep the Azure
+ingress choice, private database, existing runtime secret and exact image digest.
+After activation, record a built-in case's model proposal and, separately,
+its receipt or review outcome. Check the attempt count readback without
+printing the key, request text or provider response.

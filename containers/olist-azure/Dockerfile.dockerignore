@@ -12,6 +12,11 @@
 !projects/olist-support/src/**
 !olist_azure_staging.py
 !olist_azure_bootstrap.py
+!olist_nemotron.py
+!olist_demo_planner.py
+!docs/
+!docs/evaluation/
+!docs/evaluation/olist_semantic_candidate.py
 !olist_demo_host.py
 !olist_demo_fixtures.py
 !olist_demo_acceptance.py

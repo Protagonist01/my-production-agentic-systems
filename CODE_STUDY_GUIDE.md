@@ -19,6 +19,13 @@ how the job checks both the revision's digest and its recorded source commit.
 The GitHub runner uses Azure's readiness status because ingress admits only
 the reviewer IP. A healthy revision can still have functional regressions.
 
+Follow the [hosted Nemotron runbook](docs/olist-azure-staging.md) from
+the console request handler to `HostedGateway.generate`. The API admits
+only authored fictional text. The gateway compares the complete outbound
+request, reserves a PostgreSQL slot before HTTPS, and checks the returned
+provider and reported cost. Trace refund policy and customer confirmation
+before a receipt can be written.
+
 The [Gemini-only resilience chapter](docs/olist-demo-gemini-resilience.md) follows a
 logical customer request through the existing bounded gateway and separate append-only
 raw-attempt/task tables. Compare the unchanged one-attempt observation contract with

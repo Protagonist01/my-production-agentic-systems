@@ -8893,3 +8893,17 @@ fails, leave the readiness probe down and reconcile uncertain receipts before
 replaying the same operation ID. Use the [operating plan](docs/azure-agent-database-operations.md)
 for the thresholds and restore sequence. Cloud recovery and contention results
 are verified by drills after deployment.
+
+## Entry 128 — Put Nemotron in the hosted Olist workflow
+
+Install the model ledger with the database administrator before enabling
+the dedicated OpenRouter secret in Azure. Keep its installer separate
+from account and order seeding. Present authored requests at the HTTP
+boundary and reject other text. At dispatch, compare the full request
+against the expected wire contract, then reserve and commit one of 30
+slots before calling NVIDIA. Keep failed and unsettled reservations
+because an interrupted caller may have reached the provider.
+
+Pin the free route and check provider, model, finish status and cost
+before reading the proposal. Route failures to review. Keep policy
+and customer confirmation in the existing workflow.

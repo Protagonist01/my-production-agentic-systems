@@ -1,5 +1,6 @@
 """Provision one fictional workspace in a dedicated, empty Azure database."""
 
+import argparse
 import os
 from typing import Annotated, Literal
 
@@ -95,7 +96,18 @@ def provision_demo(
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--install-model-ledger", action="store_true")
+    args = parser.parse_args()
     try:
+        if args.install_model_ledger:
+            from olist_nemotron import install_ledger
+
+            admin = DatabaseConfiguration(dsn=SecretStr(os.environ["OLIST_ADMIN_DATABASE_URL"]))
+            admin.verify_transport()
+            install_ledger(admin.connection)
+            print("Olist OpenRouter ledger installed.", flush=True)
+            return
         provision_demo(
             DatabaseConfiguration(dsn=SecretStr(os.environ["OLIST_ADMIN_DATABASE_URL"])),
             DatabaseConfiguration(dsn=SecretStr(os.environ["OLIST_RUNTIME_DATABASE_URL"])),

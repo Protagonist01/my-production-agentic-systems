@@ -5,6 +5,7 @@ import os
 import re
 from pathlib import Path
 
+import psycopg
 import uvicorn
 from fastapi import FastAPI
 from olist_support.console_api import create_app
@@ -17,7 +18,13 @@ from olist_demo_host import DatabaseConfiguration, preflight
 PORT = 8080
 
 
-def application(database: DatabaseConfiguration, *, hostname: str, revision: str) -> FastAPI:
+def application(
+    database: DatabaseConfiguration,
+    *,
+    hostname: str,
+    revision: str,
+    model_key: SecretStr | None = None,
+) -> FastAPI:
     if not re.fullmatch(
         r"[a-z0-9][a-z0-9.-]{1,223}\.azurecontainerapps\.io", hostname
     ) or not re.fullmatch(r"[0-9a-f]{40}", revision):
@@ -26,8 +33,17 @@ def application(database: DatabaseConfiguration, *, hostname: str, revision: str
     if preflight(database.connection)["ready"] is not True:
         raise ValueError("Azure PostgreSQL readiness or runtime role check failed")
     lock = hashlib.sha256(Path(__file__).with_name("uv.lock").read_bytes()).hexdigest()
+    planner = None
+    demo_requests: tuple[str, ...] = ()
+    if model_key is not None:
+        from olist_nemotron import DEMO_REQUESTS, HostedGateway, HostedPlanner
+
+        with database.connection() as connection:
+            connection.execute("SELECT slot FROM olist_model.openrouter_attempts LIMIT 1")
+        planner = HostedPlanner(HostedGateway(database.connection, model_key))
+        demo_requests = DEMO_REQUESTS
     return create_app(
-        CaseStore(database.connection),
+        CaseStore(database.connection, planner=planner),
         AuthStore(database.connection),
         origin=f"https://{hostname}",
         trial_id=hostname,
@@ -35,6 +51,7 @@ def application(database: DatabaseConfiguration, *, hostname: str, revision: str
         environment_lock=lock,
         run_limit_minor=10_000,
         allow_public_https=True,
+        demo_requests=demo_requests,
     )
 
 
@@ -44,8 +61,9 @@ def main() -> None:
             DatabaseConfiguration(dsn=SecretStr(os.environ["OLIST_RUNTIME_DATABASE_URL"])),
             hostname=os.environ["OLIST_AZURE_HOSTNAME"],
             revision=os.environ["OLIST_SOURCE_COMMIT"],
+            model_key=SecretStr(key) if (key := os.getenv("OLIST_OPENROUTER_API_KEY")) else None,
         )
-    except (KeyError, OSError, ValueError):
+    except (KeyError, OSError, ValueError, psycopg.Error):
         raise SystemExit("Olist staging startup refused. Check private configuration.") from None
     uvicorn.run(
         app,

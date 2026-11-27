@@ -14,6 +14,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 COPY --from=build /app/.venv .venv/
 COPY olist_azure_staging.py olist_azure_bootstrap.py olist_demo_host.py ./
 COPY olist_demo_fixtures.py olist_demo_acceptance.py uv.lock ./
+COPY olist_demo_planner.py olist_nemotron.py ./
+COPY docs/evaluation/olist_semantic_candidate.py docs/evaluation/
 USER 65532:65532
 EXPOSE 8080
 ENTRYPOINT ["/app/.venv/bin/python", "-m", "olist_azure_staging"]

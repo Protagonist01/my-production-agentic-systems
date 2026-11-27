@@ -1427,6 +1427,7 @@ dependencies = [
 [package.optional-dependencies]
 web = [
     { name = "fastapi" },
+    { name = "httpx" },
     { name = "langgraph" },
     { name = "langgraph-checkpoint-postgres" },
     { name = "langsmith" },
@@ -1441,6 +1442,7 @@ workflow = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", marker = "extra == 'web'", specifier = "==0.150.0" },
+    { name = "httpx", marker = "extra == 'web'", specifier = "==0.28.1" },
     { name = "langgraph", marker = "extra == 'workflow'", specifier = "==1.2.15" },
     { name = "langgraph-checkpoint-postgres", marker = "extra == 'workflow'", specifier = "==3.2.0" },
     { name = "langsmith", marker = "extra == 'workflow'", specifier = "==0.14.8" },
