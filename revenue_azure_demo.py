@@ -3,12 +3,14 @@
 import argparse
 import os
 import re
+from typing import Any
 
 import psycopg
 import uvicorn
 from psycopg.conninfo import conninfo_to_dict
 from revenue_integrity.console_auth import AuthStore, provision, setup_console
 from revenue_integrity.operations import OperationStore, enroll, setup
+from starlette.types import ASGIApp
 
 from revenue_demo import DemoService, principal, provisioned_records
 from revenue_demo_web import application
@@ -17,22 +19,25 @@ from revenue_profiling import Recorder
 SCHEMAS = ["revenue", "revenue_app"]
 
 
-def database_options(dsn: str):
+def database_options(dsn: str) -> dict[str, str | int | None]:
     options = conninfo_to_dict(dsn)
-    host = options.get("host", "")
+    host = options.get("host")
+    database = options.get("dbname")
     if (
         options.get("sslmode") != "verify-full"
+        or not isinstance(host, str)
         or not re.fullmatch(r"[a-z0-9.-]+\.postgres\.database\.azure\.com", host)
         or "hostaddr" in options
         or not options.get("password")
         or not options.get("user")
-        or not options.get("dbname", "").startswith("revenue_demo_")
+        or not isinstance(database, str)
+        or not database.startswith("revenue_demo_")
     ):
         raise ValueError("dedicated Azure PostgreSQL demo database and verified TLS required")
     return options
 
 
-def bootstrap():
+def bootstrap() -> None:
     url = os.environ["REVENUE_DEMO_ADMIN_DSN"]
     database_options(url)
     role = os.environ["REVENUE_DEMO_RUNTIME_ROLE"]
@@ -57,17 +62,22 @@ def bootstrap():
         setup_console(admin, role)
         for record in provisioned_records():
             enroll(admin, record)
-        for name, password in (("operator", operator), ("reviewer", reviewer)):
-            provision(admin, principal(name), password)
+        provision(admin, principal("operator"), operator)
+        provision(admin, principal("reviewer"), reviewer)
 
 
-def runtime():
+def runtime() -> ASGIApp:
     hostname = os.environ["REVENUE_DEMO_HOSTNAME"]
     url = os.environ["REVENUE_DEMO_RUNTIME_DSN"]
     database_options(url)
 
-    def connect():
-        return psycopg.connect(url, connect_timeout=5, options="-c statement_timeout=5000")
+    def connect() -> psycopg.Connection[tuple[Any, ...]]:
+        return psycopg.connect(
+            url,
+            connect_timeout=2,
+            options="-c statement_timeout=5000 -c lock_timeout=1000",
+            application_name="revenue-demo",
+        )
 
     with connect() as db:
         if (
@@ -84,6 +94,19 @@ def runtime():
             ).fetchone()
         ):
             raise ValueError("runtime must not have database administration privileges")
+        if not db.execute(
+            "SELECT 1 FROM pg_roles WHERE rolname=current_user AND rolconnlimit BETWEEN 1 AND 8"
+        ).fetchone():
+            raise ValueError("a database connection budget of at most eight is required")
+
+    def ready() -> bool:
+        try:
+            with connect() as db:
+                db.execute("SET LOCAL statement_timeout=500")
+                return db.execute("SELECT 1 FROM revenue.records LIMIT 1").fetchone() == (1,)
+        except psycopg.Error:
+            return False
+
     auth = AuthStore(connect)
     service = DemoService(OperationStore(connect), Recorder(limit=10000))
     for name in ("operator", "reviewer"):
@@ -93,11 +116,16 @@ def runtime():
         for case in service.catalog.values():
             service._record(user, case)
     return application(
-        service, auth, origin=f"https://{hostname}", trial_id=hostname, allow_hosted_demo=True
+        service,
+        auth,
+        origin=f"https://{hostname}",
+        trial_id=hostname,
+        allow_hosted_demo=True,
+        ready=ready,
     )
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=("bootstrap", "serve"))
     mode = parser.parse_args().mode

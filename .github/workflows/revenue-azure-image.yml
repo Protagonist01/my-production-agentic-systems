@@ -1,0 +1,73 @@
+name: Publish Revenue recording image
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Full main commit with a successful Foundation CI run
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: revenue-recording-image
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'Protagonist01/my-production-agentic-systems' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      actions: read
+      contents: read
+      packages: write
+    env:
+      SOURCE_SHA: ${{ inputs.source_sha }}
+    steps:
+      - name: Verify the selected main commit passed CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          [[ "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          passed=$(gh api -X GET "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs" \
+            -f branch=main -f event=push -f status=success -f head_sha="$SOURCE_SHA" \
+            --jq '.workflow_runs[0].head_sha // ""')
+          test "$passed" = "$SOURCE_SHA"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.SOURCE_SHA }}
+          persist-credentials: false
+      - name: Build and smoke-test the image
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          image="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/production-agents-revenue-recording:sha-$SOURCE_SHA"
+          echo "REVENUE_IMAGE=$image" >> "$GITHUB_ENV"
+          docker build --platform linux/amd64 \
+            --label "org.opencontainers.image.source=https://github.com/$GITHUB_REPOSITORY" \
+            --label "org.opencontainers.image.revision=$SOURCE_SHA" \
+            -f containers/revenue-azure/Dockerfile -t "$image" .
+          docker run --rm --network none --cap-drop ALL \
+            --entrypoint /app/.venv/bin/python "$image" \
+            -c 'import os, revenue_azure_demo; assert os.getuid() == 65532'
+          status=0
+          output=$(docker run --rm --network none --cap-drop ALL "$image" 2>&1) || status=$?
+          test "$status" -eq 1
+          grep -Fq 'Revenue Azure demo startup refused.' <<< "$output"
+      - name: Publish the tested image and record its digest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          export DOCKER_CONFIG
+          DOCKER_CONFIG=$(mktemp -d)
+          trap 'docker logout ghcr.io >/dev/null 2>&1 || true; rm -rf "$DOCKER_CONFIG"' EXIT
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker push "$REVENUE_IMAGE"
+          ref=$(docker image inspect --format '{{index .RepoDigests 0}}' "$REVENUE_IMAGE")
+          [[ "$ref" == "${REVENUE_IMAGE%:*}@sha256:"* ]]
+          [[ "${ref##*@sha256:}" =~ ^[0-9a-f]{64}$ ]]
+          printf 'Source commit `%s`\n\nAzure image `%s`\n' "$SOURCE_SHA" "$ref" >> "$GITHUB_STEP_SUMMARY"

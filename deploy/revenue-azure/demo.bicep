@@ -55,14 +55,24 @@ resource app 'Microsoft.App/containerApps@2025-01-01' = {
           ]
           probes: [
             {
+              type: 'Liveness'
+              httpGet: {
+                path: '/health/live'
+                port: 8080
+                httpHeaders: [{ name: 'Host', value: hostname }]
+              }
+              periodSeconds: 15
+              timeoutSeconds: 3
+            }
+            {
               type: 'Readiness'
               httpGet: {
-                path: '/walkthrough'
+                path: '/health/ready'
                 port: 8080
                 httpHeaders: [{ name: 'Host', value: hostname }]
               }
               periodSeconds: 10
-              timeoutSeconds: 3
+              timeoutSeconds: 4
             }
           ]
         }
