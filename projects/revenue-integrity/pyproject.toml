@@ -6,7 +6,7 @@ requires-python = ">=3.12,<3.14"
 dependencies = ["production-agent-harness"]
 
 [project.optional-dependencies]
-web = ["fastapi==0.150.0", "uvicorn==0.54.0"]
+web = ["fastapi==0.150.0", "uvicorn==0.54.0", "httpx==0.28.1"]
 events = ["inngest==0.5.19"]
 
 [build-system]

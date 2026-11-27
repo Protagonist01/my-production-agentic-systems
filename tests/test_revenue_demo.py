@@ -179,3 +179,72 @@ def test_failed_bootstrap_keeps_private_credential_and_resume_refuses_identity_c
     with pytest.raises(ValueError):
         bootstrap(root, "owned-demo", credential, resume=True)
     assert len(calls) == 2
+
+
+@pytest.mark.parametrize("model_status", ["verified", "wrong_value", "unavailable", "exhausted"])
+def test_live_model_receipt_required_for_proposal(model_status):
+    from revenue_demo_model import Answer, Evidence
+
+    class Receipts:
+        accepted_slots = set()
+
+        def reserve(self, actor, digest):
+            self.binding = actor, digest
+            return None if model_status == "exhausted" else 1
+
+        def accept(self, slot):
+            self.accepted_slots.add(slot)
+
+        def accepted(self, actor, digest):
+            return bool(self.accepted_slots) and self.binding == (actor, digest)
+
+    calls = []
+    receipts = Receipts()
+    user = principal("operator")
+    exact = payload(cases()[0])
+
+    def extract(document):
+        calls.append(document)
+        if model_status == "unavailable":
+            raise ValueError("provider unavailable")
+        return Answer(
+            evidence=(
+                Evidence(field="seats", value=3, quote="seats=3"),
+                Evidence(
+                    field="unit_price_minor",
+                    value=1001 if model_status == "wrong_value" else 1000,
+                    quote="unit_price_minor=1000",
+                ),
+            )
+        )
+
+    store = ReadOnlyStore()
+    service = DemoService(store, Recorder(), model=(extract, receipts))
+    unrelated = exact.model_copy(update={"question": "Write a birthday poem."})
+    edited = exact.model_copy(update={"document": exact.document + " user text"})
+    assert service.analyze(user, unrelated)["action"] == "outside_scope"
+    assert service.analyze(user, edited)["action"] == "deny"
+    assert not calls and not hasattr(receipts, "binding")
+
+    result = service.analyze(user, exact)
+    assert result["execution_mode"] == "openrouter_nemotron"
+    assert calls == ([] if model_status == "exhausted" else [exact.document])
+    submission = Propose(
+        analysis=exact,
+        expected_version=0,
+        analysis_digest=result["analysis_digest"],
+        operation_id="bounded-model",
+    )
+    if model_status == "verified":
+        assert result["action"] == "proposable"
+        assert result["delta_minor"] == 500
+        assert {item["field"] for item in result["citations"]} == {"seats", "unit_price_minor"}
+        with pytest.raises(AssertionError, match="analysis must not write"):
+            service.propose_checked(user, submission)
+        assert store.writes == 1
+    else:
+        assert result["action"] == "review" and result["delta_minor"] is None
+        with pytest.raises(ValueError, match="model_assessment_required"):
+            service.propose_checked(user, submission)
+        assert store.writes == 0
+    assert len(calls) == (0 if model_status == "exhausted" else 1)

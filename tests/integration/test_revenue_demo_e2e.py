@@ -1,13 +1,17 @@
 """Actual SQL + authenticated HTTP: source -> proposal -> review -> receipt -> restart."""
 
 import hashlib
+from concurrent.futures import ThreadPoolExecutor
 
+import psycopg
+import pytest
 from fastapi.testclient import TestClient
 from revenue_integrity.console_auth import AuthStore, provision, setup_console
 from revenue_integrity.operations import OperationStore, enroll
 from test_revenue_operations import app as app
 
 from revenue_demo import DemoService, cases, principal, provisioned_records
+from revenue_demo_model import ModelReceipts, setup_model_receipts
 from revenue_demo_web import application
 from revenue_profiling import Recorder
 
@@ -143,3 +147,29 @@ def test_entire_constructed_walkthrough_rejects_bypasses_and_survives_reconstruc
     )
     assert op2.post("/api/logout", json={}, headers=oh2).status_code == 200
     assert op2.get("/walkthrough-api/cases").status_code == 403
+
+
+def test_model_allowance_is_atomic_persistent_and_insert_only(app):
+    server, trial, _ = app
+    with server.connect(trial.name) as admin:
+        setup_console(admin, trial.name)
+        setup_model_receipts(admin, trial.name)
+
+    def connect():
+        return server.connect_trial(trial)
+
+    def reserve(index):
+        return ModelReceipts(connect).reserve("demo-operator", f"case-{index}")
+
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        slots = list(executor.map(reserve, range(16)))
+    assert sorted(slot for slot in slots if slot is not None) == list(range(1, 13))
+    receipts = ModelReceipts(connect)
+    assert receipts.reserve("demo-operator", "after-restart") is None
+    index = slots.index(1)
+    assert not receipts.accepted("demo-operator", f"case-{index}")
+    receipts.accept(1)
+    assert ModelReceipts(connect).accepted("demo-operator", f"case-{index}")
+    assert not receipts.accepted("demo-reviewer", f"case-{index}")
+    with pytest.raises(psycopg.errors.InsufficientPrivilege), connect() as db:
+        db.execute("DELETE FROM revenue_app.model_attempts WHERE slot = 2")

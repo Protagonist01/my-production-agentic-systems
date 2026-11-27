@@ -4,118 +4,95 @@
     <meta charset="utf-8" />
     <meta name="csrf-cookie" content="__CSRF_COOKIE__" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Revenue / Integrity workbench</title>
+    <meta name="color-scheme" content="light dark" />
+    <title>Revenue Integrity · Billing control desk</title>
     <link rel="stylesheet" href="/assets/console.css" />
     <script src="/assets/console.js" defer></script>
   </head>
   <body>
-    <aside class="rail">
-      <a class="wordmark" href="/" aria-label="Revenue integrity home"
-        ><span class="mark">R<span>/</span>I</span
-        ><span>REVENUE<br />INTEGRITY</span></a
-      >
-      <div class="rail-rule"></div>
-      <p class="eyebrow">OPERATIONS / 01</p>
-      <h1>Every change.<br />A clear record.</h1>
-      <p class="rail-copy">
-        Review findings, authorize exact changes and follow the ledger.
-      </p>
-      <div class="rail-bottom">
-        <span class="live-dot"></span> CONTROLLED WORKSPACE
-        <p>SIMULATION UNIT · SIM</p>
-        <p>
-          100.00 maximum absolute correction per invoice. Separate reviewer
-          required.
-        </p>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Revenue Integrity home">
+        <span class="brand-mark" aria-hidden="true">RI</span>
+        <span class="brand-name">Revenue Integrity</span>
+      </a>
+      <span class="sim-pill"><span class="dot" aria-hidden="true"></span>SIMULATION UNIT · SIM</span>
+      <div id="identity" class="identity" hidden>
+        <span id="who" class="who"></span>
+        <button id="logout" class="ghost small">Sign out</button>
       </div>
-    </aside>
-    <main>
-      <header class="topbar">
-        <span class="eyebrow">BILLING CONTROL DESK</span>
-        <div id="identity" hidden>
-          <span id="who"></span
-          ><button id="logout" class="text-button">Sign out</button>
+    </header>
+
+    <main class="shell">
+      <div id="notice" class="toast" role="status" aria-live="polite" hidden></div>
+
+      <section id="login-panel" class="login">
+        <div class="login-intro">
+          <p class="eyebrow">Billing control desk</p>
+          <h1>Every change, a clear record.</h1>
+          <p class="lede">
+            Review findings, authorize exact changes and follow the append-only ledger. A separate
+            reviewer is always required.
+          </p>
+          <ul class="facts">
+            <li><strong>100.00 SIM</strong><span>max correction per invoice</span></li>
+            <li><strong>2 people</strong><span>operator proposes, reviewer approves</span></li>
+            <li><strong>1 receipt</strong><span>per operation, even on retry</span></li>
+          </ul>
         </div>
-      </header>
-      <div id="notice" role="status" aria-live="polite" hidden></div>
-      <section id="login-panel" class="login-panel">
-        <p class="eyebrow">RESTRICTED ACCESS</p>
-        <h2>Open your workbench.</h2>
-        <p class="muted">
-          Sign in with your provisioned operator or reviewer account.
-        </p>
-        <form id="login-form">
-          <label for="username">Username</label
-          ><input
-            id="username"
-            autocomplete="username"
-            required
-            maxlength="64"
-          /><label for="password">Password</label
-          ><input
-            id="password"
-            type="password"
-            autocomplete="current-password"
-            required
-            maxlength="128"
-          /><button class="primary" type="submit">
-            Sign in <span aria-hidden="true">↗</span>
-          </button>
+        <form id="login-form" class="card login-card">
+          <h2>Sign in</h2>
+          <p class="muted">Use your provisioned operator or reviewer account.</p>
+          <label for="username">Username</label>
+          <input id="username" autocomplete="username" required maxlength="64" />
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" required maxlength="128" />
+          <button class="primary block" type="submit">Continue <span aria-hidden="true">↗</span></button>
+          <p class="fine">Your session is scoped to the records assigned to your account.</p>
         </form>
-        <p class="small muted">
-          Your session is scoped to the records assigned to your account.
-        </p>
       </section>
+
       <section id="workspace" hidden>
         <div class="page-heading">
           <div>
-            <p class="eyebrow">THE CURRENT POSITION</p>
+            <p class="eyebrow">Current position</p>
             <h2>Reconcile. Review. Record.</h2>
           </div>
-          <div>
-            <span id="updated" class="small muted"></span
-            ><button id="refresh" class="secondary">Refresh</button>
+          <div class="heading-actions">
+            <span id="updated" class="small muted"></span>
+            <button id="refresh" class="ghost small">Refresh</button>
           </div>
         </div>
-        <div
-          id="totals"
-          class="totals"
-          aria-label="Simulated amount stages"
-        ></div>
-        <p class="stage-note">
-          Stages overlap: approved includes applied. Applied is gross
-          corrections; compensation and net ledger movement are reported
-          separately. All amounts are SIM, not recovered revenue.
-        </p>
+
+        <div id="totals" class="totals" aria-label="Simulated amount stages"></div>
         <div id="net" class="net-strip"></div>
+        <p class="stage-note">
+          Stages overlap: approved includes applied. Applied is gross corrections; compensation and
+          net ledger movement are reported separately. All amounts are SIM, not recovered revenue.
+        </p>
+
         <nav class="tabs" aria-label="Workbench views">
-          <button class="active" data-view="findings">
-            Findings <span id="finding-count"></span></button
-          ><button data-view="reviews">
-            Review queue <span id="review-count"></span></button
-          ><button data-view="ledger">
-            Action ledger <span id="ledger-count"></span></button
+          <button class="active" data-view="findings">Findings <span id="finding-count"></span></button
+          ><button data-view="reviews">Review queue <span id="review-count"></span></button
+          ><button data-view="ledger">Action ledger <span id="ledger-count"></span></button
           ><button data-view="accounts">Accounts</button>
         </nav>
-        <section id="view-findings" class="view">
+
+        <section id="view-findings" class="view card">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">AUTHORITATIVE SOURCE FACTS</p>
               <h3>Invoice differences</h3>
+              <p class="small muted">Authoritative source facts compared with what was billed.</p>
             </div>
-            <p class="small muted">
-              A finding proposes a change.<br />Approval authorizes it. The
-              ledger proves it.
-            </p>
+            <p class="small muted legend">A finding proposes. Approval authorizes. The ledger proves.</p>
           </div>
           <div class="table-scroll">
             <table>
               <thead>
                 <tr>
-                  <th>Invoice / version</th>
-                  <th>Current</th>
-                  <th>Should be</th>
-                  <th>Difference</th>
+                  <th>Invoice</th>
+                  <th class="num">Current</th>
+                  <th class="num">Should be</th>
+                  <th class="num">Difference</th>
                   <th>Disposition</th>
                   <th><span class="sr-only">Action</span></th>
                 </tr>
@@ -124,75 +101,72 @@
             </table>
           </div>
           <p class="empty" id="findings-empty" hidden>
-            No scoped invoices are available. A trusted administrator can enroll
-            constructed billing worlds.
+            No scoped invoices are available. A trusted administrator can enroll constructed billing
+            worlds.
           </p>
         </section>
-        <section id="view-reviews" class="view" hidden>
+
+        <section id="view-reviews" class="view card" hidden>
           <div class="section-heading">
             <div>
-              <p class="eyebrow">EXACT PAYLOAD · SEPARATE REVIEWER</p>
               <h3>Changes awaiting a decision</h3>
+              <p class="small muted">Exact payload, separate reviewer.</p>
             </div>
-            <button id="sweep" class="secondary">
-              Reconcile expired waits
-            </button>
+            <button id="sweep" class="ghost small">Reconcile expired waits</button>
           </div>
           <div id="proposals" class="proposal-list"></div>
           <p class="empty" id="proposals-empty" hidden>
-            The review queue is clear. Propose a correction from the findings
-            view.
+            The review queue is clear. Propose a correction from the findings view.
           </p>
         </section>
-        <section id="view-ledger" class="view" hidden>
+
+        <section id="view-ledger" class="view card" hidden>
           <div class="section-heading">
             <div>
-              <p class="eyebrow">APPEND-ONLY EFFECT RECORD</p>
               <h3>Applied actions &amp; compensation</h3>
+              <p class="small muted">Append-only effect record.</p>
             </div>
-            <p class="small muted">
-              An approved compensation is a new action.<br />Later legitimate
-              changes are protected.
+            <p class="small muted legend">
+              Compensation is a new approved action. Later legitimate changes are protected.
             </p>
           </div>
           <div class="table-scroll">
             <table>
               <thead>
                 <tr>
-                  <th>Committed / operation</th>
+                  <th>Committed</th>
                   <th>Action</th>
                   <th>Resource</th>
-                  <th>Versions</th>
-                  <th>Movement</th>
-                  <th></th>
+                  <th class="num">Versions</th>
+                  <th class="num">Movement</th>
+                  <th><span class="sr-only">Action</span></th>
                 </tr>
               </thead>
               <tbody id="ledger"></tbody>
             </table>
           </div>
-          <p class="empty" id="ledger-empty" hidden>
-            No actions have been committed.
-          </p>
+          <p class="empty" id="ledger-empty" hidden>No actions have been committed.</p>
         </section>
-        <section id="view-accounts" class="view" hidden>
+
+        <section id="view-accounts" class="view card" hidden>
           <div class="section-heading">
             <div>
-              <p class="eyebrow">LIMITED CRM HYGIENE</p>
               <h3>Account relationships</h3>
+              <p class="small muted">Limited CRM hygiene.</p>
             </div>
-            <p class="small muted">
-              Only surrounding note whitespace can be trimmed automatically.<br />Merges
-              create an approved alias and preserve invoice history.
+            <p class="small muted legend">
+              Only surrounding note whitespace can be trimmed automatically. Merges create an approved
+              alias and preserve invoice history.
             </p>
           </div>
           <div class="table-scroll">
             <table>
               <thead>
                 <tr>
-                  <th>Account / version</th>
+                  <th>Account</th>
                   <th>Internal note</th>
                   <th>Alias target</th>
-                  <th></th>
+                  <th><span class="sr-only">Action</span></th>
                 </tr>
               </thead>
               <tbody id="accounts"></tbody>
@@ -200,36 +174,33 @@
           </div>
           <form id="merge-form" class="merge-form">
             <h4>Propose an account alias</h4>
-            <label
-              >Source account<select id="merge-source" required></select></label
-            ><span aria-hidden="true">→</span
-            ><label
-              >Canonical target<select
-                id="merge-target"
-                required
-              ></select></label
-            ><button class="secondary" type="submit">Propose merge</button>
+            <label>Source account<select id="merge-source" required></select></label
+            ><span class="merge-arrow" aria-hidden="true">→</span
+            ><label>Canonical target<select id="merge-target" required></select></label
+            ><button class="primary" type="submit">Propose merge</button>
           </form>
         </section>
-        <footer>
-          <span>INDEPENDENT REVIEW. PERMANENT RECEIPTS.</span
-          ><span>All amounts simulated · no live billing connection</span>
-        </footer>
       </section>
     </main>
-    <dialog id="review-dialog">
-      <form method="dialog">
+
+    <footer class="footer">
+      <span>Independent review · permanent receipts</span>
+      <span>All amounts simulated · no live billing connection</span>
+    </footer>
+
+    <dialog id="review-dialog" class="confirm">
+      <form method="dialog" class="dialog-close-form">
         <button class="dialog-close" aria-label="Close review">×</button>
       </form>
-      <p class="eyebrow">REVIEW EXACT ACTION</p>
+      <p class="eyebrow">Review exact action</p>
       <h3>Confirm the change.</h3>
       <p class="muted">
-        Your decision binds this payload and its record versions. Approval
-        cannot override eligibility or the adjustment cap.
+        Your decision binds this payload and its record versions. Approval cannot override
+        eligibility or the adjustment cap.
       </p>
       <dl id="review-details"></dl>
       <div class="dialog-actions">
-        <button id="reject" class="secondary">Reject</button
+        <button id="reject" class="ghost">Reject</button
         ><button id="approve" class="primary">Approve exact change</button>
       </div>
     </dialog>

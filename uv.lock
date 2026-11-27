@@ -1492,12 +1492,14 @@ events = [
 ]
 web = [
     { name = "fastapi" },
+    { name = "httpx" },
     { name = "uvicorn" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "fastapi", marker = "extra == 'web'", specifier = "==0.150.0" },
+    { name = "httpx", marker = "extra == 'web'", specifier = "==0.28.1" },
     { name = "inngest", marker = "extra == 'events'", specifier = "==0.5.19" },
     { name = "production-agent-harness", editable = "harness" },
     { name = "uvicorn", marker = "extra == 'web'", specifier = "==0.54.0" },

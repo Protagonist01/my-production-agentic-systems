@@ -13,6 +13,7 @@ from revenue_integrity.operations import OperationStore, enroll, setup
 from starlette.types import ASGIApp
 
 from revenue_demo import DemoService, principal, provisioned_records
+from revenue_demo_model import ModelReceipts, OpenRouterAssessment, setup_model_receipts
 from revenue_demo_web import application
 from revenue_profiling import Recorder
 
@@ -66,6 +67,14 @@ def bootstrap() -> None:
         provision(admin, principal("reviewer"), reviewer)
 
 
+def enable_model() -> None:
+    url = os.environ["REVENUE_DEMO_ADMIN_DSN"]
+    database_options(url)
+    role = os.environ["REVENUE_DEMO_RUNTIME_ROLE"]
+    with psycopg.connect(url, connect_timeout=5) as db:
+        setup_model_receipts(db, role)
+
+
 def runtime() -> ASGIApp:
     hostname = os.environ["REVENUE_DEMO_HOSTNAME"]
     url = os.environ["REVENUE_DEMO_RUNTIME_DSN"]
@@ -108,7 +117,15 @@ def runtime() -> ASGIApp:
             return False
 
     auth = AuthStore(connect)
-    service = DemoService(OperationStore(connect), Recorder(limit=10000))
+    key = os.environ.get("REVENUE_DEMO_OPENROUTER_KEY")
+    if os.environ.get("REVENUE_DEMO_MODEL_REQUIRED") == "1" and not key:
+        raise ValueError("Revenue model configuration is required")
+    model = (OpenRouterAssessment(key), ModelReceipts(connect)) if key else None
+    if model:
+        with connect() as db:
+            db.execute("SELECT slot FROM revenue_app.model_attempts LIMIT 1")
+            db.execute("SELECT slot FROM revenue_app.model_receipts LIMIT 1")
+    service = DemoService(OperationStore(connect), Recorder(limit=10000), model=model)
     for name in ("operator", "reviewer"):
         user = principal(name)
         if auth.principal_for(user.tenant_id, user.username) != user:
@@ -127,11 +144,14 @@ def runtime() -> ASGIApp:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("mode", choices=("bootstrap", "serve"))
+    parser.add_argument("mode", choices=("bootstrap", "enable-model", "serve"))
     mode = parser.parse_args().mode
     try:
         if mode == "bootstrap":
             bootstrap()
+            return
+        if mode == "enable-model":
+            enable_model()
             return
         app = runtime()
     except (KeyError, OSError, ValueError, PermissionError, psycopg.Error):

@@ -63,6 +63,7 @@ function harness(initialRestore) {
         children: [],
         options: [],
         dataset: {},
+        classList: { toggle() {} },
         addEventListener() {},
         append(...items) {
           this.children.push(...items);
@@ -91,6 +92,8 @@ function harness(initialRestore) {
   const context = vm.createContext({
     console,
     URL,
+    clearTimeout,
+    setTimeout: () => 0,
     Date,
     BigInt,
     Number,
