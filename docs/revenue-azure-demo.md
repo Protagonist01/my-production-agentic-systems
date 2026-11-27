@@ -1,0 +1,11 @@
+# Revenue Integrity Azure recording demo
+
+Run the constructed walkthrough on a distinct Container App in the existing Azure staging environment. Use fictional inputs, a separate PostgreSQL database named `revenue_demo_*`, separate least-privilege roles, and separate operator and reviewer passwords. The runtime has no model key or external billing integration. The model evaluation is recorded in [the signed public reference report](revenue-r7-signed-public-records.md).
+
+1. Build the Linux/amd64 image from the locked workspace. Publish the reviewed image to the repository's existing registry workflow and retain its digest. Use the digest in the deployment.
+2. Create the dedicated database and runtime login through an authorized database administrator. Use the same private network as the Container Apps environment. Both connections must verify the database hostname. Supply the appropriate CA through the libpq connection configuration. Keep the Olist database, roles and credentials out of this runtime.
+3. Run the image once as a trusted bootstrap job with the `bootstrap` argument. Provide `REVENUE_DEMO_ADMIN_DSN`, `REVENUE_DEMO_RUNTIME_ROLE`, `REVENUE_DEMO_OPERATOR_PASSWORD` and `REVENUE_DEMO_REVIEWER_PASSWORD` through job-scoped secrets. Bootstrap refuses existing Revenue schemas. The serving revision receives only its own runtime DSN.
+4. Compile and preview the template in [deploy/revenue-azure/demo.bicep](../deploy/revenue-azure/demo.bicep). Use the existing Canada Central environment, a dedicated app name and the recording workstation's approved IPv4 address. Review the preview to confirm it creates only the Revenue app and never replaces an existing app. Supply the runtime DSN as a secure parameter.
+5. From the allowed workstation, verify the HTTPS walkthrough and anonymous invoice-route denial. Sign in separately as operator and reviewer. Ask for a correction to the constructed invoice, approve it with the reviewer, apply it with the operator, then replay the same operation and confirm the same receipt and one ledger change. Keep both passwords off-screen. See the [walkthrough](revenue-walkthrough.md).
+
+The model comparison remains a development evaluation. Customer billing and production release are tracked in [#45](https://github.com/Protagonist01/my-production-agentic-systems/issues/45).

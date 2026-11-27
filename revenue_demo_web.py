@@ -18,8 +18,18 @@ from revenue_profiled_runtime import ProfiledHTTP
 ROOT = Path(__file__).resolve().parent
 
 
-def application(service: DemoService, auth: AuthStore, *, origin: str, trial_id: str) -> ASGIApp:
-    app = create_app(service, auth, origin=origin, trial_id=trial_id)
+def application(
+    service: DemoService,
+    auth: AuthStore,
+    *,
+    origin: str,
+    trial_id: str,
+    allow_hosted_demo: bool = False,
+) -> ASGIApp:
+    origin = origin.rstrip("/")
+    app = create_app(
+        service, auth, origin=origin, trial_id=trial_id, allow_hosted_demo=allow_hosted_demo
+    )
     suffix = hashlib.sha256(trial_id.encode()).hexdigest()[:12]
     cookie = "revenue_session_" + suffix
     csrf_cookie = "revenue_csrf_" + suffix

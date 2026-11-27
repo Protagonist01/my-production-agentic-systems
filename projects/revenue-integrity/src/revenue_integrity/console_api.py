@@ -79,18 +79,25 @@ def create_app(
     origin: str,
     trial_id: str,
     publish: Callable[[Wake, bool], None] | None = None,
+    allow_hosted_demo: bool = False,
 ) -> FastAPI:
     parsed = urlsplit(origin)
+    hosted = (
+        allow_hosted_demo
+        and parsed.scheme == "https"
+        and parsed.hostname is not None
+        and parsed.hostname.endswith(".azurecontainerapps.io")
+        and parsed.netloc == parsed.hostname
+    )
     if (
-        parsed.scheme != "http"
-        or parsed.hostname not in ("127.0.0.1", "localhost")
+        not (hosted or (parsed.scheme == "http" and parsed.hostname in ("127.0.0.1", "localhost")))
         or parsed.username
         or parsed.password
         or parsed.query
         or parsed.fragment
         or parsed.path not in ("", "/")
     ):
-        raise ValueError("explicit loopback origin required")
+        raise ValueError("explicit loopback origin or opt-in Azure HTTPS demo origin required")
     origin = origin.rstrip("/")
     suffix = hashlib.sha256(trial_id.encode()).hexdigest()[:12]
     cookie, csrf_cookie = "revenue_session_" + suffix, "revenue_csrf_" + suffix
@@ -189,10 +196,22 @@ def create_app(
             {"username": user.username, "role": user.role, "tenant_id": user.tenant_id}
         )
         response.set_cookie(
-            cookie, token, httponly=True, samesite="strict", max_age=SESSION_SECONDS, path="/"
+            cookie,
+            token,
+            secure=hosted,
+            httponly=True,
+            samesite="strict",
+            max_age=SESSION_SECONDS,
+            path="/",
         )
         response.set_cookie(
-            csrf_cookie, csrf, httponly=False, samesite="strict", max_age=SESSION_SECONDS, path="/"
+            csrf_cookie,
+            csrf,
+            secure=hosted,
+            httponly=False,
+            samesite="strict",
+            max_age=SESSION_SECONDS,
+            path="/",
         )
         return response
 
@@ -201,8 +220,8 @@ def create_app(
         principal(request, mutation=True)
         auth.logout(request.cookies.get(cookie, ""))
         response = JSONResponse({"signed_out": True})
-        response.delete_cookie(cookie)
-        response.delete_cookie(csrf_cookie)
+        response.delete_cookie(cookie, secure=hosted)
+        response.delete_cookie(csrf_cookie, secure=hosted)
         return response
 
     @app.get("/api/session")
