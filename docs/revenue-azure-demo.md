@@ -12,13 +12,12 @@ The [shared operating plan](azure-agent-database-operations.md) names `revenue_d
 
 The model comparison remains a development evaluation. Customer billing and production release are tracked in [#45](https://github.com/Protagonist01/my-production-agentic-systems/issues/45).
 
-
 ## Bounded model rollout
 
-Run \`python -m revenue_azure_demo enable-model\` once in a private migration job with
+Run `python -m revenue_azure_demo enable-model` once in a private migration job with
 the existing Revenue migration credentials and runtime role. It creates the
 insert-only attempt and receipt tables without changing billing records.
-Set \`REVENUE_DEMO_MODEL_REQUIRED=1\` and map \`REVENUE_DEMO_OPENROUTER_KEY\` from an
+Set `REVENUE_DEMO_MODEL_REQUIRED=1` and map `REVENUE_DEMO_OPENROUTER_KEY` from an
 Azure secret on the demo app. Leave migration credentials out of the web app.
 
 The signed-in workflow can send the exact registered fictional agreement to
