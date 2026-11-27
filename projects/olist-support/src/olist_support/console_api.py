@@ -391,12 +391,14 @@ def create_app(
     customer_intents = CustomerIntentStore(cases)
 
     def customer_result(case: CaseRecord) -> dict[str, Any]:
+        receipt = case.result.receipt if case.result else None
         return {
             "case_id": case.case_id,
             "order_id": case.order_id,
             "status": case.status,
             "message": case.result.message if case.result else "No refund is confirmed.",
             "committed": case.status == "committed",
+            "refund_amount_minor": receipt.amount_minor if receipt else None,
         }
 
     @app.get("/api/customer/cases")

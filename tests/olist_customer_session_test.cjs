@@ -25,7 +25,7 @@ function harness() {
       if (url === "/api/customer/cases") return response([{case_id:offer.case_id,order_id:offer.order_id,committed:false}]);
       if (url.endsWith("/challenge")) return response(offer);
       if (url.endsWith("/confirm")) return response({confirmed:true,committed:false});
-      if (url.endsWith("/execute")) return response({committed:true,message:"Full refund committed in SIM."});
+      if (url.endsWith("/execute")) return response({committed:true,refund_amount_minor:5000,message:"Full refund committed in SIM."});
       return response({});
     }});
   vm.runInContext(source, context);
@@ -37,13 +37,14 @@ function harness() {
 (async()=>{
   const h = harness(); await tick(); await h.login();
   assert.equal(h.node("password").value, ""); await h.open();
-  assert.match(h.node("customer-confirm").textContent,/50\.00 SIM/);
+  assert.equal(h.node("customer-confirm").textContent,"Confirm full refund of $50.00");
   await h.click("customer-cancel");
   assert.equal(h.state().selection,null); assert.equal(h.calls.some(c=>c.url.endsWith("/confirm")),false);
   await h.open(); await h.click("customer-confirm");
   const writes = h.calls.filter(c=>/\/(confirm|execute)$/.test(c.url));
   assert.equal(writes.length,2); assert.deepEqual(writes[0].body,{challenge:offer.challenge,action:"refund",amount_minor:5000,unit:"SIM"});
   assert.deepEqual(writes[1].body,writes[0].body);
+  assert.equal(h.node("customer-notice").textContent,"Simulated refund of $50.00 recorded.");
 
   const late = harness(); await tick(); await late.login();
   const challenge = late.queue("/api/customer/cases/case-one/challenge"), opening = late.open(); await tick();

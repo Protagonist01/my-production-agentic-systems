@@ -15,7 +15,7 @@ const labels = {
   needs_recovery: "Needs recovery",
 };
 const money = (amount) =>
-  `${Math.floor(amount / 100)}.${String(amount % 100).padStart(2, "0")} SIM`;
+  `$${Math.floor(amount / 100)}.${String(amount % 100).padStart(2, "0")}`;
 function element(tag, text, className) {
   const n = document.createElement(tag);
   if (text !== undefined) n.textContent = text;
@@ -221,8 +221,10 @@ function render({ case: c, events }) {
           ? "The approved action could not be applied under current state or limits. Reevaluate and obtain a new decision."
           : c.status === "needs_recovery"
             ? "Execution was interrupted. Retry safely to recover the saved outcome."
-            : c.result?.message ||
-              "Execution is in progress. Refresh to check its outcome.";
+            : c.result?.receipt
+              ? "The simulated refund is recorded in the ledger."
+              : c.result?.message ||
+                "Execution is in progress. Refresh to check its outcome.";
   const receipt = $("receipt");
   receipt.replaceChildren();
   receipt.hidden = !c.result?.receipt;
