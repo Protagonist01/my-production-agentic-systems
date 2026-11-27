@@ -131,17 +131,6 @@ h2 {
 .brand-dot {
   color: #ff9e59;
 }
-.simulation-label {
-  font-size: 10px;
-  letter-spacing: 1px;
-  font-weight: bold;
-  color: #5f6e67;
-  background: #eaf0e9;
-  border: 1px solid #d6e1d3;
-  padding: 5px 9px;
-  border-radius: 5px;
-  white-space: nowrap;
-}
 [hidden] {
   display: none !important;
 }
@@ -176,11 +165,6 @@ h2 {
   color: #b9ccca;
   max-width: 300px;
   margin-bottom: 64px;
-}
-.login-note .simulation-label {
-  color: #d5dfc8;
-  background: #263f41;
-  border-color: #47605b;
 }
 .login-card {
   align-self: center;
@@ -653,9 +637,6 @@ main {
   }
   .header-right {
     gap: 12px;
-  }
-  .header-right .simulation-label {
-    display: none;
   }
   .brand {
     gap: 12px;

@@ -303,6 +303,10 @@ def test_trusted_planner_composition_uses_matching_http_identity_and_exact_custo
         assert case.context.versions.candidate == MODEL_SERVICE_CANDIDATE
         assert case.context.mode == "offline_fake"  # no live scope is enabled by this seam
         assert case.intent_decision.plan.intent == intent and len(gateway.requests) == 1
+        rows = staff.get("/api/cases").json()
+        listed = next(row for row in rows if row["case_id"] == case.case_id)
+        assert listed["intent"] == "refund" and listed["display_intent"] == intent
+        assert staff.get(f"/api/cases/{case.case_id}").json()["display_intent"] == intent
         assert staff.post("/api/cases", json=request, headers=headers).json() == response.json()
     assert observed(console, case) == ((0, 0), (0, 0), 0)
     if intent != "refund":
