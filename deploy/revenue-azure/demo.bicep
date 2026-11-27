@@ -4,8 +4,8 @@ param location string
 param appName string
 @description('Revenue image pinned by linux/amd64 digest.')
 param image string
-@description('Single recording workstation IPv4 address without a prefix.')
-param reviewerAddress string
+@description('Optional recording workstation IPv4 address. Empty permits all networks to reach app sign-in.')
+param reviewerAddress string = ''
 @secure()
 @description('Restricted runtime PostgreSQL DSN with sslmode=verify-full.')
 param runtimeDsn string
@@ -34,7 +34,7 @@ resource app 'Microsoft.App/containerApps@2025-01-01' = {
         allowInsecure: false
         targetPort: 8080
         transport: 'auto'
-        ipSecurityRestrictions: [
+        ipSecurityRestrictions: empty(reviewerAddress) ? [] : [
           {
             name: 'recording-workstation'
             ipAddressRange: '${reviewerAddress}/32'
