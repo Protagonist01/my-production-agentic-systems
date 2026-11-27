@@ -1,6 +1,7 @@
 """Protected walkthrough routes composed with the existing Revenue session/review API."""
 
 import hashlib
+from collections.abc import Callable
 from pathlib import Path
 from typing import cast
 from urllib.parse import urlsplit
@@ -18,12 +19,33 @@ from revenue_profiled_runtime import ProfiledHTTP
 ROOT = Path(__file__).resolve().parent
 
 
-def application(service: DemoService, auth: AuthStore, *, origin: str, trial_id: str) -> ASGIApp:
-    app = create_app(service, auth, origin=origin, trial_id=trial_id)
+def application(
+    service: DemoService,
+    auth: AuthStore,
+    *,
+    origin: str,
+    trial_id: str,
+    allow_hosted_demo: bool = False,
+    ready: Callable[[], bool] | None = None,
+) -> ASGIApp:
+    origin = origin.rstrip("/")
+    app = create_app(
+        service, auth, origin=origin, trial_id=trial_id, allow_hosted_demo=allow_hosted_demo
+    )
     suffix = hashlib.sha256(trial_id.encode()).hexdigest()[:12]
     cookie = "revenue_session_" + suffix
     csrf_cookie = "revenue_csrf_" + suffix
     expected_host = urlsplit(origin).netloc
+
+    if ready is not None:
+
+        @app.get("/health/live")
+        def live() -> Response:
+            return Response(status_code=200)
+
+        @app.get("/health/ready")
+        def readiness() -> Response:
+            return Response(status_code=200 if ready() else 503)
 
     def user(request: Request, *, mutation: bool = False) -> Principal:
         csrf = request.headers.get("x-csrf-token") if mutation else None
