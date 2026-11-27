@@ -1,6 +1,7 @@
-"""Loopback-only Revenue review API; browser inputs never carry authority."""
+"""Scoped Revenue review API; browser inputs never carry authority."""
 
 import hashlib
+import re
 import secrets
 from collections.abc import Callable
 from importlib.resources import files
@@ -79,18 +80,34 @@ def create_app(
     origin: str,
     trial_id: str,
     publish: Callable[[Wake, bool], None] | None = None,
+    allow_public_https: bool = False,
 ) -> FastAPI:
     parsed = urlsplit(origin)
+    hostname = parsed.hostname
+    public = (
+        allow_public_https
+        and parsed.scheme == "https"
+        and hostname is not None
+        and len(hostname) <= 253
+        and "." in hostname
+        and any(char.isalpha() and char.isascii() for char in hostname)
+        and all(
+            re.fullmatch(r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?", label)
+            for label in hostname.split(".")
+        )
+        and origin.removesuffix("/") == "https://" + hostname
+    )
+    local = parsed.scheme == "http" and hostname in ("127.0.0.1", "localhost")
     if (
-        parsed.scheme != "http"
-        or parsed.hostname not in ("127.0.0.1", "localhost")
+        not (public or local)
         or parsed.username
         or parsed.password
         or parsed.query
         or parsed.fragment
         or parsed.path not in ("", "/")
     ):
-        raise ValueError("explicit loopback origin required")
+        raise ValueError("explicit loopback or canonical HTTPS origin required")
+    assert hostname is not None
     origin = origin.rstrip("/")
     suffix = hashlib.sha256(trial_id.encode()).hexdigest()[:12]
     cookie, csrf_cookie = "revenue_session_" + suffix, "revenue_csrf_" + suffix
@@ -98,7 +115,7 @@ def create_app(
         title="Revenue integrity workbench", docs_url=None, redoc_url=None, openapi_url=None
     )
     app.add_middleware(BodyLimit)
-    app.add_middleware(TrustedHostMiddleware, allowed_hosts=[parsed.hostname])
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=[hostname])
 
     def same_origin(request: Request) -> None:
         if (
@@ -131,6 +148,8 @@ def create_app(
                 ),
             }
         )
+        if public:
+            response.headers["Strict-Transport-Security"] = "max-age=31536000"
         return response
 
     @app.exception_handler(RequestValidationError)
@@ -189,10 +208,22 @@ def create_app(
             {"username": user.username, "role": user.role, "tenant_id": user.tenant_id}
         )
         response.set_cookie(
-            cookie, token, httponly=True, samesite="strict", max_age=SESSION_SECONDS, path="/"
+            cookie,
+            token,
+            httponly=True,
+            secure=public,
+            samesite="strict",
+            max_age=SESSION_SECONDS,
+            path="/",
         )
         response.set_cookie(
-            csrf_cookie, csrf, httponly=False, samesite="strict", max_age=SESSION_SECONDS, path="/"
+            csrf_cookie,
+            csrf,
+            httponly=False,
+            secure=public,
+            samesite="strict",
+            max_age=SESSION_SECONDS,
+            path="/",
         )
         return response
 
@@ -201,8 +232,8 @@ def create_app(
         principal(request, mutation=True)
         auth.logout(request.cookies.get(cookie, ""))
         response = JSONResponse({"signed_out": True})
-        response.delete_cookie(cookie)
-        response.delete_cookie(csrf_cookie)
+        response.delete_cookie(cookie, httponly=True, secure=public, samesite="strict")
+        response.delete_cookie(csrf_cookie, secure=public, samesite="strict")
         return response
 
     @app.get("/api/session")
