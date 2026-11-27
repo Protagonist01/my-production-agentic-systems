@@ -152,7 +152,9 @@ def test_sim_billing_reports_amount_weighted_recall_and_benign_false_alarm():
             result=result(plan.cases[2], amount=3100),
         ),
         BillingObservation(
-            case_id=plan.cases[3].input.case_id, trial_id="t1", result=result(plan.cases[3])
+            case_id=plan.cases[3].input.case_id,
+            trial_id="t1",
+            result=result(plan.cases[3], amount=3100),
         ),
     )
     report = billing_report(plan, observations)
@@ -163,6 +165,8 @@ def test_sim_billing_reports_amount_weighted_recall_and_benign_false_alarm():
         100 / 1100
     )
     assert m["benign"] == m["false_alarms"] == m["missed_review"] == 1
+    assert m["flagged_discrepancies"] == 3
+    assert m["case_discrepancy_precision"] == pytest.approx(1 / 3)
     assert (
         report["unit"] == "SIM"
         and report["source_kind"] == "synthetic"

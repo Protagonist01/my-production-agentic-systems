@@ -280,6 +280,12 @@ def billing_report(
                     and result.disposition == expected.disposition
                 )
                 counts["detected_discrepancies"] += detected
+                counts["flagged_discrepancies"] += bool(
+                    result
+                    and valid
+                    and not failed
+                    and result.disposition in ("underbilled", "overbilled")
+                )
                 counts["detected_discrepancy_minor"] += abs(delta or 0) if detected else 0
                 counts["exact_discrepancies"] += discrepancy and correct
                 counts["false_alarms"] += expected.disposition == "correct" and bool(
@@ -311,6 +317,7 @@ def billing_report(
                     "unresolved",
                     "discrepancies",
                     "detected_discrepancies",
+                    "flagged_discrepancies",
                     "exact_discrepancies",
                     "discrepancy_minor",
                     "detected_discrepancy_minor",
@@ -326,6 +333,9 @@ def billing_report(
             },
             "case_discrepancy_recall": ratio(
                 counts["detected_discrepancies"], counts["discrepancies"]
+            ),
+            "case_discrepancy_precision": ratio(
+                counts["detected_discrepancies"], counts["flagged_discrepancies"]
             ),
             "sim_amount_weighted_recall": ratio(
                 counts["detected_discrepancy_minor"], counts["discrepancy_minor"]
