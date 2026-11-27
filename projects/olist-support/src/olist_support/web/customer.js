@@ -7,7 +7,11 @@ function authWork(work) {
   authQueue = result.catch(() => {});
   return result;
 }
-const money = (n) => `${Math.floor(n / 100)}.${String(n % 100).padStart(2, "0")} SIM`;
+const money = (n) => `$${Math.floor(n / 100)}.${String(n % 100).padStart(2, "0")}`;
+const resultMessage = (result) =>
+  result.committed && Number.isInteger(result.refund_amount_minor)
+    ? `Simulated refund of ${money(result.refund_amount_minor)} recorded.`
+    : result.message;
 function clearProposal() {
   selection = null;
   $("customer-proposal").hidden = true;
@@ -62,7 +66,7 @@ async function refresh() {
       try {
         if (row.committed) {
           const result = await api(`/api/customer/cases/${encodeURIComponent(row.case_id)}`);
-          if (current === generation && identity) notice(result.message);
+          if (current === generation && identity) notice(resultMessage(result));
           return;
         }
         const offer = await api(`/api/customer/cases/${encodeURIComponent(row.case_id)}/challenge`, {});
@@ -92,7 +96,7 @@ $("customer-confirm").addEventListener("click", async () => {
     if (!identity || ticket !== generation) return;
     notice("Your confirmation is saved. Waiting for the refund result.");
     const result = await api(`/api/customer/cases/${encodeURIComponent(offer.case_id)}/execute`, body);
-    if (identity && ticket === generation) { clearProposal(); notice(result.message); await refresh(); }
+    if (identity && ticket === generation) { clearProposal(); notice(resultMessage(result)); await refresh(); }
   } catch (error) { if (ticket === generation) { clearProposal(); notice(error.message); } }
   finally { busy = false; $("customer-confirm").disabled = false; }
 });
