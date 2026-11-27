@@ -264,7 +264,7 @@ def test_openrouter_transport_pins_free_route_and_checks_the_completion(monkeypa
     }
     reply = {
         "model": runtime.MODEL.removesuffix(":free"),
-        "provider": "NVIDIA",
+        "provider": "Nvidia",
         "usage": {"cost": 0},
         "choices": [
             {
@@ -307,4 +307,8 @@ def test_openrouter_transport_pins_free_route_and_checks_the_completion(monkeypa
     reply["usage"] = {"cost": 0.001}
     with pytest.raises(ValueError, match="unavailable"):
         model(document)
-    assert len(requests) == 2
+    reply["usage"] = {"cost": 0}
+    reply["provider"] = "Another provider"
+    with pytest.raises(ValueError, match="unavailable"):
+        model(document)
+    assert len(requests) == 3

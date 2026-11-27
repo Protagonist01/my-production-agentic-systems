@@ -113,7 +113,12 @@ class OpenRouterAssessment:
                 or body.get("error")
             ):
                 raise ValueError("incomplete model response")
-            if body.get("provider") != "NVIDIA" or body.get("usage", {}).get("cost") != 0:
+            provider = body.get("provider")
+            if (
+                not isinstance(provider, str)
+                or provider.casefold() != "nvidia"
+                or body.get("usage", {}).get("cost") != 0
+            ):
                 raise ValueError("model response did not confirm the pinned free route")
             return Answer.model_validate_json(message["content"], strict=True)
         except (HTTPException, OSError, KeyError, ValueError, TypeError, AttributeError) as exc:
