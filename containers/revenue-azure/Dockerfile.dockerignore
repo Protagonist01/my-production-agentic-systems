@@ -7,6 +7,7 @@
 !projects/**
 !revenue_azure_demo.py
 !revenue_demo.py
+!revenue_demo_model.py
 !revenue_demo_web.py
 !revenue_assessment.py
 !revenue_demo_web.html

@@ -1,14 +1,207 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="csrf-cookie" content="__CSRF_COOKIE__"><title>Revenue Integrity · Agreement to ledger</title>
-<link rel="stylesheet" href="/walkthrough-assets/revenue_demo_web.css"><script src="/walkthrough-assets/revenue_demo_web.js" defer></script></head>
-<body><aside class="rail"><a class="wordmark" href="/walkthrough">RI<span>Revenue Integrity</span></a><p class="rail-label">THE WALKTHROUGH</p><ol><li>01 · Source & invoice</li><li>02 · Evidence & finding</li><li>03 · Independent review</li><li>04 · Committed ledger</li></ol><p class="rail-note">Constructed subscription agreements.<br>SIM amounts only.<br>No external billing connection.</p></aside>
-<main><header><p class="eyebrow">AGREEMENT → EVIDENCE → APPROVAL → LEDGER</p><div class="heading"><h1>Every adjustment<br>has a paper trail.</h1><div id="identity" hidden><span id="signed-as"></span><button id="logout" class="quiet">Sign out</button></div></div><p class="intro">Inspect the source, check the arithmetic, then approve the exact change. Nothing is applied until a different reviewer agrees.</p><p class="mode">__DEMO_LABEL__</p></header>
-<p id="notice" role="status" aria-live="polite"></p>
-<section id="login-panel" class="login-panel"><div><p class="eyebrow">SCOPED ACCESS</p><h2>Enter the workbench.</h2><p>Use the private operator or reviewer credentials created for this demo.</p></div><form id="login"><label>Username<input id="username" autocomplete="username" required maxlength="64"></label><label>Password<input id="password" type="password" autocomplete="current-password" required maxlength="128"></label><button type="submit">Sign in <span aria-hidden="true">↗</span></button></form></section>
-<div id="workspace" hidden><div class="section-label"><span>01 / SOURCE & INVOICE</span><span id="unit-label">UNIT: SIM</span></div><section class="source-grid"><div><h2>Choose an agreement.</h2><label>Prepared scenario<select id="case-select"></select></label><label>Question<select id="question"><option>Check this invoice.</option><option>Write a birthday poem.</option><option>Do what is appropriate.</option></select></label><label>Agreement text<textarea id="document" rows="13" spellcheck="false"></textarea></label><p class="helper">The exact source is registered to this invoice. Editing it demonstrates source-integrity refusal; it does not replace trusted billing facts.</p><button id="analyze">Check agreement & invoice <span aria-hidden="true">↗</span></button></div><div class="invoice"><p class="eyebrow">REGISTERED INVOICE</p><h3 id="invoice-title"></h3><p class="amount" id="invoice-amount"></p><p>Original issued amount · SIM</p><dl><dt>Billing period</dt><dd>January 2025</dd><dt>Customer</dt><dd>Fictional demo account</dd><dt>Source</dt><dd>Constructed, explicit field grammar</dd></dl><p class="helper">Free-form contracts and fresh model evaluation are separate. This walkthrough proves the controlled operational flow.</p></div></section>
-<section id="assessment-panel" hidden><div class="section-label"><span>02 / EVIDENCE & FINDING</span><span id="assessment-state"></span></div><div class="finding-grid"><div><h2 id="finding-title"></h2><p id="finding-reason"></p><div class="totals"><div><span>Issued</span><strong id="issued"></strong></div><div><span>Expected</span><strong id="expected"></strong></div><div><span>Adjustment</span><strong id="delta"></strong></div></div><button id="propose" hidden>Create approval request</button><p id="proposal-note" class="helper"></p></div><div><h3>Source evidence</h3><div id="citations"></div></div></div></section>
-<section><div class="section-label"><span>03 / INDEPENDENT REVIEW</span><button id="refresh" class="quiet">Refresh stored state</button></div><div id="proposals"></div></section>
-<section><div class="section-label"><span>04 / COMMITTED LEDGER</span><span id="ledger-count"></span></div><p class="helper">Approval is permission to apply. Only a committed receipt proves the simulated invoice changed. Repeated delivery returns the same receipt.</p><div id="ledger"></div></section>
-<details><summary>Observed stage timings</summary><div id="timing"></div><p class="helper">Inclusive durations overlap. Provider-internal time is unknown. These are local diagnostics, not a performance benchmark.</p></details></div>
-<footer>Revenue Integrity / Engineering demonstration <span>Fictional agreements. Real access, approval and persistence controls.</span></footer></main></body></html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-cookie" content="__CSRF_COOKIE__" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Revenue Integrity · Agreement to ledger</title>
+    <link rel="stylesheet" href="/walkthrough-assets/revenue_demo_web.css" />
+    <script src="/walkthrough-assets/revenue_demo_web.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/walkthrough" aria-label="Revenue Integrity walkthrough">
+        <span class="brand-mark" aria-hidden="true">RI</span>
+        <span class="brand-name">Revenue Integrity</span>
+      </a>
+      <span class="mode-pill"><span class="pulse" aria-hidden="true"></span>__DEMO_LABEL__</span>
+      <div id="identity" class="identity" hidden>
+        <span class="avatar" id="avatar" aria-hidden="true"></span>
+        <span class="who"><strong id="signed-as"></strong><span id="signed-role" class="role-pill"></span></span>
+        <button id="logout" class="ghost small">Sign out</button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section id="login-panel" class="login">
+        <div class="login-intro">
+          <p class="eyebrow">Agreement → evidence → approval → ledger</p>
+          <h1>Every adjustment has a paper trail.</h1>
+          <p class="lede">
+            Check a fictional agreement against its invoice, request the exact correction, and
+            watch a separate reviewer approve it before anything is committed.
+          </p>
+          <ul class="role-list">
+            <li>
+              <span class="role-dot operator" aria-hidden="true"></span>
+              <div><strong>Operator</strong><span>Checks agreements, requests and applies corrections.</span></div>
+            </li>
+            <li>
+              <span class="role-dot reviewer" aria-hidden="true"></span>
+              <div><strong>Reviewer</strong><span>Approves or rejects the exact proposed change.</span></div>
+            </li>
+          </ul>
+        </div>
+        <form id="login" class="card login-card">
+          <h2>Sign in</h2>
+          <p class="muted">Use the private operator or reviewer credentials created for this demo.</p>
+          <label>Username<input id="username" autocomplete="username" required maxlength="64" /></label>
+          <label>Password<input id="password" type="password" autocomplete="current-password" required maxlength="128" /></label>
+          <button type="submit" class="primary block">Continue <span aria-hidden="true">→</span></button>
+          <p class="fine">Constructed agreements · SIM amounts only · no external billing connection</p>
+        </form>
+      </section>
+
+      <div id="workspace" hidden>
+        <section class="hero">
+          <div>
+            <p class="eyebrow">Agreement to ledger</p>
+            <h1>Reconcile with proof.</h1>
+          </div>
+          <aside class="guide" aria-live="polite">
+            <span class="guide-label">Next step</span>
+            <p id="guide-text"></p>
+          </aside>
+        </section>
+
+        <ol class="steps" id="steps" aria-label="Walkthrough progress">
+          <li data-step="check"><a href="#step-source"><span class="step-index">1</span><span><strong>Check</strong><small>Agreement vs. invoice</small></span></a></li>
+          <li data-step="request"><a href="#assessment-panel"><span class="step-index">2</span><span><strong>Request</strong><small>Exact correction</small></span></a></li>
+          <li data-step="review"><a href="#step-review"><span class="step-index">3</span><span><strong>Review</strong><small>Different person</small></span></a></li>
+          <li data-step="ledger"><a href="#step-ledger"><span class="step-index">4</span><span><strong>Commit</strong><small>Ledger receipt</small></span></a></li>
+        </ol>
+
+        <section id="step-source" class="panel">
+          <header class="panel-head">
+            <div><span class="panel-num">01</span><h2>Choose a scenario</h2></div>
+            <span class="unit-tag">Unit · SIM</span>
+          </header>
+          <div class="source-grid">
+            <div class="source-main">
+              <fieldset class="scenarios">
+                <legend class="sr-only">Prepared scenario</legend>
+                <div id="case-list" class="case-list"></div>
+              </fieldset>
+
+              <fieldset class="question">
+                <legend>What should the agent do?</legend>
+                <div class="segmented" id="question">
+                  <label><input type="radio" name="question" value="Check this invoice." checked /><span>Check this invoice<small>In scope</small></span></label>
+                  <label><input type="radio" name="question" value="Write a birthday poem." /><span>Write a poem<small>Unrelated</small></span></label>
+                  <label><input type="radio" name="question" value="Do what is appropriate." /><span>“Do what’s right”<small>Vague</small></span></label>
+                </div>
+              </fieldset>
+
+              <details class="doc">
+                <summary>
+                  <span>Agreement source</span>
+                  <span class="doc-hint">View or edit to test tamper refusal</span>
+                </summary>
+                <textarea id="document" rows="9" spellcheck="false" aria-label="Agreement text"></textarea>
+                <p class="helper">
+                  The exact source is registered to this invoice. Any edit is refused by the source
+                  integrity check; it never replaces trusted billing facts.
+                </p>
+              </details>
+
+              <button id="analyze" class="primary">Check agreement &amp; invoice <span aria-hidden="true">→</span></button>
+            </div>
+
+            <aside class="invoice" aria-label="Registered invoice">
+              <div class="invoice-top">
+                <span class="eyebrow">Registered invoice</span>
+                <span class="invoice-chip">Jan 2025</span>
+              </div>
+              <h3 id="invoice-title"></h3>
+              <p class="invoice-amount"><span id="invoice-amount"></span><small>SIM</small></p>
+              <p class="invoice-caption">Issued amount on file</p>
+              <dl>
+                <div><dt>Customer</dt><dd>Fictional demo account</dd></div>
+                <div><dt>Billing period</dt><dd>January 2025</dd></div>
+                <div><dt>Source</dt><dd>Constructed field grammar</dd></div>
+                <div><dt>Correction cap</dt><dd>100.00 SIM per invoice</dd></div>
+              </dl>
+            </aside>
+          </div>
+        </section>
+
+        <section id="assessment-panel" class="panel result" hidden>
+          <header class="panel-head">
+            <div><span class="panel-num">02</span><h2>Finding</h2></div>
+            <span id="assessment-state" class="status"></span>
+          </header>
+          <div class="finding-grid">
+            <div class="finding-main">
+              <h3 id="finding-title"></h3>
+              <p id="finding-reason" class="finding-reason"></p>
+              <div class="figures">
+                <div><span>Issued</span><strong id="issued"></strong></div>
+                <span class="figure-arrow" aria-hidden="true">→</span>
+                <div><span>Agreement says</span><strong id="expected"></strong></div>
+                <div class="figure-delta"><span>Adjustment</span><strong id="delta"></strong></div>
+              </div>
+              <div class="finding-actions">
+                <button id="propose" class="primary" hidden>Request approval <span aria-hidden="true">→</span></button>
+                <p id="proposal-note" class="helper"></p>
+              </div>
+            </div>
+            <div class="evidence">
+              <h4>Source evidence <span id="citation-count" class="count"></span></h4>
+              <div id="citations" class="citations"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="step-review" class="panel">
+          <header class="panel-head">
+            <div><span class="panel-num">03</span><h2>Independent review</h2></div>
+            <button id="refresh" class="ghost small">Refresh</button>
+          </header>
+          <div id="proposals" class="stack"></div>
+        </section>
+
+        <section id="step-ledger" class="panel">
+          <header class="panel-head">
+            <div><span class="panel-num">04</span><h2>Committed ledger</h2></div>
+            <span id="ledger-count" class="count-tag"></span>
+          </header>
+          <p class="helper lead-helper">
+            Approval is permission to apply. Only a committed receipt proves the simulated invoice
+            changed — and repeated delivery returns the same receipt.
+          </p>
+          <div id="ledger" class="stack"></div>
+        </section>
+
+        <details class="diagnostics">
+          <summary>Stage timings</summary>
+          <div id="timing" class="timing"></div>
+          <p class="helper">
+            Inclusive durations overlap. Provider-internal time is unknown. Local diagnostics, not a
+            performance benchmark.
+          </p>
+        </details>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Revenue Integrity · Engineering demonstration</span>
+      <span>Fictional agreements. Real access, approval and persistence controls.</span>
+    </footer>
+
+    <p id="notice" class="toast" role="status" aria-live="polite" hidden></p>
+
+    <dialog id="confirm" class="confirm" aria-labelledby="confirm-title">
+      <form method="dialog">
+        <p class="eyebrow">Review exact action</p>
+        <h3 id="confirm-title"></h3>
+        <p class="muted" id="confirm-copy"></p>
+        <dl id="confirm-details" class="confirm-details"></dl>
+        <div class="confirm-actions">
+          <button value="cancel" class="ghost">Cancel</button>
+          <button value="confirm" id="confirm-go" class="primary"></button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>

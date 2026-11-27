@@ -67,9 +67,12 @@ function el(tag, text, cls) {
   if (cls) node.className = cls;
   return node;
 }
+let noticeTimer = 0;
 function notice(message) {
+  clearTimeout(noticeTimer);
   $("notice").textContent = message;
   $("notice").hidden = !message;
+  if (message) noticeTimer = setTimeout(() => ($("notice").hidden = true), 8000);
 }
 function csrf() {
   const name = document.querySelector('meta[name="csrf-cookie"]').content;
@@ -158,7 +161,7 @@ function cell(row, text, cls) {
   return td;
 }
 function button(text, handler) {
-  const b = el("button", text, "secondary");
+  const b = el("button", text, "secondary small");
   b.type = "button";
   b.addEventListener("click", () => action(b, () => handler(b)));
   return b;
@@ -168,7 +171,7 @@ function badge(text) {
 }
 function versionCell(row, id, version) {
   const td = cell(row, undefined, "resource");
-  td.append(el("span", id), el("span", "VERSION " + version, "sub"));
+  td.append(el("span", id), el("span", "Version " + version, "sub"));
 }
 function showView(name) {
   currentView = name;
@@ -200,8 +203,8 @@ function render() {
   ]) {
     const metric = el("div", undefined, "metric");
     metric.append(
-      el("div", name + " · SIM", "metric-label"),
-      el("div", money(value), "metric-value"),
+      el("div", name, "metric-label"),
+      el("div", money(value) + " SIM", "metric-value"),
     );
     $("totals").append(metric);
   }

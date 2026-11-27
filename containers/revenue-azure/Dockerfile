@@ -11,7 +11,7 @@ FROM python@sha256:f0fa218d5b06f9b9235024fa061cde2cb141f726de52134471053d2d9b532
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 COPY --from=build /app/.venv .venv/
-COPY revenue_azure_demo.py revenue_demo.py revenue_demo_web.py revenue_assessment.py ./
+COPY revenue_azure_demo.py revenue_demo.py revenue_demo_model.py revenue_demo_web.py revenue_assessment.py ./
 COPY revenue_demo_web.html revenue_demo_web.css revenue_demo_web.js ./
 COPY revenue_profiled_runtime.py revenue_profiling.py ./
 USER 65532:65532

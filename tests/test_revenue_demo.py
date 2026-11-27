@@ -179,3 +179,132 @@ def test_failed_bootstrap_keeps_private_credential_and_resume_refuses_identity_c
     with pytest.raises(ValueError):
         bootstrap(root, "owned-demo", credential, resume=True)
     assert len(calls) == 2
+
+
+@pytest.mark.parametrize("model_status", ["verified", "wrong_value", "unavailable", "exhausted"])
+def test_live_model_receipt_required_for_proposal(model_status):
+    from revenue_demo_model import Answer, Evidence
+
+    class Receipts:
+        accepted_slots = set()
+
+        def reserve(self, actor, digest):
+            self.binding = actor, digest
+            return None if model_status == "exhausted" else 1
+
+        def accept(self, slot):
+            self.accepted_slots.add(slot)
+
+        def accepted(self, actor, digest):
+            return bool(self.accepted_slots) and self.binding == (actor, digest)
+
+    calls = []
+    receipts = Receipts()
+    user = principal("operator")
+    exact = payload(cases()[0])
+
+    def extract(document):
+        calls.append(document)
+        if model_status == "unavailable":
+            raise ValueError("provider unavailable")
+        return Answer(
+            evidence=(
+                Evidence(field="seats", value=3, quote="seats=3"),
+                Evidence(
+                    field="unit_price_minor",
+                    value=1001 if model_status == "wrong_value" else 1000,
+                    quote="unit_price_minor=1000",
+                ),
+            )
+        )
+
+    store = ReadOnlyStore()
+    service = DemoService(store, Recorder(), model=(extract, receipts))
+    unrelated = exact.model_copy(update={"question": "Write a birthday poem."})
+    edited = exact.model_copy(update={"document": exact.document + " user text"})
+    assert service.analyze(user, unrelated)["action"] == "outside_scope"
+    assert service.analyze(user, edited)["action"] == "deny"
+    assert not calls and not hasattr(receipts, "binding")
+
+    result = service.analyze(user, exact)
+    assert result["execution_mode"] == "openrouter_nemotron"
+    assert calls == ([] if model_status == "exhausted" else [exact.document])
+    submission = Propose(
+        analysis=exact,
+        expected_version=0,
+        analysis_digest=result["analysis_digest"],
+        operation_id="bounded-model",
+    )
+    if model_status == "verified":
+        assert result["action"] == "proposable"
+        assert result["delta_minor"] == 500
+        assert {item["field"] for item in result["citations"]} == {"seats", "unit_price_minor"}
+        with pytest.raises(AssertionError, match="analysis must not write"):
+            service.propose_checked(user, submission)
+        assert store.writes == 1
+    else:
+        assert result["action"] == "review" and result["delta_minor"] is None
+        with pytest.raises(ValueError, match="model_assessment_required"):
+            service.propose_checked(user, submission)
+        assert store.writes == 0
+    assert len(calls) == (0 if model_status == "exhausted" else 1)
+
+
+def test_openrouter_transport_pins_free_route_and_checks_the_completion(monkeypatch):
+    import json
+    from types import SimpleNamespace
+
+    import revenue_demo_model as runtime
+
+    answer = {
+        "evidence": [
+            {"field": "seats", "value": 3, "quote": "seats=3"},
+            {"field": "unit_price_minor", "value": 1000, "quote": "unit_price_minor=1000"},
+        ]
+    }
+    reply = {
+        "model": runtime.MODEL.removesuffix(":free"),
+        "provider": "NVIDIA",
+        "usage": {"cost": 0},
+        "choices": [
+            {
+                "finish_reason": "stop",
+                "message": {"role": "assistant", "content": json.dumps(answer)},
+            }
+        ],
+    }
+    requests = []
+
+    class Connection:
+        def __init__(self, host, timeout):
+            assert host == "openrouter.ai" and timeout == 10
+
+        def request(self, method, path, body, headers):
+            assert method == "POST" and path == "/api/v1/chat/completions"
+            assert headers["Authorization"] == "Bearer invented"
+            requests.append(json.loads(body))
+
+        def getresponse(self):
+            return SimpleNamespace(status=200, read=lambda limit: json.dumps(reply).encode())
+
+        def close(self):
+            pass
+
+    monkeypatch.setattr(runtime, "HTTPSConnection", Connection)
+    model = runtime.OpenRouterAssessment("invented")
+    document = cases()[0].document.text
+    assert model(document).evidence[0].value == 3
+    request = requests[0]
+    assert request["model"] == runtime.MODEL
+    assert request["messages"][1] == {"role": "user", "content": document}
+    assert request["provider"] == {
+        "only": ["nvidia"],
+        "allow_fallbacks": False,
+        "require_parameters": True,
+        "max_price": {"prompt": 0, "completion": 0, "request": 0},
+    }
+
+    reply["usage"] = {"cost": 0.001}
+    with pytest.raises(ValueError, match="unavailable"):
+        model(document)
+    assert len(requests) == 2

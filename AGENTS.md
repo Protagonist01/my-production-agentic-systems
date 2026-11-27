@@ -15,6 +15,16 @@ contention or before expanding the data or availability requirements. When
 working in a separate checkout, read the latest main copy before proposing an
 alternative. Deploy Revenue first using the existing server and its own database.
 
+## Revenue Azure model rollout (2026-11-27)
+
+The owner approved live model assessment in the Revenue Azure portfolio demo and
+up to 12 OpenRouter Free attempts on registered fictional agreements. The pinned
+NVIDIA Nemotron route has zero price limits, no automatic retries and no fallback.
+Use the Revenue database for the persistent allowance. Run the migration before
+activating the model-required revision. Record the walkthrough only after an
+authenticated case confirms a real model response. Separate reviewer approval and
+idempotent ledger apply are still required. See [the rollout instructions](docs/revenue-azure-demo.md). Customer billing qualification remains under #45.
+
 ## Olist Gemini-only next candidate (2026-11-23)
 
 PR169 and PR172 are merged. The approved continuation has now stopped at its eighth

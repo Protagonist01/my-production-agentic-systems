@@ -1,6 +1,7 @@
 """Constructed Revenue walkthrough over the unchanged durable SIM operation store."""
 
 import json
+from collections.abc import Callable
 from datetime import date
 from typing import Annotated, Any, Literal, Self
 
@@ -19,6 +20,7 @@ from revenue_integrity.extraction import (
 from revenue_integrity.operation_contracts import BusinessReview, Proposal, RevenueRecord
 
 from revenue_assessment import DocumentBinding, RequestScope, preflight
+from revenue_demo_model import Answer, ModelReceipts
 from revenue_profiling import Recorder
 
 
@@ -116,9 +118,16 @@ class Propose(Contract):
 class DemoService(ConsoleService):
     """No new write authority: require independently provisioned source facts and consent."""
 
-    def __init__(self, store: Operations, recorder: Recorder):
+    def __init__(
+        self,
+        store: Operations,
+        recorder: Recorder,
+        *,
+        model: tuple[Callable[[str], Answer], ModelReceipts] | None = None,
+    ):
         super().__init__(store)
         self.recorder = recorder
+        self.model = model
         self.catalog = {c.case_id: c for c in cases()}
 
     def source(self, principal: Principal, case_id: str) -> DemoCase:
@@ -165,7 +174,58 @@ class DemoService(ConsoleService):
         payload = Analyze.model_validate_json(payload.canonical_json())
         case = self.source(principal, payload.case_id)
         record = self._record(principal, case)
-        return self._analyze(principal, payload, case, record)
+        result = self._analyze(principal, payload, case, record)
+        if self.model is None or result["action"] not in (
+            "proposable",
+            "no_change",
+            "request_information",
+        ):
+            return result
+
+        extract, receipts = self.model
+        slot = receipts.reserve(principal.actor_id, result["analysis_digest"])
+        result["execution_mode"] = "openrouter_nemotron"
+        if slot is None:
+            return self._model_review(result, "model_allowance_exhausted")
+
+        result["model_calls"] = 1
+        try:
+            answer = self.recorder.call("gateway", extract, case.document.text)
+        except ValueError:
+            return self._model_review(result, "model_unavailable")
+
+        expected = {
+            citation["field"]: citation
+            for citation in result["citations"]
+            if citation["field"] in ("unit_price_minor", "seats")
+        }
+        verified = []
+        for item in answer.evidence:
+            citation = expected.pop(item.field, None)
+            if citation is None or item.quote != citation["quote"]:
+                return self._model_review(result, "model_evidence_disagrees")
+            if item.value != json.loads(citation["quote"].split("=", 1)[1]):
+                return self._model_review(result, "model_evidence_disagrees")
+            verified.append(citation)
+        if expected:
+            return self._model_review(result, "model_evidence_disagrees")
+
+        receipts.accept(slot)
+        result["citations"] = verified
+        if result["action"] == "proposable":
+            result["reason"] = "model_and_stored_facts_agree"
+        return result
+
+    @staticmethod
+    def _model_review(result: dict[str, Any], reason: str) -> dict[str, Any]:
+        return {
+            **result,
+            "action": "review",
+            "reason": reason,
+            "citations": [],
+            "expected_minor": None,
+            "delta_minor": None,
+        }
 
     def _analyze(
         self, principal: Principal, payload: Analyze, case: DemoCase, record: RevenueRecord
@@ -287,6 +347,10 @@ class DemoService(ConsoleService):
             or record.version != payload.expected_version
         ):
             raise BusinessReview("assessment_changed_or_requires_review")
+        if self.model is not None and not self.model[1].accepted(
+            principal.actor_id, checked["analysis_digest"]
+        ):
+            raise BusinessReview("model_assessment_required")
         return super().propose(
             principal,
             Submission(
