@@ -65,6 +65,10 @@ def test_validation_and_body_errors_do_not_echo_passwords_or_untrusted_html():
         and "Support desk" in page.text
         and "no-store" in page.headers["cache-control"]
     )
+    for response in (page, client.get("/customer")):
+        assert response.status_code == 200
+        assert "simulation-label" not in response.text
+        assert "Simulated dollars" not in response.text
     assert client.get("/assets/console.css").status_code == 200
     assert client.get("/assets/console.js").status_code == 200
     assert client.get("/assets/unknown").status_code == 404

@@ -131,8 +131,9 @@ async function refresh() {
       );
       b.dataset.caseId = c.case_id;
       const top = element("span", undefined, "item-top");
+      const intent = c.display_intent || c.intent;
       top.append(
-        element("span", c.intent.charAt(0).toUpperCase() + c.intent.slice(1)),
+        element("span", intent.charAt(0).toUpperCase() + intent.slice(1)),
         element("span", labels[c.status] || c.status, "pill " + c.status),
       );
       b.append(top, element("span", c.order_id, "item-order"));
@@ -169,15 +170,11 @@ async function openCase(id, reloadList = true) {
 function row(target, label, value) {
   target.append(element("dt", label), element("dd", value ?? "Unknown"));
 }
-function render({ case: c, events }) {
+function render({ case: c, display_intent: intent, events }) {
   screen("detail");
   $("case-ref").textContent = "CASE / " + c.case_id.slice(0, 12).toUpperCase();
-  $("case-title").textContent =
-    c.request.intent === "status"
-      ? "Order status"
-      : c.request.intent === "reship"
-        ? "Reship request"
-        : "Refund request";
+  const titles = { status: "Order status", reship: "Reship request", refund: "Refund request" };
+  $("case-title").textContent = titles[intent || c.request.intent] || "Customer request";
   $("case-order").textContent =
     `${c.order_id} · ${new Date(c.created_at).toLocaleString()}`;
   $("case-status").textContent = labels[c.status] || c.status;

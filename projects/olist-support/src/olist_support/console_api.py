@@ -314,6 +314,13 @@ def create_app(
             )
         return rows
 
+    def display_intent(case: CaseRecord) -> str:
+        if case.intent_source == "operator":
+            return case.request.intent
+        if case.intent_decision is None:
+            return "request"
+        return case.intent_decision.plan.intent
+
     @app.get("/api/cases")
     def listing(request: Request) -> list[dict[str, Any]]:
         user = principal(request)
@@ -323,6 +330,7 @@ def create_app(
                 "order_id": c.order_id,
                 "status": c.status,
                 "intent": c.request.intent,
+                "display_intent": display_intent(c),
                 "updated_at": c.updated_at.isoformat(),
             }
             for c in cases.listing(user)
@@ -374,7 +382,11 @@ def create_app(
     @app.get("/api/cases/{case_id}")
     def detail(case_id: str, request: Request) -> dict[str, Any]:
         case, audit = cases.detail(principal(request), case_id)
-        return {"case": case.model_dump(mode="json"), "events": audit}
+        return {
+            "case": case.model_dump(mode="json"),
+            "display_intent": display_intent(case),
+            "events": audit,
+        }
 
     @app.post("/api/cases/{case_id}/decision")
     def decide(case_id: str, payload: Decision, request: Request) -> dict[str, Any]:
