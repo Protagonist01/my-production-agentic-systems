@@ -203,6 +203,36 @@ def test_origin_restrictions(origin):
         create_app(None, None, origin=origin, trial_id="test")
 
 
+def test_hosted_https_cookies_and_origin_checks():
+    origin = "https://revenue.example.invalid"
+    app = create_app(
+        ConsoleService(Memory(), clock=lambda: NOW),
+        Auth(actor()),
+        origin=origin,
+        trial_id="staging",
+        allow_public_https=True,
+    )
+    c = TestClient(app, base_url=origin)
+    credentials = {"username": "invented", "password": "invented password"}
+    assert c.post("/api/login", json=credentials, headers={"origin": ORIGIN}).status_code == 403
+    response = c.post("/api/login", json=credentials, headers={"origin": origin})
+    assert response.status_code == 200
+    issued = response.headers.get_list("set-cookie")
+    assert len(issued) == 2 and all("Secure" in cookie for cookie in issued)
+    assert "HttpOnly" in issued[0] and "HttpOnly" not in issued[1]
+    assert response.headers["strict-transport-security"] == "max-age=31536000"
+    assert c.get("/api/session").status_code == 200
+    assert c.get("/api/session", headers={"host": "wrong.example.invalid"}).status_code == 400
+
+
+@pytest.mark.parametrize(
+    "origin", ["https://127.0.0.1", "https://bad..invalid", "https://ok.invalid:8443"]
+)
+def test_hosted_origin_requires_canonical_dns_name(origin):
+    with pytest.raises(ValueError, match="canonical HTTPS"):
+        create_app(None, None, origin=origin, trial_id="test", allow_public_https=True)
+
+
 def test_api_projection_csrf_role_origin_and_private_errors():
     c, memory, service, headers = client()
     data = c.get("/api/workbench").json()
