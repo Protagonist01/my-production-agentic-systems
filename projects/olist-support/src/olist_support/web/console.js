@@ -104,6 +104,12 @@ async function signedIn(session) {
   $("identity").textContent = `${user.username} · ${user.role}`;
   $("tenant").textContent = user.tenant_id;
   $("new-case").hidden = user.role !== "operator";
+  const samples = session.demo_requests || [];
+  $("demo-requests").hidden = samples.length === 0;
+  $("intent-label").hidden = samples.length > 0;
+  $("intent").hidden = samples.length > 0;
+  $("request-text").readOnly = samples.length > 0;
+  $("demo-request").replaceChildren(...samples.map(text => element("option", text)));
   screen("empty");
   await refresh();
 }
@@ -177,6 +183,16 @@ function render({ case: c, events }) {
   $("case-status").textContent = labels[c.status] || c.status;
   $("case-status").className = "pill " + c.status;
   $("customer-message").textContent = c.request.text;
+  const decision = $("model-decision");
+  decision.hidden = !c.intent_decision || $("demo-requests").hidden;
+  if (!decision.hidden) {
+    const {plan, failure_code: failure} = c.intent_decision;
+    const amount = plan.requested_minor;
+    decision.textContent = failure
+      ? "Nemotron could not return a verified result. Sent to review."
+      : "Nemotron proposed " + plan.intent +
+        (Number.isInteger(amount) ? " · " + money(amount) : "") + ".";
+  }
   const evidence = $("evidence"),
     scenario = $("scenario");
   evidence.replaceChildren();
@@ -359,10 +375,14 @@ $("logout").addEventListener("click", () =>
   }),
 );
 $("refresh").addEventListener("click", () => refresh());
+$("demo-request").addEventListener("change", () => {
+  $("request-text").value = $("demo-request").value;
+});
 $("new-case").addEventListener("click", async () => {
   screen("compose");
   notice("");
   draftKey = crypto.randomUUID();
+  if (!$("demo-requests").hidden) $("request-text").value = $("demo-request").value;
   $("order").replaceChildren(element("option", "Loading assigned orders…"));
   try {
     const orders = await api("/api/orders");

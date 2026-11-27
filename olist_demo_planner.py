@@ -16,12 +16,15 @@ from docs.evaluation.olist_semantic_candidate import SemanticOutput, parse, requ
 VERSION = "olist-portfolio-semantic-planner-v1"
 
 
-def project(value: SemanticOutput) -> RoutingPlan:
-    """Never turn unknown money or a non-SIM amount into an implicit full refund."""
+def project(value: SemanticOutput, *, demo_dollars: bool = False) -> RoutingPlan:
+    """Use dollar amounts only on the explicitly fictional demo path."""
     intent = value.intent
+    supported_currency = value.currency == "SIM" or (
+        demo_dollars and value.currency == "dollar_unspecified"
+    )
     if intent == "refund" and (
         value.amount_status == "unclear"
-        or (value.amount_status == "explicit" and value.currency != "SIM")
+        or (value.amount_status == "explicit" and not supported_currency)
     ):
         return RoutingPlan(routing_version="olist-intent-routing-v2", intent="review")
     return RoutingPlan(
@@ -37,9 +40,11 @@ class DemoPlanner:
         gateway: ModelGateway,
         *,
         request_builder: Callable[[str], ModelRequest] = request,
+        demo_dollars: bool = False,
     ) -> None:
         self.gateway = gateway
         self.request_builder = request_builder
+        self.demo_dollars = demo_dollars
 
     def plan(self, context: RunContext, original: WorkflowRequest) -> IntentDecision:
         wire = self.request_builder(original.text)
@@ -56,7 +61,9 @@ class DemoPlanner:
                     or response.output.content is None
                 ):
                     raise ValueError("wrong route or non-text response")
-                plan = project(parse(original.text, response.output.content))
+                plan = project(
+                    parse(original.text, response.output.content), demo_dollars=self.demo_dollars
+                )
             except ValueError:
                 failure = "invalid_semantic_response"
         return IntentDecision(plan=plan, usage=response.usage, failure_code=failure)

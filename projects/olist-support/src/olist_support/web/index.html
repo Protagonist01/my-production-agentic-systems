@@ -103,12 +103,17 @@
               ><select id="order" required>
                 <option value="">Loading assigned orders…</option>
               </select>
-              <label for="intent">Request type</label
+              <label for="intent" id="intent-label">Request type</label
               ><select id="intent">
                 <option value="refund">Refund</option>
                 <option value="status">Order status</option>
                 <option value="reship">Reship</option>
               </select>
+              <div id="demo-requests" hidden>
+                <label for="demo-request">Fictional customer request</label>
+                <select id="demo-request"></select>
+                <p class="small muted">Nemotron reads the request and proposes an intent and amount.</p>
+              </div>
               <label for="request-text">Customer request</label
               ><textarea
                 id="request-text"
@@ -145,6 +150,7 @@
                 <article class="panel">
                   <p class="eyebrow">CUSTOMER REQUEST</p>
                   <p id="customer-message" class="request-message"></p>
+                  <p id="model-decision" class="small muted" hidden></p>
                 </article>
                 <article class="panel">
                   <div class="panel-heading">

@@ -77,7 +77,10 @@ def create_app(
     run_limit_minor: int,
     telemetry: ServiceTelemetry | None = None,
     allow_public_https: bool = False,
+    demo_requests: tuple[str, ...] = (),
 ) -> FastAPI:
+    if demo_requests and cases.planner is None:
+        raise ValueError("Built-in model demo requests require a planner")
     parsed = urlsplit(origin)
     public = (
         allow_public_https is True
@@ -252,9 +255,7 @@ def create_app(
             token, csrf, user = auth.login(payload.username, payload.password)
         except PermissionError:
             return JSONResponse({"error": "sign_in_failed"}, status_code=401)
-        response = JSONResponse(
-            {"principal": user.model_dump(mode="json"), "csrf_cookie": csrf_cookie}
-        )
+        response = JSONResponse(session_payload(user))
         response.set_cookie(
             session_cookie,
             token,
@@ -275,12 +276,18 @@ def create_app(
         )
         return response
 
-    @app.get("/api/session")
-    def session(request: Request) -> dict[str, Any]:
-        return {
-            "principal": principal(request, any_role=True).model_dump(mode="json"),
+    def session_payload(user: Principal) -> dict[str, Any]:
+        result: dict[str, Any] = {
+            "principal": user.model_dump(mode="json"),
             "csrf_cookie": csrf_cookie,
         }
+        if demo_requests:
+            result["demo_requests"] = list(demo_requests)
+        return result
+
+    @app.get("/api/session")
+    def session(request: Request) -> dict[str, Any]:
+        return session_payload(principal(request, any_role=True))
 
     @app.post("/api/logout")
     def logout(request: Request) -> JSONResponse:
@@ -325,6 +332,8 @@ def create_app(
     def submit(payload: Submission, request: Request) -> dict[str, Any]:
         user = principal(request, write=True)
         user.require("operator")
+        if demo_requests and payload.text not in demo_requests:
+            raise PermissionError("Choose a built-in fictional request.")
         view, _, _ = cases.business.order(
             user.grant(payload.order_id), user.tenant_id, payload.order_id
         )
@@ -338,12 +347,15 @@ def create_app(
             case_id="assigned-by-case-store",
             trial_id=trial_id,
             business_event_id="assigned-by-case-store",
-            mode="offline_fake",
+            mode="monitoring" if demo_requests else "offline_fake",
             clock=now,
             deadline=now + timedelta(minutes=2),
             seed=0,
             budget=Budget(
-                max_model_calls=1, max_tokens=512, max_cost=Decimal("0"), cost_currency="USD"
+                max_model_calls=1,
+                max_tokens=4096 if demo_requests else 512,
+                max_cost=Decimal("0"),
+                cost_currency="USD",
             ),
             versions=CandidateVersions(
                 code_revision=code_revision,
