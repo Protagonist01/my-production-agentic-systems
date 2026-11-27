@@ -6,7 +6,8 @@ COPY --from=uv /uv /usr/local/bin/uv
 COPY pyproject.toml uv.lock ./
 COPY harness/ harness/
 COPY projects/ projects/
-RUN UV_PYTHON_DOWNLOADS=never uv sync --locked --no-default-groups --package production-agent-olist-support --extra web --no-editable
+RUN UV_PYTHON_DOWNLOADS=never uv sync --locked --no-default-groups --package production-agent-olist-support --extra web \
+    --package production-agent-harness --extra openrouter --no-editable
 
 FROM python@sha256:f0fa218d5b06f9b9235024fa061cde2cb141f726de52134471053d2d9b5324a3
 WORKDIR /app
