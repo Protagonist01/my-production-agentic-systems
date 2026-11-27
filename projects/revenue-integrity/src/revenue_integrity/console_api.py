@@ -82,15 +82,18 @@ def create_app(
     allow_hosted_demo: bool = False,
 ) -> FastAPI:
     parsed = urlsplit(origin)
+    hostname = parsed.hostname
+    if hostname is None:
+        raise ValueError("explicit console hostname required")
     hosted = (
         allow_hosted_demo
         and parsed.scheme == "https"
         and parsed.hostname is not None
-        and parsed.hostname.endswith(".azurecontainerapps.io")
-        and parsed.netloc == parsed.hostname
+        and hostname.endswith(".azurecontainerapps.io")
+        and parsed.netloc == hostname
     )
     if (
-        not (hosted or (parsed.scheme == "http" and parsed.hostname in ("127.0.0.1", "localhost")))
+        not (hosted or (parsed.scheme == "http" and hostname in ("127.0.0.1", "localhost")))
         or parsed.username
         or parsed.password
         or parsed.query
@@ -105,7 +108,7 @@ def create_app(
         title="Revenue integrity workbench", docs_url=None, redoc_url=None, openapi_url=None
     )
     app.add_middleware(BodyLimit)
-    app.add_middleware(TrustedHostMiddleware, allowed_hosts=[parsed.hostname])
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=[hostname])
 
     def same_origin(request: Request) -> None:
         if (
