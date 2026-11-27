@@ -2,6 +2,19 @@
 
 Don't assume anything. Ask for clarifications on things you don't understand.
 
+## Five-agent Azure deployment decision (2026-11-27)
+
+For the five hosted SIM portfolio demos, reuse the existing private Canada Central
+Azure PostgreSQL server and Container Apps environment. Provision a separate
+database, restricted runtime login, migration authority and app for each agent.
+Read [the shared Azure operating plan](docs/azure-agent-database-operations.md)
+before deploying any agent. It records database names, connection budgets,
+traffic-spike handling, outages, workload separation and restore checks.
+This default is settled. Revisit it when measurements show cross-agent
+contention or before expanding the data or availability requirements. When
+working in a separate checkout, read the latest main copy before proposing an
+alternative. Deploy Revenue first using the existing server and its own database.
+
 ## Olist Gemini-only next candidate (2026-11-23)
 
 PR169 and PR172 are merged. The approved continuation has now stopped at its eighth

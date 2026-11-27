@@ -8865,3 +8865,31 @@ traffic switch. Read the control-plane revision status so GitHub runners do
 not need access to the IP-restricted console. Keep the manual publishing
 workflow available even while the repository toggle for deployment is off.
 The first hosted run still needs verification after the identity is configured.
+
+
+## Entry 127 — Share Azure compute while isolating each agent's data
+
+### Context
+
+Five portfolio demos have distinct business state and uneven traffic. We chose one
+private Azure PostgreSQL server and a separate database and login for each.
+
+### Options considered
+
+One schema per agent would share the same database connection and complicate
+proving isolation. Five servers would isolate maintenance and saturation, with
+five baselines to pay for and operate. Separate databases on one server buy
+independent access and migration boundaries at the current demo scale.
+
+### How to build it
+
+Create the new database on the existing private server. Remove the default
+database access for PUBLIC, grant each named login access to its database, and
+run schema setup as a different principal. Prove isolation by attempting the
+new-to-peer and peer-to-new connections with the runtime logins. Put a cap on
+worker admissions, connections and concurrent revisions before scaling the
+app. Test one busy agent while recording a steady peer workload. If a database
+fails, leave the readiness probe down and reconcile uncertain receipts before
+replaying the same operation ID. Use the [operating plan](docs/azure-agent-database-operations.md)
+for the thresholds and restore sequence. Cloud recovery and contention results
+are verified by drills after deployment.
