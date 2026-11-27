@@ -2,6 +2,7 @@
 
 import json
 from dataclasses import dataclass, field
+from http.client import HTTPException, HTTPSConnection
 from typing import Any, Literal
 
 import psycopg
@@ -9,7 +10,8 @@ from agent_harness.contracts import Contract
 from pydantic import Field
 
 MODEL = "nvidia/nemotron-3.5-super-vl:free"
-ENDPOINT = "https://openrouter.ai/api/v1/chat/completions"
+HOST = "openrouter.ai"
+PATH = "/api/v1/chat/completions"
 
 
 class Evidence(Contract):
@@ -27,8 +29,6 @@ class OpenRouterAssessment:
     api_key: str = field(repr=False)
 
     def __call__(self, document: str) -> Answer:
-        import httpx
-
         payload = {
             "model": MODEL,
             "messages": [
@@ -83,20 +83,23 @@ class OpenRouterAssessment:
                 },
             },
         }
+        connection = HTTPSConnection(HOST, timeout=10)
         try:
-            with httpx.Client(timeout=10, trust_env=False, follow_redirects=False) as client:
-                with client.stream(
-                    "POST",
-                    ENDPOINT,
-                    headers={"Authorization": f"Bearer {self.api_key}"},
-                    json=payload,
-                ) as response:
-                    response.raise_for_status()
-                    raw = bytearray()
-                    for chunk in response.iter_bytes():
-                        raw.extend(chunk)
-                        if len(raw) > 65536:
-                            raise ValueError("model response exceeds limit")
+            connection.request(
+                "POST",
+                PATH,
+                body=json.dumps(payload).encode("utf-8"),
+                headers={
+                    "Authorization": f"Bearer {self.api_key}",
+                    "Content-Type": "application/json",
+                },
+            )
+            response = connection.getresponse()
+            if response.status != 200:
+                raise ValueError("model route returned a non-success status")
+            raw = response.read(65537)
+            if len(raw) > 65536:
+                raise ValueError("model response exceeds limit")
             body = json.loads(raw)
             if body["model"] not in (MODEL, MODEL.removesuffix(":free")):
                 raise ValueError("unexpected model")
@@ -113,8 +116,10 @@ class OpenRouterAssessment:
             if body.get("provider") != "NVIDIA" or body.get("usage", {}).get("cost") != 0:
                 raise ValueError("model response did not confirm the pinned free route")
             return Answer.model_validate_json(message["content"], strict=True)
-        except (httpx.HTTPError, KeyError, ValueError, TypeError, AttributeError) as exc:
+        except (HTTPException, OSError, KeyError, ValueError, TypeError, AttributeError) as exc:
             raise ValueError("model assessment unavailable") from exc
+        finally:
+            connection.close()
 
 
 @dataclass(frozen=True)
