@@ -432,10 +432,13 @@ function renderAnalysis(result) {
   cited.sort((x, y) => Number(x.unset) - Number(y.unset));
   for (const { citation, quote, raw, unset } of cited) {
     const item = node("div", undefined, "citation");
+    // Wire integers arrive as decimal strings; add offsets as numbers, not by string concatenation.
+    const start = Number(citation.start);
+    const where = Number.isSafeInteger(start) && start >= 0 ? ` · chars ${start}–${start + quote.length}` : "";
     item.append(
       node("span", FIELDS[citation.field] || capital(words(citation.field)), "field"),
       node("span", unset ? "not set" : displayValue(citation.field, raw), "value" + (unset ? " unset" : "")),
-      node("span", `“${quote}” · chars ${citation.start}–${citation.start + quote.length}`, "span"),
+      node("span", `“${quote}”${where}`, "span"),
     );
     $("citations").append(item);
   }
